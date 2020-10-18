@@ -10,6 +10,6 @@
 	Hello world!  
 </h1>
 
-<P>  The time on the server is ${serverTime}. </P>
+<P>  The time on the server is ${serverTime}. hi 클론한 다른 로컬저장소에서 커밋 테스트 </P>
 </body>
 </html>
