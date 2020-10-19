@@ -19,6 +19,7 @@
 			<url>https://repo.spring.io/plugins-release/</url>
 		</repository>
 	</repositories>
+
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
