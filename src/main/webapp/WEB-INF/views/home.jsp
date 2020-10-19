@@ -10,6 +10,6 @@
 	Hello world!  
 </h1>
 
-<P>  The time on the server is ${serverTime}. 모두한 모쏠 </P>
+<P>  The time on the server is ${serverTime}. 모두한 </P>
 </body>
 </html>
