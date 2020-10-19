@@ -10,10 +10,5 @@
 
 	Hello world
 </h1>
-
-<P>  The time on the server is ${serverTime}.   모두한111 </P>
-<P>  The time on the server is ${serverTime}. 모두한111 </P>
-<p>은호 푸시 테스트22333</p>
-<!-- 수정 -->
 </body>
 </html>
