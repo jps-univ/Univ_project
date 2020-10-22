@@ -15,9 +15,9 @@
     <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
-    <link rel="stylesheet" href="${contextPath}/resources/css/main_page.css">
     <!-- Custom styles for this template-->
     <link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="${contextPath}/resources/css/main_page.css">
 
 <%--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--%>
 
@@ -341,7 +341,7 @@
                             <div id="notice" class="tab-pane fade">
                                 <ul>
                                     <li style="padding-top:20px;">
-                                        <a href="#" onclick="noticePop(this)">국민권익위 사학비리·부패신고센터 운영</a>
+                                        <a href="#" onclick="location.href='noticeDetail.do';">국민권익위 사학비리·부패신고센터 운영</a>
                                         <span class="date">09.22</span>
                                     </li>
                                     <li>

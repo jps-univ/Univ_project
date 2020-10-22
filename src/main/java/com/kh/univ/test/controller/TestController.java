@@ -84,4 +84,9 @@ public class TestController {
     public String login() {
         return "common/main";
     }
+    
+    @RequestMapping("noticeDetail.do")
+    public String nDetail() {
+        return "notice_detail/noticeDetail";
+    }
 }
