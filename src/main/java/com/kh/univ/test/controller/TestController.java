@@ -79,8 +79,9 @@ public class TestController {
         return result;
     }
     
+
     @RequestMapping("login.do")
     public String login() {
-    	return "common/main";
-    } 
+        return "common/main";
+    }
 }
