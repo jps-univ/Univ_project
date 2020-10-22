@@ -19,7 +19,7 @@ public class RegisterController {
 //	   }
 	   
 		@RequestMapping("leave.do")
-	    public String StudentInfo()
+	    public String Leave()
 		{
 	        return "register/register_leave";
 	    }
