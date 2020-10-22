@@ -33,9 +33,10 @@
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMypage" aria-expanded="true" aria-controls="collapseMypage">
                 <span>MY PAGE</span>
             </a>
+            
             <div id="collapseMypage" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="">개인 정보</a>
+                    <a class="collapse-item" href="student_info.mp">개인 정보</a>
                     <a class="collapse-item" href="">비밀번호 변경</a>
                     <a class="collapse-item" href="">전체 시간표</a>
                     <a class="collapse-item" href="">상담 관리</a>
