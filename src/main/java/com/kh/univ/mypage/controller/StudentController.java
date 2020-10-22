@@ -12,9 +12,9 @@ public class StudentController
         return "myPage/studentInfo";
     }
 	
-	@RequestMapping("student_info.do")
-	public String StudentPassword()
-	{
-		return "myPage/studentPassword";
-	}
+//	@RequestMapping("student_info.do")
+//	public String StudentPassword()
+//	{
+//		return "myPage/studentPassword";
+//	}
 }

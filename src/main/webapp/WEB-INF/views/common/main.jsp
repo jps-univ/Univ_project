@@ -104,7 +104,7 @@
                 </a>
                 <div id="collapseAcademic" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="">휴학 신청</a>
+                        <a class="collapse-item" href="leave.do">휴학 신청</a>
                         <a class="collapse-item" href="">복학 신청</a>
                         <a class="collapse-item" href="">졸업 신청</a>
                     </div>
