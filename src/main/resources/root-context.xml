@@ -1,8 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
-	
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@javachip.iptime.org:1521:xe"/>
+		<property name="username" value="univ"/>
+		<property name="password" value="univ"/>
+		<property name="defaultAutoCommit" value="false"/>
+	</bean>
+
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- mybatis-config.xml 설정 불러온다. -->
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSession"/>
+	</bean>
+
+	<!-- 	 	MultipartResolver
+   CommonsMultipartresolver 빈을 설정하여 파일 업로드를 처리한다.
+   MiltipartFIle클래스를 이용하여 럽로드한 파일 정보를 얻어온다
+   JSP 파일의 form 태그 안에 encrypte을 multipart/form-data 설정, method타입을 post로 설정
+   (commons-fileupload, commons-io jar파일이 있어야 한다.)
+   maxUploadsize : 최대 업로드 가능한 바이트 크기, 기본값은 -1 (-1의 의미는 제한이 없음을 의미한다.)
+   maxInMemorySize : 디스크에 임시파일을 생성하기 전에 메모리에 보관할 수 있는 최대 바이트 크기, 기본값은 10240바이트 이타. -->
+	<!--  <bean id="multipartResolver"
+         class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+             <property name="maxUploadSize" value="100000000"/>
+             <property name="maxInMemorySize" value="100000000"/>
+   </bean> -->
 </beans>

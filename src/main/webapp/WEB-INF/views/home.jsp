@@ -18,6 +18,10 @@
 	Hello world
 <!-- 테스트테스르 -->
 <%--두한 테스트 테스트 ~~ --%>
-</h1>
+
+
+
+
+    <h2><a href="enrollClassPage.do">두한수강신청페이지</a></h2>
 </body>
 </html>
