@@ -78,4 +78,9 @@ public class TestController {
         System.out.println(result);
         return result;
     }
+    
+    @RequestMapping("login.do")
+    public String login() {
+    	return "common/main";
+    } 
 }
