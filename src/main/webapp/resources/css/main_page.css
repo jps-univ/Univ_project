@@ -1,6 +1,6 @@
 @font-face {
-    font-family: KOTRA_GOTHIC;
-    src: url(../font/KOTRA_GOTHIC.ttf);
+    font-family: 'KOTRA_GOTHIC';
+    src: url(font/KOTRA_GOTHIC.ttf) format('truetype');
 }
 
 *{font-family: KOTRA_GOTHIC;}
