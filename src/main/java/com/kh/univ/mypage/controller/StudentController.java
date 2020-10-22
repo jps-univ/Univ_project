@@ -6,9 +6,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class StudentController 
 {
-	@RequestMapping("student_info.mp")
-    public String studentInfo()
+	@RequestMapping("student_info.do")
+    public String StudentInfo()
 	{
-        return "myPage/studentMyPage";
+        return "myPage/studentInfo";
     }
+	
+	@RequestMapping("student_info.do")
+	public String StudentPassword()
+	{
+		return "myPage/studentPassword";
+	}
 }
