@@ -256,7 +256,7 @@
                                         <th><input name="select_all" value="1" id="example-select-all" type="checkbox"/>
                                         </th>
 
-                                        <%--                                        <th>No</th>--%>
+                                        <%--                                          <th>No</th>--%>
                                         <th>장바구니</th>
                                         <th>학년</th>
                                         <th>코드</th>
