@@ -15,7 +15,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="user.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="login.do">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
@@ -24,7 +24,7 @@
         <hr class="sidebar-divider my-0">
 
         <li class="nav-item ">
-            <a class="nav-link" href="user.html">
+            <a class="nav-link" href="login.do">
                 <span>HOME</span></a>
         </li>
         <hr class="sidebar-divider">

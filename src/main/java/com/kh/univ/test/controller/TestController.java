@@ -80,8 +80,13 @@ public class TestController {
     }
     
 
+    @RequestMapping("goMain.do")
+    public String goMain() {
+        return "common/main";
+    }
+
     @RequestMapping("login.do")
-    public String login() {
+    public String  login() {
         return "common/main";
     }
     
