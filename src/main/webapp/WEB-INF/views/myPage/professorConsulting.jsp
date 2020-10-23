@@ -41,7 +41,7 @@
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<c:import url="../common/sidebar.jsp" />
+		<c:import url="../common/sidebar_p.jsp" />
 		<!-- End of Sidebar -->
 
 		<!-- Content Wrapper -->
@@ -201,7 +201,7 @@
 		
 		      </div>
 		      <!-- End of Main Content -->
-		      <!-- 여기까지 내용  -->
+				<!-- 여기까지 내용  -->
 
 			<!-- Footer -->
 			<c:import url="../common/footer.jsp" />

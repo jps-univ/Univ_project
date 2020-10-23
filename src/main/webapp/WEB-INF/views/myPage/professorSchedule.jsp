@@ -37,7 +37,7 @@
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<c:import url="../common/sidebar.jsp" />
+		<c:import url="../common/sidebar_p.jsp" />
 		<!-- End of Sidebar -->
 
 		<!-- Content Wrapper -->
@@ -53,6 +53,7 @@
 				<!-- 여기서부터 내용  -->
 				<!-- Begin Page Content -->
 		        <div class="container-fluid">
+		
 		          <div>
 		            <select>
 		              <option value="">2020년도</option>
@@ -89,7 +90,7 @@
 		                      <th id="day">금요일</th>
 		                    </tr>
 		                    <tr align="center">
-		                      <th>1교시<br>(09:00~09:50)</th>
+		                      <th>1교시<br>(09:00~10:15)</th>
 		                      <td id="1th_Mon"></td>
 		                      <td id="1th_Tue"></td>
 		                      <td id="1th_Wed"></td>
@@ -97,7 +98,7 @@
 		                      <td id="1th_Fri"></td>
 		                    </tr>
 		                    <tr align="center">
-		                      <th>2교시<br>(10:00~10:50)</th>
+		                      <th>2교시<br>(10:30~11:45)</th>
 		                      <td id="2th_Mon"></td>
 		                      <td id="2th_Tue"></td>
 		                      <td id="2th_Wed"></td>
@@ -105,7 +106,7 @@
 		                      <td id="2th_Fri"></td>
 		                    </tr>
 		                    <tr align="center">
-		                      <th>3교시<br>(11:00~11:50)</th>
+		                      <th>3교시<br>(12:00~13:15)</th>
 		                      <td id="3th_Mon"></td>
 		                      <td id="3th_Tue"></td>
 		                      <td id="3th_Wed"></td>
@@ -113,7 +114,7 @@
 		                      <td id="3th_Fri"></td>
 		                    </tr>
 		                    <tr align="center">
-		                      <th>4교시<br>(12:00~12:50)</th>
+		                      <th>4교시<br>(13:30~10:45)</th>
 		                      <td id="4th_Mon"></td>
 		                      <td id="4th_Tue"></td>
 		                      <td id="4th_Wed"></td>
@@ -121,7 +122,7 @@
 		                      <td id="4th_Fri"></td>
 		                    </tr>
 		                    <tr align="center">
-		                      <th>5교시<br>(13:00~13:50)</th>
+		                      <th>5교시<br>(15:00~16:15)</th>
 		                      <td id="5th_Mon"></td>
 		                      <td id="5th_Tue">프로그래밍 실습<br>교수명</td>
 		                      <td id="5th_Wed"></td>
@@ -129,48 +130,26 @@
 		                      <td id="5th_Fri"></td>
 		                    </tr>
 		                    <tr align="center">
-		                      <th>6교시<br>(14:00~14:50)</th>
+		                      <th>6교시<br>(16:30~17:45)</th>
 		                      <td id="6th_Mon"></td>
 		                      <td id="6th_Tue">프로그래밍 실습<br>교수명</td>
 		                      <td id="6th_Wed"></td>
 		                      <td id="6th_Thu">프로그래밍 실습<br>교수명</td>
 		                      <td id="6th_Fri"></td>
 		                    </tr>
-		                    <tr align="center">
-		                      <th>6교시<br>(15:00~15:50)</th>
-		                      <td id="6th_Mon"></td>
-		                      <td id="6th_Tue">프로그래밍 실습<br>교수명</td>
-		                      <td id="6th_Wed"></td>
-		                      <td id="6th_Thu">프로그래밍 실습<br>교수명</td>
-		                      <td id="6th_Fri"></td>
-		                    </tr>
-		                    <tr align="center">
-		                      <th>6교시<br>(16:00~16:50)</th>
-		                      <td id="6th_Mon"></td>
-		                      <td id="6th_Tue">프로그래밍 실습<br>교수명</td>
-		                      <td id="6th_Wed"></td>
-		                      <td id="6th_Thu">프로그래밍 실습<br>교수명</td>
-		                      <td id="6th_Fri"></td>
-		                    </tr>
-		                    <tr align="center">
-		                      <th>6교시<br>(17:00~17:50)</th>
-		                      <td id="6th_Mon"></td>
-		                      <td id="6th_Tue">프로그래밍 실습<br>교수명</td>
-		                      <td id="6th_Wed"></td>
-		                      <td id="6th_Thu">프로그래밍 실습<br>교수명</td>
-		                      <td id="6th_Fri"></td>
-		                    </tr>
+		
 		                  </tbody>
 		                </table>
 		              </div>
 		            </div>
 		          </div>
-		        </div>  
+		
+		        </div>
 		        <!-- /.container-fluid -->
-		        
-		    </div>
-		    <!-- End of Main Content -->
-			<!-- 여기까지 내용  -->
+		
+		      </div>
+		      <!-- End of Main Content -->
+				<!-- 여기까지 내용  -->
 
 			<!-- Footer -->
 			<c:import url="../common/footer.jsp" />

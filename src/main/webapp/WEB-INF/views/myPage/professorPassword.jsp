@@ -24,7 +24,9 @@
 	<%-- <link href="${contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> --%>
 	<%--    <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />--%>
 	<style>
-
+		#pwd{
+			width : 20%;
+		}
 	</style>
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
 </head>
@@ -35,7 +37,7 @@
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<c:import url="../common/sidebar.jsp" />
+		<c:import url="../common/sidebar_p.jsp" />
 		<!-- End of Sidebar -->
 
 		<!-- Content Wrapper -->
@@ -49,7 +51,63 @@
 				<!-- End of Topbar -->
 				
 				<!-- 여기서부터 내용  -->
-				
+		        <!-- Begin Page Content -->
+		        <div class="container-fluid">
+		
+		            <!-- DataTales Example -->
+		            <div class="card shadow mb-4">
+		              <div class="card-header py-3">
+		                <h6 class="m-0 font-weight-bold text-primary">비밀번호 변경</h6>
+		              </div>
+		              <div class="card-body">
+		                <div class="table-responsive">
+		
+		                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+		                    <p>비밀번호 확인(입력해야 비밀번호를 변경할 수 있습니다. 비밀번호를 초기화 하셨으면 초기화한 비밀번호를 입력하세요.)</p>
+		                    <tbody>
+		                      <tr>
+		                        <th id="pwd">기존 비밀번호</th>
+		                        <td>
+		                            <input type="password" name="" id="inputPwd" autofocus>
+		                        </td>
+		                      </tr>
+		                    </tbody>
+		                  </table>
+		
+		                  <div align="right">
+		                      <input type="button" value="확인">
+		                  </div>
+		                  
+		                  <table class="table table-bordered" id="newPwd" width="100%" cellspacing="0">
+		                      <p id="newPwd">비밀번호 변경(앞으로 사용하실 비밀번호를 입력하세요.)</p>
+		                      <tbody>
+		                          <tr>
+		                            <th id="pwd">새 비밀번호</th>
+		                            <td>
+		                                <input type="password" name="" id="inputPwd">
+		                              </td>
+		                          </tr>
+		                          <tr>
+		                            <th id="pwd">새 비밀번호 확인</th>
+		                            <td>
+		                                <input type="password" name="" id="inputPwd">
+		                            </td>
+		                          </tr>
+		                        </tbody>
+		                    </table>
+		
+		                  <div align="right" id="newPwd">
+		                      <input type="button" value="확인">
+		                  </div>
+		                </div>
+		              </div>
+		            </div>
+		  
+		          </div>
+		          <!-- /.container-fluid -->
+		  
+		        </div>
+		        <!-- End of Main Content -->
 				<!-- 여기까지 내용  -->
 
 			<!-- Footer -->
