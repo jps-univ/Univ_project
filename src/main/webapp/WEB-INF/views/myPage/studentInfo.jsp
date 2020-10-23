@@ -19,17 +19,17 @@
 	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 	
 	<!-- Custom styles for this template -->
-	<link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
+	<link href="${contextPath}/resources/css/sb-admin-3.min.css" rel="stylesheet">
 	
 	<!-- Custom styles for this page -->
-	<link href="${contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<%-- <link href="${contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> --%>
 	<%--    <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />--%>
 	<style>
 		#changeInfo {
 			float: right;
 		}
 	</style>
-	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+	<%-- <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script> --%>
 </head>
 
 <body id="page-top">
@@ -104,8 +104,8 @@
 
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">
-								개인정보 <input type="button" value="수정" id="changeInfo">
+							<h6 class="m-0 font-weight-bold text-primary">개인정보
+								<input type="button" value="수정" id="changeInfo">
 							</h6>
 						</div>
 						<div class="card-body">
@@ -144,7 +144,9 @@
 
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">개인정보동의</h6>
+							<h6 class="m-0 font-weight-bold text-primary">개인정보동의
+							<input type="button" value="수정" id="changeInfo">
+							</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">

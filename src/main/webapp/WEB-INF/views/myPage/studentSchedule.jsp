@@ -22,10 +22,12 @@
 	<link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
 	
 	<!-- Custom styles for this page -->
-	<link href="${contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<%-- <link href="${contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> --%>
 	<%--    <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />--%>
 	<style>
-
+		#day{
+			width : 15%;
+		}
 	</style>
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
 </head>
@@ -80,12 +82,12 @@
 		                <!-- <table border="1px" width="100%" cellspacing="0"> -->
 		                  <tbody>
 		                    <tr align="center">
-		                      <th></th>
-		                      <th>월요일</th>
-		                      <th>화요일</th>
-		                      <th>수요일</th>
-		                      <th>목요일</th>
-		                      <th>금요일</th>
+		                      <th id="day"></th>
+		                      <th id="day">월요일</th>
+		                      <th id="day">화요일</th>
+		                      <th id="day">수요일</th>
+		                      <th id="day">목요일</th>
+		                      <th id="day">금요일</th>
 		                    </tr>
 		                    <tr align="center">
 		                      <th>1교시<br>(09:00~09:50)</th>
