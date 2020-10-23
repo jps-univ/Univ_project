@@ -23,5 +23,18 @@ public class RegisterController {
 		{
 	        return "register/register_leave";
 	    }
+		
+		   
+		@RequestMapping("returning.do")
+		public String Returing()
+	    {
+		    return "register/register_returning";
+		}
+		
+		@RequestMapping("graduation.do")
+		public String Graduation()
+	    {
+		    return "register/register_graduation";
+		}
 
 }
