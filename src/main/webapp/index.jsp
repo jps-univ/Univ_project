@@ -11,5 +11,6 @@
 <body>
 	<h1>여긴 index.jsp</h1>
 	<h1><a href="home.do">HOME으로 이동</a></h1>
+	<h1><a href="student_Modify.do">관리자 페이지로 이동</a></h1>
 </body>
 </html>

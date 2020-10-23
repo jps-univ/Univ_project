@@ -1,0 +1,120 @@
+/* 사이드바 */
+.sidenav {
+    background-color: #f1f1f1;
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    margin-left: -20px;
+    margin-top:50px
+}
+/* 본문 */
+.page {
+   margin-top:50px;
+   margin-left: 200px;
+  
+}
+/* margin-left : 250px => 200px*/
+  
+/* footer */
+footer {
+    background-color: #555;
+    color: white;
+    padding: 15px;
+}
+
+#content_title{
+margin-top: 30px;
+font-size: 40px;
+color: #252525;
+
+
+}
+#std_info_table_area,
+#std_card_table_area{
+padding: 10px; 
+height: 250px;
+}
+
+#std_info_table,
+#std_card_table,
+#total_std{
+width: 100%;
+border-top: 5px solid rgb(46, 109, 151);
+color: #808080;
+
+
+}
+
+#std_info_table tr,
+#std_card_table tr{
+height: 40px;
+border-bottom: solid rgb(149, 149, 150) 1px;
+
+}
+
+
+#std_info_table tr p,
+#std_card_table tr p{
+margin-bottom: 0;
+margin-left : 10px;
+}
+#img_area{
+    width: 160px;  
+}
+
+.stdtext{
+    background: #f8f6ff;
+    width: 160px;
+}
+#std_info_table tr td p,
+#std_card_table tr td p{
+    margin-left: 10px;
+    font-size: 15px;
+    font-weight: bold;
+}
+#std_card_table tr >:nth-child(2){
+    width: 487px;
+   
+}
+#total_std thead tr th,
+#total_std{
+    text-align: center;
+}
+#total_std_area{
+    padding: 10px; 
+    height: 500px;
+    overflow-y: scroll;
+}
+#modify_btn{
+    margin-top: 20px;
+    height: 35px;
+    width: 60px;
+    float: right;
+}
+#modify_btn:hover{
+    background: rgb(212, 212, 212);
+    
+}
+#total_std tr{
+    height: 40px;
+    border-bottom: solid rgb(149, 149, 150) 2px;
+    
+} 
+#total_std tr:nth-child(2n){
+    background: #f8f6ff;
+}
+input[type=text]{
+    border: none;
+    margin-left: 2px;
+    width: 100%;
+    height: 100%;
+}
+#std_img{
+    width: 160px;
+    height: 200px;
+}
+pre  {
+   
+}
+
+
