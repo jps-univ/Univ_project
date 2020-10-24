@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<% String path = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,13 +41,12 @@
                 
                     </ul>
                 </li>
+                <li class="active"></li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">게시판 관리<span
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">공지사항 관리</a></li>
-                        <li><a href="#">QnA 관리</a></li>
-                        <li><a href="#">semi-option3</a></li>
-                        <li><a href="#">semi-option4</a></li>
+                        <li><a href="<%=path%>/adQList.do">QnA 관리</a></li>
+                        <li><a href="<%=path%>/adNList.do">공지사항 관리</a></li>
                     </ul>
                 </li>
             </ul>
