@@ -1,3 +1,13 @@
+html, body {
+
+    /* margin: 0; */
+
+    height: 100%;
+
+    /* overflow: hidden; */
+
+}
+
 .content{
     /* background-color: #eeeded; */
     width: 100%;
@@ -18,7 +28,7 @@
     background-color: #FFE8E8;
     border: 1px solid red;
     width: 65%;
-    height: 20%;
+    /* height: 20%; */
     text-align: center;
     margin: auto;
     display: block;
@@ -31,7 +41,7 @@
     background-color: #E4E4E4 ;
     border: 1px solid #868686 ;
     width: 65%;
-    height: 20%;
+    /* height: 20%; */
     margin: auto;
     display: block;
     margin-top: 30px;
@@ -41,7 +51,7 @@
 
 /*알림창 밑 부분*/
 
-.graduation{
+.return{
     margin-left: 18%;
     margin-top: 20px;
     /* margin-bottom: 2%; */
@@ -73,7 +83,6 @@
     height: 20%; */
     text-align: center;
     margin: auto;
-    display: block;
     border-radius: 20px;
     font-size: 12px;
     position: relative;
@@ -89,20 +98,20 @@
     border-radius: 5px;
 } */
 
-/*졸학신청부분*/
+/*복학신청부분*/
  .con1{
     display: flex;
     justify-content: center;
-    margin-left: 125px;
-    margin-top: 30px;
+    margin-left: 135px;
+    /* margin-top: 30px; */
     width: 75%;
     height: 20%;
 }
 
-/* .con2{
-    position: relative;
-    bottom: 30px;
-} */
+.con2{
+    display: inline-block;
+    margin-right: 110px;
+}
 
 .list{
     /* display: flex;
@@ -110,7 +119,6 @@
     font-size: 10pt;
     position: relative;
     left: 10px;
-    bottom: 30px;
     white-space: nowrap;
 }
 
@@ -119,9 +127,14 @@
     display: inline-block;
     font-size: 8pt;
     margin-left: 15px;
+    white-space: nowrap;
 }
 
-
+.con3{
+    display: inline-block;
+    margin-right: 100px;
+    margin-left: 130px;
+}
 
 
 

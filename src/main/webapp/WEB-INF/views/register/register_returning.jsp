@@ -22,7 +22,7 @@
 	<link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
 	
 	<!-- Custom styles for this page -->
-	<link href="${contextPath}/resources/css/register_returning.css" rel="stylesheet">
+	<link href="${contextPath}/resources/css/register_returning_1.css" rel="stylesheet">
 	<%--    <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />--%>
 	<style>
 
