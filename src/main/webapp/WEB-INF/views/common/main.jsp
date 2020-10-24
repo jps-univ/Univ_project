@@ -234,7 +234,7 @@
                             <div id="notice" class="tab-pane fade">
                                 <ul>
                                     <li style="padding-top:20px;">
-                                        <a href="#" onclick="location.href='noticeDetail.do';">국민권익위 사학비리·부패신고센터 운영</a>
+                                        <a href="#" onclick="noticePop(this);">국민권익위 사학비리·부패신고센터 운영</a>
                                         <span class="date">09.22</span>
                                     </li>
                                     <li>

@@ -123,7 +123,7 @@
                             </div>
                             <span>정보입력</span>
                         </div>
-                            <div style="width: 20%;">
+                            <div style="width: 16%;">
                                 <hr>
                             </div>
                         <div>    
@@ -132,7 +132,7 @@
                             </div>
                             <span style="color: rgba(0,0,0,.38);">인증번호확인</span>
                         </div>
-                            <div style="width: 20%;">
+                            <div style="width: 16%;">
                                 <hr>
                             </div>
                         <div>    
@@ -141,7 +141,7 @@
                             </div>
                             <span style="color: rgba(0,0,0,.38);">비밀번호변경</span>
                         </div>
-                            <div style="width: 20%;">
+                            <div style="width: 19%;">
                                 <hr>
                             </div>
                         <div>    
