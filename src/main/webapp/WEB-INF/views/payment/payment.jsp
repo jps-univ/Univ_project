@@ -12,7 +12,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	
-	<title>진포상대학교 | 졸업신청</title>
+	<title>진포상대학교 | 등록금납부조회 및 출력</title>
 	
 	<!-- Custom fonts for this template -->
 	<link href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

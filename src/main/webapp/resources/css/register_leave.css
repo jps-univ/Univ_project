@@ -1,3 +1,13 @@
+html, body {
+
+    /* margin: 0; */
+
+    height: 100%;
+
+    /* overflow: hidden; */
+
+}
+
 .content{
     /* background-color: #eeeded; */
     width: 100%;
@@ -18,7 +28,7 @@
     background-color: #FFE8E8;
     border: 1px solid red;
     width: 65%;
-    height: 20%;
+/*     height: 20%; */
     text-align: center;
     margin: auto;
     display: block;
@@ -31,7 +41,7 @@
     background-color: #E4E4E4 ;
     border: 1px solid #868686 ;
     width: 75%;
-    height: 20%;
+/*     height: 20%; */
     margin: auto;
     display: block;
     margin-top: 30px;

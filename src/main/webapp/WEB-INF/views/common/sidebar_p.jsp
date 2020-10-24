@@ -96,11 +96,11 @@
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTuition" aria-expanded="true" aria-controls="collapseTuition">
-                <span>등록금</span>
+                <span>명세서</span>
             </a>
             <div id="collapseTuition" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="">납부 조회</a>
+                    <a class="collapse-item" href="salary.do">월급 조회</a>
                 </div>
             </div>
         </li>
