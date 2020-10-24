@@ -1,0 +1,98 @@
+.top-Text{
+    text-align: left; 
+    vertical-align: middle;
+    background: skyblue; 
+    height: 200px; 
+    margin-top: 0px;
+    font-size: 80px;
+    
+}
+.grade-print{
+    float: right; 
+    margin-right: 20px;
+}
+.grade-top{
+    margin-left: 20px;
+}
+.grade-top p{
+    font-size: 90%;
+}
+.grade-top tbody td{
+    width: 120px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+#garde{
+    height: 200px;
+     margin-top: 20px;
+     background: white;
+}
+
+#grade div{
+    font-size: 90%;
+    box-sizing: border-box;
+    border-right: 1px solid black;
+    float: left;
+    width: 33%;
+    height:200px;
+
+}
+
+.grade-middle-L{
+    margin: auto;
+    border: 1px solid skyblue;
+    width: 70%;
+    height: 130px;
+    text-align: center;
+
+}
+.grade-middle-L th tr td{
+    width: 100px;
+    text-align: center;
+   
+}
+.grade-middle-M{
+    margin: auto;
+    border: 1px solid skyblue;
+    width: 80%;
+    height: 150px;
+    text-align: center;
+
+}
+.grade-middle-M th tr td{
+    width: 110px;
+    text-align: center;
+}
+.grade-middle-R{
+    margin: auto;
+    border: 1px solid skyblue;
+    width: 70%;
+    height: 130px;
+    text-align: center;
+
+}
+.grade-middle-R th tr td{
+    width: 100px;
+    text-align: center;
+}
+#middle-text{
+    text-align: center;
+}
+
+.searchpart{
+    height:100%;
+}
+.searchpart select{
+    margin-left: 20px;
+}
+.gradde-bottom{
+    display: none;
+}
+.gradde-bottom table{
+  
+  margin: auto;
+}
+.gradde-bottom th tr td{
+    width: 100px;
+}
