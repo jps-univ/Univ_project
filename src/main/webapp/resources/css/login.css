@@ -1,0 +1,161 @@
+@charset "UTF-8";
+
+/*@font-face {*/
+/*    font-family: 'KOTRA_GOTHIC';*/
+/*    src: url(../font/KOTRA_GOTHIC.ttf) format('truetype');*/
+/*}*/
+
+/** {font-family: KOTRA_GOTHIC;}*/
+
+.content{
+    width: 100%;
+    height: 100%;
+}
+
+.logo{
+    margin-top: 94px;
+    margin-bottom: 25px;
+    margin-left: 240px;
+    margin-right: 240px;
+    font-size: 23pt;
+    color: #5165e1;
+    text-align: center;
+}
+
+.login{
+    width: 480px;
+    height: 385px;
+    margin: auto;
+    box-shadow: 0 0 20px rgba(0,0,0,.2)!important;
+    background: #ffffff;
+    border-radius: 40px;
+    overflow: hidden;
+}
+
+.login .loginbox{
+    text-align: center;
+}
+
+.userId, .userPwd{
+    margin-top: 50px;
+    margin-bottom: 40px;
+    display:flex;
+    -webkit-box-flex: 1;
+    flex: 1 1 auto;
+    position: relative;
+    border-bottom: solid 1px;
+}
+
+.login span{
+    font-size: 15pt;
+}
+
+.login input{
+    border-style: hidden;
+}
+
+input, button{
+    outline:none !important;
+}
+
+.loginbox{
+    padding: 35px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border-radius: 35px;
+}
+
+.login-wrapper{
+    -webkit-box-flex: 0;
+    flex:0 0 100%;
+    max-width: 100%;
+}
+
+.userId input, .userPwd input{
+    width:100%;
+}
+
+.btn-primary{
+    background:linear-gradient(90deg,#5165e1,#63afea);
+    width:100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+}
+
+.submit{
+    margin-top: 15px;
+}
+
+.userPwd{
+    margin-top: 30px;
+}
+
+label{
+    font-weight: font-size;
+    font-size: 17px;
+    transition-property: all;
+    transition-timing-function: linear;
+    transition-duration: 0.3s;
+}
+
+.findArea{
+    margin-top: 47px;
+    margin-bottom: 36px;
+}
+
+.btn-default{
+    color: #5165e1;
+    border-style: hidden;
+    margin-left: 24px;
+    margin-right: 20px;
+}
+
+.btn-default:hover{
+    background-color: #FFFFFF;
+}
+
+.btn-default:focus{
+    background: #FFFFFF !important;
+    border: none;
+}
+
+.mini-footer{
+    width: 100%;
+    font-size: 9pt;
+    margin-top: 83px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mini-footer p{
+    text-align: center;
+}
+
+/* 아이디 비밀번호 찾기 */
+.modal-header{
+    background-color: #5165e1;
+    color: #FFFFFF;
+}
+
+.model-body{
+    padding: 30px;
+}
+
+.number{
+    display: flex;
+    justify-content: space-between;
+}
+
+.circle{
+    background-color: #5165e1;
+    color: #FFFFFF;
+    margin: auto;
+    width: 25px;
+    height: 20px;
+    border-radius: 50px;
+    text-align: center;
+}
+.circle_gray{
+    background-color: rgba(0,0,0,.38);
+}

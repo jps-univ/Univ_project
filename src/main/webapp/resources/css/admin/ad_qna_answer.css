@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+    /* 사이드바 */
+    .sidenav {
+        background-color: #f1f1f1;
+        position: fixed;
+        width: 200px;
+        height: 100%;
+        margin-left: -20px;
+        margin-top:50px
+    }
+    
+    /* 본문 */
+    .page {
+        margin-top: 130px;
+        margin-left: 330px;
+    }
+
+    #container {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        color: #252525;
+    }
+
+    .question-table p {
+        margin: 10px;
+    }
+
+    .table-bordered {
+        border: 5px solid #ddd;
+    }
+
+    #answer {
+        border: 1px solid #555;
+        width: 90%;
+        height: 110px;
+        resize: none;
+    }
+
+    #writeBtn {
+        float: right;
+    }
+
+    /* footer */
+    footer {
+        background-color: #555;
+        color: white;
+        padding: 15px;
+    }

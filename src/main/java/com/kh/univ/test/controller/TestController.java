@@ -78,4 +78,20 @@ public class TestController {
         System.out.println(result);
         return result;
     }
+    
+
+    @RequestMapping("goMain.do")
+    public String goMain() {
+        return "common/main";
+    }
+
+    @RequestMapping("login.do")
+    public String  login() {
+        return "common/main";
+    }
+    
+    @RequestMapping("noticeDetail.do")
+    public String nDetail() {
+        return "notice_detail/noticeDetail";
+    }
 }

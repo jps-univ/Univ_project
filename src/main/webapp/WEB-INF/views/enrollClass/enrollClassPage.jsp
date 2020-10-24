@@ -9,6 +9,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <c:set var="contextPath" value="<%= request.getContextPath()%>"/>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -19,7 +20,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title>진포상대학교 | 포탈</title>
 
     <!-- Custom fonts for this template -->
     <link href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -157,7 +158,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <c:import url="../common/topbar2.jsp"/>
+                <c:import url="../common/topbar.jsp"/>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -256,7 +257,7 @@
                                         <th><input name="select_all" value="1" id="example-select-all" type="checkbox"/>
                                         </th>
 
-                                        <%--                                        <th>No</th>--%>
+                                        <%--                                          <th>No</th>--%>
                                         <th>장바구니</th>
                                         <th>학년</th>
                                         <th>코드</th>

@@ -40,6 +40,7 @@
 	
 	<div class="loginArea" align="right">
 		<c:if test="${ empty sessionScope.loginUser }">
+<%--			goMain.do ->login.do로 교체해야함 . html--%>
 			<form action="login.do" method="post">
 				<table id="loginTable" style="text-align:center">
 					<tr>
