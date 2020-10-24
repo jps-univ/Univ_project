@@ -107,7 +107,7 @@
           </div>
           
           
-          <hr style="margin-top: 10px; margin-bottom: 40px; width: 680px;">
+          <hr style="margin-top: 10px; margin-bottom: 40px; width: 60%;">
  
          
           <div class="con1">

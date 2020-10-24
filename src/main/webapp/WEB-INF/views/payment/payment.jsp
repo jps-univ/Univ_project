@@ -66,7 +66,8 @@
         </div>
 
         <div class="print">
-          <button id="button" onclick="open_page('../views/payment/payment_detail.jsp')">인쇄하기</button>
+        <a href="paymentdetail.do" onclick="window.open('../views/payment/payment_detail.jsp','등록금상세')"><button id="button">인쇄하기</button></a>
+          <!-- <button id="button" onclick="window.open(href="payment_detail.do')">인쇄하기</button> -->
         </div>
 
          <form method="GET">
