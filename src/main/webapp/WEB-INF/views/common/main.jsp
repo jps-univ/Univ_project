@@ -55,7 +55,7 @@
                                     <td><a link="#">인터넷증명발급</a></td>
                                 </tr>
                                 <tr>
-                                    <td><a link="#">한국장학재단</a></td>
+                                    <td><a href="https://www.kosaf.go.kr/ko/main.do" target="_blank">한국장학재단</a></td>
                                     <td><a link="#">시간표조회</a></td>
                                 </tr>
                                 <tr>
@@ -84,13 +84,13 @@
                         <div class="notice_nav_area">
                             <div class="write">
                                 <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-                                        data-target="#myModal">작성하기
+                                        data-target="#myModal" id="writeBtn">작성하기
                                 </button>
                             </div>
                             <ul class="nav nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="#qaa">Q&A</a></li>
-                                <li><a data-toggle="tab" href="#faq">FAQ</a></li>
-                                <li><a data-toggle="tab" href="#notice">진포공지</a></li>
+                                <li class="active"><a data-toggle="tab" href="#qaa" id="qnaBtn">Q&A</a></li>
+                                <li><a data-toggle="tab" href="#faq" id="faqBtn">FAQ</a></li>
+                                <li><a data-toggle="tab" href="#notice" id="noticeBtn">진포공지</a></li>
                             </ul>
                         </div>
                         <div class="tab-content">
