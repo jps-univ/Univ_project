@@ -15,7 +15,7 @@ public class PaymentController {
 	@RequestMapping("paymentdetail.do")
     public String Paymentdetail()
 	{
-        return "payment/paymentdetail";
+        return "payment/payment_detail";
     }
 	
 	
