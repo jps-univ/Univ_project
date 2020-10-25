@@ -72,7 +72,7 @@
           </div>
 
           <div class="print">
-            <button id="button" onclick="location.href='salarydetail.do'">인쇄하기</button>
+            <button id="button" onclick="window.open('salarydetail.do')"">인쇄하기</button>
           </div>
 
            <form method="GET">
