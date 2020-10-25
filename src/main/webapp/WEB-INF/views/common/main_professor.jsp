@@ -51,7 +51,7 @@
                             <div class="logo"><b>QUICK LINK</b></div>
                             <table class="table1">
                                 <tr>
-                                    <td><a link="goMain_professor.do">진포상대학교</a></td>
+                                    <td><a link="goMainProfessor.do">진포상대학교</a></td>
                                     <td><a link="#">인터넷증명발급</a></td>
                                 </tr>
                                 <tr>
