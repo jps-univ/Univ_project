@@ -1,4 +1,4 @@
-package com.kh.univ.student.model.vo;
+package com.kh.univ.member.model.vo;
 
 public class Student {
 	

@@ -1,4 +1,4 @@
-package com.kh.univ.student.controller;
+package com.kh.univ.member.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.kh.univ.student.model.service.StudentLoginSevice;
-import com.kh.univ.student.model.vo.Student;
+import com.kh.univ.member.model.service.StudentLoginSevice;
+import com.kh.univ.member.model.vo.Student;
 
 @Controller
 public class StudentLoginController {
