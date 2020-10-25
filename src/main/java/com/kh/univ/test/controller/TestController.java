@@ -90,12 +90,12 @@ public class TestController {
         return "common/main";
     }
 
-    @RequestMapping("login_professor.do")
-    public String  login_p() {
+    @RequestMapping("loginProfessor.do")
+    public String  loginProfessor() {
         return "common/main_professor";
     }
-    @RequestMapping("goMain_professor.do")
-    public String goMain_p() {
+    @RequestMapping("goMainProfessor.do")
+    public String goMainProfessor() {
         return "common/main_professor";
     }
     
