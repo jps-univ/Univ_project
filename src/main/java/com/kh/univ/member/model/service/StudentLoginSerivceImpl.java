@@ -1,10 +1,10 @@
-package com.kh.univ.student.model.service;
+package com.kh.univ.member.model.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kh.univ.student.model.dao.StudentLoginDao;
-import com.kh.univ.student.model.vo.Student;
+import com.kh.univ.member.model.dao.StudentLoginDao;
+import com.kh.univ.member.model.vo.Student;
 
 @Service
 public class StudentLoginSerivceImpl implements StudentLoginSevice {
