@@ -37,7 +37,7 @@
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<c:import url="../common/sidebar_p.jsp" />
+		<c:import url="../common/sidebar_professor.jsp" />
 		<!-- End of Sidebar -->
 
 		<!-- Content Wrapper -->

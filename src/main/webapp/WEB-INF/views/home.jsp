@@ -46,7 +46,7 @@
                     <button type="button" class="btn-default" data-toggle="modal" data-target="#myModal2">비밀번호찾기</button>
                 </div>
                 <div class="submit">
-                    <button type="button" class="btn btn-primary" id="loginBtn">로그인</button>
+                    <button type="button" class="btn btn-primary" id="loginBtn">로그인</button><a href="login_professor.do">@</a>
                 </div>  
             </div>
              
