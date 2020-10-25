@@ -14,6 +14,9 @@
 	<title>진포상대학교</title>
 </head>
 <body>
+	<c:if test="${ !empty sessionScope.loginUser }">
+		 <c:redirect url="/goMain.do" /> 
+	</c:if>
     <div class="content">
         <!-- 로고 -->
             <div class="logo">
@@ -21,13 +24,13 @@
                 <p style="font-size: 12pt; margin-top: auto;">JINPOSANG UNIVERSITY</p>
             </div>
         <!-- 로그인 박스 -->    
-        <form class="login">
+        <form class="login" action="/univ/studentLogin.do" method="post">
             <div class="loginbox">
                 <div class="login-wrapper">
                     <span>
                         <div class="userId">
                             <label for="userID" style="left: 0px; right: auto; position: absolute;">아이디</label>
-                            <input maxlength="10" required="required" id="userID" type="text" onblur="changeLable(this)">
+                            <input maxlength="10" name="key" required="required" id="userID" type="text" onblur="changeLable(this)">
                             <i class="fas fa-user"></i>
                         </div>
                     </span>
@@ -36,7 +39,7 @@
                     <span>
                         <div class="userPwd">
                             <label for="userPWD" style="left: 0px; right: auto; position: absolute;">비밀번호</label>
-                            <input maxlength="10" required="required" id="userPWD" type="password" onblur="changeLable(this)">
+                            <input maxlength="10" name="password" required="required" id="userPWD" type="password" onblur="changeLable(this)">
                             <i class="fas fa-lock"></i>
                         </div>
                     </span>
@@ -46,7 +49,7 @@
                     <button type="button" class="btn-default" data-toggle="modal" data-target="#myModal2">비밀번호찾기</button>
                 </div>
                 <div class="submit">
-                    <button type="button" class="btn btn-primary" id="loginBtn">로그인</button><a href="loginProfessor.do">@</a>
+                    <button type="submit" class="btn btn-primary" id="loginBtn">로그인</button><a href="loginProfessor.do">@</a>
                 </div>  
             </div>
              
