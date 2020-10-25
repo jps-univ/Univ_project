@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>진포상대 | 등록금납부조회</title>
+  <title>진포상대 | 등록금납부조회상세</title>
   <!-- Custom fonts for this template-->
   <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
   <link href="<%=request.getContextPath()%>/resources/css/all.min.css" rel="stylesheet">
