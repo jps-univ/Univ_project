@@ -137,7 +137,7 @@
 		                      <td id="6th_Fri"></td>
 		                    </tr>
 		                    <tr align="center">
-		                      <th>6교시<br>(15:00~15:50)</th>
+		                      <th>7교시<br>(15:00~15:50)</th>
 		                      <td id="6th_Mon"></td>
 		                      <td id="6th_Tue">프로그래밍 실습<br>교수명</td>
 		                      <td id="6th_Wed"></td>
@@ -145,7 +145,7 @@
 		                      <td id="6th_Fri"></td>
 		                    </tr>
 		                    <tr align="center">
-		                      <th>6교시<br>(16:00~16:50)</th>
+		                      <th>8교시<br>(16:00~16:50)</th>
 		                      <td id="6th_Mon"></td>
 		                      <td id="6th_Tue">프로그래밍 실습<br>교수명</td>
 		                      <td id="6th_Wed"></td>
@@ -153,7 +153,7 @@
 		                      <td id="6th_Fri"></td>
 		                    </tr>
 		                    <tr align="center">
-		                      <th>6교시<br>(17:00~17:50)</th>
+		                      <th>9교시<br>(17:00~17:50)</th>
 		                      <td id="6th_Mon"></td>
 		                      <td id="6th_Tue">프로그래밍 실습<br>교수명</td>
 		                      <td id="6th_Wed"></td>
