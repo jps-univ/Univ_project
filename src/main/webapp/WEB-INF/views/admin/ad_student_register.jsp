@@ -24,11 +24,8 @@
         <nav class="col-sm-3 sidenav">
             <h4>학생관리</h4>
             <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#section3">학생 등록</a></li>
-                <li><a href="#section2">학생 조회/수정</a></li>  
-                <li><a href="#section3">학적 관리</a></li>
-                <li><a href="#section3">등록금</a></li>
-                <li><a href="#section3">학점 관리</a></li>
+                <li class="active"><a href="student_Register.do">학생 등록</a></li>
+                <li><a href="student_Modify.do">학생 조회/수정</a></li>
             </ul>
         </nav>
         <!-- 사이드바 끝 -->
