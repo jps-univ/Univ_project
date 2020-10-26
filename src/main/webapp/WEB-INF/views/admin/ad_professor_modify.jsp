@@ -23,9 +23,9 @@
         <nav class="col-sm-3 sidenav">
             <h4>교수관리</h4>
             <ul class="nav nav-pills nav-stacked">
-                <li><a href="./ad_professor_register.html">교수 등록</a></li>
-                <li  class="active"><a href="./ad_professor_modify.html">교수 조회/수정</a></li>
-                <li><a href="#section3">교수 수업 조회</a></li>
+                <li><a href="professor_Register.do">교수 등록</a></li>
+                <li  class="active"><a href="professor_Modify.do">교수 조회/수정</a></li>
+                
              
             </ul>
         </nav>
