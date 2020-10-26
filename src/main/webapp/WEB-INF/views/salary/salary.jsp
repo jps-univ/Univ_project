@@ -72,7 +72,7 @@
           </div>
 
           <div class="print">
-            <button id="button" onclick="window.open('salarydetail.do')"">인쇄하기</button>
+            <button id="button" onclick="window.open('salarydetail.do')">인쇄하기</button>
           </div>
 
            <form method="GET">
@@ -221,8 +221,8 @@
               <i class="fas fa-exclamation-triangle"
                  style="color: #868686; font-size: 35px; position: relative; top: 22px; left: 50px;"></i>
                 <ul id="alarm">
-                  <li>급여 산정기간은 매월 16일부터 익일 15일입니다.</li>
-                  <li>기타 문의사항은 종합서비스센터로 연락바랍니다.</li>
+                  <li>급여 산정기간은 매월 16일부터 익월 15일입니다.</li>
+                  <li>기타 문의사항은 종합서비스센터(010-5132-4190)로 연락바랍니다.</li>
                 </ul>
              </label>
           </div>

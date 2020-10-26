@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="StudentMapper">
+	<resultMap id="StudentResultSet" type="Student">
+ 		<id property="key" column="STUDENT_ID"/>
+ 		<result property="password" column="STUDENT_PASSWORD"/>
+ 		<result property="name" column="STUDENT_NAME"/>
+ 		<result property="phone" column="PHONE"/>
+ 		<result property="email" column="EMAIL"/>
+ 	</resultMap>
+
+	<select id="loginStudent"  parameterType="Student" resultMap="StudentResultSet">
+		SELECT * FROM TB_STUDENT
+		WHERE STUDENT_ID = #{key}
+	</select>
+</mapper>

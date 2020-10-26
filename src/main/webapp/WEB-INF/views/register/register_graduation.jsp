@@ -50,7 +50,7 @@
 				<!-- End of Topbar -->
 				
 				<!-- 여기서부터 내용  -->
-				 <!-- Begin Page Content -->
+				<!-- Begin Page Content -->
         <div class="content">
           <div class="top">
                <h1>졸업신청</h1>
@@ -79,6 +79,7 @@
                   </label>
               </div>
           </div>
+          
 
         <!--알림창 밑 부분-->
         <div>
@@ -105,8 +106,9 @@
                 <b>처리완료  </b>
             </label>
         </div>
-        
-        <hr style="margin-top: 10px; margin-bottom: 60px; width: 60%;">
+
+        <hr style="margin-top: 10px; margin-bottom: 60px;
+        width: 680px;">
        
                
         <div class="con1">
@@ -151,13 +153,13 @@
                         <dd style="margin: auto;">----------</dd>
                     </dl>
                 </div>
-            </div>  
-            
-<!--             </div> -->
-    
+            <!-- </div>   -->
+
+          </div>
               <!-- /.container-fluid -->
       
             </div>
+
             <!-- End of Main Content -->
       
       <script src="<%=request.getContextPath()%>/resources/js/register_button.js"></script>

@@ -24,6 +24,9 @@
 </head>
 
 <body id="page-top">
+	<c:if test="${ empty sessionScope.loginUser }">
+		 <c:redirect url="/home.do" /> 
+	</c:if>
     <!-- Page Wrapper -->
     <div id="wrapper">
 

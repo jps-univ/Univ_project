@@ -7,16 +7,16 @@
 
     <!-- typeAliases -->
     <typeAliases>
-
+		<typeAlias type="com.kh.univ.member.model.vo.Student" alias="Student"/>
         <typeAlias type="com.kh.univ.test.model.vo.Test" alias="Test"/>
         <!-- <typeAlias type="com.kh.spring.board.model.vo.Board" alias="Board"/>
         <typeAlias type="com.kh.spring.board.model.vo.Reply" alias="Reply"/> -->
     </typeAliases>
 
     <mappers>
-
         <mapper resource="mappers/test-mapper.xml"/>
         <!-- <mapper resource="mappers/board-mapper.xml"/> -->
+        <mapper resource="mappers/member/student-mapper.xml"/>
     </mappers>
 
 </configuration>

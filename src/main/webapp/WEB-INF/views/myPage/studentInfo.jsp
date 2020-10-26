@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
 <html lang="ko">
 
@@ -67,9 +66,9 @@
 										</tr>
 										<tr>
 											<th>학번</th>
-											<td>20162016</td>
+											<td>${ loginUser.key }</td>
 											<th>성명</th>
-											<td>홍길동</td>
+											<td>${ loginUser.name }</td>
 										</tr>
 										<tr>
 											<th>생년월일(성별)</th>
@@ -115,11 +114,11 @@
 											<th>전화번호</th>
 											<td>02-123-4567</td>
 											<th>핸드폰</th>
-											<td>010-1111-2222</td>
+											<td>${ loginUser.phone }</td>
 										</tr>
 										<tr>
 											<th>이메일</th>
-											<td>hong123@gmail.com</td>
+											<td>${ loginUser.email }</td>
 											<th>은행명</th>
 											<td>신한은행</td>
 										</tr>

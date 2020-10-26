@@ -1,0 +1,107 @@
+#wrapper{height: 100%;}
+/* #content{background-color: #d8dadc; height: 100%;} */ 
+
+#main_sidebar{height: 100%;}
+.sidebar{height: 100%;}
+
+#main_con{
+    float: right;
+    width: 85%;
+    height: 100%;
+    background-color: #d8dadc;
+    margin: 0;
+}
+
+
+/* top_bar */
+.top_bar{width:100%; height:25%;}
+
+
+
+/* top_semi_bar */
+.top_bar{background-color: #BDD4E9;}
+
+
+
+
+
+
+/* 강의 게시판 왼쪽 네비바 */
+.sec_navi{float:left; height:100%; width:15%; background-color: #555;}
+
+
+/* 강의 게시판 왼쪽 네비바 설정 */
+#sec_navibar{
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+
+.drop{  
+    list-style-type: none;
+    margin-left: 0;  
+    height: 60px;
+    padding-left: 10px;
+    border-bottom: 2px solid rgb(64, 64, 64);
+}
+
+.drop>a {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 15px;
+    font-family: 'Nanum Gothic Coding', monospace;
+    color: rgb(146, 253, 225);
+    font-weight: 600;
+}
+
+#drop_submenu{
+    background:  #555;
+}
+
+#drop_submenu>li{
+    list-style-type: none;
+    margin-left: 0;
+    height:40px;
+    padding-left: 20px;
+    border-bottom: 1px solid rgb(64, 64, 64);
+}
+
+#drop_submenu>li>a{
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 10px;
+    font-family: 'Nanum Gothic Coding', monospace;
+    color: rgb(146, 253, 225);
+    font-weight: 400;
+}
+
+#drop_submenu {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+
+#drop_submenu li {
+    border-bottom: 1px solid #fbdcdc8d
+}
+
+#drop_submenu{
+    display: none;
+}
+
+#sec_navibar li:hover+ul{
+    display: block;
+}
+
+#drop_submenu:hover{
+    display: block;
+}
+
+.main_con{
+    width: 100%;
+    height: 100%;
+    background: #f1f1f1;
+}
+
