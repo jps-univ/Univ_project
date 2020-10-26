@@ -1,0 +1,101 @@
+/* 사이드바 */
+.sidenav {
+    background-color: #f1f1f1;
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    margin-left: -20px;
+    margin-top:50px
+}
+/* 본문 */
+.page {
+   margin-top:50px;
+   margin-left: 200px;
+  
+}
+/* margin-left : 250px => 200px*/
+  
+/* footer */
+footer {
+    background-color: #555;
+    color: white;
+    padding: 15px;
+}
+
+#content_title{
+margin-top: 30px;
+font-size: 40px;
+color: #252525;
+
+
+}
+#rest_table_area{
+padding: 10px; 
+height: 400px;
+overflow-y: scroll;
+}
+
+#rest_lecture{
+width: 100%;
+border-top: 5px solid rgb(46, 109, 151);
+color: #808080;
+
+
+}
+
+#rest_lecture tr{
+height: 30px;
+border-bottom: solid rgb(149, 149, 150) 1px;
+text-align: center;
+
+}
+#rest_lecture  tbody tr:nth-child(2n-1){
+background: #f8f6ff;
+}
+
+#rest_lecture thead tr th{
+    text-align: center;
+}
+#rest_lecture thead tr th:first-child,
+#rest_lecture thead tr th:nth-child(2){
+    width: 80px;
+}
+#rest_lecture tr p{
+margin-bottom: 0;
+}
+
+#search_area {
+   display: flex;
+    justify-content: center;
+}
+#search_area * {
+    margin: 2px;
+}
+#ad_lecture_UD{
+    padding: 10px; 
+}
+#UD_lecture{
+    width: 100%;
+    border-top: 5px solid rgb(46, 109, 151);
+    color: #808080; 
+}
+a{
+    cursor: pointer;
+}
+#UD_lecture tr{
+    height: 40px;
+
+    border-bottom: solid rgb(149, 149, 150) 1px;
+
+}
+#UD_lecture tr:nth-child(2n){
+    background: #f8f6ff;
+}
+
+#UD_lecture tr input,#UD_lecture tr select{
+    width: 300px;
+}
+#UD_lecture tr p{
+    margin-bottom: 0;
+    margin-left: 5px;
+}
