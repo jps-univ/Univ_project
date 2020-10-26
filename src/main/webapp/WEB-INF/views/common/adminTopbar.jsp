@@ -21,16 +21,16 @@
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="student_Register.do">학생등록</a></li>
-                        <li><a href="<%=path%>/student_Modify.do">학생 정보 조회/수정</a></li>
+                        <li><a href="student_Modify.do">학생 정보 조회/수정</a></li>
                       
                     </ul>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">교수 관리<span
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">교수등록</a></li>
-                        <li><a href="#">교수 정보 조회/수정</a></li>
-                        <li><a href="#">교수 수업 조회</a></li>
+                        <li><a href="professor_Register.do">교수등록</a></li>
+                        <li><a href="professor_Modify.do">교수 정보 조회/수정</a></li>
+                      
                     
                     </ul>
                 </li>
@@ -38,9 +38,9 @@
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="adminDateGo.do">기간 설정</a></li>
-                        <li><a href="./ad_lecture_register.html">강의 등록</a></li>
-                        <li><a href="./ad_lecture_UD.html">강의 정보 변경/삭제</a></li>
-                        <li><a href="./ad_lecture_UD.html">휴강관리</a></li>
+                        <li><a href="lecture_Register.do">강의 등록</a></li>
+                        <li><a href="lecture_Modify.do">강의 정보 변경/삭제</a></li>
+                        <li><a href="lecture_Rest.do">휴강관리</a></li>
 
                     </ul>
                 </li>
