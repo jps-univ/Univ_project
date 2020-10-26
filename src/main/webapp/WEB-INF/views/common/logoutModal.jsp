@@ -23,7 +23,7 @@
                 </div>
                 <div class="modal-body">로그아웃후 로그인 페이지로 이동합니다.</div>
                 <div class="modal-footer">
-                    <a class="btn btn-primary" href="/univ/studentLogout.do">로그아웃</a>
+                    <a class="btn btn-primary" href="studentLogout.do">로그아웃</a>
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
                 </div>
             </div>
