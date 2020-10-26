@@ -14,3 +14,4 @@
 	<h1><a href="student_Modify.do">관리자 페이지로 이동</a></h1>
 </body>
 </html>
+
