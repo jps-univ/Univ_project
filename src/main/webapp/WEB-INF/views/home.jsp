@@ -23,8 +23,10 @@
                 <p style="margin: auto;"><b>진포상대학교&nbsp;&nbsp;|&nbsp;&nbsp;포탈</b></p>
                 <p style="font-size: 12pt; margin-top: auto;">JINPOSANG UNIVERSITY</p>
             </div>
-        <!-- 로그인 박스 -->    
-        <form class="login" action="/univ/studentLogin.do" method="post">
+        <!-- 로그인 박스 -->
+<%--        action 위에걸로하면 맥에서 경로를 못찾는것같음. 404뜸.(인텔리제이라서 못찾는것일수도있음)--%>
+<%--        <form class="login" action="/univ/studentLogin.do" method="post"> --%>
+        <form class="login" action="studentLogin.do" method="post">
             <div class="loginbox">
                 <div class="login-wrapper">
                     <span>
