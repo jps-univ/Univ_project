@@ -1,0 +1,54 @@
+.graduaion-page{
+    width: 100%;
+}
+ .top-Text{
+    text-align: left; 
+    vertical-align: middle;
+    background: skyblue; 
+    height: 200px; 
+    margin-top: 0px;
+    font-size: 80px;
+    
+} 
+
+
+ #rest_table_area{
+ padding: 10px; 
+ height: 500px;
+ overflow-y: scroll;
+ }
+ 
+ #graduation-t{
+ width: 100%;
+ border-top: 5px solid rgb(46, 109, 151);
+ color: #808080;
+ 
+ 
+ }
+ 
+ #graduation-t tr{
+ height: 30px;
+ border-bottom: solid rgb(149, 149, 150) 1px;
+ text-align: center;
+ 
+ }
+ #graduation-t  tbody tr:nth-child(2n-1){
+ background: #f8f6ff;
+ }
+ 
+ #graduation-t thead tr th{
+     text-align: center;
+ }
+ #graduation-t thead tr th:first-child
+ {
+     width: 120px;
+ }
+ #graduation-t thead tr th:nth-child(6){
+ width: 200px;
+ }
+ #graduation-t tr p{
+ margin-bottom: 0;
+ 
+ }
+
+ 

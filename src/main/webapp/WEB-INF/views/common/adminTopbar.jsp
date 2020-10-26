@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <% String path = request.getContextPath(); %>
+<c:set var="contextPath" value="<%= request.getContextPath()%>"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,12 +16,12 @@
                 <a class="navbar-brand" href="#">진포상대학</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
+                <li class=""><a href="#">Home</a></li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">학생 관리<span
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="./ad_student_register.html">학생등록</a></li>
-                        <li><a href="./ad_student_modify.html">학생 정보 조회/수정</a></li>
+                        <li><a href="student_Register.do">학생등록</a></li>
+                        <li><a href="<%=path%>/student_Modify.do">학생 정보 조회/수정</a></li>
                       
                     </ul>
                 </li>
@@ -36,9 +37,11 @@
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">강의 관리<span
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
+                        <li><a href="adminDateGo.do">기간 설정</a></li>
                         <li><a href="./ad_lecture_register.html">강의 등록</a></li>
-                        <li><a href="./ad_lecture_UD.html">강의 정보 조회/수정</a></li>
-                
+                        <li><a href="./ad_lecture_UD.html">강의 정보 변경/삭제</a></li>
+                        <li><a href="./ad_lecture_UD.html">휴강관리</a></li>
+
                     </ul>
                 </li>
                 <li class="active"></li>

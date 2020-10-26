@@ -157,7 +157,7 @@
               </div>
               <div>
               <dl class="line" style="position: relative; bottom: 49px; left: 100px;">
-                <dt style="color: #c5d9e8;">복학예정도/학기</dt>
+                <dt style="color: #c5d9e8;">복학년도/학기</dt>
                 <dd style="margin: auto;">2021/1</dd>
               </dl>
             </div> 

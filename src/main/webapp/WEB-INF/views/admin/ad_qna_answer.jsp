@@ -22,8 +22,8 @@
     <nav class="col-sm-3 sidenav">
       <h4>게시판 관리</h4>
       <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#section2">Q & A 관리</a></li>
-        <li><a href="#section3">공지사항 관리</a></li>
+        <li class="active"><a href="<%=path%>/adQList.do">Q & A 관리</a></li>
+        <li><a href="<%=path%>/adNList.do">공지사항 관리</a></li>
       </ul>
     </nav>
 	<!-- 사이드바 끝 -->

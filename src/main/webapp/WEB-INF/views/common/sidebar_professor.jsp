@@ -15,7 +15,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="login.do">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="goMainProfessor.do">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
@@ -24,7 +24,7 @@
         <hr class="sidebar-divider my-0">
 
         <li class="nav-item ">
-            <a class="nav-link" href="login.do">
+            <a class="nav-link" href="goMainProfessor.do">
                 <span>HOME</span></a>
         </li>
         <hr class="sidebar-divider">
@@ -53,13 +53,13 @@
 
         <li class="nav-item ">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseGrade" aria-expanded="true" aria-controls="collapseGrade">
-                <span>성적</span>
+                <span>수강생 관리</span>
             </a>
             <div id="collapseGrade" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="">학기별 성적 조회</a>
-                    <a class="collapse-item" href="">성적 증명서</a>
-                    <a class="collapse-item" href="">졸업 사정표</a>
+                    <a class="collapse-item" href="">수강생 출결관리</a>
+                    <a class="collapse-item" href="">수강생 성적관리</a>
+                    <a class="collapse-item" href="">성적이의신청 관리 </a>
                 </div>
             </div>
         </li>
@@ -71,28 +71,29 @@
             </a>
             <div id="collapseManagement" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="">강의 평가</a>
-                    <a class="collapse-item" href="">성적 이의 신청</a>
-                    <a class="collapse-item" href="">수강신청</a>
+                    <a class="collapse-item" href="">강의등록/삭제</a>
+                    <a class="collapse-item" href="">강의평가 조회</a>
+                    <a class="collapse-item" href="">전체강의조회</a>
 
                 </div>
             </div>
         </li>
         <hr class="sidebar-divider">
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAcademic" aria-expanded="true" aria-controls="collapseAcademic">
-                <span>학적</span>
-            </a>
-            <div id="collapseAcademic" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="">휴학 신청</a>
-                    <a class="collapse-item" href="">복학 신청</a>
-                    <a class="collapse-item" href="">졸업 신청</a>
-                </div>
-            </div>
-        </li>
-        <hr class="sidebar-divider">
+<%--        학적을 안식년으로 넣을것인가?--%>
+<%--        <li class="nav-item">--%>
+<%--            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAcademic" aria-expanded="true" aria-controls="collapseAcademic">--%>
+<%--                <span>학적</span>--%>
+<%--            </a>--%>
+<%--            <div id="collapseAcademic" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">--%>
+<%--                <div class="bg-white py-2 collapse-inner rounded">--%>
+<%--                    <a class="collapse-item" href="">휴학 신청</a>--%>
+<%--                    <a class="collapse-item" href="">복학 신청</a>--%>
+<%--                    <a class="collapse-item" href="">졸업 신청</a>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </li>--%>
+<%--        <hr class="sidebar-divider">--%>
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTuition" aria-expanded="true" aria-controls="collapseTuition">

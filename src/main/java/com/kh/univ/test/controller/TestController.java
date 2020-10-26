@@ -89,6 +89,15 @@ public class TestController {
     public String  login() {
         return "common/main";
     }
+
+    @RequestMapping("loginProfessor.do")
+    public String  loginProfessor() {
+        return "common/main_professor";
+    }
+    @RequestMapping("goMainProfessor.do")
+    public String goMainProfessor() {
+        return "common/main_professor";
+    }
     
     @RequestMapping("noticeDetail.do")
     public String nDetail() {
