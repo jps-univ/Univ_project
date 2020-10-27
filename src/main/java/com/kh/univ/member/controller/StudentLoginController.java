@@ -28,8 +28,8 @@ public class StudentLoginController {
 		
 		Student loginStudent = studentService.login(student);
 		
-		if(bcryptPasswordEncoder.matches(student.getPassword(), loginStudent.getPassword())) {
-			loginStudent.setPassword("");
+		if(bcryptPasswordEncoder.matches(student.getStdPwd(), loginStudent.getStdPwd())) {
+			loginStudent.setStdPwd("");
 			session.setAttribute("loginUser", loginStudent);
 			return "redirect:goMain.do";
 		} else {

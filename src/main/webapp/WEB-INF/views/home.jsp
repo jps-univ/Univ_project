@@ -32,7 +32,7 @@
                     <span>
                         <div class="userId">
                             <label for="userID" style="left: 0px; right: auto; position: absolute;">아이디</label>
-                            <input maxlength="10" name="key" required="required" id="userID" type="text" onblur="changeLable(this)">
+                            <input maxlength="10" name="stdId" required="required" id="userID" type="text" onblur="changeLable(this)">
                             <i class="fas fa-user"></i>
                         </div>
                     </span>
@@ -41,7 +41,7 @@
                     <span>
                         <div class="userPwd">
                             <label for="userPWD" style="left: 0px; right: auto; position: absolute;">비밀번호</label>
-                            <input maxlength="10" name="password" required="required" id="userPWD" type="password" onblur="changeLable(this)">
+                            <input maxlength="10" name="stdPwd" required="required" id="userPWD" type="password" onblur="changeLable(this)">
                             <i class="fas fa-lock"></i>
                         </div>
                     </span>
