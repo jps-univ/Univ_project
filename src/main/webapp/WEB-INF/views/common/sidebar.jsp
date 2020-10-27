@@ -72,7 +72,6 @@
             <div id="collapseManagement" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="">강의 평가</a>
-                    <a class="collapse-item" href="">성적 이의 신청</a>
                     <a class="collapse-item" href="enrollClassPage.do">수강신청</a>
 
                 </div>
