@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
 <html lang="ko">
 
@@ -116,8 +117,9 @@
 											<td>${ loginUser.stdCourse }</td>
 										</tr>
 										<tr>
+											<fmt:parseNumber var="semester" value="${ (loginUser.stdSemester + 1) div 2 }" integerOnly="true"/>
 											<th>학년</th>
-											<td>${ loginUser.stdSemester }</td>
+											<td>${ semester }</td>
 											<th>학적</th>
 											<td>${ loginUser.stdSchoolReg }</td>
 										</tr>
@@ -136,7 +138,7 @@
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">개인정보
-								<input type="button" value="수정" id="changeInfo">
+								<input type="button" value="변경" id="changeInfo">
 							</h6>
 						</div>
 						<div class="card-body">
@@ -198,7 +200,7 @@
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">개인정보동의
-							<input type="button" value="수정" id="changeInfo">
+							<input type="button" value="변경" id="changeInfo">
 							</h6>
 						</div>
 						<div class="card-body">
@@ -207,21 +209,47 @@
 									<tbody>
 										<tr>
 											<th>SMS 수신동의</th>
-											<td>
-												<label for="SMSAgree">수신동의</label> 
-												<input type="radio" name="SMS" id="SMSAgree" value="agree" checked>
-												&emsp;&emsp;&emsp;&emsp;
-												<label for="SMSDisagree">수신거부</label>
-												<input type="radio" name="SMS" id="SMSDisagree" value="disagree">
-											</td>
+											<c:choose>
+												<c:when test="${ loginUser.stdSmsAgree eq 'Y' }">
+													<td>
+														<label for="SMSAgree">수신동의</label> 
+														<input type="radio" name="SMS" id="SMSAgree" value="agree" checked>
+														&emsp;&emsp;&emsp;&emsp;
+														<label for="SMSDisagree">수신거부</label>
+														<input type="radio" name="SMS" id="SMSDisagree" value="disagree">
+													</td>
+												</c:when>
+												<c:when test="${ loginUser.stdSmsAgree eq 'N' }">
+													<td>
+														<label for="SMSAgree">수신동의</label> 
+														<input type="radio" name="SMS" id="SMSAgree" value="agree">
+														&emsp;&emsp;&emsp;&emsp;
+														<label for="SMSDisagree">수신거부</label>
+														<input type="radio" name="SMS" id="SMSDisagree" value="disagree" checked>
+													</td>
+												</c:when>
+											</c:choose>
 											<th>이메일 수신동의</th>
-											<td>
-												<label for="EmailAgree">수신동의</label> 
-												<input type="radio" name="Email" id="EmailAgree" value="agree" checked>
-												&emsp;&emsp;&emsp;&emsp;
-												<label for="EmailDisagree">수신거부</label>
-												<input type="radio" name="Email" id="EmailDisagree" value="disagree">
-											</td>
+											<c:choose>
+												<c:when test="${ loginUser.stdEmailAgree eq 'Y' }">
+													<td>
+														<label for="EmailAgree">수신동의</label> 
+														<input type="radio" name="Email" id="EmailAgree" value="agree" checked>
+														&emsp;&emsp;&emsp;&emsp;
+														<label for="EmailDisagree">수신거부</label>
+														<input type="radio" name="Email" id="EmailDisagree" value="disagree">
+													</td>
+												</c:when>
+												<c:when test="${ loginUser.stdEmailAgree eq 'N' }">
+													<td>
+														<label for="EmailAgree">수신동의</label> 
+														<input type="radio" name="Email" id="EmailAgree" value="agree">
+														&emsp;&emsp;&emsp;&emsp;
+														<label for="EmailDisagree">수신거부</label>
+														<input type="radio" name="Email" id="EmailDisagree" value="disagree" checked>
+													</td>
+												</c:when>
+											</c:choose>
 										</tr>
 										<tr>
 											<td colspan="4">

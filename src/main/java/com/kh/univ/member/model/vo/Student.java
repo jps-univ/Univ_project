@@ -219,7 +219,7 @@ public class Student {
 		this.stdAccountHolder = stdAccountHolder;
 	}
 
-	public String isStdSmsAgree() {
+	public String getStdSmsAgree() {
 		return stdSmsAgree;
 	}
 
@@ -227,7 +227,7 @@ public class Student {
 		this.stdSmsAgree = stdSmsAgree;
 	}
 
-	public String isStdEmailAgree() {
+	public String getStdEmailAgree() {
 		return stdEmailAgree;
 	}
 
