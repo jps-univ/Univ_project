@@ -16,7 +16,7 @@
             rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="${contextPath}/resources/css/main_page.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/lecture_ evaluation.css">
 
     <%--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--%>
 </head>
