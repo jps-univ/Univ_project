@@ -26,6 +26,16 @@
 		#changeInfo {
 			float: right;
 		}
+		.top{
+		    background-color: #edf1fc;
+		    border-bottom: solid #4e73df;
+		    height: 100px;
+		    padding: 40px;
+		    position: relative;
+		    bottom: 25px;
+		    white-space: nowrap;
+		    color: #4e73df;
+		}
 	</style>
 	<%-- <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script> --%>
 </head>
@@ -44,11 +54,15 @@
 
 			<!-- Main Content -->
 			<div id="content">
-
+          		
 				<!-- Topbar -->
 				<c:import url="../common/topbar.jsp" />
 				<!-- End of Topbar -->
 
+				<div class="top">
+               		<h1>개인 정보</h1>
+          		</div>
+          		
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 

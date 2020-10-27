@@ -31,6 +31,16 @@
 		#search{
 		  text-align: center;
 		}
+		.top{
+		    background-color: #edf1fc;
+		    border-bottom: solid #4e73df;
+		    height: 100px;
+		    padding: 40px;
+		    position: relative;
+		    bottom: 25px;
+		    white-space: nowrap;
+		    color: #4e73df;
+		}
 	</style>
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
 </head>
@@ -53,6 +63,10 @@
 				<!-- Topbar -->
 				<c:import url="../common/topbar.jsp" />
 				<!-- End of Topbar -->
+				
+				<div class="top">
+               		<h1>상담 관리</h1>
+          		</div>
 				
 				<!-- 여기서부터 내용  -->
 				<!-- Begin Page Content -->
