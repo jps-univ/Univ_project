@@ -13,9 +13,29 @@ public class LectureController {
 	public String lectureEvaluation() {
 		return "lectureManagement/lecture_evaluation";
 	}
-
+	
+	/**
+	 * 2. 강의 평가 학생 목록 조회 (교수)
+	 * @return
+	 */
+	@RequestMapping("lecture_evaluation_check.do")
+	public String lectureEvaluationCheck() {
+		return "lectureManagement/lecture_evaluation_check";
+	}
+	
+	/**
+	 * 2_1. 강의 평가 상세 페이지 조회(교수)
+	 * @return
+	 */
+	@RequestMapping("lecture_evaluation_detail.do")
+	public String lectureEvaluationDetail() {
+		return "lectureManagement/lecture_evaluation_detail";
+	}
+	
 	@RequestMapping("requestRegisterLecture")
 	public String requestRegisterLecture(){
 		return "lectureManagement/requestRegisterLecture";
 	}
+	
+
 }
