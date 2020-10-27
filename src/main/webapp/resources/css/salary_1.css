@@ -5,28 +5,33 @@
 }
 
 .top{
-    background-color: #BDD4E9;
+    background-color: #edf1fc;
+    border-bottom: solid #4e73df;
     height: 100px;
     padding: 40px;
-    /* font-size: 25pt; */
     position: relative;
     bottom: 25px;
     white-space: nowrap;
+    color: #4e73df;
 }
 
-.enroll{
+.salary{
     font-size: 25px;
     display: inline-block;
     margin-top: 20px;
     margin-left: 15px;
 }
 
-.print{
-    display: inline-block;
-    margin-left: 91%;
-    margin-right: 1%;
+.select{
+    width: 105px;
+    height: 25px;
+    font-size: 8pt;
+    background-color: #E4E4E4;
+    border: 1px solid #868686;
+    border-radius: 5px;
     position: relative;
-    bottom: 10px;
+    bottom: 5px;
+    left: 15px;
 }
 
 #button{
@@ -38,6 +43,14 @@
     border-radius: 5px;
 }
 
+.print{
+    display: inline-block;
+    margin-left: 91%;
+    margin-right: 1%;
+    position: relative;
+    bottom: 10px;
+}
+
 table{
     text-align: center;
 }
@@ -45,11 +58,13 @@ table{
 .head{
     position: relative;
     top: 10px;
+
+    /* width: 160px; */
 }
 
 .alarm{
-    background-color: #E4E4E4;
-    border: 1px solid #868686;
+    background-color: #E4E4E4 ;
+    border: 1px solid #868686 ;
     width: 75%;
     height: 80px;
     margin: auto;
@@ -64,23 +79,5 @@ table{
     
 }
 
-.mini{
-    margin-left: 57%; 
-    margin-right: 13%;
-    color: #BDD4E9;
-    font-size: 13px;
-}
 
 
-/* .outline{
-    width: 100%;
-    text-align: center;
-    font-size: 15pt;
-
-    border-top: 1px solid black;
-    border-collapse: collapse;
-
-    border-top: 5px solid rgb(46, 109, 151);
-    color: #808080;
-
-} */
