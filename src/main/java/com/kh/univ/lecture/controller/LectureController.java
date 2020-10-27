@@ -8,6 +8,11 @@ public class LectureController {
 
 	@RequestMapping("lecture_evaluation.do")
 	public String lectureEvaluation() {
-		return "enrollClass/lecture_evaluation";
+		return "lectureManagement/lecture_evaluation";
+	}
+
+	@RequestMapping("requestRegisterLecture")
+	public String requestRegisterLecture(){
+		return "lectureManagement/requestRegisterLecture";
 	}
 }

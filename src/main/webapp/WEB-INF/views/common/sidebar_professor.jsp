@@ -71,7 +71,7 @@
             </a>
             <div id="collapseManagement" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="">강의등록/삭제</a>
+                    <a class="collapse-item" href="requestRegisterLecture.do">강의등록/삭제</a>
                     <a class="collapse-item" href="">강의평가 조회</a>
                     <a class="collapse-item" href="">전체강의조회</a>
 
