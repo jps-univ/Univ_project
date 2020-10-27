@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
 <html lang="ko">
 
@@ -80,31 +81,49 @@
 										</tr>
 										<tr>
 											<th>학번</th>
-											<td>${ loginUser.key }</td>
+											<td>${ loginUser.stdId }</td>
 											<th>성명</th>
-											<td>${ loginUser.name }</td>
+											<td>${ loginUser.stdName }</td>
 										</tr>
 										<tr>
 											<th>생년월일(성별)</th>
-											<td>1996.10.12(남)</td>
+											<td>
+												<c:set var="birth" value="${ loginUser.stdBirth }"/>
+												${ fn:substring(birth, 0, 2) }.${ fn:substring(birth, 2, 4) }.${ fn:substring(birth, 4, 6) }
+												<c:set var="gender" value="${ fn:substring(birth, 7, 8) }"/>
+												<c:choose>
+													<c:when test="${ gender eq 1 }">
+													(남)
+													</c:when>
+													<c:when test="${ gender eq 2 }">
+													(여)
+													</c:when>
+													<c:when test="${ gender eq 3 }">
+													(남)
+													</c:when>
+													<c:when test="${ gender eq 4 }">
+													(여)
+													</c:when>
+												</c:choose>
+											</td>
 											<th>대학</th>
-											<td>이공대학</td>
+											<td>${ loginUser.stdCollege }</td>
 										</tr>
 										<tr>
 											<th>학부(과)</th>
-											<td>컴퓨터공학과</td>
+											<td>${ loginUser.stdDepartment }</td>
 											<th>과정</th>
-											<td>학부과정</td>
+											<td>${ loginUser.stdCourse }</td>
 										</tr>
 										<tr>
 											<th>학년</th>
-											<td>4학년</td>
+											<td>${ loginUser.stdSemester }</td>
 											<th>학적</th>
-											<td>재학중</td>
+											<td>${ loginUser.stdSchoolReg }</td>
 										</tr>
 										<tr>
 											<th>입학구분</th>
-											<td>신입학(2016.02.29)</td>
+											<td>${ loginUser.stdEnterDiv }</td>
 											<th></th>
 											<td></td>
 										</tr>
@@ -126,27 +145,49 @@
 									<tbody>
 										<tr>
 											<th>전화번호</th>
-											<td>02-123-4567</td>
+											<td>
+												<input type="text" name="" id="stdPhone" value="${ loginUser.stdTel }">
+											</td>
 											<th>핸드폰</th>
-											<td>${ loginUser.phone }</td>
+											<td>
+												<input type="text" name="" id="stdPhone" value="${ loginUser.stdPhone }">
+											</td>
 										</tr>
 										<tr>
 											<th>이메일</th>
-											<td>${ loginUser.email }</td>
+											<td>
+												<input type="text" name="" id="stdPhone" value="${ loginUser.stdEmail }">
+											</td>
 											<th>은행명</th>
-											<td>신한은행</td>
+					                        <td> 
+					                            <select id="bank">
+					                                <option <c:if test="${ loginUser.stdBank eq '신한은행' }"> selected="selected"</c:if>>신한은행</option>
+					                                <option <c:if test="${ loginUser.stdBank eq '국민은행' }"> selected="selected"</c:if>>국민은행</option>
+					                                <option <c:if test="${ loginUser.stdBank eq '농협' }"> selected="selected"</c:if>>농협</option>
+					                                <option <c:if test="${ loginUser.stdBank eq '기업은행' }"> selected="selected"</c:if>>기업은행</option>
+					                                <option <c:if test="${ loginUser.stdBank eq '우리은행' }"> selected="selected"</c:if>>우리은행</option>
+					                            </select>
+					                        </td>
 										</tr>
 										<tr>
 											<th>주소</th>
-											<td>서울시 강남구 역삼동 127-8번지</td>
+											<td>
+												<input type="text" name="" id="stdPhone" value="${ loginUser.stdAddress }">
+											</td>
 											<th>계좌번호</th>
-											<td>110-123-987654</td>
+											<td>
+												<input type="text" name="" id="stdPhone" value="${ loginUser.stdAccount }">
+											</td>
 										</tr>
 										<tr>
 											<th>상세주소</th>
-											<td>123동 1904호</td>
+											<td>
+												<input type="text" name="" id="stdPhone" value="${ loginUser.stdAddressDetail }">
+											</td>
 											<th>예금주명</th>
-											<td>홍길동</td>
+											<td>
+												<input type="text" name="" id="stdPhone" value="${ loginUser.stdAccountHolder }">
+											</td>
 										</tr>
 									</tbody>
 								</table>

@@ -52,7 +52,7 @@
 				<!-- End of Topbar -->
 				
 				<!-- 여기서부터 내용  -->
-				 <!-- Begin Page Content -->
+				        <!-- Begin Page Content -->
         
        <div class="content">
         <div class="top">
@@ -66,7 +66,7 @@
         </div>
 
         <div class="print">
-               <button id="button" onclick="window.open('paymentdetail.do')">인쇄하기</button>
+          <button id="button" onclick="window.open('paymentdetail.do')">인쇄하기</button>
         </div>
 
          <form method="GET">
@@ -82,9 +82,9 @@
                     <th>
                         <p class="head">학년</p>
                     </th>
-                    <th>
+                    <!-- <th>
                         <p class="head">등록구분</p>
-                    </th>
+                    </th> -->
                     <th>
                         <p class="head">등록일자</p>
                     </th>
@@ -104,7 +104,7 @@
                     <td>2014학년도</td>
                     <td>1학기</td>
                     <td>1학년</td>
-                    <td>학기등록</td>
+                    <!-- <td>학기등록</td> -->
                     <td>2014/02/07</td>
                     <td>5,461,200</td>
                     <td>0</td>
@@ -114,7 +114,7 @@
                     <td>2014학년도</td>
                     <td>2학기</td>
                     <td>1학년</td>
-                    <td>학기등록</td>
+                    <!-- <td>학기등록</td> -->
                     <td>2014/09/05</td>
                     <td>4,516,000</td>
                     <td>2,480,000</td>
@@ -124,7 +124,7 @@
                     <td>2015학년도</td>
                     <td>1학기</td>
                     <td>2학년</td>
-                    <td>학기등록</td>
+                    <!-- <td>학기등록</td> -->
                     <td>2015/02/26</td>
                     <td>4,421,000</td>
                     <td>2,202,000</td>
@@ -134,7 +134,7 @@
                     <td>2017학년도</td>
                     <td>2학기</td>
                     <td>2학년</td>
-                    <td>학기등록</td>
+                    <!-- <td>학기등록</td> -->
                     <td>2017/08/28</td>
                     <td>4,421,000</td>
                     <td>0</td>
@@ -144,7 +144,7 @@
                     <td>2018학년도</td>
                     <td>1학기</td>
                     <td>3학년</td>
-                    <td>학기등록</td>
+                    <!-- <td>학기등록</td> -->
                     <td>2018/02/26</td>
                     <td>4,411,000</td>
                     <td>1,940,000</td>
@@ -154,7 +154,7 @@
                     <td>2018학년도</td>
                     <td>2학기</td>
                     <td>3학년</td>
-                    <td>학기등록</td>
+                    <!-- <td>학기등록</td> -->
                     <td>2018/09/13</td>
                     <td>4,421,000</td>
                     <td>0</td>
@@ -164,7 +164,7 @@
                     <td>2019학년도</td>
                     <td>1학기</td>
                     <td>4학년</td>
-                    <td>학기등록</td>
+                    <!-- <td>학기등록</td> -->
                     <td>2019/02/22</td>
                     <td>4,411,000</td>
                     <td>2,602,000</td>
@@ -174,7 +174,7 @@
                     <td>2020학년도</td>
                     <td>2학기</td>
                     <td>4학년</td>
-                    <td>학기등록</td>
+                    <!-- <td>학기등록</td> -->
                     <td>2020/02/27</td>
                     <td>4,453,000</td>
                     <td>1,362,000</td>
@@ -201,6 +201,7 @@
         </div>
 
       </div>
+
 
       <!-- /.container-fluid -->
 

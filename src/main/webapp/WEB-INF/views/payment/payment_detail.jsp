@@ -99,10 +99,10 @@
                         <td colspan="3">&nbsp;동문회비</td>
                         <td colspan="3" style="text-align: right">0&nbsp;</td>
                     </tr>
-                    <tr>
+<!--                     <tr>
                         <td colspan="3">&nbsp;후배사랑장학금</td>
                         <td colspan="3" style="text-align: right">0&nbsp;</td>
-                    </tr>
+                    </tr> -->
 
                     <tr style="font-size: 18px; height: 40px;">
                         <td colspan="3">납부총액</td>

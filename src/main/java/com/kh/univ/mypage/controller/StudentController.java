@@ -1,7 +1,11 @@
 package com.kh.univ.mypage.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.kh.univ.member.model.vo.Student;
 
 @Controller
 public class StudentController 
@@ -30,4 +34,11 @@ public class StudentController
 		return "myPage/studentConsulting";
 	}
 
+	@RequestMapping("changeStudentInfo.do")
+	public String ChangeStudentInfo(Student student, Model model, @RequestParam("post") String post)
+	{
+		System.out.println(student);
+		
+		return "redirect:home.do";
+	}
 }

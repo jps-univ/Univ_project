@@ -17,7 +17,7 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="<%=request.getContextPath()%>/resources/css/sb-admin.min.css" rel="stylesheet"> 
-  <link href="<%=request.getContextPath()%>/resources/css/payment_detail.css" rel="stylesheet"> 
+  <link href="<%=request.getContextPath()%>/resources/css/salary_detail_1.css" rel="stylesheet"> 
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
 </head>
@@ -64,44 +64,44 @@
                         <td style="border-right: hidden;">&nbsp;기본급여</td>
                         <td style="text-align: right">9,000,000&nbsp;</td>
                         <td style="border-right: hidden;">&nbsp;소득세</td>
-                        <td style="text-align: right">700,000&nbsp;</td>
+                        <td style="text-align: right">1030,000&nbsp;</td>
                     </tr>
                     <tr id="tr_4">
                         <td style="border-right: hidden;">&nbsp;시간외수당</td>
                         <td style="text-align: right">1,000,000&nbsp;</td>
-                        <td style="border-right: hidden;">&nbsp;기본소득세</td>
-                        <td style="text-align: right">330,000&nbsp;</td>
-                    </tr>
-                    <tr id="tr_4">
-                        <td style="border-right: hidden;">&nbsp;상여금</td>
-                        <td style="text-align: right">0&nbsp;</td>
                         <td style="border-right: hidden;">&nbsp;국민연금</td>
                         <td style="text-align: right">200,000&nbsp;</td>
                     </tr>
                     <tr id="tr_4">
-                        <td style="border-right: hidden;">&nbsp;성과급</td>
-                        <td style="text-align: right">500,000&nbsp;</td>
+                        <td style="border-right: hidden;">&nbsp;상여금</td>
+                        <td style="text-align: right">0&nbsp;</td>
                         <td style="border-right: hidden;">&nbsp;건강보험</td>
                         <td style="text-align: right">300,000&nbsp;</td>
                     </tr>
                     <tr id="tr_4">
-                        <td style="border-right: hidden;">&nbsp;식대</td>
-                        <td style="text-align: right">1,000,000&nbsp;</td>
+                        <td style="border-right: hidden;">&nbsp;성과급</td>
+                        <td style="text-align: right">500,000&nbsp;</td>
                         <td style="border-right: hidden;">&nbsp;장기요양보험</td>
                         <td style="text-align: right">200,000&nbsp;</td>
                     </tr>
                     <tr id="tr_4">
-                        <td style="border-right: hidden;">&nbsp;교육지원</td>
-                        <td style="text-align: right">0&nbsp;</td>
+                        <td style="border-right: hidden;">&nbsp;식대</td>
+                        <td style="text-align: right">1,000,000&nbsp;</td>
                         <td style="border-right: hidden;">&nbsp;고용보험</td>
                         <td style="text-align: right">0&nbsp;</td>
                     </tr>
                     <tr id="tr_4">
+                        <td style="border-right: hidden;">&nbsp;교육지원</td>
+                        <td style="text-align: right">0&nbsp;</td>
+                        <td style="border-right: hidden;">&nbsp;기타공제</td>
+                        <td style="text-align: right">0&nbsp;</td>
+                    </tr>
+<!--                     <tr id="tr_4">
                         <td style="border-right: hidden;">&nbsp;</td>
                         <td style="text-align: right">&nbsp;</td>
                         <td style="border-right: hidden;">&nbsp;기타</td>
                         <td style="text-align: right">0&nbsp;</td>
-                    </tr>
+                    </tr> -->
 
                     <tr style="font-size: 18px; height: 40px;">
                         <td colspan="2">급여총액</td>
