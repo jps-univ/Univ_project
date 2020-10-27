@@ -155,7 +155,7 @@
 											<td>
 												<label for="SMSAgree">수신동의</label> 
 												<input type="radio" name="SMS" id="SMSAgree" value="agree" checked>
-												&emsp;&emsp;&emsp;&emsp;&emsp;
+												&emsp;&emsp;&emsp;&emsp;
 												<label for="SMSDisagree">수신거부</label>
 												<input type="radio" name="SMS" id="SMSDisagree" value="disagree">
 											</td>
@@ -163,7 +163,7 @@
 											<td>
 												<label for="EmailAgree">수신동의</label> 
 												<input type="radio" name="Email" id="EmailAgree" value="agree" checked>
-												&emsp;&emsp;&emsp;&emsp;&emsp; 
+												&emsp;&emsp;&emsp;&emsp;
 												<label for="EmailDisagree">수신거부</label>
 												<input type="radio" name="Email" id="EmailDisagree" value="disagree">
 											</td>

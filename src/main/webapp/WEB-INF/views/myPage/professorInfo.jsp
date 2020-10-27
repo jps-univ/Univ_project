@@ -152,7 +152,9 @@
 		  
 		            <div class="card shadow mb-4">
 		              <div class="card-header py-3">
-		                <h6 class="m-0 font-weight-bold text-primary">개인정보동의</h6>
+		                <h6 class="m-0 font-weight-bold text-primary">개인정보동의
+		                	<input type="button" value="수정" id="changeInfo">
+		                </h6>
 		              </div>
 		              <div class="card-body">
 		                <div class="table-responsive">
@@ -163,7 +165,7 @@
 		                        <td>
 		                          <label for="SMSAgree">수신동의</label>
 		                          <input type="radio" name="SMS" id="SMSAgree" value="agree" checked>
-		                          &emsp;&emsp;&emsp;&emsp;&emsp;
+		                          &emsp;&emsp;&emsp;&emsp;
 		                          <label for="SMSDisagree">수신거부</label>
 		                          <input type="radio" name="SMS" id="SMSDisagree" value="disagree">
 		                        </td>
@@ -171,7 +173,7 @@
 		                        <td>
 		                          <label for="EmailAgree">수신동의</label>
 		                          <input type="radio" name="Email" id="EmailAgree" value="agree" checked>
-		                          &emsp;&emsp;&emsp;&emsp;&emsp;
+		                          &emsp;&emsp;&emsp;&emsp;
 		                          <label for="EmailDisagree">수신거부</label>
 		                          <input type="radio" name="Email" id="EmailDisagree" value="disagree">
 		                        </td>
