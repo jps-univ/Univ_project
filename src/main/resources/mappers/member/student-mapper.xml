@@ -2,15 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="StudentMapper">
 	<resultMap id="StudentResultSet" type="Student">
- 		<id property="key" column="STUDENT_ID"/>
- 		<result property="password" column="STUDENT_PASSWORD"/>
- 		<result property="name" column="STUDENT_NAME"/>
- 		<result property="phone" column="PHONE"/>
- 		<result property="email" column="EMAIL"/>
+ 		<id property="stdId" column="STUDENT_ID"/>
+ 		<result property="stdPwd" column="STUDENT_PASSWORD"/>
+ 		<result property="stdName" column="STUDENT_NAME"/>
+ 		<result property="stdBirth" column="BIRTH_NO"/>
+ 		<result property="stdCollege" column="COLLEGE"/>
+ 		<result property="stdDepartment" column="DEPARTMENT"/>
+ 		<result property="stdCourse" column="COURSE"/>
+ 		<result property="stdSemester" column="SEMESTER"/>
+ 		<result property="stdEnterDiv" column="ENTER_DIV"/>
+ 		<result property="stdImage" column="IMAGE"/>
+ 		<result property="stdTuition" column="TUITION"/>
+ 		<result property="stdSchoolReg" column="SCHOOL_REG"/>
+ 		<result property="stdPhone" column="PHONE"/>
+ 		<result property="stdEmail" column="EMAIL"/>
+ 		<result property="stdAddress" column="ADDRESS"/>
+ 		<result property="stdAddressDetail" column="ADDRESS_DETAIL"/>
+ 		<result property="stdBank" column="BANK"/>
+ 		<result property="stdAccount" column="STUDENT_ACCOUNT"/>
+ 		<result property="stdAccountHolder" column="ACCOUNT_HOLDER"/>
+ 		<result property="stdSmsAgree" column="SMS_AGREE"/>
+ 		<result property="stdEmailAgree" column="EMAIL_AGREE"/>
+ 		<result property="stdEntrance" column="ENTRANCE_DATE"/>
+ 		<result property="stdTel" column="TEL"/>
  	</resultMap>
 
 	<select id="loginStudent"  parameterType="Student" resultMap="StudentResultSet">
 		SELECT * FROM TB_STUDENT
-		WHERE STUDENT_ID = #{key}
+		WHERE STUDENT_ID = #{stdId}
 	</select>
 </mapper>
