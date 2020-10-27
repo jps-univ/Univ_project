@@ -57,9 +57,9 @@
             </a>
             <div id="collapseGrade" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="">학기별 성적 조회</a>
-                    <a class="collapse-item" href="">성적 증명서</a>
-                    <a class="collapse-item" href="">졸업 사정표</a>
+                    <a class="collapse-item" href="lookUpGrade.do">학기별 성적 조회</a>
+                    <a class="collapse-item" href="gradeCertificate.do">성적 증명서</a>
+                    <a class="collapse-item" href="graduationRequired.do">졸업 사정표</a>
                 </div>
             </div>
         </li>
