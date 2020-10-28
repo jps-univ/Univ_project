@@ -323,6 +323,7 @@
 						{
 							console.log("성공");
 							alert("변경되었습니다.");
+							/* location.reload(); */
 						}
 						else
 						{

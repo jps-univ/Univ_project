@@ -43,14 +43,27 @@ public class StudentController
 
 	@ResponseBody
 	@RequestMapping("changeStudentInfo.do")
-	public String ChangeStudentInfo(Student student, Model model)
+	public String ChangeStudentInfo(Student student, Model model, HttpSession session)
 	{
 		System.out.println(student);
+		Student newStudent = (Student)session.getAttribute("loginUser");
+		System.out.println(newStudent);
 		
 		int result = msService.changeStdPersonalInfo(student);
 		
 		if(result > 0)
 		{			
+			newStudent.setStdTel(student.getStdTel());
+			newStudent.setStdPhone(student.getStdPhone());
+			newStudent.setStdEmail(student.getStdEmail());
+			newStudent.setStdAddress(student.getStdAddress());
+			newStudent.setStdAddressDetail(student.getStdAddressDetail());
+			newStudent.setStdBank(student.getStdBank());
+			newStudent.setStdAccount(student.getStdAccount());
+			newStudent.setStdAccountHolder(student.getStdAccountHolder());
+			
+			session.setAttribute("loginUser", newStudent);
+			
 			return "ok";
 		}
 		else
@@ -64,16 +77,18 @@ public class StudentController
 	public String changeAgreeInfo(Student student, Model model, HttpSession session)
 	{
 		System.out.println(student);
-		String sms = (String)session.getAttribute("loginUser.stdSmsAgree");
-		System.out.println("변경 전 : " + sms);
+		Student newStudent = (Student)session.getAttribute("loginUser");
+		System.out.println(newStudent);
 		int result = msService.changeStdAgreeInfo(student);
 		
 		
 		if(result > 0)
 		{
-			session.setAttribute("loginUser.stdSmsAgree", student.getStdSmsAgree());
-			System.out.println("변경 후 : " + sms);
-			session.setAttribute("loginUser.stdEmailAgree", student.getStdEmailAgree());
+			newStudent.setStdSmsAgree(student.getStdSmsAgree());
+			newStudent.setStdEmailAgree(student.getStdEmailAgree());
+			
+			session.setAttribute("loginUser", newStudent);
+			
 			return "ok";
 		}
 		else
@@ -88,6 +103,7 @@ public class StudentController
 		System.out.println(student);
 		
 		int result = msService.checkStdPwd(student);
+		
 		return "ok";
 	}
 }
