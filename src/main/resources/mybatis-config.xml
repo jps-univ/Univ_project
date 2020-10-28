@@ -8,6 +8,7 @@
     <!-- typeAliases -->
     <typeAliases>
 		<typeAlias type="com.kh.univ.member.model.vo.Student" alias="Student"/>
+		<typeAlias type="com.kh.univ.stmanagement.model.vo.StudentManagement" alias="StudentManagement"/>
         <typeAlias type="com.kh.univ.test.model.vo.Test" alias="Test"/>
         <!-- <typeAlias type="com.kh.spring.board.model.vo.Board" alias="Board"/>
         <typeAlias type="com.kh.spring.board.model.vo.Reply" alias="Reply"/> -->
@@ -17,6 +18,7 @@
         <mapper resource="mappers/test-mapper.xml"/>
         <!-- <mapper resource="mappers/board-mapper.xml"/> -->
         <mapper resource="mappers/member/student-mapper.xml"/>
+        <mapper resource="mappers/StudentManagement/studentManagement-mapper.xml"/>
     </mappers>
 
 </configuration>

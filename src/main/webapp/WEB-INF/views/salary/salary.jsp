@@ -95,7 +95,7 @@
                           <p class="head">지급은행</p>
                       </th>
                       <th>
-                          <p class="head">계좌번호</p>
+                          <p class="head">지급계좌</p>
                       </th>
                       <th>
                           <p class="head">실지급액</p>
