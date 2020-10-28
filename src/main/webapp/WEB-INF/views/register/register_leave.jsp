@@ -140,7 +140,7 @@
                 <option>1년</option>
                 <option>2년</option>
               </select>
-              <button class="select" onclick="button_leave();">저장</button>
+              <button class="select" onclick="button_leave();">신청하기</button>
               <!-- <input class="select" 
                       type="submit" value="저장"> -->
             </div>
