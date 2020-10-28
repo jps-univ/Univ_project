@@ -104,38 +104,44 @@
 <%--    수강신청,장바구니 탭 클릭 시 화면 변화--%>
     <script>
         $(document).ready(function () {
-            $('#enrollCard').css({
+            $('#requestRegisterCard').css({
                 "background-color": "lightgrey",
                 "color": "white"
             });
-            $('.enroll').show();
-            $('.basket').hide();
-            $('#basketCard').click(function () {
-                $('.enroll').hide();
-                $('.basket').show();
-                $('#basketCard').css({
+            $('.register').show();
+            $('.delete').hide();
+            $('#deleteBtn').hide();
+            $('#requestDeleteCard').click(function () {
+                $('.register').hide();
+                $('.delete').show();
+                $('#requestDeleteCard').css({
                     "background-color": "lightgrey",
                     "color": "white"
                 });
-                $('#enrollCard').css({
+                $('#requestRegisterCard').css({
                     "background-color": "white",
                     "color": "darkgray"
                 });
-                $('#basketBtn').hide();
+                $('#registerBtn').hide();
+                $('#addPlanBtn').hide();
+                $('#deleteBtn').show();
+
                 return false;
             });
-            $('#enrollCard').click(function () {
-                $('#enrollCard').css({
+            $('#requestRegisterCard').click(function () {
+                $('#requestRegisterCard').css({
                     "background-color": "lightgrey",
                     "color": "white"
                 });
-                $('#basketCard').css({
+                $('#requestDeleteCard').css({
                     "background-color": "white",
                     "color": "darkgray"
                 });
-                $('.enroll').show();
-                $('.basket').hide();
-                $('#basketBtn').show();
+                $('.register').show();
+                $('.delete').hide();
+                $('#registerBtn').show();
+                $('#addPlanBtn').show();
+                $('#deleteBtn').hide();
                 return false;
             });
         });
@@ -165,10 +171,135 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">강의등록/삭제</h1>
-                    <div></div>
+                    <h1 class="h3 mb-1 text-gray-800">강의등록/삭제</h1>
 
 
+                    <!-- Content Row -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3" style="height: 75px;">
+                            <div>
+                                <div id="requestRegisterCard" class="card left active"
+                                     style="float: left; height: 100%; width: 50%; text-align: center; padding-top: 10px; padding-bottom: 5px;">
+                                    강의등록
+                                </div>
+                                <div id="requestDeleteCard" class="card right"
+                                     style="float: right; width: 50%; height: 100%;text-align: center; padding-top: 10px; padding-bottom: 5px;">
+                                    강의삭제
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="table-responsive register">
+                                <table class="table addArea">
+                                    <tr>
+                                        <th>교과목명</th>
+                                        <th><input type="text"></th>
+                                        <th>담당교수</th>
+                                        <th><input type="text"></th>
+                                    </tr>
+
+                                    <tr>
+                                        <th>이수구분</th>
+                                        <th>
+                                            <select>
+                                                <option>전체</option>
+                                                <option value="A">교필</option>
+                                                <option value="B">교필</option>
+                                                <option value="C">전필</option>
+                                                <option value="D">전선</option>
+                                                <option value="E">일선</option>
+                                            </select>
+                                        </th>
+                                        <th>학점</th>
+                                        <th><input type="number"></th>
+                                    </tr>
+                                    <tr>
+                                        <th>년도</th>
+                                        <th><input type="text"></th>
+                                        <th>학기</th>
+                                        <th>
+                                            <select>
+                                                <option value="A">1</option>
+                                                <option value="B">2</option>
+                                            </select>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>교과목개요</th>
+                                        <th><input type="text"></th>
+                                        <th>교육목표</th>
+                                        <th><input type="text"></th>
+                                    </tr>
+                                    <tr>
+                                        <th>주교재</th>
+                                        <th colspan="3"><input type="text"></th>
+                                    </tr>
+                                    <tr name="lectureTime">
+                                        <th>강의시간</th>
+                                        <th colspan="100">
+                                            <select>
+                                                <option>선택</option>
+                                                <option value="월">월요일</option>
+                                                <option value="화">화요일</option>
+                                                <option value="수">수요일</option>
+                                                <option value="목">목요일</option>
+                                                <option value="금">금요일</option>
+                                            </select>
+                                            <input style="width: 50px;" type="number" min="1" max="9">
+                                            <label for="hour">교시</label>
+                                            <button name="addDays" class="btn btn-primary btn-circle btn-sm"
+                                                    style="margin-left: 10px;">+</button>
+                                            <script>
+                                                $(document).on('click', 'button[name=addDays]', function () {
+                                                    var addDays = "";
+                                                    addDays += '<tr name="lectureTime">';
+                                                    addDays += '<th>강의시간</th>';
+                                                    addDays += '<th colspan="3">';
+                                                    addDays += "<select>";
+                                                    addDays += "<option>선택</option>";
+                                                    addDays += "<option>월요일</option>";
+                                                    addDays += "<option>화요일</option>";
+                                                    addDays += "<option>수요일</option>";
+                                                    addDays += "<option>목요일</option>";
+                                                    addDays += "<option>금요일</option>";
+                                                    addDays += "</select>";
+                                                    addDays += "&nbsp";
+                                                    addDays += '<input style="width: 50px;" type="number" min="1" max="9">';
+                                                    addDays += "&nbsp";
+                                                    addDays += '<label for="hour">교시</label>';
+                                                    addDays += "<button class='btn btn-primary btn-circle btn-sm' name='delDays' style='margin-left: 13px;'>-</button>";
+                                                    addDays += '</th>';
+                                                    addDays += '</tr>';
+                                                    var trDays = $("tr[name=lectureTime]:last");
+                                                    // $('.addAtrea').append(addDays);
+                                                    trDays.after(addDays);
+                                                });
+                                                $(document).on('click', 'button[name=delDays]', function () {
+
+                                                    var trDays = $(this).parent().parent();
+                                                    trDays.remove();
+                                                });
+
+                                            </script>
+                                        </th>
+                                    </tr>
+
+                                </table>
+
+                            </div>
+                            <div class="table-responsive delete">
+
+                            </div>
+                        </div>
+                        <div class="buttonArea card-body" align="center">
+                            <button id="registerBtn" class="btn btn-success"
+                                    onclick="alert('강의등록 요청이 완료되었습니다. 관리자 승인 후 정상 등록이 됩니다.');">강의등록 요청</button>
+
+                            <button id="addPlanBtn" class="btn btn-secondary" onclick="alert('강의계획서 모달로 띄울자리.')">강의계획서 첨부</button>
+                            <button id="deleteBtn" class="btn btn-success" onclick="alert('강의삭제 요청이 완료되었습니다. 관리자 승인 후 정상 등록이 됩니다.')">강의삭제 요청</button>
+                        </div>
+                    </div>
 
                 </div>
                 <!-- /.container-fluid -->
