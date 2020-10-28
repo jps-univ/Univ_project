@@ -29,74 +29,77 @@
             <table>
 
                     <tr id="tr_1">
-                        <th colspan="4">
+                        <th colspan="6">
                             급여 지급 명세서
                         </th>
                     </tr>
 
                     <tr id="tr_2">
                         <td>성명</td>
-                        <td style="width: 205px;">최희진</td>
-                        <td>지급일</td>
-                        <td>2020.10</td>
+                        <td colspan="2">최희진</td>
+                        <td>교번</td>
+                        <td colspan="2">201257082</td>
                     </tr>
                     <tr id="tr_2">
                         <td>소속</td>
-                        <td>진포상대학교</td>
+                        <td colspan="2">진포상대학교</td>
                         <td>생년월일</td>
-                        <td>19930802</td>
+                        <td colspan="2">19930802</td>
                     </tr>
                     <tr id="tr_2">
-                        <td>교번</td>
-                        <td>201257082</td>
-                        <td>급여계좌</td>
-                        <td>기업은행 990-009078-02-010</td>
+                        <td>지급은행</td>
+                        <td>기업은행</td>
+                        <td>지급계좌</td>
+                        <td>990-009078-02-010</td>
+                        <td>지급일</td>
+                        <td>2020.10</td>
                     </tr>
 
 
                     <tr id="tr_3">
-                        <td colspan="2">지급 내역</td>
-                        <td colspan="2">공제 내역</td>
+                        <td colspan="3">지급 내역</td>
+                        <td colspan="3">공제 내역</td>
                     </tr>
    
 
                     <tr id="tr_4">
                         <td style="border-right: hidden;">&nbsp;기본급여</td>
-                        <td style="text-align: right">9,000,000&nbsp;</td>
+                        <td colspan="2" style="text-align: right">9,000,000&nbsp;</td>
                         <td style="border-right: hidden;">&nbsp;소득세</td>
-                        <td style="text-align: right">1030,000&nbsp;</td>
+                        <td colspan="2" style="text-align: right">700,000&nbsp;</td>
                     </tr>
                     <tr id="tr_4">
                         <td style="border-right: hidden;">&nbsp;시간외수당</td>
-                        <td style="text-align: right">1,000,000&nbsp;</td>
-                        <td style="border-right: hidden;">&nbsp;국민연금</td>
-                        <td style="text-align: right">200,000&nbsp;</td>
+                        <td colspan="2" style="text-align: right">1,000,000&nbsp;</td>
+                        <td style="border-right: hidden;">&nbsp;기본소득세</td>
+                        <td colspan="2" style="text-align: right">330,000&nbsp;</td>
                     </tr>
                     <tr id="tr_4">
                         <td style="border-right: hidden;">&nbsp;상여금</td>
-                        <td style="text-align: right">0&nbsp;</td>
-                        <td style="border-right: hidden;">&nbsp;건강보험</td>
-                        <td style="text-align: right">300,000&nbsp;</td>
+                        <td colspan="2" style="text-align: right">0&nbsp;</td>
+                        <td style="border-right: hidden;">&nbsp;국민연금</td>
+                        <td colspan="2" style="text-align: right">200,000&nbsp;</td>
                     </tr>
                     <tr id="tr_4">
                         <td style="border-right: hidden;">&nbsp;성과급</td>
-                        <td style="text-align: right">500,000&nbsp;</td>
-                        <td style="border-right: hidden;">&nbsp;장기요양보험</td>
-                        <td style="text-align: right">200,000&nbsp;</td>
+                        <td colspan="2" style="text-align: right">500,000&nbsp;</td>
+                        <td style="border-right: hidden;">&nbsp;건강보험</td>
+                        <td colspan="2" style="text-align: right">300,000&nbsp;</td>
                     </tr>
                     <tr id="tr_4">
                         <td style="border-right: hidden;">&nbsp;식대</td>
-                        <td style="text-align: right">1,000,000&nbsp;</td>
-                        <td style="border-right: hidden;">&nbsp;고용보험</td>
-                        <td style="text-align: right">0&nbsp;</td>
+                        <td colspan="2" style="text-align: right">1,000,000&nbsp;</td>
+                        <td style="border-right: hidden;">&nbsp;장기요양보험</td>
+                        <td colspan="2" style="text-align: right">200,000&nbsp;</td>
                     </tr>
                     <tr id="tr_4">
                         <td style="border-right: hidden;">&nbsp;교육지원</td>
-                        <td style="text-align: right">0&nbsp;</td>
-                        <td style="border-right: hidden;">&nbsp;기타공제</td>
-                        <td style="text-align: right">0&nbsp;</td>
+                        <td colspan="2" style="text-align: right">0&nbsp;</td>
+                        <td style="border-right: hidden;">&nbsp;고용보험</td>
+                        <td colspan="2" style="text-align: right">0&nbsp;</td>
+                        
                     </tr>
-<!--                     <tr id="tr_4">
+                    <!-- <tr id="tr_4">
                         <td style="border-right: hidden;">&nbsp;</td>
                         <td style="text-align: right">&nbsp;</td>
                         <td style="border-right: hidden;">&nbsp;기타</td>
@@ -104,15 +107,15 @@
                     </tr> -->
 
                     <tr style="font-size: 18px; height: 40px;">
-                        <td colspan="2">급여총액</td>
-                        <td colspan="2" style="border-left: hidden; text-align: right">9,777,000</td>
+                        <td colspan="3">급여총액</td>
+                        <td colspan="3" style="border-left: hidden; text-align: right">9,777,000</td>
                     </tr>
 
 
 
                 <tbody>
                     <tr style="height: 440px;">
-                        <td colspan="4">
+                        <td colspan="6">
                             <span id="span_1">위와 같이 지급받았음을 확인함.</span>
 
                             <br>
@@ -130,10 +133,10 @@
                     </tr>
                 </tbody>    
                     <tr>
-                        <td colspan="4">
+                        <td colspan="6">
                             ※ 유의사항<br>  
-             1. 급여 산정기간은 매월 16일부터 익월 15일입니다.<br>
-             2. 문의사항은 종합서비스센터(010-5132-4190)로 연락바랍니다.
+                            1. 급여 산정기간은 매월 16일부터 익월 15일입니다.<br>
+                            2. 문의사항은 종합서비스센터(010-5132-4190)로 연락바랍니다.
                         </td>
                     </tr>
                 
