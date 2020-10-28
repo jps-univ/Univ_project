@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="StudentManagementMapper">
+	<resultMap id="StudentManagementResultSet" type="StudentManagement">
+ 		<id property="stdId" column="STUDENT_ID"/>
+ 		<result property="className" column="CLASS_NAME"/>
+ 		<result property="classId" column="CLASS_ID"/>
+ 		<result property="classType" column="CLASS_TYPE"/>
+ 		<result property="classTime" column="CLASS_TIME"/>
+ 		<result property="stdName" column="STUDENT_NAME"/>
+ 		<result property="stdDepartment" column="DEPARTMENT"/>
+ 		<result property="stdSemester" column="SEMESTER"/>
+ 		<result property="stdTel" column="PHONE"/>
+ 		<result property="stdEmail" column="EMAIL"/>
+ 	</resultMap>
+
+	<select id="selectList" resultMap="StudentManagementResultSet">
+		SELECT
+			CLASS_NAME,
+			CLASS_NO,
+			CLASS_TYPE,
+			CLASS_TIME
+		FROM
+			TB_CLASS
+	</select>
+</mapper>
