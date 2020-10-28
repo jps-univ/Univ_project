@@ -172,17 +172,15 @@
                         <div class="card-header py-3" style="height: 75px;">
                             <div>
                                 <div id="enrollCard" class="card left active"
-                                     style="float: left; height: 100%; width: 50%; text-align: center; padding-top: 10px;">수강신청
+                                     style="float: left; height: 100%; width: 50%; text-align: center; padding-top: 10px; padding-bottom: 5px;">수강신청
                                 </div>
                                 <div id="basketCard" class="card right"
-                                     style="float: right; width: 50%; height: 100%;text-align: center; padding-top: 10px;">장바구니
+                                     style="float: right; width: 50%; height: 100%;text-align: center; padding-top: 10px; padding-bottom: 5px;">장바구니
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive basket">
 
-                            </div>
                             <div class="table-responsive enroll">
                                 <table class="search_box">
                                     <tbody>
@@ -270,6 +268,9 @@
                                     </thead>
                                     <!-- tbody 태그 필요 없다. -->
                                 </table>
+                            </div>
+                            <div class="table-responsive basket">
+
                             </div>
                         </div>
                        <div class="buttonArea card-body" align="center">
