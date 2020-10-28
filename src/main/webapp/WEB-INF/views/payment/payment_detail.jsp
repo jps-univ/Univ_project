@@ -28,7 +28,7 @@
         <form method="GET">
             <table>
 
-                    <tr id="tr_1">
+                     <tr id="tr_1">
                         <td colspan="6">
                            <b>등록금 납부 확인서</b>
                         </td>
@@ -36,23 +36,21 @@
 
                     <tr id="tr_2">
                         <td>성명</td>
-                        <td colspan="3" style="height: 40px;">최희진</td>
-                        <td>분기</td>
-                        <td>2020/2</td>
+                        <td colspan="2" style="height: 35px;">최희진</td>
+                        <td>생년월일</td>
+                        <td>19930802</td>
                     </tr>
                     <tr id="tr_2">
                         <td>학과</td>
-                        <td style="width: 210px;">관광경영전공</td>
-                        <td>생년월일</td>
-                        <td>19930802</td>
+                        <td colspan="2" style="width: 210px; height: 35px;">관광경영전공</td>
                         <td>납부일</td>
-                        <td>2020.08.24</td>
+                        <td colspan="2">2020.08.24</td>
                     </tr>
                     <tr id="tr_2">
                         <td>학번</td>
                         <td>201257082</td>
                         <td>주소</td>
-                        <td colspan="3" style="width: 545px;">경기도 화성시 동탄순환대로21길 53, 1301-1602</td>
+                        <td colspan="3" style="width: 300px;">경기도 화성시 동탄순환대로21길 53, 1301-1602</td>
                     </tr>
 
                     <tr id="tr_3">

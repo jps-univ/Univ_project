@@ -165,10 +165,10 @@
                       </thead>
                       <tbody>
                           <tr>
-                              <td style="cursor:pointer"><a href="stListDetail.do">전자회로2</a></td>
-                              <td style="cursor:pointer"><a href="stListDetail.do">EE1033</a></td>
-                              <td style="cursor:pointer"><a href="stListDetail.do">전공</a></td>
-                              <td style="cursor:pointer"><a href="stListDetail.do">화 / 목 24, 25</a></td>
+                              <td style="cursor:pointer"><a href="stListDetail.do">${ std.className }</a></td>
+                              <td style="cursor:pointer"><a href="stListDetail.do">${ std.classId }</a></td>
+                              <td style="cursor:pointer"><a href="stListDetail.do">${ std.classType }</a></td>
+                              <td style="cursor:pointer"><a href="stListDetail.do">${ std.classTime }</a></td>
                               <td><button id="btn1"><a href="stGrade.do">성적</a></button></td>
                               <td><button id="btn2"><a href="attendance.do">출석</a></button></td>
                           </tr>
