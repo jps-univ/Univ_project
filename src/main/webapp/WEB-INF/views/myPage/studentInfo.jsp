@@ -119,13 +119,13 @@
 										<tr>
 											<fmt:parseNumber var="semester" value="${ (loginUser.stdSemester + 1) div 2 }" integerOnly="true"/>
 											<th>학년</th>
-											<td>${ semester }</td>
+											<td>${ semester }학년</td>
 											<th>학적</th>
 											<td>${ loginUser.stdSchoolReg }</td>
 										</tr>
 										<tr>
 											<th>입학구분</th>
-											<td>${ loginUser.stdEnterDiv }</td>
+											<td>${ loginUser.stdEnterDiv }(${ loginUser.stdEntrance })</td>
 											<th></th>
 											<td></td>
 										</tr>
@@ -138,7 +138,7 @@
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">개인정보
-								<input type="button" value="변경" id="changeInfo">
+								<input type="button" value="변경" id="changeInfo" onclick="personalBtn()">
 							</h6>
 						</div>
 						<div class="card-body">
@@ -148,21 +148,21 @@
 										<tr>
 											<th>전화번호</th>
 											<td>
-												<input type="text" name="" id="stdPhone" value="${ loginUser.stdTel }">
+												<input type="text" name="stdTel" id="stdTel" value="${ loginUser.stdTel }">
 											</td>
 											<th>핸드폰</th>
 											<td>
-												<input type="text" name="" id="stdPhone" value="${ loginUser.stdPhone }">
+												<input type="text" name="stdPhone" id="stdPhone" value="${ loginUser.stdPhone }">
 											</td>
 										</tr>
 										<tr>
 											<th>이메일</th>
 											<td>
-												<input type="text" name="" id="stdPhone" value="${ loginUser.stdEmail }">
+												<input type="text" name="stdEmail" id="stdEmail" value="${ loginUser.stdEmail }">
 											</td>
 											<th>은행명</th>
 					                        <td> 
-					                            <select id="bank">
+					                            <select name="stdBank" id="stdBank" value="${ loginUser.stdBank }">
 					                                <option <c:if test="${ loginUser.stdBank eq '신한은행' }"> selected="selected"</c:if>>신한은행</option>
 					                                <option <c:if test="${ loginUser.stdBank eq '국민은행' }"> selected="selected"</c:if>>국민은행</option>
 					                                <option <c:if test="${ loginUser.stdBank eq '농협' }"> selected="selected"</c:if>>농협</option>
@@ -174,21 +174,21 @@
 										<tr>
 											<th>주소</th>
 											<td>
-												<input type="text" name="" id="stdPhone" value="${ loginUser.stdAddress }">
+												<input type="text" name="stdAddress" id="stdAddress" value="${ loginUser.stdAddress }">
 											</td>
 											<th>계좌번호</th>
 											<td>
-												<input type="text" name="" id="stdPhone" value="${ loginUser.stdAccount }">
+												<input type="text" name="stdAccount" id="stdAccount" value="${ loginUser.stdAccount }">
 											</td>
 										</tr>
 										<tr>
 											<th>상세주소</th>
 											<td>
-												<input type="text" name="" id="stdPhone" value="${ loginUser.stdAddressDetail }">
+												<input type="text" name="stdAddressDetail" id="stdAddressDetail" value="${ loginUser.stdAddressDetail }">
 											</td>
 											<th>예금주명</th>
 											<td>
-												<input type="text" name="" id="stdPhone" value="${ loginUser.stdAccountHolder }">
+												<input type="text" name="stdAccountHolder" id="stdAccountHolder" value="${ loginUser.stdAccountHolder }">
 											</td>
 										</tr>
 									</tbody>
@@ -200,7 +200,7 @@
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">개인정보동의
-							<input type="button" value="변경" id="changeInfo">
+							<input type="button" value="변경" id="changeInfo" onclick="agreeBtn()">
 							</h6>
 						</div>
 						<div class="card-body">
@@ -213,19 +213,19 @@
 												<c:when test="${ loginUser.stdSmsAgree eq 'Y' }">
 													<td>
 														<label for="SMSAgree">수신동의</label> 
-														<input type="radio" name="SMS" id="SMSAgree" value="agree" checked>
+														<input type="radio" name="SMS" id="SMS" value="Y" checked>
 														&emsp;&emsp;&emsp;&emsp;
 														<label for="SMSDisagree">수신거부</label>
-														<input type="radio" name="SMS" id="SMSDisagree" value="disagree">
+														<input type="radio" name="SMS" id="SMS" value="N">
 													</td>
 												</c:when>
 												<c:when test="${ loginUser.stdSmsAgree eq 'N' }">
 													<td>
 														<label for="SMSAgree">수신동의</label> 
-														<input type="radio" name="SMS" id="SMSAgree" value="agree">
+														<input type="radio" name="SMS" id="SMS" value="Y">
 														&emsp;&emsp;&emsp;&emsp;
 														<label for="SMSDisagree">수신거부</label>
-														<input type="radio" name="SMS" id="SMSDisagree" value="disagree" checked>
+														<input type="radio" name="SMS" id="SMS" value="N" checked>
 													</td>
 												</c:when>
 											</c:choose>
@@ -234,19 +234,19 @@
 												<c:when test="${ loginUser.stdEmailAgree eq 'Y' }">
 													<td>
 														<label for="EmailAgree">수신동의</label> 
-														<input type="radio" name="Email" id="EmailAgree" value="agree" checked>
+														<input type="radio" name="Email" id="Email" value="Y" checked>
 														&emsp;&emsp;&emsp;&emsp;
 														<label for="EmailDisagree">수신거부</label>
-														<input type="radio" name="Email" id="EmailDisagree" value="disagree">
+														<input type="radio" name="Email" id="Email" value="N">
 													</td>
 												</c:when>
 												<c:when test="${ loginUser.stdEmailAgree eq 'N' }">
 													<td>
 														<label for="EmailAgree">수신동의</label> 
-														<input type="radio" name="Email" id="EmailAgree" value="agree">
+														<input type="radio" name="Email" id="Email" value="Y">
 														&emsp;&emsp;&emsp;&emsp;
 														<label for="EmailDisagree">수신거부</label>
-														<input type="radio" name="Email" id="EmailDisagree" value="disagree" checked>
+														<input type="radio" name="Email" id="Email" value="N" checked>
 													</td>
 												</c:when>
 											</c:choose>
@@ -295,6 +295,96 @@
 
 	<!-- Logout Modal-->
 	<c:import url="../common/logoutModal.jsp" />
+
+	
+	<script type="text/javascript">
+		function personalBtn()
+		{
+			var stdId = ${ loginUser.stdId };
+			var stdTel = $("#stdTel").val();
+			var stdPhone = $("#stdPhone").val();
+			var stdEmail = $("#stdEmail").val();
+			var stdAddress = $("#stdAddress").val();
+			var stdAddressDetail = $("#stdAddressDetail").val();
+			var stdBank = $("#stdBank").val();
+			var stdAccount = $("#stdAccount").val();
+			var stdAccountHolder = $("#stdAccountHolder").val();
+			
+			if(confirm("변경하시겠습니까?"))
+			{
+				$.ajax(
+				{
+					url:"changeStudentInfo.do",
+					data:{"stdId" : stdId, "stdTel" : stdTel, "stdPhone" : stdPhone, "stdEmail" : stdEmail, "stdAddress" : stdAddress, "stdAddressDetail" : stdAddressDetail, "stdBank" : stdBank, "stdAccount" : stdAccount, "stdAccountHolder" : stdAccountHolder},
+					type:"post",
+					success:function(data)
+					{
+						if(data == "ok")
+						{
+							console.log("성공");
+							alert("변경되었습니다.");
+						}
+						else
+						{
+							alert("실패하였습니다.");
+						}
+					},
+					error:function(request, status, errorData)
+					{
+						console.log(request.status);
+						console.log(request.responseText);
+						console.log(errorData); 
+					}
+				});
+			}
+			else
+			{
+				alert("취소되었습니다.");
+				return;
+			}
+		};
+		
+		
+		function agreeBtn()
+		{
+			var stdId = ${ loginUser.stdId };
+			var stdSmsAgree = $('input[name="SMS"]:checked').val();
+			var stdEmailAgree = $('input[name="Email"]:checked').val();
+			
+			if(confirm("변경하시겠습니까?"))
+			{
+				$.ajax(
+				{
+					url:"changeAgreeInfo.do",
+					data:{"stdId" : stdId, "stdSmsAgree" : stdSmsAgree, "stdEmailAgree" : stdEmailAgree},
+					type:"post",
+					success:function(data)
+					{
+						if(data == "ok")
+						{
+							console.log("성공");
+							alert("변경되었습니다.");
+						}
+						else
+						{
+							alert("실패하였습니다.");
+						}
+					},
+					error:function(request, status, errorData)
+					{
+						console.log(request.status);
+						console.log(request.responseText);
+						console.log(errorData); 
+					}
+				});
+			}
+			else
+			{
+				alert("취소되었습니다.");
+				return;
+			}
+		};
+	</script>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>

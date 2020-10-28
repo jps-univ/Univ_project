@@ -17,6 +17,6 @@
         <mapper resource="mappers/test-mapper.xml"/>
         <!-- <mapper resource="mappers/board-mapper.xml"/> -->
         <mapper resource="mappers/member/student-mapper.xml"/>
+        <mapper resource="mappers/myPage/studentMyPage-mapper.xml"/>
     </mappers>
-
 </configuration>

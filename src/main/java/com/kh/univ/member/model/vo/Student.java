@@ -30,17 +30,17 @@ public class Student {
 	
 	public Student() {}
 	
-	public Student(int stdId, String stdPwd) {
+	// 로그인 매개변수
+	public Student(int stdId, String stdPwd) 
+	{
 		super();
 		this.stdId = stdId;
 		this.stdPwd = stdPwd;
 	}
-
-	public Student(int stdId, String stdPwd, String stdName, String stdBirth, String stdCollege, String stdDepartment,
-			String stdCourse, String stdSemester, String stdEnterDiv, String stdImage, String stdTuition,
-			String stdSchoolReg, String stdPhone, String stdEmail, String stdAddress, String stdAddressDetail,
-			String stdBank, String stdAccount, String stdAccountHolder, String stdSmsAgree, String stdEmailAgree,
-			String stdEntrance, String stdTel) {
+	
+	// 전체 매개변수
+	public Student(int stdId, String stdPwd, String stdName, String stdBirth, String stdCollege, String stdDepartment, String stdCourse, String stdSemester, String stdEnterDiv, String stdImage, String stdTuition, String stdSchoolReg, String stdPhone, String stdEmail, String stdAddress, String stdAddressDetail, String stdBank, String stdAccount, String stdAccountHolder, String stdSmsAgree, String stdEmailAgree, String stdEntrance, String stdTel) 
+	{
 		super();
 		this.stdId = stdId;
 		this.stdPwd = stdPwd;
@@ -64,6 +64,19 @@ public class Student {
 		this.stdSmsAgree = stdSmsAgree;
 		this.stdEmailAgree = stdEmailAgree;
 		this.stdEntrance = stdEntrance;
+		this.stdTel = stdTel;
+	}
+	
+	// 개인정보 변경 매개변수
+	public Student(String stdPhone, String stdEmail, String stdAddress, String stdAddressDetail, String stdBank, String stdAccount, String stdAccountHolder, String stdTel) {
+		super();
+		this.stdPhone = stdPhone;
+		this.stdEmail = stdEmail;
+		this.stdAddress = stdAddress;
+		this.stdAddressDetail = stdAddressDetail;
+		this.stdBank = stdBank;
+		this.stdAccount = stdAccount;
+		this.stdAccountHolder = stdAccountHolder;
 		this.stdTel = stdTel;
 	}
 
