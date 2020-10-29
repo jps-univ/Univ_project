@@ -8,4 +8,6 @@ public interface StudentManagementService {
 
 	ArrayList<StudentManagement> selectList();
 
+	ArrayList<StudentManagement> selectDetailList();
+
 }

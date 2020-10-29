@@ -14,6 +14,7 @@
  		<result property="stdEmail" column="EMAIL"/>
  	</resultMap>
 
+	<!-- 수강생 조회 매퍼  -->
 	<select id="selectList" resultMap="StudentManagementResultSet">
 		SELECT
 			CLASS_NAME,
@@ -22,5 +23,21 @@
 			CLASS_TIME
 		FROM
 			TB_CLASS
+	</select>
+	
+	<!-- 수강생 상세조회 매퍼 -->
+	<select id="selectdDetailList" resultMap="StudentManagementResultSet">
+		SELECT
+		    CLASS_NO,
+		    CLASS_NAME,
+		    STUDENT_NAME,
+		    STUDENT_ID,
+		    DEPARTMENT,
+		    SEMESTER,
+		    PHONE,
+		    EMAIL
+		FROM
+		    TB_STUDENT
+    	JOIN TB_CLASS ON(SEMESTER = CLASS_SEMESTER)
 	</select>
 </mapper>

@@ -139,13 +139,15 @@ margin-right: 10px;
           </div>
           <br><br>
           <table border="0" cellspacing="0" width="700px" id="tb">
+          <c:forEach var="std" items="${ list }">
             <tr>
                 <td><h4 id="code">과목코드 : </h4></td>
-                <td><input type="text" id="text1" placeholder="전자 회로 2" disabled></td>
+                <td><input type="text" id="text1" placeholder="${ std.classId }" disabled></td>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <td><h4 id="code">교과목명 : </h4></td>
-                <td><input type="text" id="text2" placeholder="EE1033" disabled></td>
+                <td><input type="text" id="text2" placeholder="${ std.className }" disabled></td>
             </tr>
+            </c:forEach>
         </table>
           <br>
           <div class="col-sm-9 page">
@@ -179,72 +181,16 @@ margin-right: 10px;
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>김아무개</td>
-                                <td>2020303022</td>
-                                <td>전자공학과</td>
-                                <td>3학년</td>
-                                <td>010-1234-5678</td>
-                                <td>kimtest@namver.com</td>
-                            </tr>
-                            <tr>
-                                <td>김아무개</td>
-                                <td>2020303022</td>
-                                <td>전자공학과</td>
-                                <td>3학년</td>
-                                <td>010-1234-5678</td>
-                                <td>kimtest@namver.com</td>
-                            </tr>
-                            <tr>
-                                <td>김아무개</td>
-                                <td>2020303022</td>
-                                <td>전자공학과</td>
-                                <td>3학년</td>
-                                <td>010-1234-5678</td>
-                                <td>kimtest@namver.com</td>
-                            </tr>
-                            <tr>
-                                <td>김아무개</td>
-                                <td>2020303022</td>
-                                <td>전자공학과</td>
-                                <td>3학년</td>
-                                <td>010-1234-5678</td>
-                                <td>kimtest@namver.com</td>
-                            </tr>
-                            <tr>
-                                <td>김아무개</td>
-                                <td>2020303022</td>
-                                <td>전자공학과</td>
-                                <td>3학년</td>
-                                <td>010-1234-5678</td>
-                                <td>kimtest@namver.com</td>
-                            </tr>
-                            <tr>
-                                <td>김아무개</td>
-                                <td>2020303022</td>
-                                <td>전자공학과</td>
-                                <td>3학년</td>
-                                <td>010-1234-5678</td>
-                                <td>kimtest@namver.com</td>
-                            </tr>
-                            <tr>
-                                <td>김아무개</td>
-                                <td>2020303022</td>
-                                <td>전자공학과</td>
-                                <td>3학년</td>
-                                <td>010-1234-5678</td>
-                                <td>kimtest@namver.com</td>
-                            </tr>
-                            <tr>
-                                <td>김아무개</td>
-                                <td>2020303022</td>
-                                <td>전자공학과</td>
-                                <td>3학년</td>
-                                <td>010-1234-5678</td>
-                                <td>kimtest@namver.com</td>
-                            </tr>
-                           
-
+                        	<c:forEach var="std" items="${ list }">
+	                            <tr>
+	                                <td>${ std.stdName }</td>
+	                                <td>${ std.stdId }</td>
+	                                <td>${ std.stdDepartment }</td>
+	                                <td>${ std.stdSemester }</td>
+	                                <td>${ std.stdTel }</td>
+	                                <td>${ std.stdEmail }</td>
+	                            </tr>
+							</c:forEach>
                         </tbody>
 
 

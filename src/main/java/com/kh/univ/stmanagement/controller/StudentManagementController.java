@@ -27,8 +27,13 @@ public class StudentManagementController {
 	}
 	
 	@RequestMapping("stListDetail.do")
-	public String StudentDetailView() {
-		return "studentManagement/studentDetailView";
+	public ModelAndView StudentDetailView(ModelAndView mv) {
+		
+		ArrayList<StudentManagement> list = smService.selectDetailList();
+		
+		mv.addObject("list", list);
+		mv.setViewName("studentManagement/studentDetailView");
+		return mv;
 	}
 	
 	@RequestMapping("attendance.do")

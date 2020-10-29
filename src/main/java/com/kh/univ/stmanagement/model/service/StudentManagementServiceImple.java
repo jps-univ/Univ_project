@@ -18,6 +18,10 @@ public class StudentManagementServiceImple implements StudentManagementService {
 	public ArrayList<StudentManagement> selectList() {
 		return smDao.selectList();
 	}
-	
+
+	@Override
+	public ArrayList<StudentManagement> selectDetailList() {
+		return smDao.selectDetailList();
+	}
 	
 }

@@ -18,4 +18,9 @@ public class StudentManagementDao {
 		return (ArrayList)sqlSession.selectList("StudentManagementMapper.selectList");
 	}
 
+	public ArrayList<StudentManagement> selectDetailList() {
+		return (ArrayList)sqlSession.selectList("StudentManagementMapper.selectdDetailList");
+	}
+
+
 }
