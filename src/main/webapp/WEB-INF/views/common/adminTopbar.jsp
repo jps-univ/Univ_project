@@ -8,6 +8,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+#logout_btn,#welcome{
+    position: relative;
+    left: 630px;
+    
+}
+#logout_btn a{
+    cursor: pointer;
+    border-left: solid 1px rgb(78, 78, 78);
+}
+
+
+</style>
 </head>
 <body>
  <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -53,6 +66,8 @@
                         <li><a href="<%=path%>/adNList.do">공지사항 관리</a></li>
                     </ul>
                 </li>
+                 <li id="welcome"><a>관리자님 환영합니다</a></li>
+                <li id="logout_btn"><a href="studentLogout.do">로그아웃</a></li>
             </ul>
         </div>
         
