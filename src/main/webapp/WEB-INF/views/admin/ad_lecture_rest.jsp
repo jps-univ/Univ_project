@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+  <title>진포상대학교</title>
  <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -20,7 +20,7 @@
 
         <!-- 사이드바 -->
         <nav class="col-sm-3 sidenav">
-            <h4>학생관리</h4>
+            <h4>강의 관리</h4>
             <ul class="nav nav-pills nav-stacked">   
         			<li><a href="lecture_Register.do">강의 등록</a></li>
 			        <li><a href="lecture_Modify.do">강의 정보 조회/수정</a></li>
