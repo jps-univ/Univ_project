@@ -37,11 +37,11 @@
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">강의 관리<span
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="adminDateGo.do">기간 설정</a></li>
                         <li><a href="lecture_Register.do">강의 등록</a></li>
-                        <li><a href="lecture_Modify.do">강의 정보 변경/삭제</a></li>
-                        <li><a href="lecture_Approve.do">강의 승인 관리</a></li>
-                        <li><a href="lecture_Rest.do">휴강관리</a></li>
+                        <li><a href="lecture_Modify.do">강의 정보 조화/수정</a></li>
+                        <li><a href="lecture_Approve.do">강의 신청 관리</a></li>
+                        <li><a href="lecture_Rest.do">휴/보강 관리</a></li>
+                        <li><a href="adminDateGo.do">기간 설정</a></li>
 
                     </ul>
                 </li>
