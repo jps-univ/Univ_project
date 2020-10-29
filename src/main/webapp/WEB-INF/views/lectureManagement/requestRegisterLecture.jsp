@@ -101,50 +101,18 @@
             });
         });
     </script>
-<%--    수강신청,장바구니 탭 클릭 시 화면 변화--%>
+    <%--    수강신청,장바구니 탭 클릭 시 화면 변화--%>
     <script>
         $(document).ready(function () {
             $('#requestRegisterCard').css({
                 "background-color": "lightgrey",
                 "color": "white"
             });
-            $('.register').show();
-            $('.delete').hide();
-            $('#deleteBtn').hide();
-            $('#requestDeleteCard').click(function () {
-                $('.register').hide();
-                $('.delete').show();
-                $('#requestDeleteCard').css({
-                    "background-color": "lightgrey",
-                    "color": "white"
-                });
-                $('#requestRegisterCard').css({
-                    "background-color": "white",
-                    "color": "darkgray"
-                });
-                $('#registerBtn').hide();
-                $('#addPlanBtn').hide();
-                $('#deleteBtn').show();
-
-                return false;
-            });
-            $('#requestRegisterCard').click(function () {
-                $('#requestRegisterCard').css({
-                    "background-color": "lightgrey",
-                    "color": "white"
-                });
-                $('#requestDeleteCard').css({
-                    "background-color": "white",
-                    "color": "darkgray"
-                });
-                $('.register').show();
-                $('.delete').hide();
-                $('#registerBtn').show();
-                $('#addPlanBtn').show();
-                $('#deleteBtn').hide();
-                return false;
-            });
+            $('.addPlan').hide();
+            $('#buttonArea2').hide();
+            $('#explain2').hide();
         });
+
     </script>
 </head>
 
@@ -171,21 +139,19 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-1 text-gray-800">강의등록/삭제</h1>
+                    <h1 class="h3 mb-1 text-gray-800">강의등록</h1>
 
 
                     <!-- Content Row -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3" style="height: 75px;">
                             <div>
-                                <div id="requestRegisterCard" class="card left active"
-                                     style="float: left; height: 100%; width: 50%; text-align: center; padding-top: 10px; padding-bottom: 5px;">
-                                    강의등록
-                                </div>
-                                <div id="requestDeleteCard" class="card right"
-                                     style="float: right; width: 50%; height: 100%;text-align: center; padding-top: 10px; padding-bottom: 5px;">
-                                    강의삭제
-                                </div>
+                                <p id="explain1">강의등록요청 페이지입니다. 정보 입력후 다음을 누르시면 강의계획서 입력 페이지로 이동합니다. </p>
+                                <%--                                <div id="requestRegisterCard" class="card active" align="center"--%>
+                                <%--                                     style="height: 100%; text-align: center; padding-top: 10px; padding-bottom: 5px;">--%>
+                                <%--                                    강의등록--%>
+                                <%--                                </div>--%>
+                                <p id="explain2">강의계획서 입력 페이지입니다. 다음에 저장을 누르시면 추후에 변경이 가능합니다.</p>
                             </div>
                         </div>
                         <div class="card-body">
@@ -198,7 +164,6 @@
                                         <th>담당교수</th>
                                         <th><input type="text"></th>
                                     </tr>
-
                                     <tr>
                                         <th>이수구분</th>
                                         <th>
@@ -225,16 +190,7 @@
                                             </select>
                                         </th>
                                     </tr>
-                                    <tr>
-                                        <th>교과목개요</th>
-                                        <th><input type="text"></th>
-                                        <th>교육목표</th>
-                                        <th><input type="text"></th>
-                                    </tr>
-                                    <tr>
-                                        <th>주교재</th>
-                                        <th colspan="3"><input type="text"></th>
-                                    </tr>
+
                                     <tr name="lectureTime">
                                         <th>강의시간</th>
                                         <th colspan="100">
@@ -249,7 +205,8 @@
                                             <input style="width: 50px;" type="number" min="1" max="9">
                                             <label for="hour">교시</label>
                                             <button name="addDays" class="btn btn-primary btn-circle btn-sm"
-                                                    style="margin-left: 10px;">+</button>
+                                                    style="margin-left: 10px;">+
+                                            </button>
                                             <script>
                                                 $(document).on('click', 'button[name=addDays]', function () {
                                                     var addDays = "";
@@ -288,16 +245,135 @@
                                 </table>
 
                             </div>
-                            <div class="table-responsive delete">
+                            <div class="table-responsive addPlan">
+                                <table id="addPlanTb" class="table">
 
+                                    <tr>
+                                        <th>교육목표</th>
+                                        <th><textarea style="resize: none; width: 100%"></textarea></th>
+                                        <th>주교재</th>
+                                        <th><input type="text"></th>
+                                    </tr>
+                                    <tr>
+                                        <th>교과목 개요</th>
+                                        <th colspan="3"><textarea style="resize: none; height:150px; width: 80%;"></textarea><th>
+                                    </tr>
+                                </table>
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th colspan="3">주차별 계획</th>
+                                    </tr>
+                                    <tr>
+                                        <th>주차</th>
+                                        <th>주제</th>
+                                        <th colspan="2">세부 내용</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>1주차</td>
+                                        <td><input type="text" style="width: 75%"></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2주차</td>
+                                        <td><input type="text" style="width: 75%"></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3주차</td>
+                                        <td><input type="text" style="width: 75%"></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4주차</td>
+                                        <td><input type="text" style="width: 75%"></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>5주차</td>
+                                        <td><input type="text" style="width: 75%"></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>6주차</td>
+                                        <td><input type="text" style="width: 75%"></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>7주차</td>
+                                        <td><input type="text" style="width: 75%"></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>8주차</td>
+                                        <td><input type="text" style="width: 75%"></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>9주차</td>
+                                        <td><input type="text" style="width: 75%"></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>10주차</td>
+                                        <td><input type="text" style="width: 75%"></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>11주차</td>
+                                        <td><input type="text" style="width: 75%"></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>12주차</td>
+                                        <td><input type="text" style="width: 75%"></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>13주차</td>
+                                        <td><input type="text" style="width: 75%"></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>14주차</td>
+                                        <td><input type="text" style="width: 75%"></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>15주차</td>
+                                        <td><input type="text" style="width: 75%"></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"></textarea></td>
+                                    </tr>
+
+                                    </tbody>
+
+                                </table>
                             </div>
                         </div>
-                        <div class="buttonArea card-body" align="center">
+                        <div id="buttonArea1" class=" card-body" align="center">
                             <button id="registerBtn" class="btn btn-success"
-                                    onclick="alert('강의등록 요청이 완료되었습니다. 관리자 승인 후 정상 등록이 됩니다.');">강의등록 요청</button>
-
-                            <button id="addPlanBtn" class="btn btn-secondary" onclick="alert('강의계획서 모달로 띄울자리.')">강의계획서 첨부</button>
-                            <button id="deleteBtn" class="btn btn-success" onclick="alert('강의삭제 요청이 완료되었습니다. 관리자 승인 후 정상 등록이 됩니다.')">강의삭제 요청</button>
+                                    onclick="checkRegister();">다음
+                            </button>
+                            <script>
+                                function checkRegister() {
+                                    if (confirm("확인을 누르시면 등록 요청 후 강의계획서 입력창으로 이동합니다.") === true) {
+                                        $('.register').hide();
+                                        $('.addPlan').show();
+                                        $('#buttonArea1').hide();
+                                        $('#buttonArea2').show();
+                                        $('#explain1').hide();
+                                        $('#explain2').show();
+                                    } else {
+                                        return false;
+                                    }
+                                }
+                            </script>
+                        </div>
+                        <div id="buttonArea2" class="buttonArea card-body" align="center">
+                            <button id="addPlanBtn2" class="btn btn-secondary" onclick="">다음에 저장</button>
+                            <button id="addPlanBtn" class="btn btn-success" onclick="">강의계획서 첨부</button>
                         </div>
                     </div>
 
