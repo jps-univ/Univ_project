@@ -164,25 +164,19 @@
                           </tr>
                       </thead>
                       <tbody>
-                          <tr>
-                              <td style="cursor:pointer"><a href="stListDetail.do">${ std.className }</a></td>
-                              <td style="cursor:pointer"><a href="stListDetail.do">${ std.classId }</a></td>
-                              <td style="cursor:pointer"><a href="stListDetail.do">${ std.classType }</a></td>
-                              <td style="cursor:pointer"><a href="stListDetail.do">${ std.classTime }</a></td>
-                              <td><button id="btn1"><a href="stGrade.do">성적</a></button></td>
-                              <td><button id="btn2"><a href="attendance.do">출석</a></button></td>
-                          </tr>
-                          
-                         
-
-                      </tbody>
-
-
-
+	                      <c:forEach var="std" items="${ list }">
+	                          <tr>
+	                              <td style="cursor:pointer">${ std.className }</td>
+	                              <td style="cursor:pointer"><a href="stListDetail.do">${ std.classId }</a></td>
+	                              <td style="cursor:pointer"><a href="stListDetail.do">${ std.classType }</a></td>
+	                              <td style="cursor:pointer"><a href="stListDetail.do">${ std.classTime }</a></td>
+	                              <td><button id="btn1"><a href="stGrade.do">성적</a></button></td>
+	                              <td><button id="btn2"><a href="attendance.do">출석</a></button></td>
+	                          </tr>
+	                        </c:forEach> 
+	                      </tbody>
                   </table>
-                  
           </div>
-
 
 				<!-- 여기까지 내용  -->
 
