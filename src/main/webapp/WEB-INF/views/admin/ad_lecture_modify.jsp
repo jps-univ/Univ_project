@@ -24,11 +24,13 @@
 
         <!-- 사이드바 -->
         <nav class="col-sm-3 sidenav">
-            <h4>Lecture</h4>
+            <h4>강의 관리</h4>
             <ul class="nav nav-pills nav-stacked">
-                <li><a href="./ad_lecture_register.html">강의 등록</a></li>
-                <li class="active"><a href="./ad_lecture_modify.html">강의 정보 조회/수정</a></li>
-                <li><a href="./ad_rest_lecture.html">휴/보강 관리</a></li>
+        			<li><a href="lecture_Register.do">강의 등록</a></li>
+			        <li  class="active"><a href="lecture_Modify.do">강의 정보 조회/수정</a></li>
+			        <li><a href="lecture_Approve.do">강의 신청 관리</a></li>
+			        <li><a href="lecture_Rest.do">휴/보강 관리</a></li>
+			        <li><a href="adminDateGo.do">수강신청 기간설정</a></li>
 
             </ul>
         </nav>
