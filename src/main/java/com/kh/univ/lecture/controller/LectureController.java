@@ -32,10 +32,20 @@ public class LectureController {
 		return "lectureManagement/lecture_evaluation_detail";
 	}
 	
-	@RequestMapping("requestRegisterLecture")
+	@RequestMapping("requestRegisterLecture.do")
 	public String requestRegisterLecture(){
 		return "lectureManagement/requestRegisterLecture";
 	}
-	
+
+	@RequestMapping("alterLectureInfo.do")
+	public String alterLectureInfo(){
+		return "lectureManagement/alterLectureInfo";
+	}
+	@RequestMapping("requestDeleteLecture.do")
+	public String requestDeleteLecture(){
+		return "lectureManagement/requestDeleteLecture";
+	}
+
+
 
 }

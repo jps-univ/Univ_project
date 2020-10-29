@@ -14,9 +14,22 @@
 	<title>진포상대학교</title>
 </head>
 <body>
-	<c:if test="${ !empty sessionScope.loginUser }">
+<%-- 	<c:if test="${ !empty sessionScope.loginUser }">
 		 <c:redirect url="/goMain.do" /> 
-	</c:if>
+		
+	</c:if> --%>
+	
+	
+	<c:choose>
+	<c:when test="${!empty sessionScope.loginUser && sessionScope.loginUser.stdName ne '관리자' }">
+		<c:redirect url="/goMain.do" /> 
+	</c:when> 
+	<c:when test="${sessionScope.loginUser.stdName eq '관리자' }">
+	<c:redirect url="/student_Register.do" /> 
+	</c:when>
+	</c:choose>
+	
+	
     <div class="content">
         <!-- 로고 -->
             <div class="logo">

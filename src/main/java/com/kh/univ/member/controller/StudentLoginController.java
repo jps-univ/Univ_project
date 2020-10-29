@@ -31,7 +31,14 @@ public class StudentLoginController {
 		if(bcryptPasswordEncoder.matches(student.getStdPwd(), loginStudent.getStdPwd())) {
 			loginStudent.setStdPwd("");
 			session.setAttribute("loginUser", loginStudent);
-			return "redirect:goMain.do";
+			System.out.println(loginStudent.getStdName());
+			if(loginStudent.getStdName().equals("관리자")) {
+				System.out.println("admin login");
+				return "redirect:student_Register.do";
+			}else {
+				return "redirect:goMain.do";
+				
+			}
 		} else {
 			model.addAttribute("msg", "로그인실패!");
 			return "common/errorPage";
