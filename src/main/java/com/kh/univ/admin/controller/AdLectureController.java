@@ -33,4 +33,9 @@ public class AdLectureController {
 	public String lectureRest() {
 		return "admin/ad_lecture_rest";
 	}
+	
+	@RequestMapping("lecture_Approve.do")
+	public String lectureApprove() {
+		return "admin/ad_lecture_approve";
+	}
 }

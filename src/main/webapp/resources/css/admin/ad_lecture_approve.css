@@ -1,0 +1,137 @@
+/* 사이드바 */
+.sidenav {
+    background-color: #f1f1f1;
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    margin-left: -20px;
+    margin-top:50px
+}
+/* 본문 */
+.page {
+   margin-top:50px;
+   margin-left: 200px;
+  
+}
+/* margin-left : 250px => 200px*/
+  
+/* footer */
+footer {
+    background-color: #555;
+    color: white;
+    padding: 15px;
+}
+
+#content_title{
+margin-top: 30px;
+font-size: 40px;
+color: #252525;
+
+
+}
+#rest_table_area{
+padding: 10px; 
+height: 500px;
+overflow-y: scroll;
+}
+
+#rest_lecture{
+width: 100%;
+border-top: 5px solid rgb(46, 109, 151);
+color: #808080;
+
+
+}
+
+#rest_lecture tr{
+height: 30px;
+border-bottom: solid rgb(149, 149, 150) 1px;
+text-align: center;
+
+}
+#rest_lecture  tbody tr:nth-child(2n-1){
+background: #f8f6ff;
+}
+
+#rest_lecture thead tr th{
+    text-align: center;
+}
+
+
+#rest_lecture tr p{
+margin-bottom: 0;
+
+}
+#approve_btn{
+float: right;
+
+margin-right: 10px;
+}
+
+
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #total_approve{
+      float: right;
+  }
+
+  a{
+    cursor: pointer;
+  }
+  #class_detail_table thead td{
+    background-color: rgb(47, 79, 79, 0.05)
+}
+#class_detail_table thead td p{
+    text-align: center;
+    margin-left: 3px;
+    font-weight: bold;
+    
+}
+#conceal_btn{
+    font-size: 20px;
+}
+#class_plan_area  input[type=text]{
+    border: none;
+    background-color: whitesmoke;
+    height: 50px;
+}

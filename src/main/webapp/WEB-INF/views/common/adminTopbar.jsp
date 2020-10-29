@@ -40,6 +40,7 @@
                         <li><a href="adminDateGo.do">기간 설정</a></li>
                         <li><a href="lecture_Register.do">강의 등록</a></li>
                         <li><a href="lecture_Modify.do">강의 정보 변경/삭제</a></li>
+                        <li><a href="lecture_Approve.do">강의 승인 관리</a></li>
                         <li><a href="lecture_Rest.do">휴강관리</a></li>
 
                     </ul>
