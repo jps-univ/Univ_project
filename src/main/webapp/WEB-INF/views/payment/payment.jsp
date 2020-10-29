@@ -99,7 +99,7 @@
             <tbody>
                 <c:forEach var="p" items="${ list }">
                 <tr class="line">
-                    <td>${ p.schoolYear }</td>
+                    <td>${ p.schoolYear }학년도</td>
                     <td>${ p.semester }학기</td>
                     <td>${ p.grade }학년</td>
                     <td>${ p.dueDate }</td>
