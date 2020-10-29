@@ -11,14 +11,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   
     <link rel="stylesheet" href="${contextPath }/resources/css/admin/ad_lecture_modify.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
       <link rel="stylesheet" href="${contextPath }/resources/css/class_plan.css">
+     <style></style>
     
 </head>
 <body>
-   
-<c:import url="../common/adminTopbar.jsp" />
+    <c:import url="../common/adminTopbar.jsp" />
 
     <div class="container-fluid">
 
@@ -27,11 +27,10 @@
             <h4>강의 관리</h4>
             <ul class="nav nav-pills nav-stacked">
         			<li><a href="lecture_Register.do">강의 등록</a></li>
-			        <li  class="active"><a href="lecture_Modify.do">강의 정보 조회/수정</a></li>
+			        <li class="active"><a href="lecture_Modify.do">강의 정보 조회/수정</a></li>
 			        <li><a href="lecture_Approve.do">강의 신청 관리</a></li>
 			        <li><a href="lecture_Rest.do">휴/보강 관리</a></li>
 			        <li><a href="adminDateGo.do">수강신청 기간설정</a></li>
-
             </ul>
         </nav>
         <!-- 사이드바 끝 -->
