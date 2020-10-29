@@ -17,8 +17,16 @@
           margin-bottom: 20px;
       }*/
 
-  #bar{ background: lightblue; height: 200px; }
-  #main2{ text-align: left; margin: auto; font-size: 35px; line-height: 550%;}
+  #bar{ background-color: #edf1fc;
+    border-bottom: solid #4e73df;
+    height: 100px;
+    padding: 40px;
+    position: relative;
+    bottom: 25px;
+    white-space: nowrap;
+    color: #4e73df;
+    font-size: 35px; }
+  /* #main2{ text-align: left; margin: auto; font-size: 35px; line-height: 550%;} */
   #tb{
     font-size:22px;
     color: black;
