@@ -37,8 +37,6 @@
            TOTAL_PAYMENTS
       FROM
           TB_PAYMENT 
-      WHERE STUDENT_ID = #{stdId}    
-          
 
    </select>
    
