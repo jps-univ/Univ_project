@@ -102,7 +102,9 @@ public class StudentController
 	{
 		System.out.println(student);
 		
-		int result = msService.checkStdPwd(student);
+//		int result = msService.checkStdPwd(student);
+		
+		System.out.println(student);
 		
 		return "ok";
 	}
