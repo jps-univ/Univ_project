@@ -28,9 +28,14 @@ public class PaymentController {
     }
 	
 	@RequestMapping("paymentdetail.do")
-    public String Paymentdetail()
-	{
-        return "payment/payment_detail";
+    public ModelAndView Paymentdetail(ModelAndView mv){
+		
+		ArrayList<Payment>list = pService.selectDetailList();
+		
+		mv.addObject("list", list);
+		mv.setViewName("payment/payment_detail");
+		
+        return mv;
     }
 	
 	

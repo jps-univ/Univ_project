@@ -20,4 +20,10 @@ public class PaymentServiceImpl implements PaymentService{
 		return pDao.selectList();
 	}
 
+	@Override
+	public ArrayList<Payment> selectDetailList() {
+
+		return pDao.selectDetailList();
+	}
+
 }

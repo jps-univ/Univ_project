@@ -8,4 +8,6 @@ public interface PaymentService {
 
 	ArrayList<Payment> selectList();
 
+	ArrayList<Payment> selectDetailList();
+
 }

@@ -18,6 +18,11 @@ public class PaymentDao {
 
 		return (ArrayList)sqlSession.selectList("PaymentMapper.selectList");
 	}
+
+	public ArrayList<Payment> selectDetailList() {
+
+		return (ArrayList)sqlSession.selectList("PaymentMapper.selectDetailList");
+	}
 	
 	
 
