@@ -1,5 +1,7 @@
 package com.kh.univ.member.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,11 @@ public class StudentLoginSerivceImpl implements StudentLoginSevice {
 	@Override
 	public Student login(Student student) {
 		return sDao.login(student);
+	}
+
+	@Override
+	public Student findByNameAndEmail(Student student) {
+		return sDao.findByNameAndEmail(student);
 	}
 
 }

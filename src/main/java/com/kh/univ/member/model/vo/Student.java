@@ -30,14 +30,6 @@ public class Student {
 	
 	public Student() {}
 	
-	// 로그인 매개변수
-	public Student(int stdId, String stdPwd) 
-	{
-		super();
-		this.stdId = stdId;
-		this.stdPwd = stdPwd;
-	}
-	
 	// 전체 매개변수
 	public Student(int stdId, String stdPwd, String stdName, String stdBirth, String stdCollege, String stdDepartment, String stdCourse, String stdSemester, String stdEnterDiv, String stdImage, String stdTuition, String stdSchoolReg, String stdPhone, String stdEmail, String stdAddress, String stdAddressDetail, String stdBank, String stdAccount, String stdAccountHolder, String stdSmsAgree, String stdEmailAgree, String stdEntrance, String stdTel) 
 	{

@@ -1,5 +1,7 @@
 package com.kh.univ.member.model.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,6 +16,14 @@ public class StudentLoginDao {
 	
 	public Student login(Student student) {
 		return (Student)sqlSession.selectOne("StudentMapper.loginStudent",student);
+	}
+
+	public List<Student> findId(Student std) {
+		return sqlSession.selectList("StudentMapper.findId",std);
+	}
+
+	public Student findByNameAndEmail(Student student) {
+		return sqlSession.selectOne("StudentMapper.findByNameAndEmail",student);
 	}
 
 }
