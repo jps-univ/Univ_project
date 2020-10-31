@@ -1,7 +1,3 @@
-// 인쇄하기
-function open_page(url) {
-    newPage=window.open(url);
-}
 
 
 // 한줄 선택시 색변화
@@ -25,3 +21,10 @@ $(function(){
 //         });
 //     });
 // });
+
+// 인쇄하기 클릭
+
+
+//$('.line').on('click', function(){
+//	
+//});

@@ -66,7 +66,10 @@
         </div>
 
         <div class="print">
+        
+          
           <button id="button" onclick="window.open('paymentdetail.do')">인쇄하기</button>
+
         </div>
 
          <form method="GET">

@@ -34,23 +34,24 @@
                         </td>
                     </tr>
 
+                    <c:forEach var="p" items="${ list }">
                     <tr id="tr_2">
                         <td>성명</td>
-                        <td colspan="2" style="height: 35px;">최희진</td>
+                        <td colspan="2" style="height: 35px;">${ p.name }</td>
                         <td>생년월일</td>
-                        <td>19930802</td>
+                        <td>${ p.date }</td>
                     </tr>
                     <tr id="tr_2">
                         <td>학과</td>
-                        <td colspan="2" style="width: 210px; height: 35px;">관광경영전공</td>
+                        <td colspan="2" style="width: 210px; height: 35px;">${ p.department }</td>
                         <td>납부일</td>
-                        <td colspan="2">2020.08.24</td>
+                        <td colspan="2">${ p.dueDate }</td>
                     </tr>
                     <tr id="tr_2">
                         <td>학번</td>
-                        <td>201257082</td>
+                        <td>${ p.stdId }</td>
                         <td>주소</td>
-                        <td colspan="3" style="width: 300px;">경기도 화성시 동탄순환대로21길 53, 1301-1602</td>
+                        <td colspan="3" style="width: 300px;">${ p.address }</td>
                     </tr>
 
                     <tr id="tr_3">
@@ -61,11 +62,11 @@
                 <tbody>
                     <tr>
                         <td colspan="3"&nbsp;>&nbsp;입학금</td>
-                        <td colspan="3" style="text-align: right">0&nbsp;</td>
+                        <td colspan="3" style="text-align: right">${ p.entranceFee }&nbsp;</td>
                     </tr>
                     <tr>
                         <td colspan="3">&nbsp;수업료</td>
-                        <td colspan="3" style="text-align: right">3,300,000&nbsp;</td>
+                        <td colspan="3" style="text-align: right">${ p.schoolFee }&nbsp;</td>
                     </tr>
                     <tr>
                         <td  rowspan="4" style="text-align: center;">장학금감면액</td>
@@ -73,40 +74,36 @@
 
                     <tr>
                         <td colspan="2" style="text-align: center">교내장학금</td>
-                        <td colspan="3" style="text-align: right">0&nbsp;</td>
+                        <td colspan="3" style="text-align: right">${ p.campusScholarship }&nbsp;</td>
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: center">교외장학금</td>
-                        <td colspan="3" style="text-align: right">0&nbsp;</td>
+                        <td colspan="3" style="text-align: right">${ p.suburbanScholartship }&nbsp;</td>
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: center">국가장학금</td>
-                        <td colspan="3" style="text-align: right">0&nbsp;</td>
+                        <td colspan="3" style="text-align: right">${ p.nationalScholarship }&nbsp;</td>
                     </tr>
 
                     <tr>
                         <td colspan="3">&nbsp;논문지도비</td>
-                        <td colspan="3" style="text-align: right">0&nbsp;</td>
+                        <td colspan="3" style="text-align: right">${ p.paperGuidanceFee }&nbsp;</td>
 
                     </tr>
                     <tr>
                         <td colspan="3">&nbsp;학생회비</td>
-                        <td colspan="3" style="text-align: right">0&nbsp;</td>
+                        <td colspan="3" style="text-align: right">${ p.studentFees }&nbsp;</td>
                     </tr>
                     <tr>
                         <td colspan="3">&nbsp;동문회비</td>
-                        <td colspan="3" style="text-align: right">0&nbsp;</td>
+                        <td colspan="3" style="text-align: right">${ p.alumniFee }&nbsp;</td>
                     </tr>
-<!--                     <tr>
-                        <td colspan="3">&nbsp;후배사랑장학금</td>
-                        <td colspan="3" style="text-align: right">0&nbsp;</td>
-                    </tr> -->
-
                     <tr style="font-size: 18px; height: 40px;">
                         <td colspan="3">납부총액</td>
-                        <td colspan="3" style="border-left: hidden;text-align: right">3,300,000</td>
+                        <td colspan="3" style="border-left: hidden;text-align: right">${ p.totalPayment }</td>
                     </tr>
                 </tbody>
+                </c:forEach>
 
                 <tbody>
                     <tr style="height: 340px;">
@@ -117,7 +114,9 @@
                             <br>
                             <br>
 
-                            <span id="span_2">2020년 10월 3일</span>
+                            <span id="span_2">${ p.akePaymentDate }</span>
+                            
+                            
 
                             <span id="span_3">
                             <i class="fab fa-linkedin"></i>
