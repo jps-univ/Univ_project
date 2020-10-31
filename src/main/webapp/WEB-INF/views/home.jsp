@@ -45,7 +45,7 @@
                     <span>
                         <div class="userId">
                             <label for="userID" style="left: 0px; right: auto; position: absolute;">아이디</label>
-                            <input maxlength="10" name="stdId" required="required" id="userID" type="text" onblur="changeLable(this)">
+                            <input class="userID" maxlength="10" name="stdId" required="required" id="userID" type="text" onblur="changeLable(this)">
                             <i class="fas fa-user"></i>
                         </div>
                     </span>
@@ -54,13 +54,13 @@
                     <span>
                         <div class="userPwd">
                             <label for="userPWD" style="left: 0px; right: auto; position: absolute;">비밀번호</label>
-                            <input maxlength="10" name="stdPwd" required="required" id="userPWD" type="password" onblur="changeLable(this)">
+                            <input class="userPWD" maxlength="10" name="stdPwd" required="required" id="userPWD" type="password" onblur="changeLable(this)">
                             <i class="fas fa-lock"></i>
                         </div>
                     </span>
                 </div>
                 <div class="findArea">
-                    <button type="button" class="btn-default" data-toggle="modal" data-target="#myModal">아이디찾기</button>
+                    <button type="button" id="findTdBtn" class="btn-default" data-toggle="modal" data-target="#myModal">아이디찾기</button>
                     <button type="button" class="btn-default" data-toggle="modal" data-target="#myModal2">비밀번호찾기</button>
                 </div>
                 <div class="submit">
@@ -97,28 +97,30 @@
                     </div>    
                     </div>
                     <hr>
-                    <div>
+                    <div id="findIdInfoArea">
                         <div class="login-wrapper">
                             <span>
                                 <div class="userId">
-                                    <label for="userID" style="left: 0px; right: auto; position: absolute;">성명</label>
-                                    <input maxlength="10" required="required" id="userID" type="text" onblur="changeLable(this)" style="border:none">
+                                    <label for="stdName" style="left: 0px; right: auto; position: absolute;">성명</label>
+                                    <input maxlength="10" class="userID" required="required" id="stdName" type="text" onblur="changeLable(this)" style="border:none">
                                 </div>
                             </span>
                         </div>
                         <div class="login-wrapper">
                             <span>
                                 <div class="userPwd">
-                                    <label for="userPWD" style="left: 0px; right: auto; position: absolute;">생년월일</label>
-                                    <input maxlength="10" required="required" id="userPWD" type="text" onblur="changeLable(this)" style="border:none">
+                                    <label for="stdEmail" style="left: 0px; right: auto; position: absolute;">이메일</label>
+                                    <input class="userPWD" required="required" id="stdEmail" type="text" onblur="changeLable(this)" style="border:none">
                                 </div>
                             </span>
                         </div>
                     </div>
+                    <div id="findIdArea">
+                    </div>
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+                <button type="button" class="btn btn-default" id="findIdBtn">확인</button>
                 </div>
             </div>
             </div>
@@ -218,7 +220,7 @@
     <!-- 입력창 -->
     <script>
 
-        $("#userID, #userPWD").on('click',function(){
+        $(".userID, .userPWD").on('click',function(){
             $(this).prev().css({"font-size":"15px","bottom":"26px"});
         });
 
@@ -233,6 +235,40 @@
         		location.href = "login.do";
 
         	});
+        });
+        
+        $('#findIdBtn').on('click',function(){
+        	$.ajax({
+        		type:"post",
+        		url:"findId.do",
+        		data : {
+        			stdName : $("#stdName").val(),
+        			stdEmail : $("#stdEmail").val()
+        		},
+        		success : function(data) {
+        			console.log(data);
+        			if (data.result == "OK") {
+        				$("#findIdInfoArea").hide();
+            			$("#findIdArea").show();
+            			$("#findIdArea").html($("<div>").text("당신의 아이디는 " + data.stdID  + " 입니다."));
+            			$(".number2").parent().attr("class","circle");
+            			$(".number1").parent().attr("class","circle circle_gray");
+        			} else {
+        				alert("입력하신 정보가 올바르지 않습니다.");
+        			}
+        			
+        		},
+        		error : function (error) {
+        			alert("오류발생");
+        		}
+        		
+        	});
+        });
+        
+        $("#findTdBtn").on("click",function(){
+        	$("#findIdArea").hide();
+        	$("#findIdInfoArea").show();
+        	$("#findIdInfoArea input").val("");
         });
         
         

@@ -11,7 +11,7 @@
 <style>
 #logout_btn,#welcome{
     position: relative;
-    left: 630px;
+    left: 550px;
     
 }
 #logout_btn a{
@@ -58,7 +58,16 @@
 
                     </ul>
                 </li>
-                <li class="active"></li>
+                
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">학적 관리<span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="ad_student_rest.do">휴학신청 관리</a></li>
+                        <li><a href="ad_student_return.do">복학신청 관리</a></li>
+                        <li><a href="ad_student_graduate.do">졸업신청 관리</a></li>
+                    </ul>
+                </li>
+                
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">게시판 관리<span
                             class="caret"></span></a>
                     <ul class="dropdown-menu">

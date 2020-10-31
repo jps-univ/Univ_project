@@ -27,8 +27,13 @@
  		<result property="stdTel" column="TEL"/>
  	</resultMap>
 
-	<select id="loginStudent"  parameterType="Student" resultMap="StudentResultSet">
+	<select id="loginStudent" parameterType="Student" resultMap="StudentResultSet">
 		SELECT * FROM TB_STUDENT
 		WHERE STUDENT_ID = #{stdId}
+	</select>
+	
+	<select id="findByNameAndEmail" parameterType="Student" resultMap="StudentResultSet">
+		SELECT * FROM TB_STUDENT
+		WHERE STUDENT_NAME = #{stdName} AND EMAIL = #{stdEmail}
 	</select>
 </mapper>

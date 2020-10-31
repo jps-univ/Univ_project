@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lectureMapper">
+	<resultMap id="lectureResultSet" type="Lecture">
+ 		<id property="classNo" column="CLASS_NO"/>
+ 		<result property="profId" column="PROFESSOR_ID"/>
+ 		<result property="department" column="DEPARTMENT_NO"/>
+ 		<result property="className" column="CLASS_NAME"/>
+ 		<result property="classType" column="CLASS_TYPE"/>
+ 		<result property="roomNo" column="ROOM_NO"/>
+ 		<result property="gradeSize" column="GRADE_SIZE"/>
+ 		<result property="classSemester" column="CLASS_SEMESTER"/>
+ 		<result property="classYear" column="CLASS_YEAR"/>
+		<result property="approve" column="APPROVE"/>
+ 	</resultMap>
+	<select id="selectList" resultMap="lectureResultSet">
+		SELECT *
+        FROM TB_CLASS
+	</select>
+
+</mapper>
