@@ -3,19 +3,23 @@ package com.kh.univ.mypage.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.univ.member.model.vo.Student;
-import com.kh.univ.mypage.service.StudentService;
+import com.kh.univ.mypage.model.service.StudentMyPageService;
 
 @Controller
-public class StudentController 
+public class StudentMyPageController 
 {
 	@Autowired
-	private StudentService msService;
+	private StudentMyPageService msService;
+	
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
 	@RequestMapping("student_info.do")
     public String StudentInfo()
@@ -76,18 +80,16 @@ public class StudentController
 	@RequestMapping("changeAgreeInfo.do")
 	public String changeAgreeInfo(Student student, Model model, HttpSession session)
 	{
-		System.out.println(student);
-		Student newStudent = (Student)session.getAttribute("loginUser");
-		System.out.println(newStudent);
+		Student sessionStudent = (Student)session.getAttribute("loginUser");
+
 		int result = msService.changeStdAgreeInfo(student);
-		
 		
 		if(result > 0)
 		{
-			newStudent.setStdSmsAgree(student.getStdSmsAgree());
-			newStudent.setStdEmailAgree(student.getStdEmailAgree());
+			sessionStudent.setStdSmsAgree(student.getStdSmsAgree());
+			sessionStudent.setStdEmailAgree(student.getStdEmailAgree());
 			
-			session.setAttribute("loginUser", newStudent);
+			session.setAttribute("loginUser", sessionStudent);
 			
 			return "ok";
 		}
@@ -97,15 +99,41 @@ public class StudentController
 		}
 	}
 	
+	@ResponseBody
 	@RequestMapping("checkStudentPwd.do")
 	public String CheckStudentPwd(Student student, Model model)
 	{
 		System.out.println(student);
 		
-//		int result = msService.checkStdPwd(student);
+		Student resultStudent = msService.checkStdPwd(student);
 		
+		if(bcryptPasswordEncoder.matches(student.getStdPwd(), resultStudent.getStdPwd()))
+		{
+			return "ok";
+		} 
+		else 
+		{
+			return "fail";
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("changeStudentPwd.do")
+	public String ChangeStudentPwd(Student student, Model model)
+	{
 		System.out.println(student);
 		
-		return "ok";
+		student.setStdPwd(bcryptPasswordEncoder.encode(student.getStdPwd()));
+		
+		int result = msService.changeStdPassword(student);
+		
+		if(result > 0)
+		{			
+			return "ok";
+		}
+		else
+		{
+			return "fail";
+		}
 	}
 }

@@ -76,50 +76,49 @@
 	              </div>
 	              <div class="card-body">
 	                <div class="table-responsive">
+	                	<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+	                    	<p>비밀번호 확인(입력해야 비밀번호를 변경할 수 있습니다. 비밀번호를 초기화 하셨으면 초기화한 비밀번호를 입력하세요.)</p>
+		                    <tbody>
+		                      <tr>
+		                        <th id="th_pwd">기존 비밀번호</th>
+		                        <td>
+		                            <input type="password" name="stdPwd" id="originPwd" autofocus>
+		                        </td>
+		                      </tr>
+		                    </tbody>
+	                  	</table>
 	
-	                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-	                    <p>비밀번호 확인(입력해야 비밀번호를 변경할 수 있습니다. 비밀번호를 초기화 하셨으면 초기화한 비밀번호를 입력하세요.)</p>
-	                    <tbody>
-	                      <tr>
-	                        <th id="th_pwd">기존 비밀번호</th>
-	                        <td>
-	                            <input type="password" name="originPwd" id="originPwd" autofocus>
-	                        </td>
-	                      </tr>
-	                    </tbody>
-	                  </table>
-	
-	                  <div align="right">
-	                      <input type="button" id="chechPwd" value="확인" onclick="checkPwd()">
-	                  </div>
-	                  
-	                  <div id="newPwd">
-		                  <table class="table table-bordered" width="100%" cellspacing="0">
-		                      <p>비밀번호 변경(앞으로 사용하실 비밀번호를 입력하세요.)</p>
-		                      <tbody>
-		                          <tr>
-		                            <th id="th_pwd">새 비밀번호</th>
-		                            <td>
-		                                <input type="password" name="changePwd" id="changePwd">
-		                              </td>
-		                          </tr>
-		                          <tr>
-		                            <th id="th_pwd">새 비밀번호 확인</th>
-		                            <td>
-		                                <input type="password" name="checkPwd" id="checkPwd">
-		                            </td>
-		                          </tr>
-		                        </tbody>
-		                    </table>
-		
-		                  <div align="right">
-		                      <input type="button" value="확인">
-		                  </div>
-	                  </div>
+						<div align="right">
+						    <input type="button" id="checkPwd" value="확인" onclick="checkPwd()">
+						</div>
+						
+						<div id="newPwd">
+							<table class="table table-bordered" width="100%" cellspacing="0">
+						    	<p>비밀번호 변경(앞으로 사용하실 비밀번호를 입력하세요.)</p>
+								<tbody>
+								    <tr>
+								      <th id="th_pwd">새 비밀번호</th>
+								      <td>
+								          <input type="password" name="stdPwd" id="inputNewPwd">
+								      </td>
+								    </tr>
+								    <tr>
+								      <th id="th_pwd">새 비밀번호 확인</th>
+								      <td>
+								          <input type="password" name="stdPwd" id="checkNewPwd">
+								      </td>
+								    </tr>
+								</tbody>
+							</table>
+							
+							<div align="right">
+							    <input type="button" id="changePwd" value="확인" onclick="changePwd()">
+							</div>
+						</div>
+                  	
 	                </div>
 	              </div>
 	            </div>
-	  
 	          </div>
 	          <!-- /.container-fluid -->
 	  
@@ -157,9 +156,81 @@
 				type:"post",
 				success:function(data)
 				{
-					$('#newPwd').css('visibility', 'visible');
+ 					if(data == "ok")
+					{
+						console.log('성공');
+						$('#newPwd').css('visibility', 'visible');
+ 						$('#originPwd').val('');
+						$('#inputNewPwd').focus();
+ 					}
+					else
+					{
+						alert("비밀번호가 일치하지 않습니다.");
+						$('#originPwd').focus();
+					}
+				},
+				error:function(request, status, errorData)
+				{
+					/* 	
+					console.log(request.status);
+					console.log(request.responseText);
+					console.log(errorData);  
+					*/
+					alert("실패"); 
 				}
 			});
+		}
+		
+		function changePwd()
+		{
+			var stdId = ${ loginUser.stdId };
+			var stdPwd = $("#inputNewPwd").val();
+			var checkPwd = $("#checkNewPwd").val();
+			
+			if(stdPwd == checkPwd)
+			{
+				if(confirm("변경하시겠습니까?"))
+				{
+					$.ajax(
+					{
+						url:"changeStudentPwd.do",
+						data:{"stdId" : stdId, "stdPwd" : stdPwd},
+						type:"post",
+						success:function(data)
+						{
+							if(data == "ok")
+							{
+								console.log("성공");
+								alert("변경되었습니다.");
+								location.href="student_password.do";
+							}
+							else
+							{
+								alert("실패하였습니다.");
+							}
+						},
+						error:function(request, status, errorData)
+						{
+							/* 	
+							console.log(request.status);
+							console.log(request.responseText);
+							console.log(errorData);  
+							*/
+							alert("실패"); 
+						}
+					});
+				}
+				else
+				{
+					alert("취소되었습니다.");
+					return;
+				}
+			}
+			else
+			{
+				alert("비밀번호가 일치하지 않습니다.");
+			}
+				
 		}
 	</script>
 
