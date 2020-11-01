@@ -1,8 +1,8 @@
-package com.kh.univ.mypage.service;
+package com.kh.univ.mypage.model.service;
 
 import com.kh.univ.member.model.vo.Student;
 
-public interface StudentService 
+public interface StudentMyPageService 
 {
 	/**
 	 * 학생 개인정보 변경
@@ -23,6 +23,12 @@ public interface StudentService
 	 * @param student
 	 * @return
 	 */
-	int checkStdPwd(Student student);
+	Student checkStdPwd(Student student);
 
+	/**
+	 * 학생 비밀번호 변경
+	 * @param student
+	 * @return
+	 */
+	int changeStdPassword(Student student);
 }

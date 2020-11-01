@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="studentMyPageMapper">
+<mapper namespace="StudentMyPageMapper">
 	<resultMap id="StudentResultSet" type="Student">
  		<id property="stdId" column="STUDENT_ID"/>
  		<result property="stdPwd" column="STUDENT_PASSWORD"/>
@@ -40,7 +40,14 @@
  		WHERE STUDENT_ID = #{stdId}
  	</update>
  	
- 	<select id="checkStdPwd">
- 		
+ 	<select id="checkStdPwd" parameterType="Student" resultMap="StudentResultSet">
+		SELECT * FROM TB_STUDENT
+		WHERE STUDENT_ID = #{stdId}
  	</select>
+ 	
+ 	<update id="changeStdPassword">
+ 		UPDATE TB_STUDENT SET
+ 		STUDENT_PASSWORD = #{stdPwd}
+ 		WHERE STUDENT_ID = #{stdId}
+ 	</update>
  </mapper>

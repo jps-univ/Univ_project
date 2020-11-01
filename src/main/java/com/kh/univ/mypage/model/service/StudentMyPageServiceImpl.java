@@ -1,16 +1,16 @@
-package com.kh.univ.mypage.service;
+package com.kh.univ.mypage.model.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.univ.member.model.vo.Student;
-import com.kh.univ.mypage.dao.StudentDao;
+import com.kh.univ.mypage.model.dao.StudentMyPageDao;
 
 @Service("msService")
-public class StudentServiceImpl implements StudentService 
+public class StudentMyPageServiceImpl implements StudentMyPageService 
 {
 	@Autowired
-	private StudentDao msDao;
+	private StudentMyPageDao msDao;
 	
 	@Override
 	public int changeStdPersonalInfo(Student student) 
@@ -25,8 +25,14 @@ public class StudentServiceImpl implements StudentService
 	}
 	
 	@Override
-	public int checkStdPwd(Student student)
+	public Student checkStdPwd(Student student)
 	{
 		return msDao.checkStdPwd(student);
+	}
+
+	@Override
+	public int changeStdPassword(Student student) 
+	{
+		return msDao.changeStdPwd(student);
 	}
 }
