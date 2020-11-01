@@ -31,5 +31,9 @@
  	<select id ="selectAdminStudent" parameterType="Student" resultMap="StudentResultSet">
  		SELECT * FROM TB_STUDENT
  	</select>
+ 	
+ 	<select id="selectOneAdminStudent" parameterType="Student" resultMap="StudentResultSet">
+ 	SELECT * FROM TB_STUDENT WHERE STUDENT_ID=#{stdId}
+ 	</select>
 
 </mapper>

@@ -228,9 +228,27 @@
 
 					</c:forEach>
                     </tbody>
-
-
                 </table>
+                <script>
+                $(function(){
+                    $("#total_std tbody td").click(function(){
+                    	$.ajax({
+                    		url:"student_Modify_one.do",
+                    		dataType:"json",
+                    		data:{
+                    			stdId :$(this).parent().children().eq(0).text()
+                    		},success:function(data){
+                    			console.log(data);
+                    		}
+                    		
+                    	});
+                    });
+                    	
+                  
+                    
+                });
+                
+                </script>
             </div>
             <br><br><br><br><br><br><br><br>
         </div>

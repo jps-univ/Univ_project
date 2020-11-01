@@ -18,6 +18,11 @@ public class AdStudentDao {
         return (ArrayList) sqlSession.selectList("adminStudentMapper.selectAdminStudent");
 	}
 
+	public Student selectOne(int stdId) {
+		// TODO Auto-generated method stub
+		return (Student)sqlSession.selectOne("adminStudentMapper.selectOneAdminStudent",stdId);
+	}
+
 
 
 }
