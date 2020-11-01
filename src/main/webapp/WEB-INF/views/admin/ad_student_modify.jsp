@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
     <c:set var="contextPath" value="<%=request.getContextPath()%>" />
 <!DOCTYPE html>
 <html>
@@ -209,41 +211,23 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <c:forEach var="s" items="${ adStudentList }">
                         <tr>
-                            <td>1</td>
-                            <td>A12</td>
-                            <td>20/09/26</td>
-                            <td>10/22</td>
-                            <td>13:00</td>
-                            <td>교</td>
-                            <td>A5410</td>
-                            <td>A5410</td>
-                            
+                        <fmt:parseNumber var="Semester" value="${(s.stdSemester +1) div 2}" integerOnly="true"/>
+                            <td>${s.stdId}</td> 
+                            <td>${s.stdName}</td>
+                            <td>${s.stdBirth}</td>
+                            <td>${s.stdCollege}</td>
+                            <td>${s.stdDepartment}</td>
+                            <td>${s.stdCourse}</td>
+                            <td>${Semester}</td>
+                            <td>${s.stdSchoolReg }</td>
+                          
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>A12</td>
-                            <td>10/12</td>
-                            <td>10/22</td>
-                            <td>13:00</td>
-                            <td>병가</td>
-                            <td>A5410</td>
-                            <td>A5410</td>
-                            
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>A12</td>
-                            <td>10/12</td>
-                            <td>10/22</td>
-                            <td>13:00</td>
-                            <td>병가</td>
-                            <td>A5410</td>
-                            <td>a</td>
-                        </tr>
+                      
 
+					</c:forEach>
                     </tbody>
-
 
 
                 </table>

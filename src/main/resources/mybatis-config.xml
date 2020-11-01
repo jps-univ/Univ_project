@@ -25,5 +25,6 @@
         <mapper resource="mappers/StudentManagement/studentManagement-mapper.xml"/>
         <mapper resource="mappers/payment/payment-mapper.xml"/>
         <mapper resource="mappers/lecture/lecture-mapper.xml"/>
+        <mapper resource="mappers/admin/adminStudent-mapper.xml"/>
     </mappers>
 </configuration>
