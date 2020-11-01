@@ -1,10 +1,12 @@
 .top-Text{
-    text-align: left; 
-    vertical-align: middle;
-    background: skyblue; 
-    height: 200px; 
-    margin-top: 0px;
-    font-size: 80px;
+    background-color: #edf1fc;
+    border-bottom: solid #4e73df;
+    height: 100px;
+    padding: 40px;
+    position: relative;
+    bottom: 25px;
+    white-space: nowrap;
+    color: #4e73df;
     
 }
 .grade-print{
@@ -12,7 +14,7 @@
     margin-right: 20px;
 }
 .grade-top{
-    margin-left: 20px;
+    margin-left: 80px;
 }
 .grade-top p{
     font-size: 90%;
@@ -28,35 +30,43 @@
      margin-top: 20px;
      background: white;
 }
+#grade p{
+    font-size: 20px;
+}
 
 #grade div{
     font-size: 90%;
     box-sizing: border-box;
-    border-right: 1px solid black;
+    border: 2px solid rgb(46, 109, 151);
+   
     float: left;
     width: 33%;
     height:200px;
 
 }
 
+  
+
 .grade-middle-L{
     margin: auto;
-    border: 1px solid skyblue;
+    
+    
     width: 70%;
     height: 130px;
     text-align: center;
 
 }
 .grade-middle-L th tr td{
+    
     width: 100px;
     text-align: center;
    
-}
+} 
 .grade-middle-M{
     margin: auto;
-    border: 1px solid skyblue;
+   
     width: 80%;
-    height: 150px;
+    height: 140px;
     text-align: center;
 
 }
@@ -66,7 +76,7 @@
 }
 .grade-middle-R{
     margin: auto;
-    border: 1px solid skyblue;
+    
     width: 70%;
     height: 130px;
     text-align: center;
@@ -96,3 +106,66 @@
 .gradde-bottom th tr td{
     width: 100px;
 }
+
+#graduation{
+    width: 100%;
+    border-top: 5px solid rgb(46, 109, 151);
+    color: #808080;
+    visibility: hidden;
+}
+
+ #graduation tr{
+    height: 30px;
+    border-bottom: solid rgb(149, 149, 150) 1px;
+    text-align: center;
+    
+}
+    #graduation tbody tr:nth-child(2n-1){
+    background: #f8f6ff;
+}
+    
+    #graduation thead tr th{
+        text-align: center;
+}
+    #graduation thead tr th:first-child    {
+        width: 120px;
+    }
+    #graduation thead tr th:nth-child(6){
+    width: 200px;
+    }
+    #graduation tr p{
+    margin-bottom: 0;
+    
+    }
+
+    #gradedetail{
+        width: 100%;
+        border-top: 5px solid rgb(46, 109, 151);
+        color: #808080;
+        display: none;
+    }
+    #gradedetail tr{
+        height: 30px;
+        border-bottom: solid rgb(149, 149, 150) 1px;
+        text-align: center;
+        
+        }
+        #gradedetail tbody tr:nth-child(2n-1){
+        background: #f8f6ff;
+        }
+        
+        #gradedetail thead tr th{
+            text-align: center;
+        }
+        #gradedetail thead tr th:first-child
+        {
+            width: 120px;
+        }
+        #gradedetail thead tr th:nth-child(6){
+        width: 200px;
+        }
+        #gradedetail  tr p{
+        margin-bottom: 0;
+        
+        }
+ 
