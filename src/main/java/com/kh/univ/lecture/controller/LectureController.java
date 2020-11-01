@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class LectureController {
@@ -25,6 +26,15 @@ public class LectureController {
     @RequestMapping("lecture_evaluation.do")
     public String lectureEvaluation() {
         return "lectureManagement/lecture_evaluation";
+    }
+    
+    /**
+     * 1_2 . 강의평가 하기전에 자신이 듣고 있는 강의 중 선택하는 창
+     * @return
+     */
+    @RequestMapping("lecture_evaluation_select.do")
+    public String lectureEvaluationSelect() {
+        return "lectureManagement/lecture_evaluation_select";
     }
 
     /**
@@ -75,6 +85,7 @@ public class LectureController {
         ObjectMapper mapper = new ObjectMapper();
 
         String jsonStr = mapper.writeValueAsString(list);
+
         System.out.println(jsonStr);
         return jsonStr;
     }

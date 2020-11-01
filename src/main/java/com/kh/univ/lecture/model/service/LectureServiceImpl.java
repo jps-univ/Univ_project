@@ -14,7 +14,6 @@ public class LectureServiceImpl implements LectureService {
 
     @Override
     public ArrayList<Lecture> selectList() {
-        System.out.println(lectureDao.selectList());
         return lectureDao.selectList();
     }
 }

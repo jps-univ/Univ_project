@@ -343,7 +343,7 @@
 				alert("취소되었습니다.");
 				return;
 			}
-		};
+		}
 		
 		
 		function agreeBtn()
@@ -384,7 +384,7 @@
 				alert("취소되었습니다.");
 				return;
 			}
-		};
+		}
 	</script>
 
 	<!-- Bootstrap core JavaScript-->

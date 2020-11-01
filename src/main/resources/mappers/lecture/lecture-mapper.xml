@@ -1,21 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="lectureMapper">
-	<resultMap id="lectureResultSet" type="Lecture">
- 		<id property="classNo" column="CLASS_NO"/>
- 		<result property="profId" column="PROFESSOR_ID"/>
- 		<result property="department" column="DEPARTMENT_NO"/>
- 		<result property="className" column="CLASS_NAME"/>
- 		<result property="classType" column="CLASS_TYPE"/>
- 		<result property="roomNo" column="ROOM_NO"/>
- 		<result property="gradeSize" column="GRADE_SIZE"/>
- 		<result property="classSemester" column="CLASS_SEMESTER"/>
- 		<result property="classYear" column="CLASS_YEAR"/>
-		<result property="approve" column="APPROVE"/>
- 	</resultMap>
-	<select id="selectList" resultMap="lectureResultSet">
-		SELECT *
-        FROM TB_CLASS
-	</select>
+    <!--    과목의 리절트맵-->
+    <resultMap id="lectureMap" type="Lecture">
+        <id property="classId" column="CLASS_ID"/>
+        <result property="profId" column="PROFESSOR_ID"/>
+        <result property="department" column="DEPARTMENT_NO"/>
+        <result property="className" column="CLASS_NAME"/>
+        <result property="classType" column="CLASS_TYPE"/>
+        <result property="roomNo" column="ROOM_NO"/>
+        <result property="gradeSize" column="GRADE_SIZE"/>
+        <result property="classSemester" column="CLASS_SEMESTER"/>
+        <result property="classYear" column="CLASS_YEAR"/>
+        <result property="approve" column="APPROVE"/>
+
+        <result property="lectureTime" column="TOTAL"/>
+    </resultMap>
+    <!--    강의시간 리절트맵-->
+    <resultMap id="lectureTimeMap" type="LectureTime">
+        <id property="lectimeNo" column="LECTIME_NO"/>
+        <result property="classId" column="CLASS_ID"/>
+        <result property="day" column="DAY"/>
+        <result property="hour" column="HOUR"/>
+    </resultMap>
+
+    <select id="selectLectureAndTime" resultMap="lectureMap">
+        SELECT a.CLASS_ID, a.CLASS_NAME,a.DEPARTMENT_NO,a.PROFESSOR_ID,a.CLASS_TYPE,a.ROOM_NO,a.GRADE_SIZE,subquery1.TOTAL
+        FROM TB_CLASS a,
+             (SELECT CLASS_ID,LISTAGG(CONCAT(DAY, HOUR), '/') WITHIN GROUP (ORDER BY LECTIME_NO ) AS TOTAL
+              FROM TB_LECTURE_TIME b
+              GROUP BY CLASS_ID) subquery1
+        WHERE subquery1.CLASS_ID = a.CLASS_ID
+    </select>
 
 </mapper>

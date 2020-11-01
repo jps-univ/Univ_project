@@ -45,12 +45,14 @@
     <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
+
             // DB에서 데이터 뽑아와서 테이블로 출력하는 datatables 라이브러리 사용
             $('#searchBtn').click(function () {
                 var table = $('#testTb').DataTable({
+
                     //컨트롤러에서 보내줄 때 해당 함수의 반환형은 String이어야 하고 리스트를 뽑아온다고 하면 'dataSrc' : '' 로 해줘야함.
                     'ajax': {
-                        'url': 'test2.do',
+                        'url': 'getLectureList.do',
                         'type': 'post',
                         'dataType': 'json',
                         'dataSrc': ''
@@ -58,10 +60,14 @@
                     // 'colunms' 옵션에는 각 data 에게 넘어오는 변수명(컬럼값)을 매칭해줘야함 꼭 .
                     // 그리고 테이블만들어줄때도 넘어오는 값이 4개라면 테이블의 th 갯수도 꼭 4개. 맞춰줘야함
                     'columns': [
-                        {'data': 'no'},
-                        {'data': 'name'},
-                        {'data': 'email'},
-                        {'data': 'phone'}
+                        {'data': 'classId'},
+                        {'data': 'className'},
+                        {'data': 'department'},
+                        {'data': 'profId'},
+                        {'data': 'lectureTime'},
+                        {'data': 'roomNo'},
+                        {'data': 'classType'},
+                        {'data': 'gradeSize'}
                     ],
                     'columnDefs': [{
                         'targets': 0,
@@ -77,7 +83,6 @@
                     'searching': false,
                     'bDestroy': true
                 });
-
                 // Handle click on "Select all" control
                 $('#example-select-all').on('click', function () {
                     // Check/uncheck all checkboxes in the table
@@ -252,18 +257,17 @@
                                        cellspacing="0">
                                     <thead>
                                     <tr>
-                                        <th><input name="select_all" value="1" id="example-select-all" type="checkbox"/>
+                                        <th style="text-align: center;"><input name="select_all" value="1" id="example-select-all" type="checkbox" >
                                         </th>
 
                                         <%--                                          <th>No</th>--%>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <%--                                            <th>분반</th>--%>
-                                        <%--                                            <th>교과목명</th>--%>
-                                        <%--                                            <th>이수구분</th>--%>
-                                        <%--                                            <th>학점</th>--%>
-                                        <%--                                            <th>수업계획서</th>--%>
+                                        <th>강의명</th>
+                                        <th>학과코드</th>
+                                        <th>교수코드</th>
+                                        <th>강의시간</th>
+                                        <th>강의실</th>
+                                        <th>이수구분</th>
+                                        <th>학점</th>
                                     </tr>
                                     </thead>
                                     <!-- tbody 태그 필요 없다. -->
