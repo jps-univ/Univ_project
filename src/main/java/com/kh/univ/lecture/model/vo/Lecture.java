@@ -1,7 +1,10 @@
 package com.kh.univ.lecture.model.vo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Lecture {
-    private String classNo;
+    private String classId;
     private int profId;
     private String department;
     private String className;
@@ -12,11 +15,15 @@ public class Lecture {
     private String classYear;
     private String approve;
 
+    private String lectureTime;
+
+
+
     public Lecture() {
     }
 
-    public Lecture(String classNo, int profId, String department, String className, String roomNo, String classType, String gradeSize, String classSemester, String classYear, String approve) {
-        this.classNo = classNo;
+    public Lecture(String classId, int profId, String department, String className, String roomNo, String classType, String gradeSize, String classSemester, String classYear, String approve, String lectureTime) {
+        this.classId = classId;
         this.profId = profId;
         this.department = department;
         this.className = className;
@@ -26,14 +33,23 @@ public class Lecture {
         this.classSemester = classSemester;
         this.classYear = classYear;
         this.approve = approve;
+        this.lectureTime = lectureTime;
     }
 
-    public String getClassNo() {
-        return classNo;
+    public String getLectureTime() {
+        return lectureTime;
     }
 
-    public void setClassNo(String classNo) {
-        this.classNo = classNo;
+    public void setLectureTime(String lectureTime) {
+        this.lectureTime = lectureTime;
+    }
+
+    public String getClassId() {
+        return classId;
+    }
+
+    public void setClassId(String classId) {
+        this.classId = classId;
     }
 
     public int getProfId() {
@@ -111,7 +127,7 @@ public class Lecture {
     @Override
     public String toString() {
         return "Lecture{" +
-                "classNo='" + classNo + '\'' +
+                "classId='" + classId + '\'' +
                 ", profId=" + profId +
                 ", department='" + department + '\'' +
                 ", className='" + className + '\'' +
@@ -121,6 +137,7 @@ public class Lecture {
                 ", classSemester='" + classSemester + '\'' +
                 ", classYear='" + classYear + '\'' +
                 ", approve='" + approve + '\'' +
+                ", lectureTime=" + lectureTime +
                 '}';
     }
 }
