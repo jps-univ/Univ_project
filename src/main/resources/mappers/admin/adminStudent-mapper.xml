@@ -27,6 +27,7 @@
  		<result property="stdTel" column="TEL"/>
  	</resultMap>
  	
+ 	<!--관리자 학생 조회 / 수정 페이지 -> 전체 학생 조회  -->
  	<select id ="selectAdminStudent" parameterType="Student" resultMap="StudentResultSet">
  		SELECT * FROM TB_STUDENT
  	</select>
