@@ -37,9 +37,9 @@
                     <c:forEach var="p" items="${ list }">
                     <tr id="tr_2">
                         <td>성명</td>
-                        <td colspan="2" style="height: 35px;">${ p.name }</td>
+                        <td colspan="2" style="height: 35px;">${ p.stdName }</td>
                         <td>생년월일</td>
-                        <td>${ p.date }</td>
+                        <td>${ p.birth_No }</td>
                     </tr>
                     <tr id="tr_2">
                         <td>학과</td>
