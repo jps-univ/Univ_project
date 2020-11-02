@@ -161,7 +161,7 @@
                                   <p>이수구분</p>
                               </th>
                               <th>
-                                  <p>강의시간</p>
+                                  <p>강의실번호</p>
                               </th>
                               <th>
                                   <p>성적</p>
@@ -177,7 +177,7 @@
 	                              <td style="cursor:pointer">${ std.className }</td>
 	                              <td style="cursor:pointer"><a href="stListDetail.do">${ std.classId }</a></td>
 	                              <td style="cursor:pointer"><a href="stListDetail.do">${ std.classType }</a></td>
-	                              <td style="cursor:pointer"><a href="stListDetail.do">${ std.classTime }</a></td>
+	                              <td style="cursor:pointer"><a href="stListDetail.do">${ std.roomNo }</a></td>
 	                              <td><button id="btn1"><a href="stGrade.do">성적</a></button></td>
 	                              <td><button id="btn2"><a href="attendance.do">출석</a></button></td>
 	                          </tr>
