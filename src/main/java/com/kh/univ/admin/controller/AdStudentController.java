@@ -3,6 +3,7 @@ package com.kh.univ.admin.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
@@ -31,28 +32,36 @@ public class AdStudentController {
 		return "admin/ad_student_register";
 	}
 	
+	
+	
 	/**
 	 * 2. 학생 정보 수정/조회(관리자)
+	 * @param mv
 	 * @return
 	 */
-	
 	@RequestMapping("student_Modify.do")
     public ModelAndView StudentModify(ModelAndView mv) {
 		ArrayList<Student> adStudentList = adStudentService.selectList();
-		System.out.println(adStudentList);
+		
 		mv.addObject("adStudentList", adStudentList);
 		mv.setViewName("admin/ad_student_modify");
 		
         return mv;
     }
 	
+	/**
+	 * 2_2. 학생 한명 정보 조회 하기 (Ajax)
+	 * @param response
+	 * @param stdId
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value="student_Modify_one.do",produces="text/plain;charset=UTF-8")
 	public String StudentModifyOne(HttpServletResponse response, int stdId){
-		System.out.println(stdId);
 		Student adStudentOne = adStudentService.selectOne(stdId);
 		
-		JSONObject StudentOne = new JSONObject(); 
+		JSONObject StudentOne = new JSONObject();
+		
 		StudentOne.put("stdId",adStudentOne.getStdId());
 		StudentOne.put("stdName",adStudentOne.getStdName());
 		StudentOne.put("stdBirth",adStudentOne.getStdBirth());
@@ -68,13 +77,15 @@ public class AdStudentController {
 		StudentOne.put("stdBank",adStudentOne.getStdBank());
 		StudentOne.put("stdAddress",adStudentOne.getStdAddress());
 		StudentOne.put("stdAddressDetail",adStudentOne.getStdAddressDetail());
+		StudentOne.put("stdAccount",adStudentOne.getStdAccount());
 		StudentOne.put("stdAccountHolder",adStudentOne.getStdAccountHolder());
 	
-		
-		
-		
-		
-		System.out.println(StudentOne);
 		return StudentOne.toJSONString();
+	}
+	
+	@RequestMapping(value="student_Modify_Update.do", produces="text/plain;charset=UTF-8")
+	public String StudentModifyUpdate(Student std, HttpServletRequest request) {
+		System.out.println(std);
+		return null;
 	}
 }
