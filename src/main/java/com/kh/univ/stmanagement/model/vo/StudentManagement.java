@@ -2,7 +2,7 @@ package com.kh.univ.stmanagement.model.vo;
 
 public class StudentManagement {
 	private String className;		// 교과목명
-	private int classId;			// 강의번호
+	private String classId;			// 강의번호
 	private String classType;		// 이수구분
 	private int classTime;			// 강의시간
 	private String stdName; 		// 학생명
@@ -11,13 +11,14 @@ public class StudentManagement {
 	private String stdSemester; 	// 학년
 	private String stdTel;    		// 연락처
 	private String stdEmail;  		// 이메일
+	private String roomNo;			// 강의장
 	
 	public StudentManagement() {
 		super();
 	}
 
-	public StudentManagement(String className, int classId, String classType, int classTime, String stdName, int stdId,
-			String stdDepartment, String stdSemester, String stdTel, String stdEmail) {
+	public StudentManagement(String className, String classId, String classType, int classTime, String stdName,
+			int stdId, String stdDepartment, String stdSemester, String stdTel, String stdEmail, String roomNo) {
 		super();
 		this.className = className;
 		this.classId = classId;
@@ -29,6 +30,7 @@ public class StudentManagement {
 		this.stdSemester = stdSemester;
 		this.stdTel = stdTel;
 		this.stdEmail = stdEmail;
+		this.roomNo = roomNo;
 	}
 
 	public String getClassName() {
@@ -39,11 +41,11 @@ public class StudentManagement {
 		this.className = className;
 	}
 
-	public int getClassId() {
+	public String getClassId() {
 		return classId;
 	}
 
-	public void setClassId(int classId) {
+	public void setClassId(String classId) {
 		this.classId = classId;
 	}
 
@@ -111,13 +113,21 @@ public class StudentManagement {
 		this.stdEmail = stdEmail;
 	}
 
+	public String getRoomNo() {
+		return roomNo;
+	}
+
+	public void setRoomNo(String roomNo) {
+		this.roomNo = roomNo;
+	}
+
 	@Override
 	public String toString() {
 		return "StudentManagement [className=" + className + ", classId=" + classId + ", classType=" + classType
 				+ ", classTime=" + classTime + ", stdName=" + stdName + ", stdId=" + stdId + ", stdDepartment="
 				+ stdDepartment + ", stdSemester=" + stdSemester + ", stdTel=" + stdTel + ", stdEmail=" + stdEmail
-				+ "]";
+				+ ", roomNo=" + roomNo + "]";
 	}
-	
+
 	
 }

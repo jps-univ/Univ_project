@@ -22,5 +22,9 @@ public class StudentManagementDao {
 		return (ArrayList)sqlSession.selectList("StudentManagementMapper.selectdDetailList");
 	}
 
+	public ArrayList<StudentManagement> gradeView() {
+		return (ArrayList)sqlSession.selectList("StudentManagementMapper.gradeView");
+	}
+
 
 }
