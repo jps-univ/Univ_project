@@ -4,12 +4,12 @@ public class Payment {
 	
 	private int stdId;				     // 학생번호(학번)
 	private String schoolYear;           // 년도(학년도)
-	private int semester;             // 학기
+	private int semester;                // 학기
 	private String dueDate;              // 등록일자(납부일)
 	private String paymentAmount;        // 등록금액(장학금제외금액합산)
 	private String totalScholarships;    // 사전감면(장학금합산)
 	private String totalPayment;         // 납부금액(납부총액)
-	private String stdName;                 // 이름
+	private String stdName;              // 이름
 	private String birth_No;             // 생년월일
 	private String department;           // 학과
 	private String address;              // 주소

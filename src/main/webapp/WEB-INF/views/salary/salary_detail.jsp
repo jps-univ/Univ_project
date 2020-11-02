@@ -71,31 +71,31 @@
                     <tr id="tr_4">
                         <td style="border-right: hidden;">&nbsp;시간외수당</td>
                         <td colspan="2" style="text-align: right">1,000,000&nbsp;</td>
-                        <td style="border-right: hidden;">&nbsp;기본소득세</td>
+                        <td style="border-right: hidden;">&nbsp;국민연금</td>
                         <td colspan="2" style="text-align: right">330,000&nbsp;</td>
                     </tr>
                     <tr id="tr_4">
                         <td style="border-right: hidden;">&nbsp;상여금</td>
                         <td colspan="2" style="text-align: right">0&nbsp;</td>
-                        <td style="border-right: hidden;">&nbsp;국민연금</td>
+                        <td style="border-right: hidden;">&nbsp;건강보험</td>
                         <td colspan="2" style="text-align: right">200,000&nbsp;</td>
                     </tr>
                     <tr id="tr_4">
                         <td style="border-right: hidden;">&nbsp;성과급</td>
                         <td colspan="2" style="text-align: right">500,000&nbsp;</td>
-                        <td style="border-right: hidden;">&nbsp;건강보험</td>
+                        <td style="border-right: hidden;">&nbsp;장기요양보험</td>
                         <td colspan="2" style="text-align: right">300,000&nbsp;</td>
                     </tr>
                     <tr id="tr_4">
                         <td style="border-right: hidden;">&nbsp;식대</td>
                         <td colspan="2" style="text-align: right">1,000,000&nbsp;</td>
-                        <td style="border-right: hidden;">&nbsp;장기요양보험</td>
+                        <td style="border-right: hidden;">&nbsp;고용보험</td>
                         <td colspan="2" style="text-align: right">200,000&nbsp;</td>
                     </tr>
                     <tr id="tr_4">
                         <td style="border-right: hidden;">&nbsp;교육지원</td>
                         <td colspan="2" style="text-align: right">0&nbsp;</td>
-                        <td style="border-right: hidden;">&nbsp;고용보험</td>
+                        <td style="border-right: hidden;">&nbsp;기타공제</td>
                         <td colspan="2" style="text-align: right">0&nbsp;</td>
                         
                     </tr>
