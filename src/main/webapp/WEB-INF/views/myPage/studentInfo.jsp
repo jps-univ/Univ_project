@@ -138,7 +138,7 @@
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">개인정보
-								<input type="button" value="변경" id="changeInfo" onclick="personalBtn()">
+								<input type="button" class="btn btn-primary btn-sm" value="변경" id="changeInfo" onclick="personalBtn()">
 							</h6>
 						</div>
 						<div class="card-body">
@@ -200,7 +200,7 @@
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">개인정보동의
-							<input type="button" value="변경" id="changeInfo" onclick="agreeBtn()">
+							<input type="button" class="btn btn-primary btn-sm" value="변경" id="changeInfo" onclick="agreeBtn()">
 							</h6>
 						</div>
 						<div class="card-body">

@@ -80,7 +80,7 @@
 		              <option value="">2학기</option>
 		            </select>
 		
-		            <input type="button" value="조회">
+		            <input type="button" class="btn btn-primary btn-sm" value="조회">
 		          </div>
 		          <br>
 		
