@@ -25,4 +25,10 @@ public class AdStudentServiceImpl implements AdStudentService{
 		return adStudentDao.selectOne(stdId);
 	}
 
+	@Override
+	public int selectOneUpdate(Student std) {
+		// TODO Auto-generated method stub
+		return adStudentDao.selectOneUpdate(std);
+	}
+
 }

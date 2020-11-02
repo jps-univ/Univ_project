@@ -56,8 +56,8 @@ public class AdStudentController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value="student_Modify_one.do",produces="text/plain;charset=UTF-8")
-	public String StudentModifyOne(HttpServletResponse response, int stdId){
+	@RequestMapping(value="student_Modify_one.do",produces="application/json;charset=UTF-8")
+	public String StudentModifyOne(int stdId){
 		Student adStudentOne = adStudentService.selectOne(stdId);
 		
 		JSONObject StudentOne = new JSONObject();
@@ -83,9 +83,20 @@ public class AdStudentController {
 		return StudentOne.toJSONString();
 	}
 	
-	@RequestMapping(value="student_Modify_Update.do", produces="text/plain;charset=UTF-8")
-	public String StudentModifyUpdate(Student std, HttpServletRequest request) {
+	/**
+	 * 2_3. 학생 정보 수정
+	 * @param std
+	 * @return
+	 */
+	@RequestMapping(value="student_Modify_Update.do")
+	public String StudentModifyUpdate(Student std) {
 		System.out.println(std);
-		return null;
+		int result = adStudentService.selectOneUpdate(std);
+		
+		if(result >0) {
+			return "redirect:student_Modify.do";
+		}else {
+			return "common/errorPage";
+		}
 	}
 }

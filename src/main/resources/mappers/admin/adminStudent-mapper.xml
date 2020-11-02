@@ -35,5 +35,28 @@
  	<select id="selectOneAdminStudent" parameterType="Student" resultMap="StudentResultSet">
  	SELECT * FROM TB_STUDENT WHERE STUDENT_ID=#{stdId}
  	</select>
+ 	
+ 	<update id="selectOneUpdateAdminStudent" parameterType="Student" >
+ 		UPDATE TB_STUDENT
+ 		SET
+ 			STUDENT_NAME=#{stdName},
+ 			BIRTH_NO=#{stdBirth},
+ 			COLLEGE=#{stdCollege},
+ 			DEPARTMENT=#{stdDepartment},
+ 			COURSE=#{stdCourse},
+ 			SEMESTER=#{stdSemester},
+ 			SCHOOL_REG=#{stdSchoolReg},
+ 			ENTER_DIV=#{stdEnterDiv},
+ 			PHONE=#{stdPhone},
+ 			EMAIL=#{stdEmail},
+ 			ADDRESS=#{stdAddress},
+ 			ADDRESS_DETAIL=#{stdAddressDetail},
+ 			BANK=#{stdBank},
+ 			STUDENT_ACCOUNT=#{stdAccount},
+ 			ACCOUNT_HOLDER=#{stdAccountHolder},
+ 			TEL=#{stdTel}
+ 	  WHERE STUDENT_ID= #{stdId}
+ 			
+ 	</update>
 
 </mapper>

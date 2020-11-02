@@ -9,6 +9,8 @@ public interface AdStudentService {
 	 ArrayList<Student> selectList();
 
 	Student selectOne(int stdId);
+
+	int selectOneUpdate(Student std);
 	
 
 	

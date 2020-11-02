@@ -23,6 +23,11 @@ public class AdStudentDao {
 		return (Student)sqlSession.selectOne("adminStudentMapper.selectOneAdminStudent",stdId);
 	}
 
+	public int selectOneUpdate(Student std) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("adminStudentMapper.selectOneUpdateAdminStudent",std);
+	}
+
 
 
 }
