@@ -42,8 +42,13 @@ public class StudentManagementController {
 	}
 	
 	@RequestMapping("stGrade.do")
-	public String StudentGrade() {
-		return "studentManagement/gradeManagement";
+		public ModelAndView StudentGrade(ModelAndView mv) {
+			
+			ArrayList<StudentManagement> list = smService.gradeView();
+			
+			mv.addObject("list", list);
+			mv.setViewName("studentManagement/gradeManagement");
+			return mv;
 	}
 	
 }

@@ -12,15 +12,16 @@
  		<result property="stdSemester" column="SEMESTER"/>
  		<result property="stdTel" column="PHONE"/>
  		<result property="stdEmail" column="EMAIL"/>
+ 		<result property="roomNo" column="ROOM_NO"/>
  	</resultMap>
 
 	<!-- 수강생 조회 매퍼  -->
 	<select id="selectList" resultMap="StudentManagementResultSet">
 		SELECT
 			CLASS_NAME,
-			CLASS_NO,
+			CLASS_ID,
 			CLASS_TYPE,
-			CLASS_TIME
+			ROOM_NO
 		FROM
 			TB_CLASS
 	</select>
@@ -28,7 +29,7 @@
 	<!-- 수강생 상세조회 매퍼 -->
 	<select id="selectdDetailList" resultMap="StudentManagementResultSet">
 		SELECT
-		    CLASS_NO,
+		    CLASS_ID,
 		    CLASS_NAME,
 		    STUDENT_NAME,
 		    STUDENT_ID,
@@ -39,5 +40,13 @@
 		FROM
 		    TB_STUDENT
     	JOIN TB_CLASS ON(SEMESTER = CLASS_SEMESTER)
+	</select>
+	
+	<!--  성적관리 조회 -->
+	<select id="gradeView" resultMap="StudentManagementResultSet">
+		SELECT
+			STUDENT_NAME
+		FROM
+			TB_STUDENT
 	</select>
 </mapper>

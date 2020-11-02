@@ -166,8 +166,8 @@ margin-right: 10px;
                 <h2>2020년 2학기 성적관리</h2>
                 <select style="width:140px; height: 30px; font-size: 14px;" name="select" id="select" class="box" onChange="checked();">
                   <option value="" selected>선택하세요</option>
-                  <option value="중간">중간</option>
-                  <option value="기말">기말</option>
+                  <option value="a">중간</option>
+                  <option value="b">기말</option>
               </select>
                 <hr>
             </div>
@@ -195,23 +195,24 @@ margin-right: 10px;
                             </tr>
                         </thead>
                         <tbody>
+                        <c:forEach var="std" items="${ list }">
                             <tr>
-                                <td>김아무개</td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
+                                <td>${ std.stdName }</td>
+                                <td><input type="checkbox" value="A+"></td>
+                                <td><input type="checkbox" value="A" ></td>
+                                <td><input type="checkbox" value="A-"></td>
+                                <td><input type="checkbox" value="B+"></td>
+                                <td><input type="checkbox" value="B"></td>
+                                <td><input type="checkbox" value="B-"></td>
+                                <td><input type="checkbox" value="C+"></td>
+                                <td><input type="checkbox" value="C"></td>
+                                <td><input type="checkbox" value="C-"></td>
+                                <td><input type="checkbox" value="D+"></td>
+                                <td><input type="checkbox" value="D"></td>
+                                <td><input type="checkbox" value="D-"></td>
+                                <td><input type="checkbox" value="F"></td>
                             </tr>
-                            
+                         </c:forEach>
 
                         </tbody>
 
@@ -226,6 +227,10 @@ margin-right: 10px;
         <input type="button" id="btn1" value="완료" onclick="location.href='../index.html'">
         </div>
         <br><br><br>
+        
+        <script>
+        	
+        </script>
 				<!-- 여기까지 내용  -->
 
 			<!-- Footer -->

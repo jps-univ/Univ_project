@@ -16,7 +16,7 @@
             rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
-<style>
+	<style>
 
 
 .top {
@@ -36,14 +36,14 @@
     font-size: 15px;
 }
 
-</style>
+	</style>
 </head>
 <body id="page-top">
   <!-- Page Wrapper -->
   <div id="wrapper">
 
     <!-- Sidebar -->
-<c:import url="../common/sidebar.jsp"/>
+        <c:import url="../common/sidebar.jsp"/>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -122,7 +122,7 @@
                 </div>
             </footer>
             <!-- End of Footer -->
-
+		<c:import url="../common/logoutModal.jsp"/>
         </div>
         <!-- End of Content Wrapper -->
 
@@ -135,23 +135,21 @@
     </a>
 
     <!-- Logout Modal-->
-    <c:import url="../common/logoutModal.jsp"/>
+    
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+    <script src="${contextPath}/resources/js/main_page.js"></script>
+    <script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="${contextPath}/resources/vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="${contextPath}/resources/js/demo/chart-area-demo.js"></script>
+    <script src="${contextPath}/resources/js/demo/chart-pie-demo.js"></script>
 </body>
 </html>

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
     <c:set var="contextPath" value="<%=request.getContextPath()%>" />
 <!DOCTYPE html>
 <html>
@@ -38,54 +40,54 @@
                 <hr>
             </div>
             <div id="std_info_table_area">
-                <form method="GET">
+                <form method="post" action="student_Modify_Update.do">
                     <table id="std_info_table">
                         <tr>
                             <td rowspan="5" id="img_area"><img src="#" alt="preview" id="std_img"></td>
                             <td class="stdtext">
                                 <p>학번</p>
                             </td>
-                            <td><input type="text"></td>
+                            <td><input id="stdId" name="stdId" type="text"></td>
                             <td class="stdtext">
                                 <p>성명</p>
                             </td>
-                            <td><input type="text"></td>
+                            <td><input id="stdName" name="stdName" type="text"></td>
                         </tr>
                         <tr>
                             <td class="stdtext">
                                 <p>생년월일(성별)</p>
                             </td>
-                            <td><input type="text"></td>
+                            <td><input id="stdBirth"name="stdBirth" type="text"></td>
                             <td class="stdtext">
                                 <p>대학</p>
                             </td>
-                            <td><input type="text"></td>
+                            <td><input id="stdCollege"name="stdCollege" type="text"></td>
                         </tr>
                         <tr>
                             <td class="stdtext">
                                 <p>학부(과)</p>
                             </td>
-                            <td><input type="text"></td>
+                            <td><input id="stdDepartment"name="stdDepartment" type="text"></td>
                             <td class="stdtext">
                                 <p>과정구분</p>
                             </td>
-                            <td><input type="text"></td>
+                            <td><input id="stdCourse" name="stdCourse"type="text"></td>
                         </tr>
                         <tr>
                             <td class="stdtext">
                                 <p>학년</p>
                             </td>
-                            <td><input type="text"></td>
+                            <td><input id="stdSemester"name="stdSemester" type="text"></td>
                             <td class="stdtext">
                                 <p>학적상태</p>
                             </td>
-                            <td><input type="text"></td>
+                            <td><input id="stdSchoolReg" name="stdSchoolReg"type="text"></td>
                         </tr>
                         <tr>
                             <td class="stdtext">
                                 <p>입학구분</p>
                             </td>
-                            <td><input type="text"></td>
+                            <td><input id="stdEnterDiv"name="stdEnterDiv" type="text"></td>
                             <td class="stdtext"></td>
                             <td><input type="text"></td>
                         </tr>
@@ -121,41 +123,41 @@
                         <td class="stdtext">
                             <p>전화번호</p>
                         </td>
-                        <td class=""><input type="text"></td>
+                        <td class=""><input id="stdPhone"name="stdPhone" type="text"></td>
                         <td class="stdtext">
                             <p>핸드폰</p>
                         </td>
-                        <td><input type="text"></td>
+                        <td><input id="stdTel"name="stdTel" type="text"></td>
                     </tr>
                     <tr>
                         <td class="stdtext">
                             <p>이메일</p>
                         </td>
-                        <td><input type="text"></td>
+                        <td><input id="stdEmail"name="stdEmail" type="text"></td>
                         <td class="stdtext">
                             <p>은행명</p>
                         </td>
-                        <td><input type="text"></td>
+                        <td><input id="stdBank"name="stdBank" type="text"></td>
                     </tr>
                     <tr>
                         <td class="stdtext">
                             <p>학생주소</p>
                         </td>
-                        <td><input type="text"></td>
+                        <td><input id="stdAddress"name="stdAddress" type="text"></td>
                         <td class="stdtext">
                             <p>계좌번호</p>
                         </td>
-                        <td><input type="text"></td>
+                        <td><input id="stdAccount" name="stdAccount"type="text"></td>
                     </tr>
                     <tr>
                         <td class="stdtext">
                             <p>상세주소</p>
                         </td>
-                        <td><input type="text"></td>
+                        <td><input id="stdAddressDetail"name="stdAddressDetail" type="text"></td>
                         <td class="stdtext">
                             <p>예금주</p>
                         </td>
-                        <td><input type="text"></td>
+                        <td><input id="stdAccountHolder" name="stdAccountHolder"type="text"></td>
                     </tr>
 
             </div>
@@ -209,44 +211,61 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <c:forEach var="s" items="${ adStudentList }">
                         <tr>
-                            <td>1</td>
-                            <td>A12</td>
-                            <td>20/09/26</td>
-                            <td>10/22</td>
-                            <td>13:00</td>
-                            <td>교</td>
-                            <td>A5410</td>
-                            <td>A5410</td>
-                            
+                        <fmt:parseNumber var="Semester" value="${(s.stdSemester +1) div 2}" integerOnly="true"/>
+                            <td>${s.stdId}</td> 
+                            <td>${s.stdName}</td>
+                            <td>${s.stdBirth}</td>
+                            <td>${s.stdCollege}</td>
+                            <td>${s.stdDepartment}</td>
+                            <td>${s.stdCourse}</td>
+                            <td>${Semester}</td>
+                            <td>${s.stdSchoolReg }</td>
+                          
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>A12</td>
-                            <td>10/12</td>
-                            <td>10/22</td>
-                            <td>13:00</td>
-                            <td>병가</td>
-                            <td>A5410</td>
-                            <td>A5410</td>
-                            
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>A12</td>
-                            <td>10/12</td>
-                            <td>10/22</td>
-                            <td>13:00</td>
-                            <td>병가</td>
-                            <td>A5410</td>
-                            <td>a</td>
-                        </tr>
+                      
 
+					</c:forEach>
                     </tbody>
-
-
-
                 </table>
+                <script>
+                $(function(){
+                    $("#total_std tbody td").click(function(){
+                    	$.ajax({
+                    		url:"student_Modify_one.do",
+                    		dataType:"json",
+                    		data:{
+                    			stdId :$(this).parent().children().eq(0).text()
+                    		},success:function(data){
+                    			$("#stdId").val(data.stdId);
+                    			$("#stdName").val(data.stdName);
+                    			$("#stdBirth").val(data.stdBirth);
+                    			$("#stdCollege").val(data.stdCollege);
+                    			$("#stdDepartment").val(data.stdDepartment);
+                    			$("#stdCourse").val(data.stdCourse);
+                    			$("#stdSemester").val(data.stdSemester);
+                    			$("#stdSchoolReg").val(data.stdSchoolReg);
+                    			$("#stdEnterDiv").val(data.stdEnterDiv);
+                    			$("#stdPhone").val(data.stdPhone);
+                    			$("#stdTel").val(data.stdTel);
+                    			$("#stdEmail").val(data.stdEmail);
+                    			$("#stdBank").val(data.stdBank);
+                    			$("#stdAddress").val(data.stdAddress);
+                    			$("#stdAddressDetail").val(data.stdAddressDetail);
+                    			$("#stdAccount").val(data.stdAccount);
+                    			$("#stdAccountHolder").val(data.stdAccountHolder);
+                    			
+                    		}
+                    		
+                    	});
+                    });
+                    	
+                  
+                    
+                });
+                
+                </script>
             </div>
             <br><br><br><br><br><br><br><br>
         </div>

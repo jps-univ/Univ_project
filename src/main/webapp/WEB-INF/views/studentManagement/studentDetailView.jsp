@@ -147,7 +147,7 @@ margin-right: 10px;
           </div>
           <br><br>
           <table border="0" cellspacing="0" width="700px" id="tb">
-          <c:forEach var="std" items="${ list }">
+          <c:forEach var="std" items="${ list }" end="0">
             <tr>
                 <td><h4 id="code">과목코드 : </h4></td>
                 <td><input type="text" id="text1" placeholder="${ std.classId }" disabled></td>

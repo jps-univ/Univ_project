@@ -10,4 +10,6 @@ public interface StudentManagementService {
 
 	ArrayList<StudentManagement> selectDetailList();
 
+	ArrayList<StudentManagement> gradeView();
+
 }

@@ -5,14 +5,13 @@
       <id property="stdId" column="STUDENT_ID"/>
       <result property="schoolYear" column="SCHOOL_YEAR"/>
       <result property="semester" column="SEMESTER"/>
-      <result property="grade" column="GRADE"/>
       <result property="dueDate" column="DUE_DATE"/>
       <result property="paymentAmount" column="PAYMENT_AMOUNT"/>
       <result property="totalScholarships" column="TOTAL_SCHOLARSHIPS"/>
       <result property="totalPayment" column="TOTAL_PAYMENTS"/>
-      <result property="name" column="NAME"/>
+      <result property="stdName" column="STUDENT_NAME"/>
+      <result property="birth_No" column="BIRTH_NO"/>
       <result property="department" column="DEPARTMENT"/>
-      <result property="date" column="BIRTH_NO"/>
       <result property="address" column="ADDRESS"/>
       <result property="entranceFee" column="ENTRANCE_FEE"/>
       <result property="schoolFee" column="SCHOOL_FEE"/>
@@ -26,49 +25,41 @@
    </resultMap>
    
    <!-- 등록금리스트 -->
-   <select id="selectList" resultMap="PaymentResultSet">
+   <select id="selectList"  resultMap="PaymentResultSet">
         SELECT 
            SCHOOL_YEAR,
            SEMESTER,
-           GRADE,
            DUE_DATE,
            PAYMENT_AMOUNT,
            TOTAL_SCHOLARSHIPS,
            TOTAL_PAYMENTS
       FROM
-          TB_PAYMENT 
+          TB_PAYMENT
+      JOIN TB_STUDENT USING(STUDENT_ID)    
 
    </select>
    
    <!-- 등록금상세페이지 -->
    <select id="selectDetailList" resultMap="PaymentResultSet">
-        SELECT 
-		    STUDENT_ID           
-		   ,SCHOOL_YEAR         
-		   ,SEMESTER             
-		   ,GRADE             
-		   ,DUE_DATE             
-		   ,PAYMENT_AMOUNT       
-		   ,TOTAL_SCHOLARSHIPS   
-		   ,TOTAL_PAYMENTS      
-		   ,NAME                 
-		   ,DEPARTMENT           
-		   ,BIRTH_NO            
-		   ,ADDRESS              
-		   ,ENTRANCE_FEE         
-		   ,SCHOOL_FEE           
-		   ,CAMPUS_SCHOLARSHIP  
-		   ,SUBURBAN_SCHOLARSHIP 
-		   ,NATIONAL_SCHOLARSHIP 
-		   ,PAPER_GUIDANCE_FEE  
-		   ,STUDENT_FEES         
-		   ,ALUMNI_FEE           
-		   ,MAKE_PAYMENT_DATE    
-	FROM TB_PAYMENT
-	WHERE STUDENT_ID = '20201010' AND SCHOOL_YEAR= '2020' AND SEMESTER = '1' AND GRADE = '1'
-	
-<!-- 		WHERE STUDENT_ID = #{stdId} AND SCHOOL_YEAR= #{schoolYear} AND SEMESTER = #{semester} AND GRADE = #{grade}
- -->	
+       SELECT
+		  STUDENT_NAME,
+		  BIRTH_NO,
+		  DEPARTMENT,
+		  DUE_DATE,
+		  STUDENT_ID,
+		  ADDRESS,
+		  ENTRANCE_FEE,
+		  SCHOOL_FEE,
+		  CAMPUS_SCHOLARSHIP,
+		  SUBURBAN_SCHOLARSHIP,
+		  NATIONAL_SCHOLARSHIP,
+		  PAPER_GUIDANCE_FEE,
+		  STUDENT_FEES,
+		  ALUMNI_FEE,
+		  MAKE_PAYMENT_DATE
+      FROM
+          TB_PAYMENT
+      JOIN TB_STUDENT USING(STUDENT_ID)
    </select>
    
    
