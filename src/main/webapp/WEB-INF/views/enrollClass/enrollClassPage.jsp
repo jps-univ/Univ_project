@@ -44,6 +44,36 @@
     </style>
     <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
     <script>
+        function changeCollege(){
+            var c1 = ["국어국문학과","영여영문학과","중어중문학과","사학과","철학과","법학과","행정학과","정치학과","경제학과","경영학과","회계학과","사회복지학과"];
+            var c2 = ["수학과","물리학과","화학과","지리학과","식품영양학과","약학과"];
+            var c3 = ["전자공학과","건축공학과","토목공학과","기계공학과","산업공학과","화학공학과"];
+            var c4 = ["컴퓨터공학과","정보통신공학과","임베디드공학과"];
+            var c5 = ["미술학과","무용학과","공연예술학과","산업디자인학과","체육학과"];
+            var selectCollege = $("#selectCollege option:selected").text();
+
+            var changeItem;
+
+            if(selectCollege == '인문사회대학'){
+                changeItem = c1;
+            }else if(selectCollege == '자연과학대학'){
+                changeItem = c2;
+            }else if(selectCollege == '공과대학'){
+                changeItem = c3;
+            }else if(selectCollege == '정보기술대학'){
+                changeItem = c4;
+            }else if(selectCollege == '예술체육대학'){
+                changeItem = c5;
+            }
+            $('#selectDepartment').empty();
+            for(var count = 0; count < changeItem.length; count++){
+                var option = $("<option value="+count+">" +changeItem[count]+"</option>");
+                $('#selectDepartment').append(option);
+            }
+
+        }
+    </script>
+    <script>
         $(document).ready(function () {
 
             // DB에서 데이터 뽑아와서 테이블로 출력하는 datatables 라이브러리 사용
@@ -216,17 +246,15 @@
                                             <label class="labelPadding">학부(과)</label>
                                         </th>
                                         <td>
-                                            <select style="width: 100px">
+                                            <select id="selectCollege" style="width: 100px" onchange="changeCollege();">
                                                 <option value="">전체</option>
-                                                <option value="">단대1</option>
-                                                <option value="">단대2</option>
-                                                <option value="">단대3</option>
-                                                <option value="">단대4</option>
-                                                <option value="">단대5</option>
-                                                <option value="">단대6</option>
-                                                <option value="">단대7</option>
+                                                <option value="c1">인문사회대학</option>
+                                                <option value="c2">자연과학대학</option>
+                                                <option value="c3">공과대학</option>
+                                                <option value="c4">정보기술대학</option>
+                                                <option value="c5">예술체육대학</option>
                                             </select>
-                                            <select style="width: 170px">
+                                            <select id="selectDepartment" style="width: 170px">
                                                 <option>전체</option>
                                             </select>
                                         </td>
