@@ -20,11 +20,12 @@ public class Professor
 	private String profAccountHolder;	// 예금주명
 	private String profSmsAgree;		// sms동의
 	private String profEmailAgree;		// 이메일동의
+	private String lab;					// 연구실
 	
 	public Professor() {}
-	
+
 	// 전제 DB조회
-	public Professor(int profId, String profPwd, String profName, String profBirth, String profCollege, String profDepartment, String profImage, String profSalary, String profTel, String profPhone, String profEmail, String profAddress, String profAddressDetail, String profBank, String profAccount, String profAccountHolder, String profSmsAgree, String profEmailAgree) 
+	public Professor(int profId, String profPwd, String profName, String profBirth, String profCollege, String profDepartment, String profImage, String profSalary, String profTel, String profPhone, String profEmail, String profAddress, String profAddressDetail, String profBank, String profAccount, String profAccountHolder, String profSmsAgree, String profEmailAgree, String lab) 
 	{
 		super();
 		this.profId = profId;
@@ -45,120 +46,164 @@ public class Professor
 		this.profAccountHolder = profAccountHolder;
 		this.profSmsAgree = profSmsAgree;
 		this.profEmailAgree = profEmailAgree;
+		this.lab = lab;
 	}
-	
+
 	public int getProfId() {
 		return profId;
 	}
+
 	public void setProfId(int profId) {
 		this.profId = profId;
 	}
+
 	public String getProfPwd() {
 		return profPwd;
 	}
+
 	public void setProfPwd(String profPwd) {
 		this.profPwd = profPwd;
 	}
+
 	public String getProfName() {
 		return profName;
 	}
+
 	public void setProfName(String profName) {
 		this.profName = profName;
 	}
+
 	public String getProfBirth() {
 		return profBirth;
 	}
+
 	public void setProfBirth(String profBirth) {
 		this.profBirth = profBirth;
 	}
+
 	public String getProfCollege() {
 		return profCollege;
 	}
+
 	public void setProfCollege(String profCollege) {
 		this.profCollege = profCollege;
 	}
+
 	public String getProfDepartment() {
 		return profDepartment;
 	}
+
 	public void setProfDepartment(String profDepartment) {
 		this.profDepartment = profDepartment;
 	}
+
 	public String getProfImage() {
 		return profImage;
 	}
+
 	public void setProfImage(String profImage) {
 		this.profImage = profImage;
 	}
+
 	public String getProfSalary() {
 		return profSalary;
 	}
+
 	public void setProfSalary(String profSalary) {
 		this.profSalary = profSalary;
 	}
+
 	public String getProfTel() {
 		return profTel;
 	}
+
 	public void setProfTel(String profTel) {
 		this.profTel = profTel;
 	}
+
 	public String getProfPhone() {
 		return profPhone;
 	}
+
 	public void setProfPhone(String profPhone) {
 		this.profPhone = profPhone;
 	}
+
 	public String getProfEmail() {
 		return profEmail;
 	}
+
 	public void setProfEmail(String profEmail) {
 		this.profEmail = profEmail;
 	}
+
 	public String getProfAddress() {
 		return profAddress;
 	}
+
 	public void setProfAddress(String profAddress) {
 		this.profAddress = profAddress;
 	}
+
 	public String getProfAddressDetail() {
 		return profAddressDetail;
 	}
+
 	public void setProfAddressDetail(String profAddressDetail) {
 		this.profAddressDetail = profAddressDetail;
 	}
+
 	public String getProfBank() {
 		return profBank;
 	}
+
 	public void setProfBank(String profBank) {
 		this.profBank = profBank;
 	}
+
 	public String getProfAccount() {
 		return profAccount;
 	}
+
 	public void setProfAccount(String profAccount) {
 		this.profAccount = profAccount;
 	}
+
 	public String getProfAccountHolder() {
 		return profAccountHolder;
 	}
+
 	public void setProfAccountHolder(String profAccountHolder) {
 		this.profAccountHolder = profAccountHolder;
 	}
+
 	public String getProfSmsAgree() {
 		return profSmsAgree;
 	}
+
 	public void setProfSmsAgree(String profSmsAgree) {
 		this.profSmsAgree = profSmsAgree;
 	}
+
 	public String getProfEmailAgree() {
 		return profEmailAgree;
 	}
+
 	public void setProfEmailAgree(String profEmailAgree) {
 		this.profEmailAgree = profEmailAgree;
 	}
-	
+
+	public String getLab() {
+		return lab;
+	}
+
+	public void setLab(String lab) {
+		this.lab = lab;
+	}
+
 	@Override
 	public String toString() 
 	{
-		return "profId=" + profId + ", profPwd=" + profPwd + ", profName=" + profName + ", profBirth=" + profBirth + ", profCollege=" + profCollege + ", profDepartment=" + profDepartment + ", profImage=" + profImage + ", profSalary=" + profSalary + ", profTel=" + profTel + ", profPhone=" + profPhone + ", profEmail=" + profEmail + ", profAddress=" + profAddress + ", profAddressDetail=" + profAddressDetail + ", profBank=" + profBank + ", profAccount=" + profAccount + ", profAccountHolder="+ profAccountHolder + ", profSmsAgree=" + profSmsAgree + ", profEmailAgree=" + profEmailAgree;
-	}	
+		return "profId=" + profId + ", profPwd=" + profPwd + ", profName=" + profName + ", profBirth=" + profBirth + ", profCollege=" + profCollege + ", profDepartment=" + profDepartment + ", profImage=" + profImage + ", profSalary=" + profSalary + ", profTel=" + profTel + ", profPhone=" + profPhone + ", profEmail=" + profEmail + ", profAddress=" + profAddress + ", profAddressDetail=" + profAddressDetail + ", profBank=" + profBank + ", profAccount=" + profAccount + ", profAccountHolder=" + profAccountHolder + ", profSmsAgree=" + profSmsAgree + ", profEmailAgree=" + profEmailAgree + ", lab="+ lab;
+	}
 }
