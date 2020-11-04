@@ -26,6 +26,7 @@
       <result property="other_Deducation" column="OTHER_DEDUCTION"/>
       <result property="payment_Confirmation_Date" column="PAYMENT_CONFIRMATION_DATE"/>
    </resultMap>
+
      
 	<!-- 월급리스트 -->
 	<select id="selectList" resultMap="SalaryResultSet">
@@ -36,6 +37,7 @@
 			ACCOUNT,
 			SALARY_TOTAL
 		FROM TB_SALARY
-		JOIN TB_PROFESSOR USING(#{stdId})
+		JOIN TB_PROFESSOR USING(#{profId})
 	</select>
 </mapper>
+
