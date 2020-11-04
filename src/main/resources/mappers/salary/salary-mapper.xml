@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="SalaryMapper">
+   <resultMap id="SalaryResultSet" type="Salary">
+      <id property="profId" column="PROFESSOR_ID"/>
+      <result property="schoolYear" column="SCHOOL_YEAR"/>
+      <result property="schoolMonth" column="SCHOOL_MONTH"/>
+      <result property="bank" column="BANK"/>
+      <result property="account" column="ACCONUT"/>
+      <result property="salaryTotal" column="TOTAL_SCHOLARSHIPS"/>
+      <result property="name" column="NAME"/>
+      <result property="profCollege" column="PROCOLLEGE"/>
+      <result property="birth_No" column="BIRTH_NO"/>
+      <result property="patment_date" column="PAYMENT_DATE"/>
+      <result property="basic_Salary" column="BASIC_SALARY"/>
+      <result property="overtime" column="OVERTIME"/>
+      <result property="bonus" column="BONUS"/>
+      <result property="incentive" column="INCENTIVE"/>
+      <result property="meals" column="MEALS"/>
+      <result property="education" column="EDUCATION"/>
+      <result property="income_Tax" column="INCOME_TAX"/>
+      <result property="national_Pension" column="NATIONAL_PENSION"/>
+      <result property="health_Insurance" column="HEALTH_INSURANCE"/>
+      <result property="care_Insurance" column="CARE_INSURANCE"/>
+      <result property="employment_Insuracne" column="EMPLOYMENT_INSURANCE"/>
+      <result property="other_Deducation" column="OTHER_DEDUCTION"/>
+      <result property="payment_Confirmation_Date" column="PAYMENT_CONFIRMATION_DATE"/>
+   </resultMap>
+   
+   <!-- 월급리스트 -->
+      <select id="selectList"  resultMap="SalaryResultSet">
+        SELECT 
+           SCHOOL_YEAR,
+           SCHOOL_MONTH,
+           BANK,
+           ACCOUNT,
+           SALARY_TOTAL,
+        FROM
+          TB_SALARY
+      JOIN TB_PROFESSOR USING(STUDENT_ID)    
+
+   </select>
+   
+   
+   </mapper>
