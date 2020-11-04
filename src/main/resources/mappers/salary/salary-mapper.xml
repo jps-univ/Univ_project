@@ -26,20 +26,18 @@
       <result property="other_Deducation" column="OTHER_DEDUCTION"/>
       <result property="payment_Confirmation_Date" column="PAYMENT_CONFIRMATION_DATE"/>
    </resultMap>
-   
-   <!-- 월급리스트 -->
-      <select id="selectList"  resultMap="SalaryResultSet">
-        SELECT 
-           SCHOOL_YEAR,
-           SCHOOL_MONTH,
-           BANK,
-           ACCOUNT,
-           SALARY_TOTAL
-        FROM
-          TB_SALARY
-      JOIN TB_PROFESSOR USING(PROFESSOR_ID)    
 
-   </select>
-   
-   
-   </mapper>
+     
+	<!-- 월급리스트 -->
+	<select id="selectList" resultMap="SalaryResultSet">
+ 		SELECT
+			SCHOOL_YEAR,
+			SCHOOL_MONTH,
+			BANK,
+			ACCOUNT,
+			SALARY_TOTAL
+		FROM TB_SALARY
+		JOIN TB_PROFESSOR USING(#{profId})
+	</select>
+</mapper>
+
