@@ -24,12 +24,7 @@
 	<%-- <link href="${contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> --%>
 	<%--    <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />--%>
 	<style>
-		#writeBtn{
-		  float: right;
-		}
-		
-		#search{
-		  text-align: center;
+		#searchProf{
 		}
 		.top{
 		    background-color: #edf1fc;
@@ -69,147 +64,135 @@
           		</div>
 				
 				<!-- 여기서부터 내용  -->
-				<!-- Begin Page Content -->
+		        <!-- Begin Page Content -->
 		        <div class="container-fluid">
 		
 		          <!-- DataTales Example -->
 		          <div class="card shadow mb-4">
 		            <div class="card-header py-3">
-		              <h6 class="m-0 font-weight-bold text-primary">상담 관리
-		                <input type="button" value="글쓰기" id="writeBtn">
-		              </h6>
-		              
+		              <h6 class="m-0 font-weight-bold text-primary">상담 신청</h6>
 		            </div>
-		            <div class="card-body">
-		              <div class="table-responsive">
-		                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 		
+		            <div class="card-body">
+		              <div>
+		                <table>
+		
+		                </table>
+		              </div>
+		              
+		              <div class="table-responsive">
+		                <table class="table table-bordered" id="" width="100%" cellspacing="0">
 		                <tbody>
 		                  <tr align="center">
-		                    <th>번호</th>
-		                    <th>제목</th>
-		                    <th>작성자</th>
-		                    <th>작성일</th>
-		                    <th>조회수</th>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
+		                    <th id="searchProf">학부
+		                      <select>
+		                        <option value="전체">전체</option>
+		                        <option value="공과대">공과대</option>
+		                        <option value="인문대">인문대</option>
+		                      </select>
+		                    </th>
+		                    <th id="searchProf">학과
+		                      <select>
+		                        <option value="전체">전체</option>
+		                        <option value="공과대">공과대</option>
+		                        <option value="인문대">인문대</option>
+		                      </select>
+		                    </th>
+		                    <th id="searchProf">성명
+		                      <input type="text" name="" id="">
+		                    </th>
+		                    <th id="searchProf">
+		                      <input type="button" value="검색" id="">
+		                    </th>
 		                  </tr>
 		                  
+		                  <tr align="center">
+		                    <th>학부</th>
+		                    <th>학과</th>
+		                    <th>성명</th>
+		                    <th>상담 신청</th>
+		                  </tr>
+		                  <tr align="center">
+		                    <td>
+		                    	이공대학
+		                    </td>
+		                    <td>
+		                    	전자공학과
+		                    </td>
+		                    <td>
+		                    	임신일 교수
+		                    </td>
+		                    <td>
+		                      <input type="button" value="상담신청" id="">
+		                    </td>
+		                  </tr>                
 		                 </tbody>
 		                </table>
 		              </div>
 		            </div>
 		          </div>
 		
-		          <div id="search">
-		            <select>
-		              <option>제목</option>
-		              <option>번호</option>
-		              <option>글쓴이</option>
-		              <option>내용</option>
-		            </select>
+		          <div class="card shadow mb-4">
+		            <div class="card-header py-3">
+		              <h6 class="m-0 font-weight-bold text-primary">신청 관리
+		              </h6>
+		              
+		            </div>
 		
-		            <input type="text" name="" id="">
-		
-		            <input type="submit" value="검색">
+		            <div class="card-body">
+		              <div class="table-responsive">
+		                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+		                <tbody>
+		                  <tr align="center">
+		                    <th>상담 교수</th>
+		                    <th>신청 상태</th>
+		                    <th>신청 일자</th>
+		                    <th>신청 취소</th>
+		                  </tr>
+		                  <tr align="center">
+		                    <td>아무개</td>
+		                    <td>신청 중</td>
+		                    <td>2020.10.13</td>
+		                    <td>
+		                      <input type="button" value="취소" id="">
+		                    </td>
+		                  </tr>                
+		                 </tbody>
+		                </table>
+		              </div>
+		            </div>
 		          </div>
 		
+		          <div class="card shadow mb-4">
+		            <div class="card-header py-3">
+		              <h6 class="m-0 font-weight-bold text-primary">진행 상황
+		              </h6>
+		              
+		            </div>
+		
+		            <div class="card-body">
+		              <div class="table-responsive">
+		                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+		                <tbody>
+		                  <tr align="center">
+		                    <th>상담 교수</th>
+		                    <th>진행 상태</th>
+		                    <th>상담 일자</th>
+		                    <th>신청 취소</th>
+		                  </tr>
+		                  <tr align="center">
+		                    <td>아무개</td>
+		                    <td>신청 중</td>
+		                    <td>2020.10.13</td>
+		                    <td>
+		                      <input type="button" value="취소" id="">
+		                    </td>
+		                  </tr>                
+		                 </tbody>
+		                </table>
+		              </div>
+		            </div>
+		          </div>
 		        </div>
 		        <!-- /.container-fluid -->
 		
