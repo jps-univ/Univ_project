@@ -8,6 +8,7 @@ $(function(){
     },function(){
         // mouseleave
         $(this).removeClass('reverse');
+
     });
 });
 
@@ -28,3 +29,5 @@ $(function(){
 //$('.line').on('click', function(){
 //	
 //});
+
+
