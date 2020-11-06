@@ -96,12 +96,12 @@
                     // 'colunms' 옵션에는 각 data 에게 넘어오는 변수명(컬럼값)을 매칭해줘야함 꼭 .
                     // 그리고 테이블만들어줄때도 넘어오는 값이 4개라면 테이블의 th 갯수도 꼭 4개. 맞춰줘야함
                     'columns': [
-                        {'data': 'classId'},
+                        {'data': 'classSeq'},
                         {'data': 'className'},
-                        {'data': 'department'},
-                        {'data': 'profId'},
+                        {'data': 'deptCode'},
+                        {'data': 'profName'},
                         {'data': 'lectureTime'},
-                        {'data': 'roomNo'},
+                        {'data': 'room'},
                         {'data': 'classType'},
                         {'data': 'gradeSize'}
                     ],
@@ -233,11 +233,9 @@
                                             <select>
 
                                                 <option>전체</option>
-                                                <option value="A">교필</option>
-                                                <option value="B">교필</option>
-                                                <option value="C">전필</option>
-                                                <option value="D">전선</option>
-                                                <option value="E">일선</option>
+                                                <option value="A">전필</option>
+                                                <option value="B">전선</option>
+                                                <option value="C">교양</option>
                                             </select>
                                         </td>
                                         <th><label for="inputSubject" class="labelPadding">입력검색</label></th>
@@ -297,8 +295,8 @@
 
                                         <%--                                          <th>No</th>--%>
                                         <th>강의명</th>
-                                        <th>학과코드</th>
-                                        <th>교수코드</th>
+                                        <th>학과명</th>
+                                        <th>교수명</th>
                                         <th>강의시간</th>
                                         <th>강의실</th>
                                         <th>이수구분</th>

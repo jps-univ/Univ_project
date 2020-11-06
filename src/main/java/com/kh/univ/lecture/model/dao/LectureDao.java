@@ -14,6 +14,6 @@ public class LectureDao {
 
     public ArrayList<Lecture> selectList() {
 //        System.out.println((ArrayList)sqlSession.selectList("lectureMapper.selectLectureAndTime"));
-        return (ArrayList) sqlSession.selectList("lectureMapper.selectLectureAndTime");
+        return (ArrayList) sqlSession.selectList("lectureMapper.selectClassTime");
     }
 }
