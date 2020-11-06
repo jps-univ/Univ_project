@@ -1,55 +1,91 @@
 package com.kh.univ.lecture.model.vo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Lecture {
-    private String classId;
+    private int classSeq;
+    private String classCode;
+    private String deptCode;
     private int profId;
-    private String department;
     private String className;
-    private String roomNo;
+    private String room;
+    private int gradeSize; //학점
+    private int classSemester;
+    private int classYear;
+    private String classApprove;
+    private int classLevel;
     private String classType;
-    private String gradeSize; //학점
-    private String classSemester;
-    private String classYear;
-    private String approve;
 
     private String lectureTime;
+    private String profName;
 
-
-
-    public Lecture() {
+    @Override
+    public String toString() {
+        return "Lecture{" +
+                "classSeq=" + classSeq +
+                ", classCode='" + classCode + '\'' +
+                ", deptCode='" + deptCode + '\'' +
+                ", profId=" + profId +
+                ", className='" + className + '\'' +
+                ", room='" + room + '\'' +
+                ", gradeSize=" + gradeSize +
+                ", classSemester=" + classSemester +
+                ", classYear=" + classYear +
+                ", classApprove='" + classApprove + '\'' +
+                ", classLevel=" + classLevel +
+                ", classType='" + classType + '\'' +
+                ", lectureTime='" + lectureTime + '\'' +
+                ", profName='" + profName + '\'' +
+                '}';
     }
 
-    public Lecture(String classId, int profId, String department, String className, String roomNo, String classType, String gradeSize, String classSemester, String classYear, String approve, String lectureTime) {
-        this.classId = classId;
+    public String getProfName() {
+        return profName;
+    }
+
+    public void setProfName(String profName) {
+        this.profName = profName;
+    }
+
+    public Lecture(int classSeq, String classCode, String deptCode, int profId, String className, String room, int gradeSize, int classSemester, int classYear, String classApprove, int classLevel, String classType, String lectureTime, String profName) {
+        this.classSeq = classSeq;
+        this.classCode = classCode;
+        this.deptCode = deptCode;
         this.profId = profId;
-        this.department = department;
         this.className = className;
-        this.roomNo = roomNo;
-        this.classType = classType;
+        this.room = room;
         this.gradeSize = gradeSize;
         this.classSemester = classSemester;
         this.classYear = classYear;
-        this.approve = approve;
+        this.classApprove = classApprove;
+        this.classLevel = classLevel;
+        this.classType = classType;
         this.lectureTime = lectureTime;
+        this.profName = profName;
     }
 
-    public String getLectureTime() {
-        return lectureTime;
+    public Lecture(){}
+
+    public int getClassSeq() {
+        return classSeq;
     }
 
-    public void setLectureTime(String lectureTime) {
-        this.lectureTime = lectureTime;
+    public void setClassSeq(int classSeq) {
+        this.classSeq = classSeq;
     }
 
-    public String getClassId() {
-        return classId;
+    public String getClassCode() {
+        return classCode;
     }
 
-    public void setClassId(String classId) {
-        this.classId = classId;
+    public void setClassCode(String classCode) {
+        this.classCode = classCode;
+    }
+
+    public String getDeptCode() {
+        return deptCode;
+    }
+
+    public void setDeptCode(String deptCode) {
+        this.deptCode = deptCode;
     }
 
     public int getProfId() {
@@ -60,14 +96,6 @@ public class Lecture {
         this.profId = profId;
     }
 
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
     public String getClassName() {
         return className;
     }
@@ -76,12 +104,52 @@ public class Lecture {
         this.className = className;
     }
 
-    public String getRoomNo() {
-        return roomNo;
+    public String getRoom() {
+        return room;
     }
 
-    public void setRoomNo(String roomNo) {
-        this.roomNo = roomNo;
+    public void setRoom(String room) {
+        this.room = room;
+    }
+
+    public int getGradeSize() {
+        return gradeSize;
+    }
+
+    public void setGradeSize(int gradeSize) {
+        this.gradeSize = gradeSize;
+    }
+
+    public int getClassSemester() {
+        return classSemester;
+    }
+
+    public void setClassSemester(int classSemester) {
+        this.classSemester = classSemester;
+    }
+
+    public int getClassYear() {
+        return classYear;
+    }
+
+    public void setClassYear(int classYear) {
+        this.classYear = classYear;
+    }
+
+    public String getClassApprove() {
+        return classApprove;
+    }
+
+    public void setClassApprove(String classApprove) {
+        this.classApprove = classApprove;
+    }
+
+    public int getClassLevel() {
+        return classLevel;
+    }
+
+    public void setClassLevel(int classLevel) {
+        this.classLevel = classLevel;
     }
 
     public String getClassType() {
@@ -92,52 +160,27 @@ public class Lecture {
         this.classType = classType;
     }
 
-    public String getGradeSize() {
-        return gradeSize;
+    public String getLectureTime() {
+        return lectureTime;
     }
 
-    public void setGradeSize(String gradeSize) {
+    public void setLectureTime(String lectureTime) {
+        this.lectureTime = lectureTime;
+    }
+
+    public Lecture(int classSeq, String classCode, String deptCode, int profId, String className, String room, int gradeSize, int classSemester, int classYear, String classApprove, int classLevel, String classType, String lectureTime) {
+        this.classSeq = classSeq;
+        this.classCode = classCode;
+        this.deptCode = deptCode;
+        this.profId = profId;
+        this.className = className;
+        this.room = room;
         this.gradeSize = gradeSize;
-    }
-
-    public String getClassSemester() {
-        return classSemester;
-    }
-
-    public void setClassSemester(String classSemester) {
         this.classSemester = classSemester;
-    }
-
-    public String getClassYear() {
-        return classYear;
-    }
-
-    public void setClassYear(String classYear) {
         this.classYear = classYear;
-    }
-
-    public String getApprove() {
-        return approve;
-    }
-
-    public void setApprove(String approve) {
-        this.approve = approve;
-    }
-
-    @Override
-    public String toString() {
-        return "Lecture{" +
-                "classId='" + classId + '\'' +
-                ", profId=" + profId +
-                ", department='" + department + '\'' +
-                ", className='" + className + '\'' +
-                ", roomNo='" + roomNo + '\'' +
-                ", classType='" + classType + '\'' +
-                ", gradeSize='" + gradeSize + '\'' +
-                ", classSemester='" + classSemester + '\'' +
-                ", classYear='" + classYear + '\'' +
-                ", approve='" + approve + '\'' +
-                ", lectureTime=" + lectureTime +
-                '}';
+        this.classApprove = classApprove;
+        this.classLevel = classLevel;
+        this.classType = classType;
+        this.lectureTime = lectureTime;
     }
 }

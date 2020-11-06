@@ -2,35 +2,38 @@ package com.kh.univ.lecture.model.vo;
 
 public class LectureTime {
 
-     private int lectimeNo;
-     private String classId;
+     private int ctSeq;
+     private int classSeq;
      private String day;
      private String hour;
 
     public LectureTime() {
     }
 
-    public LectureTime(int lectimeNo, String classId, String day, String hour) {
-        this.lectimeNo = lectimeNo;
-        this.classId = classId;
-        this.day = day;
-        this.hour = hour;
+    @Override
+    public String toString() {
+        return "LectureTime{" +
+                "ctSeq=" + ctSeq +
+                ", classSeq=" + classSeq +
+                ", day='" + day + '\'' +
+                ", hour='" + hour + '\'' +
+                '}';
     }
 
-    public int getLectimeNo() {
-        return lectimeNo;
+    public int getCtSeq() {
+        return ctSeq;
     }
 
-    public void setLectimeNo(int lectimeNo) {
-        this.lectimeNo = lectimeNo;
+    public void setCtSeq(int ctSeq) {
+        this.ctSeq = ctSeq;
     }
 
-    public String getClassId() {
-        return classId;
+    public int getClassSeq() {
+        return classSeq;
     }
 
-    public void setClassId(String classId) {
-        this.classId = classId;
+    public void setClassSeq(int classSeq) {
+        this.classSeq = classSeq;
     }
 
     public String getDay() {
@@ -49,14 +52,11 @@ public class LectureTime {
         this.hour = hour;
     }
 
-    @Override
-    public String toString() {
-        return "LectureTime{" +
-                "lectimeNo=" + lectimeNo +
-                ", classId=" + classId +
-                ", day='" + day + '\'' +
-                ", hour='" + hour + '\'' +
-                '}';
+    public LectureTime(int ctSeq, int classSeq, String day, String hour) {
+        this.ctSeq = ctSeq;
+        this.classSeq = classSeq;
+        this.day = day;
+        this.hour = hour;
     }
 }
 
