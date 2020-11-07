@@ -3,17 +3,17 @@
 <mapper namespace="PaymentMapper">
    <resultMap id="PaymentResultSet" type="Payment">
       <id property="stdId" column="STUDENT_ID"/>
-      <result property="payment_No" column="PAYMENT_NO"/>
+      <result property="paymentNo" column="PAYMENT_NO"/>
       <result property="schoolYear" column="SCHOOL_YEAR"/>
-      <result property="semester" column="SEMESTER"/>
+      <result property="stdSemester" column="SEMESTER"/>
       <result property="dueDate" column="DUE_DATE"/>
       <result property="paymentAmount" column="PAYMENT_AMOUNT"/>
       <result property="totalScholarships" column="TOTAL_SCHOLARSHIPS"/>
-      <result property="totalPayment" column="TOTAL_PAYMENTS"/>
+      <result property="totalPayments" column="TOTAL_PAYMENTS"/>
       <result property="stdName" column="STUDENT_NAME"/>
-      <result property="birth_No" column="BIRTH_NO"/>
-      <result property="college" column="COLLEGE"/>
-      <result property="address" column="ADDRESS"/>
+      <result property="stdBirth" column="BIRTH_NO"/>
+      <result property="stdCollege" column="COLLEGE"/>
+      <result property="stdAddress" column="ADDRESS"/>
       <result property="entranceFee" column="ENTRANCE_FEE"/>
       <result property="schoolFee" column="SCHOOL_FEE"/>
       <result property="campusScholarship" column="CAMPUS_SCHOLARSHIP"/>
@@ -27,20 +27,9 @@
    
    <!-- 등록금리스트 -->
    <select id="selectList"  resultMap="PaymentResultSet">
-<!--         SELECT 
-           SCHOOL_YEAR = #{schoolYear}
-          ,SEMESTER = #{semester}
-          ,DUE_DATE = #{dueDate}
-          ,PAYMENT_AMOUNT = #{paymentAmount}
-          ,TOTAL_SCHOLARSHIPS = #{totalScholarship}
-          ,TOTAL_PAYMENTS = #{tatalPayment}
-      FROM
-          TB_PAYMENT
-      JOIN TB_STUDENT USING(STUDENT_ID = #{stdId})     -->
       
       SELECT 
-           PAYMENT_NO
-          ,SCHOOL_YEAR 
+           SCHOOL_YEAR 
           ,SEMESTER
           ,DUE_DATE
           ,PAYMENT_AMOUNT 
@@ -49,6 +38,7 @@
       FROM
           TB_PAYMENT
       JOIN TB_STUDENT USING(STUDENT_ID)
+      WHERE STUDENT_ID = #{stdId}
 
    </select>
    
