@@ -11,7 +11,7 @@ public class Payment {
 	private String totalPayment;         // 납부금액(납부총액)
 	private String stdName;              // 이름
 	private String birth_No;             // 생년월일
-	private String department;           // 학과
+	private String college;           // 학과
 	private String address;              // 주소
 	private String entranceFee;          // 입학금
 	private String schoolFee;            // 수업료
@@ -37,7 +37,7 @@ public class Payment {
 	}
 
 	public Payment(int stdId, String schoolYear, String semester, String dueDate, String paymentAmount,
-			String totalScholarships, String totalPayment, String stdName, String birth_No, String department,
+			String totalScholarships, String totalPayment, String stdName, String birth_No, String college,
 			String address, String entranceFee, String schoolFee, String campusScholarship, String suburbanScholartship,
 			String nationalScholarship, String paperGuidanceFee, String studentFees, String alumniFee,
 			String makePaymentDate) {
@@ -51,7 +51,7 @@ public class Payment {
 		this.totalPayment = totalPayment;
 		this.stdName = stdName;
 		this.birth_No = birth_No;
-		this.department = department;
+		this.college = college;
 		this.address = address;
 		this.entranceFee = entranceFee;
 		this.schoolFee = schoolFee;
@@ -137,11 +137,11 @@ public class Payment {
 	}
 
 	public String getDepartment() {
-		return department;
+		return college;
 	}
 
-	public void setDepartment(String department) {
-		this.department = department;
+	public void setDepartment(String college) {
+		this.college = college;
 	}
 
 	public String getAddress() {
@@ -228,8 +228,8 @@ public class Payment {
 	public String toString() {
 		return "Payment [stdId=" + stdId + ", schoolYear=" + schoolYear + ", semester=" + semester + ", dueDate="
 				+ dueDate + ", paymentAmount=" + paymentAmount + ", totalScholarships=" + totalScholarships
-				+ ", totalPayment=" + totalPayment + ", stdName=" + stdName + ", birth_No=" + birth_No + ", department="
-				+ department + ", address=" + address + ", entranceFee=" + entranceFee + ", schoolFee=" + schoolFee
+				+ ", totalPayment=" + totalPayment + ", stdName=" + stdName + ", birth_No=" + birth_No + ", college="
+				+ college + ", address=" + address + ", entranceFee=" + entranceFee + ", schoolFee=" + schoolFee
 				+ ", campusScholarship=" + campusScholarship + ", suburbanScholartship=" + suburbanScholartship
 				+ ", nationalScholarship=" + nationalScholarship + ", paperGuidanceFee=" + paperGuidanceFee
 				+ ", studentFees=" + studentFees + ", alumniFee=" + alumniFee + ", makePaymentDate=" + makePaymentDate

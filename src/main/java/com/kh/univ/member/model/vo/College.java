@@ -40,10 +40,6 @@ public class College {
 	}
 
 
-	@Override
-	public String toString() {
-		return "College [collegeCode=" + collegeCode + ", collegeName=" + collegeName + "]";
-	}
 	
 	
 }

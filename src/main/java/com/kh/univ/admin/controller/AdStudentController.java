@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.kh.univ.admin.model.service.AdStudentService;
+import com.kh.univ.member.model.vo.College;
 import com.kh.univ.member.model.vo.Student;
 
 @Controller
@@ -41,8 +42,8 @@ public class AdStudentController {
 	 */
 	@RequestMapping("student_Modify.do")
     public ModelAndView StudentModify(ModelAndView mv) {
-		ArrayList<Student> adStudentList = adStudentService.selectList();
-		
+		ArrayList<?>  adStudentList = adStudentService.selectList();
+		System.out.println(adStudentList);
 		mv.addObject("adStudentList", adStudentList);
 		mv.setViewName("admin/ad_student_modify");
 		

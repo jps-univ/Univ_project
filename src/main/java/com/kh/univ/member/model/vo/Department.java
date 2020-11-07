@@ -1,26 +1,30 @@
 package com.kh.univ.member.model.vo;
 
-public class Department {
+public class Department{
 
 	private String departmentCode;	// 학과 코드
 	private String departmentName;  // 학과명
 	private String collegeCode;		// 단과대학코드
 	private int capacity;			// 학과 정원
+	private College college;
+	
 	
 	// 기본 생성자
 	public Department() {
-		
+		super();
 	}
 	
-	
-	public Department(String departmentCode, String departmentName, String collegeCode, int capacity) {
+
+	public Department(String departmentCode, String departmentName, String collegeCode, int capacity, College college) {
 		super();
 		this.departmentCode = departmentCode;
 		this.departmentName = departmentName;
 		this.collegeCode = collegeCode;
 		this.capacity = capacity;
+		this.college = college;
 	}
-	
+
+
 	// getter / setter
 	public String getDepartmentCode() {
 		return departmentCode;
@@ -37,6 +41,8 @@ public class Department {
 	public String getCollegeCode() {
 		return collegeCode;
 	}
+
+
 	public void setCollegeCode(String collegeCode) {
 		this.collegeCode = collegeCode;
 	}
@@ -46,14 +52,36 @@ public class Department {
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
 	}
-	
-	//toString
+
+	public College getCollege() {
+		return college;
+	}
+	public void setCollege(College college) {
+		this.college = college;
+	}
+
+
+
+
+
+
+
+
+
 	@Override
 	public String toString() {
 		return "Department [departmentCode=" + departmentCode + ", departmentName=" + departmentName + ", collegeCode="
-				+ collegeCode + ", capacity=" + capacity + "]";
+				+ collegeCode + ", capacity=" + capacity + ", college=" + college + "]";
 	}
-	
+
+
+
+
+
+
+
+
+
 	
 	
 	
