@@ -10,4 +10,8 @@ public interface StudentLoginSevice {
 
 	Student findByNameAndEmail(Student student);
 
+	Student findByIdAndNameAndEmail(Student student);
+
+	int updateById(Student student);
+
 }
