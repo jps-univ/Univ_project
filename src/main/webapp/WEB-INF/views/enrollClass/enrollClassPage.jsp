@@ -45,6 +45,8 @@
     <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
     <script>
         function changeCollege(){
+            $('#selectMajor').empty();
+            $('#selectMajor').append("<option>전체</option>");
             var c0 = ["전체"];
             var c1 = ["전체","국어국문학과","영여영문학과","중어중문학과","일어일문학과","유아교육과"];
             var c2 = ["전체","행정학과","경영학과","경제학과","관광경영학과","사회복지학과"];
@@ -70,6 +72,7 @@
                 changeItem = c6;
             }else if(selectCollege === 'c0'){
                 changeItem = c0;
+
             }
             $('#selectDepartment').empty();
             for(var count = 0; count < changeItem.length; count++){
@@ -88,7 +91,8 @@
                 },
                 dataType:"json",
                 success:function (data) {
-                    console.log(data);
+                    $('#selectMajor').empty();
+                    $('#selectMajor').append("<option>전체</option>");
                     for(var i in data){
                         var option = $("<option>"+data[i].className+"</option>");
                         $('#selectMajor').append(option);
