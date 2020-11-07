@@ -28,6 +28,7 @@
  		<result property="stdEntrance" column="ENTRANCE_DATE"/>
  		<result property="stdTel" column="TEL"/>
  		<collection property="department" resultMap="DepartmentResultSet"/>
+ 		<collection property="register" resultMap="RegisterResultSet"/>
  	</resultMap>
  	
  	
@@ -44,12 +45,27 @@
  		<result property="collegeName" column="COLLEGE_NAME"/>
  	</resultMap>
  	
+ 	<resultMap type="Register" id="RegisterResultSet">
+ 		<id property="statusNO" column="STATUS_NO"/>
+ 		<result property="stdId" column="STUDENT_ID"/>
+ 		<result property="stdStatus" column="STUDENT_STATUS"/>
+ 		<result property="applicationStatus" column="APPLICATION_STATUS"/>
+ 		<result property="applicationDate" column="APPLICATION_DATE"/>
+ 		<result property="reasonsLeave" column="REASONS_LEAVE"/>
+ 		<result property="leavePeriod" column="LEAVE_PERIOD"/>
+ 		<result property="applicationDate" column="APPLICATION_DATE"/>
+ 		<result property="leaveDate" column="LEAVE_DATE"/>
+ 		<result property="returningDate" column="RETURNING_DATE"/>
+ 		<result property="graduationDate" column="GRADUATION_DATE"/>
+ 	</resultMap>
+ 	
  	<!--관리자 학생 조회 / 수정 페이지 -> 전체 학생 조회  -->
  	<select id ="selectAdminStudent" parameterType="String" resultMap="StudentResultSet">
- 	Select STUDENT_ID,STUDENT_NAME, BIRTH_NO, DEPARTMENT_NAME, COLLEGE_NAME, COURSE,SEMESTER,SCHOOL_REG
-	FROM TB_STUDENT 
-	JOIN TB_DEPARTMENT USING (DEPARTMENT_CODE)
-	JOIN TB_COLLEGE USING(COLLEGE_CODE)
+		Select STUDENT_ID,STUDENT_NAME, BIRTH_NO, DEPARTMENT_NAME, COLLEGE_NAME, COURSE,SEMESTER,STUDENT_STATUS
+		FROM TB_STUDENT 
+		LEFT JOIN TB_STUDENT_STATUS USING (STUDENT_ID)
+		JOIN TB_DEPARTMENT USING (DEPARTMENT_CODE)
+		JOIN TB_COLLEGE USING(COLLEGE_CODE)
  	</select>
  	
  	<select id="selectOneAdminStudent" parameterType="Student" resultMap="StudentResultSet">

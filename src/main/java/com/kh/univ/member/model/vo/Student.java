@@ -287,6 +287,15 @@ public class Student {
 		this.department = department;
 	}
 
+	
+	public Register getRegister() {
+		return register;
+	}
+
+	public void setRegister(Register register) {
+		this.register = register;
+	}
+
 	@Override
 	public String toString() {
 		return "Student [stdId=" + stdId + ", stdPwd=" + stdPwd + ", stdName=" + stdName + ", stdBirth=" + stdBirth
@@ -296,8 +305,10 @@ public class Student {
 				+ ", stdEmail=" + stdEmail + ", stdAddress=" + stdAddress + ", stdAddressDetail=" + stdAddressDetail
 				+ ", stdBank=" + stdBank + ", stdAccount=" + stdAccount + ", stdAccountHolder=" + stdAccountHolder
 				+ ", stdSmsAgree=" + stdSmsAgree + ", stdEmailAgree=" + stdEmailAgree + ", stdEntrance=" + stdEntrance
-				+ ", stdTel=" + stdTel + ", department=" + department + "]";
+				+ ", stdTel=" + stdTel + ", department=" + department + ", register=" + register + "]";
 	}
+
+
 
 	
 	
