@@ -46,12 +46,12 @@
     <script>
         function changeCollege(){
             var c0 = ["전체"];
-            var c1 = ["국어국문학과","영여영문학과","중어중문학과","일어일문학과","유아교육과"];
-            var c2 = ["행정학과","경영학과","경제학과","관광경영학과","사회복지학과"];
-            var c3 = ["수학과","물리학과","화학과","생명과학과"];
-            var c4 = ["전자공학과","전기공학과","토목공학과","기계공학과","화학공학과"];
-            var c5 = ["컴퓨터공학과","정보통신공학과","임베디드공학과"];
-            var c6 = ["미술학과","무용학과","공연예술학과","실용음악과","체육학과"];
+            var c1 = ["전체","국어국문학과","영여영문학과","중어중문학과","일어일문학과","유아교육과"];
+            var c2 = ["전체","행정학과","경영학과","경제학과","관광경영학과","사회복지학과"];
+            var c3 = ["전체","수학과","물리학과","화학과","생명과학과"];
+            var c4 = ["전체","전자공학과","전기공학과","토목공학과","기계공학과","화학공학과"];
+            var c5 = ["전체","컴퓨터공학과","정보통신공학과","임베디드공학과"];
+            var c6 = ["전체","미술학과","무용학과","공연예술학과","실용음악과","체육학과"];
             var selectCollege = $("#selectCollege option:selected").val();
 
             var changeItem;
@@ -77,6 +77,26 @@
                 $('#selectDepartment').append(option);
             }
 
+        }
+        // 과 선택시 (onchange) 전공과목을 디비에서 ajax를 통해 가져온다
+        function changeDept() {
+            var dept = $('#selectDepartment option:selected').text();
+            $.ajax({
+                url: "checkDept.do",
+                data:{
+                    deptName:dept
+                },
+                dataType:"json",
+                success:function (data) {
+                    console.log(data);
+                    for(var i in data){
+                        var option = $("<option>"+data[i].className+"</option>");
+                        $('#selectMajor').append(option);
+                    }
+                },error:function () {
+                    alert("데이터가 안갔습니다.")
+                }
+            });
         }
     </script>
     <script>
@@ -142,6 +162,7 @@
             });
         });
     </script>
+
 <%--    수강신청,장바구니 탭 클릭 시 화면 변화--%>
     <script>
         $(document).ready(function () {
@@ -259,7 +280,7 @@
                                                 <option value="c5">정보기술대학</option>
                                                 <option value="c6">예술체육대학</option>
                                             </select>
-                                            <select id="selectDepartment" style="width: 170px">
+                                            <select id="selectDepartment" style="width: 170px" onchange="changeDept();">
                                                 <option>전체</option>
                                             </select>
                                         </td>
@@ -267,8 +288,8 @@
                                             <label class="labelPadding">전공</label>
                                         </th>
                                         <td>
-                                            <select style="width: 200px">
-                                                <option value="">-</option>
+                                            <select id="selectMajor"style="width: 200px">
+                                                <option value="">전체</option>
                                             </select>
                                         </td>
                                         <th>
@@ -276,7 +297,7 @@
                                         </th>
                                         <td>
                                             <select>
-                                                <option>-</option>
+                                                <option>전체</option>
                                                 <option value="">1</option>
                                                 <option value="">2</option>
                                                 <option value="">3</option>

@@ -46,4 +46,9 @@
           AND a.DEPARTMENT_CODE = c.DEPARTMENT_CODE
           AND a.PROFESSOR_ID = d.PROFESSOR_ID
     </select>
+    <select id="selectMajor" resultMap="lectureMap" parameterType="Lecture">
+        SELECT a.CLASS_NAME
+        FROM TB_CLASS a, TB_DEPARTMENT b
+        WHERE a.DEPARTMENT_CODE=b.DEPARTMENT_CODE AND b.DEPARTMENT_NAME=#{className}
+    </select>
 </mapper>
