@@ -22,9 +22,22 @@ public class StudentMyPageController
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
 	@RequestMapping("student_info.do")
-    public String StudentInfo()
+	public String StudentInfo()
 	{
-        return "myPage/studentInfo";
+		return "myPage/studentInfo";
+	}
+	
+	@ResponseBody
+	@RequestMapping("selectStudentInfo.do")
+    public String StudentInfo(Student student, HttpSession session)
+	{
+		Student newStudent = (Student)session.getAttribute("loginUser");
+		
+		Student result = msService.selectStdInfo(student);
+		newStudent = result;
+		System.out.println(result);
+		
+		return "redirect:student_info.do";
     }
 	
 	@RequestMapping("student_password.do")
@@ -78,7 +91,7 @@ public class StudentMyPageController
 	
 	@ResponseBody
 	@RequestMapping("changeAgreeInfo.do")
-	public String changeAgreeInfo(Student student, Model model, HttpSession session)
+	public String ChangeAgreeInfo(Student student, Model model, HttpSession session)
 	{
 		Student sessionStudent = (Student)session.getAttribute("loginUser");
 

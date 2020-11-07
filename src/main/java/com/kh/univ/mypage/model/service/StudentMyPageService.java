@@ -31,4 +31,11 @@ public interface StudentMyPageService
 	 * @return
 	 */
 	int changeStdPassword(Student student);
+
+	/**
+	 * 개인정보 조회
+	 * @param student
+	 * @return
+	 */
+	Student selectStdInfo(Student student);
 }
