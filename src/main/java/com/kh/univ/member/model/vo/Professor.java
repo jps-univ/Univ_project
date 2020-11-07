@@ -1,7 +1,7 @@
 package com.kh.univ.member.model.vo;
 
-public class Professor 
-{
+public class Professor {
+	
 	private int profId;				 	// 교수번호(교번)
 	private String profPwd;			 	// 비밀번호
 	private String profName;			// 이름
