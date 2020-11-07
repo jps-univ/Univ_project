@@ -2,6 +2,7 @@ package com.kh.univ.payment.model.vo;
 
 public class Payment {
 	
+	private int payment_No;              // 등록금번호
 	private int stdId;				     // 학생번호(학번)
 	private String schoolYear;           // 년도(학년도)
 	private String semester;                // 학기
@@ -25,9 +26,10 @@ public class Payment {
 	
 	public Payment() {}
 
-	public Payment(String schoolYear, String semester, String dueDate, String paymentAmount, String totalScholarships,
-			String totalPayment) {
+	public Payment(int payment_No, String schoolYear, String semester, String dueDate, String paymentAmount,
+			String totalScholarships, String totalPayment) {
 		super();
+		this.payment_No = payment_No;
 		this.schoolYear = schoolYear;
 		this.semester = semester;
 		this.dueDate = dueDate;
@@ -36,12 +38,13 @@ public class Payment {
 		this.totalPayment = totalPayment;
 	}
 
-	public Payment(int stdId, String schoolYear, String semester, String dueDate, String paymentAmount,
+	public Payment(int payment_No, int stdId, String schoolYear, String semester, String dueDate, String paymentAmount,
 			String totalScholarships, String totalPayment, String stdName, String birth_No, String college,
 			String address, String entranceFee, String schoolFee, String campusScholarship, String suburbanScholartship,
 			String nationalScholarship, String paperGuidanceFee, String studentFees, String alumniFee,
 			String makePaymentDate) {
 		super();
+		this.payment_No = payment_No;
 		this.stdId = stdId;
 		this.schoolYear = schoolYear;
 		this.semester = semester;
@@ -62,6 +65,14 @@ public class Payment {
 		this.studentFees = studentFees;
 		this.alumniFee = alumniFee;
 		this.makePaymentDate = makePaymentDate;
+	}
+
+	public int getPayment_No() {
+		return payment_No;
+	}
+
+	public void setPayment_No(int payment_No) {
+		this.payment_No = payment_No;
 	}
 
 	public int getStdId() {
@@ -136,11 +147,11 @@ public class Payment {
 		this.birth_No = birth_No;
 	}
 
-	public String getDepartment() {
+	public String getCollege() {
 		return college;
 	}
 
-	public void setDepartment(String college) {
+	public void setCollege(String college) {
 		this.college = college;
 	}
 
@@ -226,16 +237,15 @@ public class Payment {
 
 	@Override
 	public String toString() {
-		return "Payment [stdId=" + stdId + ", schoolYear=" + schoolYear + ", semester=" + semester + ", dueDate="
-				+ dueDate + ", paymentAmount=" + paymentAmount + ", totalScholarships=" + totalScholarships
-				+ ", totalPayment=" + totalPayment + ", stdName=" + stdName + ", birth_No=" + birth_No + ", college="
-				+ college + ", address=" + address + ", entranceFee=" + entranceFee + ", schoolFee=" + schoolFee
-				+ ", campusScholarship=" + campusScholarship + ", suburbanScholartship=" + suburbanScholartship
-				+ ", nationalScholarship=" + nationalScholarship + ", paperGuidanceFee=" + paperGuidanceFee
-				+ ", studentFees=" + studentFees + ", alumniFee=" + alumniFee + ", makePaymentDate=" + makePaymentDate
-				+ "]";
+		return "Payment [payment_No=" + payment_No + ", stdId=" + stdId + ", schoolYear=" + schoolYear + ", semester="
+				+ semester + ", dueDate=" + dueDate + ", paymentAmount=" + paymentAmount + ", totalScholarships="
+				+ totalScholarships + ", totalPayment=" + totalPayment + ", stdName=" + stdName + ", birth_No="
+				+ birth_No + ", college=" + college + ", address=" + address + ", entranceFee=" + entranceFee
+				+ ", schoolFee=" + schoolFee + ", campusScholarship=" + campusScholarship + ", suburbanScholartship="
+				+ suburbanScholartship + ", nationalScholarship=" + nationalScholarship + ", paperGuidanceFee="
+				+ paperGuidanceFee + ", studentFees=" + studentFees + ", alumniFee=" + alumniFee + ", makePaymentDate="
+				+ makePaymentDate + "]";
 	}
 
 	
-
 }

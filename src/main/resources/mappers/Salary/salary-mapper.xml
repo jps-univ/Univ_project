@@ -3,6 +3,7 @@
 <mapper namespace="SalaryMapper">
    <resultMap id="SalaryResultSet" type="Salary">
       <id property="profId" column="PROFESSOR_ID"/>
+      <result property="salary_No" column="SALARY_NO"/>
       <result property="schoolYear" column="SCHOOL_YEAR"/>
       <result property="schoolMonth" column="SCHOOL_MONTH"/>
       <result property="profBank" column="BANK"/>
@@ -31,6 +32,7 @@
 	<!-- 월급리스트 -->
 	<select id="selectList" resultMap="SalaryResultSet">
  		SELECT
+ 		    SALARY_NO,
 			SCHOOL_YEAR,
 			SCHOOL_MONTH,
 			BANK,

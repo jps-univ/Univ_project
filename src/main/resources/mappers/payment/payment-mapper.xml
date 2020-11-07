@@ -3,6 +3,7 @@
 <mapper namespace="PaymentMapper">
    <resultMap id="PaymentResultSet" type="Payment">
       <id property="stdId" column="STUDENT_ID"/>
+      <result property="payment_No" column="PAYMENT_NO"/>
       <result property="schoolYear" column="SCHOOL_YEAR"/>
       <result property="semester" column="SEMESTER"/>
       <result property="dueDate" column="DUE_DATE"/>
@@ -38,7 +39,8 @@
       JOIN TB_STUDENT USING(STUDENT_ID = #{stdId})     -->
       
       SELECT 
-           SCHOOL_YEAR 
+           PAYMENT_NO
+          ,SCHOOL_YEAR 
           ,SEMESTER
           ,DUE_DATE
           ,PAYMENT_AMOUNT 
@@ -53,6 +55,7 @@
    <!-- 등록금상세페이지 -->
    <select id="selectDetailList" resultMap="PaymentResultSet">
        SELECT
+          PAYMENT_NO,
 		  STUDENT_NAME,
 		  BIRTH_NO,
 		  COLLEGE,
