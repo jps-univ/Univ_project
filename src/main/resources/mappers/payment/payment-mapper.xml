@@ -26,16 +26,27 @@
    
    <!-- 등록금리스트 -->
    <select id="selectList"  resultMap="PaymentResultSet">
-        SELECT 
-           SCHOOL_YEAR,
-           SEMESTER,
-           DUE_DATE,
-           PAYMENT_AMOUNT,
-           TOTAL_SCHOLARSHIPS,
-           TOTAL_PAYMENTS
+<!--         SELECT 
+           SCHOOL_YEAR = #{schoolYear}
+          ,SEMESTER = #{semester}
+          ,DUE_DATE = #{dueDate}
+          ,PAYMENT_AMOUNT = #{paymentAmount}
+          ,TOTAL_SCHOLARSHIPS = #{totalScholarship}
+          ,TOTAL_PAYMENTS = #{tatalPayment}
       FROM
           TB_PAYMENT
-      JOIN TB_STUDENT USING(STUDENT_ID)    
+      JOIN TB_STUDENT USING(STUDENT_ID = #{stdId})     -->
+      
+      SELECT 
+           SCHOOL_YEAR 
+          ,SEMESTER
+          ,DUE_DATE
+          ,PAYMENT_AMOUNT 
+          ,TOTAL_SCHOLARSHIPS
+          ,TOTAL_PAYMENTS
+      FROM
+          TB_PAYMENT
+      JOIN TB_STUDENT USING(STUDENT_ID) 
 
    </select>
    

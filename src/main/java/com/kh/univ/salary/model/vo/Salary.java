@@ -5,12 +5,12 @@ public class Salary {
 	private int profId;                        // 교수번호
 	private String schoolYear;                 // 지급년도
 	private String schoolMonth;                // 지급월
-	private String bank;                       // 지급은행
-	private String account;                    // 지급계좌
+	private String profBank;                   // 지급은행
+	private String profAccount;                // 지급계좌
 	private String salaryTotal;                // 실지급액(급여총액)
-	private String name;                       // 이름
+	private String profName;                   // 이름
 	private String profCollege;                // 소속(단과대학)
-	private String birth_No;                   // 생년월일
+	private String profBirth;                  // 생년월일
 	private String patment_date;               // 지급일
 	private String basic_Salary;               // 기본급여
 	private String overtime;                   // 시간외수당
@@ -28,30 +28,30 @@ public class Salary {
 	
 	public Salary() {}
 
-	public Salary(String schoolYear, String schoolMonth, String bank, String account, String salaryTotal) {
+	public Salary(String schoolYear, String schoolMonth, String profBank, String profAccount, String salaryTotal) {
 		super();
 		this.schoolYear = schoolYear;
 		this.schoolMonth = schoolMonth;
-		this.bank = bank;
-		this.account = account;
+		this.profBank = profBank;
+		this.profAccount = profAccount;
 		this.salaryTotal = salaryTotal;
 	}
 
-	public Salary(int profId, String schoolYear, String schoolMonth, String bank, String account, String salaryTotal,
-			String name, String profCollege, String birth_No, String patment_date, String basic_Salary, String overtime,
-			String bonus, String incentive, String meals, String education, String income_Tax, String national_Pension,
-			String health_Insurance, String care_Insurance, String employment_Insuracne, String other_Deducation,
-			String payment_Confirmation_Date) {
+	public Salary(int profId, String schoolYear, String schoolMonth, String profBank, String profAccount,
+			String salaryTotal, String profName, String profCollege, String profBirth, String patment_date,
+			String basic_Salary, String overtime, String bonus, String incentive, String meals, String education,
+			String income_Tax, String national_Pension, String health_Insurance, String care_Insurance,
+			String employment_Insuracne, String other_Deducation, String payment_Confirmation_Date) {
 		super();
 		this.profId = profId;
 		this.schoolYear = schoolYear;
 		this.schoolMonth = schoolMonth;
-		this.bank = bank;
-		this.account = account;
+		this.profBank = profBank;
+		this.profAccount = profAccount;
 		this.salaryTotal = salaryTotal;
-		this.name = name;
+		this.profName = profName;
 		this.profCollege = profCollege;
-		this.birth_No = birth_No;
+		this.profBirth = profBirth;
 		this.patment_date = patment_date;
 		this.basic_Salary = basic_Salary;
 		this.overtime = overtime;
@@ -92,20 +92,20 @@ public class Salary {
 		this.schoolMonth = schoolMonth;
 	}
 
-	public String getBank() {
-		return bank;
+	public String getProfBank() {
+		return profBank;
 	}
 
-	public void setBank(String bank) {
-		this.bank = bank;
+	public void setProfBank(String profBank) {
+		this.profBank = profBank;
 	}
 
-	public String getAccount() {
-		return account;
+	public String getProfAccount() {
+		return profAccount;
 	}
 
-	public void setAccount(String account) {
-		this.account = account;
+	public void setProfAccount(String profAccount) {
+		this.profAccount = profAccount;
 	}
 
 	public String getSalaryTotal() {
@@ -116,12 +116,12 @@ public class Salary {
 		this.salaryTotal = salaryTotal;
 	}
 
-	public String getName() {
-		return name;
+	public String getProfName() {
+		return profName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setProfName(String profName) {
+		this.profName = profName;
 	}
 
 	public String getProfCollege() {
@@ -132,12 +132,12 @@ public class Salary {
 		this.profCollege = profCollege;
 	}
 
-	public String getBirth_No() {
-		return birth_No;
+	public String getProfBirth() {
+		return profBirth;
 	}
 
-	public void setBirth_No(String birth_No) {
-		this.birth_No = birth_No;
+	public void setProfBirth(String profBirth) {
+		this.profBirth = profBirth;
 	}
 
 	public String getPatment_date() {
@@ -254,14 +254,15 @@ public class Salary {
 
 	@Override
 	public String toString() {
-		return "Salary [profId=" + profId + ", schoolYear=" + schoolYear + ", schoolMonth=" + schoolMonth + ", bank="
-				+ bank + ", account=" + account + ", salaryTotal=" + salaryTotal + ", name=" + name + ", profCollege="
-				+ profCollege + ", birth_No=" + birth_No + ", patment_date=" + patment_date + ", basic_Salary="
-				+ basic_Salary + ", overtime=" + overtime + ", bonus=" + bonus + ", incentive=" + incentive + ", meals="
-				+ meals + ", education=" + education + ", income_Tax=" + income_Tax + ", national_Pension="
-				+ national_Pension + ", health_Insurance=" + health_Insurance + ", care_Insurance=" + care_Insurance
-				+ ", employment_Insuracne=" + employment_Insuracne + ", other_Deducation=" + other_Deducation
-				+ ", payment_Confirmation_Date=" + payment_Confirmation_Date + "]";
+		return "Salary [profId=" + profId + ", schoolYear=" + schoolYear + ", schoolMonth=" + schoolMonth
+				+ ", profBank=" + profBank + ", profAccount=" + profAccount + ", salaryTotal=" + salaryTotal
+				+ ", profName=" + profName + ", profCollege=" + profCollege + ", profBirth=" + profBirth
+				+ ", patment_date=" + patment_date + ", basic_Salary=" + basic_Salary + ", overtime=" + overtime
+				+ ", bonus=" + bonus + ", incentive=" + incentive + ", meals=" + meals + ", education=" + education
+				+ ", income_Tax=" + income_Tax + ", national_Pension=" + national_Pension + ", health_Insurance="
+				+ health_Insurance + ", care_Insurance=" + care_Insurance + ", employment_Insuracne="
+				+ employment_Insuracne + ", other_Deducation=" + other_Deducation + ", payment_Confirmation_Date="
+				+ payment_Confirmation_Date + "]";
 	}
 
 	

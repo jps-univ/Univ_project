@@ -27,6 +27,6 @@
         <mapper resource="mappers/payment/payment-mapper.xml"/>
         <mapper resource="mappers/lecture/lecture-mapper.xml"/>
         <mapper resource="mappers/admin/adminStudent-mapper.xml"/>
-        <!-- <mapper resource="mappers/salary/salary-mapper.xml"/> -->
+ <!--        <mapper resource="mappers/salary/salary-mapper.xml"/> -->
     </mappers>
 </configuration>

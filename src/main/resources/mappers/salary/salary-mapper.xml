@@ -5,12 +5,12 @@
       <id property="profId" column="PROFESSOR_ID"/>
       <result property="schoolYear" column="SCHOOL_YEAR"/>
       <result property="schoolMonth" column="SCHOOL_MONTH"/>
-      <result property="bank" column="BANK"/>
-      <result property="account" column="ACCONUT"/>
+      <result property="profBank" column="BANK"/>
+      <result property="profAccount" column="ACCONUT"/>
       <result property="salaryTotal" column="TOTAL_SCHOLARSHIPS"/>
       <result property="name" column="NAME"/>
-      <result property="profCollege" column="PROCOLLEGE"/>
-      <result property="birth_No" column="BIRTH_NO"/>
+      <result property="profCollege" column="CATEGORY_NO"/>
+      <result property="profBirth" column="BIRTH_NO"/>
       <result property="patment_date" column="PAYMENT_DATE"/>
       <result property="basic_Salary" column="BASIC_SALARY"/>
       <result property="overtime" column="OVERTIME"/>
@@ -37,7 +37,6 @@
 			ACCOUNT,
 			SALARY_TOTAL
 		FROM TB_SALARY
-		JOIN TB_PROFESSOR USING(#{profId})
+		JOIN TB_PROFESSOR USING(PROFESSOR_ID)
 	</select>
 </mapper>
-
