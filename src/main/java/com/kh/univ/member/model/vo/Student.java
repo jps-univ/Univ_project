@@ -28,8 +28,26 @@ public class Student {
 	private String stdEntrance;		 // 입학일자
 	private String stdTel;			 // 전화번호
 	
+	private Department department;	 // department
+	
 	public Student() {}
 	
+	// 관리자
+	public Student(int stdId, String stdName, String stdBirth, String stdDepartment, String stdCourse,
+			String stdSemester, String stdSchoolReg, Department department) {
+		
+		this.stdId = stdId;
+		this.stdName = stdName;
+		this.stdBirth = stdBirth;
+		this.stdDepartment = stdDepartment;
+		this.stdCourse = stdCourse;
+		this.stdSemester = stdSemester;
+		this.stdSchoolReg = stdSchoolReg;
+		this.department = department;
+		this.department.getCollege();
+	}
+
+
 	// 전체 매개변수
 	public Student(int stdId, String stdPwd, String stdName, String stdBirth, String stdCollege, String stdDepartment, String stdCourse, String stdSemester, String stdEnterDiv, String stdImage, String stdTuition, String stdSchoolReg, String stdPhone, String stdEmail, String stdAddress, String stdAddressDetail, String stdBank, String stdAccount, String stdAccountHolder, String stdSmsAgree, String stdEmailAgree, String stdEntrance, String stdTel) 
 	{
@@ -256,6 +274,16 @@ public class Student {
 		this.stdTel = stdTel;
 	}
 
+	
+	
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
 	@Override
 	public String toString() {
 		return "Student [stdId=" + stdId + ", stdPwd=" + stdPwd + ", stdName=" + stdName + ", stdBirth=" + stdBirth
@@ -265,11 +293,15 @@ public class Student {
 				+ ", stdEmail=" + stdEmail + ", stdAddress=" + stdAddress + ", stdAddressDetail=" + stdAddressDetail
 				+ ", stdBank=" + stdBank + ", stdAccount=" + stdAccount + ", stdAccountHolder=" + stdAccountHolder
 				+ ", stdSmsAgree=" + stdSmsAgree + ", stdEmailAgree=" + stdEmailAgree + ", stdEntrance=" + stdEntrance
-				+ ", stdTel=" + stdTel + "]";
+				+ ", stdTel=" + stdTel + ", department=" + department + "]";
 	}
+
+	
+	
 	
 	
 
+	
 	
 	
 	
