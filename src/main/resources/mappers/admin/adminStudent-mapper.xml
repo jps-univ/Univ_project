@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace = "adminStudentMapper">
+
+
 	<resultMap id="StudentResultSet" type="Student">
  		<id property="stdId" column="STUDENT_ID"/>
  		<result property="stdPwd" column="STUDENT_PASSWORD"/>
@@ -25,14 +27,29 @@
  		<result property="stdEmailAgree" column="EMAIL_AGREE"/>
  		<result property="stdEntrance" column="ENTRANCE_DATE"/>
  		<result property="stdTel" column="TEL"/>
+ 		<collection property="department" resultMap="DepartmentResultSet"/>
+ 	</resultMap>
+ 	
+ 	
+ 	<resultMap id="DepartmentResultSet" type="Department">
+ 		<id property="departmentCode" column="DEPARTMENT_CODE"/>
+ 		<result property="departmentName" column="DEPARTMENT_NAME"/>
+ 		<result property="collegeCode" column="COLLEGE_CODE"/>
+ 		<result property="capacity" column="CAPACITY"/>
+ 		<collection property="college" resultMap="CollegeResultSet"/>
+ 	</resultMap>
+ 	
+ 	<resultMap type="College" id="CollegeResultSet">
+ 		<id property="collegeCode" column="COLLEGE_CODE"/>
+ 		<result property="collegeName" column="COLLEGE_NAME"/>
  	</resultMap>
  	
  	<!--관리자 학생 조회 / 수정 페이지 -> 전체 학생 조회  -->
- 	<select id ="selectAdminStudent" parameterType="Student" resultMap="StudentResultSet">
+ 	<select id ="selectAdminStudent" parameterType="String" resultMap="StudentResultSet">
  	Select STUDENT_ID,STUDENT_NAME, BIRTH_NO, DEPARTMENT_NAME, COLLEGE_NAME, COURSE,SEMESTER,SCHOOL_REG
 	FROM TB_STUDENT 
 	JOIN TB_DEPARTMENT USING (DEPARTMENT_CODE)
-	JOIN TB_COLLEGE USING(COLLEGE_NAME);
+	JOIN TB_COLLEGE USING(COLLEGE_CODE)
  	</select>
  	
  	<select id="selectOneAdminStudent" parameterType="Student" resultMap="StudentResultSet">
@@ -59,7 +76,6 @@
  			ACCOUNT_HOLDER=#{stdAccountHolder},
  			TEL=#{stdTel}
  	  WHERE STUDENT_ID= #{stdId}
- 			
  	</update>
 
 </mapper>

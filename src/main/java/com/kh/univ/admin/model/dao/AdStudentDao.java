@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.univ.member.model.vo.College;
 import com.kh.univ.member.model.vo.Student;
 
 @Repository("adStudentDao")
@@ -13,8 +14,8 @@ public class AdStudentDao {
 	
     @Autowired
     private SqlSessionTemplate sqlSession;
-    
-	public ArrayList<Student> selectList() {
+   
+	public ArrayList<College> selectList() {
         return (ArrayList) sqlSession.selectList("adminStudentMapper.selectAdminStudent");
 	}
 
@@ -27,7 +28,5 @@ public class AdStudentDao {
 		// TODO Auto-generated method stub
 		return sqlSession.update("adminStudentMapper.selectOneUpdateAdminStudent",std);
 	}
-
-
 
 }

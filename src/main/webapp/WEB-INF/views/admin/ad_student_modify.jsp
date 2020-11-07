@@ -217,8 +217,8 @@
                             <td>${s.stdId}</td> 
                             <td>${s.stdName}</td>
                             <td>${s.stdBirth}</td>
-                            <td>${s.stdCollege}</td>
-                            <td>${s.stdDepartment}</td>
+                            <td>${s.department.departmentName}</td>
+                            <td>${s.department.college.collegeName}</td>
                             <td>${s.stdCourse}</td>
                             <td>${Semester}</td>
                             <td>${s.stdSchoolReg }</td>
