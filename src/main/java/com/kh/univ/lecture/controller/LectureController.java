@@ -4,10 +4,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.univ.lecture.model.service.LectureService;
 import com.kh.univ.lecture.model.vo.Lecture;
+import com.kh.univ.lecture.model.vo.SearchCondition;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -85,21 +87,60 @@ public class LectureController {
      */
     @ResponseBody
     @RequestMapping(value = "getLectureList.do", produces = "application/json; charset=utf-8")
-    public String getLectureList() throws JsonProcessingException {
-        ArrayList<Lecture> list = lectureService.selectList();
+    public String getLectureList(
+            String classType,
+            String inputClassName,
+            int classLevel,
+            String collegeCode,
+            String departmentName,
+            String className
+    ) throws JsonProcessingException {
+        SearchCondition sc = new SearchCondition();
+
+
+        sc.setClassType(classType);
+        sc.setInputClassName(inputClassName);
+        sc.setClassLevel(classLevel);
+        sc.setCollegeCode(collegeCode);
+        sc.setDepartmentName(departmentName);
+        sc.setClassName(className);
+        ArrayList<Lecture> list = lectureService.selectList(sc);
         ObjectMapper mapper = new ObjectMapper();
 
         String jsonStr = mapper.writeValueAsString(list);
 
-        System.out.println(jsonStr);
         return jsonStr;
     }
 
+    /**
+     * 단과대학을 선택하면 해당학과들을 출력하게함
+     * @param collegeCode
+     * @return
+     * @throws JsonProcessingException
+     */
+    @ResponseBody
+    @RequestMapping(value = "checkCollege.do", produces = "application/json; charset=utf-8")
+    public String checkCollege(String collegeCode) throws JsonProcessingException {
+
+        ObjectMapper mapper = new ObjectMapper();
+        ArrayList<Lecture> list = lectureService.checkCollege(collegeCode);
+        String jsonStr = mapper.writeValueAsString(list);
+        if (collegeCode != null) {
+            return jsonStr;
+        } else {
+            return "fail!";
+        }
+    }
+
+    /**
+     * 해당학과를  선택하면 해당과목들을 출력하게함
+     * @param deptName
+     * @return
+     * @throws JsonProcessingException
+     */
     @ResponseBody
     @RequestMapping(value = "checkDept.do", produces = "application/json; charset=utf-8")
-    public String checkDept(
-            String deptName
-    ) throws JsonProcessingException {
+    public String checkDept(String deptName) throws JsonProcessingException {
 //        JSONObject job = new JSONObject(); //JSON 사용을 위해 pom.xml 에 넣은 json.simple library를 추가했기 때문 .
         ObjectMapper mapper = new ObjectMapper();
         ArrayList<Lecture> list = lectureService.checkDept(deptName);
@@ -107,7 +148,6 @@ public class LectureController {
         String jsonStr = mapper.writeValueAsString(list);
 
         if (deptName != null) {
-//            return job.toJSONString();
             return jsonStr;
         } else {
             return "fail!";

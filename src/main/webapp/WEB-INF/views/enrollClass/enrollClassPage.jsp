@@ -76,14 +76,37 @@
             }
             $('#selectDepartment').empty();
             for(var count = 0; count < changeItem.length; count++){
-                var option = $("<option value="+count+">" +changeItem[count]+"</option>");
+                var option = $("<option>" +changeItem[count]+"</option>");
                 $('#selectDepartment').append(option);
             }
 
         }
+        function changeCollege2() {
+            var college = $('#selectCollege').val();
+            $.ajax({
+               url : "checkCollege.do",
+               data : {
+                   collegeCode : college
+               },
+                dataType:"json",
+                success:function (data) {
+                    $('#selectDepartment').empty();
+                    $('#selectDepartment').append("<option>전체</option>");
+                    for(var i in data){
+                        console.log(data);
+                        var option = $("<option>"+data[i].deptCode+"</option>");
+                        $('#selectDepartment').append(option);
+                    }
+                },error:function () {
+                    alert("에러발생")
+                }
+
+            });
+        }
+
         // 과 선택시 (onchange) 전공과목을 디비에서 ajax를 통해 가져온다
         function changeDept() {
-            var dept = $('#selectDepartment option:selected').text();
+            var dept = $('#selectDepartment').val();
             $.ajax({
                 url: "checkDept.do",
                 data:{
@@ -114,6 +137,15 @@
                     'ajax': {
                         'url': 'getLectureList.do',
                         'type': 'post',
+                        'data':{
+                            'classType': $('#selectClassType').val(),
+                            'inputClassName': $('#inputSubject').val(),
+                            'classLevel' : $('#selectClassLevel').val(),
+                            'collegeCode' : $('#selectCollege').val(),
+                            'departmentName' : $("#selectDepartment").val(),
+                            'className':$('#selectMajor').val()
+
+                        },
                         'dataType': 'json',
                         'dataSrc': ''
                     },
@@ -127,7 +159,8 @@
                         {'data': 'lectureTime'},
                         {'data': 'room'},
                         {'data': 'classType'},
-                        {'data': 'gradeSize'}
+                        {'data': 'gradeSize'},
+                        {'data': 'classLevel'}
                     ],
                     'columnDefs': [{
                         'targets': 0,
@@ -141,7 +174,8 @@
                     }],
                     'order': [1, 'asc'],
                     'searching': false,
-                    'bDestroy': true
+                    'bDestroy': true,
+                    'scrollX':false
                 });
                 // Handle click on "Select all" control
                 $('#example-select-all').on('click', function () {
@@ -255,12 +289,12 @@
                                             <label class="labelPadding">교과구분</label>
                                         </th>
                                         <td>
-                                            <select>
+                                            <select id="selectClassType">
 
                                                 <option>전체</option>
-                                                <option value="A">전필</option>
-                                                <option value="B">전선</option>
-                                                <option value="C">교양</option>
+                                                <option value="전필">전필</option>
+                                                <option value="전선">전선</option>
+                                                <option value="교양">교양</option>
                                             </select>
                                         </td>
                                         <th><label for="inputSubject" class="labelPadding">입력검색</label></th>
@@ -275,7 +309,7 @@
                                             <label class="labelPadding">학부(과)</label>
                                         </th>
                                         <td>
-                                            <select id="selectCollege" style="width: 100px" onchange="changeCollege();">
+                                            <select id="selectCollege" style="width: 100px" onchange="changeCollege2();">
                                                 <option value="c0">전체</option>
                                                 <option value="c1">인문대학</option>
                                                 <option value="c2">사회과학대학</option>
@@ -293,19 +327,19 @@
                                         </th>
                                         <td>
                                             <select id="selectMajor"style="width: 200px">
-                                                <option value="">전체</option>
+                                                <option>전체</option>
                                             </select>
                                         </td>
                                         <th>
                                             <label class="labelPadding">학년</label>
                                         </th>
                                         <td>
-                                            <select>
-                                                <option>전체</option>
-                                                <option value="">1</option>
-                                                <option value="">2</option>
-                                                <option value="">3</option>
-                                                <option value="">4</option>
+                                            <select id="selectClassLevel">
+                                                <option value="0">전체</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
                                             </select>
                                         </td>
                                     </tr>
@@ -326,6 +360,7 @@
                                         <th>강의실</th>
                                         <th>이수구분</th>
                                         <th>학점</th>
+                                        <th>학년</th>
                                     </tr>
                                     </thead>
                                     <!-- tbody 태그 필요 없다. -->
