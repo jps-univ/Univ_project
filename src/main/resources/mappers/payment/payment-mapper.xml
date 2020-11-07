@@ -11,7 +11,7 @@
       <result property="totalPayment" column="TOTAL_PAYMENTS"/>
       <result property="stdName" column="STUDENT_NAME"/>
       <result property="birth_No" column="BIRTH_NO"/>
-      <result property="department" column="DEPARTMENT"/>
+      <result property="college" column="COLLEGE"/>
       <result property="address" column="ADDRESS"/>
       <result property="entranceFee" column="ENTRANCE_FEE"/>
       <result property="schoolFee" column="SCHOOL_FEE"/>
@@ -46,7 +46,7 @@
           ,TOTAL_PAYMENTS
       FROM
           TB_PAYMENT
-      JOIN TB_STUDENT USING(STUDENT_ID) 
+      JOIN TB_STUDENT USING(STUDENT_ID)
 
    </select>
    
@@ -55,7 +55,7 @@
        SELECT
 		  STUDENT_NAME,
 		  BIRTH_NO,
-		  DEPARTMENT,
+		  COLLEGE,
 		  DUE_DATE,
 		  STUDENT_ID,
 		  ADDRESS,

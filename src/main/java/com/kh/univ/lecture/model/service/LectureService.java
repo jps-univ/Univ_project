@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface LectureService {
     ArrayList<Lecture> selectList();
+
+    ArrayList<Lecture> checkDept(String deptName);
 }

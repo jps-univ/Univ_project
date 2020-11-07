@@ -4,11 +4,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.univ.lecture.model.service.LectureService;
 import com.kh.univ.lecture.model.vo.Lecture;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,9 +30,10 @@ public class LectureController {
     public String lectureEvaluation() {
         return "lectureManagement/lecture_evaluation";
     }
-    
+
     /**
      * 1_2 . 강의평가 하기전에 자신이 듣고 있는 강의 중 선택하는 창
+     *
      * @return
      */
     @RequestMapping("lecture_evaluation_select.do")
@@ -76,6 +80,7 @@ public class LectureController {
     /**
      * 강의리스트를 불러와서 수강신청하는 학생의 뷰에 뿌려줌
      * json을 string으로 변환해서 넘겨준다. DataTable()과 연동
+     *
      * @return
      */
     @ResponseBody
@@ -90,5 +95,40 @@ public class LectureController {
         return jsonStr;
     }
 
+    @ResponseBody
+    @RequestMapping(value = "checkDept.do", produces = "application/json; charset=utf-8")
+    public String checkDept(
+            String deptName
+    ) throws JsonProcessingException {
+//        JSONObject job = new JSONObject(); //JSON 사용을 위해 pom.xml 에 넣은 json.simple library를 추가했기 때문 .
+        ObjectMapper mapper = new ObjectMapper();
+        ArrayList<Lecture> list = lectureService.checkDept(deptName);
+//        job.put("list",list);
+        String jsonStr = mapper.writeValueAsString(list);
+
+        if (deptName != null) {
+//            return job.toJSONString();
+            return jsonStr;
+        } else {
+            return "fail!";
+        }
+    }
+//    @ResponseBody
+//    @RequestMapping(value = "topList1.do",produces = "application/json; charset=utf-8")
+//    public String boardTopList() throws JsonProcessingException {
+//        ArrayList<Board> list = bService.selectTopList();
+//
+//        ObjectMapper mapper = new ObjectMapper();
+//
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        mapper.setDateFormat(sdf);
+//
+//        String jsonStr = mapper.writeValueAsString(list);
+//        return jsonStr;
+//
+//    }
 
 }
+
+
+

@@ -17,4 +17,9 @@ public class LectureServiceImpl implements LectureService {
 
         return lectureDao.selectList();
     }
+
+    @Override
+    public ArrayList<Lecture> checkDept(String deptName) {
+        return lectureDao.selectList(deptName);
+    }
 }

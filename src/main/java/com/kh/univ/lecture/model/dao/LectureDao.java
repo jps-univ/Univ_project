@@ -16,4 +16,8 @@ public class LectureDao {
 //        System.out.println((ArrayList)sqlSession.selectList("lectureMapper.selectLectureAndTime"));
         return (ArrayList) sqlSession.selectList("lectureMapper.selectClassTime");
     }
+
+    public ArrayList<Lecture> selectList(String deptName) {
+        return(ArrayList) sqlSession.selectList("lectureMapper.selectMajor",deptName);
+    }
 }

@@ -15,8 +15,11 @@ public class PaymentDao {
 	private SqlSessionTemplate sqlSession;
 
 	public ArrayList<Payment> selectList() {
+		
 
 		return (ArrayList)sqlSession.selectList("PaymentMapper.selectList");
+		
+		
 	}
 
 	public ArrayList<Payment> selectDetailList() {
