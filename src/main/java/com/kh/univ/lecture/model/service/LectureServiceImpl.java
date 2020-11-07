@@ -2,6 +2,7 @@ package com.kh.univ.lecture.model.service;
 
 import com.kh.univ.lecture.model.dao.LectureDao;
 import com.kh.univ.lecture.model.vo.Lecture;
+import com.kh.univ.lecture.model.vo.SearchCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,13 +14,18 @@ public class LectureServiceImpl implements LectureService {
     private LectureDao lectureDao;
 
     @Override
-    public ArrayList<Lecture> selectList() {
+    public ArrayList<Lecture> selectList(SearchCondition sc) {
 
-        return lectureDao.selectList();
+        return lectureDao.selectList(sc);
     }
 
     @Override
     public ArrayList<Lecture> checkDept(String deptName) {
-        return lectureDao.selectList(deptName);
+        return lectureDao.checkDept(deptName);
+    }
+
+    @Override
+    public ArrayList<Lecture> checkCollege(String collegeCode) {
+        return lectureDao.checkCollege(collegeCode);
     }
 }

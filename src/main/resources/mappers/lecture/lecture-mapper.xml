@@ -27,7 +27,7 @@
         <result property="hour" column="HOUR"/>
     </resultMap>
 
-    <select id="selectClassTime" resultMap="lectureMap">
+    <select id="selectClassTime" resultMap="lectureMap" parameterType="com.kh.univ.lecture.model.vo.SearchCondition">
         SELECT a.CLASS_SEQ,
                a.CLASS_NAME,
                c.DEPARTMENT_NAME AS DEPARTMENT_CODE,
@@ -35,7 +35,8 @@
                subquery1.total,
                a.ROOM,
                a.CLASS_TYPE,
-               a.GRADE_SIZE
+               a.GRADE_SIZE,
+               a.CLASS_LEVEL
         FROM TB_CLASS a,
              (SELECT CLASS_SEQ, LISTAGG(CONCAT(DAY, HOUR), '/') WITHIN GROUP (ORDER BY CLASS_TIME_SEQ ) AS total
               FROM TB_CLASS_TIME b
@@ -45,10 +46,34 @@
         WHERE subquery1.CLASS_SEQ = a.CLASS_SEQ
           AND a.DEPARTMENT_CODE = c.DEPARTMENT_CODE
           AND a.PROFESSOR_ID = d.PROFESSOR_ID
+         <if test="!classType.equals('전체')">
+            AND a.CLASS_TYPE = #{classType}
+         </if>
+        <if test="inputClassName != null">
+            AND a.CLASS_NAME LIKE '%'|| #{inputClassName} || '%'
+        </if>
+        <if test="classLevel != 0">
+            AND a.CLASS_LEVEL = #{classLevel}
+        </if>
+        <if test="!collegeCode.equals('c0')">
+            AND c.COLLEGE_CODE = #{collegeCode}
+        </if>
+        <if test="!departmentName.equals('전체')">
+            AND c.DEPARTMENT_NAME=#{departmentName}
+        </if>
+        <if test="!className.equals('전체')">
+            AND a.CLASS_NAME = #{className}
+        </if>
     </select>
     <select id="selectMajor" resultMap="lectureMap" parameterType="Lecture">
         SELECT a.CLASS_NAME
         FROM TB_CLASS a, TB_DEPARTMENT b
         WHERE a.DEPARTMENT_CODE=b.DEPARTMENT_CODE AND b.DEPARTMENT_NAME=#{className}
     </select>
+    <select id="selectDept" resultMap="lectureMap" parameterType="Lecture">
+        SELECT DEPARTMENT_NAME AS DEPARTMENT_CODE
+        FROM TB_DEPARTMENT
+        WHERE COLLEGE_CODE = #{collegeCode}
+    </select>
+
 </mapper>
