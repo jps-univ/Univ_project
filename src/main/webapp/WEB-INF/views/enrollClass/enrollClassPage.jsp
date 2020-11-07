@@ -41,6 +41,16 @@
         td.dt-body-center {
             text-align: center;
         }
+        .top{
+            background-color: #edf1fc;
+            border-bottom: solid #4e73df;
+            height: 100px;
+            padding: 40px;
+            position: relative;
+            bottom: 25px;
+            white-space: nowrap;
+            color: #4e73df;
+        }
     </style>
     <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
     <script>
@@ -93,7 +103,6 @@
                     $('#selectDepartment').empty();
                     $('#selectDepartment').append("<option>전체</option>");
                     for(var i in data){
-                        console.log(data);
                         var option = $("<option>"+data[i].deptCode+"</option>");
                         $('#selectDepartment').append(option);
                     }
@@ -256,16 +265,18 @@
 
             <!-- Main Content -->
             <div id="content">
-
                 <!-- Topbar -->
                 <c:import url="../common/topbar.jsp"/>
                 <!-- End of Topbar -->
+                <div class="top">
+                    <h1>수강신청</h1>
+                </div>
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">수강신청</h1>
+<%--                    <h1 class="top h3 mb-2 text-gray-800">수강신청</h1>--%>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -300,7 +311,7 @@
                                         <th><label for="inputSubject" class="labelPadding">입력검색</label></th>
                                         <td><input type="text" id="inputSubject" name="inputSubject" value=""
                                                    placeholder="교과목명 입력">
-                                            <button id="searchBtn" type="button" class="btn btn-primary btn-sm">테스트
+                                            <button id="searchBtn" type="button" class="btn btn-primary btn-sm">검색
                                             </button>
                                         </td>
                                     </tr>
