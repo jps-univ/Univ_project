@@ -2,18 +2,18 @@ package com.kh.univ.payment.model.vo;
 
 public class Payment {
 	
-	private int payment_No;              // 등록금번호
+	private int paymentNo;              // 등록금번호
 	private int stdId;				     // 학생번호(학번)
 	private String schoolYear;           // 년도(학년도)
-	private String semester;                // 학기
+	private String stdSemester;                // 학기
 	private String dueDate;              // 등록일자(납부일)
 	private String paymentAmount;        // 등록금액(장학금제외금액합산)
 	private String totalScholarships;    // 사전감면(장학금합산)
-	private String totalPayment;         // 납부금액(납부총액)
+	private String totalPayments;         // 납부금액(납부총액)
 	private String stdName;              // 이름
-	private String birth_No;             // 생년월일
-	private String college;           // 학과
-	private String address;              // 주소
+	private String stdBirth;             // 생년월일
+	private String stdCollege;           // 학과
+	private String stdAddress;              // 주소
 	private String entranceFee;          // 입학금
 	private String schoolFee;            // 수업료
 	private String campusScholarship;    // 교내장학금
@@ -26,36 +26,36 @@ public class Payment {
 	
 	public Payment() {}
 
-	public Payment(int payment_No, String schoolYear, String semester, String dueDate, String paymentAmount,
-			String totalScholarships, String totalPayment) {
+	public Payment(int paymentNo, String schoolYear, String stdSemester, String dueDate, String paymentAmount,
+			String totalScholarships, String totalPayments) {
 		super();
-		this.payment_No = payment_No;
+		this.paymentNo = paymentNo;
 		this.schoolYear = schoolYear;
-		this.semester = semester;
+		this.stdSemester = stdSemester;
 		this.dueDate = dueDate;
 		this.paymentAmount = paymentAmount;
 		this.totalScholarships = totalScholarships;
-		this.totalPayment = totalPayment;
+		this.totalPayments = totalPayments;
 	}
 
-	public Payment(int payment_No, int stdId, String schoolYear, String semester, String dueDate, String paymentAmount,
-			String totalScholarships, String totalPayment, String stdName, String birth_No, String college,
-			String address, String entranceFee, String schoolFee, String campusScholarship, String suburbanScholartship,
+	public Payment(int paymentNo, int stdId, String schoolYear, String stdSemester, String dueDate, String paymentAmount,
+			String totalScholarships, String totalPayments, String stdName, String stdBirth, String stdCollege,
+			String stdAddress, String entranceFee, String schoolFee, String campusScholarship, String suburbanScholartship,
 			String nationalScholarship, String paperGuidanceFee, String studentFees, String alumniFee,
 			String makePaymentDate) {
 		super();
-		this.payment_No = payment_No;
+		this.paymentNo = paymentNo;
 		this.stdId = stdId;
 		this.schoolYear = schoolYear;
-		this.semester = semester;
+		this.stdSemester = stdSemester;
 		this.dueDate = dueDate;
 		this.paymentAmount = paymentAmount;
 		this.totalScholarships = totalScholarships;
-		this.totalPayment = totalPayment;
+		this.totalPayments = totalPayments;
 		this.stdName = stdName;
-		this.birth_No = birth_No;
-		this.college = college;
-		this.address = address;
+		this.stdBirth = stdBirth;
+		this.stdCollege = stdCollege;
+		this.stdAddress = stdAddress;
 		this.entranceFee = entranceFee;
 		this.schoolFee = schoolFee;
 		this.campusScholarship = campusScholarship;
@@ -67,12 +67,12 @@ public class Payment {
 		this.makePaymentDate = makePaymentDate;
 	}
 
-	public int getPayment_No() {
-		return payment_No;
+	public int getPaymentNo() {
+		return paymentNo;
 	}
 
-	public void setPayment_No(int payment_No) {
-		this.payment_No = payment_No;
+	public void setPaymentNo(int paymentNo) {
+		this.paymentNo = paymentNo;
 	}
 
 	public int getStdId() {
@@ -91,12 +91,12 @@ public class Payment {
 		this.schoolYear = schoolYear;
 	}
 
-	public String getSemester() {
-		return semester;
+	public String getStdSemester() {
+		return stdSemester;
 	}
 
-	public void setSemester(String semester) {
-		this.semester = semester;
+	public void setStdSemester(String stdSemester) {
+		this.stdSemester = stdSemester;
 	}
 
 	public String getDueDate() {
@@ -123,12 +123,12 @@ public class Payment {
 		this.totalScholarships = totalScholarships;
 	}
 
-	public String getTotalPayment() {
-		return totalPayment;
+	public String getTotalPayments() {
+		return totalPayments;
 	}
 
-	public void setTotalPayment(String totalPayment) {
-		this.totalPayment = totalPayment;
+	public void setTotalPayments(String totalPayments) {
+		this.totalPayments = totalPayments;
 	}
 
 	public String getStdName() {
@@ -139,28 +139,28 @@ public class Payment {
 		this.stdName = stdName;
 	}
 
-	public String getBirth_No() {
-		return birth_No;
+	public String getStdBirth() {
+		return stdBirth;
 	}
 
-	public void setBirth_No(String birth_No) {
-		this.birth_No = birth_No;
+	public void setStdBirth(String stdBirth) {
+		this.stdBirth = stdBirth;
 	}
 
-	public String getCollege() {
-		return college;
+	public String getStdCollege() {
+		return stdCollege;
 	}
 
-	public void setCollege(String college) {
-		this.college = college;
+	public void setStdCollege(String stdCollege) {
+		this.stdCollege = stdCollege;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getStdAddress() {
+		return stdAddress;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setStdAddress(String stdAddress) {
+		this.stdAddress = stdAddress;
 	}
 
 	public String getEntranceFee() {
@@ -237,15 +237,16 @@ public class Payment {
 
 	@Override
 	public String toString() {
-		return "Payment [payment_No=" + payment_No + ", stdId=" + stdId + ", schoolYear=" + schoolYear + ", semester="
-				+ semester + ", dueDate=" + dueDate + ", paymentAmount=" + paymentAmount + ", totalScholarships="
-				+ totalScholarships + ", totalPayment=" + totalPayment + ", stdName=" + stdName + ", birth_No="
-				+ birth_No + ", college=" + college + ", address=" + address + ", entranceFee=" + entranceFee
-				+ ", schoolFee=" + schoolFee + ", campusScholarship=" + campusScholarship + ", suburbanScholartship="
-				+ suburbanScholartship + ", nationalScholarship=" + nationalScholarship + ", paperGuidanceFee="
-				+ paperGuidanceFee + ", studentFees=" + studentFees + ", alumniFee=" + alumniFee + ", makePaymentDate="
-				+ makePaymentDate + "]";
+		return "Payment [paymentNo=" + paymentNo + ", stdId=" + stdId + ", schoolYear=" + schoolYear + ", stdSemester="
+				+ stdSemester + ", dueDate=" + dueDate + ", paymentAmount=" + paymentAmount + ", totalScholarships="
+				+ totalScholarships + ", totalPayments=" + totalPayments + ", stdName=" + stdName + ", stdBirth="
+				+ stdBirth + ", stdCollege=" + stdCollege + ", stdAddress=" + stdAddress + ", entranceFee="
+				+ entranceFee + ", schoolFee=" + schoolFee + ", campusScholarship=" + campusScholarship
+				+ ", suburbanScholartship=" + suburbanScholartship + ", nationalScholarship=" + nationalScholarship
+				+ ", paperGuidanceFee=" + paperGuidanceFee + ", studentFees=" + studentFees + ", alumniFee=" + alumniFee
+				+ ", makePaymentDate=" + makePaymentDate + "]";
 	}
 
+	
 	
 }
