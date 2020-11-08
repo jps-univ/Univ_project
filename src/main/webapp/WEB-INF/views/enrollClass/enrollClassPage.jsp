@@ -41,7 +41,8 @@
         td.dt-body-center {
             text-align: center;
         }
-        .top{
+
+        .top {
             background-color: #edf1fc;
             border-bottom: solid #4e73df;
             height: 100px;
@@ -54,59 +55,62 @@
     </style>
     <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
     <script>
-        function changeCollege(){
+        function changeCollege() {
             $('#selectMajor').empty();
             $('#selectMajor').append("<option>전체</option>");
             var c0 = ["전체"];
-            var c1 = ["전체","국어국문학과","영여영문학과","중어중문학과","일어일문학과","유아교육과"];
-            var c2 = ["전체","행정학과","경영학과","경제학과","관광경영학과","사회복지학과"];
-            var c3 = ["전체","수학과","물리학과","화학과","생명과학과"];
-            var c4 = ["전체","전자공학과","전기공학과","토목공학과","기계공학과","화학공학과"];
-            var c5 = ["전체","컴퓨터공학과","정보통신공학과","임베디드공학과"];
-            var c6 = ["전체","미술학과","무용학과","공연예술학과","실용음악과","체육학과"];
+            var c1 = ["전체", "국어국문학과", "영여영문학과", "중어중문학과", "일어일문학과", "유아교육과"];
+            var c2 = ["전체", "행정학과", "경영학과", "경제학과", "관광경영학과", "사회복지학과"];
+            var c3 = ["전체", "수학과", "물리학과", "화학과", "생명과학과"];
+            var c4 = ["전체", "전자공학과", "전기공학과", "토목공학과", "기계공학과", "화학공학과"];
+            var c5 = ["전체", "컴퓨터공학과", "정보통신공학과", "임베디드공학과"];
+            var c6 = ["전체", "미술학과", "무용학과", "공연예술학과", "실용음악과", "체육학과"];
             var selectCollege = $("#selectCollege option:selected").val();
 
             var changeItem;
 
-            if(selectCollege === 'c1'){
+            if (selectCollege === 'c1') {
                 changeItem = c1;
-            }else if(selectCollege === 'c2'){
+            } else if (selectCollege === 'c2') {
                 changeItem = c2;
-            }else if(selectCollege === 'c3'){
+            } else if (selectCollege === 'c3') {
                 changeItem = c3;
-            }else if(selectCollege === 'c4'){
+            } else if (selectCollege === 'c4') {
                 changeItem = c4;
-            }else if(selectCollege === 'c5'){
+            } else if (selectCollege === 'c5') {
                 changeItem = c5;
-            }else if(selectCollege === 'c6'){
+            } else if (selectCollege === 'c6') {
                 changeItem = c6;
-            }else if(selectCollege === 'c0'){
+            } else if (selectCollege === 'c0') {
                 changeItem = c0;
 
             }
             $('#selectDepartment').empty();
-            for(var count = 0; count < changeItem.length; count++){
-                var option = $("<option>" +changeItem[count]+"</option>");
+            for (var count = 0; count < changeItem.length; count++) {
+                var option = $("<option>" + changeItem[count] + "</option>");
                 $('#selectDepartment').append(option);
             }
 
         }
+
         function changeCollege2() {
             var college = $('#selectCollege').val();
             $.ajax({
-               url : "checkCollege.do",
-               data : {
-                   collegeCode : college
-               },
-                dataType:"json",
-                success:function (data) {
+                url: "checkCollege.do",
+                data: {
+                    collegeCode: college
+                },
+                dataType: "json",
+                success: function (data) {
                     $('#selectDepartment').empty();
                     $('#selectDepartment').append("<option>전체</option>");
-                    for(var i in data){
-                        var option = $("<option>"+data[i].deptCode+"</option>");
+                    $('#selectMajor').empty();
+                    $('#selectMajor').append("<option>전체</option>");
+                    for (var i in data) {
+                        var option = $("<option>" + data[i].deptCode + "</option>");
                         $('#selectDepartment').append(option);
                     }
-                },error:function () {
+                }, error: function () {
                     alert("에러발생")
                 }
 
@@ -118,18 +122,18 @@
             var dept = $('#selectDepartment').val();
             $.ajax({
                 url: "checkDept.do",
-                data:{
-                    deptName:dept
+                data: {
+                    deptName: dept
                 },
-                dataType:"json",
-                success:function (data) {
+                dataType: "json",
+                success: function (data) {
                     $('#selectMajor').empty();
                     $('#selectMajor').append("<option>전체</option>");
-                    for(var i in data){
-                        var option = $("<option>"+data[i].className+"</option>");
+                    for (var i in data) {
+                        var option = $("<option>" + data[i].className + "</option>");
                         $('#selectMajor').append(option);
                     }
-                },error:function () {
+                }, error: function () {
                     alert("데이터가 안갔습니다.")
                 }
             });
@@ -140,19 +144,19 @@
 
             // DB에서 데이터 뽑아와서 테이블로 출력하는 datatables 라이브러리 사용
             $('#searchBtn').click(function () {
-                var table = $('#testTb').DataTable({
+                var table = $('#registerTable').DataTable({
 
                     //컨트롤러에서 보내줄 때 해당 함수의 반환형은 String이어야 하고 리스트를 뽑아온다고 하면 'dataSrc' : '' 로 해줘야함.
                     'ajax': {
                         'url': 'getLectureList.do',
                         'type': 'post',
-                        'data':{
+                        'data': {
                             'classType': $('#selectClassType').val(),
                             'inputClassName': $('#inputSubject').val(),
-                            'classLevel' : $('#selectClassLevel').val(),
-                            'collegeCode' : $('#selectCollege').val(),
-                            'departmentName' : $("#selectDepartment").val(),
-                            'className':$('#selectMajor').val()
+                            'classLevel': $('#selectClassLevel').val(),
+                            'collegeCode': $('#selectCollege').val(),
+                            'departmentName': $("#selectDepartment").val(),
+                            'className': $('#selectMajor').val()
 
                         },
                         'dataType': 'json',
@@ -171,46 +175,69 @@
                         {'data': 'gradeSize'},
                         {'data': 'classLevel'}
                     ],
-                    'columnDefs': [{
-                        'targets': 0,
-                        'searchable': false,
-                        'orderable': false,
-                        'className': 'dt-body-center',
-                        'render': function (data, type, full, meta) {
-                            return '<input type="checkbox" name="id[]" value="'
-                                + $('<div/>').text(data).html() + '">';
+                    // 'columnDefs': [{
+                    //     'targets': 0,
+                    //     'searchable': false,
+                    //     'orderable': false,
+                    //     'className': 'dt-body-center',
+                    //     'render': function (data, type, full, meta) {
+                    //         return '<input type="checkbox" name="id[]" value="'
+                    //             + $('<div/>').text(data).html() + '">';
+                    //     }
+                    // }],
+                    // 'order': [1, 'asc']
+                    'columnDefs': [
+                        {
+                            'targets': 0,
+                            'visible': false
+                        },
+
+                        {
+                            'targets': [2,4],
+                            'width': '15%'
+                        },
+                        {
+                            'targets': [3,5,6],
+                            'width': '10%'
+                        }, {
+                            'targets': [7, 8],
+                            'width': '8%'
                         }
-                    }],
-                    'order': [1, 'asc'],
+                    ],
                     'searching': false,
+                    'paging': true,
                     'bDestroy': true,
-                    'scrollX':false
-                });
-                // Handle click on "Select all" control
-                $('#example-select-all').on('click', function () {
-                    // Check/uncheck all checkboxes in the table
-                    var rows = table.rows({'search': 'applied'}).nodes();
-                    $('input[type="checkbox"]', rows).prop('checked', this.checked);
+                    'scrollX': false
                 });
 
-                // Handle click on checkbox to set state of "Select all" control
-                $('#testTb tbody').on('change', 'input[type="checkbox"]', function () {
-                    // If checkbox is not checked
-                    if (!this.checked) {
-                        var el = $('#example-select-all').get(0);
-                        // If "Select all" control is checked and has 'indeterminate' property
-                        if (el && el.checked && ('indeterminate' in el)) {
-                            // Set visual state of "Select all" control
-                            // as 'indeterminate'
-                            el.indeterminate = true;
-                        }
-                    }
-                });
+                // // Handle click on "Select all" control
+                // $('#example-select-all').on('click', function () {
+                //     // Check/uncheck all checkboxes in the table
+                //     var rows = table.rows({'search': 'applied'}).nodes();
+                //     $('input[type="checkbox"]', rows).prop('checked', this.checked);
+                // });
+                //
+                // // Handle click on checkbox to set state of "Select all" control
+                // $('#registerTable tbody').on('change', 'input[type="checkbox"]', function () {
+                //     // If checkbox is not checked
+                //     if (!this.checked) {
+                //         var el = $('#example-select-all').get(0);
+                //         // If "Select all" control is checked and has 'indeterminate' property
+                //         if (el && el.checked && ('indeterminate' in el)) {
+                //             // Set visual state of "Select all" control
+                //             // as 'indeterminate'
+                //             el.indeterminate = true;
+                //         }
+                //     }
+                // });
             });
+        });
+        $('#registerTable').on('click',function () {
+           alert($(this).val());
         });
     </script>
 
-<%--    수강신청,장바구니 탭 클릭 시 화면 변화--%>
+    <%--    수강신청,장바구니 탭 클릭 시 화면 변화--%>
     <script>
         $(document).ready(function () {
             $('#enrollCard').css({
@@ -276,17 +303,19 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-<%--                    <h1 class="top h3 mb-2 text-gray-800">수강신청</h1>--%>
+                    <%--                    <h1 class="top h3 mb-2 text-gray-800">수강신청</h1>--%>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3" style="height: 75px;">
                             <div>
                                 <div id="enrollCard" class="card left active"
-                                     style="float: left; height: 100%; width: 50%; text-align: center; padding-top: 10px; padding-bottom: 5px;">수강신청
+                                     style="float: left; height: 100%; width: 50%; text-align: center; padding-top: 10px; padding-bottom: 5px;">
+                                    수강신청
                                 </div>
                                 <div id="basketCard" class="card right"
-                                     style="float: right; width: 50%; height: 100%;text-align: center; padding-top: 10px; padding-bottom: 5px;">장바구니
+                                     style="float: right; width: 50%; height: 100%;text-align: center; padding-top: 10px; padding-bottom: 5px;">
+                                    장바구니
                                 </div>
                             </div>
                         </div>
@@ -320,7 +349,8 @@
                                             <label class="labelPadding">학부(과)</label>
                                         </th>
                                         <td>
-                                            <select id="selectCollege" style="width: 100px" onchange="changeCollege2();">
+                                            <select id="selectCollege" style="width: 100px"
+                                                    onchange="changeCollege2();">
                                                 <option value="c0">전체</option>
                                                 <option value="c1">인문대학</option>
                                                 <option value="c2">사회과학대학</option>
@@ -337,7 +367,7 @@
                                             <label class="labelPadding">전공</label>
                                         </th>
                                         <td>
-                                            <select id="selectMajor"style="width: 200px">
+                                            <select id="selectMajor" style="width: 200px">
                                                 <option>전체</option>
                                             </select>
                                         </td>
@@ -356,22 +386,22 @@
                                     </tr>
                                     </tbody>
                                 </table>
-                                <table id="testTb" class="table table-striped table-bordered table-hover"
-                                       cellspacing="0">
+                                <table id="registerTable" class="table table-striped table-bordered table-hover"
+                                       cellspacing="0" style="width: 97%;">
                                     <thead>
                                     <tr>
-                                        <th style="text-align: center;"><input name="select_all" value="1" id="example-select-all" type="checkbox" >
-                                        </th>
+                                        <%--                                        <th style="text-align: center;"><input name="select_all" value="1" id="example-select-all" type="checkbox" ></th>--%>
 
-                                        <%--                                          <th>No</th>--%>
+
+                                        <th style="display: none">강의시퀀스</th>
                                         <th>강의명</th>
-                                        <th>학과명</th>
-                                        <th>교수명</th>
-                                        <th>강의시간</th>
-                                        <th>강의실</th>
-                                        <th>이수구분</th>
-                                        <th>학점</th>
-                                        <th>학년</th>
+                                        <th style="width: 15%">학과명</th>
+                                        <th style="width: 10%">교수명</th>
+                                        <th style="width: 15%">강의시간</th>
+                                        <th style="width: 10%">강의실</th>
+                                        <th style="width: 10%">이수구분</th>
+                                        <th style="width: 8%">학점</th>
+                                        <th style="width: 8%">학년</th>
                                     </tr>
                                     </thead>
                                     <!-- tbody 태그 필요 없다. -->
@@ -381,11 +411,15 @@
 
                             </div>
                         </div>
-                       <div class="buttonArea card-body" align="center">
-                           <button id="enrollBtn" class="btn btn-success" onclick="alert('수강신청이 정상적으로 완료되었습니다.');">수강신청</button>
+                        <div class="buttonArea card-body" align="center">
+                            <button id="enrollBtn" class="btn btn-success" onclick="alert('수강신청이 정상적으로 완료되었습니다.');">
+                                수강신청
+                            </button>
 
-                           <button id="basketBtn" class="btn btn-secondary" onclick="alert('장바구니에 정상적으로 담겼습니다.')">장바구니</button>
-                       </div>
+                            <button id="basketBtn" class="btn btn-secondary" onclick="alert('장바구니에 정상적으로 담겼습니다.')">
+                                장바구니
+                            </button>
+                        </div>
                     </div>
 
                 </div>
