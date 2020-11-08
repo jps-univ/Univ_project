@@ -24,4 +24,14 @@ public class StudentLoginSerivceImpl implements StudentLoginSevice {
 		return sDao.findByNameAndEmail(student);
 	}
 
+	@Override
+	public Student findByIdAndNameAndEmail(Student student) {
+		return sDao.findByIdAndNameAndEmail(student);
+	}
+
+	@Override
+	public int updateById(Student student) {
+		return sDao.updateById(student);
+	}
+
 }

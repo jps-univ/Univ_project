@@ -31,4 +31,9 @@ public class StudentMyPageDao
 	{
 		return sqlSession.update("StudentMyPageMapper.changeStdPassword", student);
 	}
+
+	public Student selectStdInfo(Student student) 
+	{
+		return (Student)sqlSession.selectOne("StudentMyPageMapper.selectStdInfo", student);
+	}
 }

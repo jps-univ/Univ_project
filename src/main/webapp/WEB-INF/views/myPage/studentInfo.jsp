@@ -112,7 +112,7 @@
 										</tr>
 										<tr>
 											<th>학부(과)</th>
-											<td>${ loginUser.stdDepartment }</td>
+											<td><%-- ${ departmentName } --%></td>
 											<th>과정</th>
 											<td>${ loginUser.stdCourse }</td>
 										</tr>
@@ -298,6 +298,12 @@
 
 	
 	<script type="text/javascript">
+		window.onload = function()
+		{
+			<c:url var="myInfo" value="selectStudentInfo.do"/>
+			location.href='${myInfo}'
+		};
+		
 		function personalBtn()
 		{
 			var stdId = ${ loginUser.stdId };

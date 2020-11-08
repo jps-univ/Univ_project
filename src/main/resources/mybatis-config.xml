@@ -16,6 +16,7 @@
 		<typeAlias type="com.kh.univ.lecture.model.vo.LectureTime" alias="LectureTime"/>
         <typeAlias type="com.kh.univ.test.model.vo.Test" alias="Test"/>
         <typeAlias type="com.kh.univ.salary.model.vo.Salary" alias="Salary"/>
+        <typeAlias type="com.kh.univ.register.model.vo.Register" alias="Register"/>
         
         <!-- <typeAlias type="com.kh.spring.board.model.vo.Board" alias="Board"/>
         <typeAlias type="com.kh.spring.board.model.vo.Reply" alias="Reply"/> -->

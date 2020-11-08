@@ -26,4 +26,12 @@ public class StudentLoginDao {
 		return sqlSession.selectOne("StudentMapper.findByNameAndEmail",student);
 	}
 
+	public Student findByIdAndNameAndEmail(Student student) {
+		return sqlSession.selectOne("StudentMapper.findByIdAndNameAndEmail",student);
+	}
+
+	public int updateById(Student student) {
+		return sqlSession.update("StudentMapper.updateById",student);
+	}
+
 }

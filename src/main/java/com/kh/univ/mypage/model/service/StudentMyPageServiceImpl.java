@@ -35,4 +35,10 @@ public class StudentMyPageServiceImpl implements StudentMyPageService
 	{
 		return msDao.changeStdPwd(student);
 	}
+
+	@Override
+	public Student selectStdInfo(Student student) 
+	{
+		return msDao.selectStdInfo(student);
+	}
 }

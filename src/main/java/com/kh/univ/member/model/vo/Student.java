@@ -2,6 +2,8 @@ package com.kh.univ.member.model.vo;
 
 import java.sql.Date;
 
+import com.kh.univ.register.model.vo.Register;
+
 public class Student {
 	
 	private int stdId;				 // 학생번호(학번)
@@ -15,7 +17,7 @@ public class Student {
 	private String stdEnterDiv;		 // 입학구분
 	private String stdImage;		 // 이미지
 	private String stdTuition;		 // 등록금
-    private String stdSchoolReg;	 // 학적
+    private String stdSchoolReg;	 // 학적			--> 삭제 해야함 
 	private String stdPhone;		 // 핸드폰번호
 	private String stdEmail;		 // 이메일
 	private String stdAddress;		 // 주소
@@ -29,6 +31,7 @@ public class Student {
 	private String stdTel;			 // 전화번호
 	
 	private Department department;	 // department
+	private Register register;
 	
 	public Student() {}
 	
@@ -44,7 +47,7 @@ public class Student {
 		this.stdSemester = stdSemester;
 		this.stdSchoolReg = stdSchoolReg;
 		this.department = department;
-		this.department.getCollege();
+		
 	}
 
 
@@ -284,6 +287,15 @@ public class Student {
 		this.department = department;
 	}
 
+	
+	public Register getRegister() {
+		return register;
+	}
+
+	public void setRegister(Register register) {
+		this.register = register;
+	}
+
 	@Override
 	public String toString() {
 		return "Student [stdId=" + stdId + ", stdPwd=" + stdPwd + ", stdName=" + stdName + ", stdBirth=" + stdBirth
@@ -293,8 +305,10 @@ public class Student {
 				+ ", stdEmail=" + stdEmail + ", stdAddress=" + stdAddress + ", stdAddressDetail=" + stdAddressDetail
 				+ ", stdBank=" + stdBank + ", stdAccount=" + stdAccount + ", stdAccountHolder=" + stdAccountHolder
 				+ ", stdSmsAgree=" + stdSmsAgree + ", stdEmailAgree=" + stdEmailAgree + ", stdEntrance=" + stdEntrance
-				+ ", stdTel=" + stdTel + ", department=" + department + "]";
+				+ ", stdTel=" + stdTel + ", department=" + department + ", register=" + register + "]";
 	}
+
+
 
 	
 	

@@ -61,7 +61,7 @@
                 </div>
                 <div class="findArea">
                     <button type="button" id="findTdBtn" class="btn-default" data-toggle="modal" data-target="#myModal">아이디찾기</button>
-                    <button type="button" class="btn-default" data-toggle="modal" data-target="#myModal2">비밀번호찾기</button>
+                    <button type="button" id="findTdPwdBtn" class="btn-default" data-toggle="modal" data-target="#myModal2">비밀번호찾기</button>
                 </div>
                 <div class="submit">
                     <button type="submit" class="btn btn-primary" id="loginBtn">로그인</button><a href="loginProfessor.do">@</a>
@@ -79,7 +79,7 @@
                 <h4 class="modal-title">아이디 찾기</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="number">
+                    <div class="number" id="idNumberArea">
                     <div>
                         <div class="circle">
                             <span class="number1">1</span>
@@ -115,7 +115,7 @@
                             </span>
                         </div>
                     </div>
-                    <div id="findIdArea">
+                    <div id="findIdArea" style="text-align:center;">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -136,49 +136,40 @@
                 <h4 class="modal-title">비밀번호 찾기</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="number">
+                    <div class="number" id="pwdNumberArea">
                         <div>
                             <div class="circle">
                                 <span class="number1">1</span>
                             </div>
                             <span>정보입력</span>
                         </div>
-                            <div style="width: 16%;">
+                            <div style="width: 25%;">
                                 <hr>
                             </div>
                         <div>    
                             <div class="circle circle_gray">
                                 <span class="number2">2</span>
                             </div>
-                            <span style="color: rgba(0,0,0,.38);">인증번호확인</span>
+                            <span style="color: rgba(0,0,0,.38);">인증번호전송</span>
                         </div>
-                            <div style="width: 16%;">
+                            <div style="width: 25%;">
                                 <hr>
                             </div>
                         <div>    
                             <div class="circle circle_gray">
-                                <span class="number2">3</span>
-                            </div>
-                            <span style="color: rgba(0,0,0,.38);">비밀번호변경</span>
-                        </div>
-                            <div style="width: 19%;">
-                                <hr>
-                            </div>
-                        <div>    
-                            <div class="circle circle_gray">
-                                <span class="number2">4</span>
+                                <span class="number3">3</span>
                             </div>
                             <span style="color: rgba(0,0,0,.38);">완료</span>
                         </div>
                             
                         </div>
                         <hr>
-                        <div>
+                        <div id="findPwdInfoArea">
                             <div class="login-wrapper">
                                 <span>
                                     <div class="userId">
                                         <label for="userID" style="left: 0px; right: auto; position: absolute;">아이디</label>
-                                        <input maxlength="10" required="required" id="userID" type="text" onblur="changeLable(this)" style="border:none;">
+                                        <input class="userID" required="required" id="pwdfindID" type="text" onblur="changeLable(this)" style="border:none;">
                                     </div>
                                 </span>
                             </div>
@@ -186,7 +177,7 @@
                                 <span>
                                     <div class="userPwd">
                                         <label for="userPWD" style="left: 0px; right: auto; position: absolute;">성명</label>
-                                        <input maxlength="10" required="required" id="userPWD" type="text" onblur="changeLable(this)" style="border:none;">
+                                        <input class="userID" maxlength="10" required="required" id="pwdfindName" type="text" onblur="changeLable(this)" style="border:none;">
                                     </div>
                                 </span>
                             </div>
@@ -194,17 +185,19 @@
                                 <span>
                                     <div class="userPwd" style="margin-bottom: 0;">
                                         <label for="userPWD" style="left: 0px; right: auto; position: absolute;">이메일</label>
-                                        <input maxlength="10" required="required" id="userPWD" type="text" onblur="changeLable(this)" style="border:none;">
+                                        <input class="userID" required="required" id="pwdfindEmail" type="text" onblur="changeLable(this)" style="border:none;">
                                     </div>
                                     <div style="margin-top: 9px; margin-bottom: 25px; font-size: 10pt;">등록하신 메일로 인증번호가 발송됩니다.</div>
                                 </span>
                             </div>
                         </div>
+                        <div id="findPwdArea" style="text-align:center;">
+                    	</div>
                     </div>
 
                 <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+                <button type="button" class="btn btn-default"  id="findPwdBtn">확인</button>
                 </div>
             </div>
             </div>
@@ -219,10 +212,11 @@
 
     <!-- 입력창 -->
     <script>
-
-        $(".userID, .userPWD").on('click',function(){
+		
+        $(".userID, .userPWD").on('click, focus',function(){
             $(this).prev().css({"font-size":"15px","bottom":"26px"});
         });
+       
 
         function changeLable(elm){
             if($(elm).val() == ""){
@@ -233,42 +227,98 @@
         $(function(){
         	$("#loginBtn").on('click',function(){
         		location.href = "login.do";
-
         	});
         });
         
+        // 아이디 찾기
         $('#findIdBtn').on('click',function(){
-        	$.ajax({
-        		type:"post",
-        		url:"findId.do",
-        		data : {
-        			stdName : $("#stdName").val(),
-        			stdEmail : $("#stdEmail").val()
-        		},
-        		success : function(data) {
-        			console.log(data);
-        			if (data.result == "OK") {
-        				$("#findIdInfoArea").hide();
-            			$("#findIdArea").show();
-            			$("#findIdArea").html($("<div>").text("당신의 아이디는 " + data.stdID  + " 입니다."));
-            			$(".number2").parent().attr("class","circle");
-            			$(".number1").parent().attr("class","circle circle_gray");
-        			} else {
-        				alert("입력하신 정보가 올바르지 않습니다.");
-        			}
-        			
-        		},
-        		error : function (error) {
-        			alert("오류발생");
-        		}
-        		
-        	});
+        	
+        	if ($("#findIdArea").css("display") == "none") {
+        	
+	        	$.ajax({
+	        		type:"post",
+	        		url:"findId.do",
+	        		data : {
+	          			stdName : $("#stdName").val(),
+	        			stdEmail : $("#stdEmail").val()
+	        		},
+	        		success : function(data) {
+	        			console.log(data);
+	        			if (data.result == "OK") {
+	        				$("#findIdInfoArea").hide();
+	            			$("#findIdArea").show();
+	            			$("#findIdArea").html($("<div>").text("당신의 아이디는 " + data.stdID  + " 입니다."));
+	            			$("#idNumberArea .number2").parent().attr("class","circle");
+	            			$("#idNumberArea .number1").parent().attr("class","circle circle_gray");
+	        			} else {
+	        				alert("입력하신 정보가 올바르지 않습니다.");
+	        			}
+	        			
+	        		},
+	        		error : function (error) {
+	        			alert("오류발생");
+	        		}
+	        		
+	        	});
+        	} else {
+        		$(this).prev().click();
+        	}
+        });
+        
+     	// 비밀번호 찾기
+        $('#findPwdBtn').on('click',function(){
+        	
+        	if ($("#findPwdArea").css("display") == "none") {
+        	
+	        	$("#findPwdInfoArea").hide();
+				$("#findPwdArea").show();
+				$("#findPwdArea").html($("<div>").text("등록된 메일로 임시 비밀번호를 전송중입니다."));
+				$("#pwdNumberArea [class^=number]").parent().attr("class","circle circle_gray");
+				$("#pwdNumberArea .number2").parent().attr("class","circle");
+				
+	        	$.ajax({
+	        		type:"post",
+	        		url:"findPwd.do",
+	        		data : {
+	        			stdId : $("#pwdfindID").val(),
+	        			stdName : $("#pwdfindName").val(),
+	        			stdEmail : $("#pwdfindEmail").val()
+	        		},
+	        		success : function(data) {
+	        			console.log(data);
+	        			if (data.result == "OK") {
+	        				$("#pwdNumberArea [class^=number]").parent().attr("class","circle circle_gray");
+	            			$("#pwdNumberArea .number3").parent().attr("class","circle");
+	            			$("#findPwdArea").html($("<div>").html("<div>등록된 메일로 임시 비밀번호를 전송하였습니다. <br/> 임시 비밀번호로 로그인 후, <br/> 마이페이지에서 비밀번호를 변경해주세요.</div>"));
+	        			} else {
+	        				alert(data.msg);
+	        			}
+	        			
+	        		},
+	        		error : function (error) {
+	        			alert("오류발생");
+	        		}
+	        		
+	        	});
+        	} else {
+        		$(this).prev().click();
+        	}
         });
         
         $("#findTdBtn").on("click",function(){
+        	$("#idNumberArea [class^=number]").parent().attr("class","circle circle_gray");
+			$("#idNumberArea .number1").parent().attr("class","circle");
         	$("#findIdArea").hide();
         	$("#findIdInfoArea").show();
         	$("#findIdInfoArea input").val("");
+        });
+        
+        $("#findTdPwdBtn").on("click",function(){
+        	$("#pwdNumberArea [class^=number]").parent().attr("class","circle circle_gray");
+			$("#pwdNumberArea .number1").parent().attr("class","circle");
+        	$("#findPwdArea").hide();
+        	$("#findPwdInfoArea").show();
+        	$("#findPwdInfoArea input").val("");
         });
         
         

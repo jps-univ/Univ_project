@@ -61,7 +61,11 @@
                             <td class="stdtext">
                                 <p>대학</p>
                             </td>
-                            <td><input id="stdCollege"name="stdCollege" type="text"></td>
+                            <td>
+                            	<select id="stdCollege"name="stdCollege">
+                            		<option>--</option>
+                            	</select>
+                            </td>
                         </tr>
                         <tr>
                             <td class="stdtext">
@@ -221,7 +225,15 @@
                             <td>${s.department.college.collegeName}</td>
                             <td>${s.stdCourse}</td>
                             <td>${Semester}</td>
-                            <td>${s.stdSchoolReg }</td>
+                            <td>
+                          	<c:if test="${empty s.register.stdStatus }">
+                          	재학
+                          	</c:if>
+                          	<c:if test="${!empty s.register.stdStatus }">
+                          	${s.register.stdStatus} 
+                          	</c:if>
+                          	
+                          	</td>
                           
                         </tr>
                       
