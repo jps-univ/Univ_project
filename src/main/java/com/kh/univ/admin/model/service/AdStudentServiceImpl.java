@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.univ.admin.model.dao.AdStudentDao;
 import com.kh.univ.member.model.vo.College;
+import com.kh.univ.member.model.vo.Department;
 import com.kh.univ.member.model.vo.Student;
 
 @Service("AdStudentService")
@@ -15,7 +16,7 @@ public class AdStudentServiceImpl implements AdStudentService{
 	@Autowired AdStudentDao adStudentDao;
 	
 	@Override
-	public ArrayList<College> selectList() {
+	public ArrayList<Student> selectList() {
 		// TODO Auto-generated method stub
 		return adStudentDao.selectList();
 	}
@@ -30,6 +31,20 @@ public class AdStudentServiceImpl implements AdStudentService{
 	public int selectOneUpdate(Student std) {
 		// TODO Auto-generated method stub
 		return adStudentDao.selectOneUpdate(std);
+	}
+
+	@Override
+	public ArrayList<College> selectDept() {
+		// TODO Auto-generated method stub
+		return adStudentDao.selectDept();
+	}
+
+
+
+	@Override
+	public ArrayList<Department> deptCheck(String collegeCode) {
+		
+		return adStudentDao.deptCheck(collegeCode);
 	}
 
 }

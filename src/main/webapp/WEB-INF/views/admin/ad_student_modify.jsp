@@ -63,7 +63,10 @@
                             </td>
                             <td>
                             	<select id="stdCollege"name="stdCollege">
-                            		<option>--</option>
+                            		<option>---</option>
+	                            	<c:forEach var="d" items="${adDept }">
+	                            		<option value="${d.collegeCode }">${d.collegeName }</option>
+	                            	</c:forEach>
                             	</select>
                             </td>
                         </tr>
@@ -71,7 +74,11 @@
                             <td class="stdtext">
                                 <p>학부(과)</p>
                             </td>
-                            <td><input id="stdDepartment"name="stdDepartment" type="text"></td>
+                            <td>
+                            	<select id="stdDepartment" name="stdDepartment">
+                            		<option><학과를 선택해주세요></option>
+                            	</select>
+                            </td>
                             <td class="stdtext">
                                 <p>과정구분</p>
                             </td>
@@ -173,8 +180,10 @@
             <h2>학생조회</h2>
             <hr>
             <pre>대학 : <select name="" id="">
-                <option value="">------</option>
-                <option value="">----s--</option>
+            		<option>---</option>
+              <c:forEach var="d" items="${adDept }">
+	               <option value="${d.collegeCode }">${d.collegeName }</option>
+	          </c:forEach>
             </select> 학과 : <select name="" id="">
                 <option value="">------</option>
                 <option value="">----s--</option>
@@ -242,6 +251,25 @@
                     </tbody>
                 </table>
                 <script>
+/*                 $(function deptCheck(){
+                	$.ajax({
+                		url:"student_Modify_DeptCheck.do",
+            			dataType:"json",
+            			data:{
+            				collegeCode:$("#stdCollege").val()
+            			},success:function(data){
+            				console.log(data);
+            				$('#stdDepartment').empty();
+            				$('#stdDepartment').append("<option><학과를 선택해주세요></option>");
+	              				for(var index =0; index < data.length;index++){
+            					var department = $("<option id="+ data[index].departmentCode+ ">" + data[index].departmentName +"</option>");
+            					$('#stdDepartment').append(department);
+            				} 
+            			}	
+                	});
+                }); */
+                
+                
                 $(function(){
                     $("#total_std tbody td").click(function(){
                     	$.ajax({
@@ -250,14 +278,32 @@
                     		data:{
                     			stdId :$(this).parent().children().eq(0).text()
                     		},success:function(data){
+                    			console.log(data);
                     			$("#stdId").val(data.stdId);
                     			$("#stdName").val(data.stdName);
                     			$("#stdBirth").val(data.stdBirth);
-                    			$("#stdCollege").val(data.stdCollege);
-                    			$("#stdDepartment").val(data.stdDepartment);
+                    			$("#stdCollege").val(data.department.collegeCode);
+                    			$.ajax({
+                    				url:"student_Modify_DeptCheck.do",
+                        			dataType:"json",
+                        			data:{
+                        				collegeCode:$("#stdCollege").val()
+                        			},success:function(dept){
+                        				
+                        				$('#stdDepartment').empty();
+                        				$('#stdDepartment').append("<option><학과를 선택해주세요></option>");
+                         				for(var index =0; index < dept.length;index++){
+                        					var department = $("<option value="+ dept[index].departmentCode+ ">" + dept[index].departmentName +"</option>");
+                        					$('#stdDepartment').append(department);
+                        				}
+                         				$("#stdDepartment").val(data.stdDepartment);
+                        			}
+                    				
+                    			});
+                    			
                     			$("#stdCourse").val(data.stdCourse);
                     			$("#stdSemester").val(data.stdSemester);
-                    			$("#stdSchoolReg").val(data.stdSchoolReg);
+                    			$("#stdSchoolReg").val(data.register.stdStatus);
                     			$("#stdEnterDiv").val(data.stdEnterDiv);
                     			$("#stdPhone").val(data.stdPhone);
                     			$("#stdTel").val(data.stdTel);
@@ -266,16 +312,47 @@
                     			$("#stdAddress").val(data.stdAddress);
                     			$("#stdAddressDetail").val(data.stdAddressDetail);
                     			$("#stdAccount").val(data.stdAccount);
-                    			$("#stdAccountHolder").val(data.stdAccountHolder);
-                    			
+                    			$("#stdAccountHolder").val(data.stdAccountHolder); 
+                    		},error:function(request,error,errorCode){
+                    			console.log(request.error);
+                    			console.log(request);
+                    			console.log(request.errorCode);
                     		}
                     		
                     	});
                     });
-                    	
-                  
-                    
                 });
+                
+             
+                
+       
+                
+                $(function deptSelect(){
+                	$("#stdCollege").change(function(){
+                		
+                		$.ajax({
+                			url:"student_Modify_DeptCheck.do",
+                			dataType:"json",
+                			data:{
+                				collegeCode:$(this).val()
+                			},success:function(data){
+                				console.log(data[1].departmentCode);
+                				$('#stdDepartment').empty();
+                				$('#stdDepartment').append("<option><학과를 선택해주세요></option>");
+                 				for(var index =0; index < data.length;index++){
+                					var department = $("<option id="+ data[index].departmentCode+ ">" + data[index].departmentName +"</option>");
+                					$('#stdDepartment').append(department);
+                				}
+                				
+                			},error:function(){
+                				console.log("fail");
+                			}
+                			
+                		});
+                	});
+                });
+                
+                
                 
                 </script>
             </div>

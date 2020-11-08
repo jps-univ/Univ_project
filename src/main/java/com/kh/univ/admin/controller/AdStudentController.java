@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,6 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.kh.univ.admin.model.service.AdStudentService;
 import com.kh.univ.member.model.vo.College;
+import com.kh.univ.member.model.vo.Department;
 import com.kh.univ.member.model.vo.Student;
 
 @Controller
@@ -43,9 +45,11 @@ public class AdStudentController {
 	@RequestMapping("student_Modify.do")
     public ModelAndView StudentModify(ModelAndView mv) {
 		ArrayList<?>  adStudentList = adStudentService.selectList();
-		System.out.println(adStudentList);
+		ArrayList<College>  adDept = adStudentService.selectDept();
 		mv.addObject("adStudentList", adStudentList);
+		mv.addObject("adDept",adDept);
 		mv.setViewName("admin/ad_student_modify");
+		
 		
         return mv;
     }
@@ -58,30 +62,41 @@ public class AdStudentController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="student_Modify_one.do",produces="application/json;charset=UTF-8")
-	public String StudentModifyOne(int stdId){
+	public Student StudentModifyOne(int stdId){
 		Student adStudentOne = adStudentService.selectOne(stdId);
 		
-		JSONObject StudentOne = new JSONObject();
-		
-		StudentOne.put("stdId",adStudentOne.getStdId());
-		StudentOne.put("stdName",adStudentOne.getStdName());
-		StudentOne.put("stdBirth",adStudentOne.getStdBirth());
-		StudentOne.put("stdCollege",adStudentOne.getStdCollege());
-		StudentOne.put("stdDepartment",adStudentOne.getStdDepartment());
-		StudentOne.put("stdCourse",adStudentOne.getStdCourse());
-		StudentOne.put("stdSemester",adStudentOne.getStdSemester());
-		StudentOne.put("stdSchoolReg",adStudentOne.getStdSchoolReg());
-		StudentOne.put("stdEnterDiv",adStudentOne.getStdEnterDiv());
-		StudentOne.put("stdPhone",adStudentOne.getStdPhone());
-		StudentOne.put("stdTel",adStudentOne.getStdTel());
-		StudentOne.put("stdEmail",adStudentOne.getStdEmail());
-		StudentOne.put("stdBank",adStudentOne.getStdBank());
-		StudentOne.put("stdAddress",adStudentOne.getStdAddress());
-		StudentOne.put("stdAddressDetail",adStudentOne.getStdAddressDetail());
-		StudentOne.put("stdAccount",adStudentOne.getStdAccount());
-		StudentOne.put("stdAccountHolder",adStudentOne.getStdAccountHolder());
+//		JSONObject StudentOne = new JSONObject();
+//		
+//		StudentOne.put("stdId",adStudentOne.getStdId());
+//		StudentOne.put("stdName",adStudentOne.getStdName());
+//		StudentOne.put("stdBirth",adStudentOne.getStdBirth());
+//		StudentOne.put("stdCollege",adStudentOne.getStdCollege());
+//		StudentOne.put("stdDepartment",adStudentOne.getStdDepartment());
+//		StudentOne.put("stdCourse",adStudentOne.getStdCourse());
+//		StudentOne.put("stdSemester",adStudentOne.getStdSemester());
+//		StudentOne.put("stdSchoolReg",adStudentOne.getStdSchoolReg());
+//		StudentOne.put("stdEnterDiv",adStudentOne.getStdEnterDiv());
+//		StudentOne.put("stdPhone",adStudentOne.getStdPhone());
+//		StudentOne.put("stdTel",adStudentOne.getStdTel());
+//		StudentOne.put("stdEmail",adStudentOne.getStdEmail());
+//		StudentOne.put("stdBank",adStudentOne.getStdBank());
+//		StudentOne.put("stdAddress",adStudentOne.getStdAddress());
+//		StudentOne.put("stdAddressDetail",adStudentOne.getStdAddressDetail());
+//		StudentOne.put("stdAccount",adStudentOne.getStdAccount());
+//		StudentOne.put("stdAccountHolder",adStudentOne.getStdAccountHolder());
+		if(adStudentOne.getRegister().getStdStatus()==null) {
+			
+			adStudentOne.getRegister().setStdStatus("재학");
+		}
+		System.out.println(adStudentOne.getStdSemester());
+		int stdSem = (Integer.parseInt(adStudentOne.getStdSemester()+1)/2);
+		adStudentOne.setStdSemester(String.valueOf((int)stdSem));
+		System.out.println(String.valueOf(stdSem));
+		//String stdSem = (adStudentOne.getStdSemester()+1)/2 + "";
 	
-		return StudentOne.toJSONString();
+//		return StudentOne.toJSONString();
+		
+		return adStudentOne;
 	}
 	
 	/**
@@ -91,7 +106,6 @@ public class AdStudentController {
 	 */
 	@RequestMapping(value="student_Modify_Update.do")
 	public String StudentModifyUpdate(Student std) {
-		System.out.println(std);
 		int result = adStudentService.selectOneUpdate(std);
 		
 		if(result >0) {
@@ -99,5 +113,21 @@ public class AdStudentController {
 		}else {
 			return "common/errorPage";
 		}
+	}
+	
+	/**
+	 * 2_4. 학생 정보 수정 중 select 태그 학과 값 가져오기
+	 * @param dept
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="student_Modify_DeptCheck.do",produces="application/json;charset=UTF-8")
+	public ArrayList<Department> StudentDeptCheck(String collegeCode) {
+		ArrayList<Department> deptCheck = adStudentService.deptCheck(collegeCode);
+		
+		
+		
+		return deptCheck;
+		
 	}
 }

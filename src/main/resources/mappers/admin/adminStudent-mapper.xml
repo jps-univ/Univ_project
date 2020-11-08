@@ -68,10 +68,31 @@
 		JOIN TB_COLLEGE USING(COLLEGE_CODE)
  	</select>
  	
- 	<select id="selectOneAdminStudent" parameterType="Student" resultMap="StudentResultSet">
- 	SELECT * FROM TB_STUDENT WHERE STUDENT_ID=#{stdId}
+ 	<!-- 관리자 학생 조회 단과대학 코드 -->
+ 	<select id="selectAdminDept" parameterType="College" resultMap="CollegeResultSet">
+ 	SELECT COLLEGE_CODE, COLLEGE_NAME
+	FROM TB_COLLEGE
  	</select>
  	
+  	<!-- 단과대학 코드로 학생 학과 조회 -->
+  	<select id="selectDeptCheck" parameterType="Department" resultMap="DepartmentResultSet">
+  	
+  	SELECT DEPARTMENT_CODE, DEPARTMENT_NAME
+	FROM TB_DEPARTMENT
+	WHERE COLLEGE_CODE =#{collegeCode}
+  	</select>
+ 	
+ 	<!--  관리자 학생 한명 조회 -->
+ 	<select id="selectOneAdminStudent" parameterType="Student" resultMap="StudentResultSet">
+ 	SELECT STUDENT_ID,STUDENT_NAME, BIRTH_NO, DEPARTMENT_CODE, IMAGE, COLLEGE_CODE, COURSE,SEMESTER,STUDENT_STATUS,ENTER_DIV,TEL,PHONE,EMAIL,BANK,ADDRESS,ADDRESS_DETAIL,STUDENT_ACCOUNT,ACCOUNT_HOLDER
+	FROM TB_STUDENT 
+	LEFT JOIN TB_STUDENT_STATUS USING (STUDENT_ID)
+	JOIN TB_DEPARTMENT USING (DEPARTMENT_CODE)
+	JOIN TB_COLLEGE USING(COLLEGE_CODE)
+	WHERE STUDENT_ID=#{stdId}
+ 	</select>
+ 	
+ 	<!-- 관리자 학생 한명 수정 -->
  	<update id="selectOneUpdateAdminStudent" parameterType="Student" >
  		UPDATE TB_STUDENT
  		SET
