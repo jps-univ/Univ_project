@@ -26,7 +26,7 @@
   <link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="${contextPath}/resources/css/lecBoard_base.css">       
-  <link rel="stylesheet" href="${contextPath}/resources/css/lec_select.css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/classBoardMain.css">
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
@@ -53,65 +53,33 @@
   		<c:import url="../common/pageTopbar.jsp" />
         
 
+        
         <div id="main_con">  
-          <p id="select_title">학기</p>
-          <form id="semester">
-            <fieldset id="select_semester" class="shadow">
-              <select id="year">
-                <option value = "2020">2020</option>
-                <option value = "2019">2019</option>
-                <option value = "2018">2018</option>
-                <option value = "2017">2017</option>
-                <option value = "2016">2016</option>
-                <option value = "2015">2015</option>
-                <option value = "2014">2014</option>
-              </select>
-              <select id="grade">
-                <option value="1학기">1학기</option>
-                <option value="2학기">2학기</option>
-              </select>
-              <button id="submit" type="submit">조회</button>
-            </fieldset>
-          </form>
-
-
-          <!-- 강의 목록 조회 -->
-          <div id="rest_table_area">
-                <form method="GET">
+          <p id="select_title">주차별 활동</p>
+          <div id="weekPlan">
+            <div id="rest_table_area">
                     <table id="rest_lecture"  class="shadow table-hover">
                         <thead>
                             <tr>
                                 <th>
-                                    <p>과목 코드</p>
-                                </th>
-                                <th>
-                                    <p>학기</p>
-                                </th>
-                                <th>
-                                    <p>과목명</p>
-                                </th>
-                                <th>
-                                    <p>교수</p>
-                                </th>
-                                <th>
-                                    <p>학점</p>
+                                    <div><p>1주차 활동계획</p></div>
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>A12</td>
-                                <td>1</td>
-                                <td>유승제와 함께하는 html</td>
-                                <td>유승제</td>
-                                <td>3</td>
+                                <td>
+                                    <div>수업 일정</div>
+                                    <div>수업 자료</div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
-                </form>
             </div>
-
-
+          </div>
+          
+          
+          
         </div>
        
 

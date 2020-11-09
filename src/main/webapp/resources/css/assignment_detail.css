@@ -1,0 +1,326 @@
+/* 맨위 글씨 + 이미지 */
+#main_sidebar {
+    height: 1500px;
+}
+
+.professor_info{width:65%; height: 100%;}
+
+.semi_notice{width:35%; height:100%;}
+
+
+.professor_info{width: 100%;}
+
+.professor_info tbody tr td:nth-child(1){
+    width: 15%;
+}
+
+.professor_info tbody tr td:nth-child(2){
+    width: 55%;
+    font-size: 35px;
+    font-family: 'Nanum Gothic Coding', monospace;
+    font-weight: 700;
+    color: rgb(45, 45, 45);
+}
+
+.professor_info tbody tr td:nth-child(3){
+    width: 30%;
+}
+
+#semi_title{margin-left: 18%;
+    margin-bottom: 43px;}
+
+#professor_icon{
+    position: relative;
+    margin-left: 120%;
+}
+
+
+
+/* 과제제출 */
+#write_title{
+    padding-top: 30px;
+    height: 14%;
+    width: 80%;
+}
+
+
+#write_title p{
+    position: relative;
+    top: 8%;
+    left: 12%;
+    font-size: 35px;
+    font-family: 'Nanum Gothic Coding', monospace;
+    font-weight: 700;
+    color: rgb(45, 45, 45);
+}
+
+
+
+/* 과제 작성 폼 */
+#write_assignment{
+    height: 400px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    border-top: 1px solid rgb(136, 130, 130);
+    border-bottom: 1px solid rgb(136, 130, 130);
+    border-radius: 7px;
+}
+
+#write_content{
+    height: 100%;
+}
+
+/* 제목 + 비밀글 */
+#title_secret{
+    width: 99%;
+    height: 100%;
+    margin: auto;
+}
+
+#title_secret tbody tr td:nth-child(1){
+    width: 15%;
+    padding-right: 1%;
+}
+
+#title_secret tbody tr td:nth-child(2){
+    width: 85%;
+}
+
+#textTitle{
+    width: 93%
+}
+
+
+#summernote{
+    height: 99%;
+}
+#title_secret tbody tr td label{
+    float: right;
+    position: relative;
+    right: 7%;
+}
+
+.write_subject2{
+    margin-top: -98%;
+}
+
+#title_secret tbody tr:nth-child(1){
+    height: 10%;
+    border-bottom: 1px solid rgb(136, 134, 134, .3);
+    border-width: 110%;
+}
+
+#title_secret tbody tr:nth-child(2){
+    height: 10%;
+    border-bottom: 1px solid rgb(136, 134, 134, .3);
+    border-width: 110%;
+}
+
+#title_secret tbody tr:nth-child(3){
+    height: 70%;
+    border-bottom: 1px solid rgb(136, 134, 134, .3);
+    border-width: 110%;
+}
+
+#title_secret tbody tr:nth-child(4){
+    height: 10%;
+}
+
+
+/* summernote 전체 포함 */
+.note-editor{
+    height: 90%;
+    width: 100%;
+}
+
+.note-editing-area{
+    height: 89%;
+}
+
+
+#textContent{
+    border: 1px solid rgb(136, 134, 134, .3);
+    height: 90%;
+    border-radius: 7px;
+    padding: 1%;
+    width: 98%;
+}
+
+
+/* 등록 버튼 */
+#button_div{
+    width: 100%;
+}
+
+#button_div table{
+    width: 80%;
+    margin: auto;
+    margin-top: 1%;
+}
+
+#button_div table tr td:nth-child(1){
+    width: 90%;
+}
+
+#button_div table tr td:nth-child(2){
+    width: 5%;
+}
+
+#button_div table tr td:nth-child(3){
+    width: 5%;
+}
+
+#board_button1{
+    float: right;
+    border-radius: 3px;
+    height: 35px;
+    width: 50px;
+    background-color: darkslategrey;
+    border: none;
+    color: whitesmoke;
+}
+
+#board_button2{
+    float: right;
+    border-radius: 3px;
+    height: 35px;
+    width: 50px;
+    background-color: whitesmoke;
+    border: 1px solid rgb(136, 134, 134, .3);
+    color: darkslategray;
+}
+
+
+
+/* 댓글 작성 */
+#reply_form{
+
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    border-top: 1px solid rgb(136, 130, 130);
+    border-bottom: 1px solid rgb(136, 130, 130);
+    border-radius: 7px;
+    
+    margin-top: 95px;
+}
+
+#write_reply{
+    height: 100%;
+}
+
+
+#board_reply{
+    width: 99%;
+    height: 100%;
+    margin: auto;
+}
+
+#board_reply tbody tr:nth-child(1){
+    border-bottom: 1px solid rgb(136, 134, 134, .3);
+    border-width: 110%;
+}
+
+#board_reply tbody tr:nth-child(2){
+    border-bottom: 1px solid rgb(136, 134, 134, .3);
+    border-width: 110%;
+    height: 60px;
+}
+
+
+#board_reply tbody tr td label {
+    float: right;
+    position: relative;
+    right: 7%;
+
+}
+
+
+#board_reply tbody tr td:nth-child(1){
+    width: 15%;
+}
+
+.write_reply{
+    bottom: 26px;
+    right: 15px;
+}
+
+#board_reply tbody tr td:nth-child(2){
+    width: 75%;
+}
+
+#board_reply tbody tr td textarea {
+    width: 100%;
+    height: 90px;
+    margin-top: 10px;
+    border: 1px solid rgb(136, 134, 134, .3);
+    border-radius: 7px;
+    padding: 1%;
+}
+
+
+#board_reply tbody tr td:nth-child(2){
+    width: 75%;
+}
+
+#reply_button{
+    position: relative;
+    bottom: 24px;
+    left: 15px;
+}
+
+
+/* 댓글목록 */
+.reply_list{
+
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    border-top: 1px solid rgb(136, 130, 130);
+    border-bottom: 1px solid rgb(136, 130, 130);
+    border-radius: 7px;
+    
+    margin-top: 95px;
+}
+
+.stu_no{
+    height: 100%;
+}
+
+.board_replyList tbody tr:nth-child(1){
+    border-bottom: 1px solid rgb(136, 134, 134, .3);
+    border-width: 110%;
+}
+
+.board_replyList tbody tr:nth-child(2){
+    border-bottom: 1px solid rgb(136, 134, 134, .3);
+    border-width: 110%;
+    height: 60px;
+}
+
+.board_replyList{
+    width: 99%;
+    height: 100%;
+    margin: auto;
+}
+
+.board_replyList tbody tr:nth-child(1){
+    border-bottom: 1px solid rgb(136, 134, 134, .3);
+    border-width: 110%;
+    height: 30px;
+}
+
+.board_replyList tbody tr:nth-child(2){
+    border-bottom: 1px solid rgb(136, 134, 134, .3);
+    border-width: 110%;
+    height: 90px;
+}
+
+.board_replyList tbody tr td:nth-child(1){
+    width: 80%;
+    padding-left: 10px;
+}

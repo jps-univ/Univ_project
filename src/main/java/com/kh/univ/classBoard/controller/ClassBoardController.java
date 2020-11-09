@@ -17,6 +17,12 @@ public class ClassBoardController {
 	}
 	
 	
+	@RequestMapping("classBoardMain.do")
+	public String classBoardMain() {
+		return "classBoard/classBoardMain";
+				
+	}
+	
 	/**
 	 * 2. 강의계획서 페이지
 	 * @return
