@@ -30,7 +30,8 @@ public class Student {
 	private String stdEntrance;		 // 입학일자
 	private String stdTel;			 // 전화번호
 	
-	private Department department;	 // department
+	private Department department;	// 학부
+	private College college;		// 단과대
 	private Register register;
 	
 	public Student() {}
@@ -49,7 +50,6 @@ public class Student {
 		this.department = department;
 		
 	}
-
 
 	// 전체 매개변수
 	public Student(int stdId, String stdPwd, String stdName, String stdBirth, String stdCollege, String stdDepartment, String stdCourse, String stdSemester, String stdEnterDiv, String stdImage, String stdTuition, String stdSchoolReg, String stdPhone, String stdEmail, String stdAddress, String stdAddressDetail, String stdBank, String stdAccount, String stdAccountHolder, String stdSmsAgree, String stdEmailAgree, String stdEntrance, String stdTel) 
@@ -287,13 +287,20 @@ public class Student {
 		this.department = department;
 	}
 
-	
 	public Register getRegister() {
 		return register;
 	}
 
 	public void setRegister(Register register) {
 		this.register = register;
+	}
+
+	public College getCollege() {
+		return college;
+	}
+
+	public void setCollege(College college) {
+		this.college = college;
 	}
 
 	@Override
@@ -307,17 +314,4 @@ public class Student {
 				+ ", stdSmsAgree=" + stdSmsAgree + ", stdEmailAgree=" + stdEmailAgree + ", stdEntrance=" + stdEntrance
 				+ ", stdTel=" + stdTel + ", department=" + department + ", register=" + register + "]";
 	}
-
-
-
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
 }

@@ -25,7 +25,6 @@
  		<result property="stdEmailAgree" column="EMAIL_AGREE"/>
  		<result property="stdEntrance" column="ENTRANCE_DATE"/>
  		<result property="stdTel" column="TEL"/>
- 		<collection property="department" resultMap="DepartmentResultSet"/>
  	</resultMap>
  	
  	<resultMap id="DepartmentResultSet" type="Department">
@@ -36,11 +35,81 @@
  		<collection property="college" resultMap="CollegeResultSet"/>
  	</resultMap>
  	
- 	<resultMap type="College" id="CollegeResultSet">
+ 	<resultMap id="CollegeResultSet" type="College">
  		<id property="collegeCode" column="COLLEGE_CODE"/>
  		<result property="collegeName" column="COLLEGE_NAME"/>
  	</resultMap>
  	
+ 	<resultMap id="RegisterResultSet" type="Register">
+ 		<id property="statusNO" column="STATUS_NO"/>
+ 		<result property="stdId" column="STUDENT_ID"/>
+ 		<result property="stdStatus" column="STUDENT_STATUS"/>
+ 		<result property="applicationStatus" column="APPLICATION_STATUS"/>
+ 		<result property="applicationDate" column="APPLICATION_DATE"/>
+ 		<result property="reasonsLeave" column="REASONS_LEAVE"/>
+ 		<result property="leavePeriod" column="LEAVE_PERIOD"/>
+ 		<result property="leaveDate" column="LEAVE_DATE"/>
+ 		<result property="returningDate" column="RETURNING_DATE"/>
+ 		<result property="graduationDate" column="GRADUATION_DATE"/>
+ 	</resultMap>
+ 	
+ 	<resultMap id="StdStatusResultSet" type="Student">
+ 		<id property="stdId" column="STUDENT_ID"/>
+ 		<result property="stdPwd" column="STUDENT_PASSWORD"/>
+ 		<result property="stdName" column="STUDENT_NAME"/>
+ 		<result property="stdBirth" column="BIRTH_NO"/>
+ 		<result property="stdCollege" column="COLLEGE"/>
+ 		<result property="stdDepartment" column="DEPARTMENT_CODE"/>
+ 		<result property="stdCourse" column="COURSE"/>
+ 		<result property="stdSemester" column="SEMESTER"/>
+ 		<result property="stdEnterDiv" column="ENTER_DIV"/>
+ 		<result property="stdImage" column="IMAGE"/>
+ 		<result property="stdTuition" column="TUITION"/>
+ 		<result property="stdSchoolReg" column="SCHOOL_REG"/>
+ 		<result property="stdPhone" column="PHONE"/>
+ 		<result property="stdEmail" column="EMAIL"/>
+ 		<result property="stdAddress" column="ADDRESS"/>
+ 		<result property="stdAddressDetail" column="ADDRESS_DETAIL"/>
+ 		<result property="stdBank" column="BANK"/>
+ 		<result property="stdAccount" column="STUDENT_ACCOUNT"/>
+ 		<result property="stdAccountHolder" column="ACCOUNT_HOLDER"/>
+ 		<result property="stdSmsAgree" column="SMS_AGREE"/>
+ 		<result property="stdEmailAgree" column="EMAIL_AGREE"/>
+ 		<result property="stdEntrance" column="ENTRANCE_DATE"/>
+ 		<result property="stdTel" column="TEL"/>
+ 		<collection property="register" resultMap="RegisterResultSet"/>
+ 	</resultMap>
+ 	
+ 	<resultMap id="StdDepartmentResultSet" type="Student">
+ 		<id property="stdId" column="STUDENT_ID"/>
+ 		<result property="stdPwd" column="STUDENT_PASSWORD"/>
+ 		<result property="stdName" column="STUDENT_NAME"/>
+ 		<result property="stdBirth" column="BIRTH_NO"/>
+ 		<result property="stdCollege" column="COLLEGE"/>
+ 		<result property="stdDepartment" column="DEPARTMENT_CODE"/>
+ 		<result property="stdCourse" column="COURSE"/>
+ 		<result property="stdSemester" column="SEMESTER"/>
+ 		<result property="stdEnterDiv" column="ENTER_DIV"/>
+ 		<result property="stdImage" column="IMAGE"/>
+ 		<result property="stdTuition" column="TUITION"/>
+ 		<result property="stdSchoolReg" column="SCHOOL_REG"/>
+ 		<result property="stdPhone" column="PHONE"/>
+ 		<result property="stdEmail" column="EMAIL"/>
+ 		<result property="stdAddress" column="ADDRESS"/>
+ 		<result property="stdAddressDetail" column="ADDRESS_DETAIL"/>
+ 		<result property="stdBank" column="BANK"/>
+ 		<result property="stdAccount" column="STUDENT_ACCOUNT"/>
+ 		<result property="stdAccountHolder" column="ACCOUNT_HOLDER"/>
+ 		<result property="stdSmsAgree" column="SMS_AGREE"/>
+ 		<result property="stdEmailAgree" column="EMAIL_AGREE"/>
+ 		<result property="stdEntrance" column="ENTRANCE_DATE"/>
+ 		<result property="stdTel" column="TEL"/>
+ 		<collection property="department" resultMap="DepartmentResultSet"/>
+ 		<collection property="college" resultMap="CollegeResultSet"/>
+ 		
+ 	</resultMap>
+ 	
+ 	<!-- 학생 개인정보 변경 -->
  	<update id="changeStdPersonalInfo">
  		UPDATE TB_STUDENT SET
  		TEL = #{stdTel}, PHONE = #{stdPhone}, EMAIL = #{stdEmail}, ADDRESS = #{stdAddress}, ADDRESS_DETAIL = #{stdAddressDetail}, 
@@ -48,26 +117,37 @@
  		WHERE STUDENT_ID = #{stdId}
  	</update>
  	
+ 	<!-- 학생 개인정보 동의 변경 -->
  	<update id="changeStdAgreeInfo">
  		UPDATE TB_STUDENT SET
  		SMS_AGREE = #{stdSmsAgree}, EMAIL_AGREE = #{stdEmailAgree}
  		WHERE STUDENT_ID = #{stdId}
  	</update>
  	
+ 	<!-- 학생 비밀번호 확인 -->
  	<select id="checkStdPwd" parameterType="Student" resultMap="StudentResultSet">
 		SELECT * FROM TB_STUDENT
 		WHERE STUDENT_ID = #{stdId}
  	</select>
  	
+ 	<!-- 학생 비밀번호 변경 -->
  	<update id="changeStdPassword">
  		UPDATE TB_STUDENT SET
  		STUDENT_PASSWORD = #{stdPwd}
  		WHERE STUDENT_ID = #{stdId}
  	</update>
  	
- 	<select id="selectStdInfo" parameterType="Student" resultMap="StudentResultSet">
-		SELECT * FROM TB_STUDENT
+ 	<!-- 학생 학적 조회 -->
+ 	<select id="selectStdStatus" parameterType="Student" resultMap="StdStatusResultSet">
+		SELECT * FROM TB_STUDENT S
+		LEFT OUTER JOIN TB_STUDENT_STATUS ON S.STUDENT_ID = TB_STUDENT_STATUS.STUDENT_ID
+		WHERE S.STUDENT_ID = #{stdId}
+ 	</select>
+ 	
+ 	<select id="selectStdDepartment" parameterType="Student" resultMap="StdDepartmentResultSet">
+ 		SELECT * FROM TB_STUDENT
 		LEFT OUTER JOIN TB_DEPARTMENT ON TB_STUDENT.DEPARTMENT_CODE = TB_DEPARTMENT.DEPARTMENT_CODE
+		LEFT OUTER JOIN TB_COLLEGE ON TB_DEPARTMENT.COLLEGE_CODE = TB_COLLEGE.COLLEGE_CODE
 		WHERE STUDENT_ID = #{stdId}
  	</select>
  </mapper>

@@ -33,9 +33,16 @@ public interface StudentMyPageService
 	int changeStdPassword(Student student);
 
 	/**
-	 * 개인정보 조회
+	 * 학생 학적 조회
 	 * @param student
 	 * @return
 	 */
-	Student selectStdInfo(Student student);
+	Student selectStdStatus(Student student);
+
+	/**
+	 * 학생 단과대, 학과 조회
+	 * @param sessionStudent
+	 * @return
+	 */
+	Student selectStdDepartment(Student student);
 }
