@@ -141,7 +141,6 @@
     </script>
     <script>
         $(document).ready(function () {
-
             // DB에서 데이터 뽑아와서 테이블로 출력하는 datatables 라이브러리 사용
             $('#searchBtn').click(function () {
                 var table = $('#registerTable').DataTable({
@@ -189,7 +188,8 @@
                     'columnDefs': [
                         {
                             'targets': 0,
-                            'visible': false
+                            'visible': false,
+                            'className': 'classSeq'
                         },
 
                         {
@@ -209,6 +209,7 @@
                     'bDestroy': true,
                     'scrollX': false
                 });
+
 
                 // // Handle click on "Select all" control
                 // $('#example-select-all').on('click', function () {
@@ -230,11 +231,34 @@
                 //         }
                 //     }
                 // });
+
             });
+
         });
-        $('#registerTable').on('click',function () {
-           alert($(this).val());
+    </script>
+    <script>
+        // 테이블의 Row 클릭시 값 가져오기
+        $("#registerTable tr").click(function(){
+
+            var str = "";
+            var tdArr = new Array();	// 배열 선언
+
+            // 현재 클릭된 Row(<tr>)
+            var tr = $(this);
+            var td = tr.children();
+
+            // tr.text()는 클릭된 Row 즉 tr에 있는 모든 값을 가져온다.
+            console.log("클릭한 Row의 모든 데이터 : "+tr.text());
+
+            // 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
+            td.each(function(i){
+                tdArr.push(td.eq(i).text());
+            });
+
+            console.log("배열에 담긴 값 : "+tdArr);
+
         });
+
     </script>
 
     <%--    수강신청,장바구니 탭 클릭 시 화면 변화--%>
@@ -393,7 +417,7 @@
                                         <%--                                        <th style="text-align: center;"><input name="select_all" value="1" id="example-select-all" type="checkbox" ></th>--%>
 
 
-                                        <th style="display: none">강의시퀀스</th>
+                                        <th style="display:none">강의시퀀스</th>
                                         <th>강의명</th>
                                         <th style="width: 15%">학과명</th>
                                         <th style="width: 10%">교수명</th>
