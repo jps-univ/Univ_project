@@ -8,7 +8,7 @@ public class ClassBoardController {
 
 	
 	/**
-	 * 1. 강의 선택창
+	 * 1. 강의 선택창 하윙
 	 * @return
 	 */
 	@RequestMapping("selectClass.do")
