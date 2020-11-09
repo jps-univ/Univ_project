@@ -72,6 +72,7 @@ public class StudentMyPageController
 		return "myPage/studentConsulting";
 	}
 
+	// 학생 개인정보 변경
 	@ResponseBody
 	@RequestMapping("changeStudentInfo.do")
 	public String ChangeStudentInfo(Student student, Model model, HttpSession session)
@@ -103,6 +104,7 @@ public class StudentMyPageController
 		}
 	}
 	
+	// 학생 개인정보 동의 변경
 	@ResponseBody
 	@RequestMapping("changeAgreeInfo.do")
 	public String ChangeAgreeInfo(Student student, Model model, HttpSession session)
@@ -126,6 +128,7 @@ public class StudentMyPageController
 		}
 	}
 	
+	// 학생 비밀번호 확인
 	@ResponseBody
 	@RequestMapping("checkStudentPwd.do")
 	public String CheckStudentPwd(Student student, Model model)
@@ -144,6 +147,7 @@ public class StudentMyPageController
 		}
 	}
 	
+	// 학생 비밀번호 변경
 	@ResponseBody
 	@RequestMapping("changeStudentPwd.do")
 	public String ChangeStudentPwd(Student student, Model model)
@@ -164,21 +168,12 @@ public class StudentMyPageController
 		}
 	}
 	
-	// 학적조회
-	/*
-	@RequestMapping("selectStudentStatus.do")
-	public ModelAndView StudentStatus(ModelAndView mv, Student student, HttpSession session)
+	// 학생 시간표 조회
+	@ResponseBody
+	@RequestMapping("studentSchedule.do")
+	public String StudentSchedule(Student student, Model model)
 	{
-		Student sessionStudent = (Student)session.getAttribute("loginUser");
 		
-		Student studentAll = msService.selectStdStatus(sessionStudent);
-		
-		Register register = studentAll.getRegister();
-		
-		mv.addObject("register", register);
-		mv.setViewName("myPage/studentInfo");
-		
-		return mv;
+		return "redirect:student_schedule.do";
 	}
-	*/
 }

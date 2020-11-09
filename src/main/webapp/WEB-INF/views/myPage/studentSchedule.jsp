@@ -66,22 +66,25 @@
 				
 				<!-- 여기서부터 내용  -->
 				<!-- Begin Page Content -->
+				<form action="studentSchedule.do" method="post">
 		        <div class="container-fluid">
 		          <div>
 		            <select>
-		              <option value="">2020년도</option>
-		              <option value="">2019년도</option>
-		              <option value="">2018년도</option>
-		              <option value="">2017년도</option>
-		              <option value="">2016년도</option>
+		              <option value="2021">2021년도</option>
+		              <option value="2020">2020년도</option>
+		              <option value="2019">2019년도</option>
+		              <option value="2018">2018년도</option>
+		              <option value="2017">2017년도</option>
+		              <option value="2016">2016년도</option>
 		            </select>
 		            <select>
-		              <option value="">1학기</option>
-		              <option value="">2학기</option>
+		              <option value="1">1학기</option>
+		              <option value="2">2학기</option>
 		            </select>
 		
 		            <input type="button" class="btn btn-primary btn-sm" value="조회">
 		          </div>
+		          </form>
 		          <br>
 		
 		          <!-- DataTales Example -->
