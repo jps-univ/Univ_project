@@ -8,12 +8,14 @@
     <!-- typeAliases -->
     <typeAliases>
 		<typeAlias type="com.kh.univ.member.model.vo.Student" alias="Student"/>
+		<typeAlias type="com.kh.univ.member.model.vo.Professor" alias="Professor"/>
 		<typeAlias type="com.kh.univ.member.model.vo.Department" alias="Department"/>
 		<typeAlias type="com.kh.univ.member.model.vo.College" alias="College"/>
 		<typeAlias type="com.kh.univ.stmanagement.model.vo.StudentManagement" alias="StudentManagement"/>
 		<typeAlias type="com.kh.univ.payment.model.vo.Payment" alias="Payment"/>
 		<typeAlias type="com.kh.univ.lecture.model.vo.Lecture" alias="Lecture"/>
 		<typeAlias type="com.kh.univ.lecture.model.vo.LectureTime" alias="LectureTime"/>
+		<typeAlias type="com.kh.univ.lecture.model.vo.LectureApplication" alias="LectureApplication"/>
         <typeAlias type="com.kh.univ.test.model.vo.Test" alias="Test"/>
         <typeAlias type="com.kh.univ.salary.model.vo.Salary" alias="Salary"/>
         <typeAlias type="com.kh.univ.register.model.vo.Register" alias="Register"/>

@@ -106,9 +106,61 @@
  		<result property="stdTel" column="TEL"/>
  		<collection property="department" resultMap="DepartmentResultSet"/>
  		<collection property="college" resultMap="CollegeResultSet"/>
- 		
  	</resultMap>
  	
+ 	<resultMap id="LectureResultSet" type="Lecture">
+        <id property="classSeq" column="CLASS_SEQ"/>
+        <result property="classCode" column="CLASS_CODE"/>
+        <result property="deptCode" column="DEPARTMENT_CODE"/>
+        <result property="profId" column="PROFESSOR_ID"/>
+        <result property="className" column="CLASS_NAME"/>
+        <result property="room" column="ROOM"/>
+        <result property="gradeSize" column="GRADE_SIZE"/>
+        <result property="classSemester" column="CLASS_SEMESTER"/>
+        <result property="classYear" column="CLASS_YEAR"/>
+        <result property="classApprove" column="CLASS_APPROVE"/>
+        <result property="classLevel" column="CLASS_LEVEL"/>
+        <result property="classType" column="CLASS_TYPE"/>
+        <result property="profName" column="PROFESSOR_NAME"/>
+    </resultMap>
+    
+    <resultMap id="LectureTimeResultSet" type="LectureTime">
+        <id property="ctSeq" column="CLASS_TIME_SEQ"/>
+        <result property="classSeq" column="CLASS_SEQ"/>
+        <result property="day" column="DAY"/>
+        <result property="hour" column="HOUR"/>
+    </resultMap>
+    
+    <resultMap id="LectureApplicationResultSet" type="LectureApplication">
+    	<id property="registerSeq" column="REGISTER_SEQ"/>
+        <result property="stdId" column="STUDENT_ID"/>
+        <result property="classSeq" column="CLASS_SEQ"/>
+    </resultMap>
+    
+    <resultMap id="ProfessorResultSet" type="Professor">
+      <id property="profId" column="PROFESSOR_ID"/>
+      <result property="profName" column="NAME"/>
+   </resultMap>
+    
+    <resultMap id="StdScheduleResultSet" type="Lecture">
+        <id property="classSeq" column="CLASS_SEQ"/>
+        <result property="classCode" column="CLASS_CODE"/>
+        <result property="deptCode" column="DEPARTMENT_CODE"/>
+        <result property="profId" column="PROFESSOR_ID"/>
+        <result property="className" column="CLASS_NAME"/>
+        <result property="room" column="ROOM"/>
+        <result property="gradeSize" column="GRADE_SIZE"/>
+        <result property="classSemester" column="CLASS_SEMESTER"/>
+        <result property="classYear" column="CLASS_YEAR"/>
+        <result property="classApprove" column="CLASS_APPROVE"/>
+        <result property="classLevel" column="CLASS_LEVEL"/>
+        <result property="classType" column="CLASS_TYPE"/>
+        <result property="profName" column="PROFESSOR_NAME"/>
+        <collection property="time" resultMap="LectureTimeResultSet"/>
+ 		<collection property="lectureApplication" resultMap="LectureApplicationResultSet"/>
+ 		<collection property="professor" resultMap="ProfessorResultSet"/>
+    </resultMap>
+    
  	<!-- 학생 개인정보 변경 -->
  	<update id="changeStdPersonalInfo">
  		UPDATE TB_STUDENT SET
@@ -144,10 +196,20 @@
 		WHERE S.STUDENT_ID = #{stdId}
  	</select>
  	
+ 	<!-- 학생 단과대, 학과 조회 -->
  	<select id="selectStdDepartment" parameterType="Student" resultMap="StdDepartmentResultSet">
  		SELECT * FROM TB_STUDENT
 		LEFT OUTER JOIN TB_DEPARTMENT ON TB_STUDENT.DEPARTMENT_CODE = TB_DEPARTMENT.DEPARTMENT_CODE
 		LEFT OUTER JOIN TB_COLLEGE ON TB_DEPARTMENT.COLLEGE_CODE = TB_COLLEGE.COLLEGE_CODE
 		WHERE STUDENT_ID = #{stdId}
+ 	</select>
+ 	
+ 	<select id="selectStdSchdule" parameterType="Lecture" resultMap="StdScheduleResultSet">
+ 		SELECT * FROM TB_STUDENT S
+		LEFT OUTER JOIN TB_REGISTER_CLASS R ON S.STUDENT_ID = R.STUDENT_ID
+		LEFT OUTER JOIN TB_CLASS C ON R.CLASS_SEQ = C.CLASS_SEQ
+		LEFT OUTER JOIN TB_CLASS_TIME T ON R.CLASS_SEQ = T.CLASS_SEQ
+		LEFT OUTER JOIN TB_PROFESSOR P ON C.PROFESSOR_ID = P.PROFESSOR_ID
+		WHERE S.STUDENT_ID = #{stdId} AND C.CLASS_YEAR = #{classYear} AND C.CLASS_SEMESTER = #{classSemester}
  	</select>
  </mapper>

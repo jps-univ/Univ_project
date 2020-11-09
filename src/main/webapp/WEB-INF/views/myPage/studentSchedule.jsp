@@ -69,7 +69,7 @@
 				<form action="studentSchedule.do" method="post">
 		        <div class="container-fluid">
 		          <div>
-		            <select>
+		            <select name="classYear">
 		              <option value="2021">2021년도</option>
 		              <option value="2020">2020년도</option>
 		              <option value="2019">2019년도</option>
@@ -77,12 +77,13 @@
 		              <option value="2017">2017년도</option>
 		              <option value="2016">2016년도</option>
 		            </select>
-		            <select>
+		            <select name="classSemester">
 		              <option value="1">1학기</option>
 		              <option value="2">2학기</option>
 		            </select>
 		
-		            <input type="button" class="btn btn-primary btn-sm" value="조회">
+		            <!-- <input type="button" class="btn btn-primary btn-sm" value="조회"> -->
+		            <button type="submit" class="btn btn-primary btn-sm">조회</button>
 		          </div>
 		          </form>
 		          <br>
@@ -107,75 +108,165 @@
 		                    </tr>
 		                    <tr align="center">
 		                      <th>1교시<br>(09:00~09:50)</th>
-		                      <td id="1th_Mon"></td>
-		                      <td id="1th_Tue"></td>
-		                      <td id="1th_Wed"></td>
-		                      <td id="1th_Thu"></td>
-		                      <td id="1th_Fri"></td>
+		                      <td id="1th_Mon">
+		                      	<c:if test="${ lectureTime.day eq '월' && lectureTime.hour eq 1 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Tue">
+		                      	<c:if test="${ lectureTime.day eq '화' && lectureTime.hour eq 1 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Wed">
+		                      	<c:if test="${ lectureTime.day eq '수' && lectureTime.hour eq 1 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Thu">
+		                      	<c:if test="${ lectureTime.day eq '목' && lectureTime.hour eq 1 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Fri">
+		                      	<c:if test="${ lectureTime.day eq '금' && lectureTime.hour eq 1 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
 		                    </tr>
 		                    <tr align="center">
 		                      <th>2교시<br>(10:00~10:50)</th>
-		                      <td id="2th_Mon"></td>
-		                      <td id="2th_Tue"></td>
-		                      <td id="2th_Wed"></td>
-		                      <td id="2th_Thu"></td>
-		                      <td id="2th_Fri"></td>
+		                      <td id="1th_Mon">
+		                      	<c:if test="${ lectureTime.day eq '월' && lectureTime.hour eq 2 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Tue">
+		                      	<c:if test="${ lectureTime.day eq '화' && lectureTime.hour eq 2 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Wed">
+		                      	<c:if test="${ lectureTime.day eq '수' && lectureTime.hour eq 2 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Thu">
+		                      	<c:if test="${ lectureTime.day eq '목' && lectureTime.hour eq 2 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Fri">
+		                      	<c:if test="${ lectureTime.day eq '금' && lectureTime.hour eq 2 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
 		                    </tr>
 		                    <tr align="center">
 		                      <th>3교시<br>(11:00~11:50)</th>
-		                      <td id="3th_Mon"></td>
-		                      <td id="3th_Tue"></td>
-		                      <td id="3th_Wed"></td>
-		                      <td id="3th_Thu"></td>
-		                      <td id="3th_Fri"></td>
+		                      <td id="1th_Mon">
+		                      	<c:if test="${ lectureTime.day eq '월' && lectureTime.hour eq 3 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Tue">
+		                      	<c:if test="${ lectureTime.day eq '화' && lectureTime.hour eq 3 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Wed">
+		                      	<c:if test="${ lectureTime.day eq '수' && lectureTime.hour eq 3 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Thu">
+		                      	<c:if test="${ lectureTime.day eq '목' && lectureTime.hour eq 3 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Fri">
+		                      	<c:if test="${ lectureTime.day eq '금' && lectureTime.hour eq 3 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
 		                    </tr>
 		                    <tr align="center">
 		                      <th>4교시<br>(12:00~12:50)</th>
-		                      <td id="4th_Mon"></td>
-		                      <td id="4th_Tue"></td>
-		                      <td id="4th_Wed"></td>
-		                      <td id="4th_Thu"></td>
-		                      <td id="4th_Fri"></td>
+		                      <td id="1th_Mon">
+		                      	<c:if test="${ lectureTime.day eq '월' && lectureTime.hour eq 4 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Tue">
+		                      	<c:if test="${ lectureTime.day eq '화' && lectureTime.hour eq 4 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Wed">
+		                      	<c:if test="${ lectureTime.day eq '수' && lectureTime.hour eq 4 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Thu">
+		                      	<c:if test="${ lectureTime.day eq '목' && lectureTime.hour eq 4 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Fri">
+		                      	<c:if test="${ lectureTime.day eq '금' && lectureTime.hour eq 4 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
 		                    </tr>
 		                    <tr align="center">
 		                      <th>5교시<br>(13:00~13:50)</th>
-		                      <td id="5th_Mon"></td>
-		                      <td id="5th_Tue">프로그래밍 실습<br>교수명</td>
-		                      <td id="5th_Wed"></td>
-		                      <td id="5th_Thu">프로그래밍 실습<br>교수명</td>
-		                      <td id="5th_Fri"></td>
+		                      <td id="1th_Mon">
+		                      	<c:if test="${ lectureTime.day eq '월' && lectureTime.hour eq 5 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Tue">
+		                      	<c:if test="${ lectureTime.day eq '화' && lectureTime.hour eq 5 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Wed">
+		                      	<c:if test="${ lectureTime.day eq '수' && lectureTime.hour eq 5 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Thu">
+		                      	<c:if test="${ lectureTime.day eq '목' && lectureTime.hour eq 5 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Fri">
+		                      	<c:if test="${ lectureTime.day eq '금' && lectureTime.hour eq 5 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
 		                    </tr>
 		                    <tr align="center">
 		                      <th>6교시<br>(14:00~14:50)</th>
-		                      <td id="6th_Mon"></td>
-		                      <td id="6th_Tue">프로그래밍 실습<br>교수명</td>
-		                      <td id="6th_Wed"></td>
-		                      <td id="6th_Thu">프로그래밍 실습<br>교수명</td>
-		                      <td id="6th_Fri"></td>
+		                      <td id="1th_Mon">
+		                      	<c:if test="${ lectureTime.day eq '월' && lectureTime.hour eq 6 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Tue">
+		                      	<c:if test="${ lectureTime.day eq '화' && lectureTime.hour eq 6 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Wed">
+		                      	<c:if test="${ lectureTime.day eq '수' && lectureTime.hour eq 6 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Thu">
+		                      	<c:if test="${ lectureTime.day eq '목' && lectureTime.hour eq 6 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Fri">
+		                      	<c:if test="${ lectureTime.day eq '금' && lectureTime.hour eq 6 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
 		                    </tr>
 		                    <tr align="center">
 		                      <th>7교시<br>(15:00~15:50)</th>
-		                      <td id="6th_Mon"></td>
-		                      <td id="6th_Tue">프로그래밍 실습<br>교수명</td>
-		                      <td id="6th_Wed"></td>
-		                      <td id="6th_Thu">프로그래밍 실습<br>교수명</td>
-		                      <td id="6th_Fri"></td>
+		                      <td id="1th_Mon">
+		                      	<c:if test="${ lectureTime.day eq '월' && lectureTime.hour eq 7 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Tue">
+		                      	<c:if test="${ lectureTime.day eq '화' && lectureTime.hour eq 7 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Wed">
+		                      	<c:if test="${ lectureTime.day eq '수' && lectureTime.hour eq 7 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Thu">
+		                      	<c:if test="${ lectureTime.day eq '목' && lectureTime.hour eq 7 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Fri">
+		                      	<c:if test="${ lectureTime.day eq '금' && lectureTime.hour eq 7 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
 		                    </tr>
 		                    <tr align="center">
 		                      <th>8교시<br>(16:00~16:50)</th>
-		                      <td id="6th_Mon"></td>
-		                      <td id="6th_Tue">프로그래밍 실습<br>교수명</td>
-		                      <td id="6th_Wed"></td>
-		                      <td id="6th_Thu">프로그래밍 실습<br>교수명</td>
-		                      <td id="6th_Fri"></td>
+		                      <td id="1th_Mon">
+		                      	<c:if test="${ lectureTime.day eq '월' && lectureTime.hour eq 8 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Tue">
+		                      	<c:if test="${ lectureTime.day eq '화' && lectureTime.hour eq 8 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Wed">
+		                      	<c:if test="${ lectureTime.day eq '수' && lectureTime.hour eq 8 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Thu">
+		                      	<c:if test="${ lectureTime.day eq '목' && lectureTime.hour eq 8 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="1th_Fri">
+		                      	<c:if test="${ lectureTime.day eq '금' && lectureTime.hour eq 8 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
 		                    </tr>
 		                    <tr align="center">
 		                      <th>9교시<br>(17:00~17:50)</th>
-		                      <td id="6th_Mon"></td>
-		                      <td id="6th_Tue">프로그래밍 실습<br>교수명</td>
-		                      <td id="6th_Wed"></td>
-		                      <td id="6th_Thu">프로그래밍 실습<br>교수명</td>
-		                      <td id="6th_Fri"></td>
+		                      <td id="9th_Mon">
+		                      	<c:if test="${ lectureTime.day eq '월' && lectureTime.hour eq 9 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="9th_Tue">
+		                      	<c:if test="${ lectureTime.day eq '화' && lectureTime.hour eq 9 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="9th_Wed">
+		                      	<c:if test="${ lectureTime.day eq '수' && lectureTime.hour eq 9 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="9th_Thu">
+		                      	<c:if test="${ lectureTime.day eq '목' && lectureTime.hour eq 9 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
+		                      <td id="9th_Fri">
+		                      	<c:if test="${ lectureTime.day eq '금' && lectureTime.hour eq 9 }">${ lecture.className }<br>${ professor.profName }</c:if>
+		                      </td>
 		                    </tr>
 		                  </tbody>
 		                </table>

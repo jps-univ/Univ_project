@@ -1,9 +1,13 @@
 package com.kh.univ.mypage.model.dao;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.member.model.vo.Student;
 import com.kh.univ.register.model.vo.Register;
 
@@ -41,5 +45,10 @@ public class StudentMyPageDao
 	public Student selectStdDepartment(Student student)
 	{
 		return (Student)sqlSession.selectOne("StudentMyPageMapper.selectStdDepartment", student);
+	}
+
+	public ArrayList<Lecture> selectStdSchdule(Map map)
+	{
+		return (ArrayList)sqlSession.selectList("StudentMyPageMapper.selectStdSchdule", map);
 	}
 }

@@ -1,5 +1,9 @@
 package com.kh.univ.mypage.model.service;
 
+import java.util.ArrayList;
+import java.util.Map;
+
+import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.member.model.vo.Student;
 
 public interface StudentMyPageService 
@@ -45,4 +49,12 @@ public interface StudentMyPageService
 	 * @return
 	 */
 	Student selectStdDepartment(Student student);
+
+	/**
+	 * 학생 시간표 조회
+	 * @param lecture 
+	 * @param sessionStudent
+	 * @return
+	 */
+	ArrayList<Lecture> selectStdSchdule(Map map);
 }

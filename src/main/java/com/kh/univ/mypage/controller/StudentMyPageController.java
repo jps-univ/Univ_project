@@ -1,5 +1,9 @@
 package com.kh.univ.mypage.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.univ.lecture.model.vo.Lecture;
+import com.kh.univ.lecture.model.vo.LectureApplication;
+import com.kh.univ.lecture.model.vo.LectureTime;
 import com.kh.univ.member.model.vo.College;
 import com.kh.univ.member.model.vo.Department;
+import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
 import com.kh.univ.mypage.model.service.StudentMyPageService;
 import com.kh.univ.register.model.vo.Register;
@@ -171,9 +179,45 @@ public class StudentMyPageController
 	// 학생 시간표 조회
 	@ResponseBody
 	@RequestMapping("studentSchedule.do")
-	public String StudentSchedule(Student student, Model model)
+	public ModelAndView StudentSchedule(ModelAndView mv, Model model, Lecture lecture, HttpSession session)
 	{
+		Student student = (Student)session.getAttribute("loginUser");
 		
-		return "redirect:student_schedule.do";
+		int stdId = student.getStdId();
+		int classYear = lecture.getClassYear();
+		int classSemester = lecture.getClassSemester();
+		
+		Map map = new HashMap();
+		
+		map.put("stdId", stdId);
+		map.put("classYear", classYear);
+		map.put("classSemester", classSemester);
+		
+		System.out.println("stdId : " + stdId);
+		System.out.println("classYear : " + classYear);
+		System.out.println("classSemester : " + classSemester);
+		
+		ArrayList<Lecture> schedule = msService.selectStdSchdule(map);
+		
+		Lecture schedule1 = schedule.get(0);
+		LectureTime lectureTime = schedule1.getTime();
+		LectureApplication lectureApplication = schedule1.getLectureApplication();
+		Professor professor = schedule1.getProfessor();
+		
+		System.out.println("schedule : " + schedule);
+		System.out.println("schedule1 : " + schedule1);
+		System.out.println("studentlecture.size : " + schedule.size());
+		System.out.println("lectureTime : " + lectureTime);
+		System.out.println("lectureApplication : " + lectureApplication);
+		System.out.println("professor : " + professor);
+		
+		mv.addObject("lecture", schedule1);
+		mv.addObject("lectureTime", lectureTime);
+		mv.addObject("lectureApplication", lectureApplication);
+		mv.addObject("professor", professor);
+		
+		mv.setViewName("myPage/studentSchedule");
+		
+		return mv;
 	}
 }

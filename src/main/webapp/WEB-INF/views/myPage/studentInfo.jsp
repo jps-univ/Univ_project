@@ -213,19 +213,19 @@
 												<c:when test="${ loginUser.stdSmsAgree eq 'Y' }">
 													<td>
 														<label for="SMSAgree">수신동의</label> 
-														<input type="radio" name="SMS" id="SMS" value="Y" checked>
+														<input type="radio" name="SMS" id="SMSAgree" value="Y" checked>
 														&emsp;&emsp;&emsp;&emsp;
 														<label for="SMSDisagree">수신거부</label>
-														<input type="radio" name="SMS" id="SMS" value="N">
+														<input type="radio" name="SMS" id="SMSDisagree" value="N">
 													</td>
 												</c:when>
 												<c:when test="${ loginUser.stdSmsAgree eq 'N' }">
 													<td>
 														<label for="SMSAgree">수신동의</label> 
-														<input type="radio" name="SMS" id="SMS" value="Y">
+														<input type="radio" name="SMS" id="SMSAgree" value="Y">
 														&emsp;&emsp;&emsp;&emsp;
 														<label for="SMSDisagree">수신거부</label>
-														<input type="radio" name="SMS" id="SMS" value="N" checked>
+														<input type="radio" name="SMS" id="SMSDisagree" value="N" checked>
 													</td>
 												</c:when>
 											</c:choose>
@@ -234,19 +234,19 @@
 												<c:when test="${ loginUser.stdEmailAgree eq 'Y' }">
 													<td>
 														<label for="EmailAgree">수신동의</label> 
-														<input type="radio" name="Email" id="Email" value="Y" checked>
+														<input type="radio" name="Email" id="EmailAgree" value="Y" checked>
 														&emsp;&emsp;&emsp;&emsp;
 														<label for="EmailDisagree">수신거부</label>
-														<input type="radio" name="Email" id="Email" value="N">
+														<input type="radio" name="Email" id="EmailDisagree" value="N">
 													</td>
 												</c:when>
 												<c:when test="${ loginUser.stdEmailAgree eq 'N' }">
 													<td>
 														<label for="EmailAgree">수신동의</label> 
-														<input type="radio" name="Email" id="Email" value="Y">
+														<input type="radio" name="Email" id="EmailAgree" value="Y">
 														&emsp;&emsp;&emsp;&emsp;
 														<label for="EmailDisagree">수신거부</label>
-														<input type="radio" name="Email" id="Email" value="N" checked>
+														<input type="radio" name="Email" id="EmailDisagree" value="N" checked>
 													</td>
 												</c:when>
 											</c:choose>
