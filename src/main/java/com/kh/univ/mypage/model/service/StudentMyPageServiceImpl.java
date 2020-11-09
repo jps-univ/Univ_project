@@ -37,8 +37,14 @@ public class StudentMyPageServiceImpl implements StudentMyPageService
 	}
 
 	@Override
-	public Student selectStdInfo(Student student) 
+	public Student selectStdStatus(Student student) 
 	{
-		return msDao.selectStdInfo(student);
+		return msDao.selectStdStatus(student);
+	}
+
+	@Override
+	public Student selectStdDepartment(Student student) 
+	{
+		return msDao.selectStdDepartment(student);
 	}
 }

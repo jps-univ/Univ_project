@@ -8,9 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.univ.member.model.vo.College;
+import com.kh.univ.member.model.vo.Department;
 import com.kh.univ.member.model.vo.Student;
 import com.kh.univ.mypage.model.service.StudentMyPageService;
+import com.kh.univ.register.model.vo.Register;
 
 @Controller
 public class StudentMyPageController 
@@ -21,24 +25,34 @@ public class StudentMyPageController
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
+	/*
 	@RequestMapping("student_info.do")
 	public String StudentInfo()
 	{
 		return "myPage/studentInfo";
 	}
+	*/
 	
-	@ResponseBody
-	@RequestMapping("selectStudentInfo.do")
-    public String StudentInfo(Student student, HttpSession session)
+	@RequestMapping("student_info.do")
+	public ModelAndView StudentInfo(ModelAndView mv, Student student, HttpSession session)
 	{
-		Student newStudent = (Student)session.getAttribute("loginUser");
+		Student sessionStudent = (Student)session.getAttribute("loginUser");
 		
-		Student result = msService.selectStdInfo(student);
-		newStudent = result;
-		System.out.println(result);
+		Student stdStatus = msService.selectStdStatus(sessionStudent);
+		Student stdDepartment = msService.selectStdDepartment(sessionStudent);
 		
-		return "redirect:student_info.do";
-    }
+		Register register = stdStatus.getRegister();
+		Department department = stdDepartment.getDepartment();
+		College college = stdDepartment.getCollege();
+		
+		mv.addObject("register", register);
+		mv.addObject("department", department);
+		mv.addObject("college", college);
+		
+		mv.setViewName("myPage/studentInfo");
+		
+		return mv;
+	}
 	
 	@RequestMapping("student_password.do")
 	public String StudentPassword()
@@ -149,4 +163,22 @@ public class StudentMyPageController
 			return "fail";
 		}
 	}
+	
+	// 학적조회
+	/*
+	@RequestMapping("selectStudentStatus.do")
+	public ModelAndView StudentStatus(ModelAndView mv, Student student, HttpSession session)
+	{
+		Student sessionStudent = (Student)session.getAttribute("loginUser");
+		
+		Student studentAll = msService.selectStdStatus(sessionStudent);
+		
+		Register register = studentAll.getRegister();
+		
+		mv.addObject("register", register);
+		mv.setViewName("myPage/studentInfo");
+		
+		return mv;
+	}
+	*/
 }

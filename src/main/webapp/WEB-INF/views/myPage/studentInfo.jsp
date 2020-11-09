@@ -108,11 +108,11 @@
 												</c:choose>
 											</td>
 											<th>대학</th>
-											<td>${ loginUser.stdCollege }</td>
+											<td>${ college.collegeName }</td>
 										</tr>
 										<tr>
 											<th>학부(과)</th>
-											<td><%-- ${ departmentName } --%></td>
+											<td>${ department.departmentName }</td>
 											<th>과정</th>
 											<td>${ loginUser.stdCourse }</td>
 										</tr>
@@ -121,7 +121,7 @@
 											<th>학년</th>
 											<td>${ semester }학년</td>
 											<th>학적</th>
-											<td>${ loginUser.stdSchoolReg }</td>
+											<td>${ register.stdStatus }</td>
 										</tr>
 										<tr>
 											<th>입학구분</th>
@@ -298,12 +298,6 @@
 
 	
 	<script type="text/javascript">
-		window.onload = function()
-		{
-			<c:url var="myInfo" value="selectStudentInfo.do"/>
-			location.href='${myInfo}'
-		};
-		
 		function personalBtn()
 		{
 			var stdId = ${ loginUser.stdId };
