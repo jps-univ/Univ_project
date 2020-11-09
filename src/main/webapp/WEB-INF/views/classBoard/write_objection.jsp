@@ -26,9 +26,11 @@
   <link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="${contextPath}/resources/css/lecBoard_base.css">       
-  <link rel="stylesheet" href="${contextPath}/resources/css/grade_objection.css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/wirte_objection.css">
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>  
 </head>
 
 <body id="page-top">
@@ -55,53 +57,52 @@
 
         <!-- main content -->
         <div id="main_con">
-            <table id="title_button">
-                <tbody>
+          <div id="write_title"><p>과제 등록</p></div>
+            <form id="write_assignment">
+                <div id="write_content"  class="shadow">
+                    <table id="title_secret">
+                        <tbody>
+                            <tr>
+                                <td><label class="write_subject">제목</label></td>
+                                <td><input type="text" size="35" name="search" id="textTitle"></td>
+                            </tr>
+                            <tr>
+                                <td><label class="write_subject">비밀글</label></td>
+                                <td><input type="checkbox" name="secret_mode" id="secret_mode" value="unseen"></td>
+                            </tr>
+                            <tr>
+                                <td><label class="write_subject2">내용</label></td>
+                                <td><textarea class="summernote"><p>Hello Summernote</p></textarea></td>
+                            </tr>
+                   		     	<tr>
+                                <td><label class="write_subject">첨부파일</label></td>
+                                <td><input type="file" name="uploadFile"></td>
+	                	      	</tr>
+                        </tbody>
+                    </table>
+                </div>        
+            </form>
+            <div id="button_div">
+                <table>
                     <tr>
-                        <td><div id="board_title">성적이의신청</div></td>
-                        <td><button id="board_button">등록하기</button></td>
+                        <td></td>
+                        <td><button id="board_button1">등록</button></td>
+                        <td><button id="board_button2">취소</button></td>
                     </tr>
-            </table>
-
-            <!-- 공지사항 목록 조회  -->
-            <div id="rest_table_area">
-                    <form method="GET">
-                        <table id="rest_notice"  class=" table-hover">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        <p>번호</p>
-                                    </th>
-                                    <th>
-                                        <p>제목</p>
-                                    </th>
-                                    <th>
-                                        <p>작성자</p>
-                                    </th>
-                                    <th>
-                                        <p>작성일</p>
-                                    </th>
-                                    <th>
-                                        <p>조회수</p>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>점수 장난하냐</td>
-                                    <td>김주호</td>
-                                    <td>2020/10/14</td>
-                                    <td>1</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </form>
-            </div>
+                </table>
+            </div>  
+          </div>               
         </div>
+
+
+
+        <script>
+            $(document).ready(function() {
+                $('.summernote').summernote();
+            });
+        </script>     
        
 
-      </div>
 
 
     </div>
