@@ -40,7 +40,7 @@
                 <hr>
             </div>
             <div id="std_info_table_area">
-                <form method="post" action="student_Modify_Update.do">
+                <form method="post" action="student_Modify_Update.do" id="stdForm">
                     <table id="std_info_table">
                         <tr>
                             <td rowspan="5" id="img_area"><img src="#" alt="preview" id="std_img"></td>
@@ -75,7 +75,7 @@
                                 <p>학부(과)</p>
                             </td>
                             <td>
-                            	<select id="stdDepartment" name="stdDepartment">
+                            	<select id="stdDepartment" name="stdDepartment" form="stdForm">
                             		<option><학과를 선택해주세요></option>
                             	</select>
                             </td>
@@ -134,7 +134,7 @@
                         <td class="stdtext">
                             <p>전화번호</p>
                         </td>
-                        <td class=""><input id="stdPhone"name="stdPhone" type="text"></td>
+                        <td><input id="stdPhone"name="stdPhone" type="text"></td>
                         <td class="stdtext">
                             <p>핸드폰</p>
                         </td>
@@ -340,7 +340,7 @@
                 				$('#stdDepartment').empty();
                 				$('#stdDepartment').append("<option><학과를 선택해주세요></option>");
                  				for(var index =0; index < data.length;index++){
-                					var department = $("<option id="+ data[index].departmentCode+ ">" + data[index].departmentName +"</option>");
+                					var department = $("<option value="+ data[index].departmentCode+ ">" + data[index].departmentName +"</option>");
                 					$('#stdDepartment').append(department);
                 				}
                 				

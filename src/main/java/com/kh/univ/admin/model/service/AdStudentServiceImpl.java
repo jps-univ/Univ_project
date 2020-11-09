@@ -47,4 +47,10 @@ public class AdStudentServiceImpl implements AdStudentService{
 		return adStudentDao.deptCheck(collegeCode);
 	}
 
+	@Override
+	public int insertStudent(Student std) {
+		// TODO Auto-generated method stub
+		return adStudentDao.insertOne(std);
+	}
+
 }

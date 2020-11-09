@@ -31,10 +31,30 @@ public class AdStudentController {
 	 * @return
 	 */
 	@RequestMapping("student_Register.do")
-	public String studentRegister() {
-		return "admin/ad_student_register";
+	public ModelAndView studentRegister(ModelAndView mv) {
+		
+		ArrayList<College>  adDept = adStudentService.selectDept();
+		mv.addObject("adDept",adDept);
+		mv.setViewName("admin/ad_student_register");
+
+		return mv;
 	}
 	
+	
+	@RequestMapping(value="studnet_One_Register.do")
+	public String studentOneRegister(Student std) {
+		System.out.println(std);
+		int register =adStudentService.insertStudent(std);
+		
+		if(register>0) {
+			return "redirect:student_Register.do";
+		}else {
+			return"common/errorPage";
+		}
+		
+	}
+	
+
 	
 	
 	/**
@@ -89,8 +109,8 @@ public class AdStudentController {
 			adStudentOne.getRegister().setStdStatus("재학");
 		}
 		System.out.println(adStudentOne.getStdSemester());
-		int stdSem = (Integer.parseInt(adStudentOne.getStdSemester()+1)/2);
-		adStudentOne.setStdSemester(String.valueOf((int)stdSem));
+		int stdSem = (adStudentOne.getStdSemester()+1)/2;
+		adStudentOne.setStdSemester(stdSem);
 		System.out.println(String.valueOf(stdSem));
 		//String stdSem = (adStudentOne.getStdSemester()+1)/2 + "";
 	
@@ -106,6 +126,8 @@ public class AdStudentController {
 	 */
 	@RequestMapping(value="student_Modify_Update.do")
 	public String StudentModifyUpdate(Student std) {
+		System.out.println(std);
+		
 		int result = adStudentService.selectOneUpdate(std);
 		
 		if(result >0) {
@@ -124,6 +146,7 @@ public class AdStudentController {
 	@RequestMapping(value="student_Modify_DeptCheck.do",produces="application/json;charset=UTF-8")
 	public ArrayList<Department> StudentDeptCheck(String collegeCode) {
 		ArrayList<Department> deptCheck = adStudentService.deptCheck(collegeCode);
+		
 		
 		
 		

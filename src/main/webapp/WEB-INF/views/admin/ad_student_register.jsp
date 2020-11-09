@@ -19,6 +19,33 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body>
+<script>
+$(function deptSelect(){
+	$("#stdCollege").change(function(){
+		
+		$.ajax({
+			url:"student_Modify_DeptCheck.do",
+			dataType:"json",
+			data:{
+				collegeCode:$(this).val()
+			},success:function(data){
+				console.log(data[1].departmentCode);
+				$('#stdDepartment').empty();
+				$('#stdDepartment').append("<option><학과를 선택해주세요></option>");
+ 				for(var index =0; index < data.length;index++){
+					var department = $("<option value="+ data[index].departmentCode+ ">" + data[index].departmentName +"</option>");
+					$('#stdDepartment').append(department);
+				}
+				
+			},error:function(){
+				console.log("fail");
+			}
+			
+		});
+	});
+});
+
+</script>
 	<c:import url="../common/adminTopbar.jsp" />
 
 
@@ -41,7 +68,7 @@
 				<hr>
 			</div>
 			<div id="std_info_table_area">
-				<form method="GET">
+				<form method="post" action="studnet_One_Register.do">
 					<table id="std_info_table">
 						<tr>
 							<td rowspan="5" id="img_area"><img src="#" alt="preview"
@@ -49,47 +76,58 @@
 							<td class="stdtext">
 								<p>학번</p>
 							</td>
-							<td><input type="text"></td>
+                            <td><input id="stdId" name="stdId" type="text"></td>
+							<td class="stdtext">
+								<p>비밀번호</p>
+							</td>
+							<td><input type="text" id="stdPwd" name="stdPwd"></td>
+						</tr>
+						<tr>
 							<td class="stdtext">
 								<p>성명</p>
 							</td>
-							<td><input type="text"></td>
-						</tr>
-						<tr>
+                            <td><input id="stdName" name="stdName" type="text"></td>
 							<td class="stdtext">
 								<p>생년월일(성별)</p>
 							</td>
-							<td><input type="text"></td>
-							<td class="stdtext">
-								<p>대학</p>
-							</td>
-							<td><input type="text"></td>
+                            <td><input id="stdBirth"name="stdBirth" type="text"></td>
 						</tr>
 						<tr>
 							<td class="stdtext">
+								<p>단과대학</p>
+							</td>
+                            <td>
+                            	<select id="stdCollege"name="stdCollege">
+                            		<option>---</option>
+	                            	<c:forEach var="d" items="${adDept }">
+	                            		<option value="${d.collegeCode }">${d.collegeName }</option>
+	                            	</c:forEach>
+                            	</select>
+                            </td>							
+                            <td class="stdtext">
 								<p>학부(과)</p>
 							</td>
-							<td><input type="text"></td>
+                            <td>
+                            	<select id="stdDepartment" name="stdDepartment" form="stdForm">
+                            		<option><학과를 선택해주세요></option>
+                            	</select>
+                            </td>						
+                            </tr>
+						<tr>
 							<td class="stdtext">
 								<p>과정구분</p>
 							</td>
-							<td><input type="text"></td>
-						</tr>
-						<tr>
+                            <td><input id="stdCourse" name="stdCourse"type="text"></td>
 							<td class="stdtext">
-								<p>학년</p>
+								<p>이수학기</p>
 							</td>
-							<td><input type="text"></td>
-							<td class="stdtext">
-								<p>학적상태</p>
-							</td>
-							<td><input type="text"></td>
+                            <td><input id="stdSemester"name="stdSemester" type="text"></td>
 						</tr>
 						<tr>
 							<td class="stdtext">
 								<p>입학구분</p>
 							</td>
-							<td><input type="text"></td>
+                            <td><input id="stdEnterDiv"name="stdEnterDiv" type="text"></td>
 							<td class="stdtext"></td>
 							<td><input type="text"></td>
 						</tr>
@@ -123,41 +161,41 @@
 						<td class="stdtext">
 							<p>전화번호</p>
 						</td>
-						<td class=""><input type="text"></td>
+                        <td><input id="stdPhone"name="stdPhone" type="text"></td>
 						<td class="stdtext">
 							<p>핸드폰</p>
 						</td>
-						<td><input type="text"></td>
+                        <td><input id="stdTel"name="stdTel" type="text"></td>
 					</tr>
 					<tr>
 						<td class="stdtext">
 							<p>이메일</p>
 						</td>
-						<td><input type="text"></td>
+                        <td><input id="stdEmail"name="stdEmail" type="text"></td>
 						<td class="stdtext">
 							<p>은행명</p>
 						</td>
-						<td><input type="text"></td>
+                        <td><input id="stdBank"name="stdBank" type="text"></td>
 					</tr>
 					<tr>
 						<td class="stdtext">
 							<p>학생주소</p>
 						</td>
-						<td><input type="text"></td>
+                        <td><input id="stdAddress"name="stdAddress" type="text"></td>
 						<td class="stdtext">
 							<p>계좌번호</p>
 						</td>
-						<td><input type="text"></td>
+                        <td><input id="stdAccount" name="stdAccount"type="text"></td>
 					</tr>
 					<tr>
 						<td class="stdtext">
 							<p>상세주소</p>
 						</td>
-						<td><input type="text"></td>
+                        <td><input id="stdAddressDetail"name="stdAddressDetail" type="text"></td>
 						<td class="stdtext">
 							<p>예금주</p>
 						</td>
-						<td><input type="text"></td>
+                        <td><input id="stdAccountHolder" name="stdAccountHolder"type="text"></td>
 					</tr>
 
 					</div>

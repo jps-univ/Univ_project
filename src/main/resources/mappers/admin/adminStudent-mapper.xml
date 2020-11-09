@@ -59,13 +59,21 @@
  		<result property="graduationDate" column="GRADUATION_DATE"/>
  	</resultMap>
  	
+ 	<insert id="insertOne" parameterType="Student">
+ 	INSERT INTO TB_STUDENT 
+	VALUES(#{stdId},#{stdPwd},#{stdName},#{stdBirth},#{stdDepartment},#{stdCourse},
+	#{stdSemester},#{stdEnterDiv},#{stdImage},#{stdPhone},#{stdEmail},#{stdAddress},#{stdAddressDetail},
+	#{stdBank},#{stdAccount},#{stdAccountHolder},#{stdSmsAgree},#{stdEmailAgree},#{stdEntrance},${stdTel})
+ 	</insert>
+ 	
+ 	
  	<!--관리자 학생 조회 / 수정 페이지 -> 전체 학생 조회  -->
  	<select id ="selectAdminStudent" parameterType="String" resultMap="StudentResultSet">
 		Select STUDENT_ID,STUDENT_NAME, BIRTH_NO, DEPARTMENT_NAME, COLLEGE_NAME, COURSE,SEMESTER,STUDENT_STATUS
 		FROM TB_STUDENT 
 		LEFT JOIN TB_STUDENT_STATUS USING (STUDENT_ID)
-		JOIN TB_DEPARTMENT USING (DEPARTMENT_CODE)
-		JOIN TB_COLLEGE USING(COLLEGE_CODE)
+		LEFT JOIN TB_DEPARTMENT USING (DEPARTMENT_CODE)
+		LEFT JOIN TB_COLLEGE USING(COLLEGE_CODE)
  	</select>
  	
  	<!-- 관리자 학생 조회 단과대학 코드 -->
@@ -87,22 +95,22 @@
  	SELECT STUDENT_ID,STUDENT_NAME, BIRTH_NO, DEPARTMENT_CODE, IMAGE, COLLEGE_CODE, COURSE,SEMESTER,STUDENT_STATUS,ENTER_DIV,TEL,PHONE,EMAIL,BANK,ADDRESS,ADDRESS_DETAIL,STUDENT_ACCOUNT,ACCOUNT_HOLDER
 	FROM TB_STUDENT 
 	LEFT JOIN TB_STUDENT_STATUS USING (STUDENT_ID)
-	JOIN TB_DEPARTMENT USING (DEPARTMENT_CODE)
-	JOIN TB_COLLEGE USING(COLLEGE_CODE)
+	LEFT JOIN TB_DEPARTMENT USING (DEPARTMENT_CODE)
+	LEFT JOIN TB_COLLEGE USING(COLLEGE_CODE)
 	WHERE STUDENT_ID=#{stdId}
  	</select>
  	
  	<!-- 관리자 학생 한명 수정 -->
  	<update id="selectOneUpdateAdminStudent" parameterType="Student" >
- 		UPDATE TB_STUDENT
+    	UPDATE TB_STUDENT
  		SET
  			STUDENT_NAME=#{stdName},
  			BIRTH_NO=#{stdBirth},
- 			COLLEGE=#{stdCollege},
- 			DEPARTMENT=#{stdDepartment},
+ 		<!-- 	COLLEGE_CODE=#{stdCollege}, -->
+ 			DEPARTMENT_CODE=#{stdDepartment},
  			COURSE=#{stdCourse},
  			SEMESTER=#{stdSemester},
- 			SCHOOL_REG=#{stdSchoolReg},
+ 			<!-- SCHOOL_REG=#{stdSchoolReg}, -->
  			ENTER_DIV=#{stdEnterDiv},
  			PHONE=#{stdPhone},
  			EMAIL=#{stdEmail},

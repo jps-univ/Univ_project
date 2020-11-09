@@ -2,6 +2,7 @@ package com.kh.univ.admin.model.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -38,6 +39,11 @@ public class AdStudentDao {
 	public ArrayList<Department> deptCheck(String collegeCode) {
 		// TODO Auto-generated method stub
 		return (ArrayList) sqlSession.selectList("adminStudentMapper.selectDeptCheck",collegeCode);
+	}
+
+	public int insertOne(Student std) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("adminStudentMapper.insertOne",std);
 	}
 
 }
