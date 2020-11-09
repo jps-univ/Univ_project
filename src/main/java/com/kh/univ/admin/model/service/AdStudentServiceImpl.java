@@ -13,7 +13,8 @@ import com.kh.univ.member.model.vo.Student;
 @Service("AdStudentService")
 public class AdStudentServiceImpl implements AdStudentService{
 	
-	@Autowired AdStudentDao adStudentDao;
+	@Autowired 
+	private AdStudentDao adStudentDao;
 	
 	@Override
 	public ArrayList<Student> selectList() {

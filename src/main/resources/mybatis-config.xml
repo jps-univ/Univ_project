@@ -29,8 +29,12 @@
         <mapper resource="mappers/myPage/studentMyPage-mapper.xml"/>
         <mapper resource="mappers/StudentManagement/studentManagement-mapper.xml"/>
         <mapper resource="mappers/payment/payment-mapper.xml"/>
-        <mapper resource="mappers/lecture/lecture-mapper.xml"/>
-        <mapper resource="mappers/admin/adminStudent-mapper.xml"/>
+        <mapper resource="mappers/lecture/lecture-mapper.xml"/>        
         <mapper resource="mappers/Salary/salary-mapper.xml"/>
+        
+        
+        <!-- 관리자 mappers -->
+        <mapper resource="mappers/admin/adminStudent-mapper.xml"/>
+        <mapper resource="mappers/admin/adminProfessor-mapper.xml"/>
     </mappers>
 </configuration>
