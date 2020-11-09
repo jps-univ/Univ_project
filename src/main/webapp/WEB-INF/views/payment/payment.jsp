@@ -103,12 +103,13 @@
                 <c:forEach var="p" items="${ list }">
                 <tr class="line">
                     <td>${ p.schoolYear }학년도</td>
-                    <td>${ p.semester }학기</td>
-                    <td>${ p.semester }학년</td>
+                    <td>${ p.stdSemester }학기</td>
+                    <td>${ p.stdSemester }학년</td>
                     <td>${ p.dueDate }</td>
                     <td>${ p.paymentAmount }</td>
                     <td>${ p.totalScholarships }</td>
-                    <td>${ p.totalPayment }</td>
+                    <td>${ p.totalPayments }</td>
+                    <input type="hidden" value="${ p.paymentNo }"/>
                 </tr>
                 </c:forEach>
 <!--                 <tr class="line">
