@@ -17,6 +17,8 @@ public interface AdStudentService {
 	ArrayList<College> selectDept();
 
 	ArrayList<Department> deptCheck(String collegeCode);
+
+	int insertStudent(Student std);
 	
 
 	
