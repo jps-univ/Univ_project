@@ -14,6 +14,17 @@ public class Department{
 		super();
 	}
 	
+	
+	
+
+	public Department(String departmentCode, String departmentName) {
+		
+		this.departmentCode = departmentCode;
+		this.departmentName = departmentName;
+	}
+
+
+
 
 	public Department(String departmentCode, String departmentName, String collegeCode, int capacity, College college) {
 		super();

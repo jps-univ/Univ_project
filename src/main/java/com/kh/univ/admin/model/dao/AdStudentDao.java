@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.univ.member.model.vo.College;
+import com.kh.univ.member.model.vo.Department;
 import com.kh.univ.member.model.vo.Student;
 
 @Repository("adStudentDao")
@@ -15,7 +16,7 @@ public class AdStudentDao {
     @Autowired
     private SqlSessionTemplate sqlSession;
    
-	public ArrayList<College> selectList() {
+	public ArrayList<Student> selectList() {
         return (ArrayList) sqlSession.selectList("adminStudentMapper.selectAdminStudent");
 	}
 
@@ -27,6 +28,16 @@ public class AdStudentDao {
 	public int selectOneUpdate(Student std) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("adminStudentMapper.selectOneUpdateAdminStudent",std);
+	}
+
+	public ArrayList<College> selectDept() {
+		// TODO Auto-generated method stub
+		 return (ArrayList) sqlSession.selectList("adminStudentMapper.selectAdminDept");
+	}
+
+	public ArrayList<Department> deptCheck(String collegeCode) {
+		// TODO Auto-generated method stub
+		return (ArrayList) sqlSession.selectList("adminStudentMapper.selectDeptCheck",collegeCode);
 	}
 
 }
