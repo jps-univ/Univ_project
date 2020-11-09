@@ -14,10 +14,10 @@ public class PaymentDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	public ArrayList<Payment> selectList() {
+	public ArrayList<Payment> selectList(int i) {
 		
 
-		return (ArrayList)sqlSession.selectList("PaymentMapper.selectList");
+		return (ArrayList)sqlSession.selectList("PaymentMapper.selectList", i);
 		
 		
 	}
