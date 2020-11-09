@@ -1,6 +1,9 @@
 package com.kh.univ.lecture.model.vo;
 
-public class Lecture {
+import com.kh.univ.member.model.vo.Professor;
+
+public class Lecture 
+{
     private int classSeq;			// 시퀀스
     private String classCode;		// 과목코드
     private String deptCode;		// 학과코드
@@ -14,14 +17,20 @@ public class Lecture {
     private int classLevel;			// 수강 학년
     private String classType;		// 이수 구분
 
-    private String lectureTime;		// 수업 시간
+    private String lectureTime;
     private String profName;		// 교수 이름
     
-	public Lecture() {}
-	
+    private LectureTime time;				// 수업시간
+    private LectureApplication lectureApplication;	// 수업신청
+    private Professor professor;
+	public Lecture() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public Lecture(int classSeq, String classCode, String deptCode, int profId, String className, String room,
 			int gradeSize, int classSemester, int classYear, String classApprove, int classLevel, String classType,
-			String lectureTime, String profName) {
+			String lectureTime, String profName, LectureTime time, LectureApplication lectureApplication,
+			Professor professor) {
 		super();
 		this.classSeq = classSeq;
 		this.classCode = classCode;
@@ -37,8 +46,10 @@ public class Lecture {
 		this.classType = classType;
 		this.lectureTime = lectureTime;
 		this.profName = profName;
+		this.time = time;
+		this.lectureApplication = lectureApplication;
+		this.professor = professor;
 	}
-	
 	public int getClassSeq() {
 		return classSeq;
 	}
@@ -123,14 +134,32 @@ public class Lecture {
 	public void setProfName(String profName) {
 		this.profName = profName;
 	}
-	
+	public LectureTime getTime() {
+		return time;
+	}
+	public void setTime(LectureTime time) {
+		this.time = time;
+	}
+	public LectureApplication getLectureApplication() {
+		return lectureApplication;
+	}
+	public void setLectureApplication(LectureApplication lectureApplication) {
+		this.lectureApplication = lectureApplication;
+	}
+	public Professor getProfessor() {
+		return professor;
+	}
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
 	@Override
-	public String toString() 
-	{
+	public String toString() {
 		return "Lecture [classSeq=" + classSeq + ", classCode=" + classCode + ", deptCode=" + deptCode + ", profId="
 				+ profId + ", className=" + className + ", room=" + room + ", gradeSize=" + gradeSize
 				+ ", classSemester=" + classSemester + ", classYear=" + classYear + ", classApprove=" + classApprove
 				+ ", classLevel=" + classLevel + ", classType=" + classType + ", lectureTime=" + lectureTime
-				+ ", profName=" + profName + "]";
+				+ ", profName=" + profName + ", time=" + time + ", lectureApplication=" + lectureApplication
+				+ ", professor=" + professor + "]";
 	}
+    
 }
