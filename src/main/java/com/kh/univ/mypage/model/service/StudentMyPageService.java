@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import com.kh.univ.lecture.model.vo.Lecture;
+import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
 
 public interface StudentMyPageService 
@@ -57,4 +58,11 @@ public interface StudentMyPageService
 	 * @return
 	 */
 	ArrayList<Lecture> selectStdSchdule(Map map);
+
+	/**
+	 * 교수 조회
+	 * @param map
+	 * @return
+	 */
+	ArrayList<Professor> selectProfessor(Map map);
 }

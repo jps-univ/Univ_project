@@ -21,7 +21,7 @@ public class Professor {
 	private String profSmsAgree;		// sms동의
 	private String profEmailAgree;		// 이메일동의
 	private String lab;					// 연구실
-	private String status;				// 신분
+	private String profstatus;			// 신분
 	
 	// 조인 값 
 	private String collegeName;
@@ -33,7 +33,7 @@ public class Professor {
 	public Professor() {}
 
 	// 전제 DB조회
-	public Professor(int profId, String profPwd, String profName, String profBirth, String profCollege, String profDepartment, String profImage, String profSalary, String profTel, String profPhone, String profEmail, String profAddress, String profAddressDetail, String profBank, String profAccount, String profAccountHolder, String profSmsAgree, String profEmailAgree, String lab, String status) 
+	public Professor(int profId, String profPwd, String profName, String profBirth, String profCollege, String profDepartment, String profImage, String profSalary, String profTel, String profPhone, String profEmail, String profAddress, String profAddressDetail, String profBank, String profAccount, String profAccountHolder, String profSmsAgree, String profEmailAgree, String lab, String profstatus) 
 	{
 		super();
 		this.profId = profId;
@@ -55,7 +55,7 @@ public class Professor {
 		this.profSmsAgree = profSmsAgree;
 		this.profEmailAgree = profEmailAgree;
 		this.lab = lab;
-		this.status = status;
+		this.profstatus = profstatus;
 	}
 	
 	
@@ -63,7 +63,7 @@ public class Professor {
 	public Professor(int profId, String profPwd, String profName, String profBirth, String profCollege,
 			String profDepartment, String profImage, String profSalary, String profTel, String profPhone,
 			String profEmail, String profAddress, String profAddressDetail, String profBank, String profAccount,
-			String profAccountHolder, String profSmsAgree, String profEmailAgree, String lab, String status,
+			String profAccountHolder, String profSmsAgree, String profEmailAgree, String lab, 
 			String collegeName, String departmentName) {
 		super();
 		this.profId = profId;
@@ -85,7 +85,7 @@ public class Professor {
 		this.profSmsAgree = profSmsAgree;
 		this.profEmailAgree = profEmailAgree;
 		this.lab = lab;
-		this.status = status;
+
 		this.collegeName = collegeName;
 		this.departmentName = departmentName;
 	}
@@ -241,15 +241,14 @@ public class Professor {
 	public void setLab(String lab) {
 		this.lab = lab;
 	}
+	
+	public String getProfstatus() {
+		return profstatus;
+	}
 
-	public String getStatus() {
-		return status;
+	public void setProfstatus(String profstatus) {
+		this.profstatus = profstatus;
 	}
-	
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	
 	
 	public String getCollegeName() {
 		return collegeName;
@@ -283,7 +282,7 @@ public class Professor {
 				+ ", profEmail=" + profEmail + ", profAddress=" + profAddress + ", profAddressDetail="
 				+ profAddressDetail + ", profBank=" + profBank + ", profAccount=" + profAccount + ", profAccountHolder="
 				+ profAccountHolder + ", profSmsAgree=" + profSmsAgree + ", profEmailAgree=" + profEmailAgree + ", lab="
-				+ lab + ", status=" + status + ", collegeName=" + collegeName + ", departmentName=" + departmentName
+				+ lab +  ", collegeName=" + collegeName + ", departmentName=" + departmentName
 				+ ", collegeCode=" + collegeCode + "]";
 	}
 

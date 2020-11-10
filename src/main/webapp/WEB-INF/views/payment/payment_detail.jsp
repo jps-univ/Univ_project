@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <% String path = request.getContextPath(); %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -39,11 +40,11 @@
                         <td>성명</td>
                         <td colspan="2" style="height: 35px;">${ p.stdName }</td>
                         <td>생년월일</td>
-                        <td>${ p.birth_No }</td>
+                        <td>${ p.stdBirth }</td>
                     </tr>
                     <tr id="tr_2">
                         <td>학과</td>
-                        <td colspan="2" style="width: 210px; height: 35px;">${ p.department }</td>
+                        <td colspan="2" style="width: 210px; height: 35px;">${ p.stdCollege }</td>
                         <td>납부일</td>
                         <td colspan="2">${ p.dueDate }</td>
                     </tr>
@@ -51,7 +52,7 @@
                         <td>학번</td>
                         <td>${ p.stdId }</td>
                         <td>주소</td>
-                        <td colspan="3" style="width: 300px;">${ p.address }</td>
+                        <td colspan="3" style="width: 300px;">${ p.stdAddress }</td>
                     </tr>
 
                     <tr id="tr_3">
@@ -100,7 +101,7 @@
                     </tr>
                     <tr style="font-size: 18px; height: 40px;">
                         <td colspan="3">납부총액</td>
-                        <td colspan="3" style="border-left: hidden;text-align: right">${ p.totalPayment }</td>
+                        <td colspan="3" style="border-left: hidden;text-align: right">${ p.totalPayments }</td>
                     </tr>
                 </tbody>
 

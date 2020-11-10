@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
 <html lang="ko">
 
@@ -24,7 +25,17 @@
 	<%-- <link href="${contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> --%>
 	<%--    <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />--%>
 	<style>
-		#searchProf{
+		#th_college{
+		width: 30%;
+		}
+		#th_department{
+		width: 30%;
+		}
+		#selectCollege{
+		width: 60%;
+		}
+		#selectDepartment{
+		width: 70%;
 		}
 		.top{
 		    background-color: #edf1fc;
@@ -73,39 +84,41 @@
 		              <h6 class="m-0 font-weight-bold text-primary">상담 신청</h6>
 		            </div>
 		
-		            <div class="card-body">
+ 		            <div class="card-body">
 		              <div>
 		                <table>
-		
-		                </table>
-		              </div>
-		              
-		              <div class="table-responsive">
-		                <table class="table table-bordered" id="" width="100%" cellspacing="0">
-		                <tbody>
-		                  <tr align="center">
-		                    <th id="searchProf">학부
-		                      <select>
-		                        <option value="전체">전체</option>
-		                        <option value="공과대">공과대</option>
-		                        <option value="인문대">인문대</option>
+							<tr align="center">
+		                    <th id="th_college">학부&nbsp;
+		                      <select id="selectCollege" name="selectCollege" onchange="changeCollege()">
+		                        <option value="c0">전체</option>
+		                        <option value="c1">인문대학</option>
+		                        <option value="c2">사회과학대학</option>
+		                        <option value="c3">자연과학대학</option>
+		                        <option value="c4">공과대학</option>
+		                        <option value="c5">IT대학</option>
+		                        <option value="c6">예술체육대학</option>
 		                      </select>
 		                    </th>
-		                    <th id="searchProf">학과
-		                      <select>
-		                        <option value="전체">전체</option>
-		                        <option value="공과대">공과대</option>
-		                        <option value="인문대">인문대</option>
+		                    <th id="th_department">&emsp;학과&nbsp;
+		                      <select id="selectDepartment">
+		                        <option>전체</option>
 		                      </select>
 		                    </th>
-		                    <th id="searchProf">성명
-		                      <input type="text" name="" id="">
+		                    
+		                    <th id="th_professor">&emsp;&emsp;성명&nbsp;
+		                      <input type="text" name="" id="searchProfName">
 		                    </th>
-		                    <th id="searchProf">
-		                      <input type="button" value="검색" id="">
+		                    
+		                    <th id="searchProfBtn">
+		                      &emsp;<input type="button" class="btn btn-primary btn-sm" value="검색" id="selectProf" onclick="selectProfBtn()">
 		                    </th>
 		                  </tr>
-		                  
+		                </table>
+		              </div>
+		              <br>
+		              <div class="table-responsive">
+		                <table class="table table-bordered" id="" width="100%" cellspacing="0">
+		                <tbody>                
 		                  <tr align="center">
 		                    <th>학부</th>
 		                    <th>학과</th>
@@ -113,17 +126,17 @@
 		                    <th>상담 신청</th>
 		                  </tr>
 		                  <tr align="center">
-		                    <td>
+		                    <td id="td_college">
 		                    	이공대학
 		                    </td>
-		                    <td>
+		                    <td id="td_department">
 		                    	전자공학과
 		                    </td>
-		                    <td>
+		                    <td id="td_profName">
 		                    	임신일 교수
 		                    </td>
 		                    <td>
-		                      <input type="button" value="상담신청" id="">
+		                      <input type="button" class="btn btn-success" value="상담신청" id="">
 		                    </td>
 		                  </tr>                
 		                 </tbody>
@@ -134,9 +147,7 @@
 		
 		          <div class="card shadow mb-4">
 		            <div class="card-header py-3">
-		              <h6 class="m-0 font-weight-bold text-primary">신청 관리
-		              </h6>
-		              
+		              <h6 class="m-0 font-weight-bold text-primary">신청 관리</h6>
 		            </div>
 		
 		            <div class="card-body">
@@ -154,7 +165,7 @@
 		                    <td>신청 중</td>
 		                    <td>2020.10.13</td>
 		                    <td>
-		                      <input type="button" value="취소" id="">
+		                      <input type="button" class="btn btn-secondary" value="신청취소" id="">
 		                    </td>
 		                  </tr>                
 		                 </tbody>
@@ -165,9 +176,7 @@
 		
 		          <div class="card shadow mb-4">
 		            <div class="card-header py-3">
-		              <h6 class="m-0 font-weight-bold text-primary">진행 상황
-		              </h6>
-		              
+		              <h6 class="m-0 font-weight-bold text-primary">진행 상황</h6>
 		            </div>
 		
 		            <div class="card-body">
@@ -185,7 +194,7 @@
 		                    <td>신청 중</td>
 		                    <td>2020.10.13</td>
 		                    <td>
-		                      <input type="button" value="취소" id="">
+		                      <input type="button" class="btn btn-secondary" value="신청취소" id="">
 		                    </td>
 		                  </tr>                
 		                 </tbody>
@@ -217,6 +226,53 @@
 
 	<!-- Logout Modal-->
 	<c:import url="../common/logoutModal.jsp" />
+	
+	<script type="text/javascript">
+	    function changeCollege() 
+	    {
+	        var college = $('#selectCollege').val();
+	        
+	        $.ajax(
+	        {
+	            url: "checkCollege.do",
+	            data: {collegeCode: college},
+	            dataType: "json",
+	            success: function (data)
+	            {
+	                $('#selectDepartment').empty();
+	                $('#selectDepartment').append("<option>전체</option>");
+	                $('#selectMajor').empty();
+	                $('#selectMajor').append("<option>전체</option>");
+	                for (var i in data) {
+	                    var option = $("<option>" + data[i].deptCode + "</option>");
+	                    $('#selectDepartment').append(option);
+	                }
+	            }, 
+	            error: function ()
+	            {
+	                alert("에러발생")
+	            }
+	
+	        });
+	    }
+	    
+	    function selectProfBtn()
+	    {
+	    	var profCollege = $("#selectCollege").val();
+	    	var departmentName = $("#selectDepartment").val();
+	    	var profName = $("#searchProfName").val();
+	    	
+	    	$.ajax(
+	    	{
+	    		url: "selectProfessor.do",
+	    		data: {"profCollege" : profCollege, "departmentName" : departmentName, "profName" : profName},
+	    		success: function(data)
+	    		{
+
+	    		}
+	    	});
+	    }
+	</script>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
