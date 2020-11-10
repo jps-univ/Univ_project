@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="false"%>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
 <html lang="ko">
@@ -104,11 +106,13 @@
                 <tr class="line">
                     <td>${ p.schoolYear }학년도</td>
                     <td>${ p.stdSemester }학기</td>
-                    <td>${ p.stdSemester }학년</td>
+                    <fmt:parseNumber var="stdSemester" value="${ (p.stdSemester + 1) div 2 }" integerOnly="true"/>
+                    <td>${ stdSemester }학년</td>
                     <td>${ p.dueDate }</td>
                     <td>${ p.paymentAmount }</td>
                     <td>${ p.totalScholarships }</td>
                     <td>${ p.totalPayments }</td>
+                    
                     <input type="hidden" value="${ p.paymentNo }"/>
                 </tr>
                 </c:forEach>
