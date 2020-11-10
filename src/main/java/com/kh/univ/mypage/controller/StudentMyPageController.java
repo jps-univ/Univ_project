@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.kh.univ.lecture.model.vo.Lecture;
-import com.kh.univ.lecture.model.vo.LectureApplication;
 import com.kh.univ.lecture.model.vo.LectureTime;
 import com.kh.univ.member.model.vo.College;
 import com.kh.univ.member.model.vo.Department;
@@ -193,31 +193,13 @@ public class StudentMyPageController
 		map.put("classYear", classYear);
 		map.put("classSemester", classSemester);
 		
-		System.out.println("stdId : " + stdId);
-		System.out.println("classYear : " + classYear);
-		System.out.println("classSemester : " + classSemester);
 		
 		ArrayList<Lecture> schedule = msService.selectStdSchdule(map);
 		
-		Lecture schedule1 = schedule.get(0);
-		LectureTime lectureTime = schedule1.getTime();
-		LectureApplication lectureApplication = schedule1.getLectureApplication();
-		Professor professor = schedule1.getProfessor();
-		
-		System.out.println("schedule : " + schedule);
-		System.out.println("schedule1 : " + schedule1);
-		System.out.println("studentlecture.size : " + schedule.size());
-		System.out.println("lectureTime : " + lectureTime);
-		System.out.println("lectureApplication : " + lectureApplication);
-		System.out.println("professor : " + professor);
-		
-		mv.addObject("lecture", schedule1);
-		mv.addObject("lectureTime", lectureTime);
-		mv.addObject("lectureApplication", lectureApplication);
-		mv.addObject("professor", professor);
+		mv.addObject("schedule", schedule);
 		
 		mv.setViewName("myPage/studentSchedule");
-		
+
 		return mv;
 	}
 }
