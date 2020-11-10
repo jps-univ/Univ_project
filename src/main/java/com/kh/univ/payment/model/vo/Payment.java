@@ -5,7 +5,7 @@ public class Payment {
 	private int paymentNo;              // 등록금번호
 	private int stdId;				     // 학생번호(학번)
 	private String schoolYear;           // 년도(학년도)
-	private String stdSemester;                // 학기
+	private int stdSemester;                // 학기
 	private String dueDate;              // 등록일자(납부일)
 	private String paymentAmount;        // 등록금액(장학금제외금액합산)
 	private String totalScholarships;    // 사전감면(장학금합산)
@@ -26,7 +26,7 @@ public class Payment {
 	
 	public Payment() {}
 
-	public Payment(int paymentNo, String schoolYear, String stdSemester, String dueDate, String paymentAmount,
+	public Payment(int paymentNo, String schoolYear, int stdSemester, String dueDate, String paymentAmount,
 			String totalScholarships, String totalPayments) {
 		super();
 		this.paymentNo = paymentNo;
@@ -38,7 +38,7 @@ public class Payment {
 		this.totalPayments = totalPayments;
 	}
 
-	public Payment(int paymentNo, int stdId, String schoolYear, String stdSemester, String dueDate, String paymentAmount,
+	public Payment(int paymentNo, int stdId, String schoolYear, int stdSemester, String dueDate, String paymentAmount,
 			String totalScholarships, String totalPayments, String stdName, String stdBirth, String stdCollege,
 			String stdAddress, String entranceFee, String schoolFee, String campusScholarship, String suburbanScholartship,
 			String nationalScholarship, String paperGuidanceFee, String studentFees, String alumniFee,
@@ -91,11 +91,11 @@ public class Payment {
 		this.schoolYear = schoolYear;
 	}
 
-	public String getStdSemester() {
+	public int getStdSemester() {
 		return stdSemester;
 	}
 
-	public void setStdSemester(String stdSemester) {
+	public void setStdSemester(int stdSemester) {
 		this.stdSemester = stdSemester;
 	}
 
