@@ -71,18 +71,23 @@
 /* 제목 + 비밀글 */
 #title_secret{
     width: 99%;
-    height: 90%;
+    height: 100%;
     margin: auto;
-    margin-top: 1%;
 }
 
 #title_secret tbody tr td:nth-child(1){
     width: 15%;
+    padding-right: 1%;
 }
 
 #title_secret tbody tr td:nth-child(2){
     width: 85%;
 }
+
+#textTitle{
+    width: 93%
+}
+
 
 #summernote{
     height: 99%;

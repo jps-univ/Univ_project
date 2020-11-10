@@ -29,7 +29,8 @@
    <select id="selectList"  resultMap="PaymentResultSet">
       
       SELECT 
-           SCHOOL_YEAR 
+           PAYMENT_NO
+          ,SCHOOL_YEAR 
           ,SEMESTER
           ,DUE_DATE
           ,PAYMENT_AMOUNT 
@@ -64,6 +65,7 @@
       FROM
           TB_PAYMENT
       JOIN TB_STUDENT USING(STUDENT_ID)
+      WHERE STUDENT_ID = #{stdId}
    </select>
    
    

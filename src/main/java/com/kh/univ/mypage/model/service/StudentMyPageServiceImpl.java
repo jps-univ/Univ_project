@@ -1,8 +1,12 @@
 package com.kh.univ.mypage.model.service;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.member.model.vo.Student;
 import com.kh.univ.mypage.model.dao.StudentMyPageDao;
 
@@ -37,8 +41,20 @@ public class StudentMyPageServiceImpl implements StudentMyPageService
 	}
 
 	@Override
-	public Student selectStdInfo(Student student) 
+	public Student selectStdStatus(Student student) 
 	{
-		return msDao.selectStdInfo(student);
+		return msDao.selectStdStatus(student);
+	}
+
+	@Override
+	public Student selectStdDepartment(Student student) 
+	{
+		return msDao.selectStdDepartment(student);
+	}
+
+	@Override
+	public ArrayList<Lecture> selectStdSchdule(Map map)
+	{
+		return msDao.selectStdSchdule(map);
 	}
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="adminProfessorMapper">
+
+<resultMap id="ProfessorResultSet" type="Professor">
+
+
+</resultMap>
+
+
+ <resultMap id="DepartmentResultSet" type="Department">
+ 	<id property="departmentCode" column="DEPARTMENT_CODE"/>
+ 	<result property="departmentName" column="DEPARTMENT_NAME"/>
+	<result property="collegeCode" column="COLLEGE_CODE"/>
+	<result property="capacity" column="CAPACITY"/>
+ 	<collection property="college" resultMap="CollegeResultSet"/>
+ </resultMap>
+ 	
+ <resultMap type="College" id="CollegeResultSet">
+ 	<id property="collegeCode" column="COLLEGE_CODE"/>
+ 	<result property="collegeName" column="COLLEGE_NAME"/>
+ </resultMap>
+
+<select id="selectAdminProfessor">
+
+
+</select>
+
+</mapper>

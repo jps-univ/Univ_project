@@ -1,6 +1,7 @@
 package com.kh.univ.lecture.model.vo;
 
-public class SearchCondition {
+public class SearchCondition
+{
     private String classType;
     private String inputClassName;
     private String collegeCode;
@@ -8,8 +9,7 @@ public class SearchCondition {
     private String className;
     private int classLevel;
 
-    public SearchCondition() {
-    }
+    public SearchCondition() {}
 
     public SearchCondition(String classType, String inputClassName, String collegeCode, String departmentName, String className, int classLevel) {
         this.classType = classType;

@@ -13,7 +13,8 @@ import com.kh.univ.member.model.vo.Student;
 @Service("AdStudentService")
 public class AdStudentServiceImpl implements AdStudentService{
 	
-	@Autowired AdStudentDao adStudentDao;
+	@Autowired 
+	private AdStudentDao adStudentDao;
 	
 	@Override
 	public ArrayList<Student> selectList() {
@@ -45,6 +46,12 @@ public class AdStudentServiceImpl implements AdStudentService{
 	public ArrayList<Department> deptCheck(String collegeCode) {
 		
 		return adStudentDao.deptCheck(collegeCode);
+	}
+
+	@Override
+	public int insertStudent(Student std) {
+		// TODO Auto-generated method stub
+		return adStudentDao.insertOne(std);
 	}
 
 }

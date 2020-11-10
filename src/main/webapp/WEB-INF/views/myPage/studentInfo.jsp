@@ -108,11 +108,11 @@
 												</c:choose>
 											</td>
 											<th>대학</th>
-											<td>${ loginUser.stdCollege }</td>
+											<td>${ college.collegeName }</td>
 										</tr>
 										<tr>
 											<th>학부(과)</th>
-											<td><%-- ${ departmentName } --%></td>
+											<td>${ department.departmentName }</td>
 											<th>과정</th>
 											<td>${ loginUser.stdCourse }</td>
 										</tr>
@@ -121,7 +121,7 @@
 											<th>학년</th>
 											<td>${ semester }학년</td>
 											<th>학적</th>
-											<td>${ loginUser.stdSchoolReg }</td>
+											<td>${ register.stdStatus }</td>
 										</tr>
 										<tr>
 											<th>입학구분</th>
@@ -213,19 +213,19 @@
 												<c:when test="${ loginUser.stdSmsAgree eq 'Y' }">
 													<td>
 														<label for="SMSAgree">수신동의</label> 
-														<input type="radio" name="SMS" id="SMS" value="Y" checked>
+														<input type="radio" name="SMS" id="SMSAgree" value="Y" checked>
 														&emsp;&emsp;&emsp;&emsp;
 														<label for="SMSDisagree">수신거부</label>
-														<input type="radio" name="SMS" id="SMS" value="N">
+														<input type="radio" name="SMS" id="SMSDisagree" value="N">
 													</td>
 												</c:when>
 												<c:when test="${ loginUser.stdSmsAgree eq 'N' }">
 													<td>
 														<label for="SMSAgree">수신동의</label> 
-														<input type="radio" name="SMS" id="SMS" value="Y">
+														<input type="radio" name="SMS" id="SMSAgree" value="Y">
 														&emsp;&emsp;&emsp;&emsp;
 														<label for="SMSDisagree">수신거부</label>
-														<input type="radio" name="SMS" id="SMS" value="N" checked>
+														<input type="radio" name="SMS" id="SMSDisagree" value="N" checked>
 													</td>
 												</c:when>
 											</c:choose>
@@ -234,19 +234,19 @@
 												<c:when test="${ loginUser.stdEmailAgree eq 'Y' }">
 													<td>
 														<label for="EmailAgree">수신동의</label> 
-														<input type="radio" name="Email" id="Email" value="Y" checked>
+														<input type="radio" name="Email" id="EmailAgree" value="Y" checked>
 														&emsp;&emsp;&emsp;&emsp;
 														<label for="EmailDisagree">수신거부</label>
-														<input type="radio" name="Email" id="Email" value="N">
+														<input type="radio" name="Email" id="EmailDisagree" value="N">
 													</td>
 												</c:when>
 												<c:when test="${ loginUser.stdEmailAgree eq 'N' }">
 													<td>
 														<label for="EmailAgree">수신동의</label> 
-														<input type="radio" name="Email" id="Email" value="Y">
+														<input type="radio" name="Email" id="EmailAgree" value="Y">
 														&emsp;&emsp;&emsp;&emsp;
 														<label for="EmailDisagree">수신거부</label>
-														<input type="radio" name="Email" id="Email" value="N" checked>
+														<input type="radio" name="Email" id="EmailDisagree" value="N" checked>
 													</td>
 												</c:when>
 											</c:choose>
@@ -298,12 +298,6 @@
 
 	
 	<script type="text/javascript">
-		window.onload = function()
-		{
-			<c:url var="myInfo" value="selectStudentInfo.do"/>
-			location.href='${myInfo}'
-		};
-		
 		function personalBtn()
 		{
 			var stdId = ${ loginUser.stdId };

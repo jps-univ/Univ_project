@@ -13,7 +13,7 @@ public class Student {
 	private String stdCollege;		 // 단과대학
 	private String stdDepartment;	 // 학부(과)
 	private String stdCourse;		 // 과정
-	private String stdSemester;		 // 학기
+	private int stdSemester;		 // 학기
 	private String stdEnterDiv;		 // 입학구분
 	private String stdImage;		 // 이미지
 	private String stdTuition;		 // 등록금
@@ -30,14 +30,15 @@ public class Student {
 	private String stdEntrance;		 // 입학일자
 	private String stdTel;			 // 전화번호
 	
-	private Department department;	 // department
+	private Department department;	// 학부
+	private College college;		// 단과대
 	private Register register;
 	
 	public Student() {}
 	
 	// 관리자
 	public Student(int stdId, String stdName, String stdBirth, String stdDepartment, String stdCourse,
-			String stdSemester, String stdSchoolReg, Department department) {
+			int stdSemester, String stdSchoolReg, Department department) {
 		
 		this.stdId = stdId;
 		this.stdName = stdName;
@@ -50,9 +51,8 @@ public class Student {
 		
 	}
 
-
 	// 전체 매개변수
-	public Student(int stdId, String stdPwd, String stdName, String stdBirth, String stdCollege, String stdDepartment, String stdCourse, String stdSemester, String stdEnterDiv, String stdImage, String stdTuition, String stdSchoolReg, String stdPhone, String stdEmail, String stdAddress, String stdAddressDetail, String stdBank, String stdAccount, String stdAccountHolder, String stdSmsAgree, String stdEmailAgree, String stdEntrance, String stdTel) 
+	public Student(int stdId, String stdPwd, String stdName, String stdBirth, String stdCollege, String stdDepartment, String stdCourse, int stdSemester, String stdEnterDiv, String stdImage, String stdTuition, String stdSchoolReg, String stdPhone, String stdEmail, String stdAddress, String stdAddressDetail, String stdBank, String stdAccount, String stdAccountHolder, String stdSmsAgree, String stdEmailAgree, String stdEntrance, String stdTel) 
 	{
 		super();
 		this.stdId = stdId;
@@ -149,11 +149,11 @@ public class Student {
 		this.stdCourse = stdCourse;
 	}
 
-	public String getStdSemester() {
+	public int getStdSemester() {
 		return stdSemester;
 	}
 
-	public void setStdSemester(String stdSemester) {
+	public void setStdSemester(int stdSemester) {
 		this.stdSemester = stdSemester;
 	}
 
@@ -287,13 +287,20 @@ public class Student {
 		this.department = department;
 	}
 
-	
 	public Register getRegister() {
 		return register;
 	}
 
 	public void setRegister(Register register) {
 		this.register = register;
+	}
+
+	public College getCollege() {
+		return college;
+	}
+
+	public void setCollege(College college) {
+		this.college = college;
 	}
 
 	@Override
@@ -307,17 +314,4 @@ public class Student {
 				+ ", stdSmsAgree=" + stdSmsAgree + ", stdEmailAgree=" + stdEmailAgree + ", stdEntrance=" + stdEntrance
 				+ ", stdTel=" + stdTel + ", department=" + department + ", register=" + register + "]";
 	}
-
-
-
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
 }

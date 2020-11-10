@@ -1,7 +1,5 @@
+@charset "UTF-8";
 /* 맨위 글씨 + 이미지 */
-#main_sidebar {
-    height: 1500px;
-}
 
 .professor_info{width:65%; height: 100%;}
 
@@ -38,8 +36,7 @@
 
 /* 과제제출 */
 #write_title{
-    padding-top: 30px;
-    height: 14%;
+    height: 15%;
     width: 80%;
 }
 
@@ -58,7 +55,7 @@
 
 /* 과제 작성 폼 */
 #write_assignment{
-    height: 400px;
+    height: 70%;
     width: 80%;
     margin-left: auto;
     margin-right: auto;
@@ -140,14 +137,6 @@
 }
 
 
-#textContent{
-    border: 1px solid rgb(136, 134, 134, .3);
-    height: 90%;
-    border-radius: 7px;
-    padding: 1%;
-    width: 98%;
-}
-
 
 /* 등록 버튼 */
 #button_div{
@@ -190,137 +179,4 @@
     background-color: whitesmoke;
     border: 1px solid rgb(136, 134, 134, .3);
     color: darkslategray;
-}
-
-
-
-/* 댓글 작성 */
-#reply_form{
-
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: white;
-    border-top: 1px solid rgb(136, 130, 130);
-    border-bottom: 1px solid rgb(136, 130, 130);
-    border-radius: 7px;
-    
-    margin-top: 95px;
-}
-
-#write_reply{
-    height: 100%;
-}
-
-
-#board_reply{
-    width: 99%;
-    height: 100%;
-    margin: auto;
-}
-
-#board_reply tbody tr:nth-child(1){
-    border-bottom: 1px solid rgb(136, 134, 134, .3);
-    border-width: 110%;
-}
-
-#board_reply tbody tr:nth-child(2){
-    border-bottom: 1px solid rgb(136, 134, 134, .3);
-    border-width: 110%;
-    height: 60px;
-}
-
-
-#board_reply tbody tr td label {
-    float: right;
-    position: relative;
-    right: 7%;
-
-}
-
-
-#board_reply tbody tr td:nth-child(1){
-    width: 15%;
-}
-
-.write_reply{
-    bottom: 26px;
-    right: 15px;
-}
-
-#board_reply tbody tr td:nth-child(2){
-    width: 75%;
-}
-
-#board_reply tbody tr td textarea {
-    width: 100%;
-    height: 90px;
-    margin-top: 10px;
-    border: 1px solid rgb(136, 134, 134, .3);
-    border-radius: 7px;
-    padding: 1%;
-}
-
-
-#board_reply tbody tr td:nth-child(2){
-    width: 75%;
-}
-
-#reply_button{
-    position: relative;
-    bottom: 24px;
-    left: 15px;
-}
-
-
-/* 댓글목록 */
-.reply_list{
-
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: white;
-    border-top: 1px solid rgb(136, 130, 130);
-    border-bottom: 1px solid rgb(136, 130, 130);
-    border-radius: 7px;
-    
-    margin-top: 95px;
-}
-
-.stu_no{
-    height: 100%;
-}
-
-.board_replyList tbody tr:nth-child(1){
-    border-bottom: 1px solid rgb(136, 134, 134, .3);
-    border-width: 110%;
-}
-
-.board_replyList tbody tr:nth-child(2){
-    border-bottom: 1px solid rgb(136, 134, 134, .3);
-    border-width: 110%;
-    height: 60px;
-}
-
-.board_replyList{
-    width: 99%;
-    height: 100%;
-    margin: auto;
-}
-
-.board_replyList tbody tr:nth-child(1){
-    border-bottom: 1px solid rgb(136, 134, 134, .3);
-    border-width: 110%;
-    height: 30px;
-}
-
-.board_replyList tbody tr:nth-child(2){
-    border-bottom: 1px solid rgb(136, 134, 134, .3);
-    border-width: 110%;
-    height: 90px;
-}
-
-.board_replyList tbody tr td:nth-child(1){
-    width: 80%;
-    padding-left: 10px;
 }

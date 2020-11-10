@@ -26,12 +26,9 @@
   <link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="${contextPath}/resources/css/lecBoard_base.css">       
-  <link rel="stylesheet" href="${contextPath}/resources/css/assignment_detail.css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/grade_objection_detail.css">
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  
-  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 </head>
 
 <body id="page-top">
@@ -56,7 +53,7 @@
   		<c:import url="../common/pageTopbar.jsp" />
         
 
-          <!-- main content -->
+		<!-- main content -->
           <div id="main_con">
               <div id="write_title"><p>과제</p></div>
               <form id="write_assignment">
@@ -84,11 +81,6 @@
                   </div>        
               </form>
 
-              <script>
-                  $(document).ready(function() {
-                      $('.summernote').summernote();
-                  });
-              </script>    
 
 
               <form id="reply_form">
@@ -137,14 +129,11 @@
               </div>
              
              
-
-
-
-        </div>
+           
+          </div>
        
 
       </div>
-
 
 
     </div>
