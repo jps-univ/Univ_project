@@ -29,6 +29,7 @@ public class Student {
 	private String stdEmailAgree;	 // 이메일동의
 	private String stdEntrance;		 // 입학일자
 	private String stdTel;			 // 전화번호
+	private String status;
 	
 	private Department department;	// 학부
 	private College college;		// 단과대
@@ -52,7 +53,7 @@ public class Student {
 	}
 
 	// 전체 매개변수
-	public Student(int stdId, String stdPwd, String stdName, String stdBirth, String stdCollege, String stdDepartment, String stdCourse, int stdSemester, String stdEnterDiv, String stdImage, String stdTuition, String stdSchoolReg, String stdPhone, String stdEmail, String stdAddress, String stdAddressDetail, String stdBank, String stdAccount, String stdAccountHolder, String stdSmsAgree, String stdEmailAgree, String stdEntrance, String stdTel) 
+	public Student(int stdId, String stdPwd, String stdName, String stdBirth, String stdCollege, String stdDepartment, String stdCourse, int stdSemester, String stdEnterDiv, String stdImage, String stdTuition, String stdSchoolReg, String stdPhone, String stdEmail, String stdAddress, String stdAddressDetail, String stdBank, String stdAccount, String stdAccountHolder, String stdSmsAgree, String stdEmailAgree, String stdEntrance, String stdTel, String status) 
 	{
 		super();
 		this.stdId = stdId;
@@ -78,6 +79,7 @@ public class Student {
 		this.stdEmailAgree = stdEmailAgree;
 		this.stdEntrance = stdEntrance;
 		this.stdTel = stdTel;
+		this.setStatus(status);
 	}
 	
 	// 개인정보 변경 매개변수
@@ -313,5 +315,13 @@ public class Student {
 				+ ", stdBank=" + stdBank + ", stdAccount=" + stdAccount + ", stdAccountHolder=" + stdAccountHolder
 				+ ", stdSmsAgree=" + stdSmsAgree + ", stdEmailAgree=" + stdEmailAgree + ", stdEntrance=" + stdEntrance
 				+ ", stdTel=" + stdTel + ", department=" + department + ", register=" + register + "]";
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }
