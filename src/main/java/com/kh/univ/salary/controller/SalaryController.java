@@ -16,6 +16,7 @@ public class SalaryController {
 	@Autowired
 	private SalaryService saService;
 	
+	// 교수월급페이지
 	@RequestMapping("salary.do")
     public ModelAndView Salary(ModelAndView mv){
 		

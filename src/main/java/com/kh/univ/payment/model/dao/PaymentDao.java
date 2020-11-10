@@ -22,7 +22,7 @@ public class PaymentDao {
 		
 	}
 
-	public ArrayList<Payment> selectDetailList() {
+	public ArrayList<Payment> selectDetailList(int i) {
 
 		return (ArrayList)sqlSession.selectList("PaymentMapper.selectDetailList");
 	}

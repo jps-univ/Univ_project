@@ -19,6 +19,7 @@ public class PaymentController {
 	@Autowired
 	private PaymentService pService;
 	
+	// 학생등록금페이지
 	@RequestMapping("payment.do")
     public ModelAndView Payment(HttpSession session, ModelAndView mv) {
 		
@@ -34,10 +35,13 @@ public class PaymentController {
         return mv;
     }
 	
+	// 인쇄하기 눌렀을 때 한줄 정보 가져오기
 	@RequestMapping("paymentdetail.do")
-    public ModelAndView Paymentdetail(ModelAndView mv){
+    public ModelAndView Paymentdetail(HttpSession session, ModelAndView mv){
 		
-		ArrayList<Payment>list = pService.selectDetailList();
+		Student newPaydetail = (Student)session.getAttribute("loginUser");
+		
+		ArrayList<Payment>list = pService.selectDetailList(newPaydetail.getStdId());
 		
 		mv.addObject("list", list);
 		mv.setViewName("payment/payment_detail");

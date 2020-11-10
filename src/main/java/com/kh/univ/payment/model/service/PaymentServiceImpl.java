@@ -21,9 +21,9 @@ public class PaymentServiceImpl implements PaymentService{
 	}
 
 	@Override
-	public ArrayList<Payment> selectDetailList() {
+	public ArrayList<Payment> selectDetailList(int i) {
 
-		return pDao.selectDetailList();
+		return pDao.selectDetailList(i);
 	}
 
 }
