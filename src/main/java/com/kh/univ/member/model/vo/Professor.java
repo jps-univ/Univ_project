@@ -21,7 +21,7 @@ public class Professor {
 	private String profSmsAgree;		// sms동의
 	private String profEmailAgree;		// 이메일동의
 	private String lab;					// 연구실
-	private String profstatus;			// 신분
+	private String status;			// 신분
 	
 	// 조인 값 
 	private String collegeName;
@@ -33,7 +33,7 @@ public class Professor {
 	public Professor() {}
 
 	// 전제 DB조회
-	public Professor(int profId, String profPwd, String profName, String profBirth, String profCollege, String profDepartment, String profImage, String profSalary, String profTel, String profPhone, String profEmail, String profAddress, String profAddressDetail, String profBank, String profAccount, String profAccountHolder, String profSmsAgree, String profEmailAgree, String lab, String profstatus) 
+	public Professor(int profId, String profPwd, String profName, String profBirth, String profCollege, String profDepartment, String profImage, String profSalary, String profTel, String profPhone, String profEmail, String profAddress, String profAddressDetail, String profBank, String profAccount, String profAccountHolder, String profSmsAgree, String profEmailAgree, String lab, String status) 
 	{
 		super();
 		this.profId = profId;
@@ -55,7 +55,7 @@ public class Professor {
 		this.profSmsAgree = profSmsAgree;
 		this.profEmailAgree = profEmailAgree;
 		this.lab = lab;
-		this.profstatus = profstatus;
+		this.status = status;
 	}
 	
 	
@@ -242,12 +242,12 @@ public class Professor {
 		this.lab = lab;
 	}
 	
-	public String getProfstatus() {
-		return profstatus;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setProfstatus(String profstatus) {
-		this.profstatus = profstatus;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 	public String getCollegeName() {
