@@ -113,7 +113,16 @@
                 <tr class="line">
                 	<td><input type="radio" name="checkRadio" class="checkRadio" value="${ p.paymentNo }"></td>
                     <td>${ p.schoolYear }학년도</td>
-                    <td>${ p.stdSemester }학기</td>
+                    
+                    <fmt:parseNumber var="Semester" value="${ (p.stdSemester + 1) % 2 }" integerOnly="true"/>
+                    <c:choose>
+                        <c:when test="${ Semester eq 0 }">
+                    		<td>1학기</td>
+                        </c:when>
+                        <c:when test="${ Semester eq 1 }">
+                    		<td>2학기</td>
+                        </c:when>
+                    </c:choose>
                     <fmt:parseNumber var="stdSemester" value="${ (p.stdSemester + 1) div 2 }" integerOnly="true"/>
                     <td>${ stdSemester }학년</td>
                     <td>${ p.dueDate }</td>
