@@ -14,21 +14,33 @@ $(function(){
 
 
 
-// $(function(){
-//     $('.line').bind('click',function(){
-//         $(this).unbind('mouseenter').unbind('mouseleave')
-//         .css({
-//             'background' : '#E4E4E4'
-//         });
-//     });
-// });
-
-// 인쇄하기 클릭
 
 
-//$('.line').on('click', function(){
-//	
-//});
+// 등록금 라디오버튼 선택시 페이지 넘기기
+function print() {
+	
+	var paymentNo = $(".checkRadio:checked").val();
+	if(paymentNo == null || paymentNo == 0) {
+		alert("버튼을 선택하세요.");
+		return false;
+	}
+	
+	location.href = "paymentdetail.do?paymentNo="+paymentNo;
+}
+
+
+// 월급 년도 셀렉트박스
+$(document).ready(function(){            
+    var now = new Date();
+    var nyear = now.getFullYear();
+    
+    //년도 selectbox만들기               
+    for(var sy = 2019 ; sy <= nyear ; sy++) {
+        $('.select').append('<option value="' + sy + '">' + sy + '년</option>');    
+    }
+        
+    jQuery(".select > option[value="+nyear+"]").attr("selected", "true");                   
+})
 
 
 

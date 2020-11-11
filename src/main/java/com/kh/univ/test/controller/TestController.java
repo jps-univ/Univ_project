@@ -26,10 +26,7 @@ public class TestController {
     private TestService tService;
 
 
-    @RequestMapping("enrollClassPage.do")
-    public String enrollClassPage() {
-        return "enrollClass/enrollClassPage";
-    }
+
 
 
     @RequestMapping("test1.do")
