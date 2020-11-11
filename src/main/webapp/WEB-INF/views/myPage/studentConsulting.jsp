@@ -106,11 +106,11 @@
 		                    </th>
 		                    
 		                    <th id="th_professor">&emsp;&emsp;성명&nbsp;
-		                      <input type="text" name="" id="selectProf">
+		                      <input type="text" name="" id="searchProfName">
 		                    </th>
 		                    
 		                    <th id="searchProfBtn">
-		                      &emsp;<input type="button" class="btn btn-primary btn-sm" value="검색" id="">
+		                      &emsp;<input type="button" class="btn btn-primary btn-sm" value="검색" id="selectProf" onclick="selectProfBtn()">
 		                    </th>
 		                  </tr>
 		                </table>
@@ -126,13 +126,13 @@
 		                    <th>상담 신청</th>
 		                  </tr>
 		                  <tr align="center">
-		                    <td>
+		                    <td id="td_college">
 		                    	이공대학
 		                    </td>
-		                    <td>
+		                    <td id="td_department">
 		                    	전자공학과
 		                    </td>
-		                    <td>
+		                    <td id="td_profName">
 		                    	임신일 교수
 		                    </td>
 		                    <td>
@@ -254,6 +254,23 @@
 	            }
 	
 	        });
+	    }
+	    
+	    function selectProfBtn()
+	    {
+	    	var profCollege = $("#selectCollege").val();
+	    	var departmentName = $("#selectDepartment").val();
+	    	var profName = $("#searchProfName").val();
+	    	
+	    	$.ajax(
+	    	{
+	    		url: "selectProfessor.do",
+	    		data: {"profCollege" : profCollege, "departmentName" : departmentName, "profName" : profName},
+	    		success: function(data)
+	    		{
+
+	    		}
+	    	});
 	    }
 	</script>
 

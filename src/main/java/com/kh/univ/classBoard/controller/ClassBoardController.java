@@ -1,7 +1,13 @@
 package com.kh.univ.classBoard.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.kh.univ.member.model.vo.Professor;
+import com.kh.univ.member.model.vo.Student;
 
 @Controller
 public class ClassBoardController {
@@ -12,7 +18,20 @@ public class ClassBoardController {
 	 * @return
 	 */
 	@RequestMapping("selectClass.do")
-	public String selectClass() {
+	public String selectClass(HttpSession session, Model model) {
+		
+		Object user = session.getAttribute("loginUser");
+		
+		if (user instanceof Student ) {
+			user = (Student)session.getAttribute("loginUser");
+		}else if (user instanceof Professor){
+			user = (Professor)session.getAttribute("loginUser");
+		}
+		
+		System.out.println(user);
+		
+		
+		
 		return "classBoard/selectClass";
 	}
 	

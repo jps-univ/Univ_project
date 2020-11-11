@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="StudentMyPageMapper">
+	<!-- 학생 ResultMap -->
 	<resultMap id="StudentResultSet" type="Student">
  		<id property="stdId" column="STUDENT_ID"/>
  		<result property="stdPwd" column="STUDENT_PASSWORD"/>
@@ -27,6 +28,7 @@
  		<result property="stdTel" column="TEL"/>
  	</resultMap>
  	
+ 	<!-- 학과 ResultMap -->
  	<resultMap id="DepartmentResultSet" type="Department">
  		<id property="departmentCode" column="DEPARTMENT_CODE"/>
  		<result property="departmentName" column="DEPARTMENT_NAME"/>
@@ -35,11 +37,13 @@
  		<collection property="college" resultMap="CollegeResultSet"/>
  	</resultMap>
  	
+ 	<!-- 단과대 ResultMap -->
  	<resultMap id="CollegeResultSet" type="College">
  		<id property="collegeCode" column="COLLEGE_CODE"/>
  		<result property="collegeName" column="COLLEGE_NAME"/>
  	</resultMap>
  	
+ 	<!-- 학적 ResultMap -->
  	<resultMap id="RegisterResultSet" type="Register">
  		<id property="statusNO" column="STATUS_NO"/>
  		<result property="stdId" column="STUDENT_ID"/>
@@ -53,6 +57,7 @@
  		<result property="graduationDate" column="GRADUATION_DATE"/>
  	</resultMap>
  	
+ 	<!-- 학생 학적 조회 ResultMap -->
  	<resultMap id="StdStatusResultSet" type="Student">
  		<id property="stdId" column="STUDENT_ID"/>
  		<result property="stdPwd" column="STUDENT_PASSWORD"/>
@@ -80,6 +85,7 @@
  		<collection property="register" resultMap="RegisterResultSet"/>
  	</resultMap>
  	
+ 	<!-- 학생 단과대, 학적 조회 ResultMap -->
  	<resultMap id="StdDepartmentResultSet" type="Student">
  		<id property="stdId" column="STUDENT_ID"/>
  		<result property="stdPwd" column="STUDENT_PASSWORD"/>
@@ -108,6 +114,7 @@
  		<collection property="college" resultMap="CollegeResultSet"/>
  	</resultMap>
  	
+ 	<!-- 수업 ResultMap -->
  	<resultMap id="LectureResultSet" type="Lecture">
         <id property="classSeq" column="CLASS_SEQ"/>
         <result property="classCode" column="CLASS_CODE"/>
@@ -124,6 +131,7 @@
         <result property="profName" column="PROFESSOR_NAME"/>
     </resultMap>
     
+    <!-- 수업시간 ResultMap -->
     <resultMap id="LectureTimeResultSet" type="LectureTime">
         <id property="ctSeq" column="CLASS_TIME_SEQ"/>
         <result property="classSeq" column="CLASS_SEQ"/>
@@ -131,17 +139,37 @@
         <result property="hour" column="HOUR"/>
     </resultMap>
     
+    <!-- 수강신청 ResultMap -->
     <resultMap id="LectureApplicationResultSet" type="LectureApplication">
     	<id property="registerSeq" column="REGISTER_SEQ"/>
         <result property="stdId" column="STUDENT_ID"/>
         <result property="classSeq" column="CLASS_SEQ"/>
     </resultMap>
     
+    <!-- 교수 ResultMap -->
     <resultMap id="ProfessorResultSet" type="Professor">
       <id property="profId" column="PROFESSOR_ID"/>
+      <result property="profPwd" column="PASSWORD"/>
       <result property="profName" column="NAME"/>
+      <result property="profBirth" column="BIRTH_NO"/>
+      <result property="profDepartment" column="DEPARTMENT_CODE"/>
+      <result property="profImage" column="IMAGE"/>
+      <result property="profSalary" column="SALARY"/>
+      <result property="profPhone" column="PHONE"/>
+      <result property="profEmail" column="EMAIL"/>
+      <result property="profAddress" column="ADDRESS"/>
+      <result property="profAddressDetail" column="ADDRESS_DETAIL"/>
+      <result property="profBank" column="BANK"/>
+      <result property="profAccount" column="ACCOUNT"/>
+      <result property="profAccountHolder" column="ACCOUNT_HOLDER"/>
+      <result property="profSmsAgree" column="SMS_AGREE"/>
+      <result property="profEmailAgree" column="EMAIL_AGREE"/>
+      <result property="lab" column="LAB"/>
+      <result property="profstatus" column="STATUS"/>
+      <result property="profTel" column="TEL"/>
    </resultMap>
     
+    <!-- 수업시간 조회 ResultMap -->
     <resultMap id="StdScheduleResultSet" type="Lecture">
         <id property="classSeq" column="CLASS_SEQ"/>
         <result property="classCode" column="CLASS_CODE"/>
@@ -212,5 +240,11 @@
 		LEFT OUTER JOIN TB_CLASS_TIME T ON R.CLASS_SEQ = T.CLASS_SEQ
 		LEFT OUTER JOIN TB_PROFESSOR P ON C.PROFESSOR_ID = P.PROFESSOR_ID
 		WHERE S.STUDENT_ID = #{stdId} AND C.CLASS_YEAR = #{classYear} AND C.CLASS_SEMESTER = #{classSemester}
+ 	</select>
+ 	
+ 	<select id="selectProfessor" parameterType="Professor" resultMap="ProfessorResultSet">
+ 		SELECT * FROM TB_PROFESSOR P
+		LEFT OUTER JOIN TB_DEPARTMENT D ON P.DEPARTMENT_CODE = D.DEPARTMENT_CODE
+		WHERE D.COLLEGE_CODE = #{profCollege} AND D.DEPARTMENT_NAME = #{departmentName} AND P.NAME = #{profName}
  	</select>
  </mapper>

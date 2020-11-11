@@ -6,6 +6,7 @@ public class Department{
 	private String departmentName;  // 학과명
 	private String collegeCode;		// 단과대학코드
 	private int capacity;			// 학과 정원
+	
 	private College college;
 	
 	

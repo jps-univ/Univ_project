@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.univ.lecture.model.vo.Lecture;
+import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
 import com.kh.univ.mypage.model.dao.StudentMyPageDao;
 
@@ -56,5 +57,11 @@ public class StudentMyPageServiceImpl implements StudentMyPageService
 	public ArrayList<Lecture> selectStdSchdule(Map map)
 	{
 		return msDao.selectStdSchdule(map);
+	}
+
+	@Override
+	public ArrayList<Professor> selectProfessor(Map map) 
+	{
+		return msDao.selectProfessor(map);
 	}
 }

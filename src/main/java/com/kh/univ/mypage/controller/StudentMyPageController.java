@@ -202,4 +202,34 @@ public class StudentMyPageController
 
 		return mv;
 	}
+	
+	// 교수 조회
+	@ResponseBody
+	@RequestMapping("selectProfessor.do")
+	public ModelAndView SelectProfessor(ModelAndView mv, Professor professor, Department department)
+	{
+		String profName = professor.getProfName();
+		String profCollege = professor.getProfCollege();
+		String departmentName = department.getDepartmentName();
+		
+		Map map = new HashMap();
+		
+		map.put("profName", profName);
+		map.put("profCollege", profCollege);
+		map.put("departmentName", departmentName);
+		
+		System.out.println(map.get("profName"));
+		System.out.println(map.get("profCollege"));
+		System.out.println(map.get("departmentName"));
+		
+		ArrayList<Professor> selectProf = msService.selectProfessor(map);
+		
+		System.out.println(selectProf);
+		
+		mv.addObject("selectProf", selectProf);
+		
+		mv.setViewName("myPage/studentConsulting");
+		
+		return mv;
+	}
 }

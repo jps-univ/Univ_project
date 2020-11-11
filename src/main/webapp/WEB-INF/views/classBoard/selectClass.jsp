@@ -70,10 +70,17 @@
                 <option value="1학기">1학기</option>
                 <option value="2학기">2학기</option>
               </select>
-              <button id="submit" type="submit">조회</button>
+              <button id="submit" type="button">조회</button>
             </fieldset>
           </form>
 
+	<script>
+		$(function(){
+			$("#submit").on('click',function(){
+				location.href = "classBoardMain.do";
+			});
+		});
+	</script>
 
           <!-- 강의 목록 조회 -->
           <div id="rest_table_area">
@@ -155,7 +162,7 @@
 
 	<!-- Page level custom scripts -->
 	<script src="${contextPath}/resources/js/demo/datatables-demo.js"></script>
-
+	
 </body>
 
 </html>
