@@ -65,9 +65,9 @@
             <h6 class="salary">급여지급 내역</h6>
             <select class="select" >
               <option>==== 연도 ====</option>
-              <option>2018년</option>
+<!--               <option>2018년</option>
               <option>2019년</option>
-              <option>2020년</option>
+              <option>2020년</option> -->
             </select>
           </div>
 

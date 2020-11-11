@@ -35,16 +35,16 @@
                         </td>
                     </tr>
 
-                    <c:forEach var="p" items="${ list }">
                     <tr id="tr_2">
                         <td>성명</td>
                         <td colspan="2" style="height: 35px;">${ p.stdName }</td>
+                        <c:set var="stdBirth" value="${ fn:substring( p.stdBirth, 0, 6 )  }"/>
                         <td>생년월일</td>
-                        <td>${ p.stdBirth }</td>
+                        <td>${ stdBirth }</td>
                     </tr>
                     <tr id="tr_2">
                         <td>학과</td>
-                        <td colspan="2" style="width: 210px; height: 35px;">${ p.stdCollege }</td>
+                        <td colspan="2" style="width: 210px; height: 35px;">${ p.departmentName }</td>
                         <td>납부일</td>
                         <td colspan="2">${ p.dueDate }</td>
                     </tr>
@@ -137,7 +137,6 @@
                             
                         </td>
                     </tr>
-                    </c:forEach>
 
             </table>
             
