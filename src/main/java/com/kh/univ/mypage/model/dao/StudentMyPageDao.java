@@ -91,6 +91,11 @@ public class StudentMyPageDao
 
 	public ArrayList<Consulting> selectApply(Student student) 
 	{
-		return (ArrayList)sqlSession.selectList("StudentMyPageMapper.selectApply", student);
+		return (ArrayList)sqlSession.selectList("StudentMyPageMapper.selectConsulting", student);
+	}
+
+	public int cancleConsulting(Consulting consulting)
+	{
+		return sqlSession.update("StudentMyPageMapper.cancleConsulting", consulting);
 	}
 }

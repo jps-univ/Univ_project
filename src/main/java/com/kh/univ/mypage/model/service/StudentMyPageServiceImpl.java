@@ -77,4 +77,10 @@ public class StudentMyPageServiceImpl implements StudentMyPageService
 	{
 		return msDao.selectApply(student);
 	}
+
+	@Override
+	public int cancleConsulting(Consulting consulting) 
+	{
+		return msDao.cancleConsulting(consulting);
+	}
 }

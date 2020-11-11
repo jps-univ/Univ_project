@@ -61,6 +61,9 @@
  		#td_profId{
 		vertical-align: middle;
 		}
+ 		#td_consult{
+		vertical-align: middle;
+		}
 		#th_apply{
 		width: 12%;
 		}
@@ -116,7 +119,7 @@
 		
 					
  		            
- 		            <form action="selectProfessor.do" method="post">
+ 		            <!-- <form action="selectProfessor.do" method="post"> -->
 		              <div id="div_selectProf">
 		                <table>
 							<tr align="center">
@@ -142,26 +145,29 @@
 		                    </th>
 		                    
 		                    <th id="th_searchProfBtn">
-		                      &emsp;<button type="submit" class="btn btn-primary btn-sm">검색</button>
+		                      <!-- &emsp;<button type="submit" class="btn btn-primary btn-sm">검색</button> -->
+		                      &emsp;<input type="button" class="btn btn-primary btn-sm" value="검색" onclick="selectProfessor()">
 		                    </th>
 		                  </tr>
 		                </table>
 		              </div>
-		              </form>
+		              <!-- </form> -->
+		              
 		              <br>
 		              <div class="card-body">
 		              <div class="table-responsive">
-		                <table class="table table-bordered" id="" width="100%" cellspacing="0">
+		                <table class="table table-bordered" id="test" width="100%" cellspacing="0">
 		                <tbody>                
 		                  <tr align="center">
 		                    <th id="th_college">학부</th>
 		                    <th id="th_department">학과</th>
 		                    <th id="th_profName">성명</th>
-		                    <th id="th_profId">교번</th>
+		                    <th id="th_profId">연구실</th>
 		                    <th id="th_apply">상담 신청</th>
 		                  </tr>
-		                  <c:forEach var="p" items="${ selectProf }">
-		                  <tr align="center" class="test">
+		                  <%--
+ 		                  <c:forEach var="p" items="${ selectProf }">
+		                  <tr align="center" id="test">
 		                    <td id="td_college">
 		                    	${ p.collegeName }
 		                    </td>
@@ -172,14 +178,18 @@
 		                    	${ p.profName }
 		                    </td>
 		                    <td id="td_profId">
-		                    	${ p.profId }
+		                    	${ p.lab }
 		                    </td>
 		                    <td>
 		                      <input type="button" class="btn btn-success" value="상담신청" id="applyConsulting" onclick="applyConsulting(event)">
-		                      <input type="hidden" id="test_profName" value="${ p.profId }">
+		                      <input type="hidden" id="hidden_profName" value="${ p.profId }">
 		                    </td>
 		                  </tr>                
 		                 </c:forEach>
+		                 --%>
+		                  <tr align="center" >
+
+		                  </tr>                
 		                 </tbody>
 		                </table>
 		              </div>
@@ -188,7 +198,7 @@
 		
 		          <div class="card shadow mb-4">
 		            <div class="card-header py-3">
-		              <h6 class="m-0 font-weight-bold text-primary">신청 관리</h6>
+		              <h6 class="m-0 font-weight-bold text-primary">신청 상황</h6>
 		            </div>
 		
 		            <div class="card-body">
@@ -201,16 +211,19 @@
 		                    <th>신청 일자</th>
 		                    <th>신청 취소</th>
 		                  </tr>
-		                  <c:forEach var="a" items="${ apply }">
-		                  <tr align="center">
-		                    <td>${ a.profName}</td>
-		                    <td>${ a.consultingStatus } 중</td>
-		                    <td>${ a.applyDate }</td>
-		                    <td>
-		                      <input type="button" class="btn btn-secondary" value="신청취소" id="">
-		                    </td>
-		                  </tr>
-		                  </c:forEach>           
+		                  <c:forEach var="c" items="${ consult }">
+			                  <c:if test="${ c.consultingStatus eq '신청'}">
+				                  <tr align="center">
+				                    <td id="td_consult">${ c.profName }</td>
+				                    <td id="td_consult">${ c.consultingStatus } 중</td>
+				                    <td id="td_consult">${ c.applyDate }</td>
+				                    <td>
+				                      <input type="button" class="btn btn-secondary" value="신청취소" id="cancleConsulting" onclick="cancleConsulting(event)">
+				                      <input type="hidden" id="hidden_consultingNo" value="${ c.consultingNo }">
+				                    </td>
+				                  </tr>
+			                  </c:if>     
+		                  </c:forEach>
 		                 </tbody>
 		                </table>
 		              </div>
@@ -232,14 +245,79 @@
 		                    <th>상담 일자</th>
 		                    <th>신청 취소</th>
 		                  </tr>
+		                  <c:forEach var="c" items="${ consult }">
+			                  <c:if test="${ c.consultingStatus eq '진행'}">
+				                  <tr align="center">
+				                    <td id="td_consult">${ c.profName }</td>
+				                    <td id="td_consult">${ c.consultingStatus } 중</td>
+				                    <td id="td_consult">${ c.progressDate }</td>
+				                    <td>
+				                      <input type="button" class="btn btn-secondary" value="신청취소" id="cancleConsulting" onclick="cancleConsulting(event)">
+				                      <input type="hidden" id="hidden_consultingNo" value="${ c.consultingNo }">
+				                    </td>
+				                  </tr>
+			                  </c:if>     
+		                  </c:forEach>  
+		                 </tbody>
+		                </table>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="card shadow mb-4">
+		            <div class="card-header py-3">
+		              <h6 class="m-0 font-weight-bold text-primary">완료 상황</h6>
+		            </div>
+		
+		            <div class="card-body">
+		              <div class="table-responsive">
+		                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+		                <tbody>
 		                  <tr align="center">
-		                    <td>아무개</td>
-		                    <td>신청 중</td>
-		                    <td>2020.10.13</td>
-		                    <td>
-		                      <input type="button" class="btn btn-secondary" value="신청취소" id="">
-		                    </td>
-		                  </tr>                
+		                    <th>상담 교수</th>
+		                    <th>진행 상태</th>
+		                    <th>상담 일자</th>
+		                    <th>완료 일자</th>
+		                  </tr>
+		                  <c:forEach var="c" items="${ consult }">
+			                  <c:if test="${ c.consultingStatus eq '완료'}">
+				                  <tr align="center">
+				                    <td id="td_consult">${ c.profName }</td>
+				                    <td id="td_consult">상담 ${ c.consultingStatus }</td>
+				                    <td id="td_consult">${ c.applyDate }</td>
+				                    <td id="td_consult">${ c.completeDate }</td>
+				                  </tr>
+			                  </c:if>     
+		                  </c:forEach>  
+		                 </tbody>
+		                </table>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="card shadow mb-4">
+		            <div class="card-header py-3">
+		              <h6 class="m-0 font-weight-bold text-primary">취소 상황</h6>
+		            </div>
+		
+		            <div class="card-body">
+		              <div class="table-responsive">
+		                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+		                <tbody>
+		                  <tr align="center">
+		                    <th>상담 교수</th>
+		                    <th>진행 상태</th>
+		                    <th>신청 일자</th>
+		                    <th>취소 일자</th>
+		                  </tr>
+		                  <c:forEach var="c" items="${ consult }">
+			                  <c:if test="${ c.consultingStatus eq '취소'}">
+				                  <tr align="center">
+				                    <td id="td_consult">${ c.profName }</td>
+				                    <td id="td_consult">상담 ${ c.consultingStatus }</td>
+				                    <td id="td_consult">${ c.applyDate }</td>
+				                    <td id="td_consult">${ c.cancleDate }</td>
+				                  </tr>
+			                  </c:if>     
+		                  </c:forEach>  
 		                 </tbody>
 		                </table>
 		              </div>
@@ -286,7 +364,9 @@
 	                $('#selectDepartment').append("<option>전체</option>");
 	                $('#selectMajor').empty();
 	                $('#selectMajor').append("<option>전체</option>");
-	                for (var i in data) {
+	                
+	                for (var i in data) 
+	                {
 	                    var option = $("<option>" + data[i].deptCode + "</option>");
 	                    $('#selectDepartment').append(option);
 	                }
@@ -298,9 +378,64 @@
 	        });
 	    }
 	    
+	    // 교수 조회
+	    function selectProfessor()
+	    {
+	    	var profName = $("#searchProfName").val();
+	    	var profCollege = $("#selectCollege").val();
+	    	var departmentName = $("#selectDepartment").val();
+	    	console.log(profName);
+	    	console.log(profCollege);
+	    	console.log(departmentName);
+	        
+	        $.ajax(
+	        {
+	            url: "selectProfessor.do",
+	            data: {"profName" : profName, "profCollege" : profCollege, "departmentName" : departmentName},
+	            success:function(data)
+	            {
+	            	$(".test2").remove();
+	            	
+	            	for(var i in data)
+	            	{
+	            		/*
+ 	            		var collegeName = $('<tr align="center"> <td id="td_college">' + data[i].collegeName + '</td>');
+	            		var departmentName = $('<td id="td_department">' + data[i].departmentName + '</td>');
+	            		var profName = $('<td id="td_profName">' + data[i].profName + '</td>');
+	            		var lab = $('<td id="td_profId">' + data[i].lab + '</td>');
+	            		var applyConsulting = $('<td> <input type="button" class="btn btn-success" value="상담신청" id="applyConsulting" onclick="applyConsulting(event)">');
+	            		var hidden_profName = $('<input type="hidden" id="hidden_profName" value="${ p.profId }"> </td> </tr>');
+	            		
+ 	            		$("#test").append(collegeName);
+	            		$("#test").append(departmentName);
+	            		$("#test").append(profName);
+	            		$("#test").append(lab);
+	            		$("#test").append(applyConsulting);
+	            		$("#test").append(hidden_profName);
+	            		*/
+	            		
+	            		var result = $('<tr align="center" class="test2"><td id="td_college">' + data[i].collegeName + '</td>' +
+			            				'<td id="td_department">' + data[i].departmentName + '</td>' + 
+			            				'<td id="td_profName">' + data[i].profName + '</td>' + 
+			            				'<td id="td_profId">' + data[i].lab + '</td>' + 
+			            				'<td> <input type="button" class="btn btn-success" value="상담신청" id="applyConsulting" onclick="applyConsulting(event)">' + 
+			            				'<input type="hidden" id="hidden_profName" value="' + data[i].profId + '"> </td></tr>'
+	            					  );
+	            		
+	            		$("#test").append(result);
+	            	}
+	            }, 
+	            error:function()
+	            {
+	                alert("조회에 실패하였습니다.");
+	            }
+	        });
+	    }
+	    
+	    // 상담 신청 
 	    function applyConsulting(event)
 	    {
-	        var profId = event.target.nextElementSibling.value;
+	    	var profId = event.target.nextElementSibling.value;
 	        
 	        if(confirm("신청하시겠습니까?"))
 	    	{
@@ -310,17 +445,47 @@
 		            data: {"profId" : profId},
 		            success:function(data)
 		            {
-		            	alert("성공");
+		            	alert("상담이 신청되었습니다.");
+		            	location.reload();
 		            }, 
 		            error:function()
 		            {
-		                alert("에러발생");
+		                alert("상담이 신청되지 않았습니다.");
 		            }
 		        });
 	    	}
 	    	else
 	    	{
 				alert("취소되었습니다.");
+				return;
+	    	}
+	    }
+	    
+	    // 상담 신청 취소 
+	    function cancleConsulting(event)
+	    {
+	        var consultingNo = event.target.nextElementSibling.value;
+	        
+	        if(confirm("취소하시겠습니까?"))
+	    	{
+		        $.ajax(
+		        {
+		            url: "cancleConsulting.do",
+		            data: {"consultingNo" : consultingNo},
+		            success:function(data)
+		            {
+		            	alert("상담이 취소되었습니다.");
+		            	location.reload();
+		            }, 
+		            error:function()
+		            {
+		                alert("상담 신청 중입니다.");
+		            }
+		        });
+	    	}
+	    	else
+	    	{
+				alert("상담이 취소되지 않았습니다.");
 				return;
 	    	}
 	    }

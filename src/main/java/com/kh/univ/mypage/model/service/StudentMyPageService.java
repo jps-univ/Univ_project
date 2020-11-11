@@ -46,7 +46,7 @@ public interface StudentMyPageService
 	Student selectStdStatus(Student student);
 
 	/**
-	 * 학생 단과대, 학과 조회
+	 * 학생 학부, 학과 조회
 	 * @param sessionStudent
 	 * @return
 	 */
@@ -75,9 +75,16 @@ public interface StudentMyPageService
 	int applyConsulting(Map map);
 
 	/**
-	 * 학생 상담 신청 조회
+	 * 상담 신청 조회
 	 * @param sessionStudent
 	 * @return
 	 */
 	ArrayList<Consulting> selectApply(Student student);
+
+	/**
+	 * 상담 취소
+	 * @param consulting
+	 * @return
+	 */
+	int cancleConsulting(Consulting consulting);
 }
