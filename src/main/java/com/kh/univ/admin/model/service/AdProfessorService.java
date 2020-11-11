@@ -19,4 +19,8 @@ public interface AdProfessorService {
 
 	int updateOne(Professor pro);
 
+	int insertProfessor(Professor pro);
+
+	
+
 }

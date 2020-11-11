@@ -46,4 +46,13 @@ public class AdProfessorServiceImpl implements AdProfessorService{
 		return adprofessorDao.updateOne(pro);
 	}
 
+	@Override
+	public int insertProfessor(Professor pro) {
+		// TODO Auto-generated method stub
+		return adprofessorDao.insertProfessor(pro);
+	}
+
+
+	
+
 }
