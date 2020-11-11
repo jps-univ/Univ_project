@@ -13,11 +13,11 @@ public class Consulting
 	private Date completeDate;			// 상담 완료 일자
 	private Date cancleDate;			// 상담 취소 일자
 	
+	private String stdName;				// 학생 이름
+	private String profName;			// 교수 이름
 	public Consulting() {}
-	
-	// 전체 매개 변수
-	public Consulting(int consultingNo, int stdId, int profId, String consultingStatus, Date applyDate, Date progressDate, Date completeDate, Date cancleDate) 
-	{
+	public Consulting(int consultingNo, int stdId, int profId, String consultingStatus, Date applyDate,
+			Date progressDate, Date completeDate, Date cancleDate, String stdName, String profName) {
 		super();
 		this.consultingNo = consultingNo;
 		this.stdId = stdId;
@@ -27,8 +27,9 @@ public class Consulting
 		this.progressDate = progressDate;
 		this.completeDate = completeDate;
 		this.cancleDate = cancleDate;
+		this.stdName = stdName;
+		this.profName = profName;
 	}
-	
 	public int getConsultingNo() {
 		return consultingNo;
 	}
@@ -77,10 +78,23 @@ public class Consulting
 	public void setCancleDate(Date cancleDate) {
 		this.cancleDate = cancleDate;
 	}
-
+	public String getStdName() {
+		return stdName;
+	}
+	public void setStdName(String stdName) {
+		this.stdName = stdName;
+	}
+	public String getProfName() {
+		return profName;
+	}
+	public void setProfName(String profName) {
+		this.profName = profName;
+	}
 	@Override
-	public String toString() 
-	{
-		return "consultingNo=" + consultingNo + ", stdId=" + stdId + ", profId=" + profId + ", consultingStatus=" + consultingStatus + ", applyDate=" + applyDate + ", progressDate=" + progressDate + ", completeDate=" + completeDate + ", cancleDate=" + cancleDate;
+	public String toString() {
+		return "Consulting [consultingNo=" + consultingNo + ", stdId=" + stdId + ", profId=" + profId
+				+ ", consultingStatus=" + consultingStatus + ", applyDate=" + applyDate + ", progressDate="
+				+ progressDate + ", completeDate=" + completeDate + ", cancleDate=" + cancleDate + ", stdName="
+				+ stdName + ", profName=" + profName + "]";
 	}
 }

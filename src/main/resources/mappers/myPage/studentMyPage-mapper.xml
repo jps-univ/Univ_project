@@ -214,6 +214,19 @@
  		<collection property="professor" resultMap="ProfessorResultSet"/>
     </resultMap>
     
+    <resultMap id="ConsultingResultSet" type="Consulting">
+    	<id property="consultingNo" column="CONSULTING_NO"/>
+    	<result property="stdId" column="STUDENT_ID"/>
+    	<result property="profId" column="PROFESSOR_ID"/>
+    	<result property="consultingStatus" column="CONSULTING_STATUS"/>
+    	<result property="applyDate" column="APPLY_DATE"/>
+    	<result property="progressDate" column="PROGRESS_DATE"/>
+    	<result property="completeDate" column="COMPLETE_DATE"/>
+    	<result property="cancleDate" column="CANCLE_DATE"/>
+    	<result property="stdName" column="STUDENT_NAME"/>
+    	<result property="profName" column="NAME"/>
+    </resultMap>
+    
  	<!-- 학생 개인정보 변경 -->
  	<update id="changeStdPersonalInfo">
  		UPDATE TB_STUDENT SET
@@ -319,7 +332,7 @@
  	</insert>
  	
  	<!-- 상담 신청 조회 -->
-    <select id="selectApply" parameterType="Professor" resultMap="SelectProfessorResultSet">
+    <select id="selectApply" parameterType="Consulting" resultMap="ConsultingResultSet">
 		SELECT  C.CONSULTING_NO, C.STUDENT_ID, C.PROFESSOR_ID, C.CONSULTING_STATUS, C.APPLY_DATE, C.PROGRESS_DATE, C.COMPLETE_DATE, C.CANCLE_DATE,
 		S.STUDENT_NAME, P.NAME
 		FROM TB_CONSULTING C

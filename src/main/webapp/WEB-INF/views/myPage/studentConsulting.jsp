@@ -178,8 +178,8 @@
 		                      <input type="button" class="btn btn-success" value="상담신청" id="applyConsulting" onclick="applyConsulting(event)">
 		                      <input type="hidden" id="test_profName" value="${ p.profId }">
 		                    </td>
-		                    </c:forEach>
 		                  </tr>                
+		                 </c:forEach>
 		                 </tbody>
 		                </table>
 		              </div>
@@ -201,14 +201,16 @@
 		                    <th>신청 일자</th>
 		                    <th>신청 취소</th>
 		                  </tr>
+		                  <c:forEach var="a" items="${ apply }">
 		                  <tr align="center">
-		                    <td>아무개</td>
-		                    <td>신청 중</td>
-		                    <td>2020.10.13</td>
+		                    <td>${ a.profName}</td>
+		                    <td>${ a.consultingStatus } 중</td>
+		                    <td>${ a.applyDate }</td>
 		                    <td>
 		                      <input type="button" class="btn btn-secondary" value="신청취소" id="">
 		                    </td>
-		                  </tr>                
+		                  </tr>
+		                  </c:forEach>           
 		                 </tbody>
 		                </table>
 		              </div>
@@ -300,20 +302,27 @@
 	    {
 	        var profId = event.target.nextElementSibling.value;
 	        
-	        console.log(profId);
-	        $.ajax(
-	        {
-	            url: "applyConsulting.do",
-	            data: {"profId" : profId},
-	            success:function(data)
-	            {
-	            	alert("성공");
-	            }, 
-	            error:function()
-	            {
-	                alert("에러발생");
-	            }
-	        });
+	        if(confirm("신청하시겠습니까?"))
+	    	{
+		        $.ajax(
+		        {
+		            url: "applyConsulting.do",
+		            data: {"profId" : profId},
+		            success:function(data)
+		            {
+		            	alert("성공");
+		            }, 
+		            error:function()
+		            {
+		                alert("에러발생");
+		            }
+		        });
+	    	}
+	    	else
+	    	{
+				alert("취소되었습니다.");
+				return;
+	    	}
 	    }
 	</script>
 

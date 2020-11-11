@@ -90,6 +90,8 @@ public class StudentMyPageController
 		
 		System.out.println(apply);
 		
+		mv.addObject("apply", apply);
+		
 		mv.setViewName("myPage/studentConsulting");
 		
 		return mv;
