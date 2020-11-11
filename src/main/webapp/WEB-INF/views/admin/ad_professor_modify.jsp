@@ -38,7 +38,7 @@
                 <hr>
             </div>
             <div id="pro_info_table_area">
-                <form method="GET">
+                <form method="post" action="professor_Modify_Update.do">
                     <table id="pro_info_table">
                         <tr>
                             <td rowspan="5" id="img_area"><img src="#" alt="preview" id="pro_img"></td>

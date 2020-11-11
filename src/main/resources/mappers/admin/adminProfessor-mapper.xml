@@ -75,4 +75,20 @@ WHERE PROFESSOR_ID=#{profId}
 	WHERE COLLEGE_CODE =#{collegeCode}
  </select>
 
+<update id="selectOneUpdate" parameterType="Professor">
+UPDATE TB_PROFESSOR SET
+	NAME = #{profName},
+	BIRTH_NO = #{profBirth},
+	DEPARTMENT_CODE = #{profDepartment},
+	PHONE = #{profPhone},
+	LAB = #{lab},
+	ADDRESS = #{profAddress},
+	ADDRESS_DETAIL = #{profAddressDetail},
+	EMAIL = #{profEmail},
+	ACCOUNT = #{profAccount},
+	ACCOUNT_HOLDER = #{profAccountHolder},
+	BANK = #{profBank}
+WHERE PROFESSOR_ID = #{profId}
+
+</update>
 </mapper>
