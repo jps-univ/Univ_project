@@ -29,7 +29,6 @@ public class AdProfessorController {
 		ArrayList<College> adDept = adProfessorService.selectDept();
 		mv.addObject("adDept",adDept);
 		mv.setViewName("admin/ad_professor_register");
-		System.out.println(session.getAttribute("loginUser"));
 		return mv;
 	}
 	
