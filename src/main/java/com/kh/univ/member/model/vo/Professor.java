@@ -21,11 +21,19 @@ public class Professor {
 	private String profSmsAgree;		// sms동의
 	private String profEmailAgree;		// 이메일동의
 	private String lab;					// 연구실
+	private String status;			// 신분
+	
+	// 조인 값 
+	private String collegeName;
+	private String departmentName;
+	private String collegeCode;
+	
+	
 	
 	public Professor() {}
 
 	// 전제 DB조회
-	public Professor(int profId, String profPwd, String profName, String profBirth, String profCollege, String profDepartment, String profImage, String profSalary, String profTel, String profPhone, String profEmail, String profAddress, String profAddressDetail, String profBank, String profAccount, String profAccountHolder, String profSmsAgree, String profEmailAgree, String lab) 
+	public Professor(int profId, String profPwd, String profName, String profBirth, String profCollege, String profDepartment, String profImage, String profSalary, String profTel, String profPhone, String profEmail, String profAddress, String profAddressDetail, String profBank, String profAccount, String profAccountHolder, String profSmsAgree, String profEmailAgree, String lab, String status) 
 	{
 		super();
 		this.profId = profId;
@@ -47,6 +55,39 @@ public class Professor {
 		this.profSmsAgree = profSmsAgree;
 		this.profEmailAgree = profEmailAgree;
 		this.lab = lab;
+		this.status = status;
+	}
+	
+	
+	// 관리자
+	public Professor(int profId, String profPwd, String profName, String profBirth, String profCollege,
+			String profDepartment, String profImage, String profSalary, String profTel, String profPhone,
+			String profEmail, String profAddress, String profAddressDetail, String profBank, String profAccount,
+			String profAccountHolder, String profSmsAgree, String profEmailAgree, String lab, 
+			String collegeName, String departmentName) {
+		super();
+		this.profId = profId;
+		this.profPwd = profPwd;
+		this.profName = profName;
+		this.profBirth = profBirth;
+		this.profCollege = profCollege;
+		this.profDepartment = profDepartment;
+		this.profImage = profImage;
+		this.profSalary = profSalary;
+		this.profTel = profTel;
+		this.profPhone = profPhone;
+		this.profEmail = profEmail;
+		this.profAddress = profAddress;
+		this.profAddressDetail = profAddressDetail;
+		this.profBank = profBank;
+		this.profAccount = profAccount;
+		this.profAccountHolder = profAccountHolder;
+		this.profSmsAgree = profSmsAgree;
+		this.profEmailAgree = profEmailAgree;
+		this.lab = lab;
+
+		this.collegeName = collegeName;
+		this.departmentName = departmentName;
 	}
 
 	public int getProfId() {
@@ -200,10 +241,52 @@ public class Professor {
 	public void setLab(String lab) {
 		this.lab = lab;
 	}
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	public String getCollegeName() {
+		return collegeName;
+	}
+
+	public void setCollegeName(String collegeName) {
+		this.collegeName = collegeName;
+	}
+
+	public String getDepartmentName() {
+		return departmentName;
+	}
+
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
+	}
+	
+	public String getCollegeCode() {
+		return collegeCode;
+	}
+
+	public void setCollegeCode(String collegeCode) {
+		this.collegeCode = collegeCode;
+	}
 
 	@Override
-	public String toString() 
-	{
-		return "profId=" + profId + ", profPwd=" + profPwd + ", profName=" + profName + ", profBirth=" + profBirth + ", profCollege=" + profCollege + ", profDepartment=" + profDepartment + ", profImage=" + profImage + ", profSalary=" + profSalary + ", profTel=" + profTel + ", profPhone=" + profPhone + ", profEmail=" + profEmail + ", profAddress=" + profAddress + ", profAddressDetail=" + profAddressDetail + ", profBank=" + profBank + ", profAccount=" + profAccount + ", profAccountHolder=" + profAccountHolder + ", profSmsAgree=" + profSmsAgree + ", profEmailAgree=" + profEmailAgree + ", lab="+ lab;
+	public String toString() {
+		return "Professor [profId=" + profId + ", profPwd=" + profPwd + ", profName=" + profName + ", profBirth="
+				+ profBirth + ", profCollege=" + profCollege + ", profDepartment=" + profDepartment + ", profImage="
+				+ profImage + ", profSalary=" + profSalary + ", profTel=" + profTel + ", profPhone=" + profPhone
+				+ ", profEmail=" + profEmail + ", profAddress=" + profAddress + ", profAddressDetail="
+				+ profAddressDetail + ", profBank=" + profBank + ", profAccount=" + profAccount + ", profAccountHolder="
+				+ profAccountHolder + ", profSmsAgree=" + profSmsAgree + ", profEmailAgree=" + profEmailAgree + ", lab="
+				+ lab +  ", collegeName=" + collegeName + ", departmentName=" + departmentName
+				+ ", collegeCode=" + collegeCode + "]";
 	}
+
+
+	
+
 }

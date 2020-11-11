@@ -38,56 +38,67 @@
                 <hr>
             </div>
             <div id="pro_info_table_area">
-                <form method="GET">
+                <form method="post" action="professor_Modify_Update.do">
                     <table id="pro_info_table">
                         <tr>
                             <td rowspan="5" id="img_area"><img src="#" alt="preview" id="pro_img"></td>
                             <td class="stdtext">
                                 <p>교번</p>
                             </td>
-                            <td><input type="text"></td>
+                            <td><input type="text" id="profId" name="profId"></td>
                             <td class="stdtext">
                                 <p>성명</p>
                             </td>
-                            <td><input type="text"></td>
+                            <td><input type="text" id="profName" name="profName"></td>
                         </tr>
                         <tr>
                             <td class="stdtext">
                                 <p>주민번호</p>
                             </td>
-                            <td><input type="text"></td>
+                            <td><input type="text" id="profBirth" name="profBirth"></td>
                             <td class="stdtext">
                                 <p>단과대학</p>
                             </td>
-                            <td><input type="text"></td>
+                            <td>
+                            	<select id="collegeCode" name="collegeCode">
+                            		<option>---</option>
+	                            	<c:forEach var="d" items="${adDept }">
+	                            		<option value="${d.collegeCode }">${d.collegeName }</option>
+	                            	</c:forEach>
+                            	</select>
+                            </td>
                         </tr>
                         <tr>
                             <td class="stdtext">
                                 <p>학부(과)</p>
                             </td>
-                            <td><input type="text"></td>
-                            <td class="stdtext">
-                                <p>이메일</p>
+                            <td>
+                            	<select id="profDepartment" name="profDepartment">
+                            		<option><학과를 선택해주세요></option>
+                            	</select>
                             </td>
-                            <td><input type="text"></td>
-                        </tr>
-                        <tr>
                             <td class="stdtext">
-                                <p>전화번호</p>
+                                <p>연구실</p>
                             </td>
-                            <td><input type="text"></td>
-                            <td class="stdtext">
-                                <p>핸드폰</p>
-                            </td>
-                            <td><input type="text"></td>
+                            <td><input type="text" id="lab" name="lab"></td>
                         </tr>
                         <tr>
                             <td class="stdtext">
                                 <p>주소</p>
                             </td>
-                            <td><input type="text"></td>
-                            <td class="stdtext"><p>상세주소</p></td>
-                            <td><input type="text"></td>
+                            <td><input type="text" id="profAddress" name="profAddress"></td>
+                            <td class="stdtext">
+                                <p>핸드폰</p>
+                            </td>
+                            <td><input type="text" id="profPhone" name="profPhone"></td>
+                        </tr>
+                        <tr>
+                            <td class="stdtext">
+                                <p>상세주소</p>
+                            </td>
+                            <td><input type="text" id="profAddressDetail" name="profAddressDetail"></td>
+                            <td class="stdtext"></td>
+                            <td><input type="text" id="" name=""></td>
                         </tr>
                     </table>
                     <input type="file" value="a" onchange="previewImg()" id="preview_std_img">
@@ -122,21 +133,21 @@
                         <td class="stdtext">
                             <p>이메일</p>
                         </td>
-                        <td><input type="text"></td>
+                        <td><input type="text" id="profEmail" name="profEmail"></td>
                         <td class="stdtext">
                             <p>은행명</p>
                         </td>
-                        <td><input type="text"></td>
+                        <td><input type="text" id="profBank" name="profBank"></td>
                     </tr>
                     <tr>
                         <td class="stdtext">
                             <p>예금주</p>
                         </td>
-                        <td><input type="text"></td>
+                        <td><input type="text" id="profAccountHolder" name="profAccountHolder"></td>
                         <td class="stdtext">
                             <p>계좌번호</p>
                         </td>
-                        <td><input type="text"></td>
+                        <td><input type="text" id="profAccount" name="profAccount"></td>
                     </tr>
                    
 
@@ -184,35 +195,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>A12</td>
-                            <td>20/09/26</td>
-                            <td>10/22</td>
-                            <td>13:00</td>
-                            <td>교</td>
-                          
-                            
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>A12</td>
-                            <td>10/12</td>
-                            <td>10/22</td>
-                            <td>13:00</td>
-                            <td>병가</td>
-                           
-                            
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>A12</td>
-                            <td>10/12</td>
-                            <td>10/22</td>
-                            <td>13:00</td>
-                            <td>병가</td>
-                       
-                        </tr>
+						<c:forEach var="p" items="${adProfessorList }">
+							<tr>
+								<td>${p.profId }</td>
+								<td>${p.profName }</td>
+								<td>${p.profPhone}</td>
+								<td>${p.collegeName }</td>
+								<td>${p.departmentName }</td>
+								<td>${p.lab }</td>
+							</tr>
+						</c:forEach>
 
                     </tbody>
 
@@ -226,7 +218,57 @@
         <!-- 본문 끝 -->
 
     </div>
+    <script>
     
+    $(function(){
+        $("#total_std tbody td").click(function(){
+        	$.ajax({
+        		url:"professor_Modify_one.do",
+        		dataType:"json",
+        		data:{
+        			profId :$(this).parent().children().eq(0).text()
+        		},success:function(data){
+        			console.log(data);
+        			$("#profId").val(data.profId);
+        			$("#profName").val(data.profName);
+        			$("#profBirth").val(data.profBirth);
+        			$("#collegeCode").val(data.collegeCode);
+        			$.ajax({
+        				url:"professor_Modify_DeptCheck.do",
+            			dataType:"json",
+            			data:{
+            				collegeCode:$("#collegeCode").val()
+            			},success:function(dept){
+            				console.log(dept);
+            				$('#profDepartment').empty();
+            				$('#profDepartment').append("<option><학과를 선택해주세요></option>");
+             				for(var index =0; index < dept.length;index++){
+            					var department = $("<option value="+ dept[index].departmentCode+ ">" + dept[index].departmentName +"</option>");
+            					$('#profDepartment').append(department);
+            				}
+             				$("#profDepartment").val(data.profDepartment);
+            			}
+        				
+        			});
+        			
+        			$("#lab").val(data.lab);
+        			$("#profAddress").val(data.profAddress);
+        			$("#profPhone").val(data.profPhone);
+        			$("#profAddressDetail").val(data.profAddressDetail);
+        			$("#profEmail").val(data.profEmail);
+        			$("#profBank").val(data.profBank);
+        			$("#profAccount").val(data.profAccount);
+        			$("#profAccountHolder").val(data.profAccountHolder);
+        		},error:function(request,error,errorCode){
+        			console.log(request.error);
+        			console.log(request);
+        			console.log(request.errorCode);
+        		}
+        		
+        	});
+        });
+    });
+    </script>
 
     <!-- footer -->
     <footer class="container-fluid navbar-fixed-bottom">

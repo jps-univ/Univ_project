@@ -12,7 +12,7 @@
       <result property="totalPayments" column="TOTAL_PAYMENTS"/>
       <result property="stdName" column="STUDENT_NAME"/>
       <result property="stdBirth" column="BIRTH_NO"/>
-      <result property="stdCollege" column="COLLEGE"/>
+      <result property="departmentName" column="DEPARTMENT_NAME"/>
       <result property="stdAddress" column="ADDRESS"/>
       <result property="entranceFee" column="ENTRANCE_FEE"/>
       <result property="schoolFee" column="SCHOOL_FEE"/>
@@ -24,6 +24,32 @@
       <result property="alumniFee" column="ALUMNI_FEE"/>
       <result property="makePaymentDate" column="MAKE_PAYMENT_DATE"/>
    </resultMap>
+   
+   	<resultMap id="StudentResultSet" type="Student">
+ 		<id property="stdId" column="STUDENT_ID"/>
+ 		<result property="stdPwd" column="STUDENT_PASSWORD"/>
+ 		<result property="stdName" column="STUDENT_NAME"/>
+ 		<result property="stdBirth" column="BIRTH_NO"/>
+ 		<result property="stdCollege" column="COLLEGE"/>
+ 		<result property="stdDepartment" column="DEPARTMENT_CODE"/>
+ 		<result property="stdCourse" column="COURSE"/>
+ 		<result property="stdSemester" column="SEMESTER"/>
+ 		<result property="stdEnterDiv" column="ENTER_DIV"/>
+ 		<result property="stdImage" column="IMAGE"/>
+ 		<result property="stdTuition" column="TUITION"/>
+ 		<result property="stdSchoolReg" column="SCHOOL_REG"/>
+ 		<result property="stdPhone" column="PHONE"/>
+ 		<result property="stdEmail" column="EMAIL"/>
+ 		<result property="stdAddress" column="ADDRESS"/>
+ 		<result property="stdAddressDetail" column="ADDRESS_DETAIL"/>
+ 		<result property="stdBank" column="BANK"/>
+ 		<result property="stdAccount" column="STUDENT_ACCOUNT"/>
+ 		<result property="stdAccountHolder" column="ACCOUNT_HOLDER"/>
+ 		<result property="stdSmsAgree" column="SMS_AGREE"/>
+ 		<result property="stdEmailAgree" column="EMAIL_AGREE"/>
+ 		<result property="stdEntrance" column="ENTRANCE_DATE"/>
+ 		<result property="stdTel" column="TEL"/>
+ 	</resultMap>
    
    <!-- 등록금리스트 -->
    <select id="selectList"  resultMap="PaymentResultSet">
@@ -44,28 +70,23 @@
    </select>
    
    <!-- 등록금상세페이지 -->
-   <select id="selectDetailList" resultMap="PaymentResultSet">
-       SELECT
-          PAYMENT_NO,
-		  STUDENT_NAME,
-		  BIRTH_NO,
-		  COLLEGE,
-		  DUE_DATE,
-		  STUDENT_ID,
-		  ADDRESS,
-		  ENTRANCE_FEE,
-		  SCHOOL_FEE,
-		  CAMPUS_SCHOLARSHIP,
-		  SUBURBAN_SCHOLARSHIP,
-		  NATIONAL_SCHOLARSHIP,
-		  PAPER_GUIDANCE_FEE,
-		  STUDENT_FEES,
-		  ALUMNI_FEE,
-		  MAKE_PAYMENT_DATE
-      FROM
-          TB_PAYMENT
-      JOIN TB_STUDENT USING(STUDENT_ID)
-      WHERE STUDENT_ID = #{stdId}
+<!--    <select id="selectDetailList" parameterType="_int" resultMap="PaymentResultSet">
+
+	SELECT * FROM TB_PAYMENT P
+		LEFT OUTER JOIN TB_STUDENT S ON P.STUDENT_ID = S.STUDENT_ID
+		LEFT OUTER JOIN TB_DEPARTMENT D ON S.DEPARTMENT_CODE = D.DEPARTMENT_CODE
+	WHERE S.STUDENT_ID = #{stdId}
+	  
+   </select> -->
+   
+   <!-- 등록금상세페이지 -->
+   <select id="selectPayment" parameterType="_int" resultMap="PaymentResultSet">
+   
+   	SELECT * FROM TB_PAYMENT P
+		LEFT OUTER JOIN TB_STUDENT S ON P.STUDENT_ID = S.STUDENT_ID
+		LEFT OUTER JOIN TB_DEPARTMENT D ON S.DEPARTMENT_CODE = D.DEPARTMENT_CODE
+	WHERE P.PAYMENT_NO = #{paymentNo}
+   
    </select>
    
    

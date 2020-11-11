@@ -58,9 +58,7 @@
             <!-- Main Content -->
             <div id="content">
 
-                <!-- Topbar -->
-                <c:import url="../common/topbar.jsp"/>
-                <!-- End of Topbar -->
+
                 
                 <!-- pagetopbar -->
                 <c:import url="../common/pageTopbar.jsp"/>

@@ -3,8 +3,31 @@
 <mapper namespace="adminProfessorMapper">
 
 <resultMap id="ProfessorResultSet" type="Professor">
+	<id property="profId" column="PROFESSOR_ID"/>
+	<result property="profPwd" column="PASSWORD"/>
+	<result property="profName" column="NAME"/>
+	<result property="profBirth" column="BIRTH_NO"/>
+	<result property="profCollege" column=""/>
+	<result property="profDepartment" column="DEPARTMENT_CODE"/>
+	<result property="profImage" column="IMAGE"/>
+	<result property="profSalary" column="SALARY"/>
+	<result property="profTel" column=""/>
+	<result property="profPhone" column="PHONE"/>
+	<result property="profEmail" column="EMAIL"/>
+	<result property="profAddress" column="ADDRESS"/>
+	<result property="profAddressDetail" column="ADDRESS_DETAIL"/>
+	<result property="profBank" column="BANK"/>
+	<result property="profAccount" column="ACCOUNT"/>
+	<result property="profAccountHolder" column="ACCOUNT_HOLDER"/>
+	<result property="profSmsAgree" column="SMS_AGREE"/>
+	<result property="profEmailAgree" column="EMAIL_AGREE"/>
+	<result property="lab" column="LAB"/>
+	<result property="status" column="STATUS"/>
 
-
+	<result property="collegeName" column="COLLEGE_NAME"/>
+	<result property="departmentName" column="DEPARTMENT_NAME"/>
+	<result property="collegeCode" column="COLLEGE_CODE"/>
+	
 </resultMap>
 
 
@@ -21,9 +44,51 @@
  	<result property="collegeName" column="COLLEGE_NAME"/>
  </resultMap>
 
-<select id="selectAdminProfessor">
-
+<!-- 교수 전체 조회-->
+<select id="selectAdminProfessor" parameterType="Professor" resultMap="ProfessorResultSet">
+SELECT PROFESSOR_ID,NAME,PHONE,COLLEGE_NAME,DEPARTMENT_NAME,LAB
+FROM TB_PROFESSOR
+LEFT JOIN TB_DEPARTMENT USING(DEPARTMENT_CODE)
+LEFT JOIN TB_COLLEGE USING(COLLEGE_CODE)
 
 </select>
 
+
+<select id="selectAdminProfessorOne" parameterType="Professor" resultMap="ProfessorResultSet">
+SELECT PROFESSOR_ID,NAME,BIRTH_NO,DEPARTMENT_CODE,COLLEGE_CODE,IMAGE,EMAIL,PHONE,BANK,ACCOUNT,ACCOUNT_HOLDER,LAB,ADDRESS,ADDRESS_DETAIL
+FROM TB_PROFESSOR
+LEFT JOIN TB_DEPARTMENT USING(DEPARTMENT_CODE)
+WHERE PROFESSOR_ID=#{profId}
+
+</select>
+
+
+ <select id="selectAdminDept" parameterType="College" resultMap="CollegeResultSet">
+ SELECT COLLEGE_CODE, COLLEGE_NAME
+ FROM TB_COLLEGE
+ </select>
+ 
+ <select id="selectDeptCheck" parameterType="Department" resultMap="DepartmentResultSet">
+  	
+ 	 SELECT DEPARTMENT_CODE, DEPARTMENT_NAME
+	FROM TB_DEPARTMENT
+	WHERE COLLEGE_CODE =#{collegeCode}
+ </select>
+
+<update id="selectOneUpdate" parameterType="Professor">
+UPDATE TB_PROFESSOR SET
+	NAME = #{profName},
+	BIRTH_NO = #{profBirth},
+	DEPARTMENT_CODE = #{profDepartment},
+	PHONE = #{profPhone},
+	LAB = #{lab},
+	ADDRESS = #{profAddress},
+	ADDRESS_DETAIL = #{profAddressDetail},
+	EMAIL = #{profEmail},
+	ACCOUNT = #{profAccount},
+	ACCOUNT_HOLDER = #{profAccountHolder},
+	BANK = #{profBank}
+WHERE PROFESSOR_ID = #{profId}
+
+</update>
 </mapper>

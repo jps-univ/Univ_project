@@ -14,19 +14,19 @@ public class PaymentDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
+	// 등록금 리스트
 	public ArrayList<Payment> selectList(int i) {
 		
-
 		return (ArrayList)sqlSession.selectList("PaymentMapper.selectList", i);
 		
+	}
+
+
+	// 등록금 하나 뽑아오기
+	public Payment selectPayment(int paymentNo) {
 		
-	}
-
-	public ArrayList<Payment> selectDetailList() {
-
-		return (ArrayList)sqlSession.selectList("PaymentMapper.selectDetailList");
+		return sqlSession.selectOne("PaymentMapper.selectPayment", paymentNo);
 	}
 	
 	
-
 }

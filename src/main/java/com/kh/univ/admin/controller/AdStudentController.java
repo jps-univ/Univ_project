@@ -104,6 +104,7 @@ public class AdStudentController {
 //		StudentOne.put("stdAddressDetail",adStudentOne.getStdAddressDetail());
 //		StudentOne.put("stdAccount",adStudentOne.getStdAccount());
 //		StudentOne.put("stdAccountHolder",adStudentOne.getStdAccountHolder());
+		
 		if(adStudentOne.getRegister().getStdStatus()==null) {
 			
 			adStudentOne.getRegister().setStdStatus("재학");

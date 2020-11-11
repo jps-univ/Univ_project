@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="false"%>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
 <html lang="ko">
@@ -22,7 +24,7 @@
 	<link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
 	
 	<!-- Custom styles for this page -->
-	<link href="${contextPath}/resources/css/payment_1.css" rel="stylesheet">
+	<link href="${contextPath}/resources/css/payment.css" rel="stylesheet">
 	<%--    <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />--%>
     <style>
     .reverse{
@@ -68,14 +70,17 @@
         <div class="print">
         
           
-          <button id="button" onclick="window.open('paymentdetail.do')">인쇄하기</button>
+          <input class="btn btn-primary btn-sm" type="button" onclick="print();" value="인쇄하기">
 
-        </div>
+        </div> 
 
          <form method="GET">
             <table class="table table-condensed">
               <thead>
                 <tr>
+                    <th>
+                        <p class="head"></p>
+                    </th>
                     <th>
                         <p class="head">학년도</p>
                     </th>
@@ -97,19 +102,36 @@
                     <th>
                         <p class="head">납부금액</p>
                     </th>
+<!--                     <th>
+                        <p class="head">인쇄하기</p>
+                    </th> -->
                 </tr>  
             </thead> 
             <tbody>
+                <input type="hidden" class="stdId" value="${ id }"/>    
                 <c:forEach var="p" items="${ list }">
                 <tr class="line">
+                	<td><input type="radio" name="checkRadio" class="checkRadio" value="${ p.paymentNo }"></td>
                     <td>${ p.schoolYear }학년도</td>
-                    <td>${ p.stdSemester }학기</td>
-                    <td>${ p.stdSemester }학년</td>
+                    
+                    <fmt:parseNumber var="Semester" value="${ (p.stdSemester + 1) % 2 }" integerOnly="true"/>
+                    <c:choose>
+                        <c:when test="${ Semester eq 0 }">
+                    		<td>1학기</td>
+                        </c:when>
+                        <c:when test="${ Semester eq 1 }">
+                    		<td>2학기</td>
+                        </c:when>
+                    </c:choose>
+                    <fmt:parseNumber var="stdSemester" value="${ (p.stdSemester + 1) div 2 }" integerOnly="true"/>
+                    <td>${ stdSemester }학년</td>
                     <td>${ p.dueDate }</td>
                     <td>${ p.paymentAmount }</td>
                     <td>${ p.totalScholarships }</td>
                     <td>${ p.totalPayments }</td>
-                    <input type="hidden" value="${ p.paymentNo }"/>
+<!--                      <td>   
+                      <button style="text-decoration: none;" class="btn btn-primary btn-sm" onclick="print();">클릭</button>
+                    </td>  -->
                 </tr>
                 </c:forEach>
 <!--                 <tr class="line">

@@ -3,7 +3,9 @@ package com.kh.univ.mypage.model.service;
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.kh.univ.consulting.model.vo.Consulting;
 import com.kh.univ.lecture.model.vo.Lecture;
+import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
 
 public interface StudentMyPageService 
@@ -57,4 +59,25 @@ public interface StudentMyPageService
 	 * @return
 	 */
 	ArrayList<Lecture> selectStdSchdule(Map map);
+
+	/**
+	 * 교수 조회
+	 * @param map
+	 * @return
+	 */
+	ArrayList<Professor> selectProfessor(Map map);
+
+	/**
+	 * 상담 신청
+	 * @param map
+	 * @return
+	 */
+	int applyConsulting(Map map);
+
+	/**
+	 * 학생 상담 신청 조회
+	 * @param sessionStudent
+	 * @return
+	 */
+	ArrayList<Consulting> selectApply(Student student);
 }

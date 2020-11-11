@@ -70,7 +70,7 @@ public class StudentLoginController {
 	@GetMapping("pwdCheck.do")
 	public String pwdCheck(HttpSession session) {
 		String userId = "testUser";
-		String userPwd = "1";
+		String userPwd = "asd";
 		bcryptPasswordEncoder = new BCryptPasswordEncoder();
 		System.out.println("bcryptPasswordEncoder : " + bcryptPasswordEncoder);
 		System.out.println(bcryptPasswordEncoder.encode(userPwd));

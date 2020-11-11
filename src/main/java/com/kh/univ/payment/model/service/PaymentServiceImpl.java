@@ -13,17 +13,19 @@ public class PaymentServiceImpl implements PaymentService{
 	
 	@Autowired
 	private PaymentDao pDao;
-
+	
+	// 등록금 리스트
 	@Override
 	public ArrayList<Payment> selectList(int i) {
 
 		return pDao.selectList(i);
 	}
-
+	
+	// 등록금 하나 뽑아오기
 	@Override
-	public ArrayList<Payment> selectDetailList() {
-
-		return pDao.selectDetailList();
+	public Payment selectPayment(int paymentNo) {
+		
+		return pDao.selectPayment(paymentNo);
 	}
 
 }

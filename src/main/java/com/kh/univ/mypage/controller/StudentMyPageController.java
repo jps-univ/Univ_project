@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.univ.consulting.model.vo.Consulting;
 import com.kh.univ.lecture.model.vo.Lecture;
-import com.kh.univ.lecture.model.vo.LectureApplication;
-import com.kh.univ.lecture.model.vo.LectureTime;
 import com.kh.univ.member.model.vo.College;
 import com.kh.univ.member.model.vo.Department;
 import com.kh.univ.member.model.vo.Professor;
@@ -74,10 +73,28 @@ public class StudentMyPageController
 		return "myPage/studentSchedule";
 	}
 	
+	/*
 	@RequestMapping("student_consulting.do")
 	public String StudentConsulting()
 	{
 		return "myPage/studentConsulting";
+	}
+	*/
+	
+	@RequestMapping("student_consulting.do")
+	public ModelAndView StudentConsulting(ModelAndView mv, Student student, Professor professor, HttpSession session)
+	{
+		Student sessionStudent = (Student)session.getAttribute("loginUser");
+		
+		ArrayList<Consulting> apply = msService.selectApply(sessionStudent);
+		
+		System.out.println(apply);
+		
+		mv.addObject("apply", apply);
+		
+		mv.setViewName("myPage/studentConsulting");
+		
+		return mv;
 	}
 
 	// 학생 개인정보 변경
@@ -193,31 +210,73 @@ public class StudentMyPageController
 		map.put("classYear", classYear);
 		map.put("classSemester", classSemester);
 		
-		System.out.println("stdId : " + stdId);
-		System.out.println("classYear : " + classYear);
-		System.out.println("classSemester : " + classSemester);
 		
 		ArrayList<Lecture> schedule = msService.selectStdSchdule(map);
 		
-		Lecture schedule1 = schedule.get(0);
-		LectureTime lectureTime = schedule1.getTime();
-		LectureApplication lectureApplication = schedule1.getLectureApplication();
-		Professor professor = schedule1.getProfessor();
-		
-		System.out.println("schedule : " + schedule);
-		System.out.println("schedule1 : " + schedule1);
-		System.out.println("studentlecture.size : " + schedule.size());
-		System.out.println("lectureTime : " + lectureTime);
-		System.out.println("lectureApplication : " + lectureApplication);
-		System.out.println("professor : " + professor);
-		
-		mv.addObject("lecture", schedule1);
-		mv.addObject("lectureTime", lectureTime);
-		mv.addObject("lectureApplication", lectureApplication);
-		mv.addObject("professor", professor);
+		mv.addObject("schedule", schedule);
 		
 		mv.setViewName("myPage/studentSchedule");
+
+		return mv;
+	}
+	
+	// 교수 조회
+	@ResponseBody
+	@RequestMapping("selectProfessor.do")
+	public ModelAndView SelectProfessor(ModelAndView mv, Professor professor, Department department)
+	{
+		String profName = professor.getProfName();
+		String profCollege = professor.getProfCollege();
+		String departmentName = department.getDepartmentName();
+		
+		Map map = new HashMap();
+		
+		map.put("profName", profName);
+		map.put("profCollege", profCollege);
+		map.put("departmentName", departmentName);
+		
+		System.out.println(map);
+		System.out.println(map.get("profName"));
+		System.out.println(map.get("profCollege"));
+		System.out.println(map.get("departmentName"));
+		
+		ArrayList<Professor> selectProf = msService.selectProfessor(map);
+		
+		System.out.println(selectProf);
+		
+		mv.addObject("selectProf", selectProf);
+		
+		mv.setViewName("myPage/studentConsulting");
 		
 		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping("applyConsulting.do")
+	public String ApplyConsulting(HttpSession session, Professor professor)
+	{
+		Student student = (Student)session.getAttribute("loginUser");
+		
+		int stdId = student.getStdId();
+		int profId = professor.getProfId();
+		
+		System.out.println(stdId);
+		System.out.println(profId);
+		
+		Map map = new HashMap();
+		
+		map.put("stdId", stdId);
+		map.put("profId", profId);
+		
+		int result = msService.applyConsulting(map);
+		
+		if(result > 0)
+		{			
+			return "ok";
+		}
+		else
+		{
+			return "fail";
+		}
 	}
 }
