@@ -40,4 +40,10 @@ public class AdProfessorServiceImpl implements AdProfessorService{
 		return adprofessorDao.deptCheck(collegeCode);
 	}
 
+	@Override
+	public int updateOne(Professor pro) {
+		// TODO Auto-generated method stub
+		return adprofessorDao.updateOne(pro);
+	}
+
 }

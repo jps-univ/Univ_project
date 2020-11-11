@@ -12,7 +12,7 @@
       <result property="totalPayments" column="TOTAL_PAYMENTS"/>
       <result property="stdName" column="STUDENT_NAME"/>
       <result property="stdBirth" column="BIRTH_NO"/>
-      <result property="stdCollege" column="DEPARTMENT_CODE"/>
+      <result property="departmentName" column="DEPARTMENT_NAME"/>
       <result property="stdAddress" column="ADDRESS"/>
       <result property="entranceFee" column="ENTRANCE_FEE"/>
       <result property="schoolFee" column="SCHOOL_FEE"/>
@@ -70,29 +70,23 @@
    </select>
    
    <!-- 등록금상세페이지 -->
-   <select id="selectDetailList" resultMap="PaymentResultSet">
-       SELECT
-          PAYMENT_NO,
-		  STUDENT_NAME,
-		  BIRTH_NO,
-		  DEPARTMENT_CODE,
-		  DUE_DATE,
-		  STUDENT_ID,
-		  ADDRESS,
-		  ENTRANCE_FEE,
-		  SCHOOL_FEE,
-		  CAMPUS_SCHOLARSHIP,
-		  SUBURBAN_SCHOLARSHIP,
-		  NATIONAL_SCHOLARSHIP,
-		  PAPER_GUIDANCE_FEE,
-		  STUDENT_FEES,
-		  ALUMNI_FEE,
-		  TOTAL_PAYMENTS,
-		  MAKE_PAYMENT_DATE
-      FROM
-          TB_PAYMENT
-      JOIN TB_STUDENT USING(STUDENT_ID)
-      WHERE STUDENT_ID = #{stdId}
+<!--    <select id="selectDetailList" parameterType="_int" resultMap="PaymentResultSet">
+
+	SELECT * FROM TB_PAYMENT P
+		LEFT OUTER JOIN TB_STUDENT S ON P.STUDENT_ID = S.STUDENT_ID
+		LEFT OUTER JOIN TB_DEPARTMENT D ON S.DEPARTMENT_CODE = D.DEPARTMENT_CODE
+	WHERE S.STUDENT_ID = #{stdId}
+	  
+   </select> -->
+   
+   <!-- 등록금상세페이지 -->
+   <select id="selectPayment" parameterType="_int" resultMap="PaymentResultSet">
+   
+   	SELECT * FROM TB_PAYMENT P
+		LEFT OUTER JOIN TB_STUDENT S ON P.STUDENT_ID = S.STUDENT_ID
+		LEFT OUTER JOIN TB_DEPARTMENT D ON S.DEPARTMENT_CODE = D.DEPARTMENT_CODE
+	WHERE P.PAYMENT_NO = #{paymentNo}
+   
    </select>
    
    

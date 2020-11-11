@@ -43,6 +43,18 @@ public class AdProfessorController {
 		mv.setViewName("admin/ad_professor_modify");
 		return mv;
 	}
+	@RequestMapping("professor_Modify_Update.do")
+	public String professorModifyUpdate(Professor pro) {
+		System.out.println(pro);
+		int result = adProfessorService.updateOne(pro);
+			
+		if(result>0) {
+			return "redirect:professor_Modify.do";
+		}else {
+			return "common/error";
+		}
+		
+	}
 	
 	@ResponseBody
 	@RequestMapping("professor_Modify_one.do")
@@ -59,4 +71,6 @@ public class AdProfessorController {
 		
 		return deptCheck;
 	}
+	
+	
 }

@@ -24,26 +24,25 @@ public class PaymentController {
     public ModelAndView Payment(HttpSession session, ModelAndView mv) {
 		
 		Student newPay = (Student) session.getAttribute("loginUser");
-	
-		System.out.println(newPay);
+		int id = newPay.getStdId();
 		
 		ArrayList<Payment>list = pService.selectList(newPay.getStdId());
-		
 		mv.addObject("list", list);
+		mv.addObject("id", id);
 		mv.setViewName("payment/payment");
+		
 		
         return mv;
     }
 	
 	// 인쇄하기 눌렀을 때 한줄 정보 가져오기
 	@RequestMapping("paymentdetail.do")
-    public ModelAndView Paymentdetail(HttpSession session, ModelAndView mv){
+    public ModelAndView Paymentdetail(int paymentNo,HttpSession session, ModelAndView mv){
 		
 		Student newPaydetail = (Student)session.getAttribute("loginUser");
+		Payment pay = pService.selectPayment(paymentNo);
 		
-		ArrayList<Payment>list = pService.selectDetailList(newPaydetail.getStdId());
-		
-		mv.addObject("list", list);
+		mv.addObject("p", pay);
 		mv.setViewName("payment/payment_detail");
 		
         return mv;
