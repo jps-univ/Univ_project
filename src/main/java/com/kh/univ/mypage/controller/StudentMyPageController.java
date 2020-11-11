@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
+import com.kh.univ.consulting.model.vo.Consulting;
 import com.kh.univ.lecture.model.vo.Lecture;
-import com.kh.univ.lecture.model.vo.LectureTime;
 import com.kh.univ.member.model.vo.College;
 import com.kh.univ.member.model.vo.Department;
 import com.kh.univ.member.model.vo.Professor;
@@ -74,10 +73,26 @@ public class StudentMyPageController
 		return "myPage/studentSchedule";
 	}
 	
+	/*
 	@RequestMapping("student_consulting.do")
 	public String StudentConsulting()
 	{
 		return "myPage/studentConsulting";
+	}
+	*/
+	
+	@RequestMapping("student_consulting.do")
+	public ModelAndView StudentConsulting(ModelAndView mv, Student student, Professor professor, HttpSession session)
+	{
+		Student sessionStudent = (Student)session.getAttribute("loginUser");
+		
+		ArrayList<Consulting> apply = msService.selectApply(sessionStudent);
+		
+		System.out.println(apply);
+		
+		mv.setViewName("myPage/studentConsulting");
+		
+		return mv;
 	}
 
 	// 학생 개인정보 변경
@@ -218,6 +233,7 @@ public class StudentMyPageController
 		map.put("profCollege", profCollege);
 		map.put("departmentName", departmentName);
 		
+		System.out.println(map);
 		System.out.println(map.get("profName"));
 		System.out.println(map.get("profCollege"));
 		System.out.println(map.get("departmentName"));
@@ -231,5 +247,34 @@ public class StudentMyPageController
 		mv.setViewName("myPage/studentConsulting");
 		
 		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping("applyConsulting.do")
+	public String ApplyConsulting(HttpSession session, Professor professor)
+	{
+		Student student = (Student)session.getAttribute("loginUser");
+		
+		int stdId = student.getStdId();
+		int profId = professor.getProfId();
+		
+		System.out.println(stdId);
+		System.out.println(profId);
+		
+		Map map = new HashMap();
+		
+		map.put("stdId", stdId);
+		map.put("profId", profId);
+		
+		int result = msService.applyConsulting(map);
+		
+		if(result > 0)
+		{			
+			return "ok";
+		}
+		else
+		{
+			return "fail";
+		}
 	}
 }

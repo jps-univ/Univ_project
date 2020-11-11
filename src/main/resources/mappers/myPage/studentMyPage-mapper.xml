@@ -165,9 +165,34 @@
       <result property="profSmsAgree" column="SMS_AGREE"/>
       <result property="profEmailAgree" column="EMAIL_AGREE"/>
       <result property="lab" column="LAB"/>
-      <result property="profstatus" column="STATUS"/>
+      <result property="status" column="STATUS"/>
       <result property="profTel" column="TEL"/>
    </resultMap>
+   
+       <!-- 교수  조회 ResultMap -->
+    <resultMap id="SelectProfessorResultSet" type="Professor">
+      <id property="profId" column="PROFESSOR_ID"/>
+      <result property="profPwd" column="PASSWORD"/>
+      <result property="profName" column="NAME"/>
+      <result property="profBirth" column="BIRTH_NO"/>
+      <result property="profDepartment" column="DEPARTMENT_CODE"/>
+      <result property="profImage" column="IMAGE"/>
+      <result property="profSalary" column="SALARY"/>
+      <result property="profPhone" column="PHONE"/>
+      <result property="profEmail" column="EMAIL"/>
+      <result property="profAddress" column="ADDRESS"/>
+      <result property="profAddressDetail" column="ADDRESS_DETAIL"/>
+      <result property="profBank" column="BANK"/>
+      <result property="profAccount" column="ACCOUNT"/>
+      <result property="profAccountHolder" column="ACCOUNT_HOLDER"/>
+      <result property="profSmsAgree" column="SMS_AGREE"/>
+      <result property="profEmailAgree" column="EMAIL_AGREE"/>
+      <result property="lab" column="LAB"/>
+      <result property="status" column="STATUS"/>
+      <result property="profTel" column="TEL"/>
+	  <result property="departmentName" column="DEPARTMENT_NAME"/>
+	  <result property="collegeName" column="COLLEGE_NAME"/>
+    </resultMap>
     
     <!-- 수업시간 조회 ResultMap -->
     <resultMap id="StdScheduleResultSet" type="Lecture">
@@ -242,9 +267,64 @@
 		WHERE S.STUDENT_ID = #{stdId} AND C.CLASS_YEAR = #{classYear} AND C.CLASS_SEMESTER = #{classSemester}
  	</select>
  	
- 	<select id="selectProfessor" parameterType="Professor" resultMap="ProfessorResultSet">
- 		SELECT * FROM TB_PROFESSOR P
+ 	<!-- 교수 조회 -->
+ 	<select id="selectProfessor" parameterType="Professor" resultMap="SelectProfessorResultSet">
+ 		SELECT P.NAME, P.PROFESSOR_ID, D.DEPARTMENT_NAME, C.COLLEGE_NAME
+		FROM TB_PROFESSOR P
 		LEFT OUTER JOIN TB_DEPARTMENT D ON P.DEPARTMENT_CODE = D.DEPARTMENT_CODE
+		LEFT OUTER JOIN TB_COLLEGE C ON D.COLLEGE_CODE = C.COLLEGE_CODE
 		WHERE D.COLLEGE_CODE = #{profCollege} AND D.DEPARTMENT_NAME = #{departmentName} AND P.NAME = #{profName}
+ 	</select>
+ 	<select id="selectProfessorCD" parameterType="Professor" resultMap="SelectProfessorResultSet">
+ 		SELECT P.NAME, P.PROFESSOR_ID, D.DEPARTMENT_NAME, C.COLLEGE_NAME
+		FROM TB_PROFESSOR P
+		LEFT OUTER JOIN TB_DEPARTMENT D ON P.DEPARTMENT_CODE = D.DEPARTMENT_CODE
+		LEFT OUTER JOIN TB_COLLEGE C ON D.COLLEGE_CODE = C.COLLEGE_CODE
+		WHERE D.COLLEGE_CODE = #{profCollege} AND D.DEPARTMENT_NAME = #{departmentName}
+ 	</select>
+ 	<select id="selectProfessorCN" parameterType="Professor" resultMap="SelectProfessorResultSet">
+ 		SELECT P.NAME, P.PROFESSOR_ID, D.DEPARTMENT_NAME, C.COLLEGE_NAME
+		FROM TB_PROFESSOR P
+		LEFT OUTER JOIN TB_DEPARTMENT D ON P.DEPARTMENT_CODE = D.DEPARTMENT_CODE
+		LEFT OUTER JOIN TB_COLLEGE C ON D.COLLEGE_CODE = C.COLLEGE_CODE
+		WHERE D.COLLEGE_CODE = #{profCollege} AND P.NAME = #{profName}
+ 	</select>
+ 	<select id="selectProfessorN" parameterType="Professor" resultMap="SelectProfessorResultSet">
+ 		SELECT P.NAME, P.PROFESSOR_ID, D.DEPARTMENT_NAME, C.COLLEGE_NAME
+		FROM TB_PROFESSOR P
+		LEFT OUTER JOIN TB_DEPARTMENT D ON P.DEPARTMENT_CODE = D.DEPARTMENT_CODE
+		LEFT OUTER JOIN TB_COLLEGE C ON D.COLLEGE_CODE = C.COLLEGE_CODE
+		WHERE NAME = #{profName}
+ 	</select>
+ 	<select id="selectProfessorC" parameterType="Professor" resultMap="SelectProfessorResultSet">
+ 		SELECT P.NAME, P.PROFESSOR_ID, D.DEPARTMENT_NAME, C.COLLEGE_NAME
+		FROM TB_PROFESSOR P
+		LEFT OUTER JOIN TB_DEPARTMENT D ON P.DEPARTMENT_CODE = D.DEPARTMENT_CODE
+		LEFT OUTER JOIN TB_COLLEGE C ON D.COLLEGE_CODE = C.COLLEGE_CODE
+		WHERE D.COLLEGE_CODE = #{profCollege}
+ 	</select>
+ 	<select id="selectProfessorAll" parameterType="Professor" resultMap="SelectProfessorResultSet">
+ 		SELECT P.NAME, P.PROFESSOR_ID, D.DEPARTMENT_NAME, C.COLLEGE_NAME
+		FROM TB_PROFESSOR P
+		LEFT OUTER JOIN TB_DEPARTMENT D ON P.DEPARTMENT_CODE = D.DEPARTMENT_CODE
+		LEFT OUTER JOIN TB_COLLEGE C ON D.COLLEGE_CODE = C.COLLEGE_CODE
+ 	</select>
+ 	
+ 	<!-- 상단 신청 -->
+ 	<insert id="applyConsulting">
+		INSERT INTO TB_CONSULTING
+		(CONSULTING_NO, STUDENT_ID, PROFESSOR_ID, CONSULTING_STATUS, APPLY_DATE)
+		VALUES
+		(SEQ_CONSULTING.NEXTVAL, #{stdId}, #{profId}, '신청', SYSDATE)
+ 	</insert>
+ 	
+ 	<!-- 상담 신청 조회 -->
+    <select id="selectApply" parameterType="Professor" resultMap="SelectProfessorResultSet">
+		SELECT  C.CONSULTING_NO, C.STUDENT_ID, C.PROFESSOR_ID, C.CONSULTING_STATUS, C.APPLY_DATE, C.PROGRESS_DATE, C.COMPLETE_DATE, C.CANCLE_DATE,
+		S.STUDENT_NAME, P.NAME
+		FROM TB_CONSULTING C
+		LEFT OUTER JOIN TB_STUDENT S ON C.STUDENT_ID = S.STUDENT_ID
+		LEFT OUTER JOIN TB_PROFESSOR P ON C.PROFESSOR_ID = P.PROFESSOR_ID
+		WHERE C.STUDENT_ID = #{stdId}
  	</select>
  </mapper>
