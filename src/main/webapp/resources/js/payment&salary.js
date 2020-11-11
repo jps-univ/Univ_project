@@ -12,9 +12,18 @@ $(function(){
     });
 });
 
+
+
+
+
 // 등록금 라디오버튼 선택시 페이지 넘기기
 function print() {
+	
 	var paymentNo = $(".checkRadio:checked").val();
+	if(paymentNo == null || paymentNo == 0) {
+		alert("버튼을 선택하세요.");
+		return false;
+	}
 	
 	location.href = "paymentdetail.do?paymentNo="+paymentNo;
 }

@@ -40,25 +40,10 @@ public class PaymentController {
     public ModelAndView Paymentdetail(int paymentNo,HttpSession session, ModelAndView mv){
 		
 		Student newPaydetail = (Student)session.getAttribute("loginUser");
-		
 		Payment pay = pService.selectPayment(paymentNo);
 		
-//		ArrayList<Payment>list = pService.selectDetailList(newPaydetail.getStdId());
-//		
-//		Payment p = null;
-//		for(Payment pp : list) {
-//			System.out.println(pp);
-//			if(pp.getPaymentNo() == paymentNo) {
-//				p = new Payment();
-//				p = pp;
-//				break;
-//			}
-//		}
-		System.out.println(pay);
 		mv.addObject("p", pay);
 		mv.setViewName("payment/payment_detail");
-		
-//		System.out.println("1 : " + list);
 		
         return mv;
     }

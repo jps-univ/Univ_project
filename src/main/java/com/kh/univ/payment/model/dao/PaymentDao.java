@@ -17,17 +17,10 @@ public class PaymentDao {
 	// 등록금 리스트
 	public ArrayList<Payment> selectList(int i) {
 		
-		System.out.println(i);
-		
-
 		return (ArrayList)sqlSession.selectList("PaymentMapper.selectList", i);
 		
 	}
 
-//	public ArrayList<Payment> selectDetailList(int i) {
-//
-//		return (ArrayList)sqlSession.selectList("PaymentMapper.selectDetailList",i);
-//	}
 
 	// 등록금 하나 뽑아오기
 	public Payment selectPayment(int paymentNo) {
@@ -36,5 +29,4 @@ public class PaymentDao {
 	}
 	
 	
-
 }

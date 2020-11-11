@@ -20,12 +20,6 @@ public class PaymentServiceImpl implements PaymentService{
 
 		return pDao.selectList(i);
 	}
-
-//	@Override
-//	public ArrayList<Payment> selectDetailList(int i) {
-//
-//		return pDao.selectDetailList(i);
-//	}
 	
 	// 등록금 하나 뽑아오기
 	@Override
