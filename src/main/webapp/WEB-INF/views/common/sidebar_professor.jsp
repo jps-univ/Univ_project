@@ -46,7 +46,7 @@
         <hr class="sidebar-divider">
 
         <li class="nav-item ">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="selectClass.do">
                 <span>강의 게시판</span></a>
         </li>
         <hr class="sidebar-divider">
