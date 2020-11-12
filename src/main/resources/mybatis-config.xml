@@ -29,6 +29,7 @@
         <mapper resource="mappers/test-mapper.xml"/>
         <!-- <mapper resource="mappers/board-mapper.xml"/> -->
         <mapper resource="mappers/member/student-mapper.xml"/>
+        <mapper resource="mappers/member/professor-mapper.xml"/>
         <mapper resource="mappers/myPage/studentMyPage-mapper.xml"/>
         <mapper resource="mappers/StudentManagement/studentManagement-mapper.xml"/>
         <mapper resource="mappers/payment/payment-mapper.xml"/>
