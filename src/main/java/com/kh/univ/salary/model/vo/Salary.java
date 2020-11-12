@@ -2,7 +2,7 @@ package com.kh.univ.salary.model.vo;
 
 public class Salary {
 	
-	private int salary_No;                     // 월급번호
+	private int salaryNo;                     // 월급번호
 	private int profId;                        // 교수번호
 	private String schoolYear;                 // 지급년도
 	private String schoolMonth;                // 지급월
@@ -29,10 +29,10 @@ public class Salary {
 	
 	public Salary() {}
 
-	public Salary(int salary_No, String schoolYear, String schoolMonth, String profBank, String profAccount,
+	public Salary(int salaryNo, String schoolYear, String schoolMonth, String profBank, String profAccount,
 			String salaryTotal) {
 		super();
-		this.salary_No = salary_No;
+		this.salaryNo = salaryNo;
 		this.schoolYear = schoolYear;
 		this.schoolMonth = schoolMonth;
 		this.profBank = profBank;
@@ -40,13 +40,13 @@ public class Salary {
 		this.salaryTotal = salaryTotal;
 	}
 
-	public Salary(int salary_No, int profId, String schoolYear, String schoolMonth, String profBank, String profAccount,
+	public Salary(int salaryNo, int profId, String schoolYear, String schoolMonth, String profBank, String profAccount,
 			String salaryTotal, String profName, String profCollege, String profBirth, String patment_date,
 			String basic_Salary, String overtime, String bonus, String incentive, String meals, String education,
 			String income_Tax, String national_Pension, String health_Insurance, String care_Insurance,
 			String employment_Insuracne, String other_Deducation, String payment_Confirmation_Date) {
 		super();
-		this.salary_No = salary_No;
+		this.salaryNo = salaryNo;
 		this.profId = profId;
 		this.schoolYear = schoolYear;
 		this.schoolMonth = schoolMonth;
@@ -72,12 +72,12 @@ public class Salary {
 		this.payment_Confirmation_Date = payment_Confirmation_Date;
 	}
 
-	public int getSalary_No() {
-		return salary_No;
+	public int getSalaryNo() {
+		return salaryNo;
 	}
 
-	public void setSalary_No(int salary_No) {
-		this.salary_No = salary_No;
+	public void setSalaryNo(int salaryNo) {
+		this.salaryNo = salaryNo;
 	}
 
 	public int getProfId() {
@@ -266,7 +266,7 @@ public class Salary {
 
 	@Override
 	public String toString() {
-		return "Salary [salary_No=" + salary_No + ", profId=" + profId + ", schoolYear=" + schoolYear + ", schoolMonth="
+		return "Salary [salaryNo=" + salaryNo + ", profId=" + profId + ", schoolYear=" + schoolYear + ", schoolMonth="
 				+ schoolMonth + ", profBank=" + profBank + ", profAccount=" + profAccount + ", salaryTotal="
 				+ salaryTotal + ", profName=" + profName + ", profCollege=" + profCollege + ", profBirth=" + profBirth
 				+ ", patment_date=" + patment_date + ", basic_Salary=" + basic_Salary + ", overtime=" + overtime

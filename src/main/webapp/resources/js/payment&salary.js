@@ -14,10 +14,8 @@ $(function(){
 
 
 
-
-
 // 등록금 라디오버튼 선택시 페이지 넘기기
-function print() {
+function printp() {
 	
 	var paymentNo = $(".checkRadio:checked").val();
 	if(paymentNo == null || paymentNo == 0) {
@@ -26,6 +24,19 @@ function print() {
 	}
 	
 	location.href = "paymentdetail.do?paymentNo="+paymentNo;
+}
+
+
+// 월급 라디오버튼 선택시 페이지 넘기기
+function prints() {
+	
+	var salaryNo = $(".checkRadio:checked").val();
+	if(salaryNo == null || salaryNo == 0) {
+		alert("버튼을 선택하세요.");
+		return false;
+	}
+	
+	location.href = "salarydetail.do?salaryNo="+salaryNo;
 }
 
 

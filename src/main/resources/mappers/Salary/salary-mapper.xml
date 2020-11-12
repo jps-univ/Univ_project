@@ -3,13 +3,13 @@
 <mapper namespace="SalaryMapper">
    <resultMap id="SalaryResultSet" type="Salary">
       <id property="profId" column="PROFESSOR_ID"/>
-      <result property="salary_No" column="SALARY_NO"/>
+      <result property="salaryNo" column="SALARY_NO"/>
       <result property="schoolYear" column="SCHOOL_YEAR"/>
       <result property="schoolMonth" column="SCHOOL_MONTH"/>
       <result property="profBank" column="BANK"/>
       <result property="profAccount" column="ACCONUT"/>
       <result property="salaryTotal" column="TOTAL_SCHOLARSHIPS"/>
-      <result property="name" column="NAME"/>
+      <result property="profname" column="NAME"/>
       <result property="profCollege" column="CATEGORY_NO"/>
       <result property="profBirth" column="BIRTH_NO"/>
       <result property="patment_date" column="PAYMENT_DATE"/>
@@ -40,5 +40,11 @@
 			SALARY_TOTAL
 		FROM TB_SALARY
 		JOIN TB_PROFESSOR USING(PROFESSOR_ID)
+		WHERE PROFESSOR_ID = #{ profId}
+	</select>
+	
+	<!-- 월급상세페이지 -->
+	<select id="selectSalary" parameterType="_int" resultMap="SalaryResultSet">
+	
 	</select>
 </mapper>

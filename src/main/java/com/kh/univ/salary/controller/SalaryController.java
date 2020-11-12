@@ -24,21 +24,28 @@ public class SalaryController {
     public ModelAndView Salary(HttpSession session,ModelAndView mv){
 		
 		Professor newSalary = (Professor)session.getAttribute("login");
+		int id = newSalary.getProfId();
 		
-		System.out.println(newSalary);
-		
-		ArrayList<Salary>list = saService.selectList();
+		ArrayList<Salary>list = saService.selectList(newSalary.getProfId());
 		
 		mv.addObject("list", list);
+		mv.addObject("id",id);
 		mv.setViewName("salary/salary");
 		
         return mv;
     }
 	
+	// 인쇄하기 클릭 시 하나의 정보 가져오기
 	@RequestMapping("salarydetail.do")
-    public String Salarydetail()
-	{
-        return "salary/salary_detail";
+    public ModelAndView Salarydetail(int salaryNo, HttpSession session, ModelAndView mv){
+		
+		Professor newSalary = (Professor)session.getAttribute("login");
+		Salary salary = saService.selectSalary(salaryNo);
+		
+		mv.addObject("s", salary);
+		mv.setViewName("salary/salary_detail");
+		
+        return mv;
     }
 
 }

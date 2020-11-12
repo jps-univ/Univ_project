@@ -35,7 +35,7 @@ public class PaymentController {
         return mv;
     }
 	
-	// 인쇄하기 눌렀을 때 한줄 정보 가져오기
+	// 인쇄하기 클릭 시 하나의 정보 가져오기
 	@RequestMapping("paymentdetail.do")
     public ModelAndView Paymentdetail(int paymentNo,HttpSession session, ModelAndView mv){
 		

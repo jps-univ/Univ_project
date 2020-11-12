@@ -14,10 +14,18 @@ public class SalaryServiceImpl implements SalaryService{
 	@Autowired
 	private SalaryDao saDao;
 
+	// 월급리스트
 	@Override
-	public ArrayList<Salary> selectList() {
+	public ArrayList<Salary> selectList(int i) {
+		
+		return saDao.selectList(i);
+	}
 
-		return saDao.selectList();
+	// 월급 하나 뽑아오기
+	@Override
+	public Salary selectSalary(int salaryNo) {
+		
+		return saDao.selectSalary(salaryNo);
 	}
 
 }

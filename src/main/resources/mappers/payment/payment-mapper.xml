@@ -43,16 +43,7 @@
       WHERE STUDENT_ID = #{stdId}
 
    </select>
-   
-   <!-- 등록금상세페이지 -->
-<!--    <select id="selectDetailList" parameterType="_int" resultMap="PaymentResultSet">
-
-	SELECT * FROM TB_PAYMENT P
-		LEFT OUTER JOIN TB_STUDENT S ON P.STUDENT_ID = S.STUDENT_ID
-		LEFT OUTER JOIN TB_DEPARTMENT D ON S.DEPARTMENT_CODE = D.DEPARTMENT_CODE
-	WHERE S.STUDENT_ID = #{stdId}
-	  
-   </select> -->
+  
    
    <!-- 등록금상세페이지 -->
    <select id="selectPayment" parameterType="_int" resultMap="PaymentResultSet">
