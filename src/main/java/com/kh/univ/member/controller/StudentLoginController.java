@@ -54,10 +54,10 @@ public class StudentLoginController
 	   if(str.substring(0, 1).equals("9"))
 	   {
 		   Professor loginProfessor = professorService.login(professor);
+		   System.out.println(loginProfessor);
 		   
 		   if(bcryptPasswordEncoder.matches(professor.getProfPwd(), loginProfessor.getProfPwd()))
 		   {
-			   
 			   loginProfessor.setProfPwd("");
 			   
 			   session.setAttribute("loginUser", loginProfessor);

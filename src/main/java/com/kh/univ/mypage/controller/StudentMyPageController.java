@@ -43,7 +43,7 @@ public class StudentMyPageController
 	@RequestMapping("student_info.do")
 	public ModelAndView StudentInfo(ModelAndView mv, Student student, HttpSession session) 
 	{
-		Student sessionStudent = (Student) session.getAttribute("loginUser");
+		Student sessionStudent = (Student)session.getAttribute("loginUser");
 
 		Student stdStatus = msService.selectStdStatus(sessionStudent);
 		Student stdDepartment = msService.selectStdDepartment(sessionStudent);
@@ -98,7 +98,7 @@ public class StudentMyPageController
 	@RequestMapping("changeStudentInfo.do")
 	public String ChangeStudentInfo(Student student, Model model, HttpSession session) 
 	{
-		Student newStudent = (Student) session.getAttribute("loginUser");
+		Student newStudent = (Student)session.getAttribute("loginUser");
 
 		int result = msService.changeStdPersonalInfo(student);
 
@@ -125,10 +125,10 @@ public class StudentMyPageController
 
 	// 학생 개인정보 동의 변경
 	@ResponseBody
-	@RequestMapping("changeAgreeInfo.do")
-	public String ChangeAgreeInfo(Student student, Model model, HttpSession session) 
+	@RequestMapping("changeStdAgreeInfo.do")
+	public String ChangeStdAgreeInfo(Student student, Model model, HttpSession session) 
 	{
-		Student sessionStudent = (Student) session.getAttribute("loginUser");
+		Student sessionStudent = (Student)session.getAttribute("loginUser");
 
 		int result = msService.changeStdAgreeInfo(student);
 
@@ -188,7 +188,7 @@ public class StudentMyPageController
 	@RequestMapping("studentSchedule.do")
 	public ModelAndView StudentSchedule(ModelAndView mv, Model model, Lecture lecture, HttpSession session)
 	{
-		Student student = (Student) session.getAttribute("loginUser");
+		Student student = (Student)session.getAttribute("loginUser");
 
 		int stdId = student.getStdId();
 		int classYear = lecture.getClassYear();

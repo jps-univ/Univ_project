@@ -72,7 +72,7 @@
 		            <!-- DataTales Example -->
 		            <div class="card shadow mb-4">
 		              <div class="card-header py-3">
-		                <h6 class="m-0 font-weight-bold text-primary">개인정보</h6>
+		                <h6 class="m-0 font-weight-bold text-primary">기본정보</h6>
 		              </div>
 		              <div class="card-body">
 		                <div class="table-responsive">
@@ -109,13 +109,13 @@
 									</c:choose>
 								</td>
 								<th>대학</th>
-								<td></td>
+								<td>${ college }</td>
 							</tr>
 		                      <tr>
-		                        <th>학부(과)</th>
-		                        <td></td>
 		                        <th>연구실</th>
 		                        <td>${ loginUser.lab }</td>
+		                        <th>학부(과)</th>
+		                        <td>${ department }</td>
 		                      </tr>
 		                      <tr>
 		                        <th></th>
@@ -138,7 +138,7 @@
 		            <div class="card shadow mb-4">
 		              <div class="card-header py-3">
 		                <h6 class="m-0 font-weight-bold text-primary">개인정보
-		                	<input type="button" value="수정" id="changeInfo">
+		                	<input type="button" class="btn btn-primary btn-sm" value="변경" id="changeInfo" onclick="personalBtn()">
 		                </h6>
 		              </div>
 		              <div class="card-body">
@@ -148,21 +148,21 @@
 		                      <tr>
 		                        <th>전화번호</th>
 								<td>
-									<input type="text" name="stdTel" id="stdTel" value="${ loginUser.profTel }">
+									<input type="text" name="profTel" id="profTel" value="${ loginUser.profTel }">
 								</td>
 		                        <th>핸드폰</th>
 								<td>
-									<input type="text" name="stdTel" id="stdTel" value="${ loginUser.profPhone }">
+									<input type="text" name="profPhone" id="profPhone" value="${ loginUser.profPhone }">
 								</td>
 		                      </tr>
 		                      <tr>
 		                        <th>이메일</th>
 								<td>
-									<input type="text" name="stdTel" id="stdTel" value="${ loginUser.profEmail }">
+									<input type="text" name="profEmail" id="profEmail" value="${ loginUser.profEmail }">
 								</td>
 		                        <th>은행명</th>
 		                        <td> 
-		                            <select name="stdBank" id="stdBank" value="${ loginUser.profBank }">
+		                            <select name="profBank" id="profBank" value="${ loginUser.profBank }">
 		                                <option <c:if test="${ loginUser.profBank eq '신한은행' }"> selected="selected"</c:if>>신한은행</option>
 		                                <option <c:if test="${ loginUser.profBank eq '국민은행' }"> selected="selected"</c:if>>국민은행</option>
 		                                <option <c:if test="${ loginUser.profBank eq '농협' }"> selected="selected"</c:if>>농협</option>
@@ -174,21 +174,21 @@
 		                      <tr>
 		                        <th>주소</th>
 								<td>
-									<input type="text" name="stdAddress" id="stdAddress" value="${ loginUser.profAddress }">
+									<input type="text" name="profAddress" id="profAddress" value="${ loginUser.profAddress }">
 								</td>
 		                        <th>계좌번호</th>
 								<td>
-									<input type="text" name="stdAddress" id="stdAddress" value="${ loginUser.profAccount }">
+									<input type="text" name="profAccount" id="profAccount" value="${ loginUser.profAccount }">
 								</td>
 		                      </tr>
 		                      <tr>
 		                        <th>상세주소</th>
 								<td>
-									<input type="text" name="stdAddress" id="stdAddress" value="${ loginUser.profAddressDetail }">
+									<input type="text" name="profAddressDetail" id="profAddressDetail" value="${ loginUser.profAddressDetail }">
 								</td>
 		                        <th>예금주명</th>
 								<td>
-									<input type="text" name="stdAddress" id="stdAddress" value="${ loginUser.profAccountHolder }">
+									<input type="text" name="profAccountHolder" id="profAccountHolder" value="${ loginUser.profAccountHolder }">
 								</td>
 		                      </tr>
 		                    </tbody>
@@ -200,7 +200,7 @@
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">개인정보동의
-								<input type="button" class="btn btn-primary btn-sm" value="변경" id="" onclick="agreeBtn()">
+								<input type="button" class="btn btn-primary btn-sm" value="변경" id="changeInfo" onclick="agreeBtn()">
 							</h6>
 						</div>
 						<div class="card-body">
@@ -296,6 +296,95 @@
 
 	<!-- Logout Modal-->
 	<c:import url="../common/logoutModal.jsp" />
+	
+	<script type="text/javascript">
+		function personalBtn()
+		{
+			var profId = ${ loginUser.profId };
+			var profTel = $("#profTel").val();
+			var profPhone = $("#profPhone").val();
+			var profEmail = $("#profEmail").val();
+			var profAddress = $("#profAddress").val();
+			var profAddressDetail = $("#profAddressDetail").val();
+			var profBank = $("#profBank").val();
+			var profAccount = $("#profAccount").val();
+			var profAccountHolder = $("#profAccountHolder").val();
+			
+			if(confirm("변경하시겠습니까?"))
+			{
+				$.ajax(
+				{
+					url:"changeProfessorInfo.do",
+					data:{"profId" : profId, "profTel" : profTel, "profPhone" : profPhone, "profEmail" : profEmail, "profAddress" : profAddress, "profAddressDetail" : profAddressDetail, "profBank" : profBank, "profAccount" : profAccount, "profAccountHolder" : profAccountHolder},
+					type:"post",
+					success:function(data)
+					{
+						if(data == "ok")
+						{
+							console.log("성공");
+							alert("변경되었습니다.");
+							location.reload();
+						}
+						else
+						{
+							alert("실패하였습니다.");
+						}
+					},
+					error:function(request, status, errorData)
+					{
+						console.log(request.status);
+						console.log(request.responseText);
+						console.log(errorData); 
+					}
+				});
+			}
+			else
+			{
+				alert("취소되었습니다.");
+				return;
+			}
+		}
+		
+		function agreeBtn()
+		{
+			var profId = ${ loginUser.profId };
+			var profSmsAgree = $('input[name="SMS"]:checked').val();
+			var profEmailAgree = $('input[name="Email"]:checked').val();
+			
+			if(confirm("변경하시겠습니까?"))
+			{
+				$.ajax(
+				{
+					url:"changeProfAgreeInfo.do",
+					data:{"profId" : profId, "profSmsAgree" : profSmsAgree, "profEmailAgree" : profEmailAgree},
+					type:"post",
+					success:function(data)
+					{
+						if(data == "ok")
+						{
+							console.log("성공");
+							alert("변경되었습니다.");
+						}
+						else
+						{
+							alert("실패하였습니다.");
+						}
+					},
+					error:function(request, status, errorData)
+					{
+						console.log(request.status);
+						console.log(request.responseText);
+						console.log(errorData); 
+					}
+				});
+			}
+			else
+			{
+				alert("취소되었습니다.");
+				return;
+			}
+		}
+	</script>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
