@@ -8,7 +8,7 @@
       <result property="schoolMonth" column="SCHOOL_MONTH"/>
       <result property="profBank" column="BANK"/>
       <result property="profAccount" column="ACCONUT"/>
-      <result property="salaryTotal" column="TOTAL_SCHOLARSHIPS"/>
+      <result property="salaryTotal" column="SALARY_TOTAL"/>
       <result property="profname" column="NAME"/>
       <result property="profCollege" column="CATEGORY_NO"/>
       <result property="profBirth" column="BIRTH_NO"/>
