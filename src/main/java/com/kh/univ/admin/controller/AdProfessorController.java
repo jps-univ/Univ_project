@@ -2,6 +2,8 @@ package com.kh.univ.admin.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,11 +25,23 @@ public class AdProfessorController {
 	 * @return
 	 */
 	@RequestMapping("professor_Register.do")
-	public String professorRegister(ModelAndView mv) {
-
+	public ModelAndView professorRegister(ModelAndView mv,HttpSession session) {
+		ArrayList<College> adDept = adProfessorService.selectDept();
+		mv.addObject("adDept",adDept);
+		mv.setViewName("admin/ad_professor_register");
+		return mv;
+	}
+	
+	@RequestMapping("professor_Register_Insert.do")
+	public String professorRegisterInsert(Professor pro) {
+		int result = adProfessorService.insertProfessor(pro);
 		
+		if(result>0) {
+			return "redirect:professor_Register.do";
+		}else {
+			return "common/errorPage";
+		}
 		
-		return "admin/ad_professor_register";
 	}
 	
 	/**
@@ -42,6 +56,18 @@ public class AdProfessorController {
 		mv.addObject("adDept",adDept);
 		mv.setViewName("admin/ad_professor_modify");
 		return mv;
+	}
+	@RequestMapping("professor_Modify_Update.do")
+	public String professorModifyUpdate(Professor pro) {
+		System.out.println(pro);
+		int result = adProfessorService.updateOne(pro);
+			
+		if(result>0) {
+			return "redirect:professor_Modify.do";
+		}else {
+			return "common/error";
+		}
+		
 	}
 	
 	@ResponseBody
@@ -59,4 +85,6 @@ public class AdProfessorController {
 		
 		return deptCheck;
 	}
+	
+	
 }

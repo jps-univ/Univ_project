@@ -26,16 +26,49 @@
 	<%--    <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />--%>
 	<style>
 		#th_college{
-		width: 30%;
+		width: 22%;
+		}
+		#td_college{
+		vertical-align: middle;
 		}
 		#th_department{
+		width: 22%;
+		}
+		#td_department{
+		vertical-align: middle;
+		}
+		#th_selectCollege{
 		width: 30%;
 		}
 		#selectCollege{
-		width: 60%;
+		width: 70%;
 		}
 		#selectDepartment{
 		width: 70%;
+		}
+		#th_selectDepartment{
+		width: 30%;
+		}
+		#th_profName{
+		width:22 %;
+		}
+		#th_profId{
+		width: 22%;
+		}
+		#td_profName{
+		vertical-align: middle;
+		}
+ 		#td_profId{
+		vertical-align: middle;
+		}
+ 		#td_consult{
+		vertical-align: middle;
+		}
+		#th_apply{
+		width: 12%;
+		}
+		#div_selectProf{
+		margin: 1% 0% 0% 20%;
 		}
 		.top{
 		    background-color: #edf1fc;
@@ -84,12 +117,14 @@
 		              <h6 class="m-0 font-weight-bold text-primary">상담 신청</h6>
 		            </div>
 		
- 		            <div class="card-body">
-		              <div>
+					
+ 		            
+ 		            <!-- <form action="selectProfessor.do" method="post"> -->
+		              <div id="div_selectProf">
 		                <table>
 							<tr align="center">
-		                    <th id="th_college">학부&nbsp;
-		                      <select id="selectCollege" name="selectCollege" onchange="changeCollege()">
+		                    <th id="th_selectCollege">학부&nbsp;
+		                      <select id="selectCollege" name="profCollege" onchange="changeCollege()">
 		                        <option value="c0">전체</option>
 		                        <option value="c1">인문대학</option>
 		                        <option value="c2">사회과학대학</option>
@@ -99,45 +134,61 @@
 		                        <option value="c6">예술체육대학</option>
 		                      </select>
 		                    </th>
-		                    <th id="th_department">&emsp;학과&nbsp;
-		                      <select id="selectDepartment">
+		                    <th id="th_selectDepartment">&emsp;학과&nbsp;
+		                      <select id="selectDepartment" name="departmentName">
 		                        <option>전체</option>
 		                      </select>
 		                    </th>
 		                    
-		                    <th id="th_professor">&emsp;&emsp;성명&nbsp;
-		                      <input type="text" name="" id="searchProfName">
+		                    <th id="th_searchProfName">&emsp;&emsp;성명&nbsp;
+		                      <input type="text" name="profName" id="searchProfName">
 		                    </th>
 		                    
-		                    <th id="searchProfBtn">
-		                      &emsp;<input type="button" class="btn btn-primary btn-sm" value="검색" id="selectProf" onclick="selectProfBtn()">
+		                    <th id="th_searchProfBtn">
+		                      <!-- &emsp;<button type="submit" class="btn btn-primary btn-sm">검색</button> -->
+		                      &emsp;<input type="button" class="btn btn-primary btn-sm" value="검색" onclick="selectProfessor()">
 		                    </th>
 		                  </tr>
 		                </table>
 		              </div>
+		              <!-- </form> -->
+		              
 		              <br>
+		              <div class="card-body">
 		              <div class="table-responsive">
-		                <table class="table table-bordered" id="" width="100%" cellspacing="0">
+		                <table class="table table-bordered" id="test" width="100%" cellspacing="0">
 		                <tbody>                
 		                  <tr align="center">
-		                    <th>학부</th>
-		                    <th>학과</th>
-		                    <th>성명</th>
-		                    <th>상담 신청</th>
+		                    <th id="th_college">학부</th>
+		                    <th id="th_department">학과</th>
+		                    <th id="th_profName">성명</th>
+		                    <th id="th_profId">연구실</th>
+		                    <th id="th_apply">상담 신청</th>
 		                  </tr>
-		                  <tr align="center">
+		                  <%--
+ 		                  <c:forEach var="p" items="${ selectProf }">
+		                  <tr align="center" id="test">
 		                    <td id="td_college">
-		                    	이공대학
+		                    	${ p.collegeName }
 		                    </td>
 		                    <td id="td_department">
-		                    	전자공학과
+		                    	${ p.departmentName }
 		                    </td>
 		                    <td id="td_profName">
-		                    	임신일 교수
+		                    	${ p.profName }
+		                    </td>
+		                    <td id="td_profId">
+		                    	${ p.lab }
 		                    </td>
 		                    <td>
-		                      <input type="button" class="btn btn-success" value="상담신청" id="">
+		                      <input type="button" class="btn btn-success" value="상담신청" id="applyConsulting" onclick="applyConsulting(event)">
+		                      <input type="hidden" id="hidden_profName" value="${ p.profId }">
 		                    </td>
+		                  </tr>                
+		                 </c:forEach>
+		                 --%>
+		                  <tr align="center" >
+
 		                  </tr>                
 		                 </tbody>
 		                </table>
@@ -147,7 +198,7 @@
 		
 		          <div class="card shadow mb-4">
 		            <div class="card-header py-3">
-		              <h6 class="m-0 font-weight-bold text-primary">신청 관리</h6>
+		              <h6 class="m-0 font-weight-bold text-primary">신청 상황</h6>
 		            </div>
 		
 		            <div class="card-body">
@@ -160,14 +211,19 @@
 		                    <th>신청 일자</th>
 		                    <th>신청 취소</th>
 		                  </tr>
-		                  <tr align="center">
-		                    <td>아무개</td>
-		                    <td>신청 중</td>
-		                    <td>2020.10.13</td>
-		                    <td>
-		                      <input type="button" class="btn btn-secondary" value="신청취소" id="">
-		                    </td>
-		                  </tr>                
+		                  <c:forEach var="c" items="${ consult }">
+			                  <c:if test="${ c.consultingStatus eq '신청'}">
+				                  <tr align="center">
+				                    <td id="td_consult">${ c.profName }</td>
+				                    <td id="td_consult">${ c.consultingStatus } 중</td>
+				                    <td id="td_consult">${ c.applyDate }</td>
+				                    <td>
+				                      <input type="button" class="btn btn-secondary" value="신청취소" id="cancleConsulting" onclick="cancleConsulting(event)">
+				                      <input type="hidden" id="hidden_consultingNo" value="${ c.consultingNo }">
+				                    </td>
+				                  </tr>
+			                  </c:if>     
+		                  </c:forEach>
 		                 </tbody>
 		                </table>
 		              </div>
@@ -189,14 +245,79 @@
 		                    <th>상담 일자</th>
 		                    <th>신청 취소</th>
 		                  </tr>
+		                  <c:forEach var="c" items="${ consult }">
+			                  <c:if test="${ c.consultingStatus eq '진행'}">
+				                  <tr align="center">
+				                    <td id="td_consult">${ c.profName }</td>
+				                    <td id="td_consult">${ c.consultingStatus } 중</td>
+				                    <td id="td_consult">${ c.progressDate }</td>
+				                    <td>
+				                      <input type="button" class="btn btn-secondary" value="신청취소" id="cancleConsulting" onclick="cancleConsulting(event)">
+				                      <input type="hidden" id="hidden_consultingNo" value="${ c.consultingNo }">
+				                    </td>
+				                  </tr>
+			                  </c:if>     
+		                  </c:forEach>  
+		                 </tbody>
+		                </table>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="card shadow mb-4">
+		            <div class="card-header py-3">
+		              <h6 class="m-0 font-weight-bold text-primary">완료 상황</h6>
+		            </div>
+		
+		            <div class="card-body">
+		              <div class="table-responsive">
+		                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+		                <tbody>
 		                  <tr align="center">
-		                    <td>아무개</td>
-		                    <td>신청 중</td>
-		                    <td>2020.10.13</td>
-		                    <td>
-		                      <input type="button" class="btn btn-secondary" value="신청취소" id="">
-		                    </td>
-		                  </tr>                
+		                    <th>상담 교수</th>
+		                    <th>진행 상태</th>
+		                    <th>상담 일자</th>
+		                    <th>완료 일자</th>
+		                  </tr>
+		                  <c:forEach var="c" items="${ consult }">
+			                  <c:if test="${ c.consultingStatus eq '완료'}">
+				                  <tr align="center">
+				                    <td id="td_consult">${ c.profName }</td>
+				                    <td id="td_consult">상담 ${ c.consultingStatus }</td>
+				                    <td id="td_consult">${ c.applyDate }</td>
+				                    <td id="td_consult">${ c.completeDate }</td>
+				                  </tr>
+			                  </c:if>     
+		                  </c:forEach>  
+		                 </tbody>
+		                </table>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="card shadow mb-4">
+		            <div class="card-header py-3">
+		              <h6 class="m-0 font-weight-bold text-primary">취소 상황</h6>
+		            </div>
+		
+		            <div class="card-body">
+		              <div class="table-responsive">
+		                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+		                <tbody>
+		                  <tr align="center">
+		                    <th>상담 교수</th>
+		                    <th>진행 상태</th>
+		                    <th>신청 일자</th>
+		                    <th>취소 일자</th>
+		                  </tr>
+		                  <c:forEach var="c" items="${ consult }">
+			                  <c:if test="${ c.consultingStatus eq '취소'}">
+				                  <tr align="center">
+				                    <td id="td_consult">${ c.profName }</td>
+				                    <td id="td_consult">상담 ${ c.consultingStatus }</td>
+				                    <td id="td_consult">${ c.applyDate }</td>
+				                    <td id="td_consult">${ c.cancleDate }</td>
+				                  </tr>
+			                  </c:if>     
+		                  </c:forEach>  
 		                 </tbody>
 		                </table>
 		              </div>
@@ -230,7 +351,7 @@
 	<script type="text/javascript">
 	    function changeCollege() 
 	    {
-	        var college = $('#selectCollege').val();
+	    	var college = $('#selectCollege').val();
 	        
 	        $.ajax(
 	        {
@@ -243,34 +364,130 @@
 	                $('#selectDepartment').append("<option>전체</option>");
 	                $('#selectMajor').empty();
 	                $('#selectMajor').append("<option>전체</option>");
-	                for (var i in data) {
+	                
+	                for (var i in data) 
+	                {
 	                    var option = $("<option>" + data[i].deptCode + "</option>");
 	                    $('#selectDepartment').append(option);
 	                }
 	            }, 
 	            error: function ()
 	            {
-	                alert("에러발생")
+	                alert("에러발생");
 	            }
-	
 	        });
 	    }
 	    
-	    function selectProfBtn()
+	    // 교수 조회
+	    function selectProfessor()
 	    {
+	    	var profName = $("#searchProfName").val();
 	    	var profCollege = $("#selectCollege").val();
 	    	var departmentName = $("#selectDepartment").val();
-	    	var profName = $("#searchProfName").val();
-	    	
-	    	$.ajax(
+	    	console.log(profName);
+	    	console.log(profCollege);
+	    	console.log(departmentName);
+	        
+	        $.ajax(
+	        {
+	            url: "selectProfessor.do",
+	            data: {"profName" : profName, "profCollege" : profCollege, "departmentName" : departmentName},
+	            success:function(data)
+	            {
+	            	$(".test2").remove();
+	            	
+	            	for(var i in data)
+	            	{
+	            		/*
+ 	            		var collegeName = $('<tr align="center"> <td id="td_college">' + data[i].collegeName + '</td>');
+	            		var departmentName = $('<td id="td_department">' + data[i].departmentName + '</td>');
+	            		var profName = $('<td id="td_profName">' + data[i].profName + '</td>');
+	            		var lab = $('<td id="td_profId">' + data[i].lab + '</td>');
+	            		var applyConsulting = $('<td> <input type="button" class="btn btn-success" value="상담신청" id="applyConsulting" onclick="applyConsulting(event)">');
+	            		var hidden_profName = $('<input type="hidden" id="hidden_profName" value="${ p.profId }"> </td> </tr>');
+	            		
+ 	            		$("#test").append(collegeName);
+	            		$("#test").append(departmentName);
+	            		$("#test").append(profName);
+	            		$("#test").append(lab);
+	            		$("#test").append(applyConsulting);
+	            		$("#test").append(hidden_profName);
+	            		*/
+	            		
+	            		var result = $('<tr align="center" class="test2"><td id="td_college">' + data[i].collegeName + '</td>' +
+			            				'<td id="td_department">' + data[i].departmentName + '</td>' + 
+			            				'<td id="td_profName">' + data[i].profName + '</td>' + 
+			            				'<td id="td_profId">' + data[i].lab + '</td>' + 
+			            				'<td> <input type="button" class="btn btn-success" value="상담신청" id="applyConsulting" onclick="applyConsulting(event)">' + 
+			            				'<input type="hidden" id="hidden_profName" value="' + data[i].profId + '"> </td></tr>'
+	            					  );
+	            		
+	            		$("#test").append(result);
+	            	}
+	            }, 
+	            error:function()
+	            {
+	                alert("조회에 실패하였습니다.");
+	            }
+	        });
+	    }
+	    
+	    // 상담 신청 
+	    function applyConsulting(event)
+	    {
+	    	var profId = event.target.nextElementSibling.value;
+	        
+	        if(confirm("신청하시겠습니까?"))
 	    	{
-	    		url: "selectProfessor.do",
-	    		data: {"profCollege" : profCollege, "departmentName" : departmentName, "profName" : profName},
-	    		success: function(data)
-	    		{
-
-	    		}
-	    	});
+		        $.ajax(
+		        {
+		            url: "applyConsulting.do",
+		            data: {"profId" : profId},
+		            success:function(data)
+		            {
+		            	alert("상담이 신청되었습니다.");
+		            	location.reload();
+		            }, 
+		            error:function()
+		            {
+		                alert("상담이 신청되지 않았습니다.");
+		            }
+		        });
+	    	}
+	    	else
+	    	{
+				alert("취소되었습니다.");
+				return;
+	    	}
+	    }
+	    
+	    // 상담 신청 취소 
+	    function cancleConsulting(event)
+	    {
+	        var consultingNo = event.target.nextElementSibling.value;
+	        
+	        if(confirm("취소하시겠습니까?"))
+	    	{
+		        $.ajax(
+		        {
+		            url: "cancleConsulting.do",
+		            data: {"consultingNo" : consultingNo},
+		            success:function(data)
+		            {
+		            	alert("상담이 취소되었습니다.");
+		            	location.reload();
+		            }, 
+		            error:function()
+		            {
+		                alert("상담 신청 중입니다.");
+		            }
+		        });
+	    	}
+	    	else
+	    	{
+				alert("상담이 취소되지 않았습니다.");
+				return;
+	    	}
 	    }
 	</script>
 
@@ -290,6 +507,5 @@
 
 	<!-- Page level custom scripts -->
 	<script src="${contextPath}/resources/js/demo/datatables-demo.js"></script>
-
 </body>
 </html>

@@ -141,9 +141,12 @@
     </script>
     <script>
         $(document).ready(function () {
+
+
             // DB에서 데이터 뽑아와서 테이블로 출력하는 datatables 라이브러리 사용
             $('#searchBtn').click(function () {
-                var table = $('#registerTable').DataTable({
+                 var table = $('#registerTable').DataTable({
+
 
                     //컨트롤러에서 보내줄 때 해당 함수의 반환형은 String이어야 하고 리스트를 뽑아온다고 하면 'dataSrc' : '' 로 해줘야함.
                     'ajax': {
@@ -231,8 +234,20 @@
                 //         }
                 //     }
                 // });
+                // hiddenColumnValue = table.fnGetData(position)[0];
+                $('#registerTable').on('click','tbody tr',function () {
+                    // $('#registerTable tbody tr ').css({
+                    //     'color' : 'red'
+                    // });
+                    selectedIndex = table.row(this).data();
+                    seq = selectedIndex.classSeq;
+                    console.log(seq);
+                    console.log("${sessionScope}");
 
+                });
             });
+
+
 
         });
     </script>
@@ -240,6 +255,7 @@
     <%--    수강신청,장바구니 탭 클릭 시 화면 변화--%>
     <script>
         $(document).ready(function () {
+
             $('#enrollCard').css({
                 "background-color": "lightgrey",
                 "color": "white"

@@ -17,4 +17,10 @@ public interface AdProfessorService {
 
 	ArrayList<Department> deptCheck(String collegeCode);
 
+	int updateOne(Professor pro);
+
+	int insertProfessor(Professor pro);
+
+	
+
 }

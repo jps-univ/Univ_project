@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.univ.consulting.model.vo.Consulting;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
@@ -56,10 +57,45 @@ public class StudentMyPageDao
 
 	public ArrayList<Professor> selectProfessor(Map map) 
 	{
-		System.out.println("dao : " + map.get("profName"));
-		System.out.println("dao : " + map.get("profCollege"));
-		System.out.println("dao : " + map.get("departmentName"));
+		if(map.get("profName") == "" && !(map.get("profCollege").equals("c0")) && !(map.get("departmentName").equals("전체")))
+		{
+			return (ArrayList)sqlSession.selectList("StudentMyPageMapper.selectProfessorCD", map);			
+		}
+		else if(!(map.get("profName") == "") && !(map.get("profCollege").equals("c0")) && map.get("departmentName").equals("전체"))
+		{
+			return (ArrayList)sqlSession.selectList("StudentMyPageMapper.selectProfessorCN", map);
+		}
+		else if(!(map.get("profName") == "") && map.get("profCollege").equals("c0") && map.get("departmentName").equals("전체"))
+		{
+			return (ArrayList)sqlSession.selectList("StudentMyPageMapper.selectProfessorN", map);
+		}
+		else if(map.get("profName") == "" && !(map.get("profCollege").equals("c0")) && map.get("departmentName").equals("전체")) 
+		{
+			return (ArrayList)sqlSession.selectList("StudentMyPageMapper.selectProfessorC", map);
+		}
+		else if(map.get("profName") == "" && map.get("profCollege").equals("c0") && map.get("departmentName").equals("전체")) 
+		{
+			return (ArrayList)sqlSession.selectList("StudentMyPageMapper.selectProfessorAll", map);
+		}
+		else
+		{
+			return (ArrayList)sqlSession.selectList("StudentMyPageMapper.selectProfessor", map);
+		}
+	}
+
+	public int applyConsulting(Map map) 
+	{
 		
-		return (ArrayList)sqlSession.selectList("StudentMyPageMapper.selectProfessor", map);
+		return sqlSession.insert("StudentMyPageMapper.applyConsulting", map);
+	}
+
+	public ArrayList<Consulting> selectApply(Student student) 
+	{
+		return (ArrayList)sqlSession.selectList("StudentMyPageMapper.selectConsulting", student);
+	}
+
+	public int cancleConsulting(Consulting consulting)
+	{
+		return sqlSession.update("StudentMyPageMapper.cancleConsulting", consulting);
 	}
 }

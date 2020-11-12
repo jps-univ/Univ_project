@@ -35,4 +35,16 @@ public class AdProfessorDao {
 		// TODO Auto-generated method stub
 		return (ArrayList)sqlSession.selectList("adminProfessorMapper.selectDeptCheck",collegeCode);
 	}
+
+	public int updateOne(Professor pro) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("adminProfessorMapper.selectOneUpdate",pro);
+	}
+
+	public int insertProfessor(Professor pro) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("adminProfessorMapper.insertProfessor",pro);
+	}
+
+
 }

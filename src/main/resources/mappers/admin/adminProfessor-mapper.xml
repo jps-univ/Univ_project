@@ -52,7 +52,8 @@ LEFT JOIN TB_DEPARTMENT USING(DEPARTMENT_CODE)
 LEFT JOIN TB_COLLEGE USING(COLLEGE_CODE)
 
 </select>
-
+<insert id="insertProfessor">
+</insert>
 
 <select id="selectAdminProfessorOne" parameterType="Professor" resultMap="ProfessorResultSet">
 SELECT PROFESSOR_ID,NAME,BIRTH_NO,DEPARTMENT_CODE,COLLEGE_CODE,IMAGE,EMAIL,PHONE,BANK,ACCOUNT,ACCOUNT_HOLDER,LAB,ADDRESS,ADDRESS_DETAIL
@@ -75,4 +76,20 @@ WHERE PROFESSOR_ID=#{profId}
 	WHERE COLLEGE_CODE =#{collegeCode}
  </select>
 
+<update id="selectOneUpdate" parameterType="Professor">
+UPDATE TB_PROFESSOR SET
+	NAME = #{profName},
+	BIRTH_NO = #{profBirth},
+	DEPARTMENT_CODE = #{profDepartment},
+	PHONE = #{profPhone},
+	LAB = #{lab},
+	ADDRESS = #{profAddress},
+	ADDRESS_DETAIL = #{profAddressDetail},
+	EMAIL = #{profEmail},
+	ACCOUNT = #{profAccount},
+	ACCOUNT_HOLDER = #{profAccountHolder},
+	BANK = #{profBank}
+WHERE PROFESSOR_ID = #{profId}
+
+</update>
 </mapper>

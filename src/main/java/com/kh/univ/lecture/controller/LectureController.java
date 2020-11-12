@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -79,6 +80,11 @@ public class LectureController {
         return "lectureManagement/requestDeleteLecture";
     }
 
+    @RequestMapping("enrollClassPage.do")
+    public String enrollClassPage() {
+        return "enrollClass/enrollClassPage";
+    }
+
     /**
      * 강의리스트를 불러와서 수강신청하는 학생의 뷰에 뿌려줌
      * json을 string으로 변환해서 넘겨준다. DataTable()과 연동
@@ -111,7 +117,6 @@ public class LectureController {
 
         return jsonStr;
     }
-
     /**
      * 단과대학을 선택하면 해당학과들을 출력하게함
      * @param collegeCode
@@ -153,20 +158,16 @@ public class LectureController {
             return "fail!";
         }
     }
-//    @ResponseBody
-//    @RequestMapping(value = "topList1.do",produces = "application/json; charset=utf-8")
-//    public String boardTopList() throws JsonProcessingException {
-//        ArrayList<Board> list = bService.selectTopList();
-//
-//        ObjectMapper mapper = new ObjectMapper();
-//
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//        mapper.setDateFormat(sdf);
-//
-//        String jsonStr = mapper.writeValueAsString(list);
-//        return jsonStr;
-//
-//    }
+    @ResponseBody
+    @RequestMapping(value = "registerClass.do", produces = "application/json; charset=utf-8")
+    public String registerClass(HttpSession session ,
+                                int classSeq){
+
+        Object user = session.getAttribute("loginUser");
+//        user
+        System.out.println();
+        return null;
+    }
 
 }
 

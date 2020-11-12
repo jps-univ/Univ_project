@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.univ.consulting.model.vo.Consulting;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
@@ -63,5 +64,23 @@ public class StudentMyPageServiceImpl implements StudentMyPageService
 	public ArrayList<Professor> selectProfessor(Map map) 
 	{
 		return msDao.selectProfessor(map);
+	}
+
+	@Override
+	public int applyConsulting(Map map) 
+	{
+		return msDao.applyConsulting(map);
+	}
+
+	@Override
+	public ArrayList<Consulting> selectApply(Student student) 
+	{
+		return msDao.selectApply(student);
+	}
+
+	@Override
+	public int cancleConsulting(Consulting consulting) 
+	{
+		return msDao.cancleConsulting(consulting);
 	}
 }

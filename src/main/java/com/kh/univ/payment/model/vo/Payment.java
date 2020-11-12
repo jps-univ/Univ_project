@@ -12,7 +12,7 @@ public class Payment {
 	private String totalPayments;         // 납부금액(납부총액)
 	private String stdName;              // 이름
 	private String stdBirth;             // 생년월일
-	private String stdCollege;           // 학과
+	private String departmentName;           // 학과
 	private String stdAddress;              // 주소
 	private String entranceFee;          // 입학금
 	private String schoolFee;            // 수업료
@@ -39,7 +39,7 @@ public class Payment {
 	}
 
 	public Payment(int paymentNo, int stdId, String schoolYear, int stdSemester, String dueDate, String paymentAmount,
-			String totalScholarships, String totalPayments, String stdName, String stdBirth, String stdCollege,
+			String totalScholarships, String totalPayments, String stdName, String stdBirth, String departmentName,
 			String stdAddress, String entranceFee, String schoolFee, String campusScholarship, String suburbanScholartship,
 			String nationalScholarship, String paperGuidanceFee, String studentFees, String alumniFee,
 			String makePaymentDate) {
@@ -54,7 +54,7 @@ public class Payment {
 		this.totalPayments = totalPayments;
 		this.stdName = stdName;
 		this.stdBirth = stdBirth;
-		this.stdCollege = stdCollege;
+		this.departmentName = departmentName;
 		this.stdAddress = stdAddress;
 		this.entranceFee = entranceFee;
 		this.schoolFee = schoolFee;
@@ -147,12 +147,12 @@ public class Payment {
 		this.stdBirth = stdBirth;
 	}
 
-	public String getStdCollege() {
-		return stdCollege;
+	public String getDepartmentName() {
+		return departmentName;
 	}
 
-	public void setStdCollege(String stdCollege) {
-		this.stdCollege = stdCollege;
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
 	}
 
 	public String getStdAddress() {
@@ -240,13 +240,12 @@ public class Payment {
 		return "Payment [paymentNo=" + paymentNo + ", stdId=" + stdId + ", schoolYear=" + schoolYear + ", stdSemester="
 				+ stdSemester + ", dueDate=" + dueDate + ", paymentAmount=" + paymentAmount + ", totalScholarships="
 				+ totalScholarships + ", totalPayments=" + totalPayments + ", stdName=" + stdName + ", stdBirth="
-				+ stdBirth + ", stdCollege=" + stdCollege + ", stdAddress=" + stdAddress + ", entranceFee="
+				+ stdBirth + ", departmentName=" + departmentName + ", stdAddress=" + stdAddress + ", entranceFee="
 				+ entranceFee + ", schoolFee=" + schoolFee + ", campusScholarship=" + campusScholarship
 				+ ", suburbanScholartship=" + suburbanScholartship + ", nationalScholarship=" + nationalScholarship
 				+ ", paperGuidanceFee=" + paperGuidanceFee + ", studentFees=" + studentFees + ", alumniFee=" + alumniFee
 				+ ", makePaymentDate=" + makePaymentDate + "]";
 	}
 
-	
 	
 }
