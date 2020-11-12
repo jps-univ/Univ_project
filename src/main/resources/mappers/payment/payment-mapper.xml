@@ -25,31 +25,6 @@
       <result property="makePaymentDate" column="MAKE_PAYMENT_DATE"/>
    </resultMap>
    
-   	<resultMap id="StudentResultSet" type="Student">
- 		<id property="stdId" column="STUDENT_ID"/>
- 		<result property="stdPwd" column="STUDENT_PASSWORD"/>
- 		<result property="stdName" column="STUDENT_NAME"/>
- 		<result property="stdBirth" column="BIRTH_NO"/>
- 		<result property="stdCollege" column="COLLEGE"/>
- 		<result property="stdDepartment" column="DEPARTMENT_CODE"/>
- 		<result property="stdCourse" column="COURSE"/>
- 		<result property="stdSemester" column="SEMESTER"/>
- 		<result property="stdEnterDiv" column="ENTER_DIV"/>
- 		<result property="stdImage" column="IMAGE"/>
- 		<result property="stdTuition" column="TUITION"/>
- 		<result property="stdSchoolReg" column="SCHOOL_REG"/>
- 		<result property="stdPhone" column="PHONE"/>
- 		<result property="stdEmail" column="EMAIL"/>
- 		<result property="stdAddress" column="ADDRESS"/>
- 		<result property="stdAddressDetail" column="ADDRESS_DETAIL"/>
- 		<result property="stdBank" column="BANK"/>
- 		<result property="stdAccount" column="STUDENT_ACCOUNT"/>
- 		<result property="stdAccountHolder" column="ACCOUNT_HOLDER"/>
- 		<result property="stdSmsAgree" column="SMS_AGREE"/>
- 		<result property="stdEmailAgree" column="EMAIL_AGREE"/>
- 		<result property="stdEntrance" column="ENTRANCE_DATE"/>
- 		<result property="stdTel" column="TEL"/>
- 	</resultMap>
    
    <!-- 등록금리스트 -->
    <select id="selectList"  resultMap="PaymentResultSet">
