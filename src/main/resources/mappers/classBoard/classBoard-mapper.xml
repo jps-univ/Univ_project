@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="classBoardMapper">
+	<!--    과목의 리절트맵-->
+    <resultMap id="classList" type="Lecture">
+        <id property="classSeq" column="CLASS_SEQ"/>
+        <result property="classCode" column="CLASS_CODE"/>
+        <result property="deptCode" column="DEPARTMENT_CODE"/>
+        <result property="profId" column="PROFESSOR_ID"/>
+        <result property="className" column="CLASS_NAME"/>
+        <result property="room" column="ROOM"/>
+        <result property="gradeSize" column="GRADE_SIZE"/>
+        <result property="classSemester" column="CLASS_SEMESTER"/>
+        <result property="classYear" column="CLASS_YEAR"/>
+        <result property="classApprove" column="CLASS_APPROVE"/>
+        <result property="classLevel" column="CLASS_LEVEL"/>
+        <result property="classType" column="CLASS_TYPE"/>
+
+        <result property="lectureTime" column="TOTAL"/>
+        <result property="profName" column="PROFESSOR_NAME"/>
+    </resultMap>
+
+
+	<select id="selectClassList" parameterType="hashMap" resultMap="classList">
+      SELECT * 
+      FROM (SELECT * FROM TB_CLASS
+      WHERE CLASS_SEQ IN (SELECT CLASS_SEQ
+      FROM TB_REGISTER_CLASS
+      WHERE STUDENT_ID=#{userId}))
+      WHERE CLASS_YEAR=#{userYear}
+      AND CLASS_SEMESTER=#{userGrade}
+	</select>
+</mapper>

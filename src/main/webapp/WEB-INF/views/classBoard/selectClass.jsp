@@ -52,7 +52,10 @@
         <!-- Topbar -->
   		<c:import url="../common/pageTopbar.jsp" />
         
-
+		<div>
+			${ user.stdId }
+			${ loginUser.stdId }
+		</div>
         <div id="main_con">  
           <p id="select_title">학기</p>
           <form id="semester">
@@ -67,20 +70,13 @@
                 <option value = "2014">2014</option>
               </select>
               <select id="grade">
-                <option value="1학기">1학기</option>
-                <option value="2학기">2학기</option>
+                <option value="1">1학기</option>
+                <option value="2">2학기</option>
               </select>
-              <button id="submit" type="button">조회</button>
+              <button id="submit">조회</button>
             </fieldset>
           </form>
 
-	<script>
-		$(function(){
-			$("#submit").on('click',function(){
-				location.href = "classBoardMain.do";
-			});
-		});
-	</script>
 
           <!-- 강의 목록 조회 -->
           <div id="rest_table_area">
@@ -117,6 +113,32 @@
                     </table>
                 </form>
             </div>
+       
+       	<script>
+       		$('#submit').click(function(){
+       			$.ajax({
+       				url:"classList.do",
+       				dataType:"JSON",
+       				data : {
+       					userYear:$('#year').val(),
+       					userGrade:$('#grade').val()
+       				},
+       				success : function(data){
+       					console.log("gg");
+       					console.log(data);
+       					$tableBody = $('#rest_lecture tbody');
+       					$tableBody.html("");
+       					/* for (var i in data) {
+       						var $tr = $("<tr>");
+       						var $
+       					} */
+       				}
+       				
+       			});
+       			
+       		});
+       		
+       	</script>
 
 
         </div>
