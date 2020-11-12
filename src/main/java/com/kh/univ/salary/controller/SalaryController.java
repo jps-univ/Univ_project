@@ -23,7 +23,7 @@ public class SalaryController {
 	@RequestMapping("salary.do")
     public ModelAndView Salary(HttpSession session,ModelAndView mv){
 		
-		Professor newSalary = (Professor)session.getAttribute("login");
+		Professor newSalary = (Professor)session.getAttribute("loginUser");
 		int id = newSalary.getProfId();
 		
 		ArrayList<Salary>list = saService.selectList(newSalary.getProfId());
@@ -39,7 +39,7 @@ public class SalaryController {
 	@RequestMapping("salarydetail.do")
     public ModelAndView Salarydetail(int salaryNo, HttpSession session, ModelAndView mv){
 		
-		Professor newSalary = (Professor)session.getAttribute("login");
+		Professor newSalary = (Professor)session.getAttribute("loginUser");
 		Salary salary = saService.selectSalary(salaryNo);
 		
 		mv.addObject("s", salary);
