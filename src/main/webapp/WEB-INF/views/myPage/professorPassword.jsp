@@ -92,7 +92,7 @@
 	                  	</table>
 	
 						<div align="right">
-						    <input type="button" class="btn btn-primary btn-sm" id="checkPwd" value="확인" onclick="checkPwd()">
+						    <input type="button" class="btn btn-primary" id="checkPwd" value="확인" onclick="checkPwd()">
 						</div>
 						
 						<div id="newPwd">
@@ -115,7 +115,7 @@
 							</table>
 							
 							<div align="right">
-							    <input type="button" class="btn btn-primary btn-sm" id="changePwd" value="변경" onclick="changePwd()">
+							    <input type="button" class="btn btn-primary" id="changePwd" value="변경" onclick="changePwd()">
 							</div>
 						</div>
                   	

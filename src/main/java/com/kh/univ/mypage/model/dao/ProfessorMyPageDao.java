@@ -49,4 +49,29 @@ public class ProfessorMyPageDao
 	{
 		return (ArrayList)sqlSession.selectList("ProfessorMyPageMapper.selectProfSchdule", map);
 	}
+
+	public ArrayList<Consulting> selectApply(Professor professor) 
+	{
+		return (ArrayList)sqlSession.selectList("ProfessorMyPageMapper.selectConsulting", professor);
+	}
+
+	public int approveConsulting(Consulting consulting) 
+	{
+		return sqlSession.update("ProfessorMyPageMapper.approveConsulting", consulting);
+	}
+
+	public int rejectConsulting(Consulting consulting) 
+	{
+		return sqlSession.update("ProfessorMyPageMapper.rejectConsulting", consulting);
+	}
+
+	public int completeConsulting(Consulting consulting) 
+	{
+		return sqlSession.update("ProfessorMyPageMapper.completeConsulting", consulting);
+	}
+
+	public int changeConsulting(Consulting consulting) 
+	{
+		return sqlSession.update("ProfessorMyPageMapper.changeConsulting", consulting);
+	}
 }
