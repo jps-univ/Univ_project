@@ -7,7 +7,7 @@
       <result property="schoolYear" column="SCHOOL_YEAR"/>
       <result property="schoolMonth" column="SCHOOL_MONTH"/>
       <result property="profBank" column="BANK"/>
-      <result property="profAccount" column="ACCONUT"/>
+      <result property="profAccount" column="ACCOUNT"/>
       <result property="salaryTotal" column="SALARY_TOTAL"/>
       <result property="profName" column="NAME"/>
       <result property="profCollege" column="CATEGORY_NO"/>
@@ -45,6 +45,9 @@
 	
 	<!-- 월급상세페이지 -->
 	<select id="selectSalary" parameterType="_int" resultMap="SalaryResultSet">
-	
+	 SELECT * FROM TB_SALARY S
+		LEFT OUTER JOIN TB_PROFESSOR P ON S.PROFESSOR_ID = P.PROFESSOR_ID
+		LEFT OUTER JOIN TB_DEPARTMENT D ON P.DEPARTMENT_CODE = D.DEPARTMENT_CODE
+	 WHERE S.SALARY_NO = #{salaryNo}
 	</select>
 </mapper>
