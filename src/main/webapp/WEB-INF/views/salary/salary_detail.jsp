@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <% String path = request.getContextPath(); %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -17,7 +18,7 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="<%=request.getContextPath()%>/resources/css/sb-admin.min.css" rel="stylesheet"> 
-  <link href="<%=request.getContextPath()%>/resources/css/salary_detail_1.css" rel="stylesheet"> 
+  <link href="<%=request.getContextPath()%>/resources/css/salary_detail.css" rel="stylesheet"> 
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
 </head>
@@ -36,23 +37,24 @@
 
                     <tr id="tr_2">
                         <td>성명</td>
-                        <td colspan="2">최희진</td>
+                        <td colspan="2">${ s.profName }</td>
                         <td>교번</td>
-                        <td colspan="2">201257082</td>
+                        <td colspan="2">${ s.profId }</td>
                     </tr>
                     <tr id="tr_2">
                         <td>소속</td>
                         <td colspan="2">진포상대학교</td>
+                        <c:set var="profBirth" value="${ fn:substring( s.profBirth, 0, 6 )  }"/>
                         <td>생년월일</td>
-                        <td colspan="2">19930802</td>
+                        <td colspan="2">${ profBirth }</td>
                     </tr>
                     <tr id="tr_2">
                         <td>지급은행</td>
-                        <td>기업은행</td>
+                        <td>${ s.profBank }</td>
                         <td>지급계좌</td>
-                        <td>990-009078-02-010</td>
+                        <td>${ s.profAccount }</td>
                         <td>지급일</td>
-                        <td>2020.10</td>
+                        <td>${ s.patment_date }</td>
                     </tr>
 
 
@@ -64,39 +66,39 @@
 
                     <tr id="tr_4">
                         <td style="border-right: hidden;">&nbsp;기본급여</td>
-                        <td colspan="2" style="text-align: right">9,000,000&nbsp;</td>
+                        <td colspan="2" style="text-align: right">${ s.basic_Salary }&nbsp;</td>
                         <td style="border-right: hidden;">&nbsp;소득세</td>
-                        <td colspan="2" style="text-align: right">700,000&nbsp;</td>
+                        <td colspan="2" style="text-align: right">${ s.income_Tax }&nbsp;</td>
                     </tr>
                     <tr id="tr_4">
                         <td style="border-right: hidden;">&nbsp;시간외수당</td>
-                        <td colspan="2" style="text-align: right">1,000,000&nbsp;</td>
+                        <td colspan="2" style="text-align: right">${ s.overtime }&nbsp;</td>
                         <td style="border-right: hidden;">&nbsp;국민연금</td>
-                        <td colspan="2" style="text-align: right">330,000&nbsp;</td>
+                        <td colspan="2" style="text-align: right">${ s.national_Pension }&nbsp;</td>
                     </tr>
                     <tr id="tr_4">
                         <td style="border-right: hidden;">&nbsp;상여금</td>
-                        <td colspan="2" style="text-align: right">0&nbsp;</td>
+                        <td colspan="2" style="text-align: right">${ s.bonus }&nbsp;</td>
                         <td style="border-right: hidden;">&nbsp;건강보험</td>
-                        <td colspan="2" style="text-align: right">200,000&nbsp;</td>
+                        <td colspan="2" style="text-align: right">${ s.health_Insurance }&nbsp;</td>
                     </tr>
                     <tr id="tr_4">
                         <td style="border-right: hidden;">&nbsp;성과급</td>
-                        <td colspan="2" style="text-align: right">500,000&nbsp;</td>
+                        <td colspan="2" style="text-align: right">${ s.incentive }&nbsp;</td>
                         <td style="border-right: hidden;">&nbsp;장기요양보험</td>
-                        <td colspan="2" style="text-align: right">300,000&nbsp;</td>
+                        <td colspan="2" style="text-align: right">${ s.care_Insurance }&nbsp;</td>
                     </tr>
                     <tr id="tr_4">
                         <td style="border-right: hidden;">&nbsp;식대</td>
-                        <td colspan="2" style="text-align: right">1,000,000&nbsp;</td>
+                        <td colspan="2" style="text-align: right">${ s.meals }&nbsp;</td>
                         <td style="border-right: hidden;">&nbsp;고용보험</td>
-                        <td colspan="2" style="text-align: right">200,000&nbsp;</td>
+                        <td colspan="2" style="text-align: right">${ s.employment_Insuracne }&nbsp;</td>
                     </tr>
                     <tr id="tr_4">
                         <td style="border-right: hidden;">&nbsp;교육지원</td>
-                        <td colspan="2" style="text-align: right">0&nbsp;</td>
+                        <td colspan="2" style="text-align: right">${ s.education }&nbsp;</td>
                         <td style="border-right: hidden;">&nbsp;기타공제</td>
-                        <td colspan="2" style="text-align: right">0&nbsp;</td>
+                        <td colspan="2" style="text-align: right">${ s.other_Deducation }&nbsp;</td>
                         
                     </tr>
                     <!-- <tr id="tr_4">
@@ -122,7 +124,7 @@
                             <br>
                             <br>
 
-                            <span id="span_2">2020년 10월 3일</span>
+                            <span id="span_2">${ s.payment_Confirmation_Date }</span>
                         
                             <sapn id="span_3">
                                 <i class="fab fa-linkedin"></i>
