@@ -225,8 +225,18 @@ public class LectureController {
         }else {
             return "시간이 중복되는 강의가 있습니다.";
         }
+    }
+    @ResponseBody
+    @RequestMapping(value = "getMyLectureList.do", produces = "application/json; charset=utf-8")
+    public String getMyLectureList(HttpSession session) throws JsonProcessingException {
+        Student user = (Student) session.getAttribute("loginUser");
+        int stdId = ((Student) user).getStdId();
+        ArrayList<Lecture> list = lectureService.selectList(stdId);
+        ObjectMapper mapper = new ObjectMapper();
 
+        String jsonStr = mapper.writeValueAsString(list);
 
+        return jsonStr;
     }
 
 }

@@ -55,45 +55,8 @@
     </style>
     <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
     <script>
+
         function changeCollege() {
-            $('#selectMajor').empty();
-            $('#selectMajor').append("<option>전체</option>");
-            var c0 = ["전체"];
-            var c1 = ["전체", "국어국문학과", "영여영문학과", "중어중문학과", "일어일문학과", "유아교육과"];
-            var c2 = ["전체", "행정학과", "경영학과", "경제학과", "관광경영학과", "사회복지학과"];
-            var c3 = ["전체", "수학과", "물리학과", "화학과", "생명과학과"];
-            var c4 = ["전체", "전자공학과", "전기공학과", "토목공학과", "기계공학과", "화학공학과"];
-            var c5 = ["전체", "컴퓨터공학과", "정보통신공학과", "임베디드공학과"];
-            var c6 = ["전체", "미술학과", "무용학과", "공연예술학과", "실용음악과", "체육학과"];
-            var selectCollege = $("#selectCollege option:selected").val();
-
-            var changeItem;
-
-            if (selectCollege === 'c1') {
-                changeItem = c1;
-            } else if (selectCollege === 'c2') {
-                changeItem = c2;
-            } else if (selectCollege === 'c3') {
-                changeItem = c3;
-            } else if (selectCollege === 'c4') {
-                changeItem = c4;
-            } else if (selectCollege === 'c5') {
-                changeItem = c5;
-            } else if (selectCollege === 'c6') {
-                changeItem = c6;
-            } else if (selectCollege === 'c0') {
-                changeItem = c0;
-
-            }
-            $('#selectDepartment').empty();
-            for (var count = 0; count < changeItem.length; count++) {
-                var option = $("<option>" + changeItem[count] + "</option>");
-                $('#selectDepartment').append(option);
-            }
-
-        }
-
-        function changeCollege2() {
             var college = $('#selectCollege').val();
             $.ajax({
                 url: "checkCollege.do",
@@ -145,7 +108,7 @@
 
             // DB에서 데이터 뽑아와서 테이블로 출력하는 datatables 라이브러리 사용
             $('#searchBtn').click(function () {
-                 var table = $('#registerTable').DataTable({
+                var table = $('#registerTable').DataTable({
 
 
                     //컨트롤러에서 보내줄 때 해당 함수의 반환형은 String이어야 하고 리스트를 뽑아온다고 하면 'dataSrc' : '' 로 해줘야함.
@@ -177,17 +140,6 @@
                         {'data': 'gradeSize'},
                         {'data': 'classLevel'}
                     ],
-                    // 'columnDefs': [{
-                    //     'targets': 0,
-                    //     'searchable': false,
-                    //     'orderable': false,
-                    //     'className': 'dt-body-center',
-                    //     'render': function (data, type, full, meta) {
-                    //         return '<input type="checkbox" name="id[]" value="'
-                    //             + $('<div/>').text(data).html() + '">';
-                    //     }
-                    // }],
-                    // 'order': [1, 'asc']
                     'columnDefs': [
                         {
                             'targets': 0,
@@ -196,11 +148,11 @@
                         },
 
                         {
-                            'targets': [2,4],
+                            'targets': [2, 4],
                             'width': '15%'
                         },
                         {
-                            'targets': [3,5,6],
+                            'targets': [3, 5, 6],
                             'width': '10%'
                         }, {
                             'targets': [7, 8],
@@ -212,30 +164,7 @@
                     'bDestroy': true,
                     'scrollX': false
                 });
-
-
-                // // Handle click on "Select all" control
-                // $('#example-select-all').on('click', function () {
-                //     // Check/uncheck all checkboxes in the table
-                //     var rows = table.rows({'search': 'applied'}).nodes();
-                //     $('input[type="checkbox"]', rows).prop('checked', this.checked);
-                // });
-                //
-                // // Handle click on checkbox to set state of "Select all" control
-                // $('#registerTable tbody').on('change', 'input[type="checkbox"]', function () {
-                //     // If checkbox is not checked
-                //     if (!this.checked) {
-                //         var el = $('#example-select-all').get(0);
-                //         // If "Select all" control is checked and has 'indeterminate' property
-                //         if (el && el.checked && ('indeterminate' in el)) {
-                //             // Set visual state of "Select all" control
-                //             // as 'indeterminate'
-                //             el.indeterminate = true;
-                //         }
-                //     }
-                // });
-                // hiddenColumnValue = table.fnGetData(position)[0];
-                $('#registerTable').on('click','tbody tr',function () {
+                $('#registerTable').on('click', 'tbody tr', function () {
                     // $('#registerTable tbody tr ').css({
                     //     'color' : 'red'
                     // });
@@ -245,16 +174,16 @@
                     $.ajax({
                         url: 'registerClass.do',
                         type: 'post',
-                        data:{
-                            classSeq:seq
+                        data: {
+                            classSeq: seq
                         }
-                        ,dataType:'text'
-                        ,success: function (data) {
+                        , dataType: 'text'
+                        , success: function (data) {
                             console.log(data);
-                            if (data == "ok"){
+                            if (data == "ok") {
                                 alert("값이 잘 등록되었습니다.")
                             } else alert(data);
-                        },error:function (error) {
+                        }, error: function (error) {
                             console.log(error);
                             alert("에러발생");
                         }
@@ -264,8 +193,55 @@
             });
 
 
-
         });
+    </script>
+    <script>
+        function callMyTable() {
+
+        var myTable = $('#myRegisterTable').dataTable({
+            'ajax': {
+                'url': 'getMyLectureList.do',
+                'type': 'post',
+                'dataType': 'json',
+                'dataSrc': ''
+            }, 'columns': [
+                {'data': 'classSeq'},
+                {'data': 'className'},
+                {'data': 'deptCode'},
+                {'data': 'profName'},
+                {'data': 'lectureTime'},
+                {'data': 'room'},
+                {'data': 'classType'},
+                {'data': 'gradeSize'},
+                {'data': 'classLevel'}
+            ],
+            'columnDefs': [
+                {
+                    'targets': 0,
+                    'visible': false,
+                    'className': 'classSeq'
+                },
+
+                {
+                    'targets': [2, 4],
+                    'width': '15%'
+                },
+                {
+                    'targets': [3, 5, 6],
+                    'width': '10%'
+                }, {
+                    'targets': [7, 8],
+                    'width': '8%'
+                }
+            ],
+            'searching': false,
+            'paging': false,
+            'bDestroy': true,
+            'scrollX': false
+        });
+        }
+
+        // function callMyTable() {}
     </script>
 
     <%--    수강신청,장바구니 탭 클릭 시 화면 변화--%>
@@ -382,7 +358,7 @@
                                         </th>
                                         <td>
                                             <select id="selectCollege" style="width: 100px"
-                                                    onchange="changeCollege2();">
+                                                    onchange="changeCollege();">
                                                 <option value="c0">전체</option>
                                                 <option value="c1">인문대학</option>
                                                 <option value="c2">사회과학대학</option>
@@ -440,8 +416,27 @@
                                 </table>
                             </div>
                             <div class="table-responsive basket">
-
                             </div>
+                        </div>
+
+                        <div class="card-body">
+                            <h4>내 수강목록</h4>
+                            <table id="myRegisterTable" class="table table-striped table-bordered table-hover"
+                                   cellspacing="0" style="width: 97%;">
+                                <thead>
+                                <tr>
+                                    <th style="display:none">강의시퀀스</th>
+                                    <th>강의명</th>
+                                    <th style="width: 15%">학과명</th>
+                                    <th style="width: 10%">교수명</th>
+                                    <th style="width: 15%">강의시간</th>
+                                    <th style="width: 10%">강의실</th>
+                                    <th style="width: 10%">이수구분</th>
+                                    <th style="width: 8%">학점</th>
+                                    <th style="width: 8%">학년</th>
+                                </tr>
+                                </thead>
+                            </table>
                         </div>
                         <div class="buttonArea card-body" align="center">
                             <button id="enrollBtn" class="btn btn-success" onclick="alert('수강신청이 정상적으로 완료되었습니다.');">

@@ -40,4 +40,8 @@ public class LectureDao {
     public int insertRegisterClass(HashMap map) {
         return sqlSession.insert("lectureMapper.insertRegisterClass",map);
     }
+
+    public ArrayList<Lecture> selectList(int stdId) {
+        return (ArrayList) sqlSession.selectList("lectureMapper.selectMyTime",stdId);
+    }
 }

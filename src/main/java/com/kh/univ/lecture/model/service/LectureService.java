@@ -20,4 +20,6 @@ public interface LectureService {
     ArrayList<LectureTime> getDayHourList2(int classSeq);
 
     int insertRegisterClass(HashMap map);
+
+    ArrayList<Lecture> selectList(int stdId);
 }

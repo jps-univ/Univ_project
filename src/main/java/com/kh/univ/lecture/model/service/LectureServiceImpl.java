@@ -45,4 +45,9 @@ public class LectureServiceImpl implements LectureService {
     public int insertRegisterClass(HashMap map) {
         return lectureDao.insertRegisterClass(map);
     }
+
+    @Override
+    public ArrayList<Lecture> selectList(int stdId) {
+        return lectureDao.selectList(stdId);
+    }
 }
