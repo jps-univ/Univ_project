@@ -121,14 +121,14 @@
        						var $tr = $("<tr>");
     						var $classCode = $('<td>').text(data[i].classCode);
     						var $classSemester = $('<td>').text(data[i].classSemester);
-    						var $className = $('<td>').html('<a href="classBoardMain.do?classCode='+data[i].classCode+'">'+data[i].className+'</a>');
+    						var $className = $('<td>').html('<a href="classBoardMain.do?classSeq='+data[i].classSeq+'">'+data[i].className+'</a>');
     						var $proName = $('<td>').text(data[i].proName);
     						var $classGradeSize = $('<td>').text(data[i].classGradeSize);
     						
     						$tr.append($classCode);
     						$tr.append($classSemester);
     						$tr.append($className);
-    						$tr.append($proName); nnnnnn n     nn n   n      nn nnn n nnn   n 
+    						$tr.append($proName); 
     						$tr.append($classGradeSize);
     						
     						$tableBody.append($tr);
