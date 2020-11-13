@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
 <html lang="ko">
 
@@ -24,12 +25,50 @@
 	<%-- <link href="${contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> --%>
 	<%--    <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />--%>
 	<style>
-		#writeBtn{
-		  float: right;
+		#th_college{
+		width: 22%;
 		}
-		
-		#search{
-		  text-align: center;
+		#td_college{
+		vertical-align: middle;
+		}
+		#th_department{
+		width: 22%;
+		}
+		#td_department{
+		vertical-align: middle;
+		}
+		#th_selectCollege{
+		width: 30%;
+		}
+		#selectCollege{
+		width: 70%;
+		}
+		#selectDepartment{
+		width: 70%;
+		}
+		#th_selectDepartment{
+		width: 30%;
+		}
+		#th_profName{
+		width:22 %;
+		}
+		#th_profId{
+		width: 22%;
+		}
+		#td_profName{
+		vertical-align: middle;
+		}
+ 		#td_profId{
+		vertical-align: middle;
+		}
+ 		#td_consult{
+		vertical-align: middle;
+		}
+		#th_apply{
+		width: 12%;
+		}
+		#div_selectProf{
+		margin: 1% 0% 0% 20%;
 		}
 		.top{
 		    background-color: #edf1fc;
@@ -61,7 +100,7 @@
 			<div id="content">
 
 				<!-- Topbar -->
-				<c:import url="../common/topbar.jsp" />
+				<c:import url="../common/topbar_professor.jsp" />
 				<!-- End of Topbar -->
 				
 				<div class="top">
@@ -75,147 +114,167 @@
 		          <!-- DataTales Example -->
 		          <div class="card shadow mb-4">
 		            <div class="card-header py-3">
-		              <h6 class="m-0 font-weight-bold text-primary">상담 관리
-		                <input type="button" value="글쓰기" id="writeBtn">
-		              </h6>
-		              
+		              <h6 class="m-0 font-weight-bold text-primary">신청 목록</h6>
 		            </div>
+		
 		            <div class="card-body">
 		              <div class="table-responsive">
 		                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-		
 		                <tbody>
 		                  <tr align="center">
-		                    <th>번호</th>
-		                    <th>제목</th>
-		                    <th>작성자</th>
-		                    <th>작성일</th>
-		                    <th>조회수</th>
+		                    <th>신청 학생</th>
+		                    <th>대학(과)</th>
+		                    <th>학번</th>
+		                    <th>신청 상태</th>
+		                    <th>신청 일자</th>
+		                    <th>진행 일자</th>
+		                    <th>신청 승인</th>
 		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  <tr align="center">
-		                    <td>1</td>
-		                    <td>질문있습니다.</td>
-		                    <td>홍길동</td>
-		                    <td>2020.10.13</td>
-		                    <td>1</td>
-		                  </tr>
-		                  
+		                  <c:forEach var="c" items="${ consult }">
+			                  <c:if test="${ c.consultingStatus eq '신청'}">
+				                  <tr align="center">
+				                    <td id="td_consult">${ c.stdName }</td>
+				                    <td id="td_consult">${ c.collegeName }(${ c.departmentName })</td>
+				                    <td id="td_consult">${ c.stdId }</td>
+				                    <td id="td_consult">${ c.consultingStatus }</td>
+				                    <td id="td_consult">${ c.applyDate }</td>
+				                    <td id="td_consult">
+				                    	<input type="date" name="progressDate" id="progressDate"/>
+				                    </td>
+				                    <td>
+				                      <input type="button" class="btn btn-success btn-sm" value="승인" id="approveConsulting" onclick="approveConsulting(event)">
+				                      <input type="hidden" id="hidden_consultingNo" value="${ c.consultingNo }">
+				                      <input type="button" class="btn btn-secondary btn-sm" value="취소" id="rejectConsulting" onclick="rejectConsulting(event)">
+				                      <input type="hidden" id="hidden_consultingNo" value="${ c.consultingNo }">
+				                    </td>
+				                  </tr>
+			                  </c:if>     
+		                  </c:forEach>
 		                 </tbody>
 		                </table>
 		              </div>
 		            </div>
 		          </div>
 		
-		          <div id="search">
-		            <select>
-		              <option>제목</option>
-		              <option>번호</option>
-		              <option>글쓴이</option>
-		              <option>내용</option>
-		            </select>
+		          <div class="card shadow mb-4">
+		            <div class="card-header py-3">
+		              <h6 class="m-0 font-weight-bold text-primary">진행 목록</h6>
+		            </div>
 		
-		            <input type="text" name="" id="">
-		
-		            <input type="submit" value="검색">
+		            <div class="card-body">
+		              <div class="table-responsive">
+		                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+		                <tbody>
+		                  <tr align="center">
+		                    <th>상담 학생</th>
+		                    <th>대학(과)</th>
+		                    <th>학번</th>
+		                    <th>진행 상태</th>
+		                    <th>상담 일자</th>
+		                    <th>완료 / 변경 일자</th>
+		                    <th>진행 변경</th>
+		                  </tr>
+		                  <c:forEach var="c" items="${ consult }">
+			                  <c:if test="${ c.consultingStatus eq '진행'}">
+				                  <tr align="center">
+				                    <td id="td_consult">${ c.stdName }</td>
+				                    <td id="td_consult">${ c.collegeName }(${ c.departmentName })</td>
+				                    <td id="td_consult">${ c.stdId }</td>
+				                    <td id="td_consult">${ c.consultingStatus }</td>
+				                    <td id="td_consult">${ c.progressDate }</td>
+				                    <td id="td_consult">
+				                    	<input type="date" name="completeDate" id="completeDate"/>
+				                    </td>
+				                    <td>
+				                      <input type="button" class="btn btn-primary btn-sm" value="완료" id="completeConsulting" onclick="completeConsulting(event)">
+				                      <input type="hidden" id="hidden_consultingNo" value="${ c.consultingNo }">
+				                      <input type="button" class="btn btn-success btn-sm" value="변경" id="changeConsulting" onclick="changeConsulting(event)">
+				                      <input type="hidden" id="hidden_consultingNo" value="${ c.consultingNo }">
+				                      <input type="button" class="btn btn-secondary btn-sm" value="취소" id="rejectConsulting" onclick="rejectConsulting(event)">
+				                      <input type="hidden" id="hidden_consultingNo" value="${ c.consultingNo }">
+				                    </td>
+				                  </tr>
+			                  </c:if>     
+		                  </c:forEach>  
+		                 </tbody>
+		                </table>
+		              </div>
+		            </div>
 		          </div>
+		          <div class="card shadow mb-4">
+		            <div class="card-header py-3">
+		              <h6 class="m-0 font-weight-bold text-primary">완료 상황</h6>
+		            </div>
 		
+		            <div class="card-body">
+		              <div class="table-responsive">
+		                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+		                <tbody>
+		                  <tr align="center">
+		                    <th>상담 학생</th>
+		                    <th>대학(과)</th>
+		                    <th>학번</th>
+		                    <th>진행 상태</th>
+		                    <th>상담 일자</th>
+		                    <th>완료 일자</th>
+		                  </tr>
+		                  <c:forEach var="c" items="${ consult }">
+			                  <c:if test="${ c.consultingStatus eq '완료'}">
+				                  <tr align="center">
+				                    <td id="td_consult">${ c.stdName }</td>
+				                    <td id="td_consult">${ c.collegeName }(${ c.departmentName })</td>
+				                    <td id="td_consult">${ c.stdId }</td>
+				                    <td id="td_consult">${ c.consultingStatus }</td>
+				                    <td id="td_consult">${ c.progressDate }</td>
+				                    <td id="td_consult">${ c.completeDate }</td>
+				                  </tr>
+			                  </c:if>     
+		                  </c:forEach>  
+		                 </tbody>
+		                </table>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="card shadow mb-4">
+		            <div class="card-header py-3">
+		              <h6 class="m-0 font-weight-bold text-primary">취소 상황</h6>
+		            </div>
+		
+		            <div class="card-body">
+		              <div class="table-responsive">
+		                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+		                <tbody>
+		                  <tr align="center">
+		                    <th>신청 학생</th>
+		                    <th>대학(과)</th>
+		                    <th>학번</th>
+		                    <th>진행 상태</th>
+		                    <th>신청 일자</th>
+		                    <th>취소 일자</th>
+		                  </tr>
+		                  <c:forEach var="c" items="${ consult }">
+			                  <c:if test="${ c.consultingStatus eq '취소'}">
+				                  <tr align="center">
+				                    <td id="td_consult">${ c.stdName }</td>
+				                    <td id="td_consult">${ c.collegeName }(${ c.departmentName })</td>
+				                    <td id="td_consult">${ c.stdId }</td>
+				                    <td id="td_consult">${ c.consultingStatus }</td>
+				                    <td id="td_consult">${ c.applyDate }</td>
+				                    <td id="td_consult">${ c.cancleDate }</td>
+				                  </tr>
+			                  </c:if>     
+		                  </c:forEach>  
+		                 </tbody>
+		                </table>
+		              </div>
+		            </div>
+		          </div>
 		        </div>
 		        <!-- /.container-fluid -->
 		
 		      </div>
 		      <!-- End of Main Content -->
-				<!-- 여기까지 내용  -->
+		      <!-- 여기까지 내용  -->
 
 			<!-- Footer -->
 			<c:import url="../common/footer.jsp" />
@@ -234,6 +293,179 @@
 
 	<!-- Logout Modal-->
 	<c:import url="../common/logoutModal.jsp" />
+	
+	<script type="text/javascript">
+	    // 상담 승인
+	    function approveConsulting(event)
+	    {
+	    	var consultingNo = event.target.nextElementSibling.value;
+	    	var progressDate = event.target.parentElement.parentElement.children[5].children[0].value;
+	    	
+	    	var d = new Date();
+	    	var sysDate = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
+	        
+	    	if(progressDate == "")
+	    	{
+	    		alert("진행 일자를 선택하세요.");
+	    	}
+	    	else if(sysDate > progressDate)
+	    	{
+	    		alert("진행 일자가 현재 일자보다 빠릅니다.");	
+	    	}
+	    	else
+	    	{
+		        if(confirm("승인하시겠습니까?"))
+		    	{
+			        $.ajax(
+			        {
+			            url: "approveConsulting.do",
+			            data: {"consultingNo" : consultingNo, "progressDate" : progressDate},
+			            success:function(data)
+			            {
+			            	alert("상담이 승인되었습니다.");
+			            	location.reload();
+			            }, 
+			            error:function()
+			            {
+			                alert("상담이 승인되지 않았습니다.");
+			            }
+			        });
+		    	}
+		    	else
+		    	{
+		    		alert("취소되었습니다.");
+					return;
+		    	}
+	    	}
+	    }
+	    
+	    // 상담 승인 거부 
+	    function rejectConsulting(event)
+	    {
+	        var consultingNo = event.target.nextElementSibling.value;
+	        
+	        if(confirm("취소하시겠습니까?"))
+	    	{
+		        $.ajax(
+		        {
+		            url: "rejectConsulting.do",
+		            data: {"consultingNo" : consultingNo},
+		            success:function(data)
+		            {
+		            	alert("상담이 취소되었습니다.");
+		            	location.reload();
+		            }, 
+		            error:function()
+		            {
+		                alert("상담 신청 중입니다.");
+		            }
+		        });
+	    	}
+	    	else
+	    	{
+				alert("상담이 취소되지 않았습니다.");
+				return;
+	    	}
+	    }
+	    
+	    // 상담 완료
+	    function completeConsulting(event)
+	    {
+	    	var consultingNo = event.target.nextElementSibling.value;
+	    	var progressDate = event.target.parentElement.parentElement.children[4].innerHTML;				// 상담 일자
+	    	var completeDate = event.target.parentElement.parentElement.children[5].children[0].value;		// 완료 일자
+	    	
+	    	var d = new Date();
+	    	var sysDate = d.getFullYear() + "-" + (d.getMonth()+1) + "-" +d.getDate();						// 현재 날짜
+	        
+	    	if(completeDate == "")
+	    	{
+	    		alert("완료 일자를 선택하세요.");
+	    	}
+	    	else if(progressDate > completeDate)
+	    	{
+	    		alert("완료 일자가 상담 일자보다 빠릅니다.");
+	    	}
+	    	else if(sysDate > completeDate)
+	    	{
+	    		alert("완료 일자가 현재 일자보다 빠릅니다.");
+	    	}
+	    	else
+	    	{
+		        if(confirm("완료하시겠습니까?"))
+		    	{
+			        $.ajax(
+			        {
+			            url: "completeConsulting.do",
+			            data: {"consultingNo" : consultingNo, "completeDate" : completeDate},
+			            success:function(data)
+			            {
+			            	alert("상담이 완료되었습니다.");
+			            	location.reload();
+			            }, 
+			            error:function()
+			            {
+			                alert("상담이 완료되지 않았습니다.");
+			            }
+			        });
+		    	}
+		    	else
+		    	{
+		    		alert("취소되었습니다.");
+					return;
+		    	}
+	    	}
+	    }
+	    
+	    // 상담 변경
+	    function changeConsulting(event)
+	    {
+	    	var consultingNo = event.target.nextElementSibling.value;
+	    	var oldProgressDate = event.target.parentElement.parentElement.children[4].innerHTML;			// 현재 상담 일자
+	    	var progressDate = event.target.parentElement.parentElement.children[5].children[0].value;		// 상담 변경 일자
+	    	
+	    	var d = new Date();
+	    	var sysDate = d.getFullYear() + "-" + (d.getMonth()+1) + "-" +d.getDate();						// 현재 날짜
+	        
+	    	if(progressDate == "")
+	    	{
+	    		alert("변경 일자를 선택하세요.");
+	    	}
+	    	else if(oldProgressDate > progressDate)
+	    	{
+	    		alert("변경 일자가 현재 진행 일자보다 빠릅니다.");	
+	    	}
+	    	else if(sysDate > progressDate)
+    		{
+	    		alert("변경 일자가 현재 일자보다 빠릅니다.");	
+    		}
+	    	else
+	    	{
+		        if(confirm("변경하시겠습니까?"))
+		    	{
+			        $.ajax(
+			        {
+			            url: "changeConsulting.do",
+			            data: {"consultingNo" : consultingNo, "progressDate" : progressDate},
+			            success:function(data)
+			            {
+			            	alert("상담이 변경되었습니다.");
+			            	location.reload();
+			            }, 
+			            error:function()
+			            {
+			                alert("상담이 변경되지 않았습니다.");
+			            }
+			        });
+		    	}
+		    	else
+		    	{
+		    		alert("취소되었습니다.");
+					return;
+		    	}
+	    	}
+	    }
+	</script>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
@@ -251,6 +483,5 @@
 
 	<!-- Page level custom scripts -->
 	<script src="${contextPath}/resources/js/demo/datatables-demo.js"></script>
-
 </body>
 </html>

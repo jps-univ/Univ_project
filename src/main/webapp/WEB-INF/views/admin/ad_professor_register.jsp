@@ -38,7 +38,7 @@
                 <hr>
             </div>
             <div id="std_info_table_area">
-                <form method="GET">
+                <form method="GET" action="professor_Register_Insert.do">
                     <table id="std_info_table">
                         <tr>
                             <td rowspan="5" id="img_area"><img src="#" alt="preview" id="pro_img"></td>
@@ -53,9 +53,9 @@
                         </tr>
                         <tr>
                             <td class="stdtext">
-                                <p>주민번호</p>
+                                <p>비밀번호</p>
                             </td>
-                            <td><input type="text" id="profBirth" name="profBirth"></td>
+                            <td><input type="text" id="profPwd" name="profPwd"></td>
                             <td class="stdtext">
                                 <p>단과대학</p>
                             </td>
@@ -98,9 +98,9 @@
                             </td>
                             <td><input type="text" id="profAddressDetail" name="profAddressDetail"></td>
                             <td class="stdtext">
-                                <p>전화번호</p>
+                                <p>주민번호</p>
                             </td>
-                            <td><input type="text"></td>
+                            <td><input type="text" id="profBirth" name="profBirth"></td>
                         </tr>
                     </table>
                     <input type="file" value="a" onchange="previewImg()" id="preview_std_img">
@@ -124,7 +124,6 @@
                             }
                         }
                     </script>
-                </form>
 
 
             </div>
@@ -157,6 +156,7 @@
             </div>
 
             <input type="submit" value="등록하기" id="enroll_btn">
+                </form>
 
 <script>
 $(function deptSelect(){

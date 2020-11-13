@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
 <html lang="ko">
 
@@ -24,8 +25,11 @@
 	<%-- <link href="${contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> --%>
 	<%--    <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />--%>
 	<style>
-		#pwd{
+		#th_pwd{
 			width : 20%;
+		}
+		#newPwd{
+			visibility:hidden;
 		}
 		.top{
 		    background-color: #edf1fc;
@@ -57,7 +61,7 @@
 			<div id="content">
 
 				<!-- Topbar -->
-				<c:import url="../common/topbar.jsp" />
+				<c:import url="../common/topbar_professor.jsp" />
 				<!-- End of Topbar -->
 				
 				<div class="top">
@@ -66,63 +70,64 @@
 				
 				<!-- 여기서부터 내용  -->
 		        <!-- Begin Page Content -->
-		        <div class="container-fluid">
-		
-		            <!-- DataTales Example -->
-		            <div class="card shadow mb-4">
-		              <div class="card-header py-3">
-		                <h6 class="m-0 font-weight-bold text-primary">비밀번호 변경</h6>
-		              </div>
-		              <div class="card-body">
-		                <div class="table-responsive">
-		
-		                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-		                    <p>비밀번호 확인(입력해야 비밀번호를 변경할 수 있습니다. 비밀번호를 초기화 하셨으면 초기화한 비밀번호를 입력하세요.)</p>
+       			<div class="container-fluid">
+
+            	<!-- DataTales Example -->
+            	<div class="card shadow mb-4">
+	              <div class="card-header py-3">
+	                <h6 class="m-0 font-weight-bold text-primary">비밀번호 변경</h6>
+	              </div>
+	              <div class="card-body">
+	                <div class="table-responsive">
+	                	<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+	                    	<p>비밀번호 확인(입력해야 비밀번호를 변경할 수 있습니다. 비밀번호를 초기화 하셨으면 초기화한 비밀번호를 입력하세요.)</p>
 		                    <tbody>
 		                      <tr>
-		                        <th id="pwd">기존 비밀번호</th>
+		                        <th id="th_pwd">기존 비밀번호</th>
 		                        <td>
-		                            <input type="password" name="" id="inputPwd" autofocus>
+		                            <input type="password" name="profPwd" id="originPwd" autofocus>
 		                        </td>
 		                      </tr>
 		                    </tbody>
-		                  </table>
-		
-		                  <div align="right">
-		                      <input type="button" value="확인">
-		                  </div>
-		                  
-		                  <table class="table table-bordered" id="newPwd" width="100%" cellspacing="0">
-		                      <p id="newPwd">비밀번호 변경(앞으로 사용하실 비밀번호를 입력하세요.)</p>
-		                      <tbody>
-		                          <tr>
-		                            <th id="pwd">새 비밀번호</th>
-		                            <td>
-		                                <input type="password" name="" id="inputPwd">
-		                              </td>
-		                          </tr>
-		                          <tr>
-		                            <th id="pwd">새 비밀번호 확인</th>
-		                            <td>
-		                                <input type="password" name="" id="inputPwd">
-		                            </td>
-		                          </tr>
-		                        </tbody>
-		                    </table>
-		
-		                  <div align="right" id="newPwd">
-		                      <input type="button" value="확인">
-		                  </div>
-		                </div>
-		              </div>
-		            </div>
-		  
-		          </div>
-		          <!-- /.container-fluid -->
-		  
-		        </div>
-		        <!-- End of Main Content -->
-				<!-- 여기까지 내용  -->
+	                  	</table>
+	
+						<div align="right">
+						    <input type="button" class="btn btn-primary" id="checkPwd" value="확인" onclick="checkPwd()">
+						</div>
+						
+						<div id="newPwd">
+							<table class="table table-bordered" width="100%" cellspacing="0">
+						    	<p>비밀번호 변경(앞으로 사용하실 비밀번호를 입력하세요.)</p>
+								<tbody>
+								    <tr>
+								      <th id="th_pwd">새 비밀번호</th>
+								      <td>
+								          <input type="password" name="profPwd" id="inputNewPwd">
+								      </td>
+								    </tr>
+								    <tr>
+								      <th id="th_pwd">새 비밀번호 확인</th>
+								      <td>
+								          <input type="password" name="profPwd" id="checkNewPwd">
+								      </td>
+								    </tr>
+								</tbody>
+							</table>
+							
+							<div align="right">
+							    <input type="button" class="btn btn-primary" id="changePwd" value="변경" onclick="changePwd()">
+							</div>
+						</div>
+                  	
+	                </div>
+	              </div>
+	            </div>
+	          </div>
+	          <!-- /.container-fluid -->
+	  
+	        </div>
+	        <!-- End of Main Content -->
+			<!-- 여기까지 내용  -->
 
 			<!-- Footer -->
 			<c:import url="../common/footer.jsp" />
@@ -141,6 +146,97 @@
 
 	<!-- Logout Modal-->
 	<c:import url="../common/logoutModal.jsp" />
+	
+	<script type="text/javascript">
+		function checkPwd()
+		{
+			var profId = ${ loginUser.profId };
+			var profPwd = $("#originPwd").val();
+		
+			$.ajax(
+			{
+				url:"checkProfessorPwd.do",
+				data:{"profId" : profId, "profPwd" : profPwd},
+				type:"post",
+				success:function(data)
+				{
+ 					if(data == "ok")
+					{
+						console.log('성공');
+						$('#newPwd').css('visibility', 'visible');
+ 						$('#originPwd').val('');
+						$('#inputNewPwd').focus();
+ 					}
+					else
+					{
+						alert("비밀번호가 일치하지 않습니다.");
+						$('#originPwd').focus();
+					}
+				},
+				error:function(request, status, errorData)
+				{
+					/* 	
+					console.log(request.status);
+					console.log(request.responseText);
+					console.log(errorData);  
+					*/
+					alert("실패"); 
+				}
+			});
+		}
+		
+		function changePwd()
+		{
+			var profId = ${ loginUser.profId };
+			var profPwd = $("#inputNewPwd").val();
+			var checkPwd = $("#checkNewPwd").val();
+			
+			if(profPwd == checkPwd)
+			{
+				if(confirm("변경하시겠습니까?"))
+				{
+					$.ajax(
+					{
+						url:"changeProfessorPwd.do",
+						data:{"profId" : profId, "profPwd" : profPwd},
+						type:"post",
+						success:function(data)
+						{
+							if(data == "ok")
+							{
+								console.log("성공");
+								alert("변경되었습니다.");
+								location.href="professor_password.do";
+							}
+							else
+							{
+								alert("실패하였습니다.");
+							}
+						},
+						error:function(request, status, errorData)
+						{
+							/* 	
+							console.log(request.status);
+							console.log(request.responseText);
+							console.log(errorData);  
+							*/
+							alert("실패"); 
+						}
+					});
+				}
+				else
+				{
+					alert("취소되었습니다.");
+					return;
+				}
+			}
+			else
+			{
+				alert("비밀번호가 일치하지 않습니다.");
+			}
+				
+		}
+	</script>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>

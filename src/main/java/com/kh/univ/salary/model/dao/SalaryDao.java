@@ -14,9 +14,16 @@ public class SalaryDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	public ArrayList<Salary> selectList() {
+	// 월급리스트
+	public ArrayList<Salary> selectList(int i) {
 
-		return (ArrayList)sqlSession.selectList("SalaryMapper.selectList");
+		return (ArrayList)sqlSession.selectList("SalaryMapper.selectList", i);
+	}
+
+	// 월급 하나 뽑아오기
+	public Salary selectSalary(int salaryNo) {
+		
+		return sqlSession.selectOne("SalaryMapper.selectSalary", salaryNo);
 	}
 
 }

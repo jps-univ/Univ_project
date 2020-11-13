@@ -356,7 +356,7 @@
 			{
 				$.ajax(
 				{
-					url:"changeAgreeInfo.do",
+					url:"changeStdAgreeInfo.do",
 					data:{"stdId" : stdId, "stdSmsAgree" : stdSmsAgree, "stdEmailAgree" : stdEmailAgree},
 					type:"post",
 					success:function(data)

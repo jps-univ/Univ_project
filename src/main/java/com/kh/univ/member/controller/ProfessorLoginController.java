@@ -21,16 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.univ.member.model.service.ProfessorLoginSevice;
-import com.kh.univ.member.model.service.StudentLoginSevice;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
 
 @Controller
-public class StudentLoginController
+public class ProfessorLoginController
 {
-   @Autowired
-   private StudentLoginSevice studentService;
-   
    @Autowired
    private ProfessorLoginSevice professorService;
    
@@ -42,85 +38,49 @@ public class StudentLoginController
    private JavaMailSender javaMailSender;
    
    // 로그인
-   @PostMapping("studentLogin.do")
-   public String login(HttpSession session ,Student student, Model model)
+   @PostMapping("professorLogin.do")
+   public String login(HttpSession session ,Professor professor, Model model) 
    {
-	   Professor professor = new Professor();
-	   professor.setProfId(student.getStdId());
-	   professor.setProfPwd(student.getStdPwd());
-
-	   String str = Integer.toString(student.getStdId());
-	   
-	   if(str.substring(0, 1).equals("9"))
-	   {
-		   Professor loginProfessor = professorService.login(professor);
-		   System.out.println(loginProfessor);
-		   
-		   if(bcryptPasswordEncoder.matches(professor.getProfPwd(), loginProfessor.getProfPwd()))
-		   {
-			   loginProfessor.setProfPwd("");
-			   
-			   session.setAttribute("loginUser", loginProfessor);
-			   
-			   System.out.println(loginProfessor.getProfName());
-             
-			   if(loginProfessor.getProfName().equals("관리자"))
-			   {
-				   System.out.println("admin login");
-				   return "redirect:student_Register.do";			   
-			   }
-			   else
-			   {
-				   return "redirect:loginProfessor.do";
-			   }
-		   }
-		   else
-		   {
-			   model.addAttribute("msg", "로그인실패!");
-			   return "common/errorPage";
-		   }
-	   }
-	   else
-	   {
-		   Student loginStudent = studentService.login(student);
-		   
-		   if(bcryptPasswordEncoder.matches(student.getStdPwd(), loginStudent.getStdPwd()))
-		   {
-			   
-			   loginStudent.setStdPwd("");
-			   
-			   session.setAttribute("loginUser", loginStudent);
-			   
-			   System.out.println(loginStudent.getStdName());
-             
-			   if(loginStudent.getStdName().equals("관리자"))
-			   {
-				   System.out.println("admin login");
-				   return "redirect:student_Register.do";
-			   }
-			   else
-			   {
-				   return "redirect:goMain.do";
-			   }
-		   }
-		   else
-		   {
-			   model.addAttribute("msg", "로그인실패!");
-			   return "common/errorPage";
-		   }
+      System.out.println("1");
+	   Professor loginProfessor = professorService.login(professor);
+      
+      if(bcryptPasswordEncoder.matches(professor.getProfPwd(), loginProfessor.getProfPwd())) 
+      {
+    	  loginProfessor.setProfPwd("");
+         session.setAttribute("loginUser", loginProfessor);
+         System.out.println(loginProfessor.getProfName());
+         
+         if(loginProfessor.getProfName().equals("관리자")) 
+         {
+            System.out.println("admin login");
+            return "redirect:student_Register.do";
+         }
+         else 
+         {
+            return "redirect:goMain.do";
+         }
+      } 
+      else 
+      {
+         model.addAttribute("msg", "로그인실패!");
+         return "common/errorPage";
       }
    }
+  
    
    // 로그아웃
-   @RequestMapping("studentLogout.do")
-   public String logout(HttpSession session) {
+   @RequestMapping("professorLogout.do")
+   public String logout(HttpSession session) 
+   {
       session.invalidate();
       return "redirect:home.do";
    }
    
+   /*
    //비밀번호 암호화용 테스트 메서드
    @GetMapping("pwdCheck.do")
-   public String pwdCheck(HttpSession session) {
+   public String pwdCheck(HttpSession session) 
+   {
       String userId = "testUser";
       String userPwd = "1";
       bcryptPasswordEncoder = new BCryptPasswordEncoder();
@@ -128,64 +88,85 @@ public class StudentLoginController
       System.out.println(bcryptPasswordEncoder.encode(userPwd));
       return bcryptPasswordEncoder.encode(userPwd);
    }
+   */
    
+   /*
    // 이름 이메일 받아서 아이디 찾기
    @ResponseBody
    @RequestMapping("findId.do")
-   public HashMap<String, Object> findId(HttpSession session, Student student) {
-      
+   public HashMap<String, Object> findId(HttpSession session, Student student) 
+   {
       Student findStudent = studentService.findByNameAndEmail(student);
       
       HashMap<String, Object> map = new HashMap<String, Object>();
-      if (findStudent != null) {
+      
+      if (findStudent != null)
+      {
          System.out.println("findStudent : " + findStudent);
          map.put("stdID", findStudent.getStdId());
          map.put("result", HttpStatus.OK);
-      } else {
+      } 
+      else
+      {
          map.put("result","FAIL");
       }
       return map;
    }
+   */
    
+   /*
    // 비밀번호 찾기
    @ResponseBody
    @RequestMapping("findPwd.do")
-   public HashMap<String, Object> findPwd(HttpSession session, Student student) {
-      
+   public HashMap<String, Object> findPwd(HttpSession session, Student student) 
+   {
       Student findStudent = studentService.findByIdAndNameAndEmail(student);
       HashMap<String, Object> map = new HashMap<String, Object>();
          
-      if (findStudent != null) {
+      if (findStudent != null) 
+      {
          System.out.println("findStudent : " + findStudent);
-         try {
+         try 
+         {
             String tempPwd = setTempPwd(findStudent);
             
             //임시 비밀번호 검증
-            if(!"".equals(tempPwd)) {
+            if(!"".equals(tempPwd)) 
+            {
                findStudent.setStdPwd(tempPwd);
                
                //메일 전송
-               if(sendMail(findStudent)) {
+               if(sendMail(findStudent)) 
+               {
                   map.put("result", HttpStatus.OK);
                   map.put("msg","성공");
-               } else {
+               } 
+               else
+               {
                   map.put("result","FAIL");
                   map.put("msg","메일 전송에 실패하였습니다.");
                }
             }
-         } catch (Exception e) {
+         } 
+         catch (Exception e) 
+         {
             map.put("result","FAIL");
             map.put("msg","시스템 문제가 발생하였습니다. 관리자에게 문의하세요");
          }
-      } else {
+      } 
+      else 
+      {
          map.put("result","FAIL");
          map.put("msg","학생정보를 찾을 수 없습니다.");
       }
       return map;
    }
+   */
    
+   /*
    //임시비밀번호 발번 및 업데이트
-   private String setTempPwd(Student student) throws Exception {
+   private String setTempPwd(Student student) throws Exception
+   {
       String pwdSet = UUID.randomUUID().toString().replaceAll("-", "");
       String tempPwd = pwdSet.substring(0,9); //임시 비밀번호
       
@@ -193,22 +174,29 @@ public class StudentLoginController
       student.setStdPwd(tempCryptPwd);
       int updateCnt = studentService.updateById(student);
       
-      if(updateCnt > 0) {
+      if(updateCnt > 0) 
+      {
          student.setStdPwd(tempPwd);
       }
+      
       return (updateCnt > 0) ? tempPwd : "";
    }
+   */
    
+   /*
    //임시 비밀번호 메일 전송
-   private boolean sendMail(Student student) throws Exception {
-      
+   private boolean sendMail(Student student) throws Exception 
+   {
       boolean isMailSend = false;
       
-      try { 
-         MimeMessagePreparator preparator = new MimeMessagePreparator() {
+      try 
+      { 
+         MimeMessagePreparator preparator = new MimeMessagePreparator()
+         {
             
             @Override
-            public void prepare(MimeMessage mimeMessage) throws Exception {
+            public void prepare(MimeMessage mimeMessage) throws Exception 
+            {
                MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
                
                messageHelper.setTo(student.getStdEmail()); //받는 사람 student.getStdEmail();
@@ -228,7 +216,9 @@ public class StudentLoginController
          };
          javaMailSender.send(preparator); //메일 전송
          isMailSend = true;
-      } catch (Exception e) {
+      } 
+      catch (Exception e) 
+      {
          e.printStackTrace();
          isMailSend = false;
          throw e;
@@ -236,4 +226,5 @@ public class StudentLoginController
       
       return isMailSend;
    }
+   */
 }

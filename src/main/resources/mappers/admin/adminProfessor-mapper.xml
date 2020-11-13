@@ -52,7 +52,13 @@ LEFT JOIN TB_DEPARTMENT USING(DEPARTMENT_CODE)
 LEFT JOIN TB_COLLEGE USING(COLLEGE_CODE)
 
 </select>
-<insert id="insertProfessor">
+<insert id="insertProfessor" parameterType="Professor">
+INSERT INTO TB_PROFESSOR
+VALUES(#{profId},#{profPwd},#{profName},#{profBirth},
+#{profDepartment},#{profImage},#{profPhone},#{profEmail},
+#{profAddress},#{profAddressDetail},#{profBank},#{profAccount},
+#{profAccountHolder},
+#{profSmsAgree},#{profEmailAgree},#{lab},'P','0')
 </insert>
 
 <select id="selectAdminProfessorOne" parameterType="Professor" resultMap="ProfessorResultSet">

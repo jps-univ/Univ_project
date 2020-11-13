@@ -6,6 +6,10 @@ import com.kh.univ.salary.model.vo.Salary;
 
 public interface SalaryService {
 
-	ArrayList<Salary> selectList();
+	// 월급리스트
+	ArrayList<Salary> selectList(int i);
+
+	// 월급 하나 뽑아오기
+	Salary selectSalary(int salaryNo);
 
 }

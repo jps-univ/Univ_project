@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="false"%>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
 <html lang="ko">
@@ -48,7 +50,7 @@
 			<div id="content">
 
 				<!-- Topbar -->
-				<c:import url="../common/topbar.jsp" />
+				<c:import url="../common/topbar_professor.jsp" />
 				<!-- End of Topbar -->
 				
 				<!-- 여기서부터 내용  -->
@@ -71,26 +73,25 @@
             </select>
           </div>
 
-          <div class="print">
-            <button id="button" onclick="window.open('salarydetail.do')">인쇄하기</button>
+          <div class="prints">
+           
+            <input class="btn btn-primary btn-sm" type="button" onclick="prints();" value="인쇄하기">
+            
           </div>
 
            <form method="GET">
               <table class="table table-condensed">
                 <thead>
                   <tr>
+                    <th>
+                        <p class="head"></p>
+                    </th>
                       <th>
                           <p class="head">지급년도</p>
                       </th>
                       <th>
                           <p class="head">지급월</p>
                       </th>
-                      <!-- <th>
-                          <p class="head">정산시작일</p>
-                      </th>
-                      <th>
-                          <p class="head">정산종료일</p>
-                      </th> -->
                       <th>
                           <p class="head">지급은행</p>
                       </th>
@@ -103,20 +104,20 @@
                   </tr>  
               </thead> 
               <tbody>
+                  <input type="hidden" class="profId" value="${ id }"/> 
+                  <c:forEach var="s" items="${ list }">
                   <tr class="line">
-                      <td>2019</td>
-                      <td>01</td>
-                      <!-- <td>2018.12.16</td>
-                      <td>2019.01.15</td> -->
-                      <td>기업은행</td>
-                      <td>990-009078-02-010</td>
-                      <td>9,777,000</td>
+                      <td><input type="radio" name="checkRadio" class="checkRadio" value="${ s.salaryNo }"></td>
+                      <td>${ s.schoolYear }</td>
+                      <td>${ s.schoolMonth }</td>
+                      <td>${ s.profBank }</td>
+                      <td>${ s.profAccount }</td>
+                      <td>${ s.salaryTotal }</td>
                   </tr>
-                  <tr class="line">
+                  </c:forEach>
+<!--                   <tr class="line">
                       <td>2019</td>
                       <td>02</td>
-                      <!-- <td>2019.01.16</td>
-                      <td>2019.02.15</td> -->
                       <td>기업은행</td>
                       <td>990-009078-02-010</td>
                       <td>12,777,000</td>
@@ -124,8 +125,6 @@
                   <tr class="line">
                       <td>2019</td>
                       <td>03</td>
-                      <!-- <td>2019.02.16</td>
-                      <td>2019.03.15</td> -->
                       <td>기업은행</td>
                       <td>990-009078-02-010</td>
                       <td>9,777,000</td>
@@ -133,8 +132,6 @@
                   <tr class="line">
                       <td>2019</td>
                       <td>04</td>
-                      <!-- <td>2019.03.16</td>
-                      <td>2019.04.15</td> -->
                       <td>기업은행</td>
                       <td>990-009078-02-010</td>
                       <td>9,777,000</td>
@@ -142,8 +139,6 @@
                   <tr class="line">
                       <td>2019</td>
                       <td>05</td>
-                      <!-- <td>2019.04.16</td>
-                      <td>2019.05.15</td> -->
                       <td>기업은행</td>
                       <td>990-009078-02-010</td>
                       <td>9,777,000</td>
@@ -151,8 +146,6 @@
                   <tr class="line">
                       <td>2019</td>
                       <td>06</td>
-                      <!-- <td>2019.05.16</td>
-                      <td>2019.06.15</td> -->
                       <td>기업은행</td>
                       <td>990-009078-02-010</td>
                       <td>9,777,000</td>
@@ -160,8 +153,6 @@
                   <tr class="line">
                       <td>2019</td>
                       <td>07</td>
-                      <!-- <td>2019.06.16</td>
-                      <td>2019.07.15</td> -->
                       <td>기업은행</td>
                       <td>990-009078-02-010</td>
                       <td>9,777,000</td>
@@ -169,8 +160,6 @@
                   <tr class="line">
                       <td>2019</td>
                       <td>08</td>
-                      <!-- <td>2019.07.16</td>
-                      <td>2019.08.15</td> -->
                       <td>기업은행</td>
                       <td>990-009078-02-010</td>
                       <td>9,777,000</td>
@@ -178,8 +167,6 @@
                   <tr class="line">
                       <td>2019</td>
                       <td>09</td>
-                      <!-- <td>2019.08.16</td>
-                      <td>2019.09.15</td> -->
                       <td>기업은행</td>
                       <td>990-009078-02-010</td>
                       <td>12,777,000</td>
@@ -187,8 +174,6 @@
                   <tr class="line">
                       <td>2019</td>
                       <td>10</td>
-                      <!-- <td>2019.09.16</td>
-                      <td>2019.10.15</td> -->
                       <td>기업은행</td>
                       <td>990-009078-02-010</td>
                       <td>9,777,000</td>
@@ -196,8 +181,6 @@
                   <tr class="line">
                       <td>2019</td>
                       <td>11</td>
-                      <!-- <td>2019.10.16</td>
-                      <td>2019.11.15</td> -->
                       <td>기업은행</td>
                       <td>990-009078-02-010</td>
                       <td>9,777,000</td>
@@ -205,12 +188,10 @@
                   <tr class="line">
                       <td>2019</td>
                       <td>12</td>
-                      <!-- <td>2019.11.16</td>
-                      <td>2019.12.15</td> -->
                       <td>기업은행</td>
                       <td>990-009078-02-010</td>
                       <td>9,777,000</td>
-                  </tr>   
+                  </tr>    -->
               </tbody>
             </table>
           </form>
@@ -236,6 +217,26 @@
       
       <script src="<%=request.getContextPath()%>/resources/js/payment&salary.js"></script>
 				<!-- 여기까지 내용  -->
+				
+	  <script>
+              /* $(function deptCheck(){
+                	$.ajax({
+                		url:"student_Modify_DeptCheck.do",
+            			dataType:"json",
+            			data:{
+            				collegeCode:$("#stdCollege").val()
+            			},success:function(data){
+            				console.log(data);
+            				$('#stdDepartment').empty();
+            				$('#stdDepartment').append("<option><학과를 선택해주세요></option>");
+	              				for(var index =0; index < data.length;index++){
+            					var department = $("<option id="+ data[index].departmentCode+ ">" + data[index].departmentName +"</option>");
+            					$('#stdDepartment').append(department);
+            				} 
+            			}	
+                	});
+                }); */
+      </script>
 
 			<!-- Footer -->
 			<c:import url="../common/footer.jsp" />

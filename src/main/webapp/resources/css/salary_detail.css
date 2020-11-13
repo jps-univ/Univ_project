@@ -45,14 +45,14 @@ th, td {
     font-size: 17pt;
     position: relative;
     bottom: 50px;
-    left: 220px;
+    left: 255px;
 }
 
 #span_3{
     color: rgb(255, 0, 0);
     font-size: 50pt;
     position: relative;
-    left: 255px;
+    left: 280px;
     top: 50px;
 }
 
@@ -60,5 +60,5 @@ th, td {
     font-size: 30px;
     position: relative;
     top: 50px;
-    right: 115px;
+    right: 80px;
 }

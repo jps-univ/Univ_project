@@ -67,10 +67,9 @@
           <h6 class="enroll">등록급 납부내역</h6>
         </div>
 
-        <div class="print">
-        
+        <div class="printp">
           
-          <input class="btn btn-primary btn-sm" type="button" onclick="print();" value="인쇄하기">
+          <input class="btn btn-primary btn-sm" type="button" onclick="printp();" value="인쇄하기">
 
         </div> 
 
@@ -113,7 +112,6 @@
                 <tr class="line">
                 	<td><input type="radio" name="checkRadio" class="checkRadio" value="${ p.paymentNo }"></td>
                     <td>${ p.schoolYear }학년도</td>
-                    
                     <fmt:parseNumber var="Semester" value="${ (p.stdSemester + 1) % 2 }" integerOnly="true"/>
                     <c:choose>
                         <c:when test="${ Semester eq 0 }">

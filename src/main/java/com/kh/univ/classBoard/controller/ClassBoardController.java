@@ -74,23 +74,24 @@ public class ClassBoardController {
 		
 		
 		ArrayList<Lecture> lecList = cbService.classList(userId, userYear, userGrade);
-//		System.out.println(lecList);
+		System.out.println(lecList);
 	
 		JSONArray jArr = new JSONArray();
+		
+		
 		for (Lecture l : lecList) {
 			JSONObject jObj = new JSONObject();
 			jObj.put("classCode", l.getClassCode());
 			jObj.put("classSemester", l.getClassSemester());
 			jObj.put("className", l.getClassName());
-//			jObj.put("classPro", l.getClass);
+			jObj.put("proName", l.getProfName());
 			jObj.put("classGradeSize", l.getGradeSize());
-			
+
 			jArr.add(jObj);
 		}
 		PrintWriter out = response.getWriter();
-		out.print(jArr);
-		
-		
+		out.print(jArr.toJSONString());
+
 	}
 	
 	

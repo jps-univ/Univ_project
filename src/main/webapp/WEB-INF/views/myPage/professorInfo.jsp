@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
 <html lang="ko">
 
@@ -57,7 +58,7 @@
 			<div id="content">
 
 				<!-- Topbar -->
-				<c:import url="../common/topbar.jsp" />
+				<c:import url="../common/topbar_professor.jsp" />
 				<!-- End of Topbar -->
 				
 				<div class="top">
@@ -71,7 +72,7 @@
 		            <!-- DataTales Example -->
 		            <div class="card shadow mb-4">
 		              <div class="card-header py-3">
-		                <h6 class="m-0 font-weight-bold text-primary">개인정보</h6>
+		                <h6 class="m-0 font-weight-bold text-primary">기본정보</h6>
 		              </div>
 		              <div class="card-body">
 		                <div class="table-responsive">
@@ -82,21 +83,39 @@
 		                      </tr>
 		                      <tr>
 		                        <th>교번</th>
-		                        <td>20102010</td>
+		                        <td>${ loginUser.profId }</td>
 		                        <th>성명</th>
-		                        <td>아무개</td>
+		                        <td>${ loginUser.profName }</td>
 		                      </tr>
 		                      <tr>
-		                        <th>생년월일(성별)</th>
-		                        <td>1965.10.12(남)</td>
-		                        <th>대학</th>
-		                        <td>이공대학</td>
-		                      </tr>
+								<th>생년월일(성별)</th>
+								<td>
+									<c:set var="birth" value="${ loginUser.profBirth }"/>
+									${ fn:substring(birth, 0, 2) }.${ fn:substring(birth, 2, 4) }.${ fn:substring(birth, 4, 6) }
+									<c:set var="gender" value="${ fn:substring(birth, 7, 8) }"/>
+									<c:choose>
+										<c:when test="${ gender eq 1 }">
+										(남)
+										</c:when>
+										<c:when test="${ gender eq 2 }">
+										(여)
+										</c:when>
+										<c:when test="${ gender eq 3 }">
+										(남)
+										</c:when>
+										<c:when test="${ gender eq 4 }">
+										(여)
+										</c:when>
+									</c:choose>
+								</td>
+								<th>대학</th>
+								<td>${ college }</td>
+							</tr>
 		                      <tr>
+		                        <th>연구실</th>
+		                        <td>${ loginUser.lab }</td>
 		                        <th>학부(과)</th>
-		                        <td>컴퓨터공학과</td>
-		                        <th></th>
-		                        <td></td>
+		                        <td>${ department }</td>
 		                      </tr>
 		                      <tr>
 		                        <th></th>
@@ -119,7 +138,7 @@
 		            <div class="card shadow mb-4">
 		              <div class="card-header py-3">
 		                <h6 class="m-0 font-weight-bold text-primary">개인정보
-		                	<input type="button" value="수정" id="changeInfo">
+		                	<input type="button" class="btn btn-primary btn-sm" value="변경" id="changeInfo" onclick="personalBtn()">
 		                </h6>
 		              </div>
 		              <div class="card-body">
@@ -128,35 +147,49 @@
 		                    <tbody>
 		                      <tr>
 		                        <th>전화번호</th>
-		                        <td>02-123-4567</td>
+								<td>
+									<input type="text" name="profTel" id="profTel" value="${ loginUser.profTel }">
+								</td>
 		                        <th>핸드폰</th>
-		                        <td>010-1111-2222</td>
+								<td>
+									<input type="text" name="profPhone" id="profPhone" value="${ loginUser.profPhone }">
+								</td>
 		                      </tr>
 		                      <tr>
 		                        <th>이메일</th>
-		                        <td>hong123@gmail.com</td>
+								<td>
+									<input type="text" name="profEmail" id="profEmail" value="${ loginUser.profEmail }">
+								</td>
 		                        <th>은행명</th>
 		                        <td> 
-		                            <select>
-		                                <option>신한은행</option>
-		                                <option>국민은행</option>
-		                                <option>농협</option>
-		                                <option>기업은행</option>
-		                                <option>우리은행</option>
+		                            <select name="profBank" id="profBank" value="${ loginUser.profBank }">
+		                                <option <c:if test="${ loginUser.profBank eq '신한은행' }"> selected="selected"</c:if>>신한은행</option>
+		                                <option <c:if test="${ loginUser.profBank eq '국민은행' }"> selected="selected"</c:if>>국민은행</option>
+		                                <option <c:if test="${ loginUser.profBank eq '농협' }"> selected="selected"</c:if>>농협</option>
+		                                <option <c:if test="${ loginUser.profBank eq '기업은행' }"> selected="selected"</c:if>>기업은행</option>
+		                                <option <c:if test="${ loginUser.profBank eq '우리은행' }"> selected="selected"</c:if>>우리은행</option>
 		                            </select>
 		                        </td>
 		                      </tr>
 		                      <tr>
 		                        <th>주소</th>
-		                        <td>서울시 강남구 역삼동 127-8번지</td>
+								<td>
+									<input type="text" name="profAddress" id="profAddress" value="${ loginUser.profAddress }">
+								</td>
 		                        <th>계좌번호</th>
-		                        <td>110-123-987654</td>
+								<td>
+									<input type="text" name="profAccount" id="profAccount" value="${ loginUser.profAccount }">
+								</td>
 		                      </tr>
 		                      <tr>
 		                        <th>상세주소</th>
-		                        <td>123동 1904호</td>
+								<td>
+									<input type="text" name="profAddressDetail" id="profAddressDetail" value="${ loginUser.profAddressDetail }">
+								</td>
 		                        <th>예금주명</th>
-		                        <td>아무개</td>
+								<td>
+									<input type="text" name="profAccountHolder" id="profAccountHolder" value="${ loginUser.profAccountHolder }">
+								</td>
 		                      </tr>
 		                    </tbody>
 		                  </table>
@@ -164,57 +197,82 @@
 		              </div>
 		            </div>
 		  
-		            <div class="card shadow mb-4">
-		              <div class="card-header py-3">
-		                <h6 class="m-0 font-weight-bold text-primary">개인정보동의
-		                	<input type="button" value="수정" id="changeInfo">
-		                </h6>
-		              </div>
-		              <div class="card-body">
-		                <div class="table-responsive">
-		                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-		                    <tbody>
-		                      <tr>
-		                        <th>SMS 수신동의</th>
-		                        <td>
-		                          <label for="SMSAgree">수신동의</label>
-		                          <input type="radio" name="SMS" id="SMSAgree" value="agree" checked>
-		                          &emsp;&emsp;&emsp;&emsp;&emsp;
-		                          <label for="SMSDisagree">수신거부</label>
-		                          <input type="radio" name="SMS" id="SMSDisagree" value="disagree">
-		                        </td>
-		                        <th>이메일 수신동의</th>
-		                        <td>
-		                          <label for="EmailAgree">수신동의</label>
-		                          <input type="radio" name="Email" id="EmailAgree" value="agree" checked>
-		                          &emsp;&emsp;&emsp;&emsp;&emsp;
-		                          <label for="EmailDisagree">수신거부</label>
-		                          <input type="radio" name="Email" id="EmailDisagree" value="disagree">
-		                        </td>
-		                      </tr>
-		                      <tr>
-		                        <td colspan="4">
-		                          <a href="#" class="btn btn-info btn-circle btn-sm">
-		                            <i class="fas fa-info-circle"></i>
-		                          </a>
-		                          개인정보수신동의를 수신거부로 변경하신 경우 학사 관련 정보를 이메일, SMS를 통해 전달받을 수 없습니다.
-		                        </td>
-		                      </tr>
-		                      <tr>
-		
-		                        <td colspan="4">
-		                          <a href="#" class="btn btn-info btn-circle btn-sm">
-		                            <i class="fas fa-info-circle"></i>
-		                          </a>
-		                          개인 정보가 올바르지 않으신 분들은 변경버튼을 이용하여 개인정보를 변경하시기 바랍니다.
-		                        </td>
-		                      </tr>
-		                    </tbody>
-		                  </table>
-		                </div>
-		              </div>
-		            </div>
-		          </div>
+					<div class="card shadow mb-4">
+						<div class="card-header py-3">
+							<h6 class="m-0 font-weight-bold text-primary">개인정보동의
+								<input type="button" class="btn btn-primary btn-sm" value="변경" id="changeInfo" onclick="agreeBtn()">
+							</h6>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+									<tbody>
+										<tr>
+											<th>SMS 수신동의</th>
+											<c:choose>
+												<c:when test="${ loginUser.profSmsAgree eq 'Y' }">
+													<td>
+														<label for="SMSAgree">수신동의</label> 
+														<input type="radio" name="SMS" id="SMSAgree" value="Y" checked>
+														&emsp;&emsp;&emsp;&emsp;
+														<label for="SMSDisagree">수신거부</label>
+														<input type="radio" name="SMS" id="SMSDisagree" value="N">
+													</td>
+												</c:when>
+												<c:when test="${ loginUser.profSmsAgree eq 'N' }">
+													<td>
+														<label for="SMSAgree">수신동의</label> 
+														<input type="radio" name="SMS" id="SMSAgree" value="Y">
+														&emsp;&emsp;&emsp;&emsp;
+														<label for="SMSDisagree">수신거부</label>
+														<input type="radio" name="SMS" id="SMSDisagree" value="N" checked>
+													</td>
+												</c:when>
+											</c:choose>
+											<th>이메일 수신동의</th>
+											<c:choose>
+												<c:when test="${ loginUser.profEmailAgree eq 'Y' }">
+													<td>
+														<label for="EmailAgree">수신동의</label> 
+														<input type="radio" name="Email" id="EmailAgree" value="Y" checked>
+														&emsp;&emsp;&emsp;&emsp;
+														<label for="EmailDisagree">수신거부</label>
+														<input type="radio" name="Email" id="EmailDisagree" value="N">
+													</td>
+												</c:when>
+												<c:when test="${ loginUser.profEmailAgree eq 'N' }">
+													<td>
+														<label for="EmailAgree">수신동의</label> 
+														<input type="radio" name="Email" id="EmailAgree" value="Y">
+														&emsp;&emsp;&emsp;&emsp;
+														<label for="EmailDisagree">수신거부</label>
+														<input type="radio" name="Email" id="EmailDisagree" value="N" checked>
+													</td>
+												</c:when>
+											</c:choose>
+										</tr>
+										<tr>
+											<td colspan="4">
+												<a href="#" class="btn btn-info btn-circle btn-sm"> 
+													<i class="fas fa-info-circle"></i>
+												</a>
+												개인정보수신동의를 수신거부로 변경하신 경우 학사 관련 정보를 이메일, SMS를 통해 전달받을 수 없습니다.
+											</td>
+										</tr>
+										<tr>
+											<td colspan="4">
+												<a href="#" class="btn btn-info btn-circle btn-sm"> 
+													<i class="fas fa-info-circle"></i>
+												</a>
+												개인 정보가 올바르지 않으신 분들은 변경버튼을 이용하여 개인정보를 변경하시기 바랍니다.
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
 		          <!-- /.container-fluid -->
 		  
 		        </div>
@@ -238,6 +296,95 @@
 
 	<!-- Logout Modal-->
 	<c:import url="../common/logoutModal.jsp" />
+	
+	<script type="text/javascript">
+		function personalBtn()
+		{
+			var profId = ${ loginUser.profId };
+			var profTel = $("#profTel").val();
+			var profPhone = $("#profPhone").val();
+			var profEmail = $("#profEmail").val();
+			var profAddress = $("#profAddress").val();
+			var profAddressDetail = $("#profAddressDetail").val();
+			var profBank = $("#profBank").val();
+			var profAccount = $("#profAccount").val();
+			var profAccountHolder = $("#profAccountHolder").val();
+			
+			if(confirm("변경하시겠습니까?"))
+			{
+				$.ajax(
+				{
+					url:"changeProfessorInfo.do",
+					data:{"profId" : profId, "profTel" : profTel, "profPhone" : profPhone, "profEmail" : profEmail, "profAddress" : profAddress, "profAddressDetail" : profAddressDetail, "profBank" : profBank, "profAccount" : profAccount, "profAccountHolder" : profAccountHolder},
+					type:"post",
+					success:function(data)
+					{
+						if(data == "ok")
+						{
+							console.log("성공");
+							alert("변경되었습니다.");
+							location.reload();
+						}
+						else
+						{
+							alert("실패하였습니다.");
+						}
+					},
+					error:function(request, status, errorData)
+					{
+						console.log(request.status);
+						console.log(request.responseText);
+						console.log(errorData); 
+					}
+				});
+			}
+			else
+			{
+				alert("취소되었습니다.");
+				return;
+			}
+		}
+		
+		function agreeBtn()
+		{
+			var profId = ${ loginUser.profId };
+			var profSmsAgree = $('input[name="SMS"]:checked').val();
+			var profEmailAgree = $('input[name="Email"]:checked').val();
+			
+			if(confirm("변경하시겠습니까?"))
+			{
+				$.ajax(
+				{
+					url:"changeProfAgreeInfo.do",
+					data:{"profId" : profId, "profSmsAgree" : profSmsAgree, "profEmailAgree" : profEmailAgree},
+					type:"post",
+					success:function(data)
+					{
+						if(data == "ok")
+						{
+							console.log("성공");
+							alert("변경되었습니다.");
+						}
+						else
+						{
+							alert("실패하였습니다.");
+						}
+					},
+					error:function(request, status, errorData)
+					{
+						console.log(request.status);
+						console.log(request.responseText);
+						console.log(errorData); 
+					}
+				});
+			}
+			else
+			{
+				alert("취소되었습니다.");
+				return;
+			}
+		}
+	</script>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>

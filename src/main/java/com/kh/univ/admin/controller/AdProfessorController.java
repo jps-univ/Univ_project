@@ -34,6 +34,7 @@ public class AdProfessorController {
 	
 	@RequestMapping("professor_Register_Insert.do")
 	public String professorRegisterInsert(Professor pro) {
+		System.out.println(pro);
 		int result = adProfessorService.insertProfessor(pro);
 		
 		if(result>0) {
