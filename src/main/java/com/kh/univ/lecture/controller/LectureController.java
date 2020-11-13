@@ -4,7 +4,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.univ.lecture.model.service.LectureService;
 import com.kh.univ.lecture.model.vo.Lecture;
+import com.kh.univ.lecture.model.vo.LectureApplication;
+import com.kh.univ.lecture.model.vo.LectureTime;
 import com.kh.univ.lecture.model.vo.SearchCondition;
+import com.kh.univ.member.model.vo.Student;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -117,8 +121,10 @@ public class LectureController {
 
         return jsonStr;
     }
+
     /**
      * 단과대학을 선택하면 해당학과들을 출력하게함
+     *
      * @param collegeCode
      * @return
      * @throws JsonProcessingException
@@ -139,6 +145,7 @@ public class LectureController {
 
     /**
      * 해당학과를  선택하면 해당과목들을 출력하게함
+     *
      * @param deptName
      * @return
      * @throws JsonProcessingException
@@ -158,15 +165,68 @@ public class LectureController {
             return "fail!";
         }
     }
+
+    /**
+     * 세션에서 학번 추출, ajax로 classSeq 전달받음
+     * 유효성검사를 통해서 TB_REGISTER_CLASS 에 데이터를 넣음
+     *
+     * @param session
+     * @param classSeq
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "registerClass.do", produces = "application/json; charset=utf-8")
-    public String registerClass(HttpSession session ,
-                                int classSeq){
+    public String registerClass(HttpSession session,
+                                int classSeq) {
 
-        Object user = session.getAttribute("loginUser");
-//        user
-        System.out.println();
-        return null;
+        Student user = (Student) session.getAttribute("loginUser");
+        int stdId = ((Student) user).getStdId();
+
+//        int stdId = 20201010;
+
+        System.out.println(classSeq);
+        System.out.println(stdId);
+
+        ArrayList<LectureTime> list = lectureService.getDayHourList(stdId);
+        ArrayList<LectureTime> list2 = lectureService.getDayHourList2(classSeq);
+        // list로 뽑아온 lecturetime 타입오브젝트에서 dayHour만 뽑아 새로운 배열 생성
+        // stdId 로 뽑아온 dayHour와 classSeq로 뽑아온 dayHour를 비교해야함.
+        ArrayList dayHourList = new ArrayList();
+        ArrayList dayHourList2 = new ArrayList();
+        for (LectureTime time : list) {
+            dayHourList.add(time.getDayHour());
+        }
+        for (LectureTime lectureTime : list2) {
+            dayHourList2.add(lectureTime.getDayHour());
+        }
+
+
+        boolean noDuplicate = true;
+
+        System.out.println(dayHourList);
+        System.out.println(dayHourList2);
+        for (int i = 0; i < dayHourList.size(); i++) {
+            for (int j = 0; j < dayHourList2.size(); j++) {
+                if (dayHourList.get(i).equals(dayHourList2.get(j))) {
+                    noDuplicate = false;
+                }
+            }
+        }
+        System.out.println(noDuplicate);
+        HashMap map = new HashMap();
+        map.put("stdId", stdId);
+        map.put("classSeq", classSeq);
+        // noduplicate 일때만 실행.
+        if (noDuplicate) {
+            int result = lectureService.insertRegisterClass(map);
+            if (result > 0) {
+                return "ok";
+            } else return "fail";
+        }else {
+            return "시간이 중복되는 강의가 있습니다.";
+        }
+
+
     }
 
 }

@@ -240,9 +240,25 @@
                     //     'color' : 'red'
                     // });
                     selectedIndex = table.row(this).data();
-                    seq = selectedIndex.classSeq;
-                    console.log(seq);
-                    console.log("${sessionScope}");
+                    var seq = selectedIndex.classSeq;
+
+                    $.ajax({
+                        url: 'registerClass.do',
+                        type: 'post',
+                        data:{
+                            classSeq:seq
+                        }
+                        ,dataType:'text'
+                        ,success: function (data) {
+                            console.log(data);
+                            if (data == "ok"){
+                                alert("값이 잘 등록되었습니다.")
+                            } else alert(data);
+                        },error:function (error) {
+                            console.log(error);
+                            alert("에러발생");
+                        }
+                    });
 
                 });
             });
