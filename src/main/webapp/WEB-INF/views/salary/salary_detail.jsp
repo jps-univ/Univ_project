@@ -43,7 +43,7 @@
                     </tr>
                     <tr id="tr_2">
                         <td>소속</td>
-                        <td colspan="2">진포상대학교</td>
+                        <td colspan="2">${ s.departmentName }</td>
                         <c:set var="profBirth" value="${ fn:substring( s.profBirth, 0, 6 )  }"/>
                         <td>생년월일</td>
                         <td colspan="2">${ profBirth }</td>

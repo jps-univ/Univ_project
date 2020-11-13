@@ -10,7 +10,7 @@
       <result property="profAccount" column="ACCOUNT"/>
       <result property="salaryTotal" column="SALARY_TOTAL"/>
       <result property="profName" column="NAME"/>
-      <result property="profCollege" column="CATEGORY_NO"/>
+      <result property="departmentName" column="DEPARTMENT_NAME"/>
       <result property="profBirth" column="BIRTH_NO"/>
       <result property="patment_date" column="PAYMENT_DATE"/>
       <result property="basic_Salary" column="BASIC_SALARY"/>
