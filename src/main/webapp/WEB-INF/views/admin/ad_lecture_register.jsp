@@ -65,7 +65,10 @@
               <td>
                 <select name="" id="">
                   <option value="">-----</option>
-                  <option value="">P/F</option>
+                  <option value="">전공필수</option>
+                  <option value="">전공선택</option>
+                  <option value="">교양필수</option>
+                  <option value="">교양선택</option>
                 </select>
               </td>
               <td>
@@ -101,8 +104,10 @@
               </td>
               <td>
                 <select name="" id="">
-                  <option value="">-----</option>
-                  <option value="">P/F</option>
+                  <option value="0">-----</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
                 </select>
               </td>
             </tr>

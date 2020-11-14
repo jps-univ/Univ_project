@@ -156,4 +156,21 @@ public class AdStudentController {
 		return deptCheck;
 		
 	}
+	
+	/**
+	 * 2_5. 학생 수정 페이지 단과대학 검색
+	 * @param college
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="student_Modify_Search.do")
+	public String StudentModifySearch(String collegeCode, String departmentCode, int searchSemester ) {
+		
+		System.out.println(collegeCode);
+		System.out.println(departmentCode);
+		System.out.println(searchSemester);
+		//ArrayList<Student> colegeSearch = adStudentService.collegeSearch(collegeCode,departmentCode,searchSemester);
+		
+		return null;
+	}
 }
