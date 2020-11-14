@@ -120,4 +120,7 @@
           AND a.PROFESSOR_ID = d.PROFESSOR_ID
           AND e.STUDENT_ID = #{stdId}
     </select>
+    <delete id="deleteMyClass" parameterType="LectureApplication">
+        DELETE FROM TB_REGISTER_CLASS WHERE STUDENT_ID=#{stdId} AND CLASS_SEQ=#{classSeq}
+    </delete>
 </mapper>

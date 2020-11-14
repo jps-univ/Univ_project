@@ -44,4 +44,8 @@ public class LectureDao {
     public ArrayList<Lecture> selectList(int stdId) {
         return (ArrayList) sqlSession.selectList("lectureMapper.selectMyTime",stdId);
     }
+
+    public int deleteMyClass(HashMap map) {
+        return sqlSession.delete("lectureMapper.deleteMyClass",map);
+    }
 }

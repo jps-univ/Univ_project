@@ -102,152 +102,181 @@
             });
         }
     </script>
+
     <script>
-        $(document).ready(function () {
+        function callRegisterTable() {
 
+            table = $('#registerTable').DataTable({
+                //컨트롤러에서 보내줄 때 해당 함수의 반환형은 String이어야 하고 리스트를 뽑아온다고 하면 'dataSrc' : '' 로 해줘야함.
+                'ajax': {
+                    'url': 'getLectureList.do',
+                    'type': 'post',
+                    'data': {
+                        'classType': $('#selectClassType').val(),
+                        'inputClassName': $('#inputSubject').val(),
+                        'classLevel': $('#selectClassLevel').val(),
+                        'collegeCode': $('#selectCollege').val(),
+                        'departmentName': $("#selectDepartment").val(),
+                        'className': $('#selectMajor').val()
 
-            // DB에서 데이터 뽑아와서 테이블로 출력하는 datatables 라이브러리 사용
-            $('#searchBtn').click(function () {
-                var table = $('#registerTable').DataTable({
-
-
-                    //컨트롤러에서 보내줄 때 해당 함수의 반환형은 String이어야 하고 리스트를 뽑아온다고 하면 'dataSrc' : '' 로 해줘야함.
-                    'ajax': {
-                        'url': 'getLectureList.do',
-                        'type': 'post',
-                        'data': {
-                            'classType': $('#selectClassType').val(),
-                            'inputClassName': $('#inputSubject').val(),
-                            'classLevel': $('#selectClassLevel').val(),
-                            'collegeCode': $('#selectCollege').val(),
-                            'departmentName': $("#selectDepartment").val(),
-                            'className': $('#selectMajor').val()
-
-                        },
-                        'dataType': 'json',
-                        'dataSrc': ''
                     },
-                    // 'colunms' 옵션에는 각 data 에게 넘어오는 변수명(컬럼값)을 매칭해줘야함 꼭 .
-                    // 그리고 테이블만들어줄때도 넘어오는 값이 4개라면 테이블의 th 갯수도 꼭 4개. 맞춰줘야함
-                    'columns': [
-                        {'data': 'classSeq'},
-                        {'data': 'className'},
-                        {'data': 'deptCode'},
-                        {'data': 'profName'},
-                        {'data': 'lectureTime'},
-                        {'data': 'room'},
-                        {'data': 'classType'},
-                        {'data': 'gradeSize'},
-                        {'data': 'classLevel'}
-                    ],
-                    'columnDefs': [
-                        {
-                            'targets': 0,
-                            'visible': false,
-                            'className': 'classSeq'
-                        },
+                    'dataType': 'json',
+                    'dataSrc': ''
+                },
+                // 'colunms' 옵션에는 각 data 에게 넘어오는 변수명(컬럼값)을 매칭해줘야함 꼭 .
+                // 그리고 테이블만들어줄때도 넘어오는 값이 4개라면 테이블의 th 갯수도 꼭 4개. 맞춰줘야함
+                'columns': [
+                    {'data': 'classSeq'},
+                    {'data': 'className'},
+                    {'data': 'deptCode'},
+                    {'data': 'profName'},
+                    {'data': 'lectureTime'},
+                    {'data': 'room'},
+                    {'data': 'classType'},
+                    {'data': 'gradeSize'},
+                    {'data': 'classLevel'}
+                ],
+                'columnDefs': [
+                    {
+                        'targets': 0,
+                        'visible': false,
+                    },
 
-                        {
-                            'targets': [2, 4],
-                            'width': '15%'
-                        },
-                        {
-                            'targets': [3, 5, 6],
-                            'width': '10%'
-                        }, {
-                            'targets': [7, 8],
-                            'width': '8%'
-                        }
-                    ],
-                    'searching': false,
-                    'paging': true,
-                    'bDestroy': true,
-                    'scrollX': false
-                });
-                $('#registerTable').on('click', 'tbody tr', function () {
-                    // $('#registerTable tbody tr ').css({
-                    //     'color' : 'red'
-                    // });
-                    selectedIndex = table.row(this).data();
-                    var seq = selectedIndex.classSeq;
-
-                    $.ajax({
-                        url: 'registerClass.do',
-                        type: 'post',
-                        data: {
-                            classSeq: seq
-                        }
-                        , dataType: 'text'
-                        , success: function (data) {
-                            console.log(data);
-                            if (data == "ok") {
-                                alert("값이 잘 등록되었습니다.")
-                            } else alert(data);
-                        }, error: function (error) {
-                            console.log(error);
-                            alert("에러발생");
-                        }
-                    });
-
-                });
+                    {
+                        'targets': [2, 4],
+                        'width': '15%'
+                    },
+                    {
+                        'targets': [3, 5, 6],
+                        'width': '10%'
+                    }, {
+                        'targets': [7, 8],
+                        'width': '8%'
+                    }
+                ],
+                'searching': false,
+                'paging': true,
+                // 'bDestroy': true,
+                'destroy': true,
+                'scrollX': false
             });
 
 
-        });
+                // 행 클릭시 클래스시퀀스 들고 컨트롤러로 감. 수강신청테이블에 등록
+            // off(click) 안써주면 중복클릭? 비슷히게 오류남
+            $('#registerTable').off('click').on('click', 'tbody tr', function () {
+                // $('#registerTable tbody tr').css({
+                //     'color': 'red'
+                // });
+                var selectedIndex = table.row(this).data();
+                console.log(selectedIndex);
+
+                var seq = selectedIndex.classSeq;
+                $.ajax({
+                    url: 'registerClass.do',
+                    type: 'post',
+                    data: {
+                        classSeq: seq
+                    }
+                    , dataType: 'text'
+                    , success: function (data) {
+                        if (data == "ok") {
+                            alert("값이 잘 등록되었습니다.");
+                            callMyTable();
+                        } else alert(data);
+                    }, error: function (error) {
+                        console.log(error);
+                        alert("에러발생");
+                    }
+                });
+            });
+            // table.clear().draw();
+        }
     </script>
     <script>
+        // 나의 수강목록을 불러오는 함수. 위에 callMyTable을 통해서 불러옴
         function callMyTable() {
+             myTable = $('#myRegisterTable').DataTable({
+                'ajax': {
+                    'url': 'getMyLectureList.do',
+                    'type': 'post',
+                    'dataType': 'json',
+                    'dataSrc': ''
+                }, 'columns': [
+                    {'data': 'classSeq'},
+                    {'data': 'className'},
+                    {'data': 'deptCode'},
+                    {'data': 'profName'},
+                    {'data': 'lectureTime'},
+                    {'data': 'room'},
+                    {'data': 'classType'},
+                    {'data': 'gradeSize'},
+                    {'data': 'classLevel'}
+                ],
+                'columnDefs': [
+                    {
+                        'targets': 0,
+                        'visible': false,
+                        'className': 'classSeq'
+                    },
 
-        var myTable = $('#myRegisterTable').dataTable({
-            'ajax': {
-                'url': 'getMyLectureList.do',
-                'type': 'post',
-                'dataType': 'json',
-                'dataSrc': ''
-            }, 'columns': [
-                {'data': 'classSeq'},
-                {'data': 'className'},
-                {'data': 'deptCode'},
-                {'data': 'profName'},
-                {'data': 'lectureTime'},
-                {'data': 'room'},
-                {'data': 'classType'},
-                {'data': 'gradeSize'},
-                {'data': 'classLevel'}
-            ],
-            'columnDefs': [
-                {
-                    'targets': 0,
-                    'visible': false,
-                    'className': 'classSeq'
-                },
+                    {
+                        'targets': [2, 4],
+                        'width': '15%'
+                    },
+                    {
+                        'targets': [3, 5, 6],
+                        'width': '10%'
+                    }, {
+                        'targets': [7, 8],
+                        'width': '8%'
+                    }
+                ],
+                'searching': false,
+                'paging': false,
+                'ordering': false,
+                'info': false,
+                'bDestroy': true,
+                'scrollX': false
+            });
+            $('#myRegisterTable').off('click').on('click', 'tbody tr', function () {
+                // $('#myRegisterTable tbody tr ').css({
+                //     'color' : 'red'
+                // });
+                // var selectedIndex = table.row(this).data();
+                var mySelectedIndex = myTable.row(this).data();
+                console.log(mySelectedIndex);
+                var seq = mySelectedIndex.classSeq;
+                $.ajax({
+                    url: 'deleteMyClass.do',
+                    type: 'post',
+                    data: {
+                        classSeq: seq
+                    }, dataType: 'text'
+                    ,success: function (data) {
+                        alert(data);
+                        myTable.ajax.reload();
+                    }, error: function (error) {
+                        console.log(error);
+                        alert("에러발생");
+                    }
+                });
 
-                {
-                    'targets': [2, 4],
-                    'width': '15%'
-                },
-                {
-                    'targets': [3, 5, 6],
-                    'width': '10%'
-                }, {
-                    'targets': [7, 8],
-                    'width': '8%'
-                }
-            ],
-            'searching': false,
-            'paging': false,
-            'bDestroy': true,
-            'scrollX': false
-        });
+            });
         }
-
-        // function callMyTable() {}
     </script>
-
+    <script>
+        $(document).ready(function () {
+            callMyTable();
+            // DB에서 데이터 뽑아와서 테이블로 출력하는 datatables 라이브러리 사용
+            $('#searchBtn').on('click', function () {
+                callRegisterTable();
+            });
+        });
+    </script>
     <%--    수강신청,장바구니 탭 클릭 시 화면 변화--%>
     <script>
         $(document).ready(function () {
-
             $('#enrollCard').css({
                 "background-color": "lightgrey",
                 "color": "white"
@@ -439,13 +468,13 @@
                             </table>
                         </div>
                         <div class="buttonArea card-body" align="center">
-                            <button id="enrollBtn" class="btn btn-success" onclick="alert('수강신청이 정상적으로 완료되었습니다.');">
-                                수강신청
-                            </button>
+<%--                            <button id="enrollBtn" class="btn btn-success" onclick="alert('수강신청이 정상적으로 완료되었습니다.');">--%>
+<%--                                수강신청--%>
+<%--                            </button>--%>
 
-                            <button id="basketBtn" class="btn btn-secondary" onclick="alert('장바구니에 정상적으로 담겼습니다.')">
-                                장바구니
-                            </button>
+<%--                            <button id="basketBtn" class="btn btn-secondary" onclick="alert('장바구니에 정상적으로 담겼습니다.')">--%>
+<%--                                장바구니--%>
+<%--                            </button>--%>
                         </div>
                     </div>
 

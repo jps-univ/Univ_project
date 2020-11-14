@@ -50,4 +50,9 @@ public class LectureServiceImpl implements LectureService {
     public ArrayList<Lecture> selectList(int stdId) {
         return lectureDao.selectList(stdId);
     }
+
+    @Override
+    public int deleteMyClass(HashMap map) {
+        return lectureDao.deleteMyClass(map);
+    }
 }

@@ -184,8 +184,8 @@ public class LectureController {
 
 //        int stdId = 20201010;
 
-        System.out.println(classSeq);
-        System.out.println(stdId);
+        System.out.println("등록을 원하는 클래스 시퀀스 : " + classSeq);
+        System.out.println("등록하려는 학생의 학번 : " + stdId);
 
         ArrayList<LectureTime> list = lectureService.getDayHourList(stdId);
         ArrayList<LectureTime> list2 = lectureService.getDayHourList2(classSeq);
@@ -203,8 +203,8 @@ public class LectureController {
 
         boolean noDuplicate = true;
 
-        System.out.println(dayHourList);
-        System.out.println(dayHourList2);
+        System.out.println("내가 갖고 있는 시간표 " + dayHourList);
+        System.out.println("등록하려는 클래스의 시간표 " + dayHourList2);
         for (int i = 0; i < dayHourList.size(); i++) {
             for (int j = 0; j < dayHourList2.size(); j++) {
                 if (dayHourList.get(i).equals(dayHourList2.get(j))) {
@@ -212,7 +212,7 @@ public class LectureController {
                 }
             }
         }
-        System.out.println(noDuplicate);
+        System.out.println("중복이 없으면  true 중복이 있다면 false : " + noDuplicate);
         HashMap map = new HashMap();
         map.put("stdId", stdId);
         map.put("classSeq", classSeq);
@@ -230,13 +230,30 @@ public class LectureController {
     @RequestMapping(value = "getMyLectureList.do", produces = "application/json; charset=utf-8")
     public String getMyLectureList(HttpSession session) throws JsonProcessingException {
         Student user = (Student) session.getAttribute("loginUser");
-        int stdId = ((Student) user).getStdId();
+        int stdId = user.getStdId();
         ArrayList<Lecture> list = lectureService.selectList(stdId);
         ObjectMapper mapper = new ObjectMapper();
 
         String jsonStr = mapper.writeValueAsString(list);
-
         return jsonStr;
+    }
+    @ResponseBody
+    @RequestMapping(value = "deleteMyClass.do", produces = "application/json; charset=utf-8")
+    public String deleteMyClass(HttpSession session, int classSeq){
+        Student user = (Student) session.getAttribute("loginUser");
+        int stdId = user.getStdId();
+
+        System.out.println("삭제하려는 과목의 시퀀스 : " + classSeq);
+
+        // 수강신청 테이블 인스턴스들이 stdId, classSeq 이기 때문에 해시맵이용
+        HashMap map = new HashMap();
+        map.put("stdId", stdId);
+        map.put("classSeq", classSeq);
+
+        int result = lectureService.deleteMyClass(map);
+        if(result > 0){
+            return "ok";
+        }else return "false";
     }
 
 }
