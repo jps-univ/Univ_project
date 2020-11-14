@@ -20,6 +20,7 @@
         <typeAlias type="com.kh.univ.salary.model.vo.Salary" alias="Salary"/>
         <typeAlias type="com.kh.univ.register.model.vo.Register" alias="Register"/>
         <typeAlias type="com.kh.univ.consulting.model.vo.Consulting" alias="Consulting"/>
+        <typeAlias type="com.kh.univ.board.model.vo.Board" alias="Board"/>
         
         <!-- <typeAlias type="com.kh.spring.board.model.vo.Board" alias="Board"/>
         <typeAlias type="com.kh.spring.board.model.vo.Reply" alias="Reply"/> -->
@@ -37,6 +38,7 @@
         <mapper resource="mappers/lecture/lecture-mapper.xml"/>        
         <mapper resource="mappers/Salary/salary-mapper.xml"/>
         <mapper resource="mappers/classBoard/classBoard-mapper.xml"/>
+        <mapper resource="mappers/board/board-mapper.xml"/> 
         
         <!-- 관리자 mappers -->
         <mapper resource="mappers/admin/adminStudent-mapper.xml"/>

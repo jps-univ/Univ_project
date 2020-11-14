@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardMapper">
+	<resultMap id="boardResultSet" type="Board">
+		<id property="boardId" column="BOARD_ID"/>
+ 		<result property="stdId" column="STUDENT_ID"/>
+ 		<result property="fileId" column="FILE_ID"/>
+ 		<result property="bTitle" column="BTITLE"/>
+ 		<result property="bDate" column="BDATE"/>
+ 		<result property="bContents" column="BCONTENTS"/>
+ 		<result property="bAnswer" column="BANSWER"/>
+ 		<result property="bCount" column="BCOUNT"/>
+ 		<result property="bType" column="BTYPE"/>
+ 		<result property="stdName" column="STUDENT_NAME"/>
+	</resultMap>
+	
+	<select id="selectNList"  parameterType="Board" resultMap="boardResultSet">
+		SELECT
+			BOARD_ID ,
+			BTITLE ,
+			BDATE
+		FROM TB_BOARD
+		WHERE BTYPE = 'N'
+	</select>
+	
+	<select id="findById" parameterType="Board" resultMap="boardResultSet">
+		SELECT B.BOARD_ID
+			 , B.BTITLE
+			 , B.BDATE
+			 , B.BCONTENTS
+			 , B.BCOUNT
+			 , B.BTYPE
+			 , S.STUDENT_NAME
+	    FROM TB_BOARD B
+	    JOIN TB_STUDENT S ON B.STUDENT_ID = S.STUDENT_ID 
+	    WHERE B.BOARD_ID = #{boardId}
+	</select>
+	
+</mapper>
