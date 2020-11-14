@@ -1,18 +1,26 @@
 package com.kh.univ.admin.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.kh.univ.admin.model.service.AdLectureService;
+import com.kh.univ.lecture.model.vo.Lecture;
 
 @Controller
 public class AdLectureController {
 
-	
+	@Autowired
+	private AdLectureService adLectureService;
 	/**
 	 * 1. 강의 등록(관리자)
 	 * @return
 	 */
 	@RequestMapping("lecture_Register.do")
-	public String lectureRegister() {
+	public String lectureRegister(Lecture lecture) {
+		
+		int result = adLectureService.insertLecture(lecture);
 		return "admin/ad_lecture_register";
 	}
 	
@@ -21,8 +29,10 @@ public class AdLectureController {
 	 * @return
 	 */
 	@RequestMapping("lecture_Modify.do")
-	public String lectureModify() {
-		return "admin/ad_lecture_modify";
+	public ModelAndView lectureModify(ModelAndView mv) {
+		
+		
+		return mv;
 	}
 	
 	/**
