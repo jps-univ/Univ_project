@@ -428,26 +428,12 @@
                             <!-- 진포공지 -->
                             <div id="notice" class="tab-pane fade">
                                 <ul>
+                                <c:forEach var="b" items="${nList}">
                                     <li style="padding-top:20px;">
-                                        <a href="#" onclick="noticePop(this);">국민권익위 사학비리·부패신고센터 운영</a>
-                                        <span class="date">09.22</span>
+                                        <a href="#" onclick="noticePop(${b.boardId});">${ b.bTitle }</a>
+                                        <span class="date">${ b.bDate }</span>
                                     </li>
-                                    <li>
-                                        <a>2020학년도 KH문화상 공모 안내</a>
-                                        <span class="date">08.18</span>
-                                    </li>
-                                    <li>
-                                        <a>2020년 제 1회 전국 대학생 미디어 콘텐츠 공모전</a>
-                                        <span class="date">07.28</span>
-                                    </li>
-                                    <li>
-                                        <a>2020년 제 1회 전국 대학생 미디어 콘텐츠 공모전</a>
-                                        <span class="date">07.28</span>
-                                    </li>
-                                    <li>
-                                        <a>2020년 제 1회 전국 대학생 미디어 콘텐츠 공모전</a>
-                                        <span class="date">07.28</span>
-                                    </li>
+                                </c:forEach>
                                 </ul>
                             </div>
                         </div>
