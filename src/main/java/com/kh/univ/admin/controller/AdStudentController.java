@@ -1,21 +1,14 @@
 package com.kh.univ.admin.controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.kh.univ.admin.model.service.AdStudentService;
 import com.kh.univ.member.model.vo.College;
 import com.kh.univ.member.model.vo.Department;
@@ -26,6 +19,9 @@ public class AdStudentController {
 	
 	@Autowired
 	private AdStudentService adStudentService;
+	
+	@Autowired
+	 private BCryptPasswordEncoder bcryptPasswordEncoder;
 	/**
 	 * 1. 학생 정보 등록(관리자)
 	 * @return
@@ -43,7 +39,13 @@ public class AdStudentController {
 	
 	@RequestMapping(value="studnet_One_Register.do")
 	public String studentOneRegister(Student std) {
+		System.out.println("비밀번호 암호화 전:"+std.getStdPwd());
+		
+		bcryptPasswordEncoder = new BCryptPasswordEncoder();
 		System.out.println(std);
+		String password = std.getStdPwd();
+		std.setStdPwd(bcryptPasswordEncoder.encode(password));
+		System.out.println("비밀번호 암호화 후:"+std.getStdPwd());
 		int register =adStudentService.insertStudent(std);
 		
 		if(register>0) {

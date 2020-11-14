@@ -268,6 +268,32 @@
         	});
         });
     });
+    
+    
+    $(function deptSelect(){
+    	$("#collegeCode").change(function(){
+    		
+    		$.ajax({
+    			url:"student_Modify_DeptCheck.do",
+    			dataType:"json",
+    			data:{
+    				collegeCode:$(this).val()
+    			},success:function(data){
+    				console.log(data[1].departmentCode);
+    				$('#profDepartment').empty();
+    				$('#profDepartment').append("<option><학과를 선택해주세요></option>");
+     				for(var index =0; index < data.length;index++){
+    					var department = $("<option value="+ data[index].departmentCode+ ">" + data[index].departmentName +"</option>");
+    					$('#profDepartment').append(department);
+    				}
+    				
+    			},error:function(){
+    				console.log("fail");
+    			}
+    			
+    		});
+    	});
+    });
     </script>
 
     <!-- footer -->

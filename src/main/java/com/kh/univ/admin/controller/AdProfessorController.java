@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,9 +16,15 @@ import com.kh.univ.member.model.vo.College;
 import com.kh.univ.member.model.vo.Department;
 import com.kh.univ.member.model.vo.Professor;
 
+import oracle.net.aso.b;
+
 @Controller
 public class AdProfessorController {
 
+	
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	
 	@Autowired
 	private AdProfessorService adProfessorService;
 	/**
@@ -35,6 +42,10 @@ public class AdProfessorController {
 	@RequestMapping("professor_Register_Insert.do")
 	public String professorRegisterInsert(Professor pro) {
 		System.out.println(pro);
+		String password = pro.getProfPwd();
+		bcryptPasswordEncoder = new BCryptPasswordEncoder();
+		pro.setProfPwd(bcryptPasswordEncoder.encode(password));
+		
 		int result = adProfessorService.insertProfessor(pro);
 		
 		if(result>0) {
