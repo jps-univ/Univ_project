@@ -158,11 +158,12 @@
                 'paging': true,
                 // 'bDestroy': true,
                 'destroy': true,
-                'scrollX': false
+                'scrollX': false,
+                'language' : lang_kor
             });
 
 
-                // 행 클릭시 클래스시퀀스 들고 컨트롤러로 감. 수강신청테이블에 등록
+            // 행 클릭시 클래스시퀀스 들고 컨트롤러로 감. 수강신청테이블에 등록
             // off(click) 안써주면 중복클릭? 비슷히게 오류남
             $('#registerTable').off('click').on('click', 'tbody tr', function () {
                 // $('#registerTable tbody tr').css({
@@ -196,7 +197,7 @@
     <script>
         // 나의 수강목록을 불러오는 함수. 위에 callMyTable을 통해서 불러옴
         function callMyTable() {
-             myTable = $('#myRegisterTable').DataTable({
+            myTable = $('#myRegisterTable').DataTable({
                 'ajax': {
                     'url': 'getMyLectureList.do',
                     'type': 'post',
@@ -237,33 +238,92 @@
                 'ordering': false,
                 'info': false,
                 'bDestroy': true,
-                'scrollX': false
+                'scrollX': false,
+                'language' : lang_kor2
             });
             $('#myRegisterTable').off('click').on('click', 'tbody tr', function () {
                 // $('#myRegisterTable tbody tr ').css({
                 //     'color' : 'red'
                 // });
                 // var selectedIndex = table.row(this).data();
-                var mySelectedIndex = myTable.row(this).data();
-                console.log(mySelectedIndex);
-                var seq = mySelectedIndex.classSeq;
-                $.ajax({
-                    url: 'deleteMyClass.do',
-                    type: 'post',
-                    data: {
-                        classSeq: seq
-                    }, dataType: 'text'
-                    ,success: function (data) {
-                        alert(data);
-                        myTable.ajax.reload();
-                    }, error: function (error) {
-                        console.log(error);
-                        alert("에러발생");
-                    }
-                });
+                var con = confirm("정말 해당과목을 취소하시겠습니까?");
+                if (con == true) {
+                    var mySelectedIndex = myTable.row(this).data();
+                    console.log(mySelectedIndex);
+                    var seq = mySelectedIndex.classSeq;
+                    $.ajax({
+                        url: 'deleteMyClass.do',
+                        type: 'post',
+                        data: {
+                            classSeq: seq
+                        }, dataType: 'text'
+                        , success: function (data) {
+                            alert(data);
+                            myTable.ajax.reload();
+                        }, error: function (error) {
+                            console.log(error);
+                            alert("에러발생");
+                        }
+                    });
+                } else if (con == false) {
+                    return;
+                }
+
 
             });
         }
+    </script>
+    <script>
+        var lang_kor = {
+            "decimal" : "",
+            "emptyTable" : "해당 과목이 없습니다.",
+            "info" : "_START_ - _END_ (총 _TOTAL_ 개)",
+            "infoEmpty" : "",
+            "infoFiltered" : "(전체 _MAX_ 명 중 검색결과)",
+            "infoPostFix" : "",
+            "thousands" : ",",
+            "lengthMenu" : "_MENU_ 개씩 보기",
+            "loadingRecords" : "로딩중...",
+            "processing" : "처리중...",
+            "search" : "검색 : ",
+            "zeroRecords" : "해당 과목이 없습니다.",
+            "paginate" : {
+                "first" : "첫 페이지",
+                "last" : "마지막 페이지",
+                "next" : "다음",
+                "previous" : "이전"
+            },
+            "aria" : {
+                "sortAscending" : " :  오름차순 정렬",
+                "sortDescending" : " :  내림차순 정렬"
+            }
+        };
+        var lang_kor2 = {
+            "decimal" : "",
+            "emptyTable" : "수강신청한 과목이 없습니다.",
+            "info" : "_START_ - _END_ (총 _TOTAL_ 명)",
+            "infoEmpty" : "0명",
+            "infoFiltered" : "(전체 _MAX_ 명 중 검색결과)",
+            "infoPostFix" : "",
+            "thousands" : ",",
+            "lengthMenu" : "_MENU_ 개씩 보기",
+            "loadingRecords" : "로딩중...",
+            "processing" : "처리중...",
+            "search" : "검색 : ",
+            "zeroRecords" : "수강신청한 과목이 없습니다.",
+            "paginate" : {
+                "first" : "첫 페이지",
+                "last" : "마지막 페이지",
+                "next" : "다음",
+                "previous" : "이전"
+            },
+            "aria" : {
+                "sortAscending" : " :  오름차순 정렬",
+                "sortDescending" : " :  내림차순 정렬"
+            }
+        };
+
+
     </script>
     <script>
         $(document).ready(function () {
@@ -468,13 +528,13 @@
                             </table>
                         </div>
                         <div class="buttonArea card-body" align="center">
-<%--                            <button id="enrollBtn" class="btn btn-success" onclick="alert('수강신청이 정상적으로 완료되었습니다.');">--%>
-<%--                                수강신청--%>
-<%--                            </button>--%>
+                            <%--                            <button id="enrollBtn" class="btn btn-success" onclick="alert('수강신청이 정상적으로 완료되었습니다.');">--%>
+                            <%--                                수강신청--%>
+                            <%--                            </button>--%>
 
-<%--                            <button id="basketBtn" class="btn btn-secondary" onclick="alert('장바구니에 정상적으로 담겼습니다.')">--%>
-<%--                                장바구니--%>
-<%--                            </button>--%>
+                            <%--                            <button id="basketBtn" class="btn btn-secondary" onclick="alert('장바구니에 정상적으로 담겼습니다.')">--%>
+                            <%--                                장바구니--%>
+                            <%--                            </button>--%>
                         </div>
                     </div>
 

@@ -220,7 +220,7 @@ public class LectureController {
         if (noDuplicate) {
             int result = lectureService.insertRegisterClass(map);
             if (result > 0) {
-                return "ok";
+                return "강의신청이 완료되었습니다.";
             } else return "fail";
         }else {
             return "시간이 중복되는 강의가 있습니다.";
@@ -252,7 +252,7 @@ public class LectureController {
 
         int result = lectureService.deleteMyClass(map);
         if(result > 0){
-            return "ok";
+            return "해당과목 취소가 완료되었습니다.";
         }else return "false";
     }
 
