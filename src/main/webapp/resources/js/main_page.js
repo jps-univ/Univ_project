@@ -20,8 +20,8 @@ $(function(){
     });
 });
 
-function noticePop(elm){
-    window.open("/univ/noticeDetail.do","","width=900, height=880");
+function noticePop(pageNum){
+    window.open("/univ/noticeDetail.do?boardId=" + pageNum,"","width=900, height=880");
 
 }
 

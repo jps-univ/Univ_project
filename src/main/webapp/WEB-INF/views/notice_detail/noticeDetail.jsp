@@ -22,19 +22,19 @@
                   <hr style="border: solid; color: #E6EDF2; margin-bottom: 14px;">
                 </div>
                 <tr>
-                  <th style="font-size: 17pt;"><b>국민권익위 사학비리·부패신고센터 운영</b></th>
+                  <th style="font-size: 17pt;"><b>${board.bTitle}</b></th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>
-                      <span>작성자 | </span>
+                      <span>작성자 | ${board.stdName}</span>
                   </td>
                   <td>
-                      <span>조회수 | </span>
+                      <span>조회수 | ${board.bCount}</span>
                   </td>
                   <td>
-                      <span>날짜 | </span>
+                      <span>날짜 | ${board.bDate} </span>
                   </td>
                 </tr>
               </tbody>
@@ -45,7 +45,7 @@
           </div>
 
           <!-- 게시글 내용 영역 -->
-          <div class="contents"></div>
+          <div class="contents">${board.bContents}</div>
     </div>
 </body>
 </html>
