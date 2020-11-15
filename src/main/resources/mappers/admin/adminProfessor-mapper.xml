@@ -73,7 +73,7 @@ WHERE PROFESSOR_ID=#{profId}
  SELECT COLLEGE_CODE, COLLEGE_NAME
  FROM TB_COLLEGE
  </select>
- 
+  
  <select id="selectDeptCheck" parameterType="Department" resultMap="DepartmentResultSet">
   	
  	 SELECT DEPARTMENT_CODE, DEPARTMENT_NAME
