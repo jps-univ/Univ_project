@@ -173,7 +173,7 @@
 
                 var seq = selectedIndex.classSeq;
                 $.ajax({
-                    url: 'registerClass.do',
+                    url: 'basketClass.do',
                     type: 'post',
                     data: {
                         classSeq: seq
@@ -192,86 +192,9 @@
         }
     </script>
     <script>
-        // 나의 수강목록을 불러오는 함수. 위에 callMyTable을 통해서 불러옴
-        function callMyTable() {
-            myTable = $('#myRegisterTable').DataTable({
-                'ajax': {
-                    'url': 'getMyLectureList.do',
-                    'type': 'post',
-                    'dataType': 'json',
-                    'dataSrc': ''
-                }, 'columns': [
-                    {'data': 'classSeq'},
-                    {'data': 'className'},
-                    {'data': 'deptCode'},
-                    {'data': 'profName'},
-                    {'data': 'lectureTime'},
-                    {'data': 'room'},
-                    {'data': 'classType'},
-                    {'data': 'gradeSize'},
-                    {'data': 'classLevel'}
-                ],
-                'columnDefs': [
-                    {
-                        'targets': 0,
-                        'visible': false,
-                        'className': 'classSeq'
-                    },
-
-                    {
-                        'targets': [2, 4],
-                        'width': '15%'
-                    },
-                    {
-                        'targets': [3, 5, 6],
-                        'width': '10%'
-                    }, {
-                        'targets': [7, 8],
-                        'width': '8%'
-                    }
-                ],
-                'searching': false,
-                'paging': false,
-                'ordering': false,
-                'info': false,
-                'bDestroy': true,
-                'scrollX': false,
-                'language': lang_kor2
-            });
-            $('#myRegisterTable').off('click').on('click', 'tbody tr', function () {
-                var mySelectedIndex = myTable.row(this).data();
-                var seq = mySelectedIndex.classSeq;
-                var con = confirm("정말 해당과목을 취소하시겠습니까?");
-
-                // $('#myRegisterTable tbody tr ').css({
-                //     'color' : 'red'
-                // });
-                // var selectedIndex = table.row(this).data();
-                if (con == true) {
-                    console.log(mySelectedIndex);
-                    $.ajax({
-                        url: 'deleteMyClass.do',
-                        type: 'post',
-                        data: {
-                            classSeq: seq
-                        }, dataType: 'text'
-                        , success: function (data) {
-                            alert(data);
-                            myTable.ajax.reload();
-                        }, error: function (error) {
-                            console.log(error);
-                            alert("에러발생");
-                        }
-                    });
-                } else if (con == false) {
-                    return;
-                }
-            });
-        }
-    </script>
-    <script>
+        // 나의 장바구니목록을 불러오는 함수. 위에 callMyBasketTable을 통해서 불러옴
         function callMyBasketTable() {
-            myBasketTable = $('#myBasketTable').DataTable({
+            myTable = $('#myBasketTable').DataTable({
                 'ajax': {
                     'url': 'getMyBasketList.do',
                     'type': 'post',
@@ -313,29 +236,36 @@
                 'info': false,
                 'bDestroy': true,
                 'scrollX': false,
-                'language': lang_kor3
+                'language': lang_kor2
             });
             $('#myBasketTable').off('click').on('click', 'tbody tr', function () {
-                var selectedIndex = myBasketTable.row(this).data();
-                console.log(selectedIndex);
+                var mySelectedIndex = myTable.row(this).data();
+                var seq = mySelectedIndex.classSeq;
+                var con = confirm("정말 해당과목을 장바구니에서 취소하겠습니까?");
 
-                var seq = selectedIndex.classSeq;
-                $.ajax({
-                    url: 'registerClass.do',
-                    type: 'post',
-                    data: {
-                        classSeq: seq
-                    }
-                    , dataType: 'text'
-                    , success: function (data) {
-                        alert(data);
-                        myTable.ajax.reload();
-                    }, error: function (error) {
-                        console.log(error);
-                        alert("에러발생");
-                    }
-                });
-
+                // $('#myRegisterTable tbody tr ').css({
+                //     'color' : 'red'
+                // });
+                // var selectedIndex = table.row(this).data();
+                if (con == true) {
+                    console.log(mySelectedIndex);
+                    $.ajax({
+                        url: 'deleteMyBasket.do',
+                        type: 'post',
+                        data: {
+                            classSeq: seq
+                        }, dataType: 'text'
+                        , success: function (data) {
+                            alert(data);
+                            myTable.ajax.reload();
+                        }, error: function (error) {
+                            console.log(error);
+                            alert("에러발생");
+                        }
+                    });
+                } else if (con == false) {
+                    return;
+                }
             });
         }
     </script>
@@ -366,30 +296,6 @@
         };
         var lang_kor2 = {
             "decimal": "",
-            "emptyTable": "수강신청한 과목이 없습니다.",
-            "info": "_START_ - _END_ (총 _TOTAL_ 명)",
-            "infoEmpty": "0명",
-            "infoFiltered": "(전체 _MAX_ 명 중 검색결과)",
-            "infoPostFix": "",
-            "thousands": ",",
-            "lengthMenu": "_MENU_ 개씩 보기",
-            "loadingRecords": "로딩중...",
-            "processing": "처리중...",
-            "search": "검색 : ",
-            "zeroRecords": "수강신청한 과목이 없습니다.",
-            "paginate": {
-                "first": "첫 페이지",
-                "last": "마지막 페이지",
-                "next": "다음",
-                "previous": "이전"
-            },
-            "aria": {
-                "sortAscending": " :  오름차순 정렬",
-                "sortDescending": " :  내림차순 정렬"
-            }
-        };
-        var lang_kor3 = {
-            "decimal": "",
             "emptyTable": "장바구니에 담은 과목이 없습니다.",
             "info": "_START_ - _END_ (총 _TOTAL_ 명)",
             "infoEmpty": "0명",
@@ -417,8 +323,7 @@
     </script>
     <script>
         $(document).ready(function () {
-            callMyTable();
-            // callMyBasketTable();
+            callMyBasketTable();
             // DB에서 데이터 뽑아와서 테이블로 출력하는 datatables 라이브러리 사용
             $('#searchBtn').on('click', function () {
                 callRegisterTable();
@@ -447,7 +352,6 @@
                     "color": "darkgray"
                 });
                 $('#basketBtn').hide();
-                callMyBasketTable();
                 return false;
             });
             $('#enrollCard').click(function () {
@@ -486,7 +390,7 @@
                 <c:import url="../common/topbar.jsp"/>
                 <!-- End of Topbar -->
                 <div class="top">
-                    <h1>수강신청</h1>
+                    <h1>장바구니</h1>
                 </div>
 
                 <!-- Begin Page Content -->
@@ -499,13 +403,8 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3" style="height: 75px;">
                             <div>
-                                <div id="enrollCard" class="card left active"
-                                     style="float: left; height: 100%; width: 50%; text-align: center; padding-top: 10px; padding-bottom: 5px;">
-                                    수강신청
-                                </div>
-                                <div id="basketCard" class="card right"
-                                     style="float: right; width: 50%; height: 100%;text-align: center; padding-top: 10px; padding-bottom: 5px;">
-                                    장바구니
+                                <div>
+                                    장바구니 페이지입니다. 수강신청기간에 장바구니에 담은 과목들을 바로 수강신청 할 수 있습니다.
                                 </div>
                             </div>
                         </div>
@@ -597,30 +496,13 @@
                                     <!-- tbody 태그 필요 없다. -->
                                 </table>
                             </div>
-
-                            <div class="basket">
-                                <h4>내 장바구니목록</h4>
-                                <table id="myBasketTable" class="table table-striped table-bordered table-hover"
-                                       cellspacing="0" style="width: 97%;">
-                                    <thead>
-                                    <tr>
-                                        <th style="display:none">강의시퀀스</th>
-                                        <th>강의명</th>
-                                        <th style="width: 15%">학과명</th>
-                                        <th style="width: 10%">교수명</th>
-                                        <th style="width: 15%">강의시간</th>
-                                        <th style="width: 10%">강의실</th>
-                                        <th style="width: 10%">이수구분</th>
-                                        <th style="width: 8%">학점</th>
-                                        <th style="width: 8%">학년</th>
-                                    </tr>
-                                    </thead>
-                                </table>
+                            <div class="table-responsive basket">
                             </div>
                         </div>
+
                         <div class="card-body">
-                            <h4>내 수강목록</h4>
-                            <table id="myRegisterTable" class="table table-striped table-bordered table-hover"
+                            <h4>내 장바구니</h4>
+                            <table id="myBasketTable" class="table table-striped table-bordered table-hover"
                                    cellspacing="0" style="width: 97%;">
                                 <thead>
                                 <tr>
@@ -636,6 +518,15 @@
                                 </tr>
                                 </thead>
                             </table>
+                        </div>
+                        <div class="buttonArea card-body" align="center">
+                            <%--                            <button id="enrollBtn" class="btn btn-success" onclick="alert('수강신청이 정상적으로 완료되었습니다.');">--%>
+                            <%--                                수강신청--%>
+                            <%--                            </button>--%>
+
+                            <%--                            <button id="basketBtn" class="btn btn-secondary" onclick="alert('장바구니에 정상적으로 담겼습니다.')">--%>
+                            <%--                                장바구니--%>
+                            <%--                            </button>--%>
                         </div>
                     </div>
 
