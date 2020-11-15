@@ -1,6 +1,7 @@
 package com.kh.univ.board.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,5 +23,25 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Board findById(Board board) {
 		return bDao.findById(board);
+	}
+
+	@Override
+	public int getBoardListCnt(HashMap<String, Object> params) {
+		return bDao.findListCnt(params);
+	}
+
+	@Override
+	public ArrayList<Board> getBoardList(HashMap<String, Object> params) {
+		return bDao.findList(params);
+	}
+
+	@Override
+	public int registQna(Board board) {
+		return bDao.save(board);
+	}
+
+	@Override
+	public int registAnswer(Board board) {
+		return bDao.updateAnswer(board);
 	}
 }

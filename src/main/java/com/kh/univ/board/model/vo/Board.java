@@ -13,12 +13,15 @@ public class Board {
 	private int bCount;
 	private String bType;
 	private String stdName;
+	private int rowNum;
 	
 	public Board() {
 	}
 
+	
+
 	public Board(int boardId, int stdId, int fileId, String bTitle, Date bDate, String bContents, String bAnswer,
-			int bCount, String bType, String stdName) {
+			int bCount, String bType, String stdName, int rowNum) {
 		super();
 		this.boardId = boardId;
 		this.stdId = stdId;
@@ -30,7 +33,22 @@ public class Board {
 		this.bCount = bCount;
 		this.bType = bType;
 		this.stdName = stdName;
+		this.rowNum = rowNum;
 	}
+
+	
+
+	public int getRowNum() {
+		return rowNum;
+	}
+
+
+
+	public void setRowNum(int rowNum) {
+		this.rowNum = rowNum;
+	}
+
+
 
 	public int getBoardId() {
 		return boardId;
@@ -116,7 +134,7 @@ public class Board {
 	public String toString() {
 		return "Board [boardId=" + boardId + ", stdId=" + stdId + ", fileId=" + fileId + ", bTitle=" + bTitle
 				+ ", bDate=" + bDate + ", bContents=" + bContents + ", bAnswer=" + bAnswer + ", bCount=" + bCount
-				+ ", bType=" + bType + ", stdName=" + stdName + "]";
+				+ ", bType=" + bType + ", stdName=" + stdName + ", rowNum=" + rowNum + "]";
 	}
 
 	

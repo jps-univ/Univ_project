@@ -86,18 +86,26 @@ public class TestController {
     
 
     @RequestMapping("goMain.do")
-    public ModelAndView goMain() {
+    public String goMain() {
     	
-    	ArrayList<Board> nList = bService.nList();
-    	System.out.println("nList : " + nList);
-    	ModelAndView mv = new ModelAndView();
-    	mv.setViewName("common/main");
-    	mv.addObject("nList",nList);
-        return mv;
+//    	ArrayList<Board> nList = bService.nList();
+//    	System.out.println("nList : " + nList);
+//    	ModelAndView mv = new ModelAndView();
+//    	mv.setViewName("common/main");
+//    	mv.addObject("nList",nList);
+//        return mv;
+        return "common/main";
     }
 
     @RequestMapping("login.do")
-    public String  login() {
+    public String login() {
+    	
+//    	ArrayList<Board> nList = bService.nList();
+//    	System.out.println("nList : " + nList);
+//    	ModelAndView mv = new ModelAndView();
+//    	mv.setViewName("common/main");
+//    	mv.addObject("nList",nList);
+//        return mv;
         return "common/main";
     }
 
