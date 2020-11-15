@@ -192,8 +192,6 @@ public class ProfessorMyPageController
 
 		return mv;
 	}
-<<<<<<< HEAD
-=======
 	
 	// 상담 신청 승인
 	@ResponseBody
@@ -270,5 +268,5 @@ public class ProfessorMyPageController
 			return "fail";
 		}
 	}
->>>>>>> branch 'main' of https://github.com/jps-univ/Univ_project.git
+
 }
