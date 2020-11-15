@@ -26,6 +26,7 @@
         <!-- admin -->
         <typeAlias type="com.kh.univ.admin.model.vo.AdDepartment" alias="AdDepartment"/>
         <typeAlias type="com.kh.univ.admin.model.vo.AdCollege" alias="AdCollege"/>
+        <typeAlias type="com.kh.univ.admin.model.vo.AdProfessor" alias="AdProfessor"/>
         
         
         <!-- <typeAlias type="com.kh.spring.board.model.vo.Board" alias="Board"/>

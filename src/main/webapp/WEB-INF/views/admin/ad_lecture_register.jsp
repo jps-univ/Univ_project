@@ -20,15 +20,20 @@
 
 $(function(){
 	$("#College").change(function(){
+
+		
 		$.ajax({
 			url:"admin_Lecture_Department.do",
 			dataType:"json",
 			data:{
 				CollegeCode:$(this).val()
 			},success:function(data){
-				console.log(data);
+				var deptChoose = "<option>학과를 선택해주세요</option>";
+				$("#professorCode").empty();
+				$("#professorCode").append(deptChoose);
+				
 				$("#departmentCode").empty();
-				$("#departmentCode").append("<option>학과를 선택해주세요</option>")
+				$("#departmentCode").append(deptChoose)
 				for(var index =0;index<data.length;index++){
 					var department = $("<option value="+ data[index].departmentCode+ ">" + data[index].departmentName +"</option>");
 					$("#departmentCode").append(department);
@@ -40,6 +45,15 @@ $(function(){
 						data:{
 							departmentCode:$(this).val()
 						},success:function(prof){
+							console.log(prof);
+							var professorCode = $("#professorCode");
+							professorCode.empty();
+							professorCode.append("<option>교수를선택해주세요</option>");
+							for(var p=0; p<prof.length;p++){
+								var professorName = $("<option value="+prof[p].professorId+">"+prof[p].professorName+"</option>");
+								professorCode.append(professorName);
+								console.log(professorCode);
+							}
 							
 							
 							
@@ -137,7 +151,7 @@ $(function(){
                 <p>강의시간</p>
               </td>
               <td>
-                <input type="text">
+                <input type="text" placeholder="ex) 월1/월2/화3">
               </td>
               <td>
                 <p>강의실</p>

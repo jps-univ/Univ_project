@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.kh.univ.admin.model.dao.AdLectureDao;
 import com.kh.univ.admin.model.vo.AdCollege;
 import com.kh.univ.admin.model.vo.AdDepartment;
+import com.kh.univ.admin.model.vo.AdProfessor;
 import com.kh.univ.lecture.model.vo.Lecture;
 
 @Service("AdLectureService")
@@ -32,5 +33,11 @@ public class AdLectureServiceImpl implements AdLectureService{
 	public ArrayList<AdDepartment> adDepartmentSelect(String collegeCode) {
 		// TODO Auto-generated method stub
 		return adLectureDao.adDepartmentSelect(collegeCode);
+	}
+
+	@Override
+	public ArrayList<AdProfessor> adProfessorSelect(String departmentCode) {
+		// TODO Auto-generated method stub
+		return adLectureDao.adProfessorSelect(departmentCode);
 	}
 }
