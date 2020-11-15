@@ -35,6 +35,7 @@ public class Student {
 	private College college;		// 단과대
 	private Register register;
 	
+	
 	public Student() {}
 	
 	// 관리자

@@ -46,4 +46,11 @@ public class AdStudentDao {
 		return sqlSession.insert("adminStudentMapper.insertOne",std);
 	}
 
+	public ArrayList<Student> searchCollege(String collegeCode, String departmentCode, int searchSemester) {
+
+		
+		return null;
+//		return (ArrayList)sqlSession.selectMap("adminStudentMapper.searchCollege",collegeCode,departmentCode);
+	}
+
 }

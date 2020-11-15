@@ -179,16 +179,15 @@
             
             <h2>학생조회</h2>
             <hr>
-            <pre>대학 : <select name="" id="">
+            <pre>대학 : <select name="searchCollege" id="searchCollege">
             		<option>---</option>
               <c:forEach var="d" items="${adDept }">
 	               <option value="${d.collegeCode }">${d.collegeName }</option>
 	          </c:forEach>
-            </select> 학과 : <select name="" id="">
-                <option value="">------</option>
-                <option value="">----s--</option>
-            </select> 학년 : <select name="" id="">
-                <option value="">------</option>
+            </select> 학과 : <select name="searchDepartment" id="searchDepartment">
+                <option value="0">------</option>
+            </select> 학년 : <select name="searchSemester" id="searchSemester">
+                <option value="0">------</option>
             </select> <input type="button" value="검색"></pre>
                 
             
@@ -197,7 +196,7 @@
                 <table id="total_std" class=" table-hover" >
                     <thead>
                         <tr>
-                            <th>
+                            <th onclick="a();">
                                 <p>학번</p>
                             </th>
                             <th>
@@ -251,24 +250,6 @@
                     </tbody>
                 </table>
                 <script>
-/*                 $(function deptCheck(){
-                	$.ajax({
-                		url:"student_Modify_DeptCheck.do",
-            			dataType:"json",
-            			data:{
-            				collegeCode:$("#stdCollege").val()
-            			},success:function(data){
-            				console.log(data);
-            				$('#stdDepartment').empty();
-            				$('#stdDepartment').append("<option><학과를 선택해주세요></option>");
-	              				for(var index =0; index < data.length;index++){
-            					var department = $("<option id="+ data[index].departmentCode+ ">" + data[index].departmentName +"</option>");
-            					$('#stdDepartment').append(department);
-            				} 
-            			}	
-                	});
-                }); */
-                
                 
                 $(function(){
                     $("#total_std tbody td").click(function(){
@@ -352,7 +333,52 @@
                 	});
                 });
                 
+                $(function searchCollege(){
+                	$("#searchCollege").change(function(){
+                		$.ajax({
+                			url:"student_Modify_Search.do",
+                			dataType:"json",
+                			data:{
+                				searchCollege : $(this).val()
+                			},success:function(data){
+                				
+                			},error:function(){
+                				console.log("fail");
+                			}
+                		})
+                		
+                	});
+                	
+                });
                 
+/*                 $(function search(){
+                	$("#searchCollege").change(function(){
+                		
+                		$.ajax({
+                			url:"student_Modify_DeptCheck.do",
+                			dataType:"json",
+                			data:{
+                				collegeCode:$(this).val(),
+                				departmentCode:$("#searchDepartment").val(),
+                				searchSemester:$("#searchSemester").val()
+                				
+                			},success:function(data){
+                				
+                				$('#searchDepartment').empty();
+                				$('#searchDepartment').append("<option value="+"0"+"><학과를 선택해주세요></option>");
+                 				for(var index =0; index < data.length;index++){
+                					var department = $("<option value="+ data[index].departmentCode+ ">" + data[index].departmentName +"</option>");
+                					$('#searchDepartment').append(department);
+                				}
+                				
+                			},error:function(){
+                				console.log("fail");
+                			}
+                			
+                		})
+                	});
+                });  */
+
                 
                 </script>
             </div>

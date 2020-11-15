@@ -54,4 +54,12 @@ public class AdStudentServiceImpl implements AdStudentService{
 		return adStudentDao.insertOne(std);
 	}
 
+
+
+	@Override
+	public ArrayList<Student> collegeSearch(String collegeCode, String departmentCode, int searchSemester) {
+		// TODO Auto-generated method stub
+		return adStudentDao.searchCollege(collegeCode,departmentCode,searchSemester);
+	}
+
 }
