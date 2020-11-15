@@ -53,4 +53,34 @@ public class ProfessorMyPageServiceImpl implements ProfessorMyPageService
 	{
 		return mpDao.selectProfSchdule(map);
 	}
+
+	@Override
+	public ArrayList<Consulting> selectApply(Professor professor) 
+	{
+		return mpDao.selectApply(professor);
+	}
+
+	@Override
+	public int approveConsulting(Consulting consulting) 
+	{
+		return mpDao.approveConsulting(consulting);
+	}
+
+	@Override
+	public int rejectConsulting(Consulting consulting) 
+	{
+		return mpDao.rejectConsulting(consulting);
+	}
+
+	@Override
+	public int completeConsulting(Consulting consulting) 
+	{
+		return mpDao.completeConsulting(consulting);
+	}
+
+	@Override
+	public int changeConsulting(Consulting consulting) 
+	{
+		return mpDao.changeConsulting(consulting);
+	}
 }

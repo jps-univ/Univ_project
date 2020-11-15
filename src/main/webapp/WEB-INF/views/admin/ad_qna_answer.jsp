@@ -29,44 +29,62 @@
 	<!-- 사이드바 끝 -->
 
     <!-- 본문 -->
+    <form action="registAnswerQna.do" method="POST">
     <div class="col-sm-9 page">
         <div id="container">
             <div id="rest_table_area">
                 <table class="table table-bordered question-table">
+                <colgroup>
+                	<col style="width:8%;">
+                	<col style="width:*">
+                </colgroup>
                     <thead>
                         <tr>
                             <th>
                                 <p>제목</p>
                             </th>
+                            <td>
+                            	<p>${board.bTitle}</p>
+                            </td>
                         </tr>
                         <tr>
                             <th>
                                 <p>작성자</p>
                             </th>
+                            <td>
+                            	<p>${board.stdName}</p>
+                            </td>
                         </tr>
                         <tr>
-                            <th>
-                                <p style="min-height: 240px;">내용</p>
-                            </th>
+                            <td style="text-align:center; font-weight:bold;">
+                                <p>내용</p>
+                            </td>
+                            <td>
+                            	<div><p>${board.bContents}</p></div>
+                            </td>
                         </tr>
                         <tr>
-                            <th style="text-align: center;">
-                                <p style="float: left;">답변</p>
-                                <textarea id="answer"></textarea>
-                            </th>
+                            <td style="text-align:center; font-weight:bold;">
+                                <p>답변</p>
+                            </td>
+                            <td >
+                             <textarea id="answer" name="bAnswer">${board.bAnswer}</textarea>
+                            </td>
                         </tr>
                     </thead>
                 </table>
             </div>
 
             <div>
-                <button type="button" class="btn" id="writeBtn">취소</button>
-                <button type="button" class="btn" id="writeBtn" style="margin-right: 20px;">등록</button>
+                <button type="button" class="btn writeBtn" id="cancleBtn">취소</button>
+                <button type="submit" class="btn writeBtn" id="writeBtn" style="margin-right: 20px;">등록</button>
             </div>
             
         </div>
     </div>
-    
+    	<input type="hidden" value="${board.boardId}" name="boardId" />
+    </form>
+    	
 </div>
     <!-- 본문 끝 -->
 
@@ -75,6 +93,13 @@
   <span style="margin: 0 0 10px;">진포상대학</span>
 </footer>
 <!-- footer 끝 -->
-
+	<script>
+	$(function() { 
+		$("#cancleBtn").click(function() {
+			history.back(0);
+		});
+	
+	})
+	</script>
 </body>
 </html>

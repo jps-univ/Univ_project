@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.univ.consulting.model.vo.Consulting;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
@@ -60,10 +61,20 @@ public class ProfessorMyPageController
 		return "myPage/professorSchedule";
 	}
 	
+	// 상담 관리 페이지
 	@RequestMapping("professor_consulting.do")
-	public String ProfessorConsulting()
+	public ModelAndView ProfessorConsulting(ModelAndView mv, HttpSession session)
 	{
-		return "myPage/professorConsulting";
+		Professor professor = (Professor)session.getAttribute("loginUser");
+
+		ArrayList<Consulting> consult = mpService.selectApply(professor);
+		System.out.println(consult);
+
+		mv.addObject("consult", consult);
+
+		mv.setViewName("myPage/professorConsulting");
+
+		return mv;
 	}
 	
 	// 교수 개인정보 변경
@@ -181,4 +192,83 @@ public class ProfessorMyPageController
 
 		return mv;
 	}
+<<<<<<< HEAD
+=======
+	
+	// 상담 신청 승인
+	@ResponseBody
+	@RequestMapping("approveConsulting.do")
+	public String ApproveConsulting(HttpSession session, Consulting consulting)
+	{
+		System.out.println(consulting);
+				
+		int result = mpService.approveConsulting(consulting);
+		
+		if(result > 0) 
+		{
+			return "ok";
+		} 
+		else 
+		{
+			return "fail";
+		}
+	}
+	
+	// 상담 신청 거절
+	@ResponseBody
+	@RequestMapping("rejectConsulting.do")
+	public String RejectConsulting(HttpSession session, Consulting consulting)
+	{
+		System.out.println(consulting);
+				
+		int result = mpService.rejectConsulting(consulting);
+		
+		if(result > 0) 
+		{
+			return "ok";
+		} 
+		else 
+		{
+			return "fail";
+		}
+	}
+	
+	// 상담 완료
+	@ResponseBody
+	@RequestMapping("completeConsulting.do")
+	public String CompleteConsulting(HttpSession session, Consulting consulting)
+	{
+		System.out.println(consulting);
+		
+		int result = mpService.completeConsulting(consulting);
+		
+		if(result > 0) 
+		{
+			return "ok";
+		} 
+		else 
+		{
+			return "fail";
+		}
+	}
+	
+	// 상담 신청 변경
+	@ResponseBody
+	@RequestMapping("changeConsulting.do")
+	public String ChangeConsulting(HttpSession session, Consulting consulting)
+	{
+		System.out.println(consulting);
+		
+		int result = mpService.changeConsulting(consulting);
+		
+		if(result > 0) 
+		{
+			return "ok";
+		} 
+		else 
+		{
+			return "fail";
+		}
+	}
+>>>>>>> branch 'main' of https://github.com/jps-univ/Univ_project.git
 }

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="adminLectureMapper">
+
+<resultMap id="ProfessorResultSet" type="Professor">
+	<id property="profId" column="PROFESSOR_ID"/>
+	<result property="profPwd" column="PASSWORD"/>
+	<result property="profName" column="NAME"/>
+	<result property="profBirth" column="BIRTH_NO"/>
+	<result property="profCollege" column=""/>
+	<result property="profDepartment" column="DEPARTMENT_CODE"/>
+	<result property="profImage" column="IMAGE"/>
+	<result property="profSalary" column="SALARY"/>
+	<result property="profTel" column=""/>
+	<result property="profPhone" column="PHONE"/>
+	<result property="profEmail" column="EMAIL"/>
+	<result property="profAddress" column="ADDRESS"/>
+	<result property="profAddressDetail" column="ADDRESS_DETAIL"/>
+	<result property="profBank" column="BANK"/>
+	<result property="profAccount" column="ACCOUNT"/>
+	<result property="profAccountHolder" column="ACCOUNT_HOLDER"/>
+	<result property="profSmsAgree" column="SMS_AGREE"/>
+	<result property="profEmailAgree" column="EMAIL_AGREE"/>
+	<result property="lab" column="LAB"/>
+	<result property="status" column="STATUS"/>
+
+	<result property="collegeName" column="COLLEGE_NAME"/>
+	<result property="departmentName" column="DEPARTMENT_NAME"/>
+	<result property="collegeCode" column="COLLEGE_CODE"/>
+	
+</resultMap>
+
+    <!--    과목의 리절트맵-->
+    <resultMap id="lectureMap" type="Lecture">
+        <id property="classSeq" column="CLASS_SEQ"/>
+        <result property="classCode" column="CLASS_CODE"/>
+        <result property="deptCode" column="DEPARTMENT_CODE"/>
+        <result property="profId" column="PROFESSOR_ID"/>
+        <result property="className" column="CLASS_NAME"/>
+        <result property="room" column="ROOM"/>
+        <result property="gradeSize" column="GRADE_SIZE"/>
+        <result property="classSemester" column="CLASS_SEMESTER"/>
+        <result property="classYear" column="CLASS_YEAR"/>
+        <result property="classApprove" column="CLASS_APPROVE"/>
+        <result property="classLevel" column="CLASS_LEVEL"/>
+        <result property="classType" column="CLASS_TYPE"/>
+
+        <result property="lectureTime" column="TOTAL"/>
+        <result property="profName" column="PROFESSOR_NAME"/>
+    </resultMap>
+    <!--    강의시간 리절트맵-->
+    <resultMap id="lectureTimeMap" type="LectureTime">
+        <id property="ctSeq" column="CLASS_TIME_SEQ"/>
+        <result property="classSeq" column="CLASS_SEQ"/>
+        <result property="day" column="DAY"/>
+        <result property="hour" column="HOUR"/>
+        <result property="dayHour" column="DAY_HOUR"/>
+    </resultMap>
+<!--    강의등록리절트맵-->
+    <resultMap id="registerMap" type="LectureApplication">
+        <id property="registerSeq" column="REGISTER_SEQ"/>
+        <result property="stdId" column="STUDENT_ID"/>
+        <result property="classSeq" column="CLASS_SEQ"/>
+    </resultMap>
+    
+    <!-- select ResultMap -->
+    <resultMap type="AdDepartment" id="adDepartmentResultSet">
+    	<id property="departmentCode" column="DEPARTMENT_CODE"/>
+    	<result property="departmentName" column="DEPARTMENT_NAME"/>
+    	<result property="collegeCode" column="COLLEGE_CODE"/>
+    </resultMap>
+    <resultMap type="AdCollege" id="adCollegeResultSet">
+    	<id property="collegeCode" column="COLLEGE_CODE"/>
+    	<result property="collegeName" column="COLLEGE_NAME"/>
+    	
+    </resultMap>
+    
+    
+    <!-- 단과대학 조회하기 (select -> option) -->
+    <select id="adLectureCollege" parameterType="AdCollege" resultMap="adCollegeResultSet">
+    SELECT COLLEGE_CODE, COLLEGE_NAME
+	FROM TB_COLLEGE
+    </select>
+    <select id="adLectureDepartment" parameterType="AdDepartment" resultMap="adDepartmentResultSet">
+    SELECT DEPARTMENT_CODE, DEPARTMENT_NAME
+	FROM TB_DEPARTMENT
+	WHERE COLLEGE_CODE=#{CollegeCode}
+    </select>
+    <insert id="adminInsertLecture" parameterType="Lecture">
+    
+    
+    </insert>
+
+</mapper>

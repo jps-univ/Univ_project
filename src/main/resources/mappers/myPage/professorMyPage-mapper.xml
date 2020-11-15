@@ -75,6 +75,20 @@
         <result property="hour" column="HOUR"/>
     </resultMap>
     
+    <!-- 상담 신청 ResultMap -->
+    <resultMap id="ConsultingResultSet" type="Consulting">
+    	<id property="consultingNo" column="CONSULTING_NO"/>
+    	<result property="stdId" column="STUDENT_ID"/>
+    	<result property="profId" column="PROFESSOR_ID"/>
+    	<result property="consultingStatus" column="CONSULTING_STATUS"/>
+    	<result property="applyDate" column="APPLY_DATE"/>
+    	<result property="progressDate" column="PROGRESS_DATE"/>
+    	<result property="completeDate" column="COMPLETE_DATE"/>
+    	<result property="cancleDate" column="CANCLE_DATE"/>
+    	<result property="stdName" column="STUDENT_NAME"/>
+    	<result property="profName" column="NAME"/>
+    </resultMap>
+    
     <!-- 수업시간 조회 ResultMap -->
     <resultMap id="ProfScheduleResultSet" type="Lecture">
         <id property="classSeq" column="CLASS_SEQ"/>
@@ -93,8 +107,23 @@
         <collection property="time" resultMap="LectureTimeResultSet"/>
  		<collection property="professor" resultMap="ProfessorResultSet"/>
     </resultMap>
+    
+    <!-- 상담 신청 ResultMap -->
+    <resultMap id="SelectConsultingResultSet" type="Consulting">
+    	<id property="consultingNo" column="CONSULTING_NO"/>
+    	<result property="stdId" column="STUDENT_ID"/>
+    	<result property="profId" column="PROFESSOR_ID"/>
+    	<result property="consultingStatus" column="CONSULTING_STATUS"/>
+    	<result property="applyDate" column="APPLY_DATE"/>
+    	<result property="progressDate" column="PROGRESS_DATE"/>
+    	<result property="completeDate" column="COMPLETE_DATE"/>
+    	<result property="cancleDate" column="CANCLE_DATE"/>
+    	<result property="stdName" column="STUDENT_NAME"/>
+		<result property="departmentName" column="DEPARTMENT_NAME"/>
+		<result property="collegeName" column="COLLEGE_NAME"/>
+    </resultMap>
    
-   	<!-- 학생 학부, 학과 조회 -->
+   	<!-- 교수 학부, 학과 조회 -->
  	<select id="selectProfDepartment" parameterType="Professor" resultMap="ProfDepartmentResultSet">
  		SELECT * FROM TB_PROFESSOR
 		LEFT OUTER JOIN TB_DEPARTMENT ON TB_PROFESSOR.DEPARTMENT_CODE = TB_DEPARTMENT.DEPARTMENT_CODE
@@ -130,7 +159,7 @@
  		WHERE PROFESSOR_ID = #{profId}
  	</update>
  	
- 	<!-- 학생 시간표 조회 -->
+ 	<!-- 교수 시간표 조회 -->
  	<select id="selectProfSchdule" parameterType="Lecture" resultMap="ProfScheduleResultSet">
  		SELECT CLASS_NAME, CLASS_YEAR, CLASS_SEMESTER, ROOM, NAME, DAY, HOUR
 		FROM TB_PROFESSOR P
@@ -138,4 +167,40 @@
 		LEFT OUTER JOIN TB_CLASS_TIME T ON C.CLASS_SEQ = T.CLASS_SEQ
 		WHERE P.PROFESSOR_ID = #{profId} AND C.CLASS_YEAR = #{classYear}  AND C.CLASS_SEMESTER = #{classSemester}
  	</select>
+ 	
+ 	<!-- 교수 상담 조회 -->
+ 	<select id="selectConsulting" parameterType="Consulting" resultMap="SelectConsultingResultSet">
+ 		SELECT  C.CONSULTING_NO, C.STUDENT_ID, C.PROFESSOR_ID, C.CONSULTING_STATUS, C.APPLY_DATE, C.PROGRESS_DATE, C.COMPLETE_DATE, C.CANCLE_DATE,
+		S.STUDENT_NAME, S.STUDENT_ID, D.DEPARTMENT_NAME, COL.COLLEGE_NAME
+		FROM TB_CONSULTING C
+		LEFT OUTER JOIN TB_STUDENT S ON C.STUDENT_ID = S.STUDENT_ID
+		LEFT OUTER JOIN TB_PROFESSOR P ON C.PROFESSOR_ID = P.PROFESSOR_ID
+		LEFT OUTER JOIN TB_DEPARTMENT D ON S.DEPARTMENT_CODE = D.DEPARTMENT_CODE
+		LEFT OUTER JOIN TB_COLLEGE COL ON D.COLLEGE_CODE = COL.COLLEGE_CODE
+		WHERE C.PROFESSOR_ID = #{profId}
+ 	</select>
+ 	
+ 	<!-- 상담 승인 -->
+ 	<update id="approveConsulting">
+ 		UPDATE TB_CONSULTING SET CONSULTING_STATUS = '진행', PROGRESS_DATE = #{progressDate}
+		WHERE CONSULTING_NO = #{consultingNo}
+ 	</update>
+ 	
+ 	<!-- 상담 거절 -->
+ 	<update id="rejectConsulting">
+ 		UPDATE TB_CONSULTING SET CONSULTING_STATUS = '취소', CANCLE_DATE = SYSDATE
+		WHERE CONSULTING_NO = #{consultingNo}
+ 	</update>
+ 	
+ 	<!-- 상담 완료 -->
+ 	<update id="completeConsulting">
+ 		UPDATE TB_CONSULTING SET CONSULTING_STATUS = '완료', COMPLETE_DATE = #{completeDate}
+		WHERE CONSULTING_NO = #{consultingNo}
+ 	</update>
+ 	
+ 	<!-- 상담 변경 -->
+ 	<update id="changeConsulting">
+ 		UPDATE TB_CONSULTING SET PROGRESS_DATE = #{progressDate}
+		WHERE CONSULTING_NO = #{consultingNo}
+ 	</update>
  </mapper>

@@ -75,8 +75,12 @@
                         <!-- 퀵링크 영역 끝 -->
 
                         <!-- 시간표 영역 시작 -->
-                        <div class="timetable">
-                            <p style="text-align: center; font-size: 30pt;">시간표 들어갈 영역</p>
+                        <div class="timetable" id="timetable" style="width:60%;">
+                            <!-- <p style="text-align: center; font-size: 30pt;">시간표 들어갈 영역</p> -->
+                            <jsp:include page="/studentSchedule.do">
+                            	<jsp:param name="classSemester" value="1"></jsp:param>
+                            	<jsp:param name="classYear" value="2021"></jsp:param>
+                            </jsp:include>
                         </div>
                         <!-- 시간표 영역 끝 -->
                     </div>
@@ -91,36 +95,15 @@
                                 </button>
                             </div>
                             <ul class="nav nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="#qaa" id="qnaBtn">Q&A</a></li>
+                                <li class="active"><a data-toggle="tab" href="#qaa" id="qnaBtn" data-mode="Q">Q&A</a></li>
                                 <li><a data-toggle="tab" href="#faq" id="faqBtn">FAQ</a></li>
-                                <li><a data-toggle="tab" href="#notice" id="noticeBtn">진포공지</a></li>
+                                <li><a data-toggle="tab" href="#notice" id="noticeBtn" data-mode="N">진포공지</a></li>
                             </ul>
                         </div>
                         <div class="tab-content">
                             <!-- Q&A -->
-                            <div id="qaa" class="tab-pane fade in active">
-                                <ul>
-                                    <li style="padding-top:20px;">
-                                        <a>DIY 자기설계 융합전공 관련 질문입니다.</a>
-                                        <span class="date">10.02</span>
-                                    </li>
-                                    <li>
-                                        <a>졸업요건 문의</a>
-                                        <span class="date">09.27</span>
-                                    </li>
-                                    <li>
-                                        <a>재적증명서 관련 질문드립니다.</a>
-                                        <span class="date">09.20</span>
-                                    </li>
-                                    <li>
-                                        <a>재적증명서 관련 질문드립니다.</a>
-                                        <span class="date">09.20</span>
-                                    </li>
-                                    <li>
-                                        <a>재적증명서 관련 질문드립니다.</a>
-                                        <span class="date">09.20</span>
-                                    </li>
-                                </ul>
+                            <div id="qaa" class="tab-pane fade in active" style="margin-top:20px;">
+                                <ul></ul>
                                 <!-- 작성하기 버튼 -->
 
                                 <!-- Modal -->
@@ -135,14 +118,14 @@
                                                 <h4 class="modal-title">질문 등록</h4>
                                             </div>
                                             <div class="modal-body">
-                                                <span>제목 : </span>
-                                                <input type="text" style="width: 100%;">
+                                                <span >제목 : </span>
+                                                <input type="text" style="width: 100%;" id="qnaTitle">
                                                 <hr>
-                                                <p>내용 : </p>
-                                                <textarea style="width: 100%;" rows="20"></textarea>
+                                                <p >내용 : </p>
+                                                <textarea style="width: 100%;" rows="20" id="qnaContent"></textarea>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal" id="qnaRegistBtn">
                                                     등록하기
                                                 </button>
                                             </div>
@@ -426,28 +409,14 @@
                             </div>
 
                             <!-- 진포공지 -->
-                            <div id="notice" class="tab-pane fade">
+                            <div id="notice" class="tab-pane fade" style="margin-top:20px;">
                                 <ul>
-                                    <li style="padding-top:20px;">
-                                        <a href="#" onclick="noticePop(this);">국민권익위 사학비리·부패신고센터 운영</a>
-                                        <span class="date">09.22</span>
+                                <%-- <c:forEach var="b" items="${nList}" varStatus="status">
+                                	<li>
+                                        <a href="#" onclick="noticePop(${b.boardId});">${ b.bTitle }</a>
+                                        <span class="date">${ b.bDate }</span>
                                     </li>
-                                    <li>
-                                        <a>2020학년도 KH문화상 공모 안내</a>
-                                        <span class="date">08.18</span>
-                                    </li>
-                                    <li>
-                                        <a>2020년 제 1회 전국 대학생 미디어 콘텐츠 공모전</a>
-                                        <span class="date">07.28</span>
-                                    </li>
-                                    <li>
-                                        <a>2020년 제 1회 전국 대학생 미디어 콘텐츠 공모전</a>
-                                        <span class="date">07.28</span>
-                                    </li>
-                                    <li>
-                                        <a>2020년 제 1회 전국 대학생 미디어 콘텐츠 공모전</a>
-                                        <span class="date">07.28</span>
-                                    </li>
+                                </c:forEach> --%>
                                 </ul>
                             </div>
                         </div>
@@ -485,7 +454,7 @@
 
         <!-- Logout Modal-->
         <c:import url="../common/logoutModal.jsp"/>
-
+		<input type="hidden" id="searhKind" />
     </div>
     <!-- Bootstrap core JavaScript-->
     <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>

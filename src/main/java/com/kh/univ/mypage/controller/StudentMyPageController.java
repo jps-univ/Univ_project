@@ -78,11 +78,11 @@ public class StudentMyPageController
 	 * return "myPage/studentConsulting"; }
 	 */
 
-	// 상담 관리 페이지
+	// 상담 신청 페이지
 	@RequestMapping("student_consulting.do")
 	public ModelAndView StudentConsulting(ModelAndView mv, Professor professor, HttpSession session)
 	{
-		Student student = (Student) session.getAttribute("loginUser");
+		Student student = (Student)session.getAttribute("loginUser");
 
 		ArrayList<Consulting> consult = msService.selectApply(student);
 

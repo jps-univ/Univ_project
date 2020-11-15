@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardMapper">
+	<resultMap id="boardResultSet" type="Board">
+		<id property="boardId" column="BOARD_ID"/>
+ 		<result property="stdId" column="STUDENT_ID"/>
+ 		<result property="fileId" column="FILE_ID"/>
+ 		<result property="bTitle" column="BTITLE"/>
+ 		<result property="bDate" column="BDATE"/>
+ 		<result property="bContents" column="BCONTENTS"/>
+ 		<result property="bAnswer" column="BANSWER"/>
+ 		<result property="bCount" column="BCOUNT"/>
+ 		<result property="bType" column="BTYPE"/>
+ 		<result property="stdName" column="STUDENT_NAME"/>
+ 		<result property="rowNum" column="ROWNUM"/>
+	</resultMap>
+	
+	<select id="selectNList"  parameterType="Board" resultMap="boardResultSet">
+		SELECT
+			BOARD_ID ,
+			BTITLE ,
+			BDATE
+		FROM TB_BOARD
+		WHERE BTYPE = 'N'
+	</select>
+	
+	<select id="findById" parameterType="Board" resultMap="boardResultSet">
+		SELECT B.BOARD_ID
+			 , B.BTITLE
+			 , B.BDATE
+			 , B.BCONTENTS
+			 , B.BCOUNT
+			 , B.BTYPE
+			 , S.STUDENT_NAME
+			 , B.BANSWER
+	    FROM TB_BOARD B
+	    JOIN TB_STUDENT S ON B.STUDENT_ID = S.STUDENT_ID 
+	    WHERE B.BOARD_ID = #{boardId}
+	</select>
+	
+	<select id="findListCnt" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+		SELECT COUNT(*)
+		FROM TB_BOARD
+		WHERE BTYPE = #{mode}
+		<if test='mode.toString().equals("Q") and isAdmin == null'>
+			AND STUDENT_ID = #{stdId}
+		</if>
+	</select>
+	
+	<select id="findList" resultMap="boardResultSet" parameterType="java.util.HashMap">
+		SELECT A.*
+			 , ROWNUM 
+		FROM (
+			SELECT B.BOARD_ID
+				 , B.BTITLE
+				 , B.BDATE
+				 , B.BCONTENTS
+				 , B.BCOUNT
+				 , B.BTYPE
+				 , S.STUDENT_NAME
+				 , B.STUDENT_ID
+			FROM TB_BOARD B
+			JOIN TB_STUDENT S ON B.STUDENT_ID = S.STUDENT_ID 
+			WHERE BTYPE = #{mode}
+			<if test='mode.toString().equals("Q") and isAdmin == null'>
+				AND B.STUDENT_ID = #{stdId}
+			</if>
+			ORDER BY BDATE DESC
+		) A
+	</select>
+	
+	<insert id="save" parameterType="Board">
+		INSERT INTO TB_BOARD(BOARD_ID,STUDENT_ID,FILE_ID,BTITLE,BDATE,BCONTENTS,BANSWER,BCOUNT,BTYPE)
+		VALUES (BOARD_SEQ.NEXTVAL, #{stdId}, 0, #{bTitle}, SYSDATE, #{bContents},'', 0, #{bType})
+	</insert>
+	
+	<update id="updateAnswer">
+		UPDATE TB_BOARD 
+			SET BANSWER = #{bAnswer}
+		WHERE BOARD_ID = #{boardId}
+	</update>
+</mapper>

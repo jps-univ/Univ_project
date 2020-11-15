@@ -10,7 +10,7 @@ public class Salary {
 	private String profAccount;                // 지급계좌
 	private String salaryTotal;                // 실지급액(급여총액)
 	private String profName;                   // 이름
-	private String profCollege;                // 소속(단과대학)
+	private String departmentName;                // 소속(단과대학)
 	private String profBirth;                  // 생년월일
 	private String patment_date;               // 지급일
 	private String basic_Salary;               // 기본급여
@@ -41,7 +41,7 @@ public class Salary {
 	}
 
 	public Salary(int salaryNo, int profId, String schoolYear, String schoolMonth, String profBank, String profAccount,
-			String salaryTotal, String profName, String profCollege, String profBirth, String patment_date,
+			String salaryTotal, String profName, String departmentName, String profBirth, String patment_date,
 			String basic_Salary, String overtime, String bonus, String incentive, String meals, String education,
 			String income_Tax, String national_Pension, String health_Insurance, String care_Insurance,
 			String employment_Insuracne, String other_Deducation, String payment_Confirmation_Date) {
@@ -54,7 +54,7 @@ public class Salary {
 		this.profAccount = profAccount;
 		this.salaryTotal = salaryTotal;
 		this.profName = profName;
-		this.profCollege = profCollege;
+		this.departmentName = departmentName;
 		this.profBirth = profBirth;
 		this.patment_date = patment_date;
 		this.basic_Salary = basic_Salary;
@@ -136,12 +136,12 @@ public class Salary {
 		this.profName = profName;
 	}
 
-	public String getProfCollege() {
-		return profCollege;
+	public String getDepartmentName() {
+		return departmentName;
 	}
 
-	public void setProfCollege(String profCollege) {
-		this.profCollege = profCollege;
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
 	}
 
 	public String getProfBirth() {
@@ -268,15 +268,14 @@ public class Salary {
 	public String toString() {
 		return "Salary [salaryNo=" + salaryNo + ", profId=" + profId + ", schoolYear=" + schoolYear + ", schoolMonth="
 				+ schoolMonth + ", profBank=" + profBank + ", profAccount=" + profAccount + ", salaryTotal="
-				+ salaryTotal + ", profName=" + profName + ", profCollege=" + profCollege + ", profBirth=" + profBirth
-				+ ", patment_date=" + patment_date + ", basic_Salary=" + basic_Salary + ", overtime=" + overtime
-				+ ", bonus=" + bonus + ", incentive=" + incentive + ", meals=" + meals + ", education=" + education
-				+ ", income_Tax=" + income_Tax + ", national_Pension=" + national_Pension + ", health_Insurance="
-				+ health_Insurance + ", care_Insurance=" + care_Insurance + ", employment_Insuracne="
-				+ employment_Insuracne + ", other_Deducation=" + other_Deducation + ", payment_Confirmation_Date="
-				+ payment_Confirmation_Date + "]";
+				+ salaryTotal + ", profName=" + profName + ", departmentName=" + departmentName + ", profBirth="
+				+ profBirth + ", patment_date=" + patment_date + ", basic_Salary=" + basic_Salary + ", overtime="
+				+ overtime + ", bonus=" + bonus + ", incentive=" + incentive + ", meals=" + meals + ", education="
+				+ education + ", income_Tax=" + income_Tax + ", national_Pension=" + national_Pension
+				+ ", health_Insurance=" + health_Insurance + ", care_Insurance=" + care_Insurance
+				+ ", employment_Insuracne=" + employment_Insuracne + ", other_Deducation=" + other_Deducation
+				+ ", payment_Confirmation_Date=" + payment_Confirmation_Date + "]";
 	}
 
 	
-
 }

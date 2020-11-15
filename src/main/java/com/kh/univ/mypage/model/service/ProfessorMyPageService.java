@@ -51,4 +51,39 @@ public interface ProfessorMyPageService
 	 * @return
 	 */
 	ArrayList<Lecture> selectProfSchdule(Map map);
+
+	/**
+	 * 교수 상담 신청 조회
+	 * @param professor
+	 * @return
+	 */
+	ArrayList<Consulting> selectApply(Professor professor);
+
+	/**
+	 * 교수 상담 승인
+	 * @param consulting
+	 * @return
+	 */
+	int approveConsulting(Consulting consulting);
+
+	/**
+	 * 교수 상담 거절
+	 * @param consulting
+	 * @return
+	 */
+	int rejectConsulting(Consulting consulting);
+
+	/**
+	 * 교수 상담 완료
+	 * @param consulting
+	 * @return
+	 */
+	int completeConsulting(Consulting consulting);
+
+	/**
+	 * 교수 상담 변경
+	 * @param consulting
+	 * @return
+	 */
+	int changeConsulting(Consulting consulting);
 }

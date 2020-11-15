@@ -32,12 +32,12 @@
 
     #answer {
         border: 1px solid #555;
-        width: 90%;
+        width: 99%;
         height: 110px;
         resize: none;
     }
 
-    #writeBtn {
+    .writeBtn {
         float: right;
     }
 
@@ -46,4 +46,8 @@
         background-color: #555;
         color: white;
         padding: 15px;
+    }
+    
+    .question-table th {
+    	text-align:center;
     }

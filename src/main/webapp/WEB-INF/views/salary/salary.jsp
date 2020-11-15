@@ -107,7 +107,7 @@
                   <input type="hidden" class="profId" value="${ id }"/> 
                   <c:forEach var="s" items="${ list }">
                   <tr class="line">
-                      <td><input type="radio" name="checkRadio" class="checkRadio" value="${ s.salaryNo }"></td>
+                      <td><input type="radio" name="checkRadio" id="checkRadio" class="checkRadio" value="${ s.salaryNo }"></td>
                       <td>${ s.schoolYear }</td>
                       <td>${ s.schoolMonth }</td>
                       <td>${ s.profBank }</td>
@@ -217,6 +217,28 @@
       
       <script src="<%=request.getContextPath()%>/resources/js/payment&salary.js"></script>
 				<!-- 여기까지 내용  -->
+				
+	  <script>
+               $(function(){
+            	   deptCheck(){
+               }
+                	$.ajax({
+                		url:"student_Modify_DeptCheck.do",
+            			dataType:"json",
+            			data:{
+            				collegeCode:$("#stdCollege").val()
+            			},success:function(data){
+            				console.log(data);
+            				$('#stdDepartment').empty();
+            				$('#stdDepartment').append("<option><학과를 선택해주세요></option>");
+	              				for(var index =0; index < data.length;index++){
+            					var department = $("<option id="+ data[index].departmentCode+ ">" + data[index].departmentName +"</option>");
+            					$('#stdDepartment').append(department);
+            				} 
+            			}	
+                	});
+                }); 
+      </script>
 
 			<!-- Footer -->
 			<c:import url="../common/footer.jsp" />

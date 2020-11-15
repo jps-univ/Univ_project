@@ -68,7 +68,7 @@ $(function deptSelect(){
 				<hr>
 			</div>
 			<div id="std_info_table_area">
-				<form method="post" action="studnet_One_Register.do">
+				<form method="post" action="studnet_One_Register.do" id="stdForm">
 					<table id="std_info_table">
 						<tr>
 							<td rowspan="5" id="img_area"><img src="#" alt="preview"
