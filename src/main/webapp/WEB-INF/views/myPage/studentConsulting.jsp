@@ -159,6 +159,7 @@
 		                <table class="table table-bordered" id="test" width="100%" cellspacing="0">
 		                <tbody>                
 		                  <tr align="center">
+		                  	<td>번호</td>
 		                    <th id="th_college">학부</th>
 		                    <th id="th_department">학과</th>
 		                    <th id="th_profName">성명</th>
@@ -414,13 +415,18 @@
 	            		$("#test").append(hidden_profName);
 	            		*/
 	            		
-	            		var result = $('<tr align="center" class="test2"><td id="td_college">' + data[i].collegeName + '</td>' +
-			            				'<td id="td_department">' + data[i].departmentName + '</td>' + 
-			            				'<td id="td_profName">' + data[i].profName + '</td>' + 
-			            				'<td id="td_profId">' + data[i].lab + '</td>' + 
-			            				'<td> <input type="button" class="btn btn-success" value="상담신청" id="applyConsulting" onclick="applyConsulting(event)">' + 
-			            				'<input type="hidden" id="hidden_profName" value="' + data[i].profId + '"> </td></tr>'
-	            					  );
+ 	            		if(data[i].profName != "관리자")
+            			{
+ 	            			var iNum = i;
+ 	            			var num = ++iNum;
+		            		var result = $('<tr align="center" class="test2"><td>'+ num +'</td><td id="td_college">' + data[i].collegeName + '</td>' +
+				            				'<td id="td_department">' + data[i].departmentName + '</td>' + 
+				            				'<td id="td_profName">' + data[i].profName + '</td>' + 
+				            				'<td id="td_profId">' + data[i].lab + '</td>' + 
+				            				'<td> <input type="button" class="btn btn-success" value="상담신청" id="applyConsulting" onclick="applyConsulting(event)">' + 
+				            				'<input type="hidden" id="hidden_profName" value="' + data[i].profId + '"> </td></tr>'
+		            					  );
+            			}
 	            		
 	            		$("#test").append(result);
 	            	}

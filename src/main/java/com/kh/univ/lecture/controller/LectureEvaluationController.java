@@ -1,17 +1,31 @@
 package com.kh.univ.lecture.controller;
 
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.lecture.model.service.LectureEvaluationService;
+import com.kh.univ.lecture.model.vo.Lecture;
+import com.kh.univ.member.model.vo.Student;
 
+@Controller
 public class LectureEvaluationController 
 {
 	@Autowired
-	private LectureEvaluationService lectureEvaluationService;
+	private LectureEvaluationService leService;
 	
 	  /**
-     * 1. 강의 평가 하기( 학생)
+     * 1. 강의 평가 하기(학생)
      *
      * @return
      */
@@ -27,9 +41,44 @@ public class LectureEvaluationController
      * @return
      */
     @RequestMapping("lecture_evaluation_select.do")
-    public String lectureEvaluationSelect() 
+    public ModelAndView lectureEvaluationSelect(ModelAndView mv, Lecture lecture, HttpSession session) 
     {
-        return "lectureManagement/lecture_evaluation_select";
+		Student student = (Student)session.getAttribute("loginUser");
+
+		/*
+		Calendar cal = new GregorianCalendar();
+		Date d = new Date(cal.getTimeInMillis());
+		*/
+		
+		int stdId = student.getStdId();
+		int classYear = 2021;
+		int classSemester = 1;
+		
+		/*
+		if(m < 7)
+		{
+			classSemester = 1;
+		}
+		else 
+		{
+			classSemester = 2;
+		}
+		*/
+
+		Map map = new HashMap();
+		
+		map.put("stdId", stdId);
+		map.put("classYear", classYear);
+		map.put("classSemester", classSemester);
+
+		ArrayList<Lecture> schedule = leService.selectStdSchdule(map);
+		
+		System.out.println(schedule);
+		mv.addObject("schedule", schedule);
+    	
+		mv.setViewName("lectureManagement/lecture_evaluation_select");
+
+		return mv;
     }
 
     /**
@@ -59,4 +108,5 @@ public class LectureEvaluationController
     // 위의 학생중 한명을 누르면 강의평가한 내용을 볼수 있도록 한다
     // 처리중 고민해야할건 교수입장에서 학생들의 강의평가를 조회할때 그 학생의 개인정보를 같이 띄워준다면 그 학생이 누군지 알아볼수 있게 할것인가?
    // 아니면 학생이름과 학번은 "xxxx" 이런 식으로 띄워서 누군지 모르게 할것인가.)
+	
 }

@@ -36,7 +36,8 @@
         <mapper resource="mappers/myPage/professorMyPage-mapper.xml"/>
         <mapper resource="mappers/StudentManagement/studentManagement-mapper.xml"/>
         <mapper resource="mappers/payment/payment-mapper.xml"/>
-        <mapper resource="mappers/lecture/lecture-mapper.xml"/>        
+        <mapper resource="mappers/lecture/lecture-mapper.xml"/>
+        <mapper resource="mappers/lecture/lectureEvaluation-mapper.xml"/>
         <mapper resource="mappers/Salary/salary-mapper.xml"/>
         <mapper resource="mappers/classBoard/classBoard-mapper.xml"/>
         <mapper resource="mappers/board/board-mapper.xml"/> 
