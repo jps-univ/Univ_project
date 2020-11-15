@@ -105,7 +105,6 @@
 
     <script>
         function callRegisterTable() {
-
             table = $('#registerTable').DataTable({
                 //컨트롤러에서 보내줄 때 해당 함수의 반환형은 String이어야 하고 리스트를 뽑아온다고 하면 'dataSrc' : '' 로 해줘야함.
                 'ajax': {
@@ -159,7 +158,7 @@
                 // 'bDestroy': true,
                 'destroy': true,
                 'scrollX': false,
-                'language' : lang_kor
+                'language': lang_kor
             });
 
 
@@ -183,15 +182,15 @@
                     , success: function (data) {
                         if (data == "ok") {
                             alert("값이 잘 등록되었습니다.");
-                            callMyTable();
                         } else alert(data);
+                        myTable.ajax.reload();
                     }, error: function (error) {
                         console.log(error);
                         alert("에러발생");
                     }
                 });
+
             });
-            // table.clear().draw();
         }
     </script>
     <script>
@@ -239,7 +238,7 @@
                 'info': false,
                 'bDestroy': true,
                 'scrollX': false,
-                'language' : lang_kor2
+                'language': lang_kor2
             });
             $('#myRegisterTable').off('click').on('click', 'tbody tr', function () {
                 // $('#myRegisterTable tbody tr ').css({
@@ -275,51 +274,51 @@
     </script>
     <script>
         var lang_kor = {
-            "decimal" : "",
-            "emptyTable" : "해당 과목이 없습니다.",
-            "info" : "_START_ - _END_ (총 _TOTAL_ 개)",
-            "infoEmpty" : "",
-            "infoFiltered" : "(전체 _MAX_ 명 중 검색결과)",
-            "infoPostFix" : "",
-            "thousands" : ",",
-            "lengthMenu" : "_MENU_ 개씩 보기",
-            "loadingRecords" : "로딩중...",
-            "processing" : "처리중...",
-            "search" : "검색 : ",
-            "zeroRecords" : "해당 과목이 없습니다.",
-            "paginate" : {
-                "first" : "첫 페이지",
-                "last" : "마지막 페이지",
-                "next" : "다음",
-                "previous" : "이전"
+            "decimal": "",
+            "emptyTable": "해당 과목이 없습니다.",
+            "info": "_START_ - _END_ (총 _TOTAL_ 개)",
+            "infoEmpty": "",
+            "infoFiltered": "(전체 _MAX_ 명 중 검색결과)",
+            "infoPostFix": "",
+            "thousands": ",",
+            "lengthMenu": "_MENU_ 개씩 보기",
+            "loadingRecords": "로딩중...",
+            "processing": "처리중...",
+            "search": "검색 : ",
+            "zeroRecords": "해당 과목이 없습니다.",
+            "paginate": {
+                "first": "첫 페이지",
+                "last": "마지막 페이지",
+                "next": "다음",
+                "previous": "이전"
             },
-            "aria" : {
-                "sortAscending" : " :  오름차순 정렬",
-                "sortDescending" : " :  내림차순 정렬"
+            "aria": {
+                "sortAscending": " :  오름차순 정렬",
+                "sortDescending": " :  내림차순 정렬"
             }
         };
         var lang_kor2 = {
-            "decimal" : "",
-            "emptyTable" : "수강신청한 과목이 없습니다.",
-            "info" : "_START_ - _END_ (총 _TOTAL_ 명)",
-            "infoEmpty" : "0명",
-            "infoFiltered" : "(전체 _MAX_ 명 중 검색결과)",
-            "infoPostFix" : "",
-            "thousands" : ",",
-            "lengthMenu" : "_MENU_ 개씩 보기",
-            "loadingRecords" : "로딩중...",
-            "processing" : "처리중...",
-            "search" : "검색 : ",
-            "zeroRecords" : "수강신청한 과목이 없습니다.",
-            "paginate" : {
-                "first" : "첫 페이지",
-                "last" : "마지막 페이지",
-                "next" : "다음",
-                "previous" : "이전"
+            "decimal": "",
+            "emptyTable": "수강신청한 과목이 없습니다.",
+            "info": "_START_ - _END_ (총 _TOTAL_ 명)",
+            "infoEmpty": "0명",
+            "infoFiltered": "(전체 _MAX_ 명 중 검색결과)",
+            "infoPostFix": "",
+            "thousands": ",",
+            "lengthMenu": "_MENU_ 개씩 보기",
+            "loadingRecords": "로딩중...",
+            "processing": "처리중...",
+            "search": "검색 : ",
+            "zeroRecords": "수강신청한 과목이 없습니다.",
+            "paginate": {
+                "first": "첫 페이지",
+                "last": "마지막 페이지",
+                "next": "다음",
+                "previous": "이전"
             },
-            "aria" : {
-                "sortAscending" : " :  오름차순 정렬",
-                "sortDescending" : " :  내림차순 정렬"
+            "aria": {
+                "sortAscending": " :  오름차순 정렬",
+                "sortDescending": " :  내림차순 정렬"
             }
         };
 
