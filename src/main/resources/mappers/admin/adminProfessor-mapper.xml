@@ -67,7 +67,7 @@ FROM TB_PROFESSOR
 LEFT JOIN TB_DEPARTMENT USING(DEPARTMENT_CODE)
 WHERE PROFESSOR_ID=#{profId}
 </select>
-
+ 
 
  <select id="selectAdminDept" parameterType="College" resultMap="CollegeResultSet">
  SELECT COLLEGE_CODE, COLLEGE_NAME
