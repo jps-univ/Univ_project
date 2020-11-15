@@ -35,7 +35,7 @@
         </div>
         <div id="rest_table_area">
             
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="qnaTable" style="text-align:center;">
                     <thead>
                         <tr>
                             <th style="width: 8%;">
@@ -53,36 +53,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td id="qnaBtn" style="cursor:pointer;">임시로 넣어보는 질문이다~~~~~~~~~~~~~~~</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
                     </tbody>
                 </table>
         </div>
@@ -104,6 +74,7 @@
     
 </div>
     <!-- 본문 끝 -->
+    <input type="hidden" id="searhKind" />
 
 <!-- footer -->
 <footer class="container-fluid navbar-fixed-bottom">
@@ -113,11 +84,145 @@
 
 <script>
 	$(function(){
-		$("#qnaBtn").on('click',function(){
-			location.href = "adQAnswer.do";
-	
-		});
+		$("#searhKind").val("Q");
+		getList(1,"Q");
 	});
+	
+	function qnaOneSelect(qnaNum) { 
+		location.href = "adQAnswer.do?boardId=" + qnaNum;
+	}
+	
+	function getList(currentPage, searchKind) {
+		
+		var params = {
+				mode : searchKind ,
+				currentPage : currentPage ,
+				isAdmin : "Y"
+		}
+		
+		$.ajax({
+			url:"boardList.do",
+			type:"post",
+			data:JSON.stringify(params),
+			contentType:"application/json",
+			success:function(data) {
+				console.log(data);
+				setPageing(data.pi);
+				setList(data.boardList);
+			},
+			error:function() {
+				
+			}
+		});
+	}
+
+
+	function setPageing(pageInfo) {
+		
+		var $pagination = $(".pagination");
+		$pagination.empty();
+		
+		var currentPage = pageInfo.currentPage;
+		var startPage = pageInfo.startPage;
+		var endPage = pageInfo.endPage;
+		var limit = pageInfo.limit;
+		var maxPage = pageInfo.maxPage;
+		var searchCondition = $("#searhKind").val();
+		
+			$pagination.append($("<li>").append($("<a>").text("<<")).css("cursor","pointer").click(function(){	
+				setList(1,searchCondition);
+			}));
+		   	   
+			if(currentPage <= 1) { 
+				$pagination.append($("<li>").append($("<a>").text("<")).attr("disabled",true).css("cursor","pointer"));
+			}else{ 
+				$pagination.append($("<li>").append($("<a>").text("<")).css("cursor","pointer").click(function(){
+					getList(currentPage - 1,searchCondition);
+				}));
+			 } 
+			 for(var p= startPage; p <= endPage; p++){
+				if(p == currentPage){
+				$pagination.append($("<li>").append($("<a>").text(p)).attr("disabled",true));
+			 }else{ 
+				$pagination.append($("<li>").append($("<a>").text(p)).css("cursor","pointer").click(function(){
+					getList($(this).children().text(),searchCondition);
+				}));
+			 }
+				
+			 } 
+			 if(currentPage >= maxPage){ 
+				 $pagination.append($("<li>").append($("<a>").text(">")).attr("disabled",true).css("cursor","pointer"));					
+			 }else {
+				 $pagination.append($("<li>").append($("<a>").text(">")).css("cursor","pointer").click(function(){
+					 getList(currentPage + 1,searchCondition);
+				 }));
+			 } 
+			 	$pagination.append($("<li>").append($("<a>").text(">>")).css("cursor","pointer").click(function(){
+			 		getList(endPage,searchCondition);
+		 	}));
+			 	
+	}
+
+	function setList(boardList) {
+		
+		$elm = $("#qnaTable tbody");
+		$elm.empty();
+		
+		boardList.forEach(function(item,index){
+			var $tr = $("<tr>").attr("id",item.boardId).click(function() {
+				qnaOneSelect($(this).attr("id"));
+			});
+			
+			var $NumberTd = $("<td>").text(item.rowNum);
+			var $NameTd = $("<td>").text(item.bTitle).css("text-align","left");
+			var $WriterTd = $("<td>").text(item.stdName);
+			var $dataTd = $("<td>").text(setDate(item.bDate));
+			
+			$tr.append($NumberTd).append($NameTd).append($WriterTd).append($dataTd);
+			
+			$elm.append($tr);
+		})
+		
+	}
+
+	function setDate(dateTime) {
+		var date = new Date(dateTime);
+		
+		return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+	}
+
+	function registQna() {
+		var qnaTitle = $("#qnaTitle").val();
+		var qnaContent = $("#qnaContent").val();
+		
+		if(qnaTitle != "" && qnaContent != "") {
+		var params = {
+				bTitle : qnaTitle ,
+				bContents : qnaContent,
+				bType : "Q"
+		}
+		
+			$.ajax({
+				url:"registQna.do",
+				type:"post",
+				data:JSON.stringify(params),
+				contentType:"application/json",
+				success:function(data) {
+					$("#qnaTitle").val("");
+					$("#qnaContent").val("");
+					$("#searhKind").val("Q");
+					getList(1,"Q");
+				},
+				error:function(error) {
+					console.log(error);
+				}
+			});
+		} else {
+			alert("내용을 입력하세요.");
+		}
+		
+	}
+	
 </script>
 </body>
 </html>

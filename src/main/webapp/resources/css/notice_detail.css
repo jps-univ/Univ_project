@@ -324,3 +324,8 @@
     width: 80%;
     padding-left: 10px;
 }
+
+.answer_table td {
+	border : 1px solid black;
+	
+}
