@@ -257,6 +257,3 @@ public class LectureController {
     }
 
 }
-
-
-
