@@ -73,6 +73,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="lecture_evaluation_select.do">강의 평가</a>
                     <a class="collapse-item" href="enrollClassPage.do">수강신청</a>
+                    <a class="collapse-item" href="basketClassPage.do">장바구니</a>
 
                 </div>
             </div>

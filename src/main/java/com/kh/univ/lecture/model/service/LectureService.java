@@ -20,16 +20,22 @@ public interface LectureService {
 
 //  학번을 통해 나의 현재 수강과목들의 시간표를 불러옴(시간표 중복 검사를 위해)
     ArrayList<LectureTime> getDayHourList(int stdId);
+    ArrayList<LectureTime> getDayHourListBasket(int stdId);
 
 //   클래스시퀀스를 통해 해당 과목의 시간표를 불러옴. (시간표 중복 검사를 위해)
     ArrayList<LectureTime> getDayHourList2(int classSeq);
 
 //    학번과, 클래스시퀀스를 넘겨 수강신청테이블에 값 등록
     int insertRegisterClass(HashMap map);
+    int insertBasketClass(HashMap map);
 
 //    내가 현재 수강하고있는 수강과목들을 불러와서 뿌려줌
     ArrayList<Lecture> selectList(int stdId);
+    ArrayList<Lecture> selectBasket(int stdId);
 
 //    내 수강과목 테이블에서 데이터를 삭제함
     int deleteMyClass(HashMap map);
+    int deleteMyBasket(HashMap map);
+
+
 }

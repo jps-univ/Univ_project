@@ -37,6 +37,11 @@ public class LectureServiceImpl implements LectureService {
     }
 
     @Override
+    public ArrayList<LectureTime> getDayHourListBasket(int stdId) {
+        return lectureDao.getDayHourListBasket(stdId);
+    }
+
+    @Override
     public ArrayList<LectureTime> getDayHourList2(int classSeq) {
         return lectureDao.getDayHourList2(classSeq);
     }
@@ -47,12 +52,29 @@ public class LectureServiceImpl implements LectureService {
     }
 
     @Override
+    public int insertBasketClass(HashMap map) {
+        return lectureDao.insertBasketClass(map);
+    }
+
+    @Override
     public ArrayList<Lecture> selectList(int stdId) {
         return lectureDao.selectList(stdId);
+    }
+
+    @Override
+    public ArrayList<Lecture> selectBasket(int stdId) {
+        return lectureDao.selectBasket(stdId);
+    }
+
+    @Override
+    public int deleteMyBasket(HashMap map) {
+        return lectureDao.deleteMyBasket(map);
     }
 
     @Override
     public int deleteMyClass(HashMap map) {
         return lectureDao.deleteMyClass(map);
     }
+
+
 }
