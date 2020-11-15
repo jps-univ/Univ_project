@@ -132,7 +132,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <c:import url="../common/topbar.jsp"/>
+                <c:import url="../common/topbar_professor.jsp"/>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
