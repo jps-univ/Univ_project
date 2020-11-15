@@ -32,6 +32,20 @@ $(function(){
     
     $("#searhKind").val("Q");
 	getList(1,"Q");
+	
+	//시간표 제외영억
+	$("#timetable link").remove();
+	$("#timetable meta").remove();
+	$("#timetable script").remove();
+	$("#timetable").css("overflow","auto");
+	$("#timetable #accordionSidebar").remove();
+	$("#timetable .top").remove();
+	$("#timetable #year").parent().remove();
+	$("#timetable nav").remove();
+	$("#timetable footer").remove();
+	$("#timetable .container-fluid").children('br:first').remove();
+	
+	
     
 });
 

@@ -75,8 +75,12 @@
                         <!-- 퀵링크 영역 끝 -->
 
                         <!-- 시간표 영역 시작 -->
-                        <div class="timetable">
-                            <p style="text-align: center; font-size: 30pt;">시간표 들어갈 영역</p>
+                        <div class="timetable" id="timetable" style="width:60%;">
+                            <!-- <p style="text-align: center; font-size: 30pt;">시간표 들어갈 영역</p> -->
+                            <jsp:include page="/studentSchedule.do">
+                            	<jsp:param name="classSemester" value="1"></jsp:param>
+                            	<jsp:param name="classYear" value="2021"></jsp:param>
+                            </jsp:include>
                         </div>
                         <!-- 시간표 영역 끝 -->
                     </div>
