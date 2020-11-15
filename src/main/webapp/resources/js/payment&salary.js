@@ -45,7 +45,7 @@ $(document).ready(function(){
     var now = new Date();
     var nyear = now.getFullYear();
     
-    //년도 selectbox만들기               
+//년도 selectbox만들기               
     for(var sy = 2019 ; sy <= nyear ; sy++) {
         $('.select').append('<option value="' + sy + '">' + sy + '년</option>');    
     }

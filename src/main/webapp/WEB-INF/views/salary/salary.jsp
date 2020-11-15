@@ -107,7 +107,7 @@
                   <input type="hidden" class="profId" value="${ id }"/> 
                   <c:forEach var="s" items="${ list }">
                   <tr class="line">
-                      <td><input type="radio" name="checkRadio" class="checkRadio" value="${ s.salaryNo }"></td>
+                      <td><input type="radio" name="checkRadio" id="checkRadio" class="checkRadio" value="${ s.salaryNo }"></td>
                       <td>${ s.schoolYear }</td>
                       <td>${ s.schoolMonth }</td>
                       <td>${ s.profBank }</td>
@@ -219,7 +219,9 @@
 				<!-- 여기까지 내용  -->
 				
 	  <script>
-              /* $(function deptCheck(){
+               $(function(){
+            	   deptCheck(){
+               }
                 	$.ajax({
                 		url:"student_Modify_DeptCheck.do",
             			dataType:"json",
@@ -235,7 +237,7 @@
             				} 
             			}	
                 	});
-                }); */
+                }); 
       </script>
 
 			<!-- Footer -->
