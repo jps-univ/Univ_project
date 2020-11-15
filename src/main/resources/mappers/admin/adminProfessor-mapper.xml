@@ -66,15 +66,14 @@ SELECT PROFESSOR_ID,NAME,BIRTH_NO,DEPARTMENT_CODE,COLLEGE_CODE,IMAGE,EMAIL,PHONE
 FROM TB_PROFESSOR
 LEFT JOIN TB_DEPARTMENT USING(DEPARTMENT_CODE)
 WHERE PROFESSOR_ID=#{profId}
-
 </select>
-
+ 
 
  <select id="selectAdminDept" parameterType="College" resultMap="CollegeResultSet">
  SELECT COLLEGE_CODE, COLLEGE_NAME
  FROM TB_COLLEGE
  </select>
- 
+  
  <select id="selectDeptCheck" parameterType="Department" resultMap="DepartmentResultSet">
   	
  	 SELECT DEPARTMENT_CODE, DEPARTMENT_NAME

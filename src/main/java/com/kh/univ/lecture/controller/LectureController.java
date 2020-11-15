@@ -29,45 +29,7 @@ public class LectureController {
     @Autowired
     private LectureService lectureService;
 
-    /**
-     * 1. 강의 평가 하기( 학생)
-     *
-     * @return
-     */
-    @RequestMapping("lecture_evaluation.do")
-    public String lectureEvaluation() {
-        return "lectureManagement/lecture_evaluation";
-    }
-
-    /**
-     * 1_2 . 강의평가 하기전에 자신이 듣고 있는 강의 중 선택하는 창
-     *
-     * @return
-     */
-    @RequestMapping("lecture_evaluation_select.do")
-    public String lectureEvaluationSelect() {
-        return "lectureManagement/lecture_evaluation_select";
-    }
-
-    /**
-     * 2. 강의 평가 학생 목록 조회 (교수)
-     *
-     * @return
-     */
-    @RequestMapping("lecture_evaluation_check.do")
-    public String lectureEvaluationCheck() {
-        return "lectureManagement/lecture_evaluation_check";
-    }
-
-    /**
-     * 2_1. 강의 평가 상세 페이지 조회(교수)
-     *
-     * @return
-     */
-    @RequestMapping("lecture_evaluation_detail.do")
-    public String lectureEvaluationDetail() {
-        return "lectureManagement/lecture_evaluation_detail";
-    }
+  
 
 
     @RequestMapping("requestRegisterLecture.do")
