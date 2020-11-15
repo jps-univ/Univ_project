@@ -49,8 +49,11 @@ footer {
     background: #f8f6ff;
 }
 
-#reg_lecture tr input,#reg_lecture tr select{
+#reg_lecture tr input{
     width: 300px;
+}
+#status,#gradeSize{
+	width: 300px;
 }
 #reg_lecture tr p{
     margin-bottom: 0;
@@ -60,4 +63,14 @@ footer {
     float: right;
     margin-top: 10px;
     margin-right: 10px;
+}
+#College,#departmentCode{
+	float: left;
+	width: 140px;
+}
+#departmentCode{
+	margin-left:20px;	
+}
+#professorCode{
+	width: 300px;
 }
