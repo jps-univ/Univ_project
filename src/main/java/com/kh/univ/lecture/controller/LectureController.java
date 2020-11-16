@@ -23,9 +23,6 @@ public class LectureController {
     @Autowired
     private LectureService lectureService;
 
-  
-
-
     @RequestMapping("requestRegisterLecture.do")
     public String requestRegisterLecture() {
         return "lectureManagement/requestRegisterLecture";
@@ -259,6 +256,3 @@ public class LectureController {
         } else return "fail";
     }
 }
-
-
-

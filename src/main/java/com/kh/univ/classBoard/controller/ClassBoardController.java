@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.classBoard.service.ClassBoardService;
 import com.kh.univ.lecture.model.vo.Lecture;
@@ -81,7 +83,9 @@ public class ClassBoardController {
 		
 		for (Lecture l : lecList) {
 			JSONObject jObj = new JSONObject();
+			jObj.put("classSeq", l.getClassSeq());
 			jObj.put("classCode", l.getClassCode());
+			jObj.put("profId", l.getProfId());
 			jObj.put("classSemester", l.getClassSemester());
 			jObj.put("className", l.getClassName());
 			jObj.put("proName", l.getProfName());
@@ -102,7 +106,8 @@ public class ClassBoardController {
 	 * @return
 	 */
 	@RequestMapping("classBoardMain.do")
-	public String classBoardMain() {
+	public String classBoardMain(HttpServletRequest request) {
+		
 		return "classBoard/classBoardMain";
 				
 	}
@@ -123,8 +128,14 @@ public class ClassBoardController {
 	 * @return
 	 */
 	@RequestMapping("noticeList.do")
-	public String noticeList() {
-		return "classBoard/noticeList";
+	public ModelAndView noticeList(ModelAndView mv, @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage
+								,int classSeq){
+		System.out.println(classSeq);
+	
+		int nListCount = cbService.getNoticeListCount();
+		
+
+		return mv;
 	}
 	
 	

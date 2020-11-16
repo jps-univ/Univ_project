@@ -192,7 +192,7 @@ public class ProfessorMyPageController
 
 		return mv;
 	}
-	
+
 	// 상담 신청 승인
 	@ResponseBody
 	@RequestMapping("approveConsulting.do")
@@ -268,4 +268,5 @@ public class ProfessorMyPageController
 			return "fail";
 		}
 	}
+
 }

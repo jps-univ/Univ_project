@@ -31,6 +31,11 @@ public class ClassBoardDao {
 		
 		return (ArrayList)sqlSession.selectList("classBoardMapper.selectClassList", map);
 	}
+
+	public int noticeListCount() {
+		
+		return 0;
+	}
 	
 	
 }

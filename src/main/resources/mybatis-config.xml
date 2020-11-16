@@ -23,6 +23,12 @@
         <typeAlias type="com.kh.univ.consulting.model.vo.Consulting" alias="Consulting"/>
         <typeAlias type="com.kh.univ.board.model.vo.Board" alias="Board"/>
         
+        <!-- admin -->
+        <typeAlias type="com.kh.univ.admin.model.vo.AdDepartment" alias="AdDepartment"/>
+        <typeAlias type="com.kh.univ.admin.model.vo.AdCollege" alias="AdCollege"/>
+        <typeAlias type="com.kh.univ.admin.model.vo.AdProfessor" alias="AdProfessor"/>
+        
+        
         <!-- <typeAlias type="com.kh.spring.board.model.vo.Board" alias="Board"/>
         <typeAlias type="com.kh.spring.board.model.vo.Reply" alias="Reply"/> -->
     </typeAliases>
@@ -36,7 +42,8 @@
         <mapper resource="mappers/myPage/professorMyPage-mapper.xml"/>
         <mapper resource="mappers/StudentManagement/studentManagement-mapper.xml"/>
         <mapper resource="mappers/payment/payment-mapper.xml"/>
-        <mapper resource="mappers/lecture/lecture-mapper.xml"/>        
+        <mapper resource="mappers/lecture/lecture-mapper.xml"/>
+        <mapper resource="mappers/lecture/lectureEvaluation-mapper.xml"/>
         <mapper resource="mappers/Salary/salary-mapper.xml"/>
         <mapper resource="mappers/classBoard/classBoard-mapper.xml"/>
         <mapper resource="mappers/board/board-mapper.xml"/> 

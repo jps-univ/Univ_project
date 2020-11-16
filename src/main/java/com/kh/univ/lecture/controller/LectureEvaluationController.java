@@ -1,24 +1,37 @@
 package com.kh.univ.lecture.controller;
 
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.lecture.model.service.LectureEvaluationService;
+import com.kh.univ.lecture.model.vo.Lecture;
+import com.kh.univ.member.model.vo.Student;
 
-public class LectureEvaluationController {
-
+@Controller
+public class LectureEvaluationController 
+{
 	@Autowired
-	private LectureEvaluationService lectureEvaluationService;
-	
-	
+	private LectureEvaluationService leService;
 	
 	  /**
-     * 1. 강의 평가 하기( 학생)
+     * 1. 강의 평가 하기(학생)
      *
      * @return
      */
     @RequestMapping("lecture_evaluation.do")
-    public String lectureEvaluation() {
+    public String lectureEvaluation() 
+    {
         return "lectureManagement/lecture_evaluation";
     }
 
@@ -28,8 +41,44 @@ public class LectureEvaluationController {
      * @return
      */
     @RequestMapping("lecture_evaluation_select.do")
-    public String lectureEvaluationSelect() {
-        return "lectureManagement/lecture_evaluation_select";
+    public ModelAndView lectureEvaluationSelect(ModelAndView mv, Lecture lecture, HttpSession session) 
+    {
+		Student student = (Student)session.getAttribute("loginUser");
+
+		/*
+		Calendar cal = new GregorianCalendar();
+		Date d = new Date(cal.getTimeInMillis());
+		*/
+		
+		int stdId = student.getStdId();
+		int classYear = 2021;
+		int classSemester = 1;
+		
+		/*
+		if(m < 7)
+		{
+			classSemester = 1;
+		}
+		else 
+		{
+			classSemester = 2;
+		}
+		*/
+
+		Map map = new HashMap();
+		
+		map.put("stdId", stdId);
+		map.put("classYear", classYear);
+		map.put("classSemester", classSemester);
+
+		ArrayList<Lecture> schedule = leService.selectStdSchdule(map);
+		
+		System.out.println(schedule);
+		mv.addObject("schedule", schedule);
+    	
+		mv.setViewName("lectureManagement/lecture_evaluation_select");
+
+		return mv;
     }
 
     /**
@@ -38,7 +87,8 @@ public class LectureEvaluationController {
      * @return
      */
     @RequestMapping("lecture_evaluation_check.do")
-    public String lectureEvaluationCheck() {
+    public String lectureEvaluationCheck() 
+    {
         return "lectureManagement/lecture_evaluation_check";
     }
 
@@ -48,7 +98,8 @@ public class LectureEvaluationController {
      * @return
      */
     @RequestMapping("lecture_evaluation_detail.do")
-    public String lectureEvaluationDetail() {
+    public String lectureEvaluationDetail() 
+    {
         return "lectureManagement/lecture_evaluation_detail";
     }
     

@@ -11,10 +11,67 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="${contextPath }/resources/css/admin/ad_lecture_register.css">
+    <link rel="stylesheet" href="${contextPath }/resources/css/admin/ad_lecture_register.css?ver=1" type="text/css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
+
 <body>
+<script>
+
+$(function(){
+	$("#College").change(function(){
+
+		
+		$.ajax({
+			url:"admin_Lecture_Department.do",
+			dataType:"json",
+			data:{
+				CollegeCode:$(this).val()
+			},success:function(data){
+				var deptChoose = "<option>학과를 선택해주세요</option>";
+				$("#professorCode").empty();
+				$("#professorCode").append(deptChoose);
+				
+				$("#departmentCode").empty();
+				$("#departmentCode").append(deptChoose)
+				for(var index =0;index<data.length;index++){
+					var department = $("<option value="+ data[index].departmentCode+ ">" + data[index].departmentName +"</option>");
+					$("#departmentCode").append(department);
+				}
+				$("#departmentCode").change(function(){
+					$.ajax({
+						url:"admin_Lecture_Professor.do",
+						dataType:"json",
+						data:{
+							departmentCode:$(this).val()
+						},success:function(prof){
+							console.log(prof);
+							var professorCode = $("#professorCode");
+							professorCode.empty();
+							professorCode.append("<option>교수를선택해주세요</option>");
+							for(var p=0; p<prof.length;p++){
+								var professorName = $("<option value="+prof[p].professorId+">"+prof[p].professorName+"</option>");
+								professorCode.append(professorName);
+								console.log(professorCode);
+							}
+							
+							
+							
+						},error:function(){
+							console.log("교수이름 전송실패");
+						}
+					})
+				});
+				
+			},error:function(){
+				console.log("전송실패");
+			}
+		});
+	});
+	
+});
+
+</script>
 
 <c:import url="../common/adminTopbar.jsp" />
 
@@ -52,10 +109,19 @@
                 <input type="text">
               </td>
               <td>
-                <p>교수명</p>
+                <p>개설 학과</p>
               </td>
               <td>
-                <input type="text">
+                <select id="College">
+               		<option>단과대학</option>
+                <c:forEach var="a" items="${adCollege}">
+                	<option value="${a.collegeCode }">${a.collegeName }</option>
+                </c:forEach>
+                </select>
+                
+                <select id="departmentCode">
+                	<option>단과대학을 먼저 선택해주세요</option>
+                </select>
               </td>
             </tr>
             <tr>
@@ -63,7 +129,7 @@
                 <p>이수 구분</p>
               </td>
               <td>
-                <select name="" id="">
+                <select name="" id="status">
                   <option value="">-----</option>
                   <option value="">전공필수</option>
                   <option value="">전공선택</option>
@@ -72,10 +138,12 @@
                 </select>
               </td>
               <td>
-                <p>개설 학과</p>
+                <p>교수명</p>
               </td>
               <td>
-                <input type="text">
+                <select id="professorCode">
+               		<option>학과를 먼저 선택해주세요..</option>
+                </select>
               </td>
             </tr>
             <tr>
@@ -83,7 +151,7 @@
                 <p>강의시간</p>
               </td>
               <td>
-                <input type="text">
+                <input type="text" placeholder="ex) 월1/월2/화3">
               </td>
               <td>
                 <p>강의실</p>
@@ -103,7 +171,7 @@
                 <p>학점</p>
               </td>
               <td>
-                <select name="" id="">
+                <select name="" id="gradeSize">
                   <option value="0">-----</option>
                   <option value="1">1</option>
                   <option value="2">2</option>

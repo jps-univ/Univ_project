@@ -99,13 +99,15 @@
 									</tr>
 								</thead>
 								<tbody>
+									<c:forEach var="c" items="${ list }"> 
 									<tr>
-										<td>1</td>
+										<td>$( c.)</td>
 										<td><a href="assignmentDetail.do">휴강하고 싶다</a></td>
 										<td>유승제</td>
 										<td>2020/10/14</td>
 										<td>1</td>
 									</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</form>

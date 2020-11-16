@@ -20,4 +20,10 @@ public class ClassBoardServiceImpl implements ClassBoardService {
 		return cbDao.classList(userId, userYear, userGrade);
 	}
 
+	@Override
+	public int getNoticeListCount() {
+
+		return cbDao.noticeListCount();
+	}
+
 }
