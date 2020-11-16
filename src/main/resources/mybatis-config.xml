@@ -26,6 +26,7 @@
         <typeAlias type="com.kh.univ.stmanagement.model.vo.Grade" alias="Grade"/>
 
         <typeAlias type="com.kh.univ.board.model.vo.Board" alias="Board"/>
+        <typeAlias type="com.kh.univ.classBoard.vo.ClassNotice" alias="ClassNotice"/>
         
         <!-- admin -->
         <typeAlias type="com.kh.univ.admin.model.vo.AdDepartment" alias="AdDepartment"/>

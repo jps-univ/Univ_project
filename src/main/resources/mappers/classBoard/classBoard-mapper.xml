@@ -19,6 +19,18 @@
         <result property="lectureTime" column="TOTAL"/>
         <result property="profName" column="NAME"/>
     </resultMap>
+    
+    <resultMap id="noticeList" type="ClassNotice">
+    	<id property="nId" column="NOTICE_ID"/>
+    	<result property="nTitle" column="NTITLE"/>
+    	<result property="nContent" column="NCONTENT"/>
+    	<result property="profId" column="PROFESSOR_ID"/>
+    	<result property="classSeq" column="CLASS_SEQ"/>
+    	<result property="nCount" column="RCOUNT"/>
+    	<result property="nCreateDate" column="NCREATE_DATE"/>
+    	<result property="nModifyDate" column="NMODIFY_DATE"/>
+    	<result property="status" column="STATUS"/>
+    </resultMap>
 
 
 	<select id="selectClassList" parameterType="hashMap" resultMap="classList">
@@ -31,6 +43,11 @@
 		      WHERE CLASS_YEAR=#{userYear}
 		      AND CLASS_SEMESTER=#{userGrade}) A, TB_PROFESSOR B
 		WHERE A.PROFESSOR_ID = B.PROFESSOR_ID
+	</select>
+	
+	<select id="selectNoticeList" resultMap="noticeList">
+		SELECT * FROM TB_NOTICE
+		WHERE CLASS_SEQ=#{classSeq}
 	</select>
 	
 	
