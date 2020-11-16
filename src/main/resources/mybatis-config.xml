@@ -21,6 +21,9 @@
         <typeAlias type="com.kh.univ.salary.model.vo.Salary" alias="Salary"/>
         <typeAlias type="com.kh.univ.register.model.vo.Register" alias="Register"/>
         <typeAlias type="com.kh.univ.consulting.model.vo.Consulting" alias="Consulting"/>
+        
+        <typeAlias type="com.kh.univ.stmanagement.model.vo.Grade" alias="Grade"/>
+
         <typeAlias type="com.kh.univ.board.model.vo.Board" alias="Board"/>
         <typeAlias type="com.kh.univ.classBoard.vo.ClassNotice" alias="ClassNotice"/>
         
@@ -29,6 +32,7 @@
         <typeAlias type="com.kh.univ.admin.model.vo.AdCollege" alias="AdCollege"/>
         <typeAlias type="com.kh.univ.admin.model.vo.AdProfessor" alias="AdProfessor"/>
         
+
         
         <!-- <typeAlias type="com.kh.spring.board.model.vo.Board" alias="Board"/>
         <typeAlias type="com.kh.spring.board.model.vo.Reply" alias="Reply"/> -->

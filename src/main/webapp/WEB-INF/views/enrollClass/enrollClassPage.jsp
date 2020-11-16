@@ -138,7 +138,7 @@
                 'columnDefs': [
                     {
                         'targets': 0,
-                        'visible': false,
+                        'visible': false
                     },
 
                     {
@@ -546,7 +546,7 @@
                                                 <option value="c2">사회과학대학</option>
                                                 <option value="c3">자연과학대학</option>
                                                 <option value="c4">공과대학</option>
-                                                <option value="c5">정보기술대학</option>
+                                                <option value="c5">IT대학</option>
                                                 <option value="c6">예술체육대학</option>
                                             </select>
                                             <select id="selectDepartment" style="width: 170px" onchange="changeDept();">
