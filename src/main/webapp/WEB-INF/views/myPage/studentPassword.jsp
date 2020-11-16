@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
 <html lang="ko">
 
@@ -89,7 +91,7 @@
 	                  	</table>
 	
 						<div align="right">
-						    <input type="button" class="btn btn-primary btn-sm" id="checkPwd" value="확인" onclick="checkPwd()">
+						    <input type="button" class="btn btn-primary" id="checkPwd" value="확인" onclick="checkPwd()">
 						</div>
 						
 						<div id="newPwd">
@@ -112,7 +114,7 @@
 							</table>
 							
 							<div align="right">
-							    <input type="button" class="btn btn-primary btn-sm" id="changePwd" value="변경" onclick="changePwd()">
+							    <input type="button" class="btn btn-primary" id="changePwd" value="변경" onclick="changePwd()">
 							</div>
 						</div>
                   	

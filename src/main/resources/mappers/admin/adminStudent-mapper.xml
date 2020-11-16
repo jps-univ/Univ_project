@@ -63,7 +63,7 @@
  	INSERT INTO TB_STUDENT 
 	VALUES(#{stdId},#{stdPwd},#{stdName},#{stdBirth},#{stdDepartment},#{stdCourse},
 	#{stdSemester},#{stdEnterDiv},#{stdImage},#{stdPhone},#{stdEmail},#{stdAddress},#{stdAddressDetail},
-	#{stdBank},#{stdAccount},#{stdAccountHolder},#{stdSmsAgree},#{stdEmailAgree},#{stdEntrance},${stdTel})
+	#{stdBank},#{stdAccount},#{stdAccountHolder},#{stdSmsAgree},#{stdEmailAgree},#{stdEntrance},#{stdTel},default)
  	</insert>
  	
  	
@@ -122,5 +122,14 @@
  			TEL=#{stdTel}
  	  WHERE STUDENT_ID= #{stdId}
  	</update>
+ 	
+ 	
+ 	<select id ="searchCollege" parameterType="Student" resultMap="StudentResultSet">
+ 		SELECT STUDENT_ID,STUDENT_NAME, BIRTH_NO, DEPARTMENT_NAME, COLLEGE_NAME, COURSE,SEMESTER,STUDENT_STATUS
+		FROM TB_STUDENT 
+		LEFT JOIN TB_STUDENT_STATUS USING (STUDENT_ID)
+		LEFT JOIN TB_DEPARTMENT USING (DEPARTMENT_CODE)
+		LEFT JOIN TB_COLLEGE USING(COLLEGE_CODE)
+ 	</select>
 
 </mapper>

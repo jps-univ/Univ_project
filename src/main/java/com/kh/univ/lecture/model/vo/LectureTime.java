@@ -6,6 +6,8 @@ public class LectureTime
      private int classSeq;		// 수업 시퀀스
      private String day;		// 요일
      private String hour;		// 교시
+
+	private String dayHour; // 요일+교시 묶어오는 컬럼
      
 	public LectureTime() {}
 	
@@ -16,7 +18,23 @@ public class LectureTime
 		this.day = day;
 		this.hour = hour;
 	}
-	
+
+	public LectureTime(int ctSeq, int classSeq, String day, String hour, String dayHour) {
+		this.ctSeq = ctSeq;
+		this.classSeq = classSeq;
+		this.day = day;
+		this.hour = hour;
+		this.dayHour = dayHour;
+	}
+
+	public String getDayHour() {
+		return dayHour;
+	}
+
+	public void setDayHour(String dayHour) {
+		this.dayHour = dayHour;
+	}
+
 	public int getCtSeq() {
 		return ctSeq;
 	}
@@ -41,9 +59,15 @@ public class LectureTime
 	public void setHour(String hour) {
 		this.hour = hour;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "LectureTime [ctSeq=" + ctSeq + ", classSeq=" + classSeq + ", day=" + day + ", hour=" + hour + "]";
+		return "LectureTime{" +
+				"ctSeq=" + ctSeq +
+				", classSeq=" + classSeq +
+				", day='" + day + '\'' +
+				", hour='" + hour + '\'' +
+				", dayHour='" + dayHour + '\'' +
+				'}';
 	}
 }

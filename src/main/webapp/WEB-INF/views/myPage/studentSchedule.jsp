@@ -112,28 +112,28 @@
 		                    <tr align="center">
 		                      <th>1교시<br>(09:00~09:50)</th>
 		                      <td id="1th_Mon">
-		                    	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '월' && s.time.hour eq 1 }">${ s.className }<br>${ s.professor.profName }</c:if>
+ 		                    	<c:forEach var="s" items="${ schedule }">
+		                      		<c:if test="${ s.time.day eq '월' && s.time.hour eq 1 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 			                    </c:forEach>
 		                      </td>
 		                      <td id="1th_Tue">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '화' && s.time.hour eq 1 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '화' && s.time.hour eq 1 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="1th_Wed">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '수' && s.time.hour eq 1 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '수' && s.time.hour eq 1 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="1th_Thu">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '목' && s.time.hour eq 1 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '목' && s.time.hour eq 1 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="1th_Fri">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '금' && s.time.hour eq 1 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '금' && s.time.hour eq 1 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                    </tr>
@@ -142,27 +142,27 @@
 		                      <th>2교시<br>(10:00~10:50)</th>
 		                      <td id="2th_Mon">
 		                    	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '월' && s.time.hour eq 2 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '월' && s.time.hour eq 2 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 			                    </c:forEach>
 		                      </td>
 		                      <td id="2th_Tue">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '화' && s.time.hour eq 2 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '화' && s.time.hour eq 2 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="2th_Wed">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '수' && s.time.hour eq 2 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '수' && s.time.hour eq 2 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="2th_Thu">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '목' && s.time.hour eq 2 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '목' && s.time.hour eq 2 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="2th_Fri">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '금' && s.time.hour eq 2 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '금' && s.time.hour eq 2 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                    </tr>
@@ -171,27 +171,27 @@
 		                      <th>3교시<br>(11:00~11:50)</th>
 		                      <td id="3th_Mon">
 		                    	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '월' && s.time.hour eq 3 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '월' && s.time.hour eq 3 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 			                    </c:forEach>
 		                      </td>
 		                      <td id="3th_Tue">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '화' && s.time.hour eq 3 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '화' && s.time.hour eq 3 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="3th_Wed">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '수' && s.time.hour eq 3 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '수' && s.time.hour eq 3 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="3th_Thu">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '목' && s.time.hour eq 3 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '목' && s.time.hour eq 3 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="3th_Fri">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '금' && s.time.hour eq 3 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '금' && s.time.hour eq 3 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                    </tr>
@@ -199,27 +199,27 @@
 		                      <th>4교시<br>(12:00~12:50)</th>
 		                      <td id="4th_Mon">
 		                    	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '월' && s.time.hour eq 4 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '월' && s.time.hour eq 4 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 			                    </c:forEach>
 		                      </td>
 		                      <td id="4th_Tue">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '화' && s.time.hour eq 4 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '화' && s.time.hour eq 4 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="4th_Wed">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '수' && s.time.hour eq 4 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '수' && s.time.hour eq 4 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="4th_Thu">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '목' && s.time.hour eq 4 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '목' && s.time.hour eq 4 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="4th_Fri">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '금' && s.time.hour eq 4 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '금' && s.time.hour eq 4 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                    </tr>
@@ -228,27 +228,27 @@
 		                      <th>5교시<br>(13:00~13:50)</th>
 		                      <td id="5th_Mon">
 		                    	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '월' && s.time.hour eq 5 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '월' && s.time.hour eq 5 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 			                    </c:forEach>
 		                      </td>
 		                      <td id="5th_Tue">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '화' && s.time.hour eq 5 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '화' && s.time.hour eq 5 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="5th_Wed">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '수' && s.time.hour eq 5 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '수' && s.time.hour eq 5 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="5th_Thu">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '목' && s.time.hour eq 5 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '목' && s.time.hour eq 5 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="5th_Fri">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '금' && s.time.hour eq 5 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '금' && s.time.hour eq 5 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                    </tr>
@@ -257,27 +257,27 @@
 		                      <th>6교시<br>(14:00~14:50)</th>
 		                      <td id="6th_Mon">
 		                    	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '월' && s.time.hour eq 6 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '월' && s.time.hour eq 6 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 			                    </c:forEach>
 		                      </td>
 		                      <td id="6th_Tue">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '화' && s.time.hour eq 6 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '화' && s.time.hour eq 6 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="6th_Wed">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '수' && s.time.hour eq 6 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '수' && s.time.hour eq 6 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="6th_Thu">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '목' && s.time.hour eq 6 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '목' && s.time.hour eq 6 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="6th_Fri">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '금' && s.time.hour eq 6 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '금' && s.time.hour eq 6 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                    </tr>
@@ -285,27 +285,27 @@
 		                      <th>7교시<br>(15:00~15:50)</th>
 		                      <td id="7th_Mon">
 		                    	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '월' && s.time.hour eq 7 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '월' && s.time.hour eq 7 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 			                    </c:forEach>
 		                      </td>
 		                      <td id="7th_Tue">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '화' && s.time.hour eq 7 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '화' && s.time.hour eq 7 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="7th_Wed">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '수' && s.time.hour eq 7}">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '수' && s.time.hour eq 7}">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="7th_Thu">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '목' && s.time.hour eq 7 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '목' && s.time.hour eq 7 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="7th_Fri">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '금' && s.time.hour eq 7 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '금' && s.time.hour eq 7 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                    </tr>
@@ -314,27 +314,27 @@
 		                      <th>8교시<br>(16:00~16:50)</th>
 		                      <td id="8th_Mon">
 		                    	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '월' && s.time.hour eq 8 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '월' && s.time.hour eq 8 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 			                    </c:forEach>
 		                      </td>
 		                      <td id="8th_Tue">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '화' && s.time.hour eq 8 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '화' && s.time.hour eq 8 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="8th_Wed">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '수' && s.time.hour eq 8 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '수' && s.time.hour eq 8 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="8th_Thu">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '목' && s.time.hour eq 8 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '목' && s.time.hour eq 8 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="8th_Fri">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '금' && s.time.hour eq 8 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '금' && s.time.hour eq 8 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                    </tr>
@@ -343,27 +343,27 @@
 		                      <th>9교시<br>(17:00~17:50)</th>
 		                      <td id="9th_Mon">
 		                    	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '월' && s.time.hour eq 9 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '월' && s.time.hour eq 9 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 			                    </c:forEach>
 		                      </td>
 		                      <td id="9th_Tue">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '화' && s.time.hour eq 9 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '화' && s.time.hour eq 9 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="9th_Wed">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '수' && s.time.hour eq 9 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '수' && s.time.hour eq 9 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="9th_Thu">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '목' && s.time.hour eq 9 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '목' && s.time.hour eq 9 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                      <td id="9th_Fri">
 		                      	<c:forEach var="s" items="${ schedule }">
-		                      	<c:if test="${ s.time.day eq '금' && s.time.hour eq 9 }">${ s.className }<br>${ s.professor.profName }</c:if>
+		                      		<c:if test="${ s.time.day eq '금' && s.time.hour eq 9 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
 		                    </tr>
@@ -396,6 +396,10 @@
 
 	<!-- Logout Modal-->
 	<c:import url="../common/logoutModal.jsp" />
+	
+	<script type="text/javascript">
+		
+	</script>
 	
 	<!-- Bootstrap core JavaScript-->
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>

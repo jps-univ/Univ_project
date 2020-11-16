@@ -1,6 +1,7 @@
 package com.kh.univ.lecture.model.vo;
 
 import com.kh.univ.member.model.vo.Professor;
+import com.kh.univ.member.model.vo.Student;
 
 public class Lecture 
 {
@@ -23,6 +24,7 @@ public class Lecture
     private LectureTime time;				// 수업시간
     private LectureApplication lectureApplication;	// 수업신청
     private Professor professor;
+    private Student student;
 	public Lecture() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -30,7 +32,7 @@ public class Lecture
 	public Lecture(int classSeq, String classCode, String deptCode, int profId, String className, String room,
 			int gradeSize, int classSemester, int classYear, String classApprove, int classLevel, String classType,
 			String lectureTime, String profName, LectureTime time, LectureApplication lectureApplication,
-			Professor professor) {
+			Professor professor, Student student) {
 		super();
 		this.classSeq = classSeq;
 		this.classCode = classCode;
@@ -49,6 +51,7 @@ public class Lecture
 		this.time = time;
 		this.lectureApplication = lectureApplication;
 		this.professor = professor;
+		this.student = student;
 	}
 	public int getClassSeq() {
 		return classSeq;
@@ -152,6 +155,12 @@ public class Lecture
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
 	}
+	public Student getStudent() {
+		return student;
+	}
+	public void setStudent(Student student) {
+		this.student = student;
+	}
 	@Override
 	public String toString() {
 		return "Lecture [classSeq=" + classSeq + ", classCode=" + classCode + ", deptCode=" + deptCode + ", profId="
@@ -159,7 +168,7 @@ public class Lecture
 				+ ", classSemester=" + classSemester + ", classYear=" + classYear + ", classApprove=" + classApprove
 				+ ", classLevel=" + classLevel + ", classType=" + classType + ", lectureTime=" + lectureTime
 				+ ", profName=" + profName + ", time=" + time + ", lectureApplication=" + lectureApplication
-				+ ", professor=" + professor + "]";
+				+ ", professor=" + professor + ", student=" + student + "]";
 	}
-    
+	   
 }

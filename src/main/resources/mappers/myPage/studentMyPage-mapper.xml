@@ -262,7 +262,7 @@
 		WHERE S.STUDENT_ID = #{stdId}
  	</select>
  	
- 	<!-- 학생 단과대, 학과 조회 -->
+ 	<!-- 학생 학부, 학과 조회 -->
  	<select id="selectStdDepartment" parameterType="Student" resultMap="StdDepartmentResultSet">
  		SELECT * FROM TB_STUDENT
 		LEFT OUTER JOIN TB_DEPARTMENT ON TB_STUDENT.DEPARTMENT_CODE = TB_DEPARTMENT.DEPARTMENT_CODE
@@ -270,6 +270,7 @@
 		WHERE STUDENT_ID = #{stdId}
  	</select>
  	
+ 	<!-- 학생 시간표 조회 -->
  	<select id="selectStdSchdule" parameterType="Lecture" resultMap="StdScheduleResultSet">
  		SELECT CLASS_NAME, CLASS_YEAR, CLASS_SEMESTER, ROOM, NAME, DAY, HOUR
 		FROM TB_STUDENT S

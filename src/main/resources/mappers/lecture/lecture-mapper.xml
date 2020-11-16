@@ -25,6 +25,13 @@
         <result property="classSeq" column="CLASS_SEQ"/>
         <result property="day" column="DAY"/>
         <result property="hour" column="HOUR"/>
+        <result property="dayHour" column="DAY_HOUR"/>
+    </resultMap>
+<!--    강의등록리절트맵-->
+    <resultMap id="registerMap" type="LectureApplication">
+        <id property="registerSeq" column="REGISTER_SEQ"/>
+        <result property="stdId" column="STUDENT_ID"/>
+        <result property="classSeq" column="CLASS_SEQ"/>
     </resultMap>
 
     <select id="selectClassTime" resultMap="lectureMap" parameterType="com.kh.univ.lecture.model.vo.SearchCondition">
@@ -75,5 +82,81 @@
         FROM TB_DEPARTMENT
         WHERE COLLEGE_CODE = #{collegeCode}
     </select>
-
+    <select id="selectDayHour" resultMap="lectureTimeMap" parameterType="_int">
+        SELECT CONCAT(DAY,HOUR) AS DAY_HOUR
+        FROM  TB_REGISTER_CLASS a,TB_CLASS_TIME b
+        WHERE a.CLASS_SEQ=b.CLASS_SEQ
+          AND a.STUDENT_ID=#{stdId}
+    </select>
+    <select id="selectDayHourBasket" resultMap="lectureTimeMap" parameterType="_int">
+        SELECT CONCAT(DAY,HOUR) AS DAY_HOUR
+        FROM  TB_BASKET_CLASS a,TB_CLASS_TIME b
+        WHERE a.CLASS_SEQ=b.CLASS_SEQ
+          AND a.STUDENT_ID=#{stdId}
+    </select>
+    <select id="selectDayHour2" resultMap="lectureTimeMap">
+        SELECT CONCAT(DAY,HOUR) AS DAY_HOUR
+        FROM TB_CLASS_TIME
+        WHERE CLASS_SEQ=#{classSeq}
+    </select>
+    <insert id="insertRegisterClass" parameterType="LectureApplication">
+        INSERT INTO TB_REGISTER_CLASS
+        VALUES (SEQ_REGISTER_CLASS.nextval, #{stdId},#{classSeq})
+    </insert>
+    <insert id="insertBasketClass" parameterType="LectureApplication">
+        INSERT INTO TB_BASKET_CLASS
+        VALUES (SEQ_BASKET_CLASS.nextval, #{stdId},#{classSeq})
+    </insert>
+    <select id="selectMyTime" resultMap="lectureMap">
+        SELECT a.CLASS_SEQ,
+               a.CLASS_NAME,
+               c.DEPARTMENT_NAME AS DEPARTMENT_CODE,
+               d.NAME            AS PROFESSOR_NAME,
+               subquery1.total,
+               a.ROOM,
+               a.CLASS_TYPE,
+               a.GRADE_SIZE,
+               a.CLASS_LEVEL
+        FROM TB_CLASS a,
+             (SELECT CLASS_SEQ, LISTAGG(CONCAT(DAY, HOUR), '/') WITHIN GROUP (ORDER BY CLASS_TIME_SEQ ) AS total
+              FROM TB_CLASS_TIME b
+              GROUP BY CLASS_SEQ) subquery1,
+             TB_DEPARTMENT c,
+             TB_PROFESSOR d,
+             TB_REGISTER_CLASS e
+        WHERE subquery1.CLASS_SEQ = a.CLASS_SEQ
+          AND a.CLASS_SEQ = e.CLASS_SEQ
+          AND a.DEPARTMENT_CODE = c.DEPARTMENT_CODE
+          AND a.PROFESSOR_ID = d.PROFESSOR_ID
+          AND e.STUDENT_ID = #{stdId}
+    </select>
+    <select id="selectMyBasket" resultMap="lectureMap">
+        SELECT a.CLASS_SEQ,
+               a.CLASS_NAME,
+               c.DEPARTMENT_NAME AS DEPARTMENT_CODE,
+               d.NAME            AS PROFESSOR_NAME,
+               subquery1.total,
+               a.ROOM,
+               a.CLASS_TYPE,
+               a.GRADE_SIZE,
+               a.CLASS_LEVEL
+        FROM TB_CLASS a,
+             (SELECT CLASS_SEQ, LISTAGG(CONCAT(DAY, HOUR), '/') WITHIN GROUP (ORDER BY CLASS_TIME_SEQ ) AS total
+              FROM TB_CLASS_TIME b
+              GROUP BY CLASS_SEQ) subquery1,
+             TB_DEPARTMENT c,
+             TB_PROFESSOR d,
+             TB_BASKET_CLASS e
+        WHERE subquery1.CLASS_SEQ = a.CLASS_SEQ
+          AND a.CLASS_SEQ = e.CLASS_SEQ
+          AND a.DEPARTMENT_CODE = c.DEPARTMENT_CODE
+          AND a.PROFESSOR_ID = d.PROFESSOR_ID
+          AND e.STUDENT_ID = #{stdId}
+    </select>
+    <delete id="deleteMyClass" parameterType="LectureApplication">
+        DELETE FROM TB_REGISTER_CLASS WHERE STUDENT_ID=#{stdId} AND CLASS_SEQ=#{classSeq}
+    </delete>
+    <delete id="deleteMyBasket" parameterType="LectureApplication">
+        DELETE FROM TB_BASKET_CLASS WHERE STUDENT_ID=#{stdId} AND CLASS_SEQ=#{classSeq}
+    </delete>
 </mapper>

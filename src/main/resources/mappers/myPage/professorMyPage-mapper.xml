@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ProfessorMyPageMapper">
+	<!-- 교수 ResultMap -->
+	<resultMap id="ProfessorResultSet" type="Professor">
+      <id property="profId" column="PROFESSOR_ID"/>
+      <result property="profPwd" column="PASSWORD"/>
+      <result property="profName" column="NAME"/>
+      <result property="profBirth" column="BIRTH_NO"/>
+      <result property="profDepartment" column="DEPARTMENT_CODE"/>
+      <result property="profImage" column="IMAGE"/>
+      <result property="profSalary" column="SALARY"/>
+      <result property="profPhone" column="PHONE"/>
+      <result property="profEmail" column="EMAIL"/>
+      <result property="profAddress" column="ADDRESS"/>
+      <result property="profAddressDetail" column="ADDRESS_DETAIL"/>
+      <result property="profBank" column="BANK"/>
+      <result property="profAccount" column="ACCOUNT"/>
+      <result property="profAccountHolder" column="ACCOUNT_HOLDER"/>
+      <result property="profSmsAgree" column="SMS_AGREE"/>
+      <result property="profEmailAgree" column="EMAIL_AGREE"/>
+      <result property="lab" column="LAB"/>
+      <result property="status" column="STATUS"/>
+      <result property="profTel" column="TEL"/>
+   </resultMap>
+   
+   <!-- 교수 학부, 학과 ResultMap -->
+   <resultMap id="ProfDepartmentResultSet" type="Professor">
+      <id property="profId" column="PROFESSOR_ID"/>
+      <result property="profPwd" column="PASSWORD"/>
+      <result property="profName" column="NAME"/>
+      <result property="profBirth" column="BIRTH_NO"/>
+      <result property="profDepartment" column="DEPARTMENT_CODE"/>
+      <result property="profImage" column="IMAGE"/>
+      <result property="profSalary" column="SALARY"/>
+      <result property="profPhone" column="PHONE"/>
+      <result property="profEmail" column="EMAIL"/>
+      <result property="profAddress" column="ADDRESS"/>
+      <result property="profAddressDetail" column="ADDRESS_DETAIL"/>
+      <result property="profBank" column="BANK"/>
+      <result property="profAccount" column="ACCOUNT"/>
+      <result property="profAccountHolder" column="ACCOUNT_HOLDER"/>
+      <result property="profSmsAgree" column="SMS_AGREE"/>
+      <result property="profEmailAgree" column="EMAIL_AGREE"/>
+      <result property="lab" column="LAB"/>
+      <result property="status" column="STATUS"/>
+      <result property="profTel" column="TEL"/>
+      <result property="departmentName" column="DEPARTMENT_NAME"/>
+      <result property="collegeCode" column="COLLEGE_CODE"/>
+      <result property="collegeName" column="COLLEGE_NAME"/>
+   </resultMap>
+   
+   	<!-- 수업 ResultMap -->
+ 	<resultMap id="LectureResultSet" type="Lecture">
+        <id property="classSeq" column="CLASS_SEQ"/>
+        <result property="classCode" column="CLASS_CODE"/>
+        <result property="deptCode" column="DEPARTMENT_CODE"/>
+        <result property="profId" column="PROFESSOR_ID"/>
+        <result property="className" column="CLASS_NAME"/>
+        <result property="room" column="ROOM"/>
+        <result property="gradeSize" column="GRADE_SIZE"/>
+        <result property="classSemester" column="CLASS_SEMESTER"/>
+        <result property="classYear" column="CLASS_YEAR"/>
+        <result property="classApprove" column="CLASS_APPROVE"/>
+        <result property="classLevel" column="CLASS_LEVEL"/>
+        <result property="classType" column="CLASS_TYPE"/>
+        <result property="profName" column="PROFESSOR_NAME"/>
+    </resultMap>
+    
+    <!-- 수업시간 ResultMap -->
+    <resultMap id="LectureTimeResultSet" type="LectureTime">
+        <id property="ctSeq" column="CLASS_TIME_SEQ"/>
+        <result property="classSeq" column="CLASS_SEQ"/>
+        <result property="day" column="DAY"/>
+        <result property="hour" column="HOUR"/>
+    </resultMap>
+    
+    <!-- 상담 신청 ResultMap -->
+    <resultMap id="ConsultingResultSet" type="Consulting">
+    	<id property="consultingNo" column="CONSULTING_NO"/>
+    	<result property="stdId" column="STUDENT_ID"/>
+    	<result property="profId" column="PROFESSOR_ID"/>
+    	<result property="consultingStatus" column="CONSULTING_STATUS"/>
+    	<result property="applyDate" column="APPLY_DATE"/>
+    	<result property="progressDate" column="PROGRESS_DATE"/>
+    	<result property="completeDate" column="COMPLETE_DATE"/>
+    	<result property="cancleDate" column="CANCLE_DATE"/>
+    	<result property="stdName" column="STUDENT_NAME"/>
+    	<result property="profName" column="NAME"/>
+    </resultMap>
+    
+    <!-- 수업시간 조회 ResultMap -->
+    <resultMap id="ProfScheduleResultSet" type="Lecture">
+        <id property="classSeq" column="CLASS_SEQ"/>
+        <result property="classCode" column="CLASS_CODE"/>
+        <result property="deptCode" column="DEPARTMENT_CODE"/>
+        <result property="profId" column="PROFESSOR_ID"/>
+        <result property="className" column="CLASS_NAME"/>
+        <result property="room" column="ROOM"/>
+        <result property="gradeSize" column="GRADE_SIZE"/>
+        <result property="classSemester" column="CLASS_SEMESTER"/>
+        <result property="classYear" column="CLASS_YEAR"/>
+        <result property="classApprove" column="CLASS_APPROVE"/>
+        <result property="classLevel" column="CLASS_LEVEL"/>
+        <result property="classType" column="CLASS_TYPE"/>
+        <result property="profName" column="PROFESSOR_NAME"/>
+        <collection property="time" resultMap="LectureTimeResultSet"/>
+ 		<collection property="professor" resultMap="ProfessorResultSet"/>
+    </resultMap>
+    
+    <!-- 상담 신청 ResultMap -->
+    <resultMap id="SelectConsultingResultSet" type="Consulting">
+    	<id property="consultingNo" column="CONSULTING_NO"/>
+    	<result property="stdId" column="STUDENT_ID"/>
+    	<result property="profId" column="PROFESSOR_ID"/>
+    	<result property="consultingStatus" column="CONSULTING_STATUS"/>
+    	<result property="applyDate" column="APPLY_DATE"/>
+    	<result property="progressDate" column="PROGRESS_DATE"/>
+    	<result property="completeDate" column="COMPLETE_DATE"/>
+    	<result property="cancleDate" column="CANCLE_DATE"/>
+    	<result property="stdName" column="STUDENT_NAME"/>
+		<result property="departmentName" column="DEPARTMENT_NAME"/>
+		<result property="collegeName" column="COLLEGE_NAME"/>
+    </resultMap>
+   
+   	<!-- 교수 학부, 학과 조회 -->
+ 	<select id="selectProfDepartment" parameterType="Professor" resultMap="ProfDepartmentResultSet">
+ 		SELECT * FROM TB_PROFESSOR
+		LEFT OUTER JOIN TB_DEPARTMENT ON TB_PROFESSOR.DEPARTMENT_CODE = TB_DEPARTMENT.DEPARTMENT_CODE
+		LEFT OUTER JOIN TB_COLLEGE ON TB_DEPARTMENT.COLLEGE_CODE = TB_COLLEGE.COLLEGE_CODE
+		WHERE PROFESSOR_ID = #{profId}
+ 	</select>
+   
+   <!-- 교수 개인정보 변경 -->
+ 	<update id="changeProfPersonalInfo">
+ 		UPDATE TB_PROFESSOR SET
+ 		TEL = #{profTel}, PHONE = #{profPhone}, EMAIL = #{profEmail}, ADDRESS = #{profAddress}, ADDRESS_DETAIL = #{profAddressDetail}, 
+ 		BANK = #{profBank}, ACCOUNT = #{profAccount}, ACCOUNT_HOLDER = #{profAccountHolder}
+ 		WHERE PROFESSOR_ID = #{profId}
+ 	</update>
+ 	
+ 	<!-- 교수 개인정보 동의 변경 -->
+ 	<update id="changeProfAgreeInfo">
+ 		UPDATE TB_PROFESSOR SET
+ 		SMS_AGREE = #{profSmsAgree}, EMAIL_AGREE = #{profEmailAgree}
+ 		WHERE PROFESSOR_ID = #{profId}
+ 	</update>
+ 	
+ 	<!-- 교수 비밀번호 확인 -->
+ 	<select id="checkProfPwd" parameterType="Professor" resultMap="ProfessorResultSet">
+		SELECT * FROM TB_PROFESSOR
+		WHERE PROFESSOR_ID = #{profId}
+ 	</select>
+ 	
+ 	<!-- 교수 비밀번호 변경 -->
+ 	<update id="changeProfPwd">
+ 		UPDATE TB_PROFESSOR SET
+ 		PASSWORD = #{profPwd}
+ 		WHERE PROFESSOR_ID = #{profId}
+ 	</update>
+ 	
+ 	<!-- 교수 시간표 조회 -->
+ 	<select id="selectProfSchdule" parameterType="Lecture" resultMap="ProfScheduleResultSet">
+ 		SELECT CLASS_NAME, CLASS_YEAR, CLASS_SEMESTER, ROOM, NAME, DAY, HOUR
+		FROM TB_PROFESSOR P
+		LEFT OUTER JOIN TB_CLASS C ON P.PROFESSOR_ID = C.PROFESSOR_ID
+		LEFT OUTER JOIN TB_CLASS_TIME T ON C.CLASS_SEQ = T.CLASS_SEQ
+		WHERE P.PROFESSOR_ID = #{profId} AND C.CLASS_YEAR = #{classYear}  AND C.CLASS_SEMESTER = #{classSemester}
+ 	</select>
+ 	
+ 	<!-- 교수 상담 조회 -->
+ 	<select id="selectConsulting" parameterType="Consulting" resultMap="SelectConsultingResultSet">
+ 		SELECT  C.CONSULTING_NO, C.STUDENT_ID, C.PROFESSOR_ID, C.CONSULTING_STATUS, C.APPLY_DATE, C.PROGRESS_DATE, C.COMPLETE_DATE, C.CANCLE_DATE,
+		S.STUDENT_NAME, S.STUDENT_ID, D.DEPARTMENT_NAME, COL.COLLEGE_NAME
+		FROM TB_CONSULTING C
+		LEFT OUTER JOIN TB_STUDENT S ON C.STUDENT_ID = S.STUDENT_ID
+		LEFT OUTER JOIN TB_PROFESSOR P ON C.PROFESSOR_ID = P.PROFESSOR_ID
+		LEFT OUTER JOIN TB_DEPARTMENT D ON S.DEPARTMENT_CODE = D.DEPARTMENT_CODE
+		LEFT OUTER JOIN TB_COLLEGE COL ON D.COLLEGE_CODE = COL.COLLEGE_CODE
+		WHERE C.PROFESSOR_ID = #{profId}
+ 	</select>
+ 	
+ 	<!-- 상담 승인 -->
+ 	<update id="approveConsulting">
+ 		UPDATE TB_CONSULTING SET CONSULTING_STATUS = '진행', PROGRESS_DATE = #{progressDate}
+		WHERE CONSULTING_NO = #{consultingNo}
+ 	</update>
+ 	
+ 	<!-- 상담 거절 -->
+ 	<update id="rejectConsulting">
+ 		UPDATE TB_CONSULTING SET CONSULTING_STATUS = '취소', CANCLE_DATE = SYSDATE
+		WHERE CONSULTING_NO = #{consultingNo}
+ 	</update>
+ 	
+ 	<!-- 상담 완료 -->
+ 	<update id="completeConsulting">
+ 		UPDATE TB_CONSULTING SET CONSULTING_STATUS = '완료', COMPLETE_DATE = #{completeDate}
+		WHERE CONSULTING_NO = #{consultingNo}
+ 	</update>
+ 	
+ 	<!-- 상담 변경 -->
+ 	<update id="changeConsulting">
+ 		UPDATE TB_CONSULTING SET PROGRESS_DATE = #{progressDate}
+		WHERE CONSULTING_NO = #{consultingNo}
+ 	</update>
+ </mapper>

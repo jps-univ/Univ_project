@@ -15,19 +15,24 @@
         <result property="classApprove" column="CLASS_APPROVE"/>
         <result property="classLevel" column="CLASS_LEVEL"/>
         <result property="classType" column="CLASS_TYPE"/>
-
+		
         <result property="lectureTime" column="TOTAL"/>
-        <result property="profName" column="PROFESSOR_NAME"/>
+        <result property="profName" column="NAME"/>
     </resultMap>
 
 
 	<select id="selectClassList" parameterType="hashMap" resultMap="classList">
-      SELECT * 
-      FROM (SELECT * FROM TB_CLASS
-      WHERE CLASS_SEQ IN (SELECT CLASS_SEQ
-      FROM TB_REGISTER_CLASS
-      WHERE STUDENT_ID=#{userId}))
-      WHERE CLASS_YEAR=#{userYear}
-      AND CLASS_SEMESTER=#{userGrade}
+		SELECT A.CLASS_SEQ, A.CLASS_CODE, A.PROFESSOR_ID, A.CLASS_NAME, A.GRADE_SIZE, A.CLASS_SEMESTER, B.NAME
+		FROM (SELECT * 
+		      FROM (SELECT * FROM TB_CLASS
+		      WHERE CLASS_SEQ IN (SELECT CLASS_SEQ
+		      FROM TB_REGISTER_CLASS
+		      WHERE STUDENT_ID=#{userId}))
+		      WHERE CLASS_YEAR=#{userYear}
+		      AND CLASS_SEMESTER=#{userGrade}) A, TB_PROFESSOR B
+		WHERE A.PROFESSOR_ID = B.PROFESSOR_ID
 	</select>
+	
+	
+	
 </mapper>

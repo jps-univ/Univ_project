@@ -15,9 +15,15 @@ public class Consulting
 	
 	private String stdName;				// 학생 이름
 	private String profName;			// 교수 이름
-	public Consulting() {}
+	private String collegeName;			// 단과대 이름
+	private String departmentName;		// 학과 이름
+	public Consulting() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public Consulting(int consultingNo, int stdId, int profId, String consultingStatus, Date applyDate,
-			Date progressDate, Date completeDate, Date cancleDate, String stdName, String profName) {
+			Date progressDate, Date completeDate, Date cancleDate, String stdName, String profName, String collegeName,
+			String departmentName) {
 		super();
 		this.consultingNo = consultingNo;
 		this.stdId = stdId;
@@ -29,6 +35,8 @@ public class Consulting
 		this.cancleDate = cancleDate;
 		this.stdName = stdName;
 		this.profName = profName;
+		this.collegeName = collegeName;
+		this.departmentName = departmentName;
 	}
 	public int getConsultingNo() {
 		return consultingNo;
@@ -90,11 +98,25 @@ public class Consulting
 	public void setProfName(String profName) {
 		this.profName = profName;
 	}
+	public String getCollegeName() {
+		return collegeName;
+	}
+	public void setCollegeName(String collegeName) {
+		this.collegeName = collegeName;
+	}
+	public String getDepartmentName() {
+		return departmentName;
+	}
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
+	}
 	@Override
 	public String toString() {
 		return "Consulting [consultingNo=" + consultingNo + ", stdId=" + stdId + ", profId=" + profId
 				+ ", consultingStatus=" + consultingStatus + ", applyDate=" + applyDate + ", progressDate="
 				+ progressDate + ", completeDate=" + completeDate + ", cancleDate=" + cancleDate + ", stdName="
-				+ stdName + ", profName=" + profName + "]";
+				+ stdName + ", profName=" + profName + ", collegeName=" + collegeName + ", departmentName="
+				+ departmentName + "]";
 	}
+	
 }

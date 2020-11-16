@@ -1,30 +1,38 @@
 package com.kh.univ.test.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonIOException;
-import com.kh.univ.test.model.service.TestService;
-import com.kh.univ.test.model.vo.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
+import com.kh.univ.board.model.service.BoardService;
+import com.kh.univ.board.model.vo.Board;
+import com.kh.univ.test.model.service.TestService;
+import com.kh.univ.test.model.vo.Test;
+
 @Controller
 public class TestController {
     @Autowired
     private TestService tService;
-
+    
+    @Autowired
+    private BoardService bService;
 
 
 
@@ -79,11 +87,25 @@ public class TestController {
 
     @RequestMapping("goMain.do")
     public String goMain() {
+    	
+//    	ArrayList<Board> nList = bService.nList();
+//    	System.out.println("nList : " + nList);
+//    	ModelAndView mv = new ModelAndView();
+//    	mv.setViewName("common/main");
+//    	mv.addObject("nList",nList);
+//        return mv;
         return "common/main";
     }
 
     @RequestMapping("login.do")
-    public String  login() {
+    public String login() {
+    	
+//    	ArrayList<Board> nList = bService.nList();
+//    	System.out.println("nList : " + nList);
+//    	ModelAndView mv = new ModelAndView();
+//    	mv.setViewName("common/main");
+//    	mv.addObject("nList",nList);
+//        return mv;
         return "common/main";
     }
 
@@ -97,7 +119,11 @@ public class TestController {
     }
     
     @RequestMapping("noticeDetail.do")
-    public String nDetail() {
-        return "notice_detail/noticeDetail";
+    public ModelAndView nDetail(ModelAndView model, Board board) {
+    	Board BoardDetail = bService.findById(board);
+    	model.addObject("board",BoardDetail);
+    	model.setViewName("notice_detail/noticeDetail");
+    	
+        return model;
     }
 }

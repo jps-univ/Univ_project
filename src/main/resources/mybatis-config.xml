@@ -16,11 +16,22 @@
 		<typeAlias type="com.kh.univ.lecture.model.vo.Lecture" alias="Lecture"/>
 		<typeAlias type="com.kh.univ.lecture.model.vo.LectureTime" alias="LectureTime"/>
 		<typeAlias type="com.kh.univ.lecture.model.vo.LectureApplication" alias="LectureApplication"/>
+		<typeAlias  type="com.kh.univ.lecture.model.vo.SearchCondition" alias="SearchCondition"/>
         <typeAlias type="com.kh.univ.test.model.vo.Test" alias="Test"/>
         <typeAlias type="com.kh.univ.salary.model.vo.Salary" alias="Salary"/>
         <typeAlias type="com.kh.univ.register.model.vo.Register" alias="Register"/>
         <typeAlias type="com.kh.univ.consulting.model.vo.Consulting" alias="Consulting"/>
+        
         <typeAlias type="com.kh.univ.stmanagement.model.vo.Grade" alias="Grade"/>
+
+        <typeAlias type="com.kh.univ.board.model.vo.Board" alias="Board"/>
+        
+        <!-- admin -->
+        <typeAlias type="com.kh.univ.admin.model.vo.AdDepartment" alias="AdDepartment"/>
+        <typeAlias type="com.kh.univ.admin.model.vo.AdCollege" alias="AdCollege"/>
+        <typeAlias type="com.kh.univ.admin.model.vo.AdProfessor" alias="AdProfessor"/>
+        
+
         
         <!-- <typeAlias type="com.kh.spring.board.model.vo.Board" alias="Board"/>
         <typeAlias type="com.kh.spring.board.model.vo.Reply" alias="Reply"/> -->
@@ -30,15 +41,20 @@
         <mapper resource="mappers/test-mapper.xml"/>
         <!-- <mapper resource="mappers/board-mapper.xml"/> -->
         <mapper resource="mappers/member/student-mapper.xml"/>
+        <mapper resource="mappers/member/professor-mapper.xml"/>
         <mapper resource="mappers/myPage/studentMyPage-mapper.xml"/>
+        <mapper resource="mappers/myPage/professorMyPage-mapper.xml"/>
         <mapper resource="mappers/StudentManagement/studentManagement-mapper.xml"/>
         <mapper resource="mappers/payment/payment-mapper.xml"/>
-        <mapper resource="mappers/lecture/lecture-mapper.xml"/>        
+        <mapper resource="mappers/lecture/lecture-mapper.xml"/>
+        <mapper resource="mappers/lecture/lectureEvaluation-mapper.xml"/>
         <mapper resource="mappers/Salary/salary-mapper.xml"/>
         <mapper resource="mappers/classBoard/classBoard-mapper.xml"/>
+        <mapper resource="mappers/board/board-mapper.xml"/> 
         
         <!-- 관리자 mappers -->
         <mapper resource="mappers/admin/adminStudent-mapper.xml"/>
         <mapper resource="mappers/admin/adminProfessor-mapper.xml"/>
+        <mapper resource="mappers/admin/adminLecture-mapper.xml"/>
     </mappers>
 </configuration>

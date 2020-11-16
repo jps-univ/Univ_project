@@ -52,10 +52,7 @@
         <!-- Topbar -->
   		<c:import url="../common/pageTopbar.jsp" />
         
-		<div>
-			${ user.stdId }
-			${ loginUser.stdId }
-		</div>
+
         <div id="main_con">  
           <p id="select_title">학기</p>
           <form id="semester">
@@ -73,7 +70,7 @@
                 <option value="1">1학기</option>
                 <option value="2">2학기</option>
               </select>
-              <button id="submit">조회</button>
+              <button id="submit" type="button">조회</button>
             </fieldset>
           </form>
 
@@ -101,15 +98,7 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>A12</td>
-                                <td>1</td>
-                                <td>유승제와 함께하는 html</td>
-                                <td>유승제</td>
-                                <td>3</td>
-                            </tr>
-                        </tbody>
+                        <tbody></tbody>
                     </table>
                 </form>
             </div>
@@ -117,25 +106,37 @@
        	<script>
        		$('#submit').click(function(){
        			$.ajax({
-       				url:"classList.do",
-       				dataType:"JSON",
+       				url:'classList.do',
+       				type:'get',
+       				dataType:'JSON',
        				data : {
        					userYear:$('#year').val(),
        					userGrade:$('#grade').val()
        				},
        				success : function(data){
-       					console.log("gg");
-       					console.log(data);
-       					$tableBody = $('#rest_lecture tbody');
-       					$tableBody.html("");
-       					/* for (var i in data) {
+       					
+        				$tableBody = $('#rest_lecture tbody');
+       					$tableBody.html(""); 
+       					for (var i in data) {
        						var $tr = $("<tr>");
-       						var $
-       					} */
+    						var $classCode = $('<td>').text(data[i].classCode);
+    						var $classSemester = $('<td>').text(data[i].classSemester);
+    						var $className = $('<td>').html('<a href="classBoardMain.do?classSeq='+data[i].classSeq+'">'+data[i].className+'</a>');
+    						var $proName = $('<td>').text(data[i].proName);
+    						var $classGradeSize = $('<td>').text(data[i].classGradeSize);
+    						
+    						$tr.append($classCode);
+    						$tr.append($classSemester);
+    						$tr.append($className);
+    						$tr.append($proName); 
+    						$tr.append($classGradeSize);
+    						
+    						$tableBody.append($tr);
+       					} 
+       				}, error:function(){
+       					console.log("시이바알");
        				}
-       				
        			});
-       			
        		});
        		
        	</script>

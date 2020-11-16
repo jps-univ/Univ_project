@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <% String path = request.getContextPath(); %>
 <!DOCTYPE HTML>
 <html>
@@ -39,6 +41,12 @@
         <!-- 로그인 박스 -->
 <%--        action 위에걸로하면 맥에서 경로를 못찾는것같음. 404뜸.(인텔리제이라서 못찾는것일수도있음)--%>
 <%--        <form class="login" action="/univ/studentLogin.do" method="post"> --%>
+
+<%-- 		<c:set var="userId" value=${'#userID'}/>
+		<c:set var="subId" value="${ fn:substring(userId, 0, 1) }"/>
+		<c:choose>
+			<c:when test="${ subId eq 9 }"><form class="login" action="professorLogin.do" method="post"></c:when>
+		</c:choose> --%>
         <form class="login" action="studentLogin.do" method="post">
             <div class="loginbox">
                 <div class="login-wrapper">
@@ -64,7 +72,7 @@
                     <button type="button" id="findTdPwdBtn" class="btn-default" data-toggle="modal" data-target="#myModal2">비밀번호찾기</button>
                 </div>
                 <div class="submit">
-                    <button type="submit" class="btn btn-primary" id="loginBtn">로그인</button><a href="loginProfessor.do">@</a>
+                    <button type="submit" class="btn btn-primary" id="loginBtn">로그인</button>
                 </div>  
             </div>
              
@@ -320,7 +328,6 @@
         	$("#findPwdInfoArea").show();
         	$("#findPwdInfoArea input").val("");
         });
-        
         
     </script>
     

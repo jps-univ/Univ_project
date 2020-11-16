@@ -2,12 +2,15 @@ package com.kh.univ.stmanagement.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.stmanagement.model.service.StudentManagementService;
+import com.kh.univ.stmanagement.model.vo.Grade;
 import com.kh.univ.stmanagement.model.vo.StudentManagement;
 
 @Controller
@@ -49,6 +52,18 @@ public class StudentManagementController {
 			mv.addObject("list", list);
 			mv.setViewName("studentManagement/gradeManagement");
 			return mv;
+	}
+	
+	@RequestMapping("gradeinsert.do")
+	public String boardInsertView(Grade g,HttpServletRequest request) {
+		
+		int result = smService.insertGrade(g);
+		
+		if(result > 0) {
+			return "redirect:stGrade.do";
+		}else {
+			return "common/errorPage";
+		}
 	}
 	
 }

@@ -9,7 +9,7 @@ public interface PaymentService {
 	// 등록금 리스트
 	ArrayList<Payment> selectList(int i);
 
-	// 등록금 하나뽑아오기
+	// 등록금 하나 뽑아오기
 	Payment selectPayment(int paymentNo);
 
 }
