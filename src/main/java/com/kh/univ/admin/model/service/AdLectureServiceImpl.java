@@ -40,4 +40,10 @@ public class AdLectureServiceImpl implements AdLectureService{
 		// TODO Auto-generated method stub
 		return adLectureDao.adProfessorSelect(departmentCode);
 	}
+
+	@Override
+	public ArrayList<Lecture> selectAdLectureList() {
+		// TODO Auto-generated method stub
+		return adLectureDao.selectAdLectureList();
+	}
 }

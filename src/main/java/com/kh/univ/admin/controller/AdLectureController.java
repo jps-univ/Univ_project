@@ -12,6 +12,7 @@ import com.kh.univ.admin.model.service.AdLectureService;
 import com.kh.univ.admin.model.vo.AdCollege;
 import com.kh.univ.admin.model.vo.AdDepartment;
 import com.kh.univ.admin.model.vo.AdProfessor;
+import com.kh.univ.lecture.model.vo.Lecture;
 
 
 @Controller
@@ -69,7 +70,9 @@ public class AdLectureController {
 	@RequestMapping("lecture_Modify.do")
 	public ModelAndView lectureModify(ModelAndView mv) {
 		
+		ArrayList<Lecture> selectAdLectureList = adLectureService.selectAdLectureList();
 		
+		mv.setViewName("admin/ad_lecture_modify");
 		return mv;
 	}
 	
