@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.classBoard.service.ClassBoardService;
+import com.kh.univ.classBoard.vo.ClassNotice;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
@@ -106,10 +107,15 @@ public class ClassBoardController {
 	 * @return
 	 */
 	@RequestMapping("classBoardMain.do")
-	public String classBoardMain(HttpServletRequest request) {
+	public ModelAndView classBoardMain(String classSeq, HttpSession session, ModelAndView mv) {
 		
-		return "classBoard/classBoardMain";
-				
+//		System.out.println("메인넘어갈때 seq : " + request.getParameter("classSeq"));
+		session.setAttribute("classSeq", classSeq);
+		
+		mv.addObject("Seq", classSeq);
+		mv.setViewName("classBoard/classBoardMain");
+		
+		return mv;
 	}
 	
 	/**
@@ -129,12 +135,21 @@ public class ClassBoardController {
 	 */
 	@RequestMapping("noticeList.do")
 	public ModelAndView noticeList(ModelAndView mv, @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage
-								,int classSeq){
-		System.out.println(classSeq);
-	
-		int nListCount = cbService.getNoticeListCount();
-		
+								,HttpSession session){
+		int classSeq = 0;
+		if(session.getAttribute("classSeq") != null ) {
+			classSeq = Integer.parseInt((String) session.getAttribute("classSeq"));
+		}
 
+	
+		ArrayList<ClassNotice> cNotice = cbService.NoticeList(classSeq);
+		System.out.println("컨트롤러 noticeList : "+cNotice);
+		
+		if(classSeq != 0) {
+			mv.setViewName("classBoard/noticeList");
+		}
+		
+		
 		return mv;
 	}
 	

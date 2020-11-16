@@ -73,7 +73,7 @@
                 <li class="drop"><a href="#">Home</a></li>
                 <li class="drop"><a href="#">강의 정보</a></li>
                     <ul class="drop_submenu">
-                        <li><a href="classPlan.do">강의 계획서</a></li>
+                        <li><a href="classPlan.do">강의 계획서</a></li> 
                         <li><a href="noticeList.do">공지 사항</a></li>
                     </ul>
                 <li class="drop"><a href="#">학습 활동</a></li>
