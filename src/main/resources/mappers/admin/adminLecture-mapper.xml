@@ -103,5 +103,7 @@
     
     
     </insert>
+    
+    <select id="selectAdLectureList"></select>
 
 </mapper>
