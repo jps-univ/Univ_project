@@ -68,9 +68,11 @@ public class ClassBoardController {
 		if (user instanceof Student ) {
 			user = (Student)session.getAttribute("loginUser");
 			userId = ((Student) user).getStdId();
+			session.setAttribute("userId", userId);
 		}else if (user instanceof Professor){
 			user = (Professor)session.getAttribute("loginUser");
 			userId = ((Professor) user).getProfId();
+			session.setAttribute("userId", userId);
 		}
 		
 		System.out.println(userId);
@@ -133,7 +135,7 @@ public class ClassBoardController {
 	 * 3. 공지사항 리스트 페이지
 	 * @return
 	 */
-	@RequestMapping("noticeList.do")
+	@RequestMapping("cNoticeList.do")
 	public ModelAndView noticeList(ModelAndView mv, @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage
 								,HttpSession session){
 		int classSeq = 0;
@@ -144,14 +146,43 @@ public class ClassBoardController {
 	
 		ArrayList<ClassNotice> cNotice = cbService.NoticeList(classSeq);
 		System.out.println("컨트롤러 noticeList : "+cNotice);
+
+		mv.addObject("NoticeList", cNotice);
 		
 		if(classSeq != 0) {
 			mv.setViewName("classBoard/noticeList");
 		}
 		
 		
+		
 		return mv;
 	}
+	
+	
+	
+	
+	/*
+	 * 3. 공지사항
+	 * notice detail페이지
+	 * 
+	 */
+	@RequestMapping("cNoticeDetail.do")
+	public ModelAndView noticeDetail(ModelAndView mv, HttpSession session, int nId) {
+			System.out.println(nId);
+			System.out.println(session.getAttribute("userId"));
+			
+			ClassNotice result = cbService.noticeDetail(nId);
+			System.out.println(result);
+			
+			mv.addObject("noticeDetail", result);
+			mv.setViewName("classBoard/notice_Detail");
+			
+		return mv;
+	}
+	
+	
+	
+	
 	
 	
 	

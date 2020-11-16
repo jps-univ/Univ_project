@@ -40,7 +40,13 @@ public class ClassBoardDao {
 
 	public ArrayList<ClassNotice> noticeList(int classSeq) {
 
+		ArrayList arr1 = (ArrayList)sqlSession.selectList("classBoardMapper.selectNoticeList", classSeq);
+		System.out.println("Dad cNotice : "+arr1);
 		return (ArrayList)sqlSession.selectList("classBoardMapper.selectNoticeList", classSeq);
+	}
+
+	public ClassNotice noticeDetail(int nId) {
+		return (ClassNotice)sqlSession.selectOne("classBoardMapper.noticeDetail",nId);
 	}
 	
 	

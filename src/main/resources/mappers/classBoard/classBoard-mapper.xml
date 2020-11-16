@@ -30,6 +30,7 @@
     	<result property="nCreateDate" column="NCREATE_DATE"/>
     	<result property="nModifyDate" column="NMODIFY_DATE"/>
     	<result property="status" column="STATUS"/>
+        <result property="profName" column="NAME"/>
     </resultMap>
 
 
@@ -46,8 +47,15 @@
 	</select>
 	
 	<select id="selectNoticeList" resultMap="noticeList">
-		SELECT * FROM TB_NOTICE
+		SELECT A.NOTICE_ID, A.NTITLE, B.NAME, A.NCREATE_DATE, A.STATUS, A.RCOUNT, PROFESSOR_ID
+		FROM TB_NOTICE A JOIN TB_PROFESSOR B USING(PROFESSOR_ID)
 		WHERE CLASS_SEQ=#{classSeq}
+	</select>
+	
+	<select id="noticeDetail" resultMap="noticeList">
+		SELECT A.NTITLE, A.STATUS, B.NAME, A.NCONTENT, A.RENAMEFILE
+		FROM TB_NOTICE A JOIN TB_PROFESSOR B USING(PROFESSOR_ID)
+		WHERE NOTICE_ID=#{nId}
 	</select>
 	
 	

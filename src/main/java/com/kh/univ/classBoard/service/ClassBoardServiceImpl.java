@@ -32,4 +32,9 @@ public class ClassBoardServiceImpl implements ClassBoardService {
 		return cbDao.noticeList(classSeq);
 	}
 
+	@Override
+	public ClassNotice noticeDetail(int nId) {
+		return cbDao.noticeDetail(nId);
+	}
+
 }

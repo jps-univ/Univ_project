@@ -29,6 +29,14 @@ public interface ClassBoardService {
 	 */
 	ArrayList<ClassNotice> NoticeList(int classSeq);
 
+	
+	/**
+	 * 2_3. 공지사항 detail
+	 * @param nId
+	 * @return
+	 */
+	ClassNotice noticeDetail(int nId);
+
 
 
 }

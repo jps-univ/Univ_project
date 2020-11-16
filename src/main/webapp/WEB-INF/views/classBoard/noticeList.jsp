@@ -7,7 +7,8 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+
+
 <c:set var="contextPath" value="<%= request.getContextPath()%>"/>
 <!DOCTYPE html>
 <html lang="en">
@@ -99,13 +100,13 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="c" items="${ list }"> 
+									<c:forEach var="c" items="${ NoticeList }"> 
 									<tr>
-										<td>$( c.)</td>
-										<td><a href="assignmentDetail.do">휴강하고 싶다</a></td>
-										<td>유승제</td>
-										<td>2020/10/14</td>
-										<td>1</td>
+										<td>${ c.nId }</td>
+										<td><a href="cNoticeDetail.do?nId=${c.nId }">${ c.nTitle}</a></td>
+										<td>${ c.profName}</td>
+										<td>${ c.nCreateDate}</td>
+										<td>${ c.nCount}</td>
 									</tr>
 									</c:forEach>
 								</tbody>
