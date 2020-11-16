@@ -3,7 +3,7 @@
 <%@ page session="false"%>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
 <html lang="ko">
-  <style>
+<style>
      #list{ text-align: center;}
   #btn1,#btn2{ background: white; border: 0px solid white; }
   #body{ width: 100%;}
@@ -30,7 +30,7 @@
   #tb{
     font-size:22px;
     color: black;
-    margin-left: 350px;
+    margin-left: 170px;
     /* border: solid 1px black; */
   }
   #main{ text-align: center; }
@@ -93,8 +93,10 @@ margin-right: 10px;
 #btn1{ text-align: center; width: 130px; height: 50px; margin: auto; background: #2E9AFE; font-size: 28px; border: solid 3px A9E2F3; border-radius: 10px; color: white;}
 #btn{ text-align: center; }
 #select{ position: absolute; right: 30px; margin-top: -40px;}
+#select2{ position: absolute; right: 200px; margin-top: -40px;}
+#select3{ position: absolute; right: 370px; margin-top: -40px;}
 #year{ text-align: center; }
-#text1,#text2{ width: 170px; }
+#text1,#text2,#text3{ width: 170px; }
   </style>
 <head>
 	<meta charset="UTF-8">
@@ -144,6 +146,7 @@ margin-right: 10px;
 				
 				<!-- 여기서부터 내용  -->
 				<!-- Begin Page Content -->
+				<form action="gradeinsert.do" method="post" enctype="multipart/form-data">
        <div id="body">
           <div id="bar">
               <p id="main2">성적관리</p>
@@ -151,23 +154,39 @@ margin-right: 10px;
           </div>
           <br><br><br>
           <!-- <h2 id="year">2020년 2학기 성적관리</h2> -->
-          <table border="0" cellspacing="0" width="700px" id="tb">
+          <table border="0" cellspacing="0" width="1000px" id="tb">
             <tr>
                 <td><h4 id="code">과목코드 : </h4></td>
-                <td><input type="text" id="text1" placeholder="전자 회로 2" disabled></td>
+                <td><input type="text" id="text1" name="${classNo}" placeholder="EE1033" disabled value="EE1033"></td>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <td><h4 id="code">교과목명 : </h4></td>
-                <td><input type="text" id="text2" placeholder="EE1033" disabled></td>
+                <td><input type="text" id="text2" placeholder="전자 회로2" disabled></td>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <td><h4 id="code">교수번호 : </h4></td>
+                <td><input type="text" id="text3" name="professorId" placeholder="123456" disabled value="123456"></td>
             </tr>
         </table>
           <br>
           <div class="col-sm-9 page">
             <div id="content_title">
                 <h2>2020년 2학기 성적관리</h2>
-                <select style="width:140px; height: 30px; font-size: 14px;" name="select" id="select" class="box" onChange="checked();">
+                <select style="width:140px; height: 30px; font-size: 14px;" name="classSemester" id="select" class="box" onChange="checked();">
                   <option value="" selected>선택하세요</option>
-                  <option value="a">중간</option>
-                  <option value="b">기말</option>
+                  <option value="1" name="classSemester">1학기</option>
+                  <option value="2" name="classSemester">2학기</option>
+              </select>
+                <select style="width:140px; height: 30px; font-size: 14px;" name="classYear" id="select2" class="box" onChange="checked();">
+                  <option value="" selected>선택하세요</option>
+                  <option value="2016" name="classYear">2016년</option>
+                  <option value="2017" name="classYear">2017년</option>
+                  <option value="2018" name="classYear">2018년</option>
+                  <option value="2019" name="classYear">2019년</option>
+                  <option value="2020" name="classYear">2020년</option>
+              </select>
+               <select style="width:140px; height: 30px; font-size: 14px;" name="gradeNo" id="select3" class="box" onChange="checked();">
+                  <option value="" selected>선택하세요</option>
+                  <option value="11" name="gradeNo">1학기</option>
+                  <option value="12" name="gradeNo">2학기</option>
               </select>
                 <hr>
             </div>
@@ -197,35 +216,35 @@ margin-right: 10px;
                         <tbody>
                         <c:forEach var="std" items="${ list }">
                             <tr>
-                                <td>${ std.stdName }</td>
-                                <td><input type="checkbox" value="A+"></td>
-                                <td><input type="checkbox" value="A" ></td>
-                                <td><input type="checkbox" value="A-"></td>
-                                <td><input type="checkbox" value="B+"></td>
-                                <td><input type="checkbox" value="B"></td>
-                                <td><input type="checkbox" value="B-"></td>
-                                <td><input type="checkbox" value="C+"></td>
-                                <td><input type="checkbox" value="C"></td>
-                                <td><input type="checkbox" value="C-"></td>
-                                <td><input type="checkbox" value="D+"></td>
-                                <td><input type="checkbox" value="D"></td>
-                                <td><input type="checkbox" value="D-"></td>
-                                <td><input type="checkbox" value="F"></td>
+                                <td name="studentId">${ std.stdId }</td>
+                                <td><input type="radio" name="${gradePoint}" value="A+"></td>
+                                <td><input type="radio" name="gradePoint" value="A" ></td>
+                                <td><input type="radio" name="gradePoint" value="A-"></td>
+                                <td><input type="radio" name="gradePoint" value="B+"></td>
+                                <td><input type="radio" name="gradePoint" value="B"></td>
+                                <td><input type="radio" name="gradePoint" value="B-"></td>
+                                <td><input type="radio" name="gradePoint" value="C+"></td>
+                                <td><input type="radio" name="gradePoint" value="C"></td>
+                                <td><input type="radio" name="gradePoint" value="C-"></td>
+                                <td><input type="radio" name="gradePoint" value="D+"></td>
+                                <td><input type="radio" name="gradePoint" value="D"></td>
+                                <td><input type="radio" name="gradePoint" value="D-"></td>
+                                <td><input type="radio" name="gradePoint" value="F"></td>
                             </tr>
                          </c:forEach>
 
                         </tbody>
-
-
-
                     </table>
                 </method>
             </method>
         </div>
         <br><br>
         <div id="btn">
-        <input type="button" id="btn1" value="완료" onclick="location.href='../index.html'">
+        <!-- 첨부파일을 등록할려고하니 속성값에 method="post" enctype="multipart/form-data" 꼭 지정하자 -->
+		
+        <button onclick="location.href='gradeinsert.do';" id="btn1">완료</button>
         </div>
+        </form>
         <br><br><br>
         
         <script>

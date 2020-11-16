@@ -200,11 +200,7 @@ margin-right: 10px;
 	                            </tr>
 							</c:forEach>
                         </tbody>
-
-
-
                     </table>
-                    
             </div>
         </div>
 				<!-- 여기까지 내용  -->

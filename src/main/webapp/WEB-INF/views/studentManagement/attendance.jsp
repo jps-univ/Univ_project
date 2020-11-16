@@ -171,68 +171,18 @@ margin-right: 10px;
                                 <th>
                                     <pre>               </pre>
                                 </th>
-                                <th><pre> 10/1 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/2 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/3 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/4 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/5 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/6 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/7 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/8 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/9 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/10 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/11 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/12 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/13 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/14 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/15 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/16 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/17 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/18 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/19 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/20 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/21 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/22 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/23 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/24 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/25 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/26 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/27 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/28 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/29 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/30 <input type="checkbox">  </pre></th>
-                                <th><pre> 10/31 <input type="checkbox">  </pre></th>
-                               
-                                
+                                <th><pre> 10/1   </pre></th>
+                                <th><pre> 10/2   </pre></th>
+                                <th><pre> 10/3   </pre></th>
+                                <th><pre> 10/4   </pre></th>
+                                <th><pre> 10/5   </pre></th>
+                                <th><pre> 10/6   </pre></th>
+                                <th><pre> 10/7   </pre></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>김아무개</td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
                                 <td><input type="checkbox"></td>
                                 <td><input type="checkbox"></td>
                                 <td><input type="checkbox"></td>
