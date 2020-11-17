@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="StudentManagementMapper">
+
 	<resultMap id="StudentManagementResultSet" type="StudentManagement">
  		<id property="stdId" column="STUDENT_ID"/>
  		<result property="className" column="CLASS_NAME"/>
@@ -18,11 +19,18 @@
 	<resultMap id="GradeResultSet" type="Grade">
  		<id property="gradeNo" column="GRADE_NO"/>
  		<result property="studentId" column="STUDENT_ID"/>
- 		<result property="professorId" column="PROFESSOR_ID"/>
- 		<result property="classNo" column="CLASS_NO"/>
+ 		<result property="classCode" column="CLASS_CODE"/>
  		<result property="gradePoint" column="GRADE_POINT"/>
- 		<result property="classSemester" column="CLASS_SEMESTER"/>
- 		<result property="classYear" column="CLASS_YEAR"/>
+ 	</resultMap>
+ 	
+ 	<resultMap type="GradeInsert" id="GradeInsertResultSet">
+ 		<id property="gradeNo" column="GRADE_NO"></id>
+ 		<result property="studentId" column="STUDENT_ID"></result>
+ 		<result property="professorId" column="PROFESSOR_ID"></result>
+ 		<result property="classCode" column="CLASS_CODE"></result>
+ 		<result property="gradePoint" column="GRADE_POINT"></result>
+ 		<result property="classSemester" column="CLASS_SEMESTER"></result>
+ 		<result property="classYear" column="CLASS_YEAR"></result>
  	</resultMap>
 
 	<!-- 수강생 조회 매퍼  -->
@@ -60,9 +68,9 @@
 			TB_STUDENT
 	</select>
 	
-	<insert id="gradeInsert" parameterType="Grade">
+	<insert id="grade" parameterType="Grade">
 		INSERT INTO TB_GRADE
 		VALUES(
-			#{classNo},#{professorId},#{classSemester},#{classYear},#{studentId},#{gradePoint},#{gradeNo})
+			#{classCode},#{studentId},#{gradePoint},#{gradeNo})
 	</insert>
 </mapper>

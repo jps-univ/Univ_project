@@ -1,26 +1,26 @@
 package com.kh.univ.stmanagement.model.vo;
 
-public class Grade {
-
+public class GradeInsert {
+	
 	private int gradeNo;
 	private int studentId;
 	private int professorId;
-	private String classNo;
+	private String classCode;
 	private String gradePoint;
 	private int classSemester;
 	private int classYear;
 	
-	public Grade() {
+	public GradeInsert() {
 		super();
 	}
 
-	public Grade(int gradeNo, int studentId, int professorId, String classNo, String gradePoint, int classSemester,
-			int classYear) {
+	public GradeInsert(int gradeNo, int studentId, int professorId, String classCode, String gradePoint,
+			int classSemester, int classYear) {
 		super();
 		this.gradeNo = gradeNo;
 		this.studentId = studentId;
 		this.professorId = professorId;
-		this.classNo = classNo;
+		this.classCode = classCode;
 		this.gradePoint = gradePoint;
 		this.classSemester = classSemester;
 		this.classYear = classYear;
@@ -50,12 +50,12 @@ public class Grade {
 		this.professorId = professorId;
 	}
 
-	public String getClassNo() {
-		return classNo;
+	public String getClassCode() {
+		return classCode;
 	}
 
-	public void setClassNo(String classNo) {
-		this.classNo = classNo;
+	public void setClassCode(String classCode) {
+		this.classCode = classCode;
 	}
 
 	public String getGradePoint() {
@@ -84,9 +84,9 @@ public class Grade {
 
 	@Override
 	public String toString() {
-		return "Grade [gradeNo=" + gradeNo + ", studentId=" + studentId + ", professorId=" + professorId + ", classNo="
-				+ classNo + ", gradePoint=" + gradePoint + ", classSemester=" + classSemester + ", classYear="
-				+ classYear + "]";
+		return "GradeInsert [gradeNo=" + gradeNo + ", studentId=" + studentId + ", professorId=" + professorId
+				+ ", classCode=" + classCode + ", gradePoint=" + gradePoint + ", classSemester=" + classSemester
+				+ ", classYear=" + classYear + "]";
 	}
 	
 	

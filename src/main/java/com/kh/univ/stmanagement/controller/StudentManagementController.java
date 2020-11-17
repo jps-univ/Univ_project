@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.stmanagement.model.service.StudentManagementService;
-import com.kh.univ.stmanagement.model.vo.Grade;
+import com.kh.univ.stmanagement.model.vo.GradeA;
 import com.kh.univ.stmanagement.model.vo.StudentManagement;
 
 @Controller
@@ -55,8 +55,9 @@ public class StudentManagementController {
 	}
 	
 	@RequestMapping("gradeinsert.do")
-	public String boardInsertView(Grade g,HttpServletRequest request) {
+	public String boardInsertView(GradeA g,HttpServletRequest request) {
 		
+		System.out.println(g);
 		int result = smService.insertGrade(g);
 		
 		if(result > 0) {
