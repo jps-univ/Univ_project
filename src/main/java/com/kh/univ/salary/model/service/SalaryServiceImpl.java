@@ -15,11 +15,11 @@ public class SalaryServiceImpl implements SalaryService{
 	private SalaryDao saDao;
 
 	// 월급리스트
-	@Override
-	public ArrayList<Salary> selectList(int i) {
-		
-		return saDao.selectList(i);
-	}
+//	@Override
+//	public ArrayList<Salary> selectList(int i) {
+//		
+//		return saDao.selectList(i);
+//	}
 
 	// 월급 하나 뽑아오기
 	@Override
@@ -27,5 +27,12 @@ public class SalaryServiceImpl implements SalaryService{
 		
 		return saDao.selectSalary(salaryNo);
 	}
+
+	@Override
+	public ArrayList<Salary> selectList(Salary sal) {
+		
+		return saDao.selectList(sal);
+	}
+
 
 }
