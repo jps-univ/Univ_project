@@ -26,6 +26,7 @@
         
 
         <typeAlias type="com.kh.univ.stmanagement.model.vo.GradeA" alias="GradeA"/>
+        <typeAlias type="com.kh.univ.stmanagement.model.vo.GradeInsert" alias="GradeInsert"/>
 
 
 
