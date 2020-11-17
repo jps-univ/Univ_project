@@ -275,6 +275,13 @@ $(function(){
             }
         }
     </script> -->
+    <script>
+    var submitButton = document.getElementsById("reg_lecture_btn");
+    
+    submitButton.onclick = function(){
+    	alert("강의가 등록되었습니다.");
+    }
+    </script>
 
     </div>
     <!-- 본문 끝 -->

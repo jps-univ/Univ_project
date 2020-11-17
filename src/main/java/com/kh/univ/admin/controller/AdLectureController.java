@@ -66,14 +66,14 @@ public class AdLectureController {
 	@RequestMapping("admin_Lecture_insert.do")
 	public String insertLectureOne(AdLecture adLecture, String classTime ) {
 		
-		System.out.println(adLecture);
-		System.out.println(classTime);
 		int insertLecture = adLectureService.adInsertLecture(adLecture);
 		if(insertLecture >0) {
 			insertClassTime(classTime,adLecture);
+			return "redirect:lecture_Register.do";
+		}else {
+			return "common/errorPage";
 		}
 		
-		return null;
 	}
 	public int findLecture(AdLecture adLecture)	{
 		AdLecture findLecture = adLectureService.findLecture(adLecture);

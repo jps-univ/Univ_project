@@ -93,7 +93,7 @@
     
     <insert id="adminInsertLecture" parameterType="adLecture">
     	INSERT INTO TB_CLASS VALUES(SEQ_CLASS.NEXTVAL,#{classCode},#{deptCode},#{profId},#{className},#{room},#{gradeSize},#{classSemester}
-    	,#{classYear},'y',#{classLevel},#{classType})
+    	,#{classYear},'Y',#{classLevel},#{classType})
     	
     
     </insert>
