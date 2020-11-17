@@ -228,11 +228,18 @@
             				schoolYear:$("#schoolYear").val()
             			},success:function(data){
             				console.log(data);
-            				$("#salaryTable").empty();
-            				$("#salaryTable").append("<option>==== 연도 ====</option>");
+            				$("#salaryTable tbody").empty();
+            				$("#salaryTable").append();
 	              				for(var index =0; index < data.length;index++){
-            					var select = $("<option id="+ data[index].schoolYear+ ">");
-            					$('.select').append(schoolYear);
+	              				$("#salaryTable tbody").append("<tr>");
+            					$("#salaryTable tbody").append("<td><input type="+"radio "+"name ="+"checkRadio "+"id="+"checkRadio");
+            					$("#salaryTable tbody").append("<td>"+data[index].schoolYear);
+            					$("#salaryTable tbody").append("<td>"+data[index].schoolMonth);
+            					$("#salaryTable tbody").append("<td>"+data[index].profBank);
+            					$("#salaryTable tbody").append("<td>"+data[index].profAccount);
+            					$("#salaryTable tbody").append("<td>"+data[index].salaryTotal);
+            					$("#salaryTable tbody").append("</tr>");
+            					
             				} 
             			},error:function(rquest,error,errorCode){
             				console.log("전송실패");
