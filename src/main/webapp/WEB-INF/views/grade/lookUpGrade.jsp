@@ -77,15 +77,15 @@
 							</tr>
 
 						</thead>
-						<tbody>
+						<tbody >
 							<td>총 신청 학점</td>
-							<td>130</td>
+							<td id="total-grade"></td>
 							<td>총 취득 학점</td>
 							<td>140</td>
 							<td>백분위 성적</td>
 							<td>99.9</td>
 							<td>총 평점 평균</td>
-							<td>3.5</td>
+							<td id="total-average"></td>
 						</tbody>
 					</table>
 				</div>
@@ -291,6 +291,19 @@
 
 	<!-- Logout Modal-->
 	<c:import url="../common/logoutModal.jsp" />
+	
+	<!-- 페이지 시작하자마자 로그인된 내용을 바탕으로 성적을 불어와야함. -->
+	<script>
+	
+		$(document).ready(function(){
+			var table = $('#grade-top').DataTable({
+				'columns': [
+					
+				],
+			
+			});
+		});
+	</script>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
