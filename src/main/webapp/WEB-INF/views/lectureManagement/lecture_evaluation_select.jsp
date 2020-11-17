@@ -90,19 +90,26 @@
                                   
 								<tbody>
 									<c:forEach var="s" items="${ schedule }" varStatus="status">
-										<tr align="center">
-									       <td>${ status.count }</td>
-									       <td>${ s.classCode }</td>
-									       <td>${ s.className}</td>
-									       <td>${ s.professor.profName }</td>
-									       <td>${ s.room }</td>
-									       <td>${ s.classType }</td>
-									       <td class="text-primary">X</td>
-									       <td>
-									       	<input type="button" class="btn btn-primary" value="평가" id="evaluationBtn" onclick="evaluationBtn(event)">
-									       	<input type="hidden" id="hidden_classSeq" value="${ s.classSeq }">
-									       </td>
-									    </tr>
+										<form action="lecture_evaluation.do" method="post" onsubmit="evaluation()">
+											<tr align="center">
+										       <td>${ status.count }</td>
+										       <td>${ s.classCode }</td>
+										       <td>${ s.className }</td>
+										       <td>${ s.professor.profName }</td>
+										       <td>${ s.room }</td>
+										       <td>${ s.classType }</td>
+										       <td class="text-primary">X</td>
+										       <td>
+										       	<!-- <input type="button" class="btn btn-primary" value="평가" id="evaluationBtn" onclick="evaluationBtn(event)"> -->
+	 									       	<input type="hidden" id="hidden_stdId" name="stdId" value="${ loginUser.stdId }">
+										       	<input type="hidden" id="hidden_stdName" name="stdName" value="${ loginUser.stdName }">
+										       	<input type="hidden" id="hidden_classSeq" name="classSeq" value="${ s.classSeq }">
+										       	<input type="hidden" id="hidden_className" name="className" value="${ s.className }">
+										       	<input type="hidden" id="hidden_profName" name="profName" value="${ s.professor.profName }">
+										       	<button type="submit" class="btn btn-primary">평가</button>
+										       </td>
+										    </tr>
+				                		</form>
 				                    </c:forEach>
 								</tbody>
 							</table>
@@ -158,11 +165,11 @@
     }
     */
     
-    function evaluationBtn(event)
-    {        
+    function evaluation()
+    {
         if(confirm("평가하시겠습니까?"))
     	{
-        	location.href="lecture_evaluation.do";
+        	console.log("test");
     	}
     	else
     	{

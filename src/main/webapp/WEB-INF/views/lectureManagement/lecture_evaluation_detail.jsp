@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="<%= request.getContextPath()%>"/>
 <!DOCTYPE html>
 <html>
@@ -43,7 +44,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
 
-                            <h6 class="m-0 font-weight-bold text-primary">학생이름 : ***</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">학생이름 : <%-- ${ student.stdName } --%></h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
