@@ -65,7 +65,7 @@
   <div style="margin: auto;">
       <table border="1" cellspacing="0" cellpadding="0" style='border-collapse:collapse;border:none;'>
           <tr>
-              <td rowspan="2" width="53" height="50" valign="middle"
+              <td  rowspan="2" width="53" height="50" valign="middle"
                   style='border-left:solid #000000 1.1pt;border-right:solid #000000 0.4pt;border-top:solid #000000 1.1pt;border-bottom:solid #000000 0.4pt;padding:1.4pt 1.4pt 1.4pt 1.4pt'>
                   <p class="HStyle0" style='text-align:center;'>학번</p>
               </td>
@@ -246,6 +246,22 @@
 
 	<!-- Logout Modal-->
 	<c:import url="../common/logoutModal.jsp" />
+	<script>
+		//데이터 넣어야합니다~
+		$(document).ready(function(){
+			var table = $('#grade-top').DataTable({
+				'url' : 'gradeCertificate.do',
+				'type' : 'get',
+				'data' : {
+					
+				},
+				'columns': [
+					
+				],
+			
+			});
+		});
+	</script>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>

@@ -12,7 +12,6 @@ public class GradeController {
 	 */
 	@RequestMapping("lookUpGrade.do")
 	public String lookUpGrade() {
-		System.out.println("왜안되나염?");
 		return "grade/lookUpGrade";
 	}
 	
