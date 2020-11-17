@@ -33,8 +33,6 @@ public class SalaryController {
 		Salary sal = new Salary();
 		int id = newSalary.getProfId();
 		
-		
-		
 			sal.setProfId(newSalary.getProfId());
 			sal.setSchoolYear(schoolYear);
 			ArrayList<Salary>list = saService.selectList(sal);
@@ -60,6 +58,8 @@ public class SalaryController {
 
 		return list;
 	}
+	
+	
 	// 인쇄하기 클릭 시 하나의 정보 가져오기
 	@RequestMapping("salarydetail.do")
     public ModelAndView Salarydetail(int salaryNo, HttpSession session, ModelAndView mv){
