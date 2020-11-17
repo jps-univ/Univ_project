@@ -99,23 +99,23 @@ $(function(){
         <hr>
       </div>
       <div id="reg_table_area">
-        <form method="GET">
+        <form method="post" id="lectureForm" action="admin_Lecture_insert.do">
           <table id="reg_lecture">
             <tr>
               <td><p>강의명</p></td>
-              <td><input type="text" id="LectureName" class="LectureData"></td>
+              <td><input type="text" id="LectureName" class="LectureData" name="className"></td>
 			  <td><p>강의 코드</p></td>
-              <td><input type="text"  class="LectureData"></td>
+              <td><input type="text"  class="LectureData" name="classCode"></td>
             </tr>
             
             <tr>
               <td><p>이수 구분</p></td>
-              <td><select name="" id="status"  class="LectureData">
+              <td><select name="classType" id="status"  class="LectureData"  form ="lectureForm">
                   <option>-----</option>
-                  <option>전공필수</option>
-                  <option>전공선택</option>
-                  <option>교양필수</option>
-                  <option>교양선택</option>
+                  <option>전필</option>
+                  <option>전선</option>
+                  <option>교필</option>
+                  <option>교선</option>
                 </select>
               </td>
               <td><p>개설 학과</p></td>
@@ -125,7 +125,7 @@ $(function(){
                 		<option value="${a.collegeCode }">${a.collegeName }</option>
                 	</c:forEach>
                   </select>
-                  <select id="departmentCode"  class="LectureData">
+                  <select id="departmentCode"  class="LectureData" name="deptCode" form="lectureForm">
                 	<option>단과대학을 먼저 선택해주세요</option>
                   </select>
               </td>
@@ -134,19 +134,19 @@ $(function(){
             <tr>
  				<td><p>교수명</p></td>
               <td>
-              	<select id="professorCode"  class="LectureData">
+              	<select id="professorCode"  class="LectureData" name="profId" form="lectureForm">
                		<option>학과를 먼저 선택해주세요..</option>
                 </select>
               </td>
  				<td><p>강의시간</p></td>
-              <td><input type="text" placeholder="ex) 월1/월2/화3"  class="LectureData"></td>
+              <td><input type="text" placeholder="ex) 월1/월2/화3"  class="LectureData" name="classTime"></td>
             </tr>
             
             <tr>
 			  <td><p>강의실</p></td>
-              <td><input type="text"  class="LectureData"></td>
+              <td><input type="text"  class="LectureData" name="room"></td>
               <td><p>학점</p></td>
-              <td><select name="" id="gradeSize"  class="LectureData">
+              <td><select name="gradeSize" id="gradeSize"  class="LectureData"  form="lectureForm">
 	                  <option value="0">-----</option>
 	                  <option value="1">1</option>
 	                  <option value="2">2</option>
@@ -156,19 +156,19 @@ $(function(){
             
             <tr>
               <td><p>수강년도/학기</p></td>
-              <td><select  class="LectureData">
+              <td><select  class="LectureData" name="classYear" form="lectureForm">
              		<option value="0">선택</option >
              		<option value="2019">2019년</option>
              		<option value="2020">2020년</option>	
              	  </select>
-             	<select  class="LectureData">
+             	<select  class="LectureData" name="classSemester" form="lectureForm">
              		<option value="0">선택</option>
              		<option value="1">1</option>
              		<option value="2">2</option>
              	</select>
              </td>
               <td><p>수강학년</p></td>
-              <td><select  class="LectureData">
+              <td><select  class="LectureData" name="classLevel" form="lectureForm">
               		<option value="0">선택</option>
               		<option value="1">1</option>
               		<option value="2">2</option>
@@ -179,9 +179,9 @@ $(function(){
 
           </table>
       </div>
-      <input type="button" id="reg_lecture_btn" value="등록하기">
+      <input type="submit" id="reg_lecture_btn" value="등록하기">
       </form>
-      <div id="myModal" class="modal">
+      <!-- <div id="myModal" class="modal">
       	<div class="modal-content">
       		<div class="modal-header">
       		<p id="modal_title">강의 등록 상세 내용</p>
@@ -228,12 +228,13 @@ $(function(){
       		</div>
       		<div class="modal-footer">
       		<p>강의계획서를 작성하시겠습니까?</p>
-      			<button id="conceal_btn">확인</button>
+      			<button id="conceal_btn">나중에 작성하기</button>
+      			<button id="conceal_btn">지금 작성하기</button>
       		</div>
       		
       	</div>
-      </div>
-          <script>
+      </div> -->
+         <!--  <script>
         // Get the modal
         var modal = document.getElementById("myModal");
 
@@ -255,9 +256,7 @@ $(function(){
  			for(var i=0;i<data.length;i++){
  				mData[i].innerHTML = data[i].value;
  			}
-    		//var LectureName = document.getElementById("LectureName").value;
-            //var mLectureName = document.getElementById("mLectureName").innerHTML;
-           // document.getElementById("mLectureName").innerHTML = LectureName;
+
             
         }
 
@@ -275,7 +274,7 @@ $(function(){
                 modal.style.display = "none";
             }
         }
-    </script>
+    </script> -->
 
     </div>
     <!-- 본문 끝 -->
