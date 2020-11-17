@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.univ.stmanagement.model.vo.Grade;
 import com.kh.univ.stmanagement.model.vo.StudentManagement;
 
 @Repository("smDao")
@@ -24,6 +25,10 @@ public class StudentManagementDao {
 
 	public ArrayList<StudentManagement> gradeView() {
 		return (ArrayList)sqlSession.selectList("StudentManagementMapper.gradeView");
+	}
+
+	public int insertGrade(Grade g) {
+		return sqlSession.insert("StudentManagementMapper.gradeInsert",g);
 	}
 
 

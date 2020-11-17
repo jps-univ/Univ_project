@@ -8,8 +8,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <c:set var="contextPath" value="<%= request.getContextPath()%>" />
-<c:set var="classSeq" value="<%= request.getAttribute("classSeq") %>"/>
+
+
 
 <!DOCTYPE html>
 <html lang="en">

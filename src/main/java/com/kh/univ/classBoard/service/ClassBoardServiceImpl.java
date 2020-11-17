@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.univ.classBoard.dao.ClassBoardDao;
+import com.kh.univ.classBoard.vo.ClassNotice;
 import com.kh.univ.lecture.model.vo.Lecture;
 
 @Service("cbService")
@@ -24,6 +25,16 @@ public class ClassBoardServiceImpl implements ClassBoardService {
 	public int getNoticeListCount() {
 
 		return cbDao.noticeListCount();
+	}
+
+	@Override
+	public ArrayList<ClassNotice> NoticeList(int classSeq) {
+		return cbDao.noticeList(classSeq);
+	}
+
+	@Override
+	public ClassNotice noticeDetail(int nId) {
+		return cbDao.noticeDetail(nId);
 	}
 
 }

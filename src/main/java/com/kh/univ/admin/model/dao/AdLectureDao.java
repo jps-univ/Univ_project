@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.univ.admin.model.vo.AdCollege;
 import com.kh.univ.admin.model.vo.AdDepartment;
+import com.kh.univ.admin.model.vo.AdProfessor;
 import com.kh.univ.lecture.model.vo.Lecture;
 
 @Repository("adLectureDao")
@@ -29,5 +30,15 @@ public class AdLectureDao {
 	public ArrayList<AdDepartment> adDepartmentSelect(String collegeCode) {
 		// TODO Auto-generated method stub
 		return (ArrayList)sqlSession.selectList("adminLectureMapper.adLectureDepartment",collegeCode);
+	}
+
+	public ArrayList<AdProfessor> adProfessorSelect(String departmentCode) {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList("adminLectureMapper.adLectureProfessor",departmentCode);
+	}
+
+	public ArrayList<Lecture> selectAdLectureList() {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList("adminLectureMapper.adLectureProfessor");
 	}
 }

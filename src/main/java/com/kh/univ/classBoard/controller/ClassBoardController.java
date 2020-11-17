@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.classBoard.service.ClassBoardService;
+import com.kh.univ.classBoard.vo.ClassNotice;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
@@ -67,9 +68,11 @@ public class ClassBoardController {
 		if (user instanceof Student ) {
 			user = (Student)session.getAttribute("loginUser");
 			userId = ((Student) user).getStdId();
+			session.setAttribute("userId", userId);
 		}else if (user instanceof Professor){
 			user = (Professor)session.getAttribute("loginUser");
 			userId = ((Professor) user).getProfId();
+			session.setAttribute("userId", userId);
 		}
 		
 		System.out.println(userId);
@@ -106,10 +109,15 @@ public class ClassBoardController {
 	 * @return
 	 */
 	@RequestMapping("classBoardMain.do")
-	public String classBoardMain(HttpServletRequest request) {
+	public ModelAndView classBoardMain(String classSeq, HttpSession session, ModelAndView mv) {
 		
-		return "classBoard/classBoardMain";
-				
+//		System.out.println("메인넘어갈때 seq : " + request.getParameter("classSeq"));
+		session.setAttribute("classSeq", classSeq);
+		
+		mv.addObject("Seq", classSeq);
+		mv.setViewName("classBoard/classBoardMain");
+		
+		return mv;
 	}
 	
 	/**
@@ -127,16 +135,54 @@ public class ClassBoardController {
 	 * 3. 공지사항 리스트 페이지
 	 * @return
 	 */
-	@RequestMapping("noticeList.do")
+	@RequestMapping("cNoticeList.do")
 	public ModelAndView noticeList(ModelAndView mv, @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage
-								,int classSeq){
-		System.out.println(classSeq);
-	
-		int nListCount = cbService.getNoticeListCount();
-		
+								,HttpSession session){
+		int classSeq = 0;
+		if(session.getAttribute("classSeq") != null ) {
+			classSeq = Integer.parseInt((String) session.getAttribute("classSeq"));
+		}
 
+	
+		ArrayList<ClassNotice> cNotice = cbService.NoticeList(classSeq);
+		System.out.println("컨트롤러 noticeList : "+cNotice);
+
+		mv.addObject("NoticeList", cNotice);
+		
+		if(classSeq != 0) {
+			mv.setViewName("classBoard/noticeList");
+		}
+		
+		
+		
 		return mv;
 	}
+	
+	
+	
+	
+	/*
+	 * 3. 공지사항
+	 * notice detail페이지
+	 * 
+	 */
+	@RequestMapping("cNoticeDetail.do")
+	public ModelAndView noticeDetail(ModelAndView mv, HttpSession session, int nId) {
+			System.out.println(nId);
+			System.out.println(session.getAttribute("userId"));
+			
+			ClassNotice result = cbService.noticeDetail(nId);
+			System.out.println(result);
+			
+			mv.addObject("noticeDetail", result);
+			mv.setViewName("classBoard/notice_Detail");
+			
+		return mv;
+	}
+	
+	
+	
+	
 	
 	
 	

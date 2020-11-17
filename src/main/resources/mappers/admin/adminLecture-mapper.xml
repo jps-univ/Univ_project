@@ -75,6 +75,11 @@
     	
     </resultMap>
     
+    <resultMap type="AdProfessor" id="adProfessorResultSet">
+    	<id property="ProfessorId" column="PROFESSOR_ID"/>
+    	<result property="professorName" column="NAME"/>
+    </resultMap>
+    
     
     <!-- 단과대학 조회하기 (select -> option) -->
     <select id="adLectureCollege" parameterType="AdCollege" resultMap="adCollegeResultSet">
@@ -86,9 +91,19 @@
 	FROM TB_DEPARTMENT
 	WHERE COLLEGE_CODE=#{CollegeCode}
     </select>
+    
+    <select id="adLectureProfessor" parameterType="AdProfessor" resultMap="adProfessorResultSet">
+    SELECT PROFESSOR_ID, NAME
+	FROM TB_PROFESSOR
+	WHERE DEPARTMENT_CODE = #{departmentCode}
+    
+    </select>
+    
     <insert id="adminInsertLecture" parameterType="Lecture">
     
     
     </insert>
+    
+    <select id="selectAdLectureList"></select>
 
 </mapper>

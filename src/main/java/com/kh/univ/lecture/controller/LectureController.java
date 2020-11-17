@@ -4,24 +4,18 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.univ.lecture.model.service.LectureService;
 import com.kh.univ.lecture.model.vo.Lecture;
-import com.kh.univ.lecture.model.vo.LectureApplication;
 import com.kh.univ.lecture.model.vo.LectureTime;
 import com.kh.univ.lecture.model.vo.SearchCondition;
 import com.kh.univ.member.model.vo.Student;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 @Controller
 public class LectureController {

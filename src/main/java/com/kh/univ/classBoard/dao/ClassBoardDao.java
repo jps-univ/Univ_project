@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.univ.classBoard.vo.ClassNotice;
 import com.kh.univ.lecture.model.vo.Lecture;
 
 @Repository("cbDao")
@@ -35,6 +36,17 @@ public class ClassBoardDao {
 	public int noticeListCount() {
 		
 		return 0;
+	}
+
+	public ArrayList<ClassNotice> noticeList(int classSeq) {
+
+		ArrayList arr1 = (ArrayList)sqlSession.selectList("classBoardMapper.selectNoticeList", classSeq);
+		System.out.println("Dad cNotice : "+arr1);
+		return (ArrayList)sqlSession.selectList("classBoardMapper.selectNoticeList", classSeq);
+	}
+
+	public ClassNotice noticeDetail(int nId) {
+		return (ClassNotice)sqlSession.selectOne("classBoardMapper.noticeDetail",nId);
 	}
 	
 	

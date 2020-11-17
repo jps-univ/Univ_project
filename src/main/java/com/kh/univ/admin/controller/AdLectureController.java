@@ -11,7 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.univ.admin.model.service.AdLectureService;
 import com.kh.univ.admin.model.vo.AdCollege;
 import com.kh.univ.admin.model.vo.AdDepartment;
-import com.kh.univ.member.model.vo.Professor;
+import com.kh.univ.admin.model.vo.AdProfessor;
+import com.kh.univ.lecture.model.vo.Lecture;
 
 
 @Controller
@@ -41,12 +42,23 @@ public class AdLectureController {
 	@RequestMapping("admin_Lecture_Department.do")
 	public ArrayList<AdDepartment> selectAdDepartment(String CollegeCode){
 		ArrayList<AdDepartment> selectAdDepartment = adLectureService.adDepartmentSelect(CollegeCode);
-		System.out.println(selectAdDepartment);
 		return selectAdDepartment;
 	}
+	/**
+	 * 1_3. 강의 등록에서 professorName Select
+	 * @param departmentCode
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("admin_Lecture_Professor.do")
-	public ArrayList<Professor> selectAdProfessorName(String departmentCode){
+	public ArrayList<AdProfessor> selectAdProfessorName(String departmentCode){
+		ArrayList<AdProfessor> selectAdProfessorName = adLectureService.adProfessorSelect(departmentCode);
+		return selectAdProfessorName;
+	}
+	
+	@RequestMapping("admin_Lecture_insert.do")
+	public String insertProfessorOne() {
+		String test= "월1/화2/수3";
 		
 		return null;
 	}
@@ -58,7 +70,9 @@ public class AdLectureController {
 	@RequestMapping("lecture_Modify.do")
 	public ModelAndView lectureModify(ModelAndView mv) {
 		
+		ArrayList<Lecture> selectAdLectureList = adLectureService.selectAdLectureList();
 		
+		mv.setViewName("admin/ad_lecture_modify");
 		return mv;
 	}
 	
