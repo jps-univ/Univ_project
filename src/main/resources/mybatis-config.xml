@@ -7,6 +7,7 @@
 
     <!-- typeAliases -->
     <typeAliases>
+    	<typeAlias type="com.kh.univ.grade.model.vo.Grade" alias="Grade"/>    	
 		<typeAlias type="com.kh.univ.member.model.vo.Student" alias="Student"/>
 		<typeAlias type="com.kh.univ.member.model.vo.Professor" alias="Professor"/>
 		<typeAlias type="com.kh.univ.member.model.vo.Department" alias="Department"/>
