@@ -65,8 +65,8 @@
         <div class="container">
           <div>
             <h6 class="salary">급여지급 내역</h6>
-            <select class="select" >
-              <option>==== 연도 ====</option>
+            <select class="select" id="schoolYear">
+              <!-- <option>==== 연도 ====</option> -->
 <!--               <option>2018년</option>
               <option>2019년</option>
               <option>2020년</option> -->
@@ -80,7 +80,7 @@
           </div>
 
            <form method="GET">
-              <table class="table table-condensed">
+              <table class="table table-condensed" id="salaryTable">
                 <thead>
                   <tr>
                     <th>
@@ -218,27 +218,36 @@
       <script src="<%=request.getContextPath()%>/resources/js/payment&salary.js"></script>
 				<!-- 여기까지 내용  -->
 				
-<!-- 	  <script>
+ 	  <script>
                $(function(){
-            	   $("#checkRadio").click(function(){
+            	   $(".select").change(function(){
                 	$.ajax({
-                		url:"salary.do",
+                		url:"salary_Year.do",
             			dataType:"json",
             			data:{
-            				collegeCode:$("#stdCollege").val()
+            				schoolYear:$("#schoolYear").val()
             			},success:function(data){
             				console.log(data);
-            				$('#stdDepartment').empty();
-            				$('#stdDepartment').append("<option><학과를 선택해주세요></option>");
+            				$("#salaryTable tbody").empty();
+            				$("#salaryTable").append();
 	              				for(var index =0; index < data.length;index++){
-            					var department = $("<option id="+ data[index].departmentCode+ ">" + data[index].departmentName +"</option>");
-            					$('#stdDepartment').append(department);
+	              				$("#salaryTable tbody").append("<tr>");
+            					$("#salaryTable tbody").append("<td><input type="+"radio "+"name ="+"checkRadio "+"id="+"checkRadio");
+            					$("#salaryTable tbody").append("<td>"+data[index].schoolYear);
+            					$("#salaryTable tbody").append("<td>"+data[index].schoolMonth);
+            					$("#salaryTable tbody").append("<td>"+data[index].profBank);
+            					$("#salaryTable tbody").append("<td>"+data[index].profAccount);
+            					$("#salaryTable tbody").append("<td>"+data[index].salaryTotal);
+            					$("#salaryTable tbody").append("</tr>");
+            					
             				} 
+            			},error:function(rquest,error,errorCode){
+            				console.log("전송실패");
             			}	
                 	});
                 }); 
             }); 	   
-      </script> -->
+      </script> 
 
 			<!-- Footer -->
 			<c:import url="../common/footer.jsp" />
