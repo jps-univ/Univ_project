@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.univ.stmanagement.model.dao.StudentManagementDao;
+import com.kh.univ.stmanagement.model.vo.Grade;
 import com.kh.univ.stmanagement.model.vo.StudentManagement;
 
 @Service("smService")
@@ -28,5 +29,12 @@ public class StudentManagementServiceImple implements StudentManagementService {
 	public ArrayList<StudentManagement> gradeView() {
 		return smDao.gradeView();
 	}
+
+	@Override
+	public int insertGrade(Grade g) {
+		return smDao.insertGrade(g);
+	}
+	
+	
 	
 }

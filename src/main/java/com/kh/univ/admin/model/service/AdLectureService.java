@@ -17,4 +17,6 @@ public interface AdLectureService {
 
 	ArrayList<AdProfessor> adProfessorSelect(String departmentCode);
 
+	ArrayList<Lecture> selectAdLectureList();
+
 }

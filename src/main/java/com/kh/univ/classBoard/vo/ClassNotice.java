@@ -13,14 +13,14 @@ public class ClassNotice {
 	private Date nCreateDate;	// 작성날짜
 	private Date nModifyDate;	// 수정날짜
 	private String status;		// 삭제 여부
+	private String originalFileName;
+	private String renameFileName;
 	
-	public ClassNotice() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
+	private String profName;	// 교수 이름
+	
+	
 	public ClassNotice(int nId, String nTitle, String nContent, int profId, int classSeq, int nCount, Date nCreateDate,
-			Date nModifyDate, String status) {
+			Date nModifyDate, String status, String originalFileName, String renameFileName, String profName) {
 		super();
 		this.nId = nId;
 		this.nTitle = nTitle;
@@ -31,6 +31,41 @@ public class ClassNotice {
 		this.nCreateDate = nCreateDate;
 		this.nModifyDate = nModifyDate;
 		this.status = status;
+		this.originalFileName = originalFileName;
+		this.renameFileName = renameFileName;
+		this.profName = profName;
+	}
+
+	public ClassNotice() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+	public String getOriginalFileName() {
+		return originalFileName;
+	}
+
+	public void setOriginalFileName(String originalFileName) {
+		this.originalFileName = originalFileName;
+	}
+
+	public String getRenameFileName() {
+		return renameFileName;
+	}
+
+	public void setRenameFileName(String renameFileName) {
+		this.renameFileName = renameFileName;
+	}
+
+	public String getProfName() {
+		return profName;
+	}
+
+	public void setProfName(String profName) {
+		this.profName = profName;
 	}
 
 	public int getnId() {
@@ -109,8 +144,11 @@ public class ClassNotice {
 	public String toString() {
 		return "ClassNotice [nId=" + nId + ", nTitle=" + nTitle + ", nContent=" + nContent + ", profId=" + profId
 				+ ", classSeq=" + classSeq + ", nCount=" + nCount + ", nCreateDate=" + nCreateDate + ", nModifyDate="
-				+ nModifyDate + ", status=" + status + "]";
+				+ nModifyDate + ", status=" + status + ", originalFileName=" + originalFileName + ", renameFileName="
+				+ renameFileName + ", profName=" + profName + "]";
 	}
+
+
 	
 	
 	

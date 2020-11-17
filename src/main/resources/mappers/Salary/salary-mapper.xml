@@ -41,6 +41,8 @@
 		FROM TB_SALARY
 		JOIN TB_PROFESSOR USING(PROFESSOR_ID)
 		WHERE PROFESSOR_ID = #{ profId}
+		AND SCHOOL_YEAR = #{ schoolYear}
+
 	</select>
 	
 	<!-- 월급상세페이지 -->

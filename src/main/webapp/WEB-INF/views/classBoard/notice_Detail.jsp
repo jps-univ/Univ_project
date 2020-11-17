@@ -9,6 +9,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="contextPath" value="<%= request.getContextPath()%>" />
+<c:set var="n" value="${ noticeDetail }"/>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,7 +62,7 @@
                           <tbody>
                               <tr>
                                   <td><label class="write_subject">제목</label></td>
-                                  <td>가나다라마바사</td>
+                                  <td>${noticeDetail.nTitle }</td>
                               </tr>
                               <tr>
                                   <td><label class="write_subject">비밀글</label></td>
@@ -69,7 +70,7 @@
                               </tr>
                               <tr>
                                   <td><label class="write_subject2">내용</label></td>
-                                  <td><div id="textContent">내용</div></td>
+                                  <td><div id="textContent">${n.nContent }</div></td>
                               </tr>
                               <tr>
                                   <td><label class="write_subject">첨부파일</label></td>

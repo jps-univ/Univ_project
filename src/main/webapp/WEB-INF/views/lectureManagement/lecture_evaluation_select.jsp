@@ -84,6 +84,7 @@
 									    <th>강의실</th>
 									    <th>이수구분</th>
 									    <th>평가여부</th>
+									    <th>평가</th>
 									</tr>
 								</thead>
                                   
@@ -96,7 +97,11 @@
 									       <td>${ s.professor.profName }</td>
 									       <td>${ s.room }</td>
 									       <td>${ s.classType }</td>
-									       <td class="text-primary">x</td>
+									       <td class="text-primary">X</td>
+									       <td>
+									       	<input type="button" class="btn btn-primary" value="평가" id="evaluationBtn" onclick="evaluationBtn(event)">
+									       	<input type="hidden" id="hidden_classSeq" value="${ s.classSeq }">
+									       </td>
 									    </tr>
 				                    </c:forEach>
 								</tbody>
@@ -152,6 +157,19 @@
      	}
     }
     */
+    
+    function evaluationBtn(event)
+    {        
+        if(confirm("평가하시겠습니까?"))
+    	{
+        	location.href="lecture_evaluation.do";
+    	}
+    	else
+    	{
+    		alert("취소되었습니다.");
+			return;
+    	}
+    }
     </script>
     
 

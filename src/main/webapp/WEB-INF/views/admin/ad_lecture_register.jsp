@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="${contextPath }/resources/css/admin/ad_lecture_register.css?ver=1" type="text/css">
+    <link rel="stylesheet" href="${contextPath }/resources/css/admin/ad_lecture_register.css?ver=3" type="text/css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 
@@ -102,113 +102,187 @@ $(function(){
         <form method="GET">
           <table id="reg_lecture">
             <tr>
-              <td>
-                <p>강의명</p>
+              <td><p>강의명</p></td>
+              <td><input type="text" id="LectureName" class="LectureData"></td>
+			  <td><p>강의 코드</p></td>
+              <td><input type="text"  class="LectureData"></td>
+            </tr>
+            
+            <tr>
+              <td><p>이수 구분</p></td>
+              <td><select name="" id="status"  class="LectureData">
+                  <option>-----</option>
+                  <option>전공필수</option>
+                  <option>전공선택</option>
+                  <option>교양필수</option>
+                  <option>교양선택</option>
+                </select>
               </td>
-              <td>
-                <input type="text">
-              </td>
-              <td>
-                <p>개설 학과</p>
-              </td>
-              <td>
-                <select id="College">
+              <td><p>개설 학과</p></td>
+              <td><select id="College">
                		<option>단과대학</option>
-                <c:forEach var="a" items="${adCollege}">
-                	<option value="${a.collegeCode }">${a.collegeName }</option>
-                </c:forEach>
-                </select>
-                
-                <select id="departmentCode">
+                	<c:forEach var="a" items="${adCollege}">
+                		<option value="${a.collegeCode }">${a.collegeName }</option>
+                	</c:forEach>
+                  </select>
+                  <select id="departmentCode"  class="LectureData">
                 	<option>단과대학을 먼저 선택해주세요</option>
-                </select>
+                  </select>
               </td>
             </tr>
+            
             <tr>
+ 				<td><p>교수명</p></td>
               <td>
-                <p>이수 구분</p>
-              </td>
-              <td>
-                <select name="" id="status">
-                  <option value="">-----</option>
-                  <option value="">전공필수</option>
-                  <option value="">전공선택</option>
-                  <option value="">교양필수</option>
-                  <option value="">교양선택</option>
-                </select>
-              </td>
-              <td>
-                <p>교수명</p>
-              </td>
-              <td>
-                <select id="professorCode">
+              	<select id="professorCode"  class="LectureData">
                		<option>학과를 먼저 선택해주세요..</option>
                 </select>
               </td>
+ 				<td><p>강의시간</p></td>
+              <td><input type="text" placeholder="ex) 월1/월2/화3"  class="LectureData"></td>
             </tr>
+            
             <tr>
-              <td>
-                <p>강의시간</p>
-              </td>
-              <td>
-                <input type="text" placeholder="ex) 월1/월2/화3">
-              </td>
-              <td>
-                <p>강의실</p>
-              </td>
-              <td>
-                <input type="text">
-              </td>
+			  <td><p>강의실</p></td>
+              <td><input type="text"  class="LectureData"></td>
+              <td><p>학점</p></td>
+              <td><select name="" id="gradeSize"  class="LectureData">
+	                  <option value="0">-----</option>
+	                  <option value="1">1</option>
+	                  <option value="2">2</option>
+	                  <option value="3">3</option>
+                </select></td>
             </tr>
+            
             <tr>
-              <td>
-                <p>강의 코드</p>
-              </td>
-              <td>
-                <input type="text">
-              </td>
-              <td>
-                <p>학점</p>
-              </td>
-              <td>
-                <select name="" id="gradeSize">
-                  <option value="0">-----</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <p>강의 계획서</p>
-              </td>
-              <td colspan="3">
-                <a data-toggle="modal" target="#mymodal">작성하러가기</a>
-              </td>
+              <td><p>수강년도/학기</p></td>
+              <td><select  class="LectureData">
+             		<option value="0">선택</option >
+             		<option value="2019">2019년</option>
+             		<option value="2020">2020년</option>	
+             	  </select>
+             	<select  class="LectureData">
+             		<option value="0">선택</option>
+             		<option value="1">1</option>
+             		<option value="2">2</option>
+             	</select>
+             </td>
+              <td><p>수강학년</p></td>
+              <td><select  class="LectureData">
+              		<option value="0">선택</option>
+              		<option value="1">1</option>
+              		<option value="2">2</option>
+              		<option value="3">3</option>
+              		<option value="4">4</option>
+               	  </select></td>
             </tr>
 
           </table>
       </div>
-      <input type="submit" id="reg_lecture_btn" value="등록하기">
+      <input type="button" id="reg_lecture_btn" value="등록하기">
       </form>
-      <div class="modal fade"id="#mymodal" role="dialog">
-        <div class="modal-content">asd</div>
-        <table>
-          <tr><td>asdasd</td></tr>
-        </table>
+      <div id="myModal" class="modal">
+      	<div class="modal-content">
+      		<div class="modal-header">
+      		<p id="modal_title">강의 등록 상세 내용</p>
+      			<span class="close">&times;</span>
+      		</div>
+      		<div class="modal-body">
+      			<form>
+      				<table id="modal_table" border="1">
+      					<tr>
+      						<td height="40px" width="90px">강의명</td>
+      						<td width="160px"><p id="mLectureName" class="mLectureData"></p></td>
+      						<td height="40px" width="80px">강의 코드</td>
+      						<td width="180px"><p  class="mLectureData"></p></td>
+      					</tr>
+      					<tr>
+      						<td height="40px" width="80px">이수구분</td>
+      						<td width="100px"><p  class="mLectureData"></p></td>
+      						<td height="40px" width="80px">개설학과코드</td>
+      						<td width="100px"><p  class="mLectureData"></p></td>
+      					</tr>
+      					<tr>
+      						<td height="40px" width="80px">교수코드</td>
+      						<td width="100px"><p  class="mLectureData"></p></td>
+      						<td height="40px" width="80px">강의시간</td>
+      						<td width="100px"><p  class="mLectureData"></p></td>
+      					</tr>
+      					<tr>
+      						<td height="40px" width="80px">강의실</td>
+      						<td width="100px"><p class="mLectureData"></p></td>
+      						<td height="40px" width="80px">학점</td>
+      						<td width="100px"><p class="mLectureData"></p></td>
+      					</tr>
+      					<tr>
+      						<td height="40px" width="80px">수강년도/학기</td>
+      						<td width="150px"><p class="mLectureData p"></p><p class="p">년도</p><p class="mLectureData p"></p><p class="p">학기</p>
+      						</td>
+      						<td height="40px" width="80px">수강학년</td>
+      						<td width="100px"><p class="mLectureData"></p></td>
+      					</tr>
+
+      				</table>
+      			</form>
+      		
+      		</div>
+      		<div class="modal-footer">
+      		<p>강의계획서를 작성하시겠습니까?</p>
+      			<button id="conceal_btn">확인</button>
+      		</div>
+      		
+      	</div>
       </div>
+          <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("reg_lecture_btn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        var canceal = document.getElementById("conceal_btn");
+        
+      
+        // When the user clicks the button, open the modal 
+        btn.onclick = function () {
+            modal.style.display = "block";
+            // 모달 안에 데이터 넣기
+            var data = document.getElementsByClassName("LectureData");
+            var mData = document.getElementsByClassName("mLectureData");
+ 			for(var i=0;i<data.length;i++){
+ 				mData[i].innerHTML = data[i].value;
+ 			}
+    		//var LectureName = document.getElementById("LectureName").value;
+            //var mLectureName = document.getElementById("mLectureName").innerHTML;
+           // document.getElementById("mLectureName").innerHTML = LectureName;
+            
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+        canceal.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
     </div>
     <!-- 본문 끝 -->
   
-  </table>
+ 
   </div>
-  <script>
-    function classPlath(){
-      //  window.open("./ad_rest_lecture.html","width=400,height=200,location=no");
-       window.showModalDialog("./ad_rest_lecture.html");
-    }
-  </script>
+
   
 
   <!-- footer -->
