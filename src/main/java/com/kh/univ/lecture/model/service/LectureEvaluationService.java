@@ -15,5 +15,17 @@ public interface LectureEvaluationService
 	 */
 	ArrayList<Lecture> selectStdSchdule(Map map);
 
+	/**
+	 * 학생 강의 평가 제출
+	 * @param evaluation
+	 * @return
+	 */
 	int evaluationSubmit(LectureEvaluation evaluation);
+
+	/**
+	 * 교수 강의 조회
+	 * @param map
+	 * @return
+	 */
+	ArrayList<Lecture> selectProfSchdule(Map map);
 }

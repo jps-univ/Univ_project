@@ -139,4 +139,8 @@
 		VALUES
 		(SEQ_EVALUATION.NEXTVAL, #{stdId}, #{classSeq}, #{evalOne}, #{evalTwo}, #{evalThree}, #{evalFour}, #{evalFive}, #{evalSix}, #{evalSeven}, #{evalEight}, #{evalNine}, #{evalTen})
  	</insert>
+
+    <select id="selectProfSchdule" parameterType="Lecture" resultMap="StdScheduleResultSet">
+    	
+ 	</select> 	
 </mapper>

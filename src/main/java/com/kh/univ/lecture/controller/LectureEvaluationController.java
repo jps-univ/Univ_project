@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,7 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.univ.lecture.model.service.LectureEvaluationService;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.lecture.model.vo.LectureEvaluation;
+import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
+import com.kh.univ.mypage.model.service.ProfessorMyPageService;
 
 @Controller
 public class LectureEvaluationController 
@@ -29,7 +32,7 @@ public class LectureEvaluationController
      */
     @RequestMapping("lecture_evaluation.do")
     public ModelAndView lectureEvaluation(ModelAndView mv, HttpSession session, Student student, Lecture lecture)
-    {    	
+    {
 		mv.addObject("student", student);
 		mv.addObject("lecture", lecture);
 
@@ -116,6 +119,31 @@ public class LectureEvaluationController
     {
         return "lectureManagement/lecture_evaluation_check";
     }
+    
+	@ResponseBody
+	@RequestMapping("professorLecture.do")
+	public ModelAndView ProfessorSchedule(ModelAndView mv, Model model, Lecture lecture, HttpSession session)
+	{
+		Professor professor = (Professor)session.getAttribute("loginUser");
+
+		int profId = professor.getProfId();
+		int classYear = lecture.getClassYear();
+		int classSemester = lecture.getClassSemester();
+
+		Map map = new HashMap();
+
+		map.put("profId", profId);
+		map.put("classYear", classYear);
+		map.put("classSemester", classSemester);
+
+		ArrayList<Lecture> schedule = leService.selectProfSchdule(map);
+
+		mv.addObject("schedule", schedule);
+
+		mv.setViewName("lectureManagement/lecture_evaluation_check");
+
+		return mv;
+	}
 
     /**
      * 2_1. 강의 평가 상세 페이지 조회(교수)

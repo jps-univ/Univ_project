@@ -98,9 +98,10 @@
 										       <td>${ s.professor.profName }</td>
 										       <td>${ s.room }</td>
 										       <td>${ s.classType }</td>
-										       <c:choose>
-										       	<c:when test="${ s.evaluation.evalNo eq '0'}">
-											       <td class="text-primary">X</td>
+										       <%-- <c:choose> --%>
+										       	<%-- <c:when test="${ s.evaluation.evalNo eq '0'}"> --%>
+<%-- 										       	<c:when test="${ s.evaluation.stdId ne loginUser.stdId}">
+											       <td class="text-primary">X${ s.evaluation.stdId }</td>
 											       <td>
 											       	<!-- <input type="button" class="btn btn-primary" value="평가" id="evaluationBtn" onclick="evaluationBtn(event)"> -->
 		 									       	<input type="hidden" id="hidden_stdId" name="stdId" value="${ loginUser.stdId }">
@@ -116,8 +117,9 @@
 											       <td>
 											       <input type="button" class="btn btn-secondary" value="완료" id="evaluationBtn">
 											       </td>
-										       	</c:otherwise>
-										       </c:choose>
+										       	</c:otherwise> --%>
+										       	<td>${ s.evaluation.stdId }</td>
+										       <%-- </c:choose> --%>
 										    </tr>
 				                		</form>
 				                    </c:forEach>

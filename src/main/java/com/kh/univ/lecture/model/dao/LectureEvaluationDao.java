@@ -19,11 +19,17 @@ public class LectureEvaluationDao
 
 	public ArrayList<Lecture> selectStdSchdule(Map map)
 	{
+		System.out.println("dao : " + map);
 		return (ArrayList)sqlSession.selectList("LectureEvaluationMapper.selectStdSchdule", map);
 	}
 
 	public int evaluationSubmit(LectureEvaluation evaluation) 
 	{
 		return sqlSession.insert("LectureEvaluationMapper.evaluationSubmit", evaluation);
+	}
+
+	public ArrayList<Lecture> selectProfSchdule(Map map) 
+	{
+		return (ArrayList)sqlSession.selectList("LectureEvaluationMapper.selectProfSchdule", map);
 	}
 }

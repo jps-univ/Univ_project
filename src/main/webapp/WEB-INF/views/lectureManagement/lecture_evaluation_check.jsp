@@ -48,7 +48,7 @@
                                     <option value="">---------</option>
                                 </select>
                             </h6> -->
-                            <form action="professorSchedule.do" method="post">
+                            <form action="professorLecture.do" method="post">
 					          <div>
 					            <select name="classYear" id="year">
 					              <option value="2021">2021년도</option>
@@ -61,10 +61,6 @@
 					            <select name="classSemester" id="semester">
 					              <option value="1">1학기</option>
 					              <option value="2">2학기</option>
-					            </select>
-					            <select name="classSemester" id="semester">
-					              <option value="1">전체</option>
-					              <option value="2"></option>
 					            </select>
 					
 					            <!-- <input type="button" class="btn btn-primary btn" value="조회" id="selectSchedule" onclick="scheduleBtn()"> -->
@@ -85,13 +81,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr align="center">
-                                            <td>*</td>
-                                            <td>***</td>
-                                            <td>과학기술대학</td>
-                                            <td>컴퓨터공학과</td>
-                                            <td>o</td>
-                                        </tr>
+                                    	<c:forEach var="s" items="${ schedule }">
+	                                        <tr align="center">
+	                                            <td>${  }</td>
+	                                            <td>***</td>
+	                                            <td>과학기술대학</td>
+	                                            <td>컴퓨터공학과</td>
+	                                            <td>o</td>
+	                                        </tr>
+	                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -116,6 +114,10 @@
 
     <!-- Logout Modal-->
      <c:import url="../common/logoutModal.jsp"/>
+     
+     <script type="text/javascript">
+     	function 
+     </script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
