@@ -149,7 +149,7 @@ margin-right: 10px;
           <c:forEach var="std" items="${ list }" end="0">
             <tr>
                 <td><h4 id="code">과목코드 : </h4></td>
-                <td><input type="text" id="text1" placeholder="${ std.classId }" disabled></td>
+                <td><input type="text" id="text1" placeholder="${ std.classId }" disabled name="sclassId" value="${ std.classId }"></td>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <td><h4 id="code">교과목명 : </h4></td>
                 <td><input type="text" id="text2" placeholder="${ std.className }" disabled></td>

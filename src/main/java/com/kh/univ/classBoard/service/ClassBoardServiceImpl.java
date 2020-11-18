@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.univ.classBoard.dao.ClassBoardDao;
 import com.kh.univ.classBoard.vo.ClassNotice;
+import com.kh.univ.classBoard.vo.PageInfo;
 import com.kh.univ.lecture.model.vo.Lecture;
 
 @Service("cbService")
@@ -22,19 +23,26 @@ public class ClassBoardServiceImpl implements ClassBoardService {
 	}
 
 	@Override
-	public int getNoticeListCount() {
+	public int getNoticeListCount(int classSeq) {
 
-		return cbDao.noticeListCount();
+		return cbDao.noticeListCount(classSeq);
 	}
 
-	@Override
-	public ArrayList<ClassNotice> NoticeList(int classSeq) {
-		return cbDao.noticeList(classSeq);
-	}
+	
+
 
 	@Override
 	public ClassNotice noticeDetail(int nId) {
 		return cbDao.noticeDetail(nId);
 	}
+
+	@Override
+	public ArrayList<ClassNotice> NoticeList(PageInfo pi, int classSeq) {
+		return cbDao.noticeList(pi, classSeq);
+	}
+
+	
+
+
 
 }

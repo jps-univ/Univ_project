@@ -98,16 +98,28 @@
 										       <td>${ s.professor.profName }</td>
 										       <td>${ s.room }</td>
 										       <td>${ s.classType }</td>
-										       <td class="text-primary">X</td>
-										       <td>
-										       	<!-- <input type="button" class="btn btn-primary" value="평가" id="evaluationBtn" onclick="evaluationBtn(event)"> -->
-	 									       	<input type="hidden" id="hidden_stdId" name="stdId" value="${ loginUser.stdId }">
-										       	<input type="hidden" id="hidden_stdName" name="stdName" value="${ loginUser.stdName }">
-										       	<input type="hidden" id="hidden_classSeq" name="classSeq" value="${ s.classSeq }">
-										       	<input type="hidden" id="hidden_className" name="className" value="${ s.className }">
-										       	<input type="hidden" id="hidden_profName" name="profName" value="${ s.professor.profName }">
-										       	<button type="submit" class="btn btn-primary">평가</button>
-										       </td>
+										       <%-- <c:choose> --%>
+										       	<%-- <c:when test="${ s.evaluation.evalNo eq '0'}"> --%>
+<%-- 										       	<c:when test="${ s.evaluation.stdId ne loginUser.stdId}">
+											       <td class="text-primary">X${ s.evaluation.stdId }</td>
+											       <td>
+											       	<!-- <input type="button" class="btn btn-primary" value="평가" id="evaluationBtn" onclick="evaluationBtn(event)"> -->
+		 									       	<input type="hidden" id="hidden_stdId" name="stdId" value="${ loginUser.stdId }">
+											       	<input type="hidden" id="hidden_stdName" name="stdName" value="${ loginUser.stdName }">
+											       	<input type="hidden" id="hidden_classSeq" name="classSeq" value="${ s.classSeq }">
+											       	<input type="hidden" id="hidden_className" name="className" value="${ s.className }">
+											       	<input type="hidden" id="hidden_profName" name="profName" value="${ s.professor.profName }">
+											       	<button type="submit" class="btn btn-primary">평가</button>
+											       </td>
+										       	</c:when>
+										       	<c:otherwise>
+											       <td class="text-primary">O</td>
+											       <td>
+											       <input type="button" class="btn btn-secondary" value="완료" id="evaluationBtn">
+											       </td>
+										       	</c:otherwise> --%>
+										       	<td>${ s.evaluation.stdId }</td>
+										       <%-- </c:choose> --%>
 										    </tr>
 				                		</form>
 				                    </c:forEach>
@@ -179,7 +191,6 @@
     }
     </script>
     
-
     <!-- Bootstrap core JavaScript-->
     <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
     <script src="${contextPath}/resources/js/main_page.js"></script>

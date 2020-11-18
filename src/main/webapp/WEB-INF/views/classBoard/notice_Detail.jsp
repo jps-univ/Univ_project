@@ -30,6 +30,23 @@
   <link rel="stylesheet" href="${contextPath}/resources/css/notice_detail.css">
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <style>
+  
+.professor_info tbody tr td:nth-child(1){
+    width: 15%;
+}
+
+.professor_info tbody tr td:nth-child(2){
+    width: 55%;
+    font-size: 35px;
+    font-family: 'Nanum Gothic Coding', monospace;
+    font-weight: 700;
+    color: rgb(45, 45, 45);
+}
+
+.professor_info tbody tr td:nth-child(3){
+    width: 30%;
+}</style>
 </head>
 
 <body id="page-top">
@@ -88,50 +105,7 @@
               </script>    
 
 
-              <form id="reply_form">
-                  <div id="reply_div" class="shadow">
-                      <table id="board_reply">
-                          <tbody>
-                              <tr>
-                                  <td><label class="write_reply">댓글작성</label></td>
-                                  <td><textarea>과제가 싫어요</textarea></td>
-                                  <td><button id="reply_button">등록</button></td>
-                              </tr>
-                              <tr>
-                                  <td><label class="reply_upload">첨부파일</label></td>
-                                  <td colspan="2"><input type="file" name="uploadFile"></td>
-                              </tr>
-                          </tbody>
-                      </table>
-                  </div>        
-              </form>
-
-
-
-              <div class="replyList">
-                <form class="reply_list">
-                    <div class="replyList_div" class="shadow">
-                        <table class="board_replyList">
-                            <tbody>
-                                <tr>
-                                    <td><label class="stu_no">댓글작성</label></td>
-                                    <td><label class="date">20201010</td>
-                                </tr>
-                                <tr>
-                                    <td><div class="textContent">내용</div></td>
-                                    <td>
-                                      <button id="reply_update">수정</button>
-                                      <button id="reply_delete">삭제</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"><input type="file" name="uploadFile"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>        
-                </form>
-              </div>
+            
              
              
               
