@@ -71,6 +71,9 @@ margin-bottom: 0;
 #search_area * {
     margin: 2px;
 }
+
+
+
 #ad_lecture_UD{
     padding: 10px; 
 }
@@ -92,12 +95,15 @@ a{
     background: #f8f6ff;
 }
 
-#UD_lecture tr input,#UD_lecture tr select{
+#UD_lecture tr input{
     width: 300px;
 }
 #UD_lecture tr p{
     margin-bottom: 0;
     margin-left: 5px;
+}
+#status,#gradeSize{
+	width: 300px;
 }
 
 
@@ -144,7 +150,16 @@ a{
     text-decoration: none;
     cursor: pointer;
   }
-
+#College,#departmentCode{
+	float: left;
+	width: 140px;
+}
+#departmentCode{
+	margin-left:20px;	
+}
+#professorCode{
+	width: 300px;
+}
   #total_approve{
       float: right;
   }

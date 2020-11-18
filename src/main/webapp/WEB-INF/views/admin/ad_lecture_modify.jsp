@@ -12,7 +12,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    
-    <link rel="stylesheet" href="${contextPath }/resources/css/admin/ad_lecture_modify.css">
+    <link rel="stylesheet" href="${contextPath }/resources/css/admin/ad_lecture_modify.css?ver=2" type="text/css">
       <link rel="stylesheet" href="${contextPath }/resources/css/class_plan.css">
      <style></style>
     
@@ -84,26 +84,7 @@
                             <td>13:00~14:00</td>
                             <td>3</td>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>JAVA</td>
-                            <td>김주호</td>
-                            <td>전공필수</td>
-                            <td>컴퓨터공학과</td>
-                            <td>A5410</td>
-                            <td>13:00~14:00</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>JAVA</td>
-                            <td>김주호</td>
-                            <td>전공필수</td>
-                            <td>컴퓨터공학과</td>
-                            <td>A5410</td>
-                            <td>13:00~14:00</td>
-                            <td>3</td>
-                        </tr>
+
 
 
                     </tbody>
@@ -127,80 +108,84 @@
             <div id="ad_lecture_UD">
                 <form>
                     <table id="UD_lecture">
-                        <tr>
-                            <td>
-                                <p>강의명</p>
-                            </td>
-                            <td>
-                                <input type="hidden" id="lecture_code">
-                                <input type="text">
-                            </td>
-                            <td>
-                                <p>교수명</p>
-                            </td>
-                            <td>
-                                <input type="text">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>이수 구분</p>
-                            </td>
-                            <td>
-                                <select name="" id="">
-                                    <option value="">-----</option>
-                                    <option value="">P/F</option>
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                </select>
-                            </td>
-                            <td>
-                                <p>개설 학과</p>
-                            </td>
-                            <td>
-                                <input type="text">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>강의시간</p>
-                            </td>
-                            <td>
-                                <input type="text">
-                            </td>
-                            <td>
-                                <p>강의실</p>
-                            </td>
-                            <td>
-                                <input type="text">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>강의 코드</p>
-                            </td>
-                            <td>
-                                <input type="text">
-                            </td>
-                            <td>
-                                <p>학점</p>
-                            </td>
-                            <td>
-                                <select name="" id="">
-                                    <option value="">-----</option>
-                                    <option value="">P/F</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>강의 계획서</p>
-                            </td>
-                            <td colspan="3">
-                                <a id="myBtn">작성하러가기</a>
-                            </td>
-                        </tr>
+			            <tr>
+			              <td><p>강의명</p></td>
+			              <td><input type="text" id="LectureName" class="LectureData" name="className"></td>
+						  <td><p>강의 코드</p></td>
+			              <td><input type="text"  class="LectureData" name="classCode"></td>
+			            </tr>
+            			 <tr>
+				              <td><p>이수 구분</p></td>
+				              <td><select name="classType" id="status"  class="LectureData"  form ="lectureForm">
+				                  <option>-----</option>
+				                  <option>전필</option>
+				                  <option>전선</option>
+				                  <option>교필</option>
+				                  <option>교선</option>
+				                </select>
+				              </td>
+				              <td><p>개설 학과</p></td>
+				              <td><select id="College">
+				               		<option>단과대학</option>
+				                	<c:forEach var="a" items="${adCollege}">
+				                		<option value="${a.collegeCode }">${a.collegeName }</option>
+				                	</c:forEach>
+				                  </select>
+				                  <select id="departmentCode"  class="LectureData" name="deptCode" form="lectureForm">
+				                	<option>단과대학을 먼저 선택해주세요</option>
+				                  </select>
+				              </td>
+            				</tr>
+            
+                         	<tr>
+				 				<td><p>교수명</p></td>
+				              	<td>
+				              		<select id="professorCode"  class="LectureData" name="profId" form="lectureForm">
+				               			<option>학과를 먼저 선택해주세요..</option>
+				                	</select>
+				              	</td>
+				 				<td><p>강의시간</p></td>
+				              <td><input type="text" placeholder="ex) 월1/월2/화3"  class="LectureData" name="classTime"></td>
+				            </tr>
+				            
+				            <tr>
+							  <td><p>강의실</p></td>
+				              <td><input type="text"  class="LectureData" name="room"></td>
+				              <td><p>학점</p></td>
+				              <td><select name="gradeSize" id="gradeSize"  class="LectureData"  form="lectureForm">
+					                  <option value="0">-----</option>
+					                  <option value="1">1</option>
+					                  <option value="2">2</option>
+					                  <option value="3">3</option>
+				                </select></td>
+				            </tr>
+                        	<tr>
+			              		<td><p>수강년도/학기</p></td>
+			              		<td><select  class="LectureData" name="classYear" form="lectureForm">
+			             				<option value="0">선택</option >
+			             				<option value="2019">2019년</option>
+			             				<option value="2020">2020년</option>	
+			             				<option value="2021">2021년</option>	
+			             	  		</select>
+			             			<select  class="LectureData" name="classSemester" form="lectureForm">
+					             		<option value="0">선택</option>
+					             		<option value="1">1</option>
+					             		<option value="2">2</option>
+			             			</select>
+			             		</td>
+			              		<td><p>수강학년</p></td>
+			              		<td><select  class="LectureData" name="classLevel" form="lectureForm">
+			              				<option value="0">선택</option>
+			              				<option value="1">1</option>
+			              				<option value="2">2</option>
+			              				<option value="3">3</option>
+			              				<option value="4">4</option>
+			               	  		</select></td>
+			           		 </tr>
+			           		 <tr>
+                            	<td><p>강의 계획서</p></td>	
+                            	<td colspan="3"><a id="myBtn">작성하러가기</a></td>
+                       		 </tr>
 
                     </table>
                 </form>
