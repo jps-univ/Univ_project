@@ -68,11 +68,15 @@
             </table>
         </div>
         
+        <div class="top_bar">
+           <h1>강의게시판</h1>
+        </div>
+ 
 
-        <!-- second navibar -->
         <!-- second navibar -->
         <div class="sec_navi shadow">
             <ul id="sec_navibar">
+                <li class="drop"><a href="selectClass.do">수강과목조회</a></li>
                 <li class="drop"><a href="classBoardMain.do?classSeq=${Seq}">Home</a></li>
                 <li class="drop"><a href="#">강의 정보</a></li>
                     <ul class="drop_submenu">
