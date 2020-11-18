@@ -3,8 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <% String path = request.getContextPath(); %>
 <c:set var="contextPath" value="<%= request.getContextPath()%>"/>
-<c:set var="Seq" value="${classSeq }"/>
-<c:set var="profName" value="${profName }"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,8 +58,7 @@
             <table class="professor_info">
             <tbody>
               <tr>
-              	<td><div><img src="${contextPath}/resources/img/user.png" width="100px" style="position:relative; left:110%"/></div>
-                <td><div id="semi_title">${profName}</div></td>
+                <td><div id="semi_title">수강과목조회</div></td>
                 <td><div id="semi_notice">공지사항</div></td>
               </tr>
             </tbody>
@@ -73,7 +70,7 @@
         <!-- second navibar -->
         <div class="sec_navi shadow">
             <ul id="sec_navibar">
-                <li class="drop"><a href="classBoardMain.do?classSeq=${Seq}">Home</a></li>
+                <li class="drop"><a href="#">Home</a></li>
                 <li class="drop"><a href="#">강의 정보</a></li>
                     <ul class="drop_submenu">
                         <li><a href="classPlan.do">강의 계획서</a></li> 
@@ -85,7 +82,7 @@
                     </ul>
                 <li class="drop"><a href="#">성적 관리</a></li>
                     <ul class="drop_submenu">
-                        <li><a href="gradeObjectionList.do?classSeq=${Seq }">성적 이의 신청</a></li>
+                        <li><a href="gradeObjectionList.do">성적 이의 신청</a></li>
                     </ul>                    
             </ul>
         </div>

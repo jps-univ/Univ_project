@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.classBoard.service.ClassBoardService;
@@ -23,6 +24,7 @@ import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
 
+@SessionAttributes({"classSeq","user","profName"})
 @Controller
 public class ClassBoardController {
 
@@ -109,12 +111,15 @@ public class ClassBoardController {
 	 * @return
 	 */
 	@RequestMapping("classBoardMain.do")
-	public ModelAndView classBoardMain(String classSeq, HttpSession session, ModelAndView mv) {
+	public ModelAndView classBoardMain(String profName, String classSeq, HttpSession session, ModelAndView mv) {
 		
 //		System.out.println("메인넘어갈때 seq : " + request.getParameter("classSeq"));
 		session.setAttribute("classSeq", classSeq);
+		session.setAttribute("profName", profName);
+		
 		
 		mv.addObject("Seq", classSeq);
+
 		mv.setViewName("classBoard/classBoardMain");
 		
 		return mv;
@@ -233,7 +238,7 @@ public class ClassBoardController {
 	 */
 	@RequestMapping("gradeObjectionList.do")
 	public String gradeObjectionList() {
-		return "classsBoard/gradeObjectionList";
+		return "classBoard/gradeObjectionList";
 	}
 	
 	
