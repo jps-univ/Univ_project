@@ -79,6 +79,7 @@ public class LectureEvaluationController
 		ArrayList<Lecture> schedule = leService.selectStdSchdule(map);
 		
 		System.out.println(schedule);
+		System.out.println(schedule.size());
 		mv.addObject("schedule", schedule);
     	
 		mv.setViewName("lectureManagement/lecture_evaluation_select");
@@ -150,10 +151,30 @@ public class LectureEvaluationController
      *
      * @return
      */
+	@ResponseBody
     @RequestMapping("lecture_evaluation_detail.do")
     public String lectureEvaluationDetail() 
     {
         return "lectureManagement/lecture_evaluation_detail";
+    }
+	
+	@ResponseBody
+    @RequestMapping("selectEvaluationDetail.do")
+    public ModelAndView lectureEvaluationDetail(ModelAndView mv, Model model, LectureEvaluation lectureEvaluation, HttpSession session) 
+    {
+		Professor professor = (Professor)session.getAttribute("loginUser");
+		
+		lectureEvaluation.setProfId(professor.getProfId());
+		System.out.println("1 : " + lectureEvaluation);
+
+		ArrayList<LectureEvaluation> evaluation = leService.selectEvaluationDetail(lectureEvaluation);
+
+		System.out.println("2 : " + evaluation);
+		mv.addObject("evaluation", evaluation);
+
+		mv.setViewName("lectureManagement/lecture_evaluation_detail");
+
+		return mv;
     }
     
     // 강의 평가 자신이 듣고 있는 창 선택을 교수는 자신이 강의하는 강의 목록을 나오게 한다 

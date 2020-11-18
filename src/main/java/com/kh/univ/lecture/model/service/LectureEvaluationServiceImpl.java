@@ -33,4 +33,10 @@ public class LectureEvaluationServiceImpl implements LectureEvaluationService
 	{
 		return leDao.selectProfSchdule(map);
 	}
+
+	@Override
+	public ArrayList<LectureEvaluation> selectEvaluationDetail(LectureEvaluation lectureEvaluation) 
+	{
+		return leDao.selectEvaluationDetail(lectureEvaluation);
+	}
 }

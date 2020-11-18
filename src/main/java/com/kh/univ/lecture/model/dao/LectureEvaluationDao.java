@@ -32,4 +32,9 @@ public class LectureEvaluationDao
 	{
 		return (ArrayList)sqlSession.selectList("LectureEvaluationMapper.selectProfSchdule", map);
 	}
+
+	public ArrayList<LectureEvaluation> selectEvaluationDetail(LectureEvaluation lectureEvaluation) 
+	{
+		return (ArrayList)sqlSession.selectList("LectureEvaluationMapper.lectureEvaluationDetail", lectureEvaluation);
+	}
 }

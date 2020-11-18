@@ -67,7 +67,7 @@
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
 						<span class="m-0 font-weight-bold">
-							년도 : <label class=" text-primary">2020</label>
+							년도 : <label class=" text-primary">2021</label>
 							학기 : <label class=" text-primary">1</label>
 						</span>
 					</div>
@@ -80,11 +80,11 @@
 									    <th>번호</th>
 									    <th>과목 코드</th>
 									    <th>과목명</th>
-									    <th>담당교수</th>
+									    <th>담당 교수</th>
 									    <th>강의실</th>
-									    <th>이수구분</th>
-									    <th>평가여부</th>
-									    <th>평가</th>
+									    <th>이수 구분</th>
+									    <th>평가 여부</th>
+									    <th>평가${fn:length(schedule)}</th>
 									</tr>
 								</thead>
                                   
@@ -98,10 +98,10 @@
 										       <td>${ s.professor.profName }</td>
 										       <td>${ s.room }</td>
 										       <td>${ s.classType }</td>
-										       <%-- <c:choose> --%>
+										       <c:choose>
 										       	<%-- <c:when test="${ s.evaluation.evalNo eq '0'}"> --%>
-<%-- 										       	<c:when test="${ s.evaluation.stdId ne loginUser.stdId}">
-											       <td class="text-primary">X${ s.evaluation.stdId }</td>
+ 										       	<c:when test="${ s.evaluation.stdId ne loginUser.stdId}">
+											       <td class="text-primary">X${ s.evaluation.stdId}</td>
 											       <td>
 											       	<!-- <input type="button" class="btn btn-primary" value="평가" id="evaluationBtn" onclick="evaluationBtn(event)"> -->
 		 									       	<input type="hidden" id="hidden_stdId" name="stdId" value="${ loginUser.stdId }">
@@ -113,13 +113,12 @@
 											       </td>
 										       	</c:when>
 										       	<c:otherwise>
-											       <td class="text-primary">O</td>
+											       <td class="text-primary">O${ s.evaluation.stdId }</td>
 											       <td>
-											       <input type="button" class="btn btn-secondary" value="완료" id="evaluationBtn">
+											      	 <input type="button" class="btn btn-secondary" value="완료" id="evaluationBtn">
 											       </td>
-										       	</c:otherwise> --%>
-										       	<td>${ s.evaluation.stdId }</td>
-										       <%-- </c:choose> --%>
+										       	</c:otherwise>
+										       </c:choose>
 										    </tr>
 				                		</form>
 				                    </c:forEach>

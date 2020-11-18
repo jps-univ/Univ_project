@@ -28,4 +28,11 @@ public interface LectureEvaluationService
 	 * @return
 	 */
 	ArrayList<Lecture> selectProfSchdule(Map map);
+
+	/**
+	 * 교수 강의 평가 상세 조회
+	 * @param lectureEvaluation
+	 * @return
+	 */
+	ArrayList<LectureEvaluation> selectEvaluationDetail(LectureEvaluation lectureEvaluation);
 }

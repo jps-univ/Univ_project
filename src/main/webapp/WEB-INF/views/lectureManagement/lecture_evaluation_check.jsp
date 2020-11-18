@@ -10,15 +10,12 @@
     <title>진포상대학교 | 포탈</title>
     <!-- Custom fonts for this template-->
 
-    <link href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
-          type="text/css">
-    <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet">
+    <link href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
 
-    <%--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body id="page-top">
     <!-- Page Wrapper -->
@@ -73,22 +70,32 @@
                                 <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr align="center">
-                                            <th>학번</th>
-                                            <th>이름</th>
-                                            <th>단과대학</th>
-                                            <th>학과</th>
-                                            <th>여부</th>
+                                            <th>번호</th>
+                                            <th>과목 코드</th>
+                                            <th>과목명</th>
+                                            <th>강의실</th>
+                                            <th>이수구분</th>
+                                            <th>평가 평균</th>
+                                            <th>상세 점수</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    	<c:forEach var="s" items="${ schedule }">
+                                    	<c:forEach var="s" items="${ schedule }" varStatus="status">
+                                    	<form action="selectEvaluationDetail.do" method="post">
 	                                        <tr align="center">
-	                                            <td>${  }</td>
-	                                            <td>***</td>
-	                                            <td>과학기술대학</td>
-	                                            <td>컴퓨터공학과</td>
-	                                            <td>o</td>
+	                                        	<td>${ status.count }</td>
+	                                            <td>${ s.classCode }</td>
+	                                            <td>${ s.className }</td>
+	                                            <td>${ s.room }</td>
+	                                            <td>${ s.classType }</td>
+	                                            <td>${ s.evaluation.evalOne }</td>
+	                                            <td>
+	                                            	<!-- <input type="button" class="btn btn-primary" value="상세 보기" id="evaluationDetailBtn" onclick="evaluationDetail(event)"> -->
+	                                            	<input type="hidden" id="hidden_consultingNo" name="classSeq" value="${ s.classSeq }">
+	                                            	<button type="submit" class="btn btn-primary">상세보기</button>
+	                                            </td>
 	                                        </tr>
+	                                    </form>
 	                                    </c:forEach>
                                     </tbody>
                                 </table>
@@ -116,7 +123,26 @@
      <c:import url="../common/logoutModal.jsp"/>
      
      <script type="text/javascript">
-     	function 
+     	function evaluationDetail(event)
+     	{
+     		var profId = ${ loginUser.profId };
+     		var classSeq = event.target.nextElementSibling.value;
+     		
+     		$.ajax(
+     		{
+	            url: "selectEvaluationDetail.do",
+	            data: {"profId" : profId, "classSeq" : classSeq},
+	            success:function(data)
+	            {
+	            	console("성공");
+	            	location.href="lecture_evaluation_detail.do";
+	            }, 
+	            error:function()
+	            {
+	                alert("1");
+	            }
+     		});
+     	}
      </script>
 
     <!-- Bootstrap core JavaScript-->

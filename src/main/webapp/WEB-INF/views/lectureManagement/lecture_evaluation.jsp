@@ -370,8 +370,8 @@
 					{
 						if(data == "ok")
 						{
-						console.log("성공");
-						location.href="lecture_evaluation_select.do";
+							console.log("성공");
+							location.href="lecture_evaluation_select.do";
 						}
 						else
 						{
