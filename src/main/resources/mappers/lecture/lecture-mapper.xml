@@ -159,4 +159,14 @@
     <delete id="deleteMyBasket" parameterType="LectureApplication">
         DELETE FROM TB_BASKET_CLASS WHERE STUDENT_ID=#{stdId} AND CLASS_SEQ=#{classSeq}
     </delete>
+
+    <select id="codeCheck" parameterType="string" resultType="_int">
+        SELECT COUNT(*)
+        FROM TB_CLASS
+        WHERE CLASS_CODE=#{classCode}
+    </select>
+    <insert id="requestRegisterClass" parameterType="Lecture">
+        INSERT INTO TB_CLASS
+        VALUES (SEQ_CLASS.nextval,#{classCode},#{deptCode},#{profId},#{className},#{room},#{gradeSize},#{classSemester},#{classYear},'N',#{classLevel},#{classType})
+    </insert>
 </mapper>

@@ -41,67 +41,29 @@
         td.dt-body-center {
             text-align: center;
         }
+
+        span.guide {
+            display: none;
+            font-size: 12px;
+            top: 12px;
+            right: 10px;
+        }
+
+        span.ok {
+            color: green;
+        }
+
+        span.error1 {
+            color: red;
+        }
+
+        .addArea th {
+            width: 200px;
+        }
     </style>
     <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            // DB에서 데이터 뽑아와서 테이블로 출력하는 datatables 라이브러리 사용
-            $('#searchBtn').click(function () {
-                var table = $('#testTb').DataTable({
-                    //컨트롤러에서 보내줄 때 해당 함수의 반환형은 String이어야 하고 리스트를 뽑아온다고 하면 'dataSrc' : '' 로 해줘야함.
-                    'ajax': {
-                        'url': 'test2.do',
-                        'type': 'post',
-                        'dataType': 'json',
-                        'dataSrc': ''
-                    },
-                    // 'colunms' 옵션에는 각 data 에게 넘어오는 변수명(컬럼값)을 매칭해줘야함 꼭 .
-                    // 그리고 테이블만들어줄때도 넘어오는 값이 4개라면 테이블의 th 갯수도 꼭 4개. 맞춰줘야함
-                    'columns': [
-                        {'data': 'no'},
-                        {'data': 'name'},
-                        {'data': 'email'},
-                        {'data': 'phone'}
-                    ],
-                    'columnDefs': [{
-                        'targets': 0,
-                        'searchable': false,
-                        'orderable': false,
-                        'className': 'dt-body-center',
-                        'render': function (data, type, full, meta) {
-                            return '<input type="checkbox" name="id[]" value="'
-                                + $('<div/>').text(data).html() + '">';
-                        }
-                    }],
-                    'order': [1, 'asc'],
-                    'searching': false,
-                    'bDestroy': true
-                });
 
-                // Handle click on "Select all" control
-                $('#example-select-all').on('click', function () {
-                    // Check/uncheck all checkboxes in the table
-                    var rows = table.rows({'search': 'applied'}).nodes();
-                    $('input[type="checkbox"]', rows).prop('checked', this.checked);
-                });
-
-                // Handle click on checkbox to set state of "Select all" control
-                $('#testTb tbody').on('change', 'input[type="checkbox"]', function () {
-                    // If checkbox is not checked
-                    if (!this.checked) {
-                        var el = $('#example-select-all').get(0);
-                        // If "Select all" control is checked and has 'indeterminate' property
-                        if (el && el.checked && ('indeterminate' in el)) {
-                            // Set visual state of "Select all" control
-                            // as 'indeterminate'
-                            el.indeterminate = true;
-                        }
-                    }
-                });
-            });
-        });
-    </script>
-    <%--    수강신청,장바구니 탭 클릭 시 화면 변화--%>
+    <%--    다음버튼 클릭시 변화--%>
     <script>
         $(document).ready(function () {
             $('#requestRegisterCard').css({
@@ -111,6 +73,7 @@
             $('.addPlan').hide();
             $('#buttonArea2').hide();
             $('#explain2').hide();
+            $('.addArea tr th:nth-child(2)').css({})
         });
 
     </script>
@@ -160,48 +123,51 @@
                                 <table class="table addArea">
                                     <tr>
                                         <th>교과목명</th>
-                                        <th><input type="text"></th>
+                                        <th><input id="className" type="text"></th>
                                         <th>과목코드</th>
-                                        <th><input id="classCode" type="text"></th>
+                                        <th><input id="classCode" type="text"
+                                                   style="width: 100px; margin-right: 10px"><span
+                                                class="guide ok">사용가능</span><span class="guide error1">사용 불가능</span>
+                                            <input type="hidden"
+                                                   name="codeDuplicateCheck"
+                                                   id="codeDuplicateCheck"
+                                                   value="0"/></th>
                                     </tr>
                                     <tr>
                                         <th>이수구분</th>
                                         <th>
-                                            <select>
-                                                <option>선택</option>
-                                                <option value="A">교필</option>
-                                                <option value="B">교필</option>
-                                                <option value="C">전필</option>
-                                                <option value="D">전선</option>
-                                                <option value="E">일선</option>
+                                            <select id="classType">
+                                                <option>전필</option>
+                                                <option>전선</option>
+                                                <option>교양</option>
                                             </select>
                                         </th>
                                         <th>학점</th>
-                                        <th><input type="number"></th>
+                                        <th><input id="gradeSize" type="number" min="1" max="3"></th>
                                     </tr>
                                     <tr>
                                         <th>년도</th>
-                                        <th><input type="text"></th>
+                                        <th><input id="classYear" type="number"></th>
                                         <th>학기</th>
                                         <th>
-                                            <select>
-                                                <option value="A">1</option>
-                                                <option value="B">2</option>
+                                            <select id="classSemester">
+                                                <option>1</option>
+                                                <option>2</option>
                                             </select>
                                         </th>
                                     </tr>
                                     <tr>
                                         <th>강의실</th>
-                                        <th><input type="text"></th>
+                                        <th><input type="text" id="room"></th>
                                         <th>학년</th>
                                         <th>
-                                        <select>
-                                            <option>선택</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                        </select>
+                                            <select id="classLevel">
+                                                <option>선택</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                            </select>
                                         </th>
 
                                     </tr>
@@ -271,7 +237,9 @@
                                     </tr>
                                     <tr>
                                         <th>교과목 개요</th>
-                                        <th colspan="3"><textarea style="resize: none; height:150px; width: 80%;"></textarea><th>
+                                        <th colspan="3"><textarea
+                                                style="resize: none; height:150px; width: 80%;"></textarea>
+                                        <th>
                                     </tr>
                                 </table>
                                 <table class="table">
@@ -372,24 +340,78 @@
                                     onclick="checkRegister();">다음
                             </button>
                             <script>
-                                function checkRegister() {
+                                var ajaxResult = "";
+                                function registerClass() {
+                                    $.ajax({
+                                        url: "requestRegisterClass.do",
+                                        data: {
+                                            classCode: $('#classCode').val(),
+                                            className: $('#className').val(),
+                                            room: $('#room').val(),
+                                            gradeSize: $('#gradeSize').val(),
+                                            classSemester: $('#classSemester').val(),
+                                            classYear: $('#classYear').val(),
+                                            classLevel: $('#classLevel').val(),
+                                            classType: $('#classType').val()
+                                        }, dataType: 'text',
+                                        success: function (data) {
+                                            ajaxResult = "ok";
+                                            alert(ajaxResult);
+                                        }, error: function (data) {
+                                            ajaxResult = "fail";
+                                        }
+                                    });
+                                }
 
-                                    if (confirm("확인을 누르시면 등록 요청 후 강의계획서 입력창으로 이동합니다.") === true) {
-                                        $('.register').hide();
-                                        $('.addPlan').show();
-                                        $('#buttonArea1').hide();
-                                        $('#buttonArea2').show();
-                                        $('#explain1').hide();
-                                        $('#explain2').show();
-                                    } else {
+                                function checkRegister() {
+                                    if ($("#codeDuplicateCheck").val() == 0) {
+                                        alert("사용가능한 과목코드를 입력해주세요 ");
+                                        $("#codeDuplicateCheck").focus();
                                         return false;
+
+                                    } else {
+                                        if (confirm("확인을 누르시면 등록 요청 후 강의계획서 입력창으로 이동합니다.") === true) {
+                                            registerClass();
+                                            if (ajaxResult === "ok"){
+                                            $('.register').hide();
+                                            $('.addPlan').show();
+                                            $('#buttonArea1').hide();
+                                            $('#buttonArea2').show();
+                                            $('#explain1').hide();
+                                            $('#explain2').show();
+                                            } else alert("에러입니다!!!");
+                                        } else {
+                                            return false;
+                                        }
                                     }
                                 }
+
                                 $(function () {
-                                    $('#classCode').on('keyup',function () {
+                                    $('#classCode').on('keyup', function () {
                                         var classCode = $(this).val();
-                                        if () 
-                                    })
+                                        if (classCode.length < 4) {
+                                            $(".guide").hide();
+                                            $("#codeDuplicateCheck").val(0);
+                                            return;
+                                        }
+                                        $.ajax({
+                                            url: 'classCodeCheck.do',
+                                            data: {
+                                                classCode: classCode
+                                            }, success: function (data) {
+                                                if (data == "ok") {
+                                                    $(".error1").hide();
+                                                    $(".ok").show();
+                                                    $("#codeDuplicateCheck").val(1);
+                                                } else {
+                                                    $(".error1").show();
+                                                    $(".ok").hide();
+                                                    $("#codeDuplicateCheck").val(0);
+                                                }
+                                            }, error: function (request, status, errorData) {
+                                            }
+                                        });
+                                    });
                                 });
                             </script>
                         </div>
