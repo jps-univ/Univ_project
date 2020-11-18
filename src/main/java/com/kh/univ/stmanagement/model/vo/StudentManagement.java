@@ -1,5 +1,7 @@
 package com.kh.univ.stmanagement.model.vo;
 
+import com.kh.univ.member.model.vo.Student;
+
 public class StudentManagement {
 	private String className;		// 교과목명
 	private String classId;			// 강의번호
@@ -14,13 +16,15 @@ public class StudentManagement {
 	private String roomNo;			// 강의장
 	private int profId;				// 교번
 	
+    private Student student; 
+	
 	public StudentManagement() {
 		super();
 	}
 
 	public StudentManagement(String className, String classId, String classType, int classTime, String stdName,
 			int stdId, String stdDepartment, String stdSemester, String stdTel, String stdEmail, String roomNo,
-			int profId) {
+			int profId, Student student) {
 		super();
 		this.className = className;
 		this.classId = classId;
@@ -34,6 +38,7 @@ public class StudentManagement {
 		this.stdEmail = stdEmail;
 		this.roomNo = roomNo;
 		this.profId = profId;
+		this.student = student;
 	}
 
 	public String getClassName() {
@@ -132,13 +137,21 @@ public class StudentManagement {
 		this.profId = profId;
 	}
 
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
 	@Override
 	public String toString() {
 		return "StudentManagement [className=" + className + ", classId=" + classId + ", classType=" + classType
 				+ ", classTime=" + classTime + ", stdName=" + stdName + ", stdId=" + stdId + ", stdDepartment="
 				+ stdDepartment + ", stdSemester=" + stdSemester + ", stdTel=" + stdTel + ", stdEmail=" + stdEmail
-				+ ", roomNo=" + roomNo + ", profId=" + profId + "]";
+				+ ", roomNo=" + roomNo + ", profId=" + profId + ", student=" + student + "]";
 	}
-
+	
 	
 }

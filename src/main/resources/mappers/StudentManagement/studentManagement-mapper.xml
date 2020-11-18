@@ -9,7 +9,7 @@
  		<result property="classType" column="CLASS_TYPE"/>
  		<result property="classTime" column="CLASS_TIME"/>
  		<result property="stdName" column="STUDENT_NAME"/>
- 		<result property="stdDepartment" column="DEPARTMENT"/>
+ 		<result property="stdDepartment" column="DEPARTMENT_NAME"/>
  		<result property="stdSemester" column="SEMESTER"/>
  		<result property="stdTel" column="PHONE"/>
  		<result property="stdEmail" column="EMAIL"/>
@@ -50,17 +50,17 @@
 	<!-- 수강생 상세조회 매퍼 -->
 	<select id="selectdDetailList" resultMap="StudentManagementResultSet">
 		SELECT
-		    CLASS_ID,
-		    CLASS_NAME,
-		    STUDENT_NAME,
-		    STUDENT_ID,
-		    DEPARTMENT,
-		    SEMESTER,
-		    PHONE,
-		    EMAIL
+			STUDENT_NAME,STUDENT_ID,CLASS_CODE,CLASS_NAME,DEPARTMENT_NAME,SEMESTER,PHONE,EMAIL
 		FROM
-		    TB_STUDENT
-    	JOIN TB_CLASS ON(SEMESTER = CLASS_SEMESTER)
+			TB_STUDENT
+		LEFT JOIN
+			TB_DEPARTMENT USING(DEPARTMENT_CODE)
+		LEFT JOIN
+			TB_CLASS USING(DEPARTMENT_CODE)
+		WHERE
+			PROFESSOR_ID = #{profId} AND CLASS_CODE = #{classId}
+		ORDER BY
+			STUDENT_NAME
 	</select>
 	
 	<!--  성적관리 조회 -->
