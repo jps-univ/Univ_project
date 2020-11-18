@@ -20,8 +20,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <%--   <link rel="stylesheet" href="${contextPath}/resources/css/lecBoard_base.css?ver=1">  --%>      
   <link rel="stylesheet" href="${contextPath}/resources/css/board_selectClass.css?ver=1">
-  <link rel="stylesheet" href="${contextPath}/resources/css/lecBoard_base_select.css">       
-  <link rel="stylesheet" href="${contextPath}/resources/css/lec_select.css">
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
@@ -116,7 +114,7 @@
             </ul>
         </div>
 
-  		<c:import url="../common/select_mainTopbar.jsp" />
+
         
 
         <div id="main_con">  
