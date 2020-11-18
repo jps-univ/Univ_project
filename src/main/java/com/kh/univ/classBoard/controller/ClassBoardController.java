@@ -20,6 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.classBoard.service.ClassBoardService;
 import com.kh.univ.classBoard.vo.ClassNotice;
+import com.kh.univ.classBoard.vo.PageInfo;
+import com.kh.univ.common.Pagination;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
@@ -143,22 +145,29 @@ public class ClassBoardController {
 	@RequestMapping("cNoticeList.do")
 	public ModelAndView noticeList(ModelAndView mv, @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage
 								,HttpSession session){
+
+				
+		// list array로 가져오기
 		int classSeq = 0;
 		if(session.getAttribute("classSeq") != null ) {
 			classSeq = Integer.parseInt((String) session.getAttribute("classSeq"));
 		}
 
-	
-		ArrayList<ClassNotice> cNotice = cbService.NoticeList(classSeq);
-		System.out.println("컨트롤러 noticeList : "+cNotice);
+
+		
+		
+		// paging처리
+		int listCount = cbService.getNoticeListCount(classSeq);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		ArrayList<ClassNotice> cNotice = cbService.NoticeList(pi, classSeq);
 
 		mv.addObject("NoticeList", cNotice);
-		
+		mv.addObject("pi",pi);
+		System.out.println(cNotice);
 		if(classSeq != 0) {
 			mv.setViewName("classBoard/noticeList");
 		}
-		
-		
 		
 		return mv;
 	}
