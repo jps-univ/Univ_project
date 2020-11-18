@@ -39,6 +39,8 @@ public class StudentManagementController {
 		
 		ArrayList<StudentManagement> list = smService.selectList(map);
 		
+		System.out.println(map);
+		
 		mv.addObject("list", list);
 		mv.setViewName("studentManagement/studentView");
 		return mv;
@@ -51,11 +53,16 @@ public class StudentManagementController {
 		
 		int profId = professor.getProfId();
 		String classId = stdM.getClassId();
+		String className = stdM.getClassName();
 		
 		Map map = new HashMap();
 		map.put("profId", profId);
 		map.put("classId", classId);
+		map.put("className", className);
+		
 		ArrayList<StudentManagement> list = smService.selectDetailList(map);
+		
+		System.out.println(map);
 		
 		mv.addObject("list", list);
 		mv.setViewName("studentManagement/studentDetailView");
