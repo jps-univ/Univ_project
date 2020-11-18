@@ -1,6 +1,7 @@
 package com.kh.univ.stmanagement.model.dao;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +16,12 @@ public class StudentManagementDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	public ArrayList<StudentManagement> selectList() {
-		return (ArrayList)sqlSession.selectList("StudentManagementMapper.selectList");
+	public ArrayList<StudentManagement> selectList(Map map) {
+		return (ArrayList)sqlSession.selectList("StudentManagementMapper.selectList",map);
 	}
 
-	public ArrayList<StudentManagement> selectDetailList() {
-		return (ArrayList)sqlSession.selectList("StudentManagementMapper.selectdDetailList");
+	public ArrayList<StudentManagement> selectDetailList(Map map) {
+		return (ArrayList)sqlSession.selectList("StudentManagementMapper.selectdDetailList",map);
 	}
 
 	public ArrayList<StudentManagement> gradeView() {

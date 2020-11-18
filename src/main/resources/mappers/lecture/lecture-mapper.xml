@@ -159,4 +159,10 @@
     <delete id="deleteMyBasket" parameterType="LectureApplication">
         DELETE FROM TB_BASKET_CLASS WHERE STUDENT_ID=#{stdId} AND CLASS_SEQ=#{classSeq}
     </delete>
+
+    <select id="codeCheck" parameterType="string" resultType="_int">
+        SELECT COUNT(*)
+        FROM TB_CLASS
+        WHERE CLASS_CODE=#{classCode}
+    </select>
 </mapper>

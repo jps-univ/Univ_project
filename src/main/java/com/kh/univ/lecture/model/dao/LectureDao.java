@@ -62,4 +62,7 @@ public class LectureDao {
     }
 
 
+    public int codeCheck(String classCode) {
+        return sqlSession.selectOne("lectureMapper.codeCheck",classCode);
+    }
 }

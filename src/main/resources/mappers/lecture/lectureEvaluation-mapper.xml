@@ -119,15 +119,28 @@
  		<collection property="lectureApplication" resultMap="LectureApplicationResultSet"/>
  		<collection property="student" resultMap="StudentResultSet"/>
  		<collection property="professor" resultMap="ProfessorResultSet"/>
+ 		<collection property="evaluation" resultMap="EvaluationResultSet"/>
     </resultMap>
     
     <!-- 학생 강의 조회 -->
     <select id="selectStdSchdule" parameterType="Lecture" resultMap="StdScheduleResultSet">
-		SELECT C.CLASS_SEQ, C.CLASS_CODE, C.CLASS_NAME, C.ROOM, C.CLASS_TYPE, P.NAME
+		SELECT C.CLASS_SEQ, C.CLASS_CODE, C.CLASS_NAME, C.ROOM, C.CLASS_TYPE, P.NAME, E.EVAL_NO, E.STUDENT_ID
 		FROM TB_STUDENT S
 		LEFT OUTER JOIN TB_REGISTER_CLASS R ON S.STUDENT_ID = R.STUDENT_ID
 		LEFT OUTER JOIN TB_CLASS C ON R.CLASS_SEQ = C.CLASS_SEQ
 		LEFT OUTER JOIN TB_PROFESSOR P ON C.PROFESSOR_ID = P.PROFESSOR_ID
+		LEFT OUTER JOIN TB_EVALUATION E ON C.CLASS_SEQ = E.CLASS_SEQ
 		WHERE S.STUDENT_ID = #{stdId} AND C.CLASS_YEAR = #{classYear} AND C.CLASS_SEMESTER = #{classSemester}
  	</select>
+ 	
+ 	<insert id="evaluationSubmit">
+ 		INSERT INTO TB_EVALUATION
+		(EVAL_NO, STUDENT_ID, CLASS_SEQ, EVAL_ONE, EVAL_TWO, EVAL_THREE, EVAL_FOUR, EVAL_FIVE, EVAL_SIX, EVAL_SEVEN, EVAL_EIGHT, EVAL_NINE, EVAL_TEN)
+		VALUES
+		(SEQ_EVALUATION.NEXTVAL, #{stdId}, #{classSeq}, #{evalOne}, #{evalTwo}, #{evalThree}, #{evalFour}, #{evalFive}, #{evalSix}, #{evalSeven}, #{evalEight}, #{evalNine}, #{evalTen})
+ 	</insert>
+
+    <select id="selectProfSchdule" parameterType="Lecture" resultMap="StdScheduleResultSet">
+    	
+ 	</select> 	
 </mapper>

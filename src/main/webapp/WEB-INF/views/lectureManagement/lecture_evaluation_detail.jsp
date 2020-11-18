@@ -10,14 +10,10 @@
     <title>진포상대학교 | 포탈</title>
     <!-- Custom fonts for this template-->
 
-    <link href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
-          type="text/css">
-    <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet">
+    <link href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
-    
 
     <%--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--%>
 </head>
@@ -36,11 +32,10 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <c:import url="../common/topbar.jsp"/>
+                <c:import url="../common/topbar_professor.jsp"/>
                 <!-- End of Topbar -->
                 <div class="container-fluid">
                     <h2 class="h3 mb-2 text-gray-800">강의평가 조회</h2>
-                    <p class="mb-4">Lecture Evaluation Check</p>
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
 
@@ -140,21 +135,20 @@
        <c:import url="../common/logoutModal.jsp"/>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+    <script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="${contextPath}/resources/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="${contextPath}/resources/vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
-
+    <script src="${contextPath}/resources/js/demo/chart-area-demo.js"></script>
+    <script src="${contextPath}/resources/js/demo/chart-pie-demo.js"></script>
 </body>
 </html>

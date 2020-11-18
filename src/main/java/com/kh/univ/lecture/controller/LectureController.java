@@ -255,4 +255,28 @@ public class LectureController {
             } else return "fail";
         } else return "fail";
     }
+
+    /**
+     * 교수가 강의 요청을 할 때 클래스코드가 중복인지 확인
+     * @param classCode
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("classCodeCheck.do")
+    public String codeCheck(String classCode) {
+        int result = lectureService.codeCheck(classCode);
+
+        if (result > 0) {
+            return "fail";
+        } else {
+            return "ok";
+        }
+    }
+    @ResponseBody
+    @RequestMapping(value = "requestRegisterClass.do", produces = "application/json; charset=utf-8")
+    public String requestRegisterClass(Lecture lecture){
+        System.out.println(lecture);
+        return null;
+    }
+
 }
