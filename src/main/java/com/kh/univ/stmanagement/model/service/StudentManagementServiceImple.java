@@ -1,6 +1,7 @@
 package com.kh.univ.stmanagement.model.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,13 +17,13 @@ public class StudentManagementServiceImple implements StudentManagementService {
 	private StudentManagementDao smDao;
 
 	@Override
-	public ArrayList<StudentManagement> selectList() {
-		return smDao.selectList();
+	public ArrayList<StudentManagement> selectList(Map map) {
+		return smDao.selectList(map);
 	}
 
 	@Override
-	public ArrayList<StudentManagement> selectDetailList() {
-		return smDao.selectDetailList();
+	public ArrayList<StudentManagement> selectDetailList(Map map) {
+		return smDao.selectDetailList(map);
 	}
 
 	@Override

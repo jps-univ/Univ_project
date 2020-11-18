@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
 <html lang="ko">
 <style>
@@ -161,9 +160,6 @@ margin-right: 10px;
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <td><h4 id="code">교과목명 : </h4></td>
                 <td><input type="text" id="text2" placeholder="전자 회로2" disabled></td>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <td><h4 id="code">교수번호 : </h4></td>
-                <td><input type="text" id="text3" name="professorId" placeholder="123456" disabled value="123456"></td>
             </tr>
         </table>
           <br>
@@ -216,7 +212,6 @@ margin-right: 10px;
                         <tbody>
                         <c:forEach var="std" items="${ list }">
                             <tr>
-                            	<td><input type="hidden" name="studentId" value="${ std.stdId }"></td>
                                 <td>${ std.stdId }</td>
                                 <td><input type="radio" name="gradePoint" value="A+"></td>
                                 <td><input type="radio" name="gradePoint" value="A" ></td>
@@ -231,6 +226,7 @@ margin-right: 10px;
                                 <td><input type="radio" name="gradePoint" value="D"></td>
                                 <td><input type="radio" name="gradePoint" value="D-"></td>
                                 <td><input type="radio" name="gradePoint" value="F"></td>
+                            	<td><input type="hidden" name="studentId" value="${ std.stdId }"></td>
                             </tr>
                          </c:forEach>
 
