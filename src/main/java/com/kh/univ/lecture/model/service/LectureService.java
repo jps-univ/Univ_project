@@ -38,4 +38,5 @@ public interface LectureService {
     int deleteMyBasket(HashMap map);
 
 
+    int codeCheck(String classCode);
 }
