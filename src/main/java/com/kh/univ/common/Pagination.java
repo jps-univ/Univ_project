@@ -9,7 +9,7 @@ public class Pagination {
 		
 		PageInfo pi = null;
 		
-		int pageLimit = 10;   		// 한 페이지에서 보여질 페이징 수
+		int pageLimit = 5;   		// 한 페이지에서 보여질 페이징 수
 		int maxPage;				// 전체 페이징 수 중 가장 마지막 페이지
 		int startPage;				// 현재 페이지에서 보여질 페이징 버튼의 시작 페이지
 		int endPage;				// 현재 페이지에서 보여질 페이징 버튼의 끝 페이지

@@ -58,6 +58,10 @@
 		WHERE NOTICE_ID=#{nId}
 	</select>
 	
-	
+	<select id="selectNoticeCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM TB_NOTICE
+		WHERE CLASS_SEQ = #{classSeq}
+	</select>
 	
 </mapper>

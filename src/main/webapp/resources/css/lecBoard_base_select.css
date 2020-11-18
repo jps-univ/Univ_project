@@ -101,16 +101,7 @@
 
 
 
-#select_title{
 
-    margin-top: 70px;
-    margin-left: 11%;
-    /* background-color: #d8dadc; */
-    font-family: 'Nanum Gothic Coding', monospace;
-    font-size: 30px;
-    font-weight: 700;
-    color: black;
-}
 
 
 .main_con{
@@ -118,33 +109,15 @@
     height: 100%;
     background: #f1f1f1;
 }
-.professor_info{width:65%; height: 100%;}
-
-.semi_notice{width:35%; height:100%;}
-
-
-.professor_info{width: 100%;}
 
 .professor_info tbody tr td:nth-child(1){
-    width: 15%;
-}
-
-.professor_info tbody tr td:nth-child(2){
-    width: 55%;
+    width: 70%;
     font-size: 35px;
     font-family: 'Nanum Gothic Coding', monospace;
     font-weight: 700;
     color: rgb(45, 45, 45);
 }
 
-.professor_info tbody tr td:nth-child(3){
+.professor_info tbody tr td:nth-child(2){
     width: 30%;
-}
-
-#semi_title{margin-left: 18%;
-    margin-bottom: 43px;}
-
-#professor_icon{
-    position: relative;
-    left: 199px;
 }

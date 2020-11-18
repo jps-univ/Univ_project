@@ -15,14 +15,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.classBoard.service.ClassBoardService;
 import com.kh.univ.classBoard.vo.ClassNotice;
+import com.kh.univ.classBoard.vo.PageInfo;
+import com.kh.univ.common.Pagination;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
 
+@SessionAttributes({"classSeq","user","profName"})
 @Controller
 public class ClassBoardController {
 
@@ -109,12 +113,15 @@ public class ClassBoardController {
 	 * @return
 	 */
 	@RequestMapping("classBoardMain.do")
-	public ModelAndView classBoardMain(String classSeq, HttpSession session, ModelAndView mv) {
+	public ModelAndView classBoardMain(String profName, String classSeq, HttpSession session, ModelAndView mv) {
 		
 //		System.out.println("메인넘어갈때 seq : " + request.getParameter("classSeq"));
 		session.setAttribute("classSeq", classSeq);
+		session.setAttribute("profName", profName);
+		
 		
 		mv.addObject("Seq", classSeq);
+
 		mv.setViewName("classBoard/classBoardMain");
 		
 		return mv;
@@ -138,22 +145,29 @@ public class ClassBoardController {
 	@RequestMapping("cNoticeList.do")
 	public ModelAndView noticeList(ModelAndView mv, @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage
 								,HttpSession session){
+
+				
+		// list array로 가져오기
 		int classSeq = 0;
 		if(session.getAttribute("classSeq") != null ) {
 			classSeq = Integer.parseInt((String) session.getAttribute("classSeq"));
 		}
 
-	
-		ArrayList<ClassNotice> cNotice = cbService.NoticeList(classSeq);
-		System.out.println("컨트롤러 noticeList : "+cNotice);
+
+		
+		
+		// paging처리
+		int listCount = cbService.getNoticeListCount(classSeq);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		ArrayList<ClassNotice> cNotice = cbService.NoticeList(pi, classSeq);
 
 		mv.addObject("NoticeList", cNotice);
-		
+		mv.addObject("pi",pi);
+		System.out.println(cNotice);
 		if(classSeq != 0) {
 			mv.setViewName("classBoard/noticeList");
 		}
-		
-		
 		
 		return mv;
 	}
@@ -233,7 +247,7 @@ public class ClassBoardController {
 	 */
 	@RequestMapping("gradeObjectionList.do")
 	public String gradeObjectionList() {
-		return "classsBoard/gradeObjectionList";
+		return "classBoard/gradeObjectionList";
 	}
 	
 	
