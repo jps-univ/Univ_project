@@ -37,9 +37,9 @@ public class AdLectureDao {
 	}
 
 //	강의 리스트 조회
-	public ArrayList<Lecture> selectAdLectureList() {
+	public ArrayList<AdLecture> selectAdLectureList() {
 		// TODO Auto-generated method stub
-		return (ArrayList)sqlSession.selectList("adminLectureMapper.adLectureProfessor");
+		return (ArrayList)sqlSession.selectList("adminLectureMapper.selectAdLectureList");
 	}
 
 	public int adInsertLecture(AdLecture adLecture) {

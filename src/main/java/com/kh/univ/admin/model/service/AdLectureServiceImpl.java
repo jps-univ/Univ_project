@@ -39,7 +39,7 @@ public class AdLectureServiceImpl implements AdLectureService{
 	}
 
 	@Override
-	public ArrayList<Lecture> selectAdLectureList() {
+	public ArrayList<AdLecture> selectAdLectureList() {
 		// TODO Auto-generated method stub
 		return adLectureDao.selectAdLectureList();
 	}

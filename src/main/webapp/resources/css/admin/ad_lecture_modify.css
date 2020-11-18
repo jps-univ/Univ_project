@@ -56,9 +56,12 @@ background: #f8f6ff;
 #rest_lecture thead tr th{
     text-align: center;
 }
-#rest_lecture thead tr th:first-child,
-#rest_lecture thead tr th:nth-child(2){
+#rest_lecture thead tr th:first-child
+{
     width: 80px;
+}
+#rest_lecture thead tr th:nth-child(2){
+	width:120px;
 }
 #rest_lecture tr p{
 margin-bottom: 0;

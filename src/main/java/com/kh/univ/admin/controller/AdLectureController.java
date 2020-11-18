@@ -119,7 +119,9 @@ public class AdLectureController {
 	@RequestMapping("lecture_Modify.do")
 	public ModelAndView lectureModify(ModelAndView mv) {
 		ArrayList<AdCollege> adCollegeSelect = adLectureService.adCollegeSelect();
-		ArrayList<Lecture> selectAdLectureList = adLectureService.selectAdLectureList();
+		ArrayList<AdLecture> selectAdLectureList = adLectureService.selectAdLectureList();
+		System.out.println(selectAdLectureList);
+		mv.addObject("selectAdLectureList",selectAdLectureList);
 		mv.addObject("adCollege", adCollegeSelect);
 		mv.setViewName("admin/ad_lecture_modify");
 		return mv;

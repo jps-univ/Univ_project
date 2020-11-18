@@ -12,7 +12,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    
-    <link rel="stylesheet" href="${contextPath }/resources/css/admin/ad_lecture_modify.css?ver=2" type="text/css">
+    <link rel="stylesheet" href="${contextPath }/resources/css/admin/ad_lecture_modify.css?ver=3" type="text/css">
       <link rel="stylesheet" href="${contextPath }/resources/css/class_plan.css">
      <style></style>
     
@@ -47,44 +47,29 @@
                 <table id="rest_lecture" class=" table-hover">
                     <thead>
                         <tr>
-                            <th>
-                                <p>강의 코드</p>
-                            </th>
-                            <th>
-                                <p>강의명</p>
-                            </th>
-                            <th>
-                                <p>교수명</p>
-                            </th>
-                            <th>
-                                <p>이수구분</p>
-                            </th>
-                            <th>
-                                <p>개설 학과</p>
-                            </th>
-                            <th>
-                                <p>강의실</p>
-                            </th>
-                            <th>
-                                <p>강의 시간</p>
-                            </th>
-                            <th>
-                                <p>학점</p>
-                            </th>
+                            <th><p>강의 코드</p></th>
+                            <th><p>강의명</p></th>
+                            <th><p>교수명</p></th>
+							<th><p>이수구분</p></th>
+                            <th><p>개설 학과</p></th>
+                            <th><p>강의실</p></th>
+                            <th><p>강의 시간</p></th>
+                            <th><p>학점</p></th>
                         </tr>
                     </thead>
                     <tbody>
+                    <c:forEach var="l" items="${selectAdLectureList}">
                         <tr>
-                            <td>1</td>
-                            <td>JAVA</td>
-                            <td>김주호</td>
-                            <td>전공필수</td>
-                            <td>컴퓨터공학과</td>
-                            <td>A5410</td>
-                            <td>13:00~14:00</td>
-                            <td>3</td>
+							<td>${l.classSeq }</td>
+							<td>${l.className}</td>
+							<td>${l.proName }</td>
+							<td>${l.classType }</td>
+							<td>${l.deptCode}</td>
+							<td>${l.room }</td>
+							<td>${l.total }</td>
+							<td>${l.gradeSize}</td>
                         </tr>
-
+					</c:forEach>
 
 
                     </tbody>

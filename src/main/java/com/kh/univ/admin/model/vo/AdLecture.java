@@ -15,11 +15,16 @@ public class AdLecture {
     private String classApprove;	// 강의 승인 여부
     private int classLevel;			// 수강 학년-
     private String classType;		// 이수 구분-
+    
+    private String total;			// 강의시간 합치기
+    private String proName;
 	public AdLecture() {
 		super();
 	}
+
 	public AdLecture(int classSeq, String classCode, String deptCode, int profId, String className, String room,
-			int gradeSize, int classSemester, int classYear, String classApprove, int classLevel, String classType) {
+			int gradeSize, int classSemester, int classYear, String classApprove, int classLevel, String classType,
+			String total, String proName) {
 		super();
 		this.classSeq = classSeq;
 		this.classCode = classCode;
@@ -33,7 +38,10 @@ public class AdLecture {
 		this.classApprove = classApprove;
 		this.classLevel = classLevel;
 		this.classType = classType;
+		this.total = total;
+		this.proName = proName;
 	}
+
 	public int getClassSeq() {
 		return classSeq;
 	}
@@ -106,13 +114,33 @@ public class AdLecture {
 	public void setClassType(String classType) {
 		this.classType = classType;
 	}
+	
+	public String getTotal() {
+		return total;
+	}
+
+	public void setTotal(String total) {
+		this.total = total;
+	}
+
+	public String getProName() {
+		return proName;
+	}
+
+	public void setProName(String proName) {
+		this.proName = proName;
+	}
+
 	@Override
 	public String toString() {
 		return "AdLecture [classSeq=" + classSeq + ", classCode=" + classCode + ", deptCode=" + deptCode + ", profId="
 				+ profId + ", className=" + className + ", room=" + room + ", gradeSize=" + gradeSize
 				+ ", classSemester=" + classSemester + ", classYear=" + classYear + ", classApprove=" + classApprove
-				+ ", classLevel=" + classLevel + ", classType=" + classType + "]";
+				+ ", classLevel=" + classLevel + ", classType=" + classType + ", total=" + total + ", proName="
+				+ proName + "]";
 	}
+
+
     
     
 }
