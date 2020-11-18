@@ -5,7 +5,7 @@
 	<resultMap id="StudentManagementResultSet" type="StudentManagement">
  		<id property="stdId" column="STUDENT_ID"/>
  		<result property="className" column="CLASS_NAME"/>
- 		<result property="classId" column="CLASS_ID"/>
+ 		<result property="classId" column="CLASS_CODE"/>
  		<result property="classType" column="CLASS_TYPE"/>
  		<result property="classTime" column="CLASS_TIME"/>
  		<result property="stdName" column="STUDENT_NAME"/>
@@ -13,7 +13,8 @@
  		<result property="stdSemester" column="SEMESTER"/>
  		<result property="stdTel" column="PHONE"/>
  		<result property="stdEmail" column="EMAIL"/>
- 		<result property="roomNo" column="ROOM_NO"/>
+ 		<result property="roomNo" column="ROOM"/>
+ 		<result property="profId" column="PROFESSOR_ID"/>
  	</resultMap>
  	
 	<resultMap id="GradeResultSet" type="Grade">
@@ -37,11 +38,13 @@
 	<select id="selectList" resultMap="StudentManagementResultSet">
 		SELECT
 			CLASS_NAME,
-			CLASS_ID,
+			CLASS_CODE,
 			CLASS_TYPE,
-			ROOM_NO
+			ROOM
 		FROM
 			TB_CLASS
+		WHERE
+			PROFESSOR_ID = #{profId}
 	</select>
 	
 	<!-- 수강생 상세조회 매퍼 -->

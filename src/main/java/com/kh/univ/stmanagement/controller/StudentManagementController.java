@@ -3,12 +3,15 @@ package com.kh.univ.stmanagement.controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.stmanagement.model.service.StudentManagementService;
 import com.kh.univ.stmanagement.model.vo.GradeA;
 import com.kh.univ.stmanagement.model.vo.StudentManagement;
@@ -20,9 +23,13 @@ public class StudentManagementController {
 	private StudentManagementService smService;
 	
 	@RequestMapping("stList.do")
-	public ModelAndView StudentView(ModelAndView mv) {
+	public ModelAndView StudentView(ModelAndView mv, Model model, HttpSession session) {
 		
-		ArrayList<StudentManagement> list = smService.selectList();
+		Professor professor = (Professor)session.getAttribute("loginUser");
+		
+		int profId = professor.getProfId();
+		
+		ArrayList<StudentManagement> list = smService.selectList(profId);
 		
 		mv.addObject("list", list);
 		mv.setViewName("studentManagement/studentView");

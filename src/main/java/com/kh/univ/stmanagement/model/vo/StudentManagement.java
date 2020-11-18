@@ -12,13 +12,15 @@ public class StudentManagement {
 	private String stdTel;    		// 연락처
 	private String stdEmail;  		// 이메일
 	private String roomNo;			// 강의장
+	private int profId;				// 교번
 	
 	public StudentManagement() {
 		super();
 	}
 
 	public StudentManagement(String className, String classId, String classType, int classTime, String stdName,
-			int stdId, String stdDepartment, String stdSemester, String stdTel, String stdEmail, String roomNo) {
+			int stdId, String stdDepartment, String stdSemester, String stdTel, String stdEmail, String roomNo,
+			int profId) {
 		super();
 		this.className = className;
 		this.classId = classId;
@@ -31,6 +33,7 @@ public class StudentManagement {
 		this.stdTel = stdTel;
 		this.stdEmail = stdEmail;
 		this.roomNo = roomNo;
+		this.profId = profId;
 	}
 
 	public String getClassName() {
@@ -121,12 +124,20 @@ public class StudentManagement {
 		this.roomNo = roomNo;
 	}
 
+	public int getProfId() {
+		return profId;
+	}
+
+	public void setProfId(int profId) {
+		this.profId = profId;
+	}
+
 	@Override
 	public String toString() {
 		return "StudentManagement [className=" + className + ", classId=" + classId + ", classType=" + classType
 				+ ", classTime=" + classTime + ", stdName=" + stdName + ", stdId=" + stdId + ", stdDepartment="
 				+ stdDepartment + ", stdSemester=" + stdSemester + ", stdTel=" + stdTel + ", stdEmail=" + stdEmail
-				+ ", roomNo=" + roomNo + "]";
+				+ ", roomNo=" + roomNo + ", profId=" + profId + "]";
 	}
 
 	

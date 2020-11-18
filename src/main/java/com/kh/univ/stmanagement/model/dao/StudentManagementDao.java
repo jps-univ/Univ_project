@@ -15,7 +15,7 @@ public class StudentManagementDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	public ArrayList<StudentManagement> selectList() {
+	public ArrayList<StudentManagement> selectList(int profId) {
 		return (ArrayList)sqlSession.selectList("StudentManagementMapper.selectList");
 	}
 
