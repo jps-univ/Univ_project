@@ -41,6 +41,7 @@
         td.dt-body-center {
             text-align: center;
         }
+
         span.guide {
             display: none;
             font-size: 12px;
@@ -55,6 +56,7 @@
         span.error1 {
             color: red;
         }
+
         .addArea th {
             width: 200px;
         }
@@ -71,8 +73,7 @@
             $('.addPlan').hide();
             $('#buttonArea2').hide();
             $('#explain2').hide();
-            $('.addArea tr th:nth-child(2)').css({
-            })
+            $('.addArea tr th:nth-child(2)').css({})
         });
 
     </script>
@@ -124,7 +125,8 @@
                                         <th>교과목명</th>
                                         <th><input id="className" type="text"></th>
                                         <th>과목코드</th>
-                                        <th><input id="classCode" type="text" style="width: 100px; margin-right: 10px" ><span
+                                        <th><input id="classCode" type="text"
+                                                   style="width: 100px; margin-right: 10px"><span
                                                 class="guide ok">사용가능</span><span class="guide error1">사용 불가능</span>
                                             <input type="hidden"
                                                    name="codeDuplicateCheck"
@@ -135,7 +137,6 @@
                                         <th>이수구분</th>
                                         <th>
                                             <select id="classType">
-                                                <option>선택</option>
                                                 <option>전필</option>
                                                 <option>전선</option>
                                                 <option>교양</option>
@@ -146,12 +147,12 @@
                                     </tr>
                                     <tr>
                                         <th>년도</th>
-                                        <th><input id="classYear" type="text"></th>
+                                        <th><input id="classYear" type="number"></th>
                                         <th>학기</th>
                                         <th>
                                             <select id="classSemester">
-                                                <option value="A">1</option>
-                                                <option value="B">2</option>
+                                                <option>1</option>
+                                                <option>2</option>
                                             </select>
                                         </th>
                                     </tr>
@@ -339,23 +340,25 @@
                                     onclick="checkRegister();">다음
                             </button>
                             <script>
+                                var ajaxResult = "";
                                 function registerClass() {
                                     $.ajax({
-                                        url:"requestRegisterClass.do",
-                                        data:{
-                                            classCode:$('#classCode').val(),
-                                            className:$('#className').val(),
-                                            room:$('#room').val(),
-                                            gradeSize:$('#gradeSize').val(),
-                                            classSemester:$('#classSemester').val(),
-                                            classYear:$('#classYear').val(),
-                                            classLevel:$('#classLevel').val(),
-                                            classType:$('#classType').val()
-                                        },success:function (data) {
-                                            alert(data)
-
-                                        },error:function () {
-                                            alert("에러입니다!!!")
+                                        url: "requestRegisterClass.do",
+                                        data: {
+                                            classCode: $('#classCode').val(),
+                                            className: $('#className').val(),
+                                            room: $('#room').val(),
+                                            gradeSize: $('#gradeSize').val(),
+                                            classSemester: $('#classSemester').val(),
+                                            classYear: $('#classYear').val(),
+                                            classLevel: $('#classLevel').val(),
+                                            classType: $('#classType').val()
+                                        }, dataType: 'text',
+                                        success: function (data) {
+                                            ajaxResult = "ok";
+                                            alert(ajaxResult);
+                                        }, error: function (data) {
+                                            ajaxResult = "fail";
                                         }
                                     });
                                 }
@@ -369,17 +372,20 @@
                                     } else {
                                         if (confirm("확인을 누르시면 등록 요청 후 강의계획서 입력창으로 이동합니다.") === true) {
                                             registerClass();
+                                            if (ajaxResult === "ok"){
                                             $('.register').hide();
                                             $('.addPlan').show();
                                             $('#buttonArea1').hide();
                                             $('#buttonArea2').show();
                                             $('#explain1').hide();
                                             $('#explain2').show();
+                                            } else alert("에러입니다!!!");
                                         } else {
                                             return false;
                                         }
                                     }
                                 }
+
                                 $(function () {
                                     $('#classCode').on('keyup', function () {
                                         var classCode = $(this).val();

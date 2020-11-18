@@ -65,4 +65,8 @@ public class LectureDao {
     public int codeCheck(String classCode) {
         return sqlSession.selectOne("lectureMapper.codeCheck",classCode);
     }
+
+    public int requestRegisterClass(Lecture lecture) {
+        return sqlSession.insert("lectureMapper.requestRegisterClass",lecture);
+    }
 }

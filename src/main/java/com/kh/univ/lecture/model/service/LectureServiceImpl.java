@@ -76,9 +76,16 @@ public class LectureServiceImpl implements LectureService {
         return lectureDao.codeCheck(classCode);
     }
 
+
+
     @Override
     public int deleteMyClass(HashMap map) {
         return lectureDao.deleteMyClass(map);
+    }
+
+    @Override
+    public int requestRegisterClass(Lecture lecture) {
+        return lectureDao.requestRegisterClass(lecture);
     }
 
 

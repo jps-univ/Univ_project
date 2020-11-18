@@ -6,11 +6,13 @@ import com.kh.univ.lecture.model.service.LectureService;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.lecture.model.vo.LectureTime;
 import com.kh.univ.lecture.model.vo.SearchCondition;
+import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -274,9 +276,18 @@ public class LectureController {
     }
     @ResponseBody
     @RequestMapping(value = "requestRegisterClass.do", produces = "application/json; charset=utf-8")
-    public String requestRegisterClass(Lecture lecture){
+    public String requestRegisterClass(HttpSession session,Lecture lecture){
+        Professor user = (Professor) session.getAttribute("loginUser");
+        String deptCode = user.getProfDepartment();
+        int profId = user.getProfId();
+        lecture.setDeptCode(deptCode);
+        lecture.setProfId(profId);
         System.out.println(lecture);
-        return null;
+
+        int result = lectureService.requestRegisterClass(lecture);
+        if (result > 0){
+            return "강의등록 요청이 완료되었습니다.";
+        }else return "강의등록 요청에 실패하였습니다";
     }
 
 }
