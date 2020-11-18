@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import com.kh.univ.lecture.model.vo.Lecture;
+import com.kh.univ.lecture.model.vo.LectureEvaluation;
 
 public interface LectureEvaluationService 
 {
@@ -13,4 +14,6 @@ public interface LectureEvaluationService
 	 * @return
 	 */
 	ArrayList<Lecture> selectStdSchdule(Map map);
+
+	int evaluationSubmit(LectureEvaluation evaluation);
 }

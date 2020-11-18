@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.lecture.model.service.LectureEvaluationService;
@@ -22,19 +23,10 @@ public class LectureEvaluationController
 	@Autowired
 	private LectureEvaluationService leService;
 	
-	  /**
+	/**
      * 1. 강의 평가 하기(학생)
-     *
      * @return
      */
-	/*
-    @RequestMapping("lecture_evaluation.do")
-    public String lectureEvaluation() 
-    {
-        return "lectureManagement/lecture_evaluation";
-    }
-    */
-	
     @RequestMapping("lecture_evaluation.do")
     public ModelAndView lectureEvaluation(ModelAndView mv, HttpSession session, Student student, Lecture lecture)
     {    	
@@ -48,7 +40,6 @@ public class LectureEvaluationController
 
     /**
      * 1_2 . 강의평가 하기전에 자신이 듣고 있는 강의 중 선택하는 창
-     *
      * @return
      */
     @RequestMapping("lecture_evaluation_select.do")
@@ -92,12 +83,27 @@ public class LectureEvaluationController
 		return mv;
     }
     
+    /**
+     * 학생 강의 평가지 제출
+     * @param evaluation
+     * @return
+     */
+    @ResponseBody
     @RequestMapping("lecture_evaluation_submit.do")
     public String lectureEvaluationSubmit(LectureEvaluation evaluation)
     {
     	System.out.println(evaluation);
     	
-    	return "ok";
+    	int result = leService.evaluationSubmit(evaluation);
+    	
+    	if(result > 0)
+    	{
+    		return "ok";
+    	}
+    	else
+    	{
+    		return "fail";
+    	}
     }
 
     /**

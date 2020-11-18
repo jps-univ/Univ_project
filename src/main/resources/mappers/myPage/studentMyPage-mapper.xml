@@ -324,7 +324,7 @@
 		LEFT OUTER JOIN TB_COLLEGE C ON D.COLLEGE_CODE = C.COLLEGE_CODE
  	</select>
  	
- 	<!-- 상단 신청 -->
+ 	<!-- 상담 신청 -->
  	<insert id="applyConsulting">
 		INSERT INTO TB_CONSULTING
 		(CONSULTING_NO, STUDENT_ID, PROFESSOR_ID, CONSULTING_STATUS, APPLY_DATE)

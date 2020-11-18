@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.univ.lecture.model.vo.Lecture;
+import com.kh.univ.lecture.model.vo.LectureEvaluation;
 
 @Repository("leDao")
 public class LectureEvaluationDao 
@@ -19,5 +20,10 @@ public class LectureEvaluationDao
 	public ArrayList<Lecture> selectStdSchdule(Map map)
 	{
 		return (ArrayList)sqlSession.selectList("LectureEvaluationMapper.selectStdSchdule", map);
+	}
+
+	public int evaluationSubmit(LectureEvaluation evaluation) 
+	{
+		return sqlSession.insert("LectureEvaluationMapper.evaluationSubmit", evaluation);
 	}
 }
