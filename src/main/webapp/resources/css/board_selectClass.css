@@ -1,3 +1,139 @@
+
+/*---------공통부분-------------*/
+#wrapper{height: 100%;}
+
+
+#main_sidebar{height: 1100px;}
+.sidebar{height: 100%;}
+
+#main_con{
+    float: right;
+    width: 85%;
+    height: 100%;
+    /* background-color: #0080ff; */
+    margin: 0;
+    position: absolute;
+    top: 250px;
+    left: 200px;
+}
+
+body {overflow:hidden}
+
+/* top_bar */
+/* .top_bar{width:100%; height:210px;} */
+
+
+/* top_semi_bar */
+.top_bar{
+	background-color: #edf1fc;
+    border-bottom: solid #4e73df;
+    height: 100px;
+    padding: 40px;
+    position: relative;
+    bottom: 25px;
+    white-space: nowrap;
+    color: #4e73df;
+}
+
+ul li{
+    list-style-type: none;
+    float: left;
+}
+
+
+
+/* 강의 게시판 왼쪽 네비바 */
+.sec_navi{
+	/* float:left;  */
+	/* height:100%;  */
+	width:100%; 
+	background-color: #edf1fc;
+/*     position: absolute;
+    top: 170px; */
+	}
+
+
+/* 강의 게시판 왼쪽 네비바 설정 */
+#sec_navibar{
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+
+.drop{  
+    list-style-type: none;
+    margin-left: 0;  
+    height: 60px;
+    padding-left: 10px;
+    /* border-bottom: 2px solid rgb(64, 64, 64); */
+}
+
+.drop>a {
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 130px;
+    font-size: 15px;
+    /* font-family: 'Nanum Gothic Coding', monospace; */
+    color: #4e73df;
+    font-weight: 600;
+}
+
+.drop_submenu{
+    /* background:  #555; */
+}
+
+.drop_submenu>li{
+    list-style-type: none;
+    margin-left: 0;
+    height:40px;
+    padding-left: 20px;
+    /* background-color: #edf1fc; */
+}
+
+.drop_submenu>li>a{
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 10px;
+    /* font-family: 'Nanum Gothic Coding', monospace; */
+    color: #4e73df;
+    font-weight: 400;
+}
+
+.drop_submenu {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+
+.drop_submenu li {
+    /* border-bottom: 1px solid #fbdcdc8d */
+}
+
+/* #drop_submenu{
+    display: none;
+}
+
+#sec_navibar li:hover+ul{
+    display: block;
+}
+
+#drop_submenu:hover{
+    display: block;
+} */
+
+
+/*--------본문--------*/
+.main_con{
+    width: 100%;
+    height: 100%;
+    background: #f1f1f1;
+    position: absolute;
+    top: 265px;
+}
+
+
 /* 맨위 글씨 */
 
 .professor_info{width:65%; height: 100%;}
@@ -19,20 +155,29 @@
     width: 30%;
 }
 
-#semi_title{margin-left: 18%;}
+/* #semi_title{
+	background-color: #edf1fc;
+    border-bottom: solid #4e73df;
+    height: 100px;
+    padding: 40px;
+    position: relative;
+    bottom: 25px;
+    white-space: nowrap;
+    color: #4e73df;
+	} */
 
 
 /* 타이틀  */
-#select_title{
+/* #select_title{
 
     margin-top: 70px;
     margin-left: 25%;
-    /* background-color: #d8dadc; */
+    background-color: #d8dadc;
     font-family: 'Nanum Gothic Coding', monospace;
     font-size: 30px;
     font-weight: 700;
     color: black;
-}
+} */
 
 #semester{
     width: 50%;

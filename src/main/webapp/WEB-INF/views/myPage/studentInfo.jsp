@@ -273,7 +273,7 @@
 						</div>
 					</div>
 				</div>
-				<!-- /.container-fluid -->
+				<!-- container-fluid -->
 
 			</div>
 			<!-- End of Main Content -->
@@ -403,6 +403,5 @@
 
 	<!-- Page level custom scripts -->
 	<script src="${contextPath}/resources/js/demo/datatables-demo.js"></script>
-
 </body>
 </html>

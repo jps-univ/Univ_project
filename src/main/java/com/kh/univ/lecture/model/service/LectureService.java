@@ -38,4 +38,8 @@ public interface LectureService {
     int deleteMyBasket(HashMap map);
 
 
+//    강의등록 요청란에서 과목코드를 키업으로 체크
+    int codeCheck(String classCode);
+//    강의등록을 하는데 approve를 N으로 해서 넣음.
+    int requestRegisterClass(Lecture lecture);
 }
