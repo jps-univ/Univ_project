@@ -273,6 +273,10 @@ public class LectureController {
         }
     }
     @ResponseBody
-    @RequestMapping(value = "", produces = "application/json; charset=utf-8")
+    @RequestMapping(value = "requestRegisterClass.do", produces = "application/json; charset=utf-8")
+    public String requestRegisterClass(Lecture lecture){
+        System.out.println(lecture);
+        return null;
+    }
 
 }
