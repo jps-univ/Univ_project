@@ -54,23 +54,16 @@
         <!-- End of Topbar -->
 
         <!-- page top bar -->
-        <div class="top_bar">
-            <table class="professor_info">
-            <tbody>
-              <tr>
-                <td><div id="semi_title">수강과목조회</div></td>
-                <td><div id="semi_notice">공지사항</div></td>
-              </tr>
-            </tbody>
-            </table>
-        </div>
         
+        <div class="top_bar">
+           <h1>강의게시판</h1>
+        </div>
+ 
 
-        <!-- second navibar -->
         <!-- second navibar -->
         <div class="sec_navi shadow">
             <ul id="sec_navibar">
-                <li class="drop"><a href="#">Home</a></li>
+                <li class="drop"><a href="selectClass.do">수강과목조회</a></li>
                 <li class="drop"><a href="#">강의 정보</a></li>
                     <ul class="drop_submenu">
                         <li><a href="classPlan.do">강의 계획서</a></li> 
