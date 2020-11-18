@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.admin.model.service.AdLectureService;
+import com.kh.univ.admin.model.vo.AdClassTime;
 import com.kh.univ.admin.model.vo.AdCollege;
 import com.kh.univ.admin.model.vo.AdDepartment;
+import com.kh.univ.admin.model.vo.AdLecture;
 import com.kh.univ.admin.model.vo.AdProfessor;
 import com.kh.univ.lecture.model.vo.Lecture;
 
@@ -21,7 +23,7 @@ public class AdLectureController {
 	@Autowired
 	private AdLectureService adLectureService;
 	/**
-	 * 1. 강의 등록(관리자)
+	 * 1. 강의 등록 페이지 띄우기 (관리자)
 	 * @return
 	 */
 	@RequestMapping("lecture_Register.do")
@@ -56,12 +58,49 @@ public class AdLectureController {
 		return selectAdProfessorName;
 	}
 	
+	/**
+	 * 1_4. 강의 추가하기 
+	 * @param adLecture
+	 * @return
+	 */
 	@RequestMapping("admin_Lecture_insert.do")
-	public String insertProfessorOne() {
-		String test= "월1/화2/수3";
+	public String insertLectureOne(AdLecture adLecture, String classTime ) {
 		
-		return null;
+		int insertLecture = adLectureService.adInsertLecture(adLecture);
+		if(insertLecture >0) {
+			insertClassTime(classTime,adLecture);
+			return "redirect:lecture_Register.do";
+		}else {
+			return "common/errorPage";
+		}
+		
 	}
+	public int findLecture(AdLecture adLecture)	{
+		AdLecture findLecture = adLectureService.findLecture(adLecture);
+		return findLecture.getClassSeq();
+		
+	}
+	public void insertClassTime(String classTime,AdLecture adLecture) {
+		
+		AdClassTime cTime = new AdClassTime();
+		String[] classTimeArry = classTime.split("/");
+		for(int i=0;i<classTimeArry.length;i++) {
+			
+			cTime.setClassSeq(findLecture(adLecture));
+			cTime.setDay(classTimeArry[i].substring(0,1));
+			cTime.setHour(classTimeArry[i].substring(1,2));
+			
+			int insertClassTime = adLectureService.adInsertClassTime(cTime);
+			
+			if(insertClassTime>0) {
+				System.out.println(i+"번째 수업시간 인서트");
+			}else {
+				System.out.println(i+"번째 수업시간 인서트 실패");
+			}
+		}
+		
+	}
+	
 	
 	/**
 	 * 2. 강의 수정 (관리자)

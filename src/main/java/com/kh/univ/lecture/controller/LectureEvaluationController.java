@@ -1,9 +1,6 @@
 package com.kh.univ.lecture.controller;
 
-import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.lecture.model.service.LectureEvaluationService;
 import com.kh.univ.lecture.model.vo.Lecture;
+import com.kh.univ.lecture.model.vo.LectureEvaluation;
 import com.kh.univ.member.model.vo.Student;
 
 @Controller
@@ -29,10 +27,23 @@ public class LectureEvaluationController
      *
      * @return
      */
+	/*
     @RequestMapping("lecture_evaluation.do")
     public String lectureEvaluation() 
     {
         return "lectureManagement/lecture_evaluation";
+    }
+    */
+	
+    @RequestMapping("lecture_evaluation.do")
+    public ModelAndView lectureEvaluation(ModelAndView mv, HttpSession session, Student student, Lecture lecture)
+    {    	
+		mv.addObject("student", student);
+		mv.addObject("lecture", lecture);
+
+		mv.setViewName("lectureManagement/lecture_evaluation");
+    	
+		return mv;
     }
 
     /**
@@ -79,6 +90,14 @@ public class LectureEvaluationController
 		mv.setViewName("lectureManagement/lecture_evaluation_select");
 
 		return mv;
+    }
+    
+    @RequestMapping("lecture_evaluation_submit.do")
+    public String lectureEvaluationSubmit(LectureEvaluation evaluation)
+    {
+    	System.out.println(evaluation);
+    	
+    	return "ok";
     }
 
     /**

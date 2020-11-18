@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.univ.admin.model.dao.AdLectureDao;
+import com.kh.univ.admin.model.vo.AdClassTime;
 import com.kh.univ.admin.model.vo.AdCollege;
 import com.kh.univ.admin.model.vo.AdDepartment;
+import com.kh.univ.admin.model.vo.AdLecture;
 import com.kh.univ.admin.model.vo.AdProfessor;
 import com.kh.univ.lecture.model.vo.Lecture;
 
@@ -17,11 +19,6 @@ public class AdLectureServiceImpl implements AdLectureService{
 	@Autowired 
 	private AdLectureDao adLectureDao;
 
-	@Override
-	public int insertLecture(Lecture lecture) {
-		// TODO Auto-generated method stub
-		return adLectureDao.insertLecture(lecture);
-	}
 
 	@Override
 	public ArrayList<AdCollege> adCollegeSelect() {
@@ -45,5 +42,23 @@ public class AdLectureServiceImpl implements AdLectureService{
 	public ArrayList<Lecture> selectAdLectureList() {
 		// TODO Auto-generated method stub
 		return adLectureDao.selectAdLectureList();
+	}
+
+	@Override
+	public int adInsertLecture(AdLecture adLecture) {
+		// TODO Auto-generated method stub
+		return adLectureDao.adInsertLecture(adLecture);
+	}
+
+	@Override
+	public int adInsertClassTime(AdClassTime cTime) {
+		// TODO Auto-generated method stub
+		return adLectureDao.adInsertClass(cTime);
+	}
+
+	@Override
+	public AdLecture findLecture(AdLecture adLecture) {
+		// TODO Auto-generated method stub
+		return adLectureDao.findLecture(adLecture);
 	}
 }
