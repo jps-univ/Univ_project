@@ -231,15 +231,28 @@
             				$("#salaryTable tbody").empty();
             				$("#salaryTable").append();
 	              				for(var index =0; index < data.length;index++){
-	              				$("#salaryTable tbody").append("<tr>");
-            					$("#salaryTable tbody").append("<td><input type="+"radio "+"name ="+"checkRadio "+"id="+"checkRadio");
-            					$("#salaryTable tbody").append("<td>"+data[index].schoolYear);
-            					$("#salaryTable tbody").append("<td>"+data[index].schoolMonth);
-            					$("#salaryTable tbody").append("<td>"+data[index].profBank);
-            					$("#salaryTable tbody").append("<td>"+data[index].profAccount);
-            					$("#salaryTable tbody").append("<td>"+data[index].salaryTotal);
-            					$("#salaryTable tbody").append("</tr>");
+	              				/* $("#salaryTable tbody").append("<tr>");
+            					$("#salaryTable tbody tr").append("<td><input type="+"radio "+"name ="+"checkRadio "+"id="+"checkRadio "+"value=" +data[index].salaryNo+">");
+            					$("#salaryTable tbody tr").append("<td>"+data[index].schoolYear);
+            					$("#salaryTable tbody tr").append("<td>"+data[index].schoolMonth);
+            					$("#salaryTable tbody tr").append("<td>"+data[index].profBank);
+            					$("#salaryTable tbody tr").append("<td>"+data[index].profAccount);
+            					$("#salaryTable tbody tr").append("<td>"+data[index].salaryTotal); */
+            					var $tr =$('<tr>');
+            					var $input= $("<td><input type="+"radio "+"name ="+"checkRadio "+"id="+"checkRadio "+"class="+"checkRadio "+"value=" +data[index].salaryNo+">");
+            					var $schoolYear =$('<td>').text(data[index].schoolYear);
+            					var $schoolMonth =$('<td>').text(data[index].schoolMonth);
+            					var $profBank =$('<td>').text(data[index].profBank);
+            					var $profAccount =$('<td>').text(data[index].profAccount);
+            					var $salaryTotal =$('<td>').text(data[index].salaryTotal);
             					
+            					$tr.append($input);
+            					$tr.append($schoolYear);
+            					$tr.append($schoolMonth);
+            					$tr.append($profBank);
+            					$tr.append($profAccount);
+            					$tr.append($salaryTotal);
+            					$('#salaryTable tbody').append($tr);
             				} 
             			},error:function(rquest,error,errorCode){
             				console.log("전송실패");

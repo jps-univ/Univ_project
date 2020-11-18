@@ -161,14 +161,14 @@
                                     <tr>
                                         <th>교과목명</th>
                                         <th><input type="text"></th>
-                                        <th>담당교수</th>
-                                        <th><input type="text"></th>
+                                        <th>과목코드</th>
+                                        <th><input id="classCode" type="text"></th>
                                     </tr>
                                     <tr>
                                         <th>이수구분</th>
                                         <th>
                                             <select>
-                                                <option>전체</option>
+                                                <option>선택</option>
                                                 <option value="A">교필</option>
                                                 <option value="B">교필</option>
                                                 <option value="C">전필</option>
@@ -190,10 +190,25 @@
                                             </select>
                                         </th>
                                     </tr>
+                                    <tr>
+                                        <th>강의실</th>
+                                        <th><input type="text"></th>
+                                        <th>학년</th>
+                                        <th>
+                                        <select>
+                                            <option>선택</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                        </select>
+                                        </th>
+
+                                    </tr>
 
                                     <tr name="lectureTime">
                                         <th>강의시간</th>
-                                        <th colspan="100">
+                                        <th colspan="3">
                                             <select>
                                                 <option>선택</option>
                                                 <option value="월">월요일</option>
@@ -358,6 +373,7 @@
                             </button>
                             <script>
                                 function checkRegister() {
+
                                     if (confirm("확인을 누르시면 등록 요청 후 강의계획서 입력창으로 이동합니다.") === true) {
                                         $('.register').hide();
                                         $('.addPlan').show();
@@ -369,6 +385,12 @@
                                         return false;
                                     }
                                 }
+                                $(function () {
+                                    $('#classCode').on('keyup',function () {
+                                        var classCode = $(this).val();
+                                        if () 
+                                    })
+                                });
                             </script>
                         </div>
                         <div id="buttonArea2" class="buttonArea card-body" align="center">

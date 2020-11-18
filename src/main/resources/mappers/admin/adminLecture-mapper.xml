@@ -30,8 +30,8 @@
 	
 </resultMap>
 
-    <!--    과목의 리절트맵-->
-    <resultMap id="lectureMap" type="Lecture">
+<!-- 관리자 강의 추가 리절트 맵-->
+    <resultMap id="adLectureMap" type="AdLecture">
         <id property="classSeq" column="CLASS_SEQ"/>
         <result property="classCode" column="CLASS_CODE"/>
         <result property="deptCode" column="DEPARTMENT_CODE"/>
@@ -45,23 +45,15 @@
         <result property="classLevel" column="CLASS_LEVEL"/>
         <result property="classType" column="CLASS_TYPE"/>
 
-        <result property="lectureTime" column="TOTAL"/>
-        <result property="profName" column="PROFESSOR_NAME"/>
     </resultMap>
-    <!--    강의시간 리절트맵-->
-    <resultMap id="lectureTimeMap" type="LectureTime">
-        <id property="ctSeq" column="CLASS_TIME_SEQ"/>
+    
+    <resultMap id="adClassTimeMap" type="AdClassTime">
+        <id property="classTimeSeq" column="CLASS_TIME_SEQ"/>
         <result property="classSeq" column="CLASS_SEQ"/>
         <result property="day" column="DAY"/>
         <result property="hour" column="HOUR"/>
-        <result property="dayHour" column="DAY_HOUR"/>
     </resultMap>
-<!--    강의등록리절트맵-->
-    <resultMap id="registerMap" type="LectureApplication">
-        <id property="registerSeq" column="REGISTER_SEQ"/>
-        <result property="stdId" column="STUDENT_ID"/>
-        <result property="classSeq" column="CLASS_SEQ"/>
-    </resultMap>
+
     
     <!-- select ResultMap -->
     <resultMap type="AdDepartment" id="adDepartmentResultSet">
@@ -99,11 +91,21 @@
     
     </select>
     
-    <insert id="adminInsertLecture" parameterType="Lecture">
-    
+    <insert id="adminInsertLecture" parameterType="adLecture">
+    	INSERT INTO TB_CLASS VALUES(SEQ_CLASS.NEXTVAL,#{classCode},#{deptCode},#{profId},#{className},#{room},#{gradeSize},#{classSemester}
+    	,#{classYear},'Y',#{classLevel},#{classType})
+    	
     
     </insert>
-    
+    <select id="findLecture" parameterType="AdLecture" resultMap="adLectureMap">
+    SELECT CLASS_SEQ
+    FROM TB_CLASS
+   	WHERE CLASS_CODE=#{classCode}
+    </select>
+    <insert id="insertClassTime" parameterType="AdClassTime">
+    INSERT INTO TB_CLASS_TIME VALUES
+    (SEQ_CLASS_TIME.NEXTVAL,#{classSeq},#{day},#{hour})
+    </insert>
     <select id="selectAdLectureList"></select>
 
 </mapper>
