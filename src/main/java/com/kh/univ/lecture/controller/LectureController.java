@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 @Controller
@@ -226,7 +227,7 @@ public class LectureController {
     }
 
     /**
-     * 강의삭제 컨트롤러
+     * 학생 수강신청에서 강의삭제 컨트롤러
      *
      * @param session
      * @param classSeq
@@ -274,6 +275,13 @@ public class LectureController {
             return "ok";
         }
     }
+
+    /**
+     * 교수 강의등록요청 컨트롤러
+     * @param session
+     * @param lecture
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "requestRegisterClass.do", produces = "application/json; charset=utf-8")
     public String requestRegisterClass(HttpSession session,Lecture lecture){
@@ -290,4 +298,36 @@ public class LectureController {
         }else return "강의등록 요청에 실패하였습니다";
     }
 
+    /**
+     * 교수 강의등록요청할때 동시에 시간표도 함께 넣는 컨트롤러
+     * @param classCode
+     * @param dayList
+     * @param hourList
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "requestRegisterTime.do", produces = "application/json; charset=utf-8")
+    public String requestRegisterTime(String classCode,String dayList, String hourList){
+        int classSeq = lectureService.selectClassSeq(classCode);
+        System.out.println(dayList);
+        System.out.println(hourList);
+
+        LectureTime lecTime = new LectureTime();
+
+        String[] dayArray = dayList.split(",");
+        String[] hourArray = hourList.split(",");
+
+        for (int i = 0; i < dayArray.length; i++ ){
+            lecTime.setClassSeq(classSeq);
+            lecTime.setDay(dayArray[i]);
+            lecTime.setHour(hourArray[i]);
+            int result = lectureService.insertClassTime(lecTime);
+            if(result>0) {
+                System.out.println(i+"번째 수업시간 인서트");
+            }else {
+                System.out.println(i+"번째 수업시간 인서트 실패");
+            }
+        }
+        return "시간표가 잘 등록되었습니다.";
+    }
 }

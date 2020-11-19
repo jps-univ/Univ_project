@@ -341,6 +341,8 @@
                             </button>
                             <script>
                                 var ajaxResult = "";
+                                var dayList = "";
+                                var hourList = "";
 
                                 function registerClass() {
                                     $.ajax({
@@ -355,7 +357,7 @@
                                             classLevel: $('#classLevel').val(),
                                             classType: $('#classType').val()
                                         }, dataType: 'text',
-                                        async:false,
+                                        async: false,
                                         success: function (data) {
                                             console.log(data);
                                             ajaxResult = "ok";
@@ -365,18 +367,33 @@
                                     });
                                 }
 
-                                function checkClassTime() {
-                                    var dayList = "";
-                                    var hourList = "";
-                                    for(var i = 0; i < $("select[name*='daySelect']" ).length; i++){
-                                        dayList += $("select[name*='daySelect']" ).eq(i).val();
-                                    }
-                                    for(var i = 0; i < $("input[name*='hourInput']").length; i++){
-                                        hourList += $("input[name*='hourInput']").eq(i).val();
-                                    }
-                                    console.log(dayList);
-                                    console.log(hourList);
+                                function registerClassTime() {
+                                    $.ajax({
+                                        url: "requestRegisterTime.do",
+                                        data: {
+                                            classCode   : $('#classCode').val(),
+                                            dayList     : dayList,
+                                            hourList    : hourList
+                                        }, dataType     : 'text',
+                                        success: function (data) {
+                                            console.log(data)
+                                        }, error: function () {
+                                            console.log("classTime등록 에러")
+                                        }
+                                    });
                                 }
+
+                                function checkClassTime() {
+                                    for (var i = 0; i < $("select[name*='daySelect']").length; i++) {
+                                        dayList += $("select[name*='daySelect']").eq(i).val();
+                                        dayList += ',';
+                                    }
+                                    for (var i = 0; i < $("input[name*='hourInput']").length; i++) {
+                                        hourList += $("input[name*='hourInput']").eq(i).val();
+                                        hourList += ',';
+                                    }
+                                }
+
                                 function checkRegister() {
                                     if ($("#codeDuplicateCheck").val() == 0) {
                                         alert("사용가능한 과목코드를 입력해주세요 ");
@@ -385,11 +402,13 @@
 
                                     } else {
                                         if (confirm("확인을 누르시면 등록 요청 후 강의계획서 입력창으로 이동합니다.") === true) {
-                                            checkClassTime();
-                                            registerClass();
-                                            // console.log(ajaxResult);
-                                            if (ajaxResult == "ok"){
 
+                                            registerClass();
+
+                                            // console.log(ajaxResult);
+                                            if (ajaxResult == "ok") {
+                                                checkClassTime();
+                                                registerClassTime();
                                                 $('.register').hide();
                                                 $('.addPlan').show();
                                                 $('#buttonArea1').hide();
