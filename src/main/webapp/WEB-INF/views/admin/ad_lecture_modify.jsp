@@ -18,6 +18,25 @@
     
 </head>
 <body>
+<script>
+	$(function(){
+		$("#rest_lecture tbody td").click(function(){
+			$.ajax({
+				url:"lecture_Modify_selectOne.do",
+				dataType:"json",
+				data:{
+					classSeq:$(this).parent().children().eq(0).text()
+				},success:function(lecture){
+					console.log(lecture);
+				},error:function(){
+					console.log("전송실패");
+				}
+			});
+		});
+	});
+
+
+</script>
     <c:import url="../common/adminTopbar.jsp" />
 
     <div class="container-fluid">

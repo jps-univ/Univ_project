@@ -56,4 +56,9 @@ public class AdLectureDao {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("adminLectureMapper.insertClassTime",cTime);
 	}
+
+	public AdLecture lectureSelectOne(int classSeq) {
+		// TODO Auto-generated method stub
+		return (AdLecture)sqlSession.selectOne("adminLectureMapper.LectureSelectOne",classSeq);
+	}
 }

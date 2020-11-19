@@ -127,6 +127,16 @@ public class AdLectureController {
 		return mv;
 	}
 	
+	@ResponseBody
+	@RequestMapping("lecture_Modify_selectOne.do")
+	public AdLecture lectureModifySelectOne(int classSeq) {
+		System.out.println(classSeq);
+		AdLecture lectureSelectOne = adLectureService.lectureSelectOne(classSeq);
+		System.out.println(lectureSelectOne);
+		return lectureSelectOne;
+		
+		
+	}
 	/**
 	 * 3. 휴강 관리(관리자)
 	 * @return

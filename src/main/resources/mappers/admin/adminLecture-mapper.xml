@@ -113,7 +113,7 @@
     <select id="selectAdLectureList" parameterType="AdLecture" resultMap="adLectureMap">
        SELECT  a.CLASS_SEQ,
                a.CLASS_NAME,
-               c.DEPARTMENT_NAME AS DEPARTMENT_CODE,
+               c.DEPARTMENT_CODE,
                d.NAME            AS PROFESSOR_NAME,
                subquery1.total,
                a.ROOM,
@@ -129,6 +129,35 @@
         WHERE subquery1.CLASS_SEQ = a.CLASS_SEQ
           AND a.DEPARTMENT_CODE = c.DEPARTMENT_CODE
           AND a.PROFESSOR_ID = d.PROFESSOR_ID
+    
+    </select>
+    
+    <select id="LectureSelectOne" parameterType="AdLecture" resultMap="adLectureMap">
+          SELECT
+               a.CLASS_SEQ,
+               a.CLASS_NAME,
+               a.CLASS_CODE,
+               c.DEPARTMENT_CODE,
+               a.PROFESSOR_ID,
+               a.CLASS_TYPE,
+               subquery1.total,
+               a.ROOM,
+               a.CLASS_YEAR,
+               a.CLASS_SEMESTER,
+               a.GRADE_SIZE,
+               a.CLASS_LEVEL
+        FROM TB_CLASS a,
+             (SELECT CLASS_SEQ, LISTAGG(CONCAT(DAY, HOUR), '/') WITHIN GROUP (ORDER BY CLASS_TIME_SEQ ) AS total
+              FROM TB_CLASS_TIME b
+              GROUP BY CLASS_SEQ) subquery1,
+             TB_DEPARTMENT c,
+             TB_PROFESSOR d
+        WHERE subquery1.CLASS_SEQ = a.CLASS_SEQ
+          AND a.DEPARTMENT_CODE = c.DEPARTMENT_CODE
+          AND a.PROFESSOR_ID = d.PROFESSOR_ID
+          AND a.CLASS_SEQ = #{classSeq}
+    
+    
     
     </select>
 
