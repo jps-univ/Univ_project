@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.univ.lecture.model.dao.LectureEvaluationDao;
+import com.kh.univ.lecture.model.vo.EvaluationResult;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.lecture.model.vo.LectureEvaluation;
 
@@ -29,14 +30,14 @@ public class LectureEvaluationServiceImpl implements LectureEvaluationService
 	}
 
 	@Override
-	public ArrayList<Lecture> selectProfSchdule(Map map) 
+	public ArrayList<EvaluationResult> selectProfSchdule(EvaluationResult evaluation) 
 	{
-		return leDao.selectProfSchdule(map);
+		return leDao.selectProfSchdule(evaluation);
 	}
 
 	@Override
-	public ArrayList<LectureEvaluation> selectEvaluationDetail(LectureEvaluation lectureEvaluation) 
+	public ArrayList<EvaluationResult> selectEvaluationDetail(EvaluationResult evaluation) 
 	{
-		return leDao.selectEvaluationDetail(lectureEvaluation);
+		return leDao.selectEvaluationDetail(evaluation);
 	}
 }
