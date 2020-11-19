@@ -18,9 +18,15 @@ public class LectureEvaluationServiceImpl implements LectureEvaluationService
 	private LectureEvaluationDao leDao;
 
 	@Override
-	public ArrayList<Lecture> selectStdSchdule(Map map) 
+	public ArrayList<EvaluationResult> selectStdSchdule(EvaluationResult evaluation) 
 	{
-		return leDao.selectStdSchdule(map);
+		return leDao.selectStdSchdule(evaluation);
+	}
+
+	@Override
+	public ArrayList<EvaluationResult> selectStdEvaluation(EvaluationResult evaluation) 
+	{
+		return leDao.selectStdEvaluation(evaluation);
 	}
 
 	@Override
@@ -33,6 +39,12 @@ public class LectureEvaluationServiceImpl implements LectureEvaluationService
 	public ArrayList<EvaluationResult> selectProfSchdule(EvaluationResult evaluation) 
 	{
 		return leDao.selectProfSchdule(evaluation);
+	}
+	
+	@Override
+	public ArrayList<EvaluationResult> selectProfEvaluation(EvaluationResult evaluation) 
+	{
+		return leDao.selectProfEvaluation(evaluation);
 	}
 
 	@Override

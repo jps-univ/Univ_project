@@ -9,12 +9,20 @@ import com.kh.univ.lecture.model.vo.LectureEvaluation;
 
 public interface LectureEvaluationService 
 {
+
 	/**
-	 * 학생 수강과목 조회
-	 * @param map
+	 * 학생 수강 과목 조회
+	 * @param evaluation
 	 * @return
 	 */
-	ArrayList<Lecture> selectStdSchdule(Map map);
+	ArrayList<EvaluationResult> selectStdSchdule(EvaluationResult evaluation);
+	
+	/**
+	 * 학생 강의 평가 내역 조회
+	 * @param evaluation
+	 * @return
+	 */
+	ArrayList<EvaluationResult> selectStdEvaluation(EvaluationResult evaluation);
 
 	/**
 	 * 학생 강의 평가 제출
@@ -31,9 +39,19 @@ public interface LectureEvaluationService
 	ArrayList<EvaluationResult> selectProfSchdule(EvaluationResult evaluation);
 
 	/**
+	 * 교수 강의 평가 조회
+	 * @param evaluation
+	 * @return
+	 */
+	ArrayList<EvaluationResult> selectProfEvaluation(EvaluationResult evaluation);
+	
+	/**
 	 * 교수 강의 평가 상세 조회
 	 * @param lectureEvaluation
 	 * @return
 	 */
 	ArrayList<EvaluationResult> selectEvaluationDetail(EvaluationResult evaluation);
+
+
+	
 }

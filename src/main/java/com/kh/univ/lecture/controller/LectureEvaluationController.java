@@ -88,23 +88,52 @@ public class LectureEvaluationController
     */
     
     @RequestMapping("lecture_evaluation_select.do")
-    public ModelAndView lectureEvaluationSelect(ModelAndView mv, Lecture lecture, HttpSession session) 
+    public ModelAndView lectureEvaluationSelect(ModelAndView mv, EvaluationResult evaluation, HttpSession session) 
     {
     	Student student = (Student)session.getAttribute("loginUser");
-    	    	
-    	int stdId = student.getStdId();
-    	int classYear = 2021;
-    	int classSemester = 1;
     	
+    	evaluation.setStdId(student.getStdId());
+    	evaluation.setClassYear(2021);
+    	evaluation.setClassSemester(1);
+    	    	    	
+    	ArrayList<EvaluationResult> schedule = leService.selectStdSchdule(evaluation);
+    	ArrayList<EvaluationResult> list = leService.selectStdEvaluation(evaluation);
+    	ArrayList<EvaluationResult> result = new ArrayList<>();
     	
-    	Map map = new HashMap();
-    	
-    	map.put("stdId", stdId);
-    	map.put("classYear", classYear);
-    	map.put("classSemester", classSemester);
-    	
-    	ArrayList<Lecture> schedule = leService.selectStdSchdule(map);
-    	System.out.println("test : " + schedule.size());
+    	for(int i = 0; i < schedule.size(); i++)
+    	{
+    		
+    		for(int j = 0; j < list.size(); j++)
+    		{
+    			
+    			if(schedule.get(i).getClassSeq() == list.get(j).getClassSeq())
+    			{
+    				int evalNo = list.get(j).getEvalNo();
+					int evalOne = list.get(j).getEvalOne();
+					int evalTwo = list.get(j).getEvalTwo();
+					int evalThree = list.get(j).getEvalThree();
+					int evalFour = list.get(j).getEvalFour();
+					int evalFive = list.get(j).getEvalFive();
+					int evalSix = list.get(j).getEvalSix();
+					int evalSeven = list.get(j).getEvalSeven();
+					int evalEight = list.get(j).getEvalEight();
+					int evalNine = list.get(j).getEvalNine();
+					int evalTen = list.get(j).getEvalTen();
+					
+					schedule.get(i).setEvalNo(evalNo);
+					schedule.get(i).setEvalOne(evalOne);
+					schedule.get(i).setEvalTwo(evalTwo);
+					schedule.get(i).setEvalThree(evalThree);
+					schedule.get(i).setEvalFour(evalFour);
+					schedule.get(i).setEvalFive(evalFive);
+					schedule.get(i).setEvalSix(evalSix);
+					schedule.get(i).setEvalSeven(evalSeven);
+					schedule.get(i).setEvalEight(evalEight);
+					schedule.get(i).setEvalNine(evalNine);
+					schedule.get(i).setEvalTen(evalTen);
+    			}
+    		}
+    	}
     	
     	mv.addObject("schedule", schedule);
     	
@@ -114,7 +143,7 @@ public class LectureEvaluationController
     }
     
     /**
-     * 학생 강의 평가지 제출
+     * 학생 강의 평가 제출
      * @param evaluation
      * @return
      */
@@ -145,6 +174,7 @@ public class LectureEvaluationController
         return "lectureManagement/lecture_evaluation_check";
     }
     
+    /*
 	@ResponseBody
 	@RequestMapping("professorLecture.do")
 	public ModelAndView ProfessorSchedule(ModelAndView mv, Model model, EvaluationResult evaluation, HttpSession session)
@@ -211,6 +241,107 @@ public class LectureEvaluationController
 
 		return mv;
 	}
+	*/
+    
+    @ResponseBody
+	@RequestMapping("professorLecture.do")
+	public ModelAndView ProfessorSchedule(ModelAndView mv, Model model, EvaluationResult evaluation, HttpSession session)
+	{
+		Professor professor = (Professor)session.getAttribute("loginUser");
+		evaluation.setProfId(professor.getProfId());
+		
+		ArrayList<EvaluationResult> result = leService.selectProfSchdule(evaluation);
+		ArrayList<EvaluationResult> list = leService.selectProfEvaluation(evaluation);
+		ArrayList<EvaluationResult> sum = new ArrayList<>();
+		
+		if(list.size() > 1)
+		{
+			for(int i = 0; i < list.size() - 1; i++)
+			{
+				for(int j = i + 1; j < list.size(); j++)
+				{
+					if(list.get(j).getClassSeq() == list.get(i).getClassSeq())
+					{
+						int evalOne = list.get(i).getEvalOne() + list.get(j).getEvalOne();
+						int evalTwo = list.get(i).getEvalTwo() + list.get(j).getEvalTwo();
+						int evalThree = list.get(i).getEvalThree() + list.get(j).getEvalThree();
+						int evalFour = list.get(i).getEvalFour() + list.get(j).getEvalFour();
+						int evalFive = list.get(i).getEvalFive() + list.get(j).getEvalFive();
+						int evalSix = list.get(i).getEvalSix() + list.get(j).getEvalSix();
+						int evalSeven = list.get(i).getEvalSeven() + list.get(j).getEvalSeven();
+						int evalEight = list.get(i).getEvalEight() + list.get(j).getEvalEight();
+						int evalNine = list.get(i).getEvalNine() + list.get(j).getEvalNine();
+						int evalTen = list.get(i).getEvalTen() + list.get(j).getEvalTen();
+						
+						list.get(i).setEvalOne(evalOne);
+						list.get(i).setEvalTwo(evalTwo);
+						list.get(i).setEvalThree(evalThree);
+						list.get(i).setEvalFour(evalFour);
+						list.get(i).setEvalFive(evalFive);
+						list.get(i).setEvalSix(evalSix);
+						list.get(i).setEvalSeven(evalSeven);
+						list.get(i).setEvalEight(evalEight);
+						list.get(i).setEvalNine(evalNine);
+						list.get(i).setEvalTen(evalTen);
+						
+						int p = j;
+						p++;
+						list.get(i).setPerson(p);
+						
+						sum.add(list.get(i));
+						list.get(j).setClassSeq(0);
+					}
+					else
+					{
+						sum.add(list.get(j));
+					}
+				}
+			}
+		}
+		
+		if(sum.size() > 0)
+		{
+			for(int i = 0; i < result.size(); i++)
+			{
+				for(int j = 0; j < sum.size(); j++)
+				{
+					if(result.get(i).getClassSeq() == sum.get(j).getClassSeq())
+					{
+	    				int evalNo = sum.get(j).getEvalNo();
+						int evalOne = sum.get(j).getEvalOne();
+						int evalTwo = sum.get(j).getEvalTwo();
+						int evalThree = sum.get(j).getEvalThree();
+						int evalFour = sum.get(j).getEvalFour();
+						int evalFive = sum.get(j).getEvalFive();
+						int evalSix = sum.get(j).getEvalSix();
+						int evalSeven = sum.get(j).getEvalSeven();
+						int evalEight = sum.get(j).getEvalEight();
+						int evalNine = sum.get(j).getEvalNine();
+						int evalTen = sum.get(j).getEvalTen();
+						int person = sum.get(j).getPerson();
+						
+						result.get(i).setEvalOne(evalOne);
+						result.get(i).setEvalTwo(evalTwo);
+						result.get(i).setEvalThree(evalThree);
+						result.get(i).setEvalFour(evalFour);
+						result.get(i).setEvalFive(evalFive);
+						result.get(i).setEvalSix(evalSix);
+						result.get(i).setEvalSeven(evalSeven);
+						result.get(i).setEvalEight(evalEight);
+						result.get(i).setEvalNine(evalNine);
+						result.get(i).setEvalTen(evalTen);
+						result.get(i).setPerson(person);
+					}
+				}
+			}
+		}
+		
+		mv.addObject("schedule", result);
+
+		mv.setViewName("lectureManagement/lecture_evaluation_check");
+
+		return mv;
+	}
 
     /**
      * 2_1. 강의 평가 상세 페이지 조회(교수)
@@ -230,12 +361,9 @@ public class LectureEvaluationController
     {
 		Professor professor = (Professor)session.getAttribute("loginUser");
 		evaluation.setProfId(professor.getProfId());
-		
-		System.out.println("1 : " + evaluation);
 
 		ArrayList<EvaluationResult> result = leService.selectEvaluationDetail(evaluation);
 	
-		System.out.println("2 : " + result);
 		mv.addObject("evaluation", result);
 
 		mv.setViewName("lectureManagement/lecture_evaluation_detail");

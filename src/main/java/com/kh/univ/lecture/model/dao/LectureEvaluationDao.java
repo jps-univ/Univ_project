@@ -18,9 +18,14 @@ public class LectureEvaluationDao
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	public ArrayList<Lecture> selectStdSchdule(Map map)
+	public ArrayList<EvaluationResult> selectStdSchdule(EvaluationResult evaluation)
 	{
-		return (ArrayList)sqlSession.selectList("LectureEvaluationMapper.selectStdSchdule", map);
+		return (ArrayList)sqlSession.selectList("LectureEvaluationMapper.selectStdSchdule", evaluation);
+	}
+	
+	public ArrayList<EvaluationResult> selectStdEvaluation(EvaluationResult evaluation) 
+	{
+		return (ArrayList)sqlSession.selectList("LectureEvaluationMapper.selectStdEvaluation", evaluation);
 	}
 
 	public int evaluationSubmit(LectureEvaluation evaluation) 
@@ -31,6 +36,11 @@ public class LectureEvaluationDao
 	public ArrayList<EvaluationResult> selectProfSchdule(EvaluationResult evaluation) 
 	{
 		return (ArrayList)sqlSession.selectList("LectureEvaluationMapper.selectProfSchdule", evaluation);
+	}
+	
+	public ArrayList<EvaluationResult> selectProfEvaluation(EvaluationResult evaluation) 
+	{
+		return (ArrayList)sqlSession.selectList("LectureEvaluationMapper.selectProfEvaluation", evaluation);
 	}
 
 	public ArrayList<EvaluationResult> selectEvaluationDetail(EvaluationResult evaluation) 

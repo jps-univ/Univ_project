@@ -100,7 +100,7 @@
 											<tr align="center">
 										       <c:choose>
 										       	<%-- <c:when test="${ s.evaluation.evalNo eq '0'}"> --%>
- 										       	<c:when test="${ s.stdId ne loginUser.stdId && s.evalNo eq 0}">
+ 										       	<c:when test="${ s.evalNo eq 0}">
  										       	   <td>${ status.count }</td>
 											       <td>${ s.classCode }</td>
 											       <td>${ s.className }</td>
@@ -118,7 +118,7 @@
 											       	<button type="submit" class="btn btn-primary">평가</button>
 											       </td>
 										       	</c:when>
-										       	<c:when test="${ s.stdId eq loginUser.stdId }">
+										       	<c:otherwise>
 						     			       	   <td>${ status.count }</td>
 											       <td>${ s.classCode }</td>
 											       <td>${ s.className }</td>
@@ -129,7 +129,7 @@
 											       <td>
 											      	 <input type="button" class="btn btn-secondary" value="완료" id="evaluationBtn">
 											       </td>
-										       	</c:when>
+										       	</c:otherwise>
 										       </c:choose>
 										    </tr>
 				                		</form>

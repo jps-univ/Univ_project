@@ -109,7 +109,7 @@
                                         <td>2번</td>
                                         <td colspan="5">수업 목표는 구체적으로 명확하게 제시되었다.</td>
                                     </tr>
-                                                                        <tr>
+                                    <tr>
                                     	<td class="font-weight-bold">답변</td>
                                         <td class="font-weight-bold test">매우 그렇다 : 
                                         	<c:set var="sum" value="0"/>
