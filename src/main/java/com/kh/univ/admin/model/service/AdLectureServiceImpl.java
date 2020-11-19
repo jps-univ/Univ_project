@@ -67,4 +67,10 @@ public class AdLectureServiceImpl implements AdLectureService{
 		// TODO Auto-generated method stub
 		return adLectureDao.lectureSelectOne(classSeq);
 	}
+
+	@Override
+	public ArrayList<AdLecture> lectureApprove() {
+		// TODO Auto-generated method stub
+		return adLectureDao.lectureApprove();
+	}
 }

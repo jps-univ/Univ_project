@@ -146,8 +146,17 @@ public class AdLectureController {
 		return "admin/ad_lecture_rest";
 	}
 	
+	/**
+	 * 4. 강의 신청 관리(관리자)
+	 * @return
+	 */
 	@RequestMapping("lecture_Approve.do")
-	public String lectureApprove() {
-		return "admin/ad_lecture_approve";
+	public ModelAndView lectureApprove(ModelAndView mv) {
+		
+		ArrayList<AdLecture> lectureApprove = adLectureService.lectureApprove();
+		System.out.println(lectureApprove);
+		mv.addObject("lectureApprove",lectureApprove);
+		mv.setViewName("admin/ad_lecture_approve");
+		return mv;
 	}
 }

@@ -45,83 +45,39 @@
                     <table id="rest_lecture" class=" table-hover">
                         <thead>
                             <tr>
-                                <th>
-                                    <p>강의명</p>
-                                </th>
-                                <th>
-                                    <p>교수명</p>
-                                </th>
-                                <th>
-                                    <p>개설 학과</p>
-                                </th>
-                                <th>
-                                    <p>강의 시간</p>
-                                </th>
-                                <th>
-                                    <p>강의실</p>
-                                </th>
-                                <th>
-                                    <p>학점</p>
-                                </th>
-                                <th>
-                                    <p>강의 계획서 조회</p>
-                                </th>
-                                <th>
-                                    <p>승인 여부</p>
-                                </th>
+                            	<th><p>수업번호</p></th>
+                                <th><p>강의명</p></th>
+                                <th><p>교수명</p></th>
+                                <th><p>개설 학과</p></th>
+                                <th><p>강의 시간</p></th>
+                                <th><p>강의실</p></th>
+                                <th><p>학점</p></th>
+                                <th><p>강의 계획서 조회</p></th>
+                                <th><p>승인 여부</p></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><input type="hidden" id="lectureNo">파이썬</td>
-                                <td>유승제</td>
-                                <td>컴퓨터공학과</td>
-                                <td>월1~2,목3~4</td>
-                                <td>301호</td>
-                                <td>3</td>
-                                <td><a id="myBtn">조회하기</a></td>
-                                <td>
+                            <c:forEach var="l" items="${lectureApprove }">
+							<tr>
+								<td>${l.classSeq}</td>
+								<td>${l.className}</td>
+								<td>${l.proName}</td>
+								<td>${l.deptCode}</td>
+								<td>${l.total}</td>
+								<td>${l.room}</td>
+								<td>${l.gradeSize}</td>
+								<td><a id="myBtn">조회하기</a></td>
+								<td>
                                     <select class="appStatus">
                                         <option value="1">보류</option>
                                         <option value="2">재검토</option>
                                         <option value="3">승인</option>
                                     </select>
                                 </td>
-                            </tr>
 
-                            <tr>
-                                <td>파이썬</td>
-                                <td>유승제</td>
-                                <td>컴퓨터공학과</td>
-                                <td>월1~2,목3~4</td>
-                                <td>301호</td>
-                                <td>3</td>
-                                <td><a>조회하기</a></td>
-                                <td>
-                                    <select class="appStatus">
-                                        <option value="1">보류</option>
-                                        <option value="2">재검토</option>
-                                        <option value="3">승인</option>
-                                    </select>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>파이썬</td>
-                                <td>유승제</td>
-                                <td>컴퓨터공학과</td>
-                                <td>월1~2,목3~4</td>
-                                <td>301호</td>
-                                <td>3</td>
-                                <td><a>조회하기</a></td>
-                                <td>
-                                    <select class="appStatus">
-                                        <option value="1">보류</option>
-                                        <option value="2">재검토</option>
-                                        <option value="3">승인</option>
-                                    </select>
-                                </td>
-                            </tr>
+								
+							</tr>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </div>

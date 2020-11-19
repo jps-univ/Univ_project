@@ -28,4 +28,6 @@ public interface AdLectureService {
 
 	AdLecture lectureSelectOne(int classSeq);
 
+	ArrayList<AdLecture> lectureApprove();
+
 }

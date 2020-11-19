@@ -61,4 +61,9 @@ public class AdLectureDao {
 		// TODO Auto-generated method stub
 		return (AdLecture)sqlSession.selectOne("adminLectureMapper.LectureSelectOne",classSeq);
 	}
+
+	public ArrayList<AdLecture> lectureApprove() {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList("adminLectureMapper.lectureApprove");
+	}
 }
