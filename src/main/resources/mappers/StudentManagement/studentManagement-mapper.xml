@@ -63,6 +63,21 @@
 			STUDENT_NAME
 	</select>
 	
+<!-- 		<select id="selectdDetailList2" resultMap="StudentManagementResultSet">
+		SELECT
+			STUDENT_NAME,STUDENT_ID,CLASS_CODE,CLASS_NAME,DEPARTMENT_NAME,SEMESTER,PHONE,EMAIL
+		FROM
+			TB_STUDENT
+		LEFT JOIN
+			TB_DEPARTMENT USING(DEPARTMENT_CODE)
+		LEFT JOIN
+			TB_CLASS USING(DEPARTMENT_CODE)
+		WHERE
+			PROFESSOR_ID = #{profId} AND CLASS_CODE = #{classId}
+		ORDER BY
+			STUDENT_NAME
+	</select> -->
+	
 	<!--  성적관리 조회 -->
 	<select id="gradeView" resultMap="StudentManagementResultSet">
 		SELECT
