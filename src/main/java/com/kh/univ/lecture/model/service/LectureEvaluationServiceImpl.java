@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.univ.lecture.model.dao.LectureEvaluationDao;
 import com.kh.univ.lecture.model.vo.Lecture;
+import com.kh.univ.lecture.model.vo.LectureEvaluation;
 
 @Service("leSerivce")
 public class LectureEvaluationServiceImpl implements LectureEvaluationService 
@@ -19,5 +20,23 @@ public class LectureEvaluationServiceImpl implements LectureEvaluationService
 	public ArrayList<Lecture> selectStdSchdule(Map map) 
 	{
 		return leDao.selectStdSchdule(map);
+	}
+
+	@Override
+	public int evaluationSubmit(LectureEvaluation evaluation)
+	{
+		return leDao.evaluationSubmit(evaluation);
+	}
+
+	@Override
+	public ArrayList<Lecture> selectProfSchdule(Map map) 
+	{
+		return leDao.selectProfSchdule(map);
+	}
+
+	@Override
+	public ArrayList<LectureEvaluation> selectEvaluationDetail(LectureEvaluation lectureEvaluation) 
+	{
+		return leDao.selectEvaluationDetail(lectureEvaluation);
 	}
 }

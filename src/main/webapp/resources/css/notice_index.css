@@ -1,35 +1,6 @@
 /* 맨위 글씨 + 이미지 */
 
-.professor_info{width:65%; height: 100%;}
 
-.semi_notice{width:35%; height:100%;}
-
-
-.professor_info{width: 100%;}
-
-.professor_info tbody tr td:nth-child(1){
-    width: 15%;
-}
-
-.professor_info tbody tr td:nth-child(2){
-    width: 55%;
-    font-size: 35px;
-    font-family: 'Nanum Gothic Coding', monospace;
-    font-weight: 700;
-    color: rgb(45, 45, 45);
-}
-
-.professor_info tbody tr td:nth-child(3){
-    width: 30%;
-}
-
-#semi_title{margin-left: 18%;
-    margin-bottom: 43px;}
-
-#professor_icon{
-    position: relative;
-    left: 199px;
-}
 
 
 

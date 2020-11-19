@@ -6,11 +6,13 @@ import com.kh.univ.lecture.model.service.LectureService;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.lecture.model.vo.LectureTime;
 import com.kh.univ.lecture.model.vo.SearchCondition;
+import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -255,4 +257,37 @@ public class LectureController {
             } else return "fail";
         } else return "fail";
     }
+
+    /**
+     * 교수가 강의 요청을 할 때 클래스코드가 중복인지 확인
+     * @param classCode
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("classCodeCheck.do")
+    public String codeCheck(String classCode) {
+        int result = lectureService.codeCheck(classCode);
+
+        if (result > 0) {
+            return "fail";
+        } else {
+            return "ok";
+        }
+    }
+    @ResponseBody
+    @RequestMapping(value = "requestRegisterClass.do", produces = "application/json; charset=utf-8")
+    public String requestRegisterClass(HttpSession session,Lecture lecture){
+        Professor user = (Professor) session.getAttribute("loginUser");
+        String deptCode = user.getProfDepartment();
+        int profId = user.getProfId();
+        lecture.setDeptCode(deptCode);
+        lecture.setProfId(profId);
+        System.out.println(lecture);
+
+        int result = lectureService.requestRegisterClass(lecture);
+        if (result > 0){
+            return "강의등록 요청이 완료되었습니다.";
+        }else return "강의등록 요청에 실패하였습니다";
+    }
+
 }

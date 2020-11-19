@@ -8,13 +8,17 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.lecture.model.service.LectureEvaluationService;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.lecture.model.vo.LectureEvaluation;
+import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
+import com.kh.univ.mypage.model.service.ProfessorMyPageService;
 
 @Controller
 public class LectureEvaluationController 
@@ -22,22 +26,13 @@ public class LectureEvaluationController
 	@Autowired
 	private LectureEvaluationService leService;
 	
-	  /**
+	/**
      * 1. 강의 평가 하기(학생)
-     *
      * @return
      */
-	/*
-    @RequestMapping("lecture_evaluation.do")
-    public String lectureEvaluation() 
-    {
-        return "lectureManagement/lecture_evaluation";
-    }
-    */
-	
     @RequestMapping("lecture_evaluation.do")
     public ModelAndView lectureEvaluation(ModelAndView mv, HttpSession session, Student student, Lecture lecture)
-    {    	
+    {
 		mv.addObject("student", student);
 		mv.addObject("lecture", lecture);
 
@@ -48,7 +43,6 @@ public class LectureEvaluationController
 
     /**
      * 1_2 . 강의평가 하기전에 자신이 듣고 있는 강의 중 선택하는 창
-     *
      * @return
      */
     @RequestMapping("lecture_evaluation_select.do")
@@ -85,6 +79,7 @@ public class LectureEvaluationController
 		ArrayList<Lecture> schedule = leService.selectStdSchdule(map);
 		
 		System.out.println(schedule);
+		System.out.println(schedule.size());
 		mv.addObject("schedule", schedule);
     	
 		mv.setViewName("lectureManagement/lecture_evaluation_select");
@@ -92,12 +87,27 @@ public class LectureEvaluationController
 		return mv;
     }
     
+    /**
+     * 학생 강의 평가지 제출
+     * @param evaluation
+     * @return
+     */
+    @ResponseBody
     @RequestMapping("lecture_evaluation_submit.do")
     public String lectureEvaluationSubmit(LectureEvaluation evaluation)
     {
     	System.out.println(evaluation);
     	
-    	return "ok";
+    	int result = leService.evaluationSubmit(evaluation);
+    	
+    	if(result > 0)
+    	{
+    		return "ok";
+    	}
+    	else
+    	{
+    		return "fail";
+    	}
     }
 
     /**
@@ -110,16 +120,61 @@ public class LectureEvaluationController
     {
         return "lectureManagement/lecture_evaluation_check";
     }
+    
+	@ResponseBody
+	@RequestMapping("professorLecture.do")
+	public ModelAndView ProfessorSchedule(ModelAndView mv, Model model, Lecture lecture, HttpSession session)
+	{
+		Professor professor = (Professor)session.getAttribute("loginUser");
+
+		int profId = professor.getProfId();
+		int classYear = lecture.getClassYear();
+		int classSemester = lecture.getClassSemester();
+
+		Map map = new HashMap();
+
+		map.put("profId", profId);
+		map.put("classYear", classYear);
+		map.put("classSemester", classSemester);
+
+		ArrayList<Lecture> schedule = leService.selectProfSchdule(map);
+
+		mv.addObject("schedule", schedule);
+
+		mv.setViewName("lectureManagement/lecture_evaluation_check");
+
+		return mv;
+	}
 
     /**
      * 2_1. 강의 평가 상세 페이지 조회(교수)
      *
      * @return
      */
+	@ResponseBody
     @RequestMapping("lecture_evaluation_detail.do")
     public String lectureEvaluationDetail() 
     {
         return "lectureManagement/lecture_evaluation_detail";
+    }
+	
+	@ResponseBody
+    @RequestMapping("selectEvaluationDetail.do")
+    public ModelAndView lectureEvaluationDetail(ModelAndView mv, Model model, LectureEvaluation lectureEvaluation, HttpSession session) 
+    {
+		Professor professor = (Professor)session.getAttribute("loginUser");
+		
+		lectureEvaluation.setProfId(professor.getProfId());
+		System.out.println("1 : " + lectureEvaluation);
+
+		ArrayList<LectureEvaluation> evaluation = leService.selectEvaluationDetail(lectureEvaluation);
+
+		System.out.println("2 : " + evaluation);
+		mv.addObject("evaluation", evaluation);
+
+		mv.setViewName("lectureManagement/lecture_evaluation_detail");
+
+		return mv;
     }
     
     // 강의 평가 자신이 듣고 있는 창 선택을 교수는 자신이 강의하는 강의 목록을 나오게 한다 

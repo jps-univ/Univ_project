@@ -13,6 +13,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,6 +34,23 @@
   <link rel="stylesheet" href="${contextPath}/resources/css/classBoardMain.css">
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <style>
+  
+.professor_info tbody tr td:nth-child(1){
+    width: 15%;
+}
+
+.professor_info tbody tr td:nth-child(2){
+    width: 55%;
+    font-size: 35px;
+    font-family: 'Nanum Gothic Coding', monospace;
+    font-weight: 700;
+    color: rgb(45, 45, 45);
+}
+
+.professor_info tbody tr td:nth-child(3){
+    width: 30%;
+}</style>
 </head>
 
 <body id="page-top">
@@ -59,7 +77,7 @@
 
         
         <div id="main_con">  
-          <p id="select_title">주차별 활동</p>
+          <p id="select_title">주차별 활동 ${seq }</p>
           <div id="weekPlan">
             <div id="rest_table_area">
                     <table id="rest_lecture"  class="shadow table-hover">

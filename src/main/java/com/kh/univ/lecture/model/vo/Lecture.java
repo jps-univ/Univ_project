@@ -21,10 +21,11 @@ public class Lecture
     private String lectureTime;
     private String profName;		// 교수 이름
     
-    private LectureTime time;				// 수업시간
+    private LectureTime time;						// 수업시간
     private LectureApplication lectureApplication;	// 수업신청
     private Professor professor;
     private Student student;
+    private LectureEvaluation evaluation;			// 강의 평가
 	public Lecture() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -32,7 +33,7 @@ public class Lecture
 	public Lecture(int classSeq, String classCode, String deptCode, int profId, String className, String room,
 			int gradeSize, int classSemester, int classYear, String classApprove, int classLevel, String classType,
 			String lectureTime, String profName, LectureTime time, LectureApplication lectureApplication,
-			Professor professor, Student student) {
+			Professor professor, Student student, LectureEvaluation evaluation) {
 		super();
 		this.classSeq = classSeq;
 		this.classCode = classCode;
@@ -52,6 +53,7 @@ public class Lecture
 		this.lectureApplication = lectureApplication;
 		this.professor = professor;
 		this.student = student;
+		this.evaluation = evaluation;
 	}
 	public int getClassSeq() {
 		return classSeq;
@@ -161,6 +163,12 @@ public class Lecture
 	public void setStudent(Student student) {
 		this.student = student;
 	}
+	public LectureEvaluation getEvaluation() {
+		return evaluation;
+	}
+	public void setEvaluation(LectureEvaluation evaluation) {
+		this.evaluation = evaluation;
+	}
 	@Override
 	public String toString() {
 		return "Lecture [classSeq=" + classSeq + ", classCode=" + classCode + ", deptCode=" + deptCode + ", profId="
@@ -168,7 +176,6 @@ public class Lecture
 				+ ", classSemester=" + classSemester + ", classYear=" + classYear + ", classApprove=" + classApprove
 				+ ", classLevel=" + classLevel + ", classType=" + classType + ", lectureTime=" + lectureTime
 				+ ", profName=" + profName + ", time=" + time + ", lectureApplication=" + lectureApplication
-				+ ", professor=" + professor + ", student=" + student + "]";
+				+ ", professor=" + professor + ", student=" + student + ", evaluation=" + evaluation + "]";
 	}
-	   
 }

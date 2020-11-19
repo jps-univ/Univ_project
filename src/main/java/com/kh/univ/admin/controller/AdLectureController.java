@@ -75,11 +75,21 @@ public class AdLectureController {
 		}
 		
 	}
+	/**
+	 * 1_4_2. 추가한 강의 시퀸스 가져오기 
+	 * @param adLecture
+	 * @return
+	 */
 	public int findLecture(AdLecture adLecture)	{
 		AdLecture findLecture = adLectureService.findLecture(adLecture);
 		return findLecture.getClassSeq();
 		
 	}
+	/**
+	 * 1_4_3. 강의 시퀸스로 강의 시간 insert
+	 * @param classTime
+	 * @param adLecture
+	 */
 	public void insertClassTime(String classTime,AdLecture adLecture) {
 		
 		AdClassTime cTime = new AdClassTime();
@@ -108,9 +118,11 @@ public class AdLectureController {
 	 */
 	@RequestMapping("lecture_Modify.do")
 	public ModelAndView lectureModify(ModelAndView mv) {
-		
-		ArrayList<Lecture> selectAdLectureList = adLectureService.selectAdLectureList();
-		
+		ArrayList<AdCollege> adCollegeSelect = adLectureService.adCollegeSelect();
+		ArrayList<AdLecture> selectAdLectureList = adLectureService.selectAdLectureList();
+		System.out.println(selectAdLectureList);
+		mv.addObject("selectAdLectureList",selectAdLectureList);
+		mv.addObject("adCollege", adCollegeSelect);
 		mv.setViewName("admin/ad_lecture_modify");
 		return mv;
 	}
