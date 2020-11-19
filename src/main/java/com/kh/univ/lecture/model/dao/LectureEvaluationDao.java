@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.univ.lecture.model.vo.EvaluationResult;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.lecture.model.vo.LectureEvaluation;
 
@@ -19,7 +20,6 @@ public class LectureEvaluationDao
 
 	public ArrayList<Lecture> selectStdSchdule(Map map)
 	{
-		System.out.println("dao : " + map);
 		return (ArrayList)sqlSession.selectList("LectureEvaluationMapper.selectStdSchdule", map);
 	}
 
@@ -28,13 +28,13 @@ public class LectureEvaluationDao
 		return sqlSession.insert("LectureEvaluationMapper.evaluationSubmit", evaluation);
 	}
 
-	public ArrayList<Lecture> selectProfSchdule(Map map) 
+	public ArrayList<EvaluationResult> selectProfSchdule(EvaluationResult evaluation) 
 	{
-		return (ArrayList)sqlSession.selectList("LectureEvaluationMapper.selectProfSchdule", map);
+		return (ArrayList)sqlSession.selectList("LectureEvaluationMapper.selectProfSchdule", evaluation);
 	}
 
-	public ArrayList<LectureEvaluation> selectEvaluationDetail(LectureEvaluation lectureEvaluation) 
+	public ArrayList<EvaluationResult> selectEvaluationDetail(EvaluationResult evaluation) 
 	{
-		return (ArrayList)sqlSession.selectList("LectureEvaluationMapper.lectureEvaluationDetail", lectureEvaluation);
+		return (ArrayList)sqlSession.selectList("LectureEvaluationMapper.lectureEvaluationDetail", evaluation);
 	}
 }

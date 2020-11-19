@@ -81,21 +81,24 @@
                                     </thead>
                                     <tbody>
                                     	<c:forEach var="s" items="${ schedule }" varStatus="status">
-                                    	<form action="selectEvaluationDetail.do" method="post">
-	                                        <tr align="center">
-	                                        	<td>${ status.count }</td>
-	                                            <td>${ s.classCode }</td>
-	                                            <td>${ s.className }</td>
-	                                            <td>${ s.room }</td>
-	                                            <td>${ s.classType }</td>
-	                                            <td>${ s.evaluation.evalOne }</td>
-	                                            <td>
-	                                            	<!-- <input type="button" class="btn btn-primary" value="상세 보기" id="evaluationDetailBtn" onclick="evaluationDetail(event)"> -->
-	                                            	<input type="hidden" id="hidden_consultingNo" name="classSeq" value="${ s.classSeq }">
-	                                            	<button type="submit" class="btn btn-primary">상세보기</button>
-	                                            </td>
-	                                        </tr>
-	                                    </form>
+<%-- 	                                    	<c:choose>
+	                                    	<c:when test=""></c:when> --%>
+	                                    	<form action="selectEvaluationDetail.do" method="post">
+		                                        <tr align="center">
+		                                        	<td>${ status.count }</td>
+		                                            <td>${ s.classCode }</td>
+		                                            <td>${ s.className }</td>
+		                                            <td>${ s.room }</td>
+		                                            <td>${ s.classType }</td>
+		                                            <td>${ (s.evalOne + s.evalTwo + s.evalThree + s.evalFour + s.evalFive + s.evalSix + s.evalSeven + s.evalEight + s.evalNine + s.evalTen) div 10 }</td>
+		                                            <td>
+		                                            	<!-- <input type="button" class="btn btn-primary" value="상세 보기" id="evaluationDetailBtn" onclick="evaluationDetail(event)"> -->
+		                                            	<input type="hidden" id="hidden_consultingNo" name="classSeq" value="${ s.classSeq }">
+		                                            	<button type="submit" class="btn btn-primary">상세보기</button>
+		                                            </td>
+		                                        </tr>
+		                                    </form>
+	                                        <%-- </c:choose> --%>
 	                                    </c:forEach>
                                     </tbody>
                                 </table>

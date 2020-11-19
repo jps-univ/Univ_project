@@ -84,7 +84,13 @@
 									    <th>강의실</th>
 									    <th>이수 구분</th>
 									    <th>평가 여부</th>
-									    <th>평가${fn:length(schedule)}</th>
+<%-- 									    <th>과목 코드${ loginUser.stdId }</th>
+									    <th>과목명${ schedule[0].stdId }${ schedule[0].className }</th>
+									    <th>담당 교수${ schedule[1].stdId }${ schedule[1].className }${ schedule[1].evalNo }</th>
+									    <th>강의실${ schedule[2].stdId }${ schedule[2].className }</th>
+									    <th>이수 구분${ schedule[3].stdId }${ schedule[3].className }</th>
+									    <th>평가 여부${ schedule[4].stdId }${ schedule[4].className }</th> --%>
+									    <th>평가</th>
 									</tr>
 								</thead>
                                   
@@ -92,32 +98,38 @@
 									<c:forEach var="s" items="${ schedule }" varStatus="status">
 										<form action="lecture_evaluation.do" method="post" onsubmit="evaluation()">
 											<tr align="center">
-										       <td>${ status.count }</td>
-										       <td>${ s.classCode }</td>
-										       <td>${ s.className }</td>
-										       <td>${ s.professor.profName }</td>
-										       <td>${ s.room }</td>
-										       <td>${ s.classType }</td>
 										       <c:choose>
 										       	<%-- <c:when test="${ s.evaluation.evalNo eq '0'}"> --%>
- 										       	<c:when test="${ s.evaluation.stdId ne loginUser.stdId}">
-											       <td class="text-primary">X${ s.evaluation.stdId}</td>
+ 										       	<c:when test="${ s.stdId ne loginUser.stdId && s.evalNo eq 0}">
+ 										       	   <td>${ status.count }</td>
+											       <td>${ s.classCode }</td>
+											       <td>${ s.className }</td>
+											       <td>${ s.profName }</td>
+											       <td>${ s.room }</td>
+											       <td>${ s.classType }</td>
+											       <td class="text-primary">X</td>
 											       <td>
 											       	<!-- <input type="button" class="btn btn-primary" value="평가" id="evaluationBtn" onclick="evaluationBtn(event)"> -->
 		 									       	<input type="hidden" id="hidden_stdId" name="stdId" value="${ loginUser.stdId }">
 											       	<input type="hidden" id="hidden_stdName" name="stdName" value="${ loginUser.stdName }">
 											       	<input type="hidden" id="hidden_classSeq" name="classSeq" value="${ s.classSeq }">
 											       	<input type="hidden" id="hidden_className" name="className" value="${ s.className }">
-											       	<input type="hidden" id="hidden_profName" name="profName" value="${ s.professor.profName }">
+											       	<input type="hidden" id="hidden_profName" name="profName" value="${ s.profName }">
 											       	<button type="submit" class="btn btn-primary">평가</button>
 											       </td>
 										       	</c:when>
-										       	<c:otherwise>
-											       <td class="text-primary">O${ s.evaluation.stdId }</td>
+										       	<c:when test="${ s.stdId eq loginUser.stdId }">
+						     			       	   <td>${ status.count }</td>
+											       <td>${ s.classCode }</td>
+											       <td>${ s.className }</td>
+											       <td>${ s.profName }</td>
+											       <td>${ s.room }</td>
+											       <td>${ s.classType }</td>
+											       <td class="text-primary">O</td>
 											       <td>
 											      	 <input type="button" class="btn btn-secondary" value="완료" id="evaluationBtn">
 											       </td>
-										       	</c:otherwise>
+										       	</c:when>
 										       </c:choose>
 										    </tr>
 				                		</form>

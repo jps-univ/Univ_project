@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.lecture.model.service.LectureEvaluationService;
+import com.kh.univ.lecture.model.vo.EvaluationResult;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.lecture.model.vo.LectureEvaluation;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
-import com.kh.univ.mypage.model.service.ProfessorMyPageService;
 
 @Controller
 public class LectureEvaluationController 
@@ -45,30 +45,31 @@ public class LectureEvaluationController
      * 1_2 . 강의평가 하기전에 자신이 듣고 있는 강의 중 선택하는 창
      * @return
      */
+    /*
     @RequestMapping("lecture_evaluation_select.do")
     public ModelAndView lectureEvaluationSelect(ModelAndView mv, Lecture lecture, HttpSession session) 
     {
 		Student student = (Student)session.getAttribute("loginUser");
 
-		/*
-		Calendar cal = new GregorianCalendar();
-		Date d = new Date(cal.getTimeInMillis());
-		*/
+		
+//		Calendar cal = new GregorianCalendar();
+//		Date d = new Date(cal.getTimeInMillis());
+		
 		
 		int stdId = student.getStdId();
 		int classYear = 2021;
 		int classSemester = 1;
 		
-		/*
-		if(m < 7)
-		{
-			classSemester = 1;
-		}
-		else 
-		{
-			classSemester = 2;
-		}
-		*/
+
+//		if(m < 7)
+//		{
+//			classSemester = 1;
+//		}
+//		else 
+//		{
+//			classSemester = 2;
+//		}
+
 
 		Map map = new HashMap();
 		
@@ -78,13 +79,38 @@ public class LectureEvaluationController
 
 		ArrayList<Lecture> schedule = leService.selectStdSchdule(map);
 		
-		System.out.println(schedule);
-		System.out.println(schedule.size());
 		mv.addObject("schedule", schedule);
     	
 		mv.setViewName("lectureManagement/lecture_evaluation_select");
 
 		return mv;
+    }
+    */
+    
+    @RequestMapping("lecture_evaluation_select.do")
+    public ModelAndView lectureEvaluationSelect(ModelAndView mv, Lecture lecture, HttpSession session) 
+    {
+    	Student student = (Student)session.getAttribute("loginUser");
+    	    	
+    	int stdId = student.getStdId();
+    	int classYear = 2021;
+    	int classSemester = 1;
+    	
+    	
+    	Map map = new HashMap();
+    	
+    	map.put("stdId", stdId);
+    	map.put("classYear", classYear);
+    	map.put("classSemester", classSemester);
+    	
+    	ArrayList<Lecture> schedule = leService.selectStdSchdule(map);
+    	System.out.println("test : " + schedule.size());
+    	
+    	mv.addObject("schedule", schedule);
+    	
+    	mv.setViewName("lectureManagement/lecture_evaluation_select");
+    	
+    	return mv;
     }
     
     /**
@@ -96,8 +122,6 @@ public class LectureEvaluationController
     @RequestMapping("lecture_evaluation_submit.do")
     public String lectureEvaluationSubmit(LectureEvaluation evaluation)
     {
-    	System.out.println(evaluation);
-    	
     	int result = leService.evaluationSubmit(evaluation);
     	
     	if(result > 0)
@@ -123,21 +147,63 @@ public class LectureEvaluationController
     
 	@ResponseBody
 	@RequestMapping("professorLecture.do")
-	public ModelAndView ProfessorSchedule(ModelAndView mv, Model model, Lecture lecture, HttpSession session)
+	public ModelAndView ProfessorSchedule(ModelAndView mv, Model model, EvaluationResult evaluation, HttpSession session)
 	{
 		Professor professor = (Professor)session.getAttribute("loginUser");
+		evaluation.setProfId(professor.getProfId());
+		
+		ArrayList<EvaluationResult> result = leService.selectProfSchdule(evaluation);
+		
+		ArrayList<EvaluationResult> list = new ArrayList<>();
 
-		int profId = professor.getProfId();
-		int classYear = lecture.getClassYear();
-		int classSemester = lecture.getClassSemester();
-
-		Map map = new HashMap();
-
-		map.put("profId", profId);
-		map.put("classYear", classYear);
-		map.put("classSemester", classSemester);
-
-		ArrayList<Lecture> schedule = leService.selectProfSchdule(map);
+		for(int i = 0; i < result.size() - 1; i++)
+		{
+			for(int j = i + 1; j < result.size(); j++)
+			{
+				System.out.println(i + " : " + j + " = " + (result.get(i).getClassSeq() == result.get(j).getClassSeq()));
+				
+				if(result.get(j).getClassSeq() == result.get(i).getClassSeq())
+				{
+					int evalOne = result.get(i).getEvalOne() + result.get(j).getEvalOne();
+					int evalTwo = result.get(i).getEvalTwo() + result.get(j).getEvalTwo();
+					int evalThree = result.get(i).getEvalThree() + result.get(j).getEvalThree();
+					int evalFour = result.get(i).getEvalFour() + result.get(j).getEvalFour();
+					int evalFive = result.get(i).getEvalFive() + result.get(j).getEvalFive();
+					int evalSix = result.get(i).getEvalSix() + result.get(j).getEvalSix();
+					int evalSeven = result.get(i).getEvalSeven() + result.get(j).getEvalSeven();
+					int evalEight = result.get(i).getEvalEight() + result.get(j).getEvalEight();
+					int evalNine = result.get(i).getEvalNine() + result.get(j).getEvalNine();
+					int evalTen = result.get(i).getEvalTen() + result.get(j).getEvalTen();
+					
+					result.get(i).setEvalOne(evalOne);
+					result.get(i).setEvalTwo(evalTwo);
+					result.get(i).setEvalThree(evalThree);
+					result.get(i).setEvalFour(evalFour);
+					result.get(i).setEvalFive(evalFive);
+					result.get(i).setEvalSix(evalSix);
+					result.get(i).setEvalSeven(evalSeven);
+					result.get(i).setEvalEight(evalEight);
+					result.get(i).setEvalNine(evalNine);
+					result.get(i).setEvalTen(evalTen);
+					
+					list.add(result.get(i));
+				}
+				else
+				{
+					list.add(result.get(j));
+				}
+			}
+		}
+		
+		ArrayList<EvaluationResult> schedule = new ArrayList<>();
+		
+		for(EvaluationResult l : list)
+		{
+			if(!schedule.contains(l))
+			{
+				schedule.add(l);
+			}
+		}
 
 		mv.addObject("schedule", schedule);
 
@@ -160,17 +226,17 @@ public class LectureEvaluationController
 	
 	@ResponseBody
     @RequestMapping("selectEvaluationDetail.do")
-    public ModelAndView lectureEvaluationDetail(ModelAndView mv, Model model, LectureEvaluation lectureEvaluation, HttpSession session) 
+    public ModelAndView lectureEvaluationDetail(ModelAndView mv, Model model, EvaluationResult evaluation, HttpSession session) 
     {
 		Professor professor = (Professor)session.getAttribute("loginUser");
+		evaluation.setProfId(professor.getProfId());
 		
-		lectureEvaluation.setProfId(professor.getProfId());
-		System.out.println("1 : " + lectureEvaluation);
+		System.out.println("1 : " + evaluation);
 
-		ArrayList<LectureEvaluation> evaluation = leService.selectEvaluationDetail(lectureEvaluation);
-
-		System.out.println("2 : " + evaluation);
-		mv.addObject("evaluation", evaluation);
+		ArrayList<EvaluationResult> result = leService.selectEvaluationDetail(evaluation);
+	
+		System.out.println("2 : " + result);
+		mv.addObject("evaluation", result);
 
 		mv.setViewName("lectureManagement/lecture_evaluation_detail");
 
