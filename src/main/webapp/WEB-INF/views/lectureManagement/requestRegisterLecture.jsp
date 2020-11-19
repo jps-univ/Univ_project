@@ -175,16 +175,16 @@
                                     <tr name="lectureTime">
                                         <th>강의시간</th>
                                         <th colspan="3">
-                                            <select>
-                                                <option>선택</option>
+                                            <select name="daySelect">
+                                                <option value="">선택</option>
                                                 <option value="월">월요일</option>
                                                 <option value="화">화요일</option>
                                                 <option value="수">수요일</option>
                                                 <option value="목">목요일</option>
                                                 <option value="금">금요일</option>
                                             </select>
-                                            <input style="width: 50px;" type="number" min="1" max="9">
-                                            <label for="hour">교시</label>
+                                            <input name="hourInput" style="width: 50px;" type="number" min="1" max="9">
+                                            <label>교시</label>
                                             <button name="addDays" class="btn btn-primary btn-circle btn-sm"
                                                     style="margin-left: 10px;">+
                                             </button>
@@ -194,16 +194,16 @@
                                                     addDays += '<tr name="lectureTime">';
                                                     addDays += '<th>강의시간</th>';
                                                     addDays += '<th colspan="3">';
-                                                    addDays += "<select>";
+                                                    addDays += "<select name='daySelect'>";
                                                     addDays += "<option>선택</option>";
-                                                    addDays += "<option>월요일</option>";
-                                                    addDays += "<option>화요일</option>";
-                                                    addDays += "<option>수요일</option>";
-                                                    addDays += "<option>목요일</option>";
-                                                    addDays += "<option>금요일</option>";
+                                                    addDays += "<option value='월'>월요일</option>";
+                                                    addDays += "<option value='화'>화요일</option>";
+                                                    addDays += "<option value='수'>수요일</option>";
+                                                    addDays += "<option value='목'>목요일</option>";
+                                                    addDays += "<option value='금'>금요일</option>";
                                                     addDays += "</select>";
                                                     addDays += "&nbsp";
-                                                    addDays += '<input style="width: 50px;" type="number" min="1" max="9">';
+                                                    addDays += '<input name="hourInput" style="width: 50px;" type="number" min="1" max="9">';
                                                     addDays += "&nbsp";
                                                     addDays += '<label for="hour">교시</label>';
                                                     addDays += "<button class='btn btn-primary btn-circle btn-sm' name='delDays' style='margin-left: 13px;'>-</button>";
@@ -341,6 +341,7 @@
                             </button>
                             <script>
                                 var ajaxResult = "";
+
                                 function registerClass() {
                                     $.ajax({
                                         url: "requestRegisterClass.do",
@@ -354,15 +355,28 @@
                                             classLevel: $('#classLevel').val(),
                                             classType: $('#classType').val()
                                         }, dataType: 'text',
+                                        async:false,
                                         success: function (data) {
+                                            console.log(data);
                                             ajaxResult = "ok";
-                                            alert(ajaxResult);
                                         }, error: function (data) {
-                                            ajaxResult = "fail";
+                                            ajaxResult = "fail"
                                         }
                                     });
                                 }
 
+                                function checkClassTime() {
+                                    var dayList = "";
+                                    var hourList = "";
+                                    for(var i = 0; i < $("select[name*='daySelect']" ).length; i++){
+                                        dayList += $("select[name*='daySelect']" ).eq(i).val();
+                                    }
+                                    for(var i = 0; i < $("input[name*='hourInput']").length; i++){
+                                        hourList += $("input[name*='hourInput']").eq(i).val();
+                                    }
+                                    console.log(dayList);
+                                    console.log(hourList);
+                                }
                                 function checkRegister() {
                                     if ($("#codeDuplicateCheck").val() == 0) {
                                         alert("사용가능한 과목코드를 입력해주세요 ");
@@ -371,22 +385,27 @@
 
                                     } else {
                                         if (confirm("확인을 누르시면 등록 요청 후 강의계획서 입력창으로 이동합니다.") === true) {
+                                            checkClassTime();
                                             registerClass();
-                                            if (ajaxResult === "ok"){
-                                            $('.register').hide();
-                                            $('.addPlan').show();
-                                            $('#buttonArea1').hide();
-                                            $('#buttonArea2').show();
-                                            $('#explain1').hide();
-                                            $('#explain2').show();
-                                            } else alert("에러입니다!!!");
-                                        } else {
-                                            return false;
-                                        }
+                                            // console.log(ajaxResult);
+                                            if (ajaxResult == "ok"){
+
+                                                $('.register').hide();
+                                                $('.addPlan').show();
+                                                $('#buttonArea1').hide();
+                                                $('#buttonArea2').show();
+                                                $('#explain1').hide();
+                                                $('#explain2').show();
+                                            } else {
+                                                alert("빈칸을 정확하게 기입해주세요.")
+                                            }
+
+                                        } else return false;
                                     }
                                 }
 
                                 $(function () {
+
                                     $('#classCode').on('keyup', function () {
                                         var classCode = $(this).val();
                                         if (classCode.length < 4) {
@@ -412,6 +431,7 @@
                                             }
                                         });
                                     });
+
                                 });
                             </script>
                         </div>
