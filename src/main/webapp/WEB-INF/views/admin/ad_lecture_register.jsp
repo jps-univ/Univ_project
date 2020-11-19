@@ -160,6 +160,7 @@ $(function(){
              		<option value="0">선택</option >
              		<option value="2019">2019년</option>
              		<option value="2020">2020년</option>	
+             		<option value="2021">2021년</option>	
              	  </select>
              	<select  class="LectureData" name="classSemester" form="lectureForm">
              		<option value="0">선택</option>
@@ -168,7 +169,7 @@ $(function(){
              	</select>
              </td>
               <td><p>수강학년</p></td>
-              <td><select  class="LectureData" name="classLevel" form="lectureForm">
+              <td><select  class="LectureData" name="classLevel" form="lecureForm">t
               		<option value="0">선택</option>
               		<option value="1">1</option>
               		<option value="2">2</option>

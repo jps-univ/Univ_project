@@ -147,13 +147,15 @@ margin-right: 10px;
           <br><br>
           <table border="0" cellspacing="0" width="700px" id="tb">
           <c:forEach var="std" items="${ list }" end="0">
+          <form action="studentSchedule.do" method="post">
             <tr>
                 <td><h4 id="code">과목코드 : </h4></td>
-                <td><input type="text" id="text1" placeholder="${ std.classId }" disabled name="sclassId" value="${ std.classId }"></td>
+                <td><input type="text" id="text1" placeholder="${ std.classId }" disabled name="classId" value="${ std.classId }"></td>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <td><h4 id="code">교과목명 : </h4></td>
                 <td><input type="text" id="text2" placeholder="${ std.className }" disabled></td>
             </tr>
+            </form>
             </c:forEach>
         </table>
           <br>

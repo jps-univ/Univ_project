@@ -3,6 +3,7 @@ package com.kh.univ.lecture.model.service;
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.kh.univ.lecture.model.vo.EvaluationResult;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.lecture.model.vo.LectureEvaluation;
 
@@ -27,5 +28,12 @@ public interface LectureEvaluationService
 	 * @param map
 	 * @return
 	 */
-	ArrayList<Lecture> selectProfSchdule(Map map);
+	ArrayList<EvaluationResult> selectProfSchdule(EvaluationResult evaluation);
+
+	/**
+	 * 교수 강의 평가 상세 조회
+	 * @param lectureEvaluation
+	 * @return
+	 */
+	ArrayList<EvaluationResult> selectEvaluationDetail(EvaluationResult evaluation);
 }

@@ -18,13 +18,14 @@ public class LectureEvaluation
 	
 	private Lecture lecture;
 	private String profName;
+	private int profId;
 	public LectureEvaluation() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public LectureEvaluation(int evalNo, int stdId, int classSeq, int evalOne, int evalTwo, int evalThree, int evalFour,
 			int evalFive, int evalSix, int evalSeven, int evalEight, int evalNine, int evalTen, Lecture lecture,
-			String profName) {
+			String profName, int profId) {
 		super();
 		this.evalNo = evalNo;
 		this.stdId = stdId;
@@ -41,6 +42,7 @@ public class LectureEvaluation
 		this.evalTen = evalTen;
 		this.lecture = lecture;
 		this.profName = profName;
+		this.profId = profId;
 	}
 	public int getEvalNo() {
 		return evalNo;
@@ -132,12 +134,18 @@ public class LectureEvaluation
 	public void setProfName(String profName) {
 		this.profName = profName;
 	}
+	public int getProfId() {
+		return profId;
+	}
+	public void setProfId(int profId) {
+		this.profId = profId;
+	}
 	@Override
 	public String toString() {
 		return "LectureEvaluation [evalNo=" + evalNo + ", stdId=" + stdId + ", classSeq=" + classSeq + ", evalOne="
 				+ evalOne + ", evalTwo=" + evalTwo + ", evalThree=" + evalThree + ", evalFour=" + evalFour
 				+ ", evalFive=" + evalFive + ", evalSix=" + evalSix + ", evalSeven=" + evalSeven + ", evalEight="
 				+ evalEight + ", evalNine=" + evalNine + ", evalTen=" + evalTen + ", lecture=" + lecture + ", profName="
-				+ profName + "]";
+				+ profName + ", profId=" + profId + "]";
 	}
 }

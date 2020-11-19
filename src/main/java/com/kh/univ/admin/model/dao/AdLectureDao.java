@@ -36,9 +36,10 @@ public class AdLectureDao {
 		return (ArrayList)sqlSession.selectList("adminLectureMapper.adLectureProfessor",departmentCode);
 	}
 
-	public ArrayList<Lecture> selectAdLectureList() {
+//	강의 리스트 조회
+	public ArrayList<AdLecture> selectAdLectureList() {
 		// TODO Auto-generated method stub
-		return (ArrayList)sqlSession.selectList("adminLectureMapper.adLectureProfessor");
+		return (ArrayList)sqlSession.selectList("adminLectureMapper.selectAdLectureList");
 	}
 
 	public int adInsertLecture(AdLecture adLecture) {

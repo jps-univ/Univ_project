@@ -87,7 +87,7 @@
         </div>
 
         <div>
-          <button class="button" onclick="button_graduation();">신청하기</button>
+          <button id="button" onclick="button_graduation();">신청하기</button>
         </div>
 
         <div class="request">

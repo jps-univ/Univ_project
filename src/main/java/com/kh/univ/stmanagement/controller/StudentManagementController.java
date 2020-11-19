@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.member.model.vo.Professor;
-import com.kh.univ.member.model.vo.Student;
 import com.kh.univ.stmanagement.model.service.StudentManagementService;
 import com.kh.univ.stmanagement.model.vo.GradeA;
 import com.kh.univ.stmanagement.model.vo.StudentManagement;
@@ -39,16 +38,25 @@ public class StudentManagementController {
 		
 		ArrayList<StudentManagement> list = smService.selectList(map);
 		
-		System.out.println(map);
+//		System.out.println(map);
 		
 		mv.addObject("list", list);
 		mv.setViewName("studentManagement/studentView");
+//		System.out.println("처음페이지"+list);
+//		if(classId != null) {
+//			
+//			ArrayList<StudentManagement> list2 = smService.selectListDetailList2(map);
+//			
+//			mv.setViewName("studentManagement/studentDetailView");
+//			System.out.println("디테일페이지"+list2);
+//			return mv;
+//		}
 		return mv;
 	}
 	
 	@RequestMapping("stListDetail.do")
 	public ModelAndView StudentDetailView(ModelAndView mv, Model model, HttpSession session, StudentManagement stdM) {
-		
+		System.out.println("받아오기"+stdM);
 		Professor professor = (Professor)session.getAttribute("loginUser");
 		
 		int profId = professor.getProfId();
@@ -61,11 +69,12 @@ public class StudentManagementController {
 		map.put("className", className);
 		
 		ArrayList<StudentManagement> list = smService.selectDetailList(map);
-		
+		System.out.println("디비에서 가져오나요?"+list);
 		System.out.println(map);
 		
 		mv.addObject("list", list);
 		mv.setViewName("studentManagement/studentDetailView");
+		System.out.println("디테일페이지"+list);
 		return mv;
 	}
 	

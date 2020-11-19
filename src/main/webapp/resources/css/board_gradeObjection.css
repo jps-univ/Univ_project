@@ -155,7 +155,7 @@ ul li{
 }
 
 /*------------------------본문-----------------*/
-/* 맨위 글씨 */
+/* 맨위 글씨 + 이미지 */
 
 .professor_info{width:65%; height: 100%;}
 
@@ -165,125 +165,97 @@ ul li{
 .professor_info{width: 100%;}
 
 .professor_info tbody tr td:nth-child(1){
-    width: 70%;
+    width: 15%;
+}
+
+.professor_info tbody tr td:nth-child(2){
+    width: 55%;
     font-size: 35px;
     font-family: 'Nanum Gothic Coding', monospace;
     font-weight: 700;
     color: rgb(45, 45, 45);
 }
 
-.professor_info tbody tr td:nth-child(2){
+.professor_info tbody tr td:nth-child(3){
     width: 30%;
 }
 
-/* #semi_title{
-	background-color: #edf1fc;
-    border-bottom: solid #4e73df;
-    height: 100px;
-    padding: 40px;
+#semi_title{margin-left: 18%;
+    margin-bottom: 43px;}
+
+#professor_icon{
     position: relative;
-    bottom: 25px;
-    white-space: nowrap;
-    color: #4e73df;
-	} */
+    margin-left: 120%;
+}
 
 
-/* 타이틀  */
-/* #select_title{
 
-    margin-top: 70px;
-    margin-left: 25%;
-    background-color: #d8dadc;
+
+
+/* 공지사항, 등록하기 버튼 */
+#title_button{
+    width: 100%;
+    margin-top: 60px;
+    height: 60px;
+ }
+
+ #board_title{
     font-family: 'Nanum Gothic Coding', monospace;
     font-size: 30px;
     font-weight: 700;
     color: black;
-} */
-
-#semester{
-    width: 50%;
-    margin-top: 15px;
     margin-left: 15%;
-}
+ }
 
-/* 학기 title */
-/* #select_title{
+ #board_button{
     position: relative;
-    margin: 0;
-    left: 16%;
-    margin-top: 30px;
-    font-family: 'Nanum Gothic Coding', monospace;
-    font-weight: 900;
-    color: black;
-} */
+    float: right;
+    top: 33px;
+    margin-right: 31%;
+    border-radius: 3px;
+ }
 
-#select_semester{
-    position: relative;
-    height: 60px;
-    top: 50%;
-    left: 20%;
-    padding: 10px;
-    border: 0.3px solid #4e73df;
-    background: white;
-    border-radius: 10px;
-}
-
-/* #main_con{
-    border: 1px solid red;
-} */
-
-
-#year{
-    height: 35px;
-    width: 120px;
-    margin-top: 2px;
-    margin-left: 15%;
-    margin-right:20px;
-}
-
-#grade{
-    height: 35px;
-    width: 100px;
-    margin-left: 10%;
-
-}
-
-#submit{
-    float:right;
-    margin-right: 10px;
-    height: 38px;
-    width: 55px;
-    border-radius: 10px;
-}
-
-#rest_table_area{
+ 
+ #rest_table_area{
     padding: 10px; 
     height: 30%;
-
-    margin-top: 45px;
+    margin-top: 25px;
+    background-color: white;
+/*     border-top: 1px solid rgb(136, 130, 130);
+    border-bottom: 1px solid rgb(136, 130, 130); */
+    border-radius: 7px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
     }
     
-    #rest_lecture{
-    width: 85%;
+    #rest_notice{
+    width: 97%;
     border-top: 5px solid rgb(46, 109, 151);
     color: #808080;
-    margin: auto;
-    /* margin-left: auto;
-    margin-right: auto; */
+    margin-top: 25px;
+    margin-bottom: 25px;
+
+    margin-left: auto;
+    margin-right: auto;
     
     }
-    
-    #rest_lecture tr{
+
+
+
+/* 표 안에 설정 */
+
+ #rest_notice tr{
     height: 30px;
     border-bottom: solid rgb(149, 149, 150) 1px;
     text-align: center;
     
     }
-    #rest_lecture  tbody tr:nth-child(2n-1){
+    #rest_notice  tbody tr:nth-child(2n-1){
     background: #f8f6ff;
     }
     
-    #rest_lecture thead tr th{
+    #rest_notice thead tr th{
         text-align: center;
     }
     /* #rest_lecture thead tr th:first-child,
@@ -294,24 +266,23 @@ ul li{
     width: 300px;
     } */
 
-    #rest_lecture thead tr th:nth-child(1){
+    #rest_notice thead tr th:nth-child(1){
         width: 10%;
     }
-    #rest_lecture thead tr th:nth-child(2){
-        width: 10%;
+    #rest_notice thead tr th:nth-child(2){
+        width: 40%;
     }
-    #rest_lecture thead tr th:nth-child(3){
-        width: 50%;
-    }
-    #rest_lecture thead tr th:nth-child(4){
+    #rest_notice thead tr th:nth-child(3){
         width: 20%;
     }
-    #rest_lecture thead tr th:nth-child(5){
+    #rest_notice thead tr th:nth-child(4){
+        width: 20%;
+    }
+    #rest_notice thead tr th:nth-child(5){
         width: 10%;
     }
 
-    #rest_lecture tr p{
+    #rest_notice tr p{
     margin-bottom: 0;
     
     }
-
