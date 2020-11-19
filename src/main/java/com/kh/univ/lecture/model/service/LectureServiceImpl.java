@@ -88,5 +88,15 @@ public class LectureServiceImpl implements LectureService {
         return lectureDao.requestRegisterClass(lecture);
     }
 
+    @Override
+    public int selectClassSeq(String classCode) {
+        return lectureDao.selectClassSeq(classCode);
+    }
+
+    @Override
+    public int insertClassTime(LectureTime lecTime) {
+        return lectureDao.insertClassTime(lecTime);
+    }
+
 
 }

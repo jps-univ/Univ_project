@@ -169,4 +169,12 @@
         INSERT INTO TB_CLASS
         VALUES (SEQ_CLASS.nextval,#{classCode},#{deptCode},#{profId},#{className},#{room},#{gradeSize},#{classSemester},#{classYear},'N',#{classLevel},#{classType})
     </insert>
+    <select id="selectClassSeq" parameterType="string" resultType="_int">
+        SELECT CLASS_SEQ
+        FROM TB_CLASS
+        WHERE CLASS_CODE=#{classCode}
+    </select>
+    <insert id="insertClassTime" parameterType="LectureTime">
+        INSERT INTO TB_CLASS_TIME VALUES (SEQ_CLASS_TIME.nextval,#{classSeq},#{day},#{hour})
+    </insert>
 </mapper>

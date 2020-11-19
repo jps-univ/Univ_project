@@ -69,4 +69,12 @@ public class LectureDao {
     public int requestRegisterClass(Lecture lecture) {
         return sqlSession.insert("lectureMapper.requestRegisterClass",lecture);
     }
+
+    public int selectClassSeq(String classCode) {
+        return sqlSession.selectOne("lectureMapper.selectClassSeq",classCode);
+    }
+
+    public int insertClassTime(LectureTime lecTime) {
+        return sqlSession.insert("lectureMapper.insertClassTime", lecTime);
+    }
 }

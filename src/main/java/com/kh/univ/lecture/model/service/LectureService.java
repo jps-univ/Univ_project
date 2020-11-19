@@ -42,4 +42,8 @@ public interface LectureService {
     int codeCheck(String classCode);
 //    강의등록을 하는데 approve를 N으로 해서 넣음.
     int requestRegisterClass(Lecture lecture);
+//    강의시퀀스를 찾아와서 수강신청테이블에 같이 넣어줌
+    int selectClassSeq(String classCode);
+    // 강의 시간표 인서트
+    int insertClassTime(LectureTime lecTime);
 }
