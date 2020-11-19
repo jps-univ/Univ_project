@@ -97,17 +97,17 @@
         <!-- second navibar -->
         <div class="sec_navi shadow">
             <ul id="sec_navibar">
-                <li class="drop"><a href="selectClass.do">수강과목조회</a></li>
-                <li class="drop"><a href="#">강의 정보</a></li>
+                <li class="drop" style="margin-left: 5%;"><a href="selectClass.do">수강 과목 조회</a></li>
+                <li class="drop" style="margin-left: 12%;"><a href="#">강의 정보</a></li>
                     <ul class="drop_submenu">
                         <li><a href="classPlan.do">강의 계획서</a></li> 
                         <li><a href="cNoticeList.do">공지 사항</a></li>
                     </ul>
-                <li class="drop"><a href="#">학습 활동</a></li>
+                <li class="drop" style="margin-left: 14%;"><a href="#">학습 활동</a></li>
                     <ul class="drop_submenu">
                         <li><a href="assignmentList.do">과제</a></li>
                     </ul>
-                <li class="drop"><a href="#">성적 관리</a></li>
+                <li class="drop" style="margin-left: 20%;"><a href="#">성적 관리</a></li>
                     <ul class="drop_submenu">
                         <li><a href="gradeObjectionList.do">성적 이의 신청</a></li>
                     </ul>                    
@@ -133,7 +133,7 @@
                 <option value="1">1학기</option>
                 <option value="2">2학기</option>
               </select>
-              <button id="submit" type="button">조회</button>
+              <button class="btn btn-primary btn-sm" id="submit" type="button">조회</button>
             </fieldset>
           </form>
 

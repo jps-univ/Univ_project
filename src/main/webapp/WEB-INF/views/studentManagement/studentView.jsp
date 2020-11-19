@@ -172,14 +172,19 @@
                       </thead>
                       <tbody>
 	                      <c:forEach var="std" items="${ list }">
-	                          <tr>
+	                      <form action="stListDetail.do" method="post">	                          
+	                      <tr>
 	                              <td style="cursor:pointer">${ std.className }</td>
-	                              <td style="cursor:pointer"><a href="stListDetail.do">${ std.classId }</a></td>
+	                              <td style="cursor:pointer">
+	                              <button onclick="location.href='stListDetail.do';" id="btn1" name="classId" value="${ std.classId }">
+	                              ${ std.classId }</button>
+	                              </td>
 	                              <td style="cursor:pointer"><a href="stListDetail.do">${ std.classType }</a></td>
 	                              <td style="cursor:pointer"><a href="stListDetail.do">${ std.roomNo }</a></td>
 	                              <td><button id="btn1"><a href="stGrade.do">성적</a></button></td>
 	                              <td><button id="btn2"><a href="attendance.do">출석</a></button></td>
 	                          </tr>
+	                          </form>
 	                        </c:forEach> 
 	                      </tbody>
                   </table>

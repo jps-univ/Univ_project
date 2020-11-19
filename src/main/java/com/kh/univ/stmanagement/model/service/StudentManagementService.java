@@ -15,4 +15,6 @@ public interface StudentManagementService {
 	ArrayList<StudentManagement> gradeView();
 
 	int insertGrade(GradeA g);
+
+//	ArrayList<StudentManagement> selectListDetailList2(Map map);
 }

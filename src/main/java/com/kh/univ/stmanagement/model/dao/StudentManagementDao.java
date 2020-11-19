@@ -32,5 +32,9 @@ public class StudentManagementDao {
 		return sqlSession.insert("StudentManagementMapper.grade",g);
 	}
 
+//	public ArrayList<StudentManagement> selectDetailList2(Map map) {
+//		return (ArrayList)sqlSession.selectList("StudentManagementMapper.selectdDetailList2",map);
+//	}
+
 
 }
