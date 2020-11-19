@@ -48,23 +48,62 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
 
-                            <h6 class="m-0 font-weight-bold text-primary">과목명 : ${ evaluation }</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">과목명 : ${ evaluation[0].className }</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%"
-                                    cellspacing="0">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <tr>
                                         <td>1번</td>
                                         <td colspan="5">교수가 수업시간을 준수했습니까?</td>
                                     </tr>
                                     <tr>
                                     	<td class="font-weight-bold">답변</td>
-                                        <td class="font-weight-bold test">매우 그렇다 : </td>
-                                        <td class="font-weight-bold test">그렇다 : </td>
-                                        <td class="font-weight-bold test">보통이다 : </td>
-                                        <td class="font-weight-bold test">아니다 : </td>
-                                        <td class="font-weight-bold test">전혀 아니다 : </td>
+                                        <td class="font-weight-bold test">매우 그렇다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalOne eq 5 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">그렇다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalOne eq 4 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">보통이다 :
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalOne eq 3 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">아니다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalOne eq 2 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">전혀 아니다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalOne eq 1 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>2번</td>
@@ -72,11 +111,51 @@
                                     </tr>
                                     <tr>
                                     	<td class="font-weight-bold">답변</td>
-                                        <td class="font-weight-bold">매우 그렇다 : </td>
-                                        <td class="font-weight-bold">그렇다 : </td>
-                                        <td class="font-weight-bold">보통이다 : </td>
-                                        <td class="font-weight-bold">아니다 : </td>
-                                        <td class="font-weight-bold">전혀 아니다 : </td>
+                                        <td class="font-weight-bold test">매우 그렇다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalTwo eq 5 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">그렇다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalTwo eq 4 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">보통이다 :
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalTwo eq 3 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">아니다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalTwo eq 2 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">전혀 아니다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalTwo eq 1 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>3번</td>
@@ -84,11 +163,51 @@
                                     </tr>
                                     <tr>
                                     	<td class="font-weight-bold">답변</td>
-                                        <td class="font-weight-bold">매우 그렇다 : </td>
-                                        <td class="font-weight-bold">그렇다 : </td>
-                                        <td class="font-weight-bold">보통이다 : </td>
-                                        <td class="font-weight-bold">아니다 : </td>
-                                        <td class="font-weight-bold">전혀 아니다 : </td>
+                                        <td class="font-weight-bold test">매우 그렇다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalThree eq 5 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">그렇다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalThree eq 4 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">보통이다 :
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalThree eq 3 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">아니다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalThree eq 2 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">전혀 아니다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalThree eq 1 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>4번</td>
@@ -96,11 +215,51 @@
                                     </tr>
                                     <tr>
                                     	<td class="font-weight-bold">답변</td>
-                                        <td class="font-weight-bold">매우 그렇다 : </td>
-                                        <td class="font-weight-bold">그렇다 : </td>
-                                        <td class="font-weight-bold">보통이다 : </td>
-                                        <td class="font-weight-bold">아니다 : </td>
-                                        <td class="font-weight-bold">전혀 아니다 : </td>
+                                        <td class="font-weight-bold test">매우 그렇다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalFour eq 5 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">그렇다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalFour eq 4 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">보통이다 :
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalFour eq 3 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">아니다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalFour eq 2 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">전혀 아니다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalFour eq 1 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>5번</td>
@@ -108,11 +267,51 @@
                                     </tr>
                                     <tr>
                                     	<td class="font-weight-bold">답변</td>
-                                        <td class="font-weight-bold">매우 그렇다 : </td>
-                                        <td class="font-weight-bold">그렇다 : </td>
-                                        <td class="font-weight-bold">보통이다 : </td>
-                                        <td class="font-weight-bold">아니다 : </td>
-                                        <td class="font-weight-bold">전혀 아니다 : </td>
+                                        <td class="font-weight-bold test">매우 그렇다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalFive eq 5 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">그렇다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalFive eq 4 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">보통이다 :
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalFive eq 3 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">아니다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalFive eq 2 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">전혀 아니다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalFive eq 1 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>6번</td>
@@ -120,11 +319,51 @@
                                     </tr>
                                     <tr>
                                     	<td class="font-weight-bold">답변</td>
-                                        <td class="font-weight-bold">매우 그렇다 : </td>
-                                        <td class="font-weight-bold">그렇다 : </td>
-                                        <td class="font-weight-bold">보통이다 : </td>
-                                        <td class="font-weight-bold">아니다 : </td>
-                                        <td class="font-weight-bold">전혀 아니다 : </td>
+                                        <td class="font-weight-bold test">매우 그렇다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalSix eq 5 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">그렇다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalSix eq 4 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">보통이다 :
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalSix eq 3 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">아니다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalSix eq 2 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">전혀 아니다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalSix eq 1 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>7번</td>
@@ -132,11 +371,51 @@
                                     </tr>
                                     <tr>
                                     	<td class="font-weight-bold">답변</td>
-                                        <td class="font-weight-bold">매우 그렇다 : </td>
-                                        <td class="font-weight-bold">그렇다 : </td>
-                                        <td class="font-weight-bold">보통이다 : </td>
-                                        <td class="font-weight-bold">아니다 : </td>
-                                        <td class="font-weight-bold">전혀 아니다 : </td>
+                                        <td class="font-weight-bold test">매우 그렇다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalSeven eq 5 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">그렇다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalSeven eq 4 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">보통이다 :
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalSeven eq 3 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">아니다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalSeven eq 2 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">전혀 아니다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalSeven eq 1 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>8번</td>
@@ -144,11 +423,51 @@
                                     </tr>
                                     <tr>
                                     	<td class="font-weight-bold">답변</td>
-                                        <td class="font-weight-bold">매우 그렇다 : </td>
-                                        <td class="font-weight-bold">그렇다 : </td>
-                                        <td class="font-weight-bold">보통이다 : </td>
-                                        <td class="font-weight-bold">아니다 : </td>
-                                        <td class="font-weight-bold">전혀 아니다 : </td>
+                                        <td class="font-weight-bold test">매우 그렇다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalEight eq 5 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">그렇다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalEight eq 4 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">보통이다 :
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalEight eq 3 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">아니다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalEight eq 2 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">전혀 아니다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalEight eq 1 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>9번</td>
@@ -156,11 +475,51 @@
                                     </tr>
                                     <tr>
                                     	<td class="font-weight-bold">답변</td>
-                                        <td class="font-weight-bold">매우 그렇다 : </td>
-                                        <td class="font-weight-bold">그렇다 : </td>
-                                        <td class="font-weight-bold">보통이다 : </td>
-                                        <td class="font-weight-bold">아니다 : </td>
-                                        <td class="font-weight-bold">전혀 아니다 : </td>
+                                        <td class="font-weight-bold test">매우 그렇다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalNine eq 5 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">그렇다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalNine eq 4 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">보통이다 :
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalNine eq 3 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">아니다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalNine eq 2 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">전혀 아니다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalNine eq 1 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>10번</td>
@@ -168,13 +527,52 @@
                                     </tr>
                                     <tr>
                                     	<td class="font-weight-bold">답변</td>
-                                        <td class="font-weight-bold">매우 그렇다 : </td>
-                                        <td class="font-weight-bold">그렇다 : </td>
-                                        <td class="font-weight-bold">보통이다 : </td>
-                                        <td class="font-weight-bold">아니다 : </td>
-                                        <td class="font-weight-bold">전혀 아니다 : </td>
+                                        <td class="font-weight-bold test">매우 그렇다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalTen eq 5 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">그렇다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalTen eq 4 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">보통이다 :
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalTen eq 3 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">아니다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalTen eq 2 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
+                                        <td class="font-weight-bold test">전혀 아니다 : 
+                                        	<c:set var="sum" value="0"/>
+                                        	<c:forEach var="e" items="${ evaluation }" begin="0" step="1" varStatus="status">
+                                        		<c:if test="${ e.evalTen eq 1 }">
+                                        			<c:set var="sum" value="${ sum + status.step }"/>
+                                        		</c:if>
+                                        	</c:forEach>
+                                        	${ sum } 명
+                                        </td>
                                     </tr>
-
                                 </table>
                                
                             </div>                            

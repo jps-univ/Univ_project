@@ -122,6 +122,27 @@
  		<collection property="evaluation" resultMap="EvaluationResultSet"/>
     </resultMap>
     
+    <!-- 수업시간 조회 ResultMap test -->
+    <resultMap id="StdScheduleResultSetTest" type="Lecture">
+        <result property="classCode" column="SEQCODE"/>
+        <result property="deptCode" column="DEPARTMENT_CODE"/>
+        <result property="profId" column="PROFESSOR_ID"/>
+        <result property="className" column="CLASS_NAME"/>
+        <result property="room" column="ROOM"/>
+        <result property="gradeSize" column="GRADE_SIZE"/>
+        <result property="classSemester" column="CLASS_SEMESTER"/>
+        <result property="classYear" column="CLASS_YEAR"/>
+        <result property="classApprove" column="CLASS_APPROVE"/>
+        <result property="classLevel" column="CLASS_LEVEL"/>
+        <result property="classType" column="CLASS_TYPE"/>
+        <result property="profName" column="PROFESSOR_NAME"/>
+        <collection property="time" resultMap="LectureTimeResultSet"/>
+ 		<collection property="lectureApplication" resultMap="LectureApplicationResultSet"/>
+ 		<collection property="student" resultMap="StudentResultSet"/>
+ 		<collection property="professor" resultMap="ProfessorResultSet"/>
+ 		<collection property="evaluation" resultMap="EvaluationResultSet"/>
+    </resultMap>
+    
     <resultMap id="EvaluationDetailResultSet" type="LectureEvaluation">
         <id property="evalNo" column="EVAL_NO"/>
         <result property="stdId" column="STUDENT_ID"/>
@@ -141,18 +162,34 @@
         <collection property="lecture" resultMap="LectureResultSet"/>
     </resultMap>
     
-    <!-- 학생 강의 조회 -->
-    <select id="selectStdSchdule" parameterType="Lecture" resultMap="StdScheduleResultSet">
+    <resultMap id="EvaluationResultSetTest" type="EvaluationResult">
+        <result property="evalNo" column="EVAL_NO"/>
+        <result property="stdId" column="STUDENT_ID"/>
+        <result property="classSeq" column="CLASS_SEQ"/>
+        <result property="evalOne" column="EVAL_ONE"/>
+        <result property="evalTwo" column="EVAL_TWO"/>
+        <result property="evalThree" column="EVAL_THREE"/>
+        <result property="evalFour" column="EVAL_FOUR"/>
+        <result property="evalFive" column="EVAL_FIVE"/>
+        <result property="evalSix" column="EVAL_SIX"/>
+        <result property="evalSeven" column="EVAL_SEVEN"/>
+        <result property="evalEight" column="EVAL_EIGHT"/>
+        <result property="evalNine" column="EVAL_NINE"/>
+        <result property="evalTen" column="EVAL_TEN"/>
+        <result property="profId" column="PROFESSOR_ID"/>
+        <result property="profName" column="NAME"/>
+        <result property="classCode" column="CLASS_CODE"/>
+        <result property="className" column="CLASS_NAME"/>
+        <result property="classType" column="CLASS_TYPE"/>
+        <result property="classYear" column="CLASS_YEAR"/>
+        <result property="classSemester" column="CLASS_SEMESTER"/>
+        <result property="room" column="ROOM"/>
+    </resultMap>
+    
+    <!-- 학생 수강 과목 조회 -->
+    <select id="selectStdSchdule" parameterType="EvaluationResult" resultMap="EvaluationResultSetTest">
+		<!--  
 		SELECT C.CLASS_SEQ, C.CLASS_CODE, C.CLASS_NAME, C.ROOM, C.CLASS_TYPE, P.NAME, E.EVAL_NO, E.STUDENT_ID
-		FROM TB_STUDENT S
-		LEFT OUTER JOIN TB_REGISTER_CLASS R ON S.STUDENT_ID = R.STUDENT_ID
-		LEFT OUTER JOIN TB_CLASS C ON R.CLASS_SEQ = C.CLASS_SEQ
-		LEFT OUTER JOIN TB_PROFESSOR P ON C.PROFESSOR_ID = P.PROFESSOR_ID
-		LEFT OUTER JOIN TB_EVALUATION E ON C.CLASS_SEQ = E.CLASS_SEQ
-		WHERE S.STUDENT_ID = #{stdId} AND C.CLASS_YEAR = #{classYear} AND C.CLASS_SEMESTER = #{classSemester}
-
-		<!--
-  		SELECT C.CLASS_CODE, C.CLASS_NAME, C.ROOM, C.CLASS_TYPE, P.NAME, E.EVAL_NO, E.STUDENT_ID
 		FROM TB_STUDENT S
 		LEFT OUTER JOIN TB_REGISTER_CLASS R ON S.STUDENT_ID = R.STUDENT_ID
 		LEFT OUTER JOIN TB_CLASS C ON R.CLASS_SEQ = C.CLASS_SEQ
@@ -161,17 +198,21 @@
 		WHERE S.STUDENT_ID = #{stdId} AND C.CLASS_YEAR = #{classYear} AND C.CLASS_SEMESTER = #{classSemester}
 		-->
 		
-		<!-- 		
-		SELECT C.CLASS_SEQ, C.CLASS_CODE, C.CLASS_NAME, C.ROOM, C.CLASS_TYPE, P.NAME, E.EVAL_NO, E.STUDENT_ID
-		FROM TB_CLASS C
-		LEFT OUTER JOIN TB_REGISTER_CLASS R ON C.CLASS_SEQ = R.CLASS_SEQ
+		SELECT C.CLASS_SEQ, C.CLASS_CODE, C.CLASS_NAME, C.ROOM, C.CLASS_TYPE, P.NAME, P.PROFESSOR_ID
+		FROM TB_STUDENT S
+		LEFT OUTER JOIN TB_REGISTER_CLASS R ON S.STUDENT_ID = R.STUDENT_ID
+		LEFT OUTER JOIN TB_CLASS C ON R.CLASS_SEQ = C.CLASS_SEQ
 		LEFT OUTER JOIN TB_PROFESSOR P ON C.PROFESSOR_ID = P.PROFESSOR_ID
-		LEFT OUTER JOIN TB_STUDENT S ON R.STUDENT_ID = S.STUDENT_ID
-		LEFT OUTER JOIN TB_EVALUATION E ON C.CLASS_SEQ = E.CLASS_SEQ
 		WHERE S.STUDENT_ID = #{stdId} AND C.CLASS_YEAR = #{classYear} AND C.CLASS_SEMESTER = #{classSemester}
-		-->
  	</select>
  	
+    <!-- 학생 강의 평가 내역 조회 -->
+    <select id="selectStdEvaluation" parameterType="EvaluationResult" resultMap="EvaluationResultSetTest">
+		SELECT * FROM TB_EVALUATION
+		WHERE STUDENT_ID = #{stdId}
+ 	</select>
+ 	
+ 	<!-- 학생 강의 평가 제출 -->
  	<insert id="evaluationSubmit">
  		INSERT INTO TB_EVALUATION
 		(EVAL_NO, STUDENT_ID, CLASS_SEQ, EVAL_ONE, EVAL_TWO, EVAL_THREE, EVAL_FOUR, EVAL_FIVE, EVAL_SIX, EVAL_SEVEN, EVAL_EIGHT, EVAL_NINE, EVAL_TEN)
@@ -179,15 +220,32 @@
 		(SEQ_EVALUATION.NEXTVAL, #{stdId}, #{classSeq}, #{evalOne}, #{evalTwo}, #{evalThree}, #{evalFour}, #{evalFive}, #{evalSix}, #{evalSeven}, #{evalEight}, #{evalNine}, #{evalTen})
  	</insert>
 
-    <select id="selectProfSchdule" parameterType="Lecture" resultMap="StdScheduleResultSet">
+	<!-- 교수 강의 조회 -->
+    <select id="selectProfSchdule" parameterType="EvaluationResult" resultMap="EvaluationResultSetTest">
+    	<!--  
     	SELECT C.CLASS_SEQ, C.CLASS_CODE, C.CLASS_NAME, C.ROOM, C.CLASS_TYPE, P.NAME, E.EVAL_NO, EVAL_ONE, EVAL_TWO, EVAL_THREE, EVAL_FOUR, EVAL_FIVE, EVAL_SIX, EVAL_SEVEN, EVAL_EIGHT, EVAL_NINE, EVAL_TEN
 		FROM TB_PROFESSOR P
 		LEFT OUTER JOIN TB_CLASS C ON P.PROFESSOR_ID = C.PROFESSOR_ID
 		LEFT OUTER JOIN TB_EVALUATION E ON C.CLASS_SEQ = E.CLASS_SEQ
 		WHERE C.PROFESSOR_ID = #{profId} AND C.CLASS_YEAR = #{classYear} AND C.CLASS_SEMESTER = #{classSemester} AND CLASS_APPROVE = 'Y'
+		-->
+		
+		SELECT C.CLASS_SEQ, C.CLASS_CODE, C.CLASS_NAME, C.ROOM, C.CLASS_TYPE, P.NAME, P.PROFESSOR_ID
+		FROM TB_PROFESSOR P
+		LEFT OUTER JOIN TB_CLASS C ON P.PROFESSOR_ID = C.PROFESSOR_ID
+		WHERE C.PROFESSOR_ID = #{profId} AND C.CLASS_YEAR = #{classYear} AND C.CLASS_SEMESTER = #{classSemester} AND CLASS_APPROVE = 'Y'
  	</select>
  	
- 	<select id="lectureEvaluationDetail" parameterType="LectureEvaluation" resultMap="EvaluationDetailResultSet">
+	<!-- 교수 강의 평가 조회 -->
+    <select id="selectProfEvaluation" parameterType="EvaluationResult" resultMap="EvaluationResultSetTest">
+		SELECT C.CLASS_SEQ, C.CLASS_CODE, C.CLASS_NAME, E.EVAL_NO, EVAL_ONE, EVAL_TWO, EVAL_THREE, EVAL_FOUR, EVAL_FIVE, EVAL_SIX, EVAL_SEVEN, EVAL_EIGHT, EVAL_NINE, EVAL_TEN
+		FROM TB_EVALUATION E
+		LEFT OUTER JOIN TB_CLASS C ON E.CLASS_SEQ = C.CLASS_SEQ
+		WHERE C.PROFESSOR_ID = #{profId}
+ 	</select>
+ 	
+ 	<!-- 교수 강의 평가 상세 조회 -->
+ 	<select id="lectureEvaluationDetail" parameterType="EvaluationResult" resultMap="EvaluationResultSetTest">
  		SELECT * FROM TB_EVALUATION E
 		LEFT OUTER JOIN TB_CLASS C ON E.CLASS_SEQ = C.CLASS_SEQ
 		WHERE C.PROFESSOR_ID = #{profId} AND C.CLASS_SEQ = #{classSeq}

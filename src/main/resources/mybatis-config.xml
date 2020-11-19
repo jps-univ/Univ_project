@@ -18,6 +18,7 @@
 		<typeAlias type="com.kh.univ.lecture.model.vo.LectureTime" alias="LectureTime"/>
 		<typeAlias type="com.kh.univ.lecture.model.vo.LectureApplication" alias="LectureApplication"/>
 		<typeAlias type="com.kh.univ.lecture.model.vo.LectureEvaluation" alias="LectureEvaluation"/>
+		<typeAlias type="com.kh.univ.lecture.model.vo.EvaluationResult" alias="EvaluationResult"/>
 		<typeAlias  type="com.kh.univ.lecture.model.vo.SearchCondition" alias="SearchCondition"/>
         <typeAlias type="com.kh.univ.test.model.vo.Test" alias="Test"/>
         <typeAlias type="com.kh.univ.salary.model.vo.Salary" alias="Salary"/>

@@ -68,7 +68,6 @@ public class ProfessorMyPageController
 		Professor professor = (Professor)session.getAttribute("loginUser");
 
 		ArrayList<Consulting> consult = mpService.selectApply(professor);
-		System.out.println(consult);
 
 		mv.addObject("consult", consult);
 
@@ -174,6 +173,7 @@ public class ProfessorMyPageController
 	{
 		Professor professor = (Professor)session.getAttribute("loginUser");
 
+		
 		int profId = professor.getProfId();
 		int classYear = lecture.getClassYear();
 		int classSemester = lecture.getClassSemester();
@@ -217,8 +217,6 @@ public class ProfessorMyPageController
 	@RequestMapping("rejectConsulting.do")
 	public String RejectConsulting(HttpSession session, Consulting consulting)
 	{
-		System.out.println(consulting);
-				
 		int result = mpService.rejectConsulting(consulting);
 		
 		if(result > 0) 
@@ -236,8 +234,6 @@ public class ProfessorMyPageController
 	@RequestMapping("completeConsulting.do")
 	public String CompleteConsulting(HttpSession session, Consulting consulting)
 	{
-		System.out.println(consulting);
-		
 		int result = mpService.completeConsulting(consulting);
 		
 		if(result > 0) 
@@ -255,8 +251,6 @@ public class ProfessorMyPageController
 	@RequestMapping("changeConsulting.do")
 	public String ChangeConsulting(HttpSession session, Consulting consulting)
 	{
-		System.out.println(consulting);
-		
 		int result = mpService.changeConsulting(consulting);
 		
 		if(result > 0) 

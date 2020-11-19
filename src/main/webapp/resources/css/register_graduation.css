@@ -1,17 +1,14 @@
 html, body {
-
     /* margin: 0; */
-
     height: 100%;
-
-    overflow: hidden;
-
+    overflow: hidden; 
 }
 
 .content{
     /* background-color: #eeeded; */
     width: 100%;
     /* height: 100%; */
+   /*  overflow-y:hidden; width:1000px; height:1000px; */
 }
 
 .top{
@@ -38,7 +35,6 @@ html, body {
     font-size: 12px;
 }
 
-
 .warn_2{
     background-color: #E4E4E4 ;
     border: 1px solid #868686 ;
@@ -60,14 +56,13 @@ html, body {
     display: inline-block;
 }
 
-.button{
+#button{
     width: 90px;
     height: 25px;
     font-size: 10pt;
     background-color: #E4E4E4;
-    border: 1px solid #868686;
+    border: 1px solid #868686; 
     border-radius: 5px;
-
     font-size: 10pt;
     display: inline-block;
     margin-left: 72%;
@@ -77,12 +72,6 @@ html, body {
 }
 
 .request{
-    /* background-color: #e9e9fe;
-    border: 1px solid blue; */
-    /* background-color: #E4E4E4 ;
-    border: 1px solid #868686 ;
-    width: 65%;
-    height: 20%; */
     text-align: center;
     margin: auto;
     display: block;
@@ -92,14 +81,6 @@ html, body {
     bottom: 20px;
 }
 
-/* .submit{
-    width: 90px;
-    height: 25px;
-    font-size: 10pt;
-    background-color: #E4E4E4;
-    border: 1px solid #868686;
-    border-radius: 5px;
-} */
 
 /*졸학신청부분*/
  .con1{
@@ -111,14 +92,8 @@ html, body {
     height: 20%;
 }
 
-/* .con2{
-    position: relative;
-    bottom: 30px;
-} */
 
 .list{
-    /* display: flex;
-    justify-content: space-around; */
     font-size: 10pt;
     position: relative;
     left: 10px;

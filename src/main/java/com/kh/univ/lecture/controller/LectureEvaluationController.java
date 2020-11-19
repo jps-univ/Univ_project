@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.lecture.model.service.LectureEvaluationService;
+import com.kh.univ.lecture.model.vo.EvaluationResult;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.lecture.model.vo.LectureEvaluation;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
-import com.kh.univ.mypage.model.service.ProfessorMyPageService;
 
 @Controller
 public class LectureEvaluationController 
@@ -45,30 +45,31 @@ public class LectureEvaluationController
      * 1_2 . 강의평가 하기전에 자신이 듣고 있는 강의 중 선택하는 창
      * @return
      */
+    /*
     @RequestMapping("lecture_evaluation_select.do")
     public ModelAndView lectureEvaluationSelect(ModelAndView mv, Lecture lecture, HttpSession session) 
     {
 		Student student = (Student)session.getAttribute("loginUser");
 
-		/*
-		Calendar cal = new GregorianCalendar();
-		Date d = new Date(cal.getTimeInMillis());
-		*/
+		
+//		Calendar cal = new GregorianCalendar();
+//		Date d = new Date(cal.getTimeInMillis());
+		
 		
 		int stdId = student.getStdId();
 		int classYear = 2021;
 		int classSemester = 1;
 		
-		/*
-		if(m < 7)
-		{
-			classSemester = 1;
-		}
-		else 
-		{
-			classSemester = 2;
-		}
-		*/
+
+//		if(m < 7)
+//		{
+//			classSemester = 1;
+//		}
+//		else 
+//		{
+//			classSemester = 2;
+//		}
+
 
 		Map map = new HashMap();
 		
@@ -78,17 +79,71 @@ public class LectureEvaluationController
 
 		ArrayList<Lecture> schedule = leService.selectStdSchdule(map);
 		
-		System.out.println(schedule);
-		System.out.println(schedule.size());
 		mv.addObject("schedule", schedule);
     	
 		mv.setViewName("lectureManagement/lecture_evaluation_select");
 
 		return mv;
     }
+    */
+    
+    @RequestMapping("lecture_evaluation_select.do")
+    public ModelAndView lectureEvaluationSelect(ModelAndView mv, EvaluationResult evaluation, HttpSession session) 
+    {
+    	Student student = (Student)session.getAttribute("loginUser");
+    	
+    	evaluation.setStdId(student.getStdId());
+    	evaluation.setClassYear(2021);
+    	evaluation.setClassSemester(1);
+    	    	    	
+    	ArrayList<EvaluationResult> schedule = leService.selectStdSchdule(evaluation);
+    	ArrayList<EvaluationResult> list = leService.selectStdEvaluation(evaluation);
+    	ArrayList<EvaluationResult> result = new ArrayList<>();
+    	
+    	for(int i = 0; i < schedule.size(); i++)
+    	{
+    		
+    		for(int j = 0; j < list.size(); j++)
+    		{
+    			
+    			if(schedule.get(i).getClassSeq() == list.get(j).getClassSeq())
+    			{
+    				int evalNo = list.get(j).getEvalNo();
+					int evalOne = list.get(j).getEvalOne();
+					int evalTwo = list.get(j).getEvalTwo();
+					int evalThree = list.get(j).getEvalThree();
+					int evalFour = list.get(j).getEvalFour();
+					int evalFive = list.get(j).getEvalFive();
+					int evalSix = list.get(j).getEvalSix();
+					int evalSeven = list.get(j).getEvalSeven();
+					int evalEight = list.get(j).getEvalEight();
+					int evalNine = list.get(j).getEvalNine();
+					int evalTen = list.get(j).getEvalTen();
+					
+					schedule.get(i).setEvalNo(evalNo);
+					schedule.get(i).setEvalOne(evalOne);
+					schedule.get(i).setEvalTwo(evalTwo);
+					schedule.get(i).setEvalThree(evalThree);
+					schedule.get(i).setEvalFour(evalFour);
+					schedule.get(i).setEvalFive(evalFive);
+					schedule.get(i).setEvalSix(evalSix);
+					schedule.get(i).setEvalSeven(evalSeven);
+					schedule.get(i).setEvalEight(evalEight);
+					schedule.get(i).setEvalNine(evalNine);
+					schedule.get(i).setEvalTen(evalTen);
+    			}
+    		}
+    	}
+    	
+    	mv.addObject("schedule", schedule);
+    	
+    	mv.setViewName("lectureManagement/lecture_evaluation_select");
+    	
+    	return mv;
+    }
     
     /**
-     * 학생 강의 평가지 제출
+     * 학생 강의 평가 제출
      * @param evaluation
      * @return
      */
@@ -96,8 +151,6 @@ public class LectureEvaluationController
     @RequestMapping("lecture_evaluation_submit.do")
     public String lectureEvaluationSubmit(LectureEvaluation evaluation)
     {
-    	System.out.println(evaluation);
-    	
     	int result = leService.evaluationSubmit(evaluation);
     	
     	if(result > 0)
@@ -121,25 +174,169 @@ public class LectureEvaluationController
         return "lectureManagement/lecture_evaluation_check";
     }
     
+    /*
 	@ResponseBody
 	@RequestMapping("professorLecture.do")
-	public ModelAndView ProfessorSchedule(ModelAndView mv, Model model, Lecture lecture, HttpSession session)
+	public ModelAndView ProfessorSchedule(ModelAndView mv, Model model, EvaluationResult evaluation, HttpSession session)
 	{
 		Professor professor = (Professor)session.getAttribute("loginUser");
+		evaluation.setProfId(professor.getProfId());
+		
+		ArrayList<EvaluationResult> result = leService.selectProfSchdule(evaluation);
+		
+		ArrayList<EvaluationResult> list = new ArrayList<>();
 
-		int profId = professor.getProfId();
-		int classYear = lecture.getClassYear();
-		int classSemester = lecture.getClassSemester();
-
-		Map map = new HashMap();
-
-		map.put("profId", profId);
-		map.put("classYear", classYear);
-		map.put("classSemester", classSemester);
-
-		ArrayList<Lecture> schedule = leService.selectProfSchdule(map);
+		for(int i = 0; i < result.size() - 1; i++)
+		{
+			for(int j = i + 1; j < result.size(); j++)
+			{
+				System.out.println(i + " : " + j + " = " + (result.get(i).getClassSeq() == result.get(j).getClassSeq()));
+				
+				if(result.get(j).getClassSeq() == result.get(i).getClassSeq())
+				{
+					int evalOne = result.get(i).getEvalOne() + result.get(j).getEvalOne();
+					int evalTwo = result.get(i).getEvalTwo() + result.get(j).getEvalTwo();
+					int evalThree = result.get(i).getEvalThree() + result.get(j).getEvalThree();
+					int evalFour = result.get(i).getEvalFour() + result.get(j).getEvalFour();
+					int evalFive = result.get(i).getEvalFive() + result.get(j).getEvalFive();
+					int evalSix = result.get(i).getEvalSix() + result.get(j).getEvalSix();
+					int evalSeven = result.get(i).getEvalSeven() + result.get(j).getEvalSeven();
+					int evalEight = result.get(i).getEvalEight() + result.get(j).getEvalEight();
+					int evalNine = result.get(i).getEvalNine() + result.get(j).getEvalNine();
+					int evalTen = result.get(i).getEvalTen() + result.get(j).getEvalTen();
+					
+					result.get(i).setEvalOne(evalOne);
+					result.get(i).setEvalTwo(evalTwo);
+					result.get(i).setEvalThree(evalThree);
+					result.get(i).setEvalFour(evalFour);
+					result.get(i).setEvalFive(evalFive);
+					result.get(i).setEvalSix(evalSix);
+					result.get(i).setEvalSeven(evalSeven);
+					result.get(i).setEvalEight(evalEight);
+					result.get(i).setEvalNine(evalNine);
+					result.get(i).setEvalTen(evalTen);
+					
+					list.add(result.get(i));
+				}
+				else
+				{
+					list.add(result.get(j));
+				}
+			}
+		}
+		
+		ArrayList<EvaluationResult> schedule = new ArrayList<>();
+		
+		for(EvaluationResult l : list)
+		{
+			if(!schedule.contains(l))
+			{
+				schedule.add(l);
+			}
+		}
 
 		mv.addObject("schedule", schedule);
+
+		mv.setViewName("lectureManagement/lecture_evaluation_check");
+
+		return mv;
+	}
+	*/
+    
+    @ResponseBody
+	@RequestMapping("professorLecture.do")
+	public ModelAndView ProfessorSchedule(ModelAndView mv, Model model, EvaluationResult evaluation, HttpSession session)
+	{
+		Professor professor = (Professor)session.getAttribute("loginUser");
+		evaluation.setProfId(professor.getProfId());
+		
+		ArrayList<EvaluationResult> result = leService.selectProfSchdule(evaluation);
+		ArrayList<EvaluationResult> list = leService.selectProfEvaluation(evaluation);
+		ArrayList<EvaluationResult> sum = new ArrayList<>();
+		
+		if(list.size() > 1)
+		{
+			for(int i = 0; i < list.size() - 1; i++)
+			{
+				for(int j = i + 1; j < list.size(); j++)
+				{
+					if(list.get(j).getClassSeq() == list.get(i).getClassSeq())
+					{
+						int evalOne = list.get(i).getEvalOne() + list.get(j).getEvalOne();
+						int evalTwo = list.get(i).getEvalTwo() + list.get(j).getEvalTwo();
+						int evalThree = list.get(i).getEvalThree() + list.get(j).getEvalThree();
+						int evalFour = list.get(i).getEvalFour() + list.get(j).getEvalFour();
+						int evalFive = list.get(i).getEvalFive() + list.get(j).getEvalFive();
+						int evalSix = list.get(i).getEvalSix() + list.get(j).getEvalSix();
+						int evalSeven = list.get(i).getEvalSeven() + list.get(j).getEvalSeven();
+						int evalEight = list.get(i).getEvalEight() + list.get(j).getEvalEight();
+						int evalNine = list.get(i).getEvalNine() + list.get(j).getEvalNine();
+						int evalTen = list.get(i).getEvalTen() + list.get(j).getEvalTen();
+						
+						list.get(i).setEvalOne(evalOne);
+						list.get(i).setEvalTwo(evalTwo);
+						list.get(i).setEvalThree(evalThree);
+						list.get(i).setEvalFour(evalFour);
+						list.get(i).setEvalFive(evalFive);
+						list.get(i).setEvalSix(evalSix);
+						list.get(i).setEvalSeven(evalSeven);
+						list.get(i).setEvalEight(evalEight);
+						list.get(i).setEvalNine(evalNine);
+						list.get(i).setEvalTen(evalTen);
+						
+						int p = j;
+						p++;
+						list.get(i).setPerson(p);
+						
+						sum.add(list.get(i));
+						list.get(j).setClassSeq(0);
+					}
+					else
+					{
+						sum.add(list.get(j));
+					}
+				}
+			}
+		}
+		
+		if(sum.size() > 0)
+		{
+			for(int i = 0; i < result.size(); i++)
+			{
+				for(int j = 0; j < sum.size(); j++)
+				{
+					if(result.get(i).getClassSeq() == sum.get(j).getClassSeq())
+					{
+	    				int evalNo = sum.get(j).getEvalNo();
+						int evalOne = sum.get(j).getEvalOne();
+						int evalTwo = sum.get(j).getEvalTwo();
+						int evalThree = sum.get(j).getEvalThree();
+						int evalFour = sum.get(j).getEvalFour();
+						int evalFive = sum.get(j).getEvalFive();
+						int evalSix = sum.get(j).getEvalSix();
+						int evalSeven = sum.get(j).getEvalSeven();
+						int evalEight = sum.get(j).getEvalEight();
+						int evalNine = sum.get(j).getEvalNine();
+						int evalTen = sum.get(j).getEvalTen();
+						int person = sum.get(j).getPerson();
+						
+						result.get(i).setEvalOne(evalOne);
+						result.get(i).setEvalTwo(evalTwo);
+						result.get(i).setEvalThree(evalThree);
+						result.get(i).setEvalFour(evalFour);
+						result.get(i).setEvalFive(evalFive);
+						result.get(i).setEvalSix(evalSix);
+						result.get(i).setEvalSeven(evalSeven);
+						result.get(i).setEvalEight(evalEight);
+						result.get(i).setEvalNine(evalNine);
+						result.get(i).setEvalTen(evalTen);
+						result.get(i).setPerson(person);
+					}
+				}
+			}
+		}
+		
+		mv.addObject("schedule", result);
 
 		mv.setViewName("lectureManagement/lecture_evaluation_check");
 
@@ -160,17 +357,14 @@ public class LectureEvaluationController
 	
 	@ResponseBody
     @RequestMapping("selectEvaluationDetail.do")
-    public ModelAndView lectureEvaluationDetail(ModelAndView mv, Model model, LectureEvaluation lectureEvaluation, HttpSession session) 
+    public ModelAndView lectureEvaluationDetail(ModelAndView mv, Model model, EvaluationResult evaluation, HttpSession session) 
     {
 		Professor professor = (Professor)session.getAttribute("loginUser");
-		
-		lectureEvaluation.setProfId(professor.getProfId());
-		System.out.println("1 : " + lectureEvaluation);
+		evaluation.setProfId(professor.getProfId());
 
-		ArrayList<LectureEvaluation> evaluation = leService.selectEvaluationDetail(lectureEvaluation);
-
-		System.out.println("2 : " + evaluation);
-		mv.addObject("evaluation", evaluation);
+		ArrayList<EvaluationResult> result = leService.selectEvaluationDetail(evaluation);
+	
+		mv.addObject("evaluation", result);
 
 		mv.setViewName("lectureManagement/lecture_evaluation_detail");
 

@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
+<link rel="stylesheet" href="${contextPath}/resources/css/lecture_evaluation.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -35,9 +36,10 @@
               	<c:import url="../common/topbar_professor.jsp"/>
                 <!-- End of Topbar -->
                 
+               	<div class="top">
+	            	<h1>강의평가 조회</h1>
+	        	</div>
                 <div class="container-fluid">
-                    <h2 class="h3 mb-2 text-gray-800">강의평가 조회</h2>
-                    <a href="lecture_evaluation_detail.do">상세페이지로가자</a>
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
 
@@ -81,21 +83,24 @@
                                     </thead>
                                     <tbody>
                                     	<c:forEach var="s" items="${ schedule }" varStatus="status">
-                                    	<form action="selectEvaluationDetail.do" method="post">
-	                                        <tr align="center">
-	                                        	<td>${ status.count }</td>
-	                                            <td>${ s.classCode }</td>
-	                                            <td>${ s.className }</td>
-	                                            <td>${ s.room }</td>
-	                                            <td>${ s.classType }</td>
-	                                            <td>${ s.evaluation.evalOne }</td>
-	                                            <td>
-	                                            	<!-- <input type="button" class="btn btn-primary" value="상세 보기" id="evaluationDetailBtn" onclick="evaluationDetail(event)"> -->
-	                                            	<input type="hidden" id="hidden_consultingNo" name="classSeq" value="${ s.classSeq }">
-	                                            	<button type="submit" class="btn btn-primary">상세보기</button>
-	                                            </td>
-	                                        </tr>
-	                                    </form>
+<%-- 	                                    	<c:choose>
+	                                    	<c:when test=""></c:when> --%>
+	                                    	<form action="selectEvaluationDetail.do" method="post">
+		                                        <tr align="center">
+		                                        	<td>${ status.count }</td>
+		                                            <td>${ s.classCode }</td>
+		                                            <td>${ s.className }</td>
+		                                            <td>${ s.room }</td>
+		                                            <td>${ s.classType }</td>
+		                                            <td>${ (s.evalOne + s.evalTwo + s.evalThree + s.evalFour + s.evalFive + s.evalSix + s.evalSeven + s.evalEight + s.evalNine + s.evalTen) div (s.person * 10) }</td>
+		                                            <td>
+		                                            	<!-- <input type="button" class="btn btn-primary" value="상세 보기" id="evaluationDetailBtn" onclick="evaluationDetail(event)"> -->
+		                                            	<input type="hidden" id="hidden_consultingNo" name="classSeq" value="${ s.classSeq }">
+		                                            	<button type="submit" class="btn btn-primary">상세보기</button>
+		                                            </td>
+		                                        </tr>
+		                                    </form>
+	                                        <%-- </c:choose> --%>
 	                                    </c:forEach>
                                     </tbody>
                                 </table>
