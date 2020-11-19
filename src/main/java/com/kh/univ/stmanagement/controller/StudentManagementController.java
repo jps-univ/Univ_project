@@ -38,11 +38,11 @@ public class StudentManagementController {
 		
 		ArrayList<StudentManagement> list = smService.selectList(map);
 		
-		System.out.println(map);
+//		System.out.println(map);
 		
 		mv.addObject("list", list);
 		mv.setViewName("studentManagement/studentView");
-		System.out.println("처음페이지"+list);
+//		System.out.println("처음페이지"+list);
 //		if(classId != null) {
 //			
 //			ArrayList<StudentManagement> list2 = smService.selectListDetailList2(map);
@@ -56,7 +56,7 @@ public class StudentManagementController {
 	
 	@RequestMapping("stListDetail.do")
 	public ModelAndView StudentDetailView(ModelAndView mv, Model model, HttpSession session, StudentManagement stdM) {
-		
+		System.out.println("받아오기"+stdM);
 		Professor professor = (Professor)session.getAttribute("loginUser");
 		
 		int profId = professor.getProfId();
@@ -69,7 +69,7 @@ public class StudentManagementController {
 		map.put("className", className);
 		
 		ArrayList<StudentManagement> list = smService.selectDetailList(map);
-		
+		System.out.println("디비에서 가져오나요?"+list);
 		System.out.println(map);
 		
 		mv.addObject("list", list);
