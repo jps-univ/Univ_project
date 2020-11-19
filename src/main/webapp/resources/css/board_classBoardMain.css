@@ -155,95 +155,112 @@ ul li{
 }
 
 /*------------------------본문-----------------*/
+/* 맨위 글씨 */
+.professor_info{width:65%; height: 100%;}
+
+.semi_notice{width:35%; height:100%;}
 
 
-/* 공지사항, 등록하기 버튼 */
-#title_button{
-    width: 100%;
-    margin-top: 60px;
-    height: 60px;
- }
+.professor_info{width: 100%;}
 
- #board_title{
+.professor_info tbody tr td:nth-child(1){
+    width: 15%;
+}
+
+.professor_info tbody tr td:nth-child(2){
+    width: 55%;
+    font-size: 35px;
     font-family: 'Nanum Gothic Coding', monospace;
-    font-size: 30px;
     font-weight: 700;
-    color: black;
-    margin-left: 15%;
- }
+    color: rgb(45, 45, 45);
+}
 
- #board_button{
+.professor_info tbody tr td:nth-child(3){
+    width: 30%;
+}
+
+#semi_title{margin-left: 18%;
+    margin-bottom: 43px;}
+
+
+
+
+ margin-left: 120%;
+}
+/* 타이틀  */
+
+
+
+/* 학기 title */
+/* #select_title{
     position: relative;
-    float: right;
-    top: 33px;
-    margin-right: 31%;
-    border-radius: 3px;
- }
+    margin: 0;
+    left: 16%;
+    margin-top: 30px;
+    font-family: 'Nanum Gothic Coding', monospace;
+    font-weight: 900;
+    color: black;
+} */
 
 
- #rest_table_area{
+/* #main_con{
+    border: 1px solid red;
+} */
+
+
+
+/* # 표 부분 */
+#rest_table_area{
     padding: 10px; 
     height: 30%;
-    margin-top: 25px;
-    background-color: white;
-/*     border-top: 1px solid rgb(136, 130, 130);
-    border-bottom: 1px solid rgb(136, 130, 130); */
-    border-radius: 7px;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+
+    margin-top: 45px;
     }
     
-    #rest_notice{
-    width: 97%;
+    #rest_lecture{
+    width: 85%;
     border-top: 5px solid rgb(46, 109, 151);
     color: #808080;
-    margin-top: 25px;
-    margin-bottom: 25px;
-
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
+    /* margin-left: auto;
+    margin-right: auto; */
     
     }
-
- #rest_notice tr{
+    
+    #rest_lecture tr{
     height: 30px;
     border-bottom: solid rgb(149, 149, 150) 1px;
     text-align: center;
     
     }
-    #rest_notice  tbody tr:nth-child(2n-1){
+    #rest_lecture  tbody tr:nth-child(2n-1){
     background: #f8f6ff;
     }
     
-    #rest_notice thead tr th{
+    #rest_lecture thead tr th{
         text-align: center;
     }
-    /* #rest_lecture thead tr th:first-child,
-    #rest_lecture thead tr th:nth-child(2){
-        width: 80px;
-    }
-    #rest_lecture thead tr th:nth-child(6){
-    width: 300px;
-    } */
+    
 
-    #rest_notice thead tr th:nth-child(1){
-        width: 10%;
+    /* 표 여백 지정 */
+    #rest_lecture thead tr th:nth-child(1){
+        width: 100%;
     }
-    #rest_notice thead tr th:nth-child(2){
-        width: 40%;
-    }
-    #rest_notice thead tr th:nth-child(3){
-        width: 20%;
-    }
-    #rest_notice thead tr th:nth-child(4){
-        width: 20%;
-    }
-    #rest_notice thead tr th:nth-child(5){
-        width: 10%;
+    
+
+    #rest_lecture thead tr th div{
+        display: inline-block;
+        float: left;
+        margin-left: 5%;
+        font-size: 13px;
     }
 
-    #rest_notice tr p{
+    #rest_lecture tbody tr td div{
+        font-size:10px;
+    }
+
+    #rest_lecture tr p{
     margin-bottom: 0;
     
     }
+

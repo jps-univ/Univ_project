@@ -155,8 +155,6 @@ ul li{
 }
 
 /*------------------------본문-----------------*/
-
-
 /* 공지사항, 등록하기 버튼 */
 #title_button{
     width: 100%;
@@ -186,8 +184,8 @@ ul li{
     height: 30%;
     margin-top: 25px;
     background-color: white;
-/*     border-top: 1px solid rgb(136, 130, 130);
-    border-bottom: 1px solid rgb(136, 130, 130); */
+    /* border-top: 1px solid rgb(136, 130, 130); */
+    /* border-bottom: 1px solid rgb(136, 130, 130); */
     border-radius: 7px;
     width: 80%;
     margin-left: auto;
@@ -205,6 +203,10 @@ ul li{
     margin-right: auto;
     
     }
+
+
+
+/* 표 안에 설정 */
 
  #rest_notice tr{
     height: 30px;
