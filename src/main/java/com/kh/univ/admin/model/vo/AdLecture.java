@@ -16,6 +16,7 @@ public class AdLecture {
     private int classLevel;			// 수강 학년-
     private String classType;		// 이수 구분-
     
+    
     private String total;			// 강의시간 합치기
     private String proName;
 	public AdLecture() {

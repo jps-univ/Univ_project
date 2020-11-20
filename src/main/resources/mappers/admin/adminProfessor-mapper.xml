@@ -95,6 +95,5 @@ UPDATE TB_PROFESSOR SET
 	ACCOUNT_HOLDER = #{profAccountHolder},
 	BANK = #{profBank}
 WHERE PROFESSOR_ID = #{profId}
-
 </update>
 </mapper>

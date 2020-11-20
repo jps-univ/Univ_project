@@ -26,4 +26,8 @@ public interface AdLectureService {
 
 	AdLecture findLecture(AdLecture adLecture);
 
+	AdLecture lectureSelectOne(int classSeq);
+
+	ArrayList<AdLecture> lectureApprove();
+
 }

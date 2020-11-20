@@ -23,6 +23,7 @@ public class EvaluationResult
 	private int evalTen;
 	private int classYear;
 	private int classSemester;
+	private int person;
 	public EvaluationResult() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -30,7 +31,7 @@ public class EvaluationResult
 	public EvaluationResult(int classSeq, String classCode, String className, int profId, String profName, String room,
 			String classType, int evalNo, int stdId, int evalOne, int evalTwo, int evalThree, int evalFour,
 			int evalFive, int evalSix, int evalSeven, int evalEight, int evalNine, int evalTen, int classYear,
-			int classSemester) {
+			int classSemester, int person) {
 		super();
 		this.classSeq = classSeq;
 		this.classCode = classCode;
@@ -53,15 +54,7 @@ public class EvaluationResult
 		this.evalTen = evalTen;
 		this.classYear = classYear;
 		this.classSemester = classSemester;
-	}
-	@Override
-	public String toString() {
-		return "EvaluationResult [classSeq=" + classSeq + ", classCode=" + classCode + ", className=" + className
-				+ ", profId=" + profId + ", profName=" + profName + ", room=" + room + ", classType=" + classType
-				+ ", evalNo=" + evalNo + ", stdId=" + stdId + ", evalOne=" + evalOne + ", evalTwo=" + evalTwo
-				+ ", evalThree=" + evalThree + ", evalFour=" + evalFour + ", evalFive=" + evalFive + ", evalSix="
-				+ evalSix + ", evalSeven=" + evalSeven + ", evalEight=" + evalEight + ", evalNine=" + evalNine
-				+ ", evalTen=" + evalTen + ", classYear=" + classYear + ", classSemester=" + classSemester + "]";
+		this.person = person;
 	}
 	public int getClassSeq() {
 		return classSeq;
@@ -188,6 +181,22 @@ public class EvaluationResult
 	}
 	public void setClassSemester(int classSemester) {
 		this.classSemester = classSemester;
+	}
+	public int getPerson() {
+		return person;
+	}
+	public void setPerson(int person) {
+		this.person = person;
+	}
+	@Override
+	public String toString() {
+		return "EvaluationResult [classSeq=" + classSeq + ", classCode=" + classCode + ", className=" + className
+				+ ", profId=" + profId + ", profName=" + profName + ", room=" + room + ", classType=" + classType
+				+ ", evalNo=" + evalNo + ", stdId=" + stdId + ", evalOne=" + evalOne + ", evalTwo=" + evalTwo
+				+ ", evalThree=" + evalThree + ", evalFour=" + evalFour + ", evalFive=" + evalFive + ", evalSix="
+				+ evalSix + ", evalSeven=" + evalSeven + ", evalEight=" + evalEight + ", evalNine=" + evalNine
+				+ ", evalTen=" + evalTen + ", classYear=" + classYear + ", classSemester=" + classSemester + ", person="
+				+ person + "]";
 	}
 	
 }
