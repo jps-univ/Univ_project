@@ -63,6 +63,7 @@
         <mapper resource="mappers/Salary/salary-mapper.xml"/>
         <mapper resource="mappers/classBoard/classBoard-mapper.xml"/>
         <mapper resource="mappers/board/board-mapper.xml"/> 
+        <mapper resource="mappers/register/register-mapper.xml"/>
         
         <!-- 관리자 mappers -->
         <mapper resource="mappers/admin/adminStudent-mapper.xml"/>

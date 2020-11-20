@@ -22,7 +22,7 @@
 	<link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
 	
 	<!-- Custom styles for this page -->
-	<link href="${contextPath}/resources/css/register_leave.css" rel="stylesheet">
+	<link href="${contextPath}/resources/css/register_leave.css?ver=1" rel="stylesheet">
 	<%--    <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />--%>
 	<style>
 
@@ -99,25 +99,25 @@
                 <div>
                     <dl class="line" style="position: static;">
                         <dt style="color: #c5d9e8;">휴학신청상태</dt>
-                        <dd style="margin: auto;">처리완료</dd>
+                        <dd style="margin: auto;">${ studentLeave.stdStatus }</dd>
                     </dl>
                   </div>
                   <div>
                     <dl class="line" style="position: relative; bottom: 49px; left: 110px;">
                         <dt style="color: #c5d9e8;">현재학적상태</dt>
-                        <dd style="margin: auto;">휴학</dd>
+                        <dd style="margin: auto;">${ studentLeave.stdStatus }</dd>
                     </dl>
                   </div>
                   <div>
                     <dl class="line" style="position: relative; bottom: 30px;">
                         <dt style="color: #c5d9e8;">최종등록년도/학기</dt>
-                        <dd style="margin: auto;">2019/2</dd>
+                        <dd style="margin: auto;"></dd>
                     </dl>
                   </div>
                   <div>
                     <dl class="line" style="position: relative; bottom: 79px; left: 110px;">
                         <dt style="color: #c5d9e8;">최종등록일자</dt>
-                        <dd style="margin: auto;">2019/10/16</dd>
+                        <dd style="margin: auto;"></dd>
                     </dl>
                   </div>
                 </div>
@@ -125,19 +125,23 @@
             <div class="con3">
               <h4 class="list">휴학사유및기간</h4>
               <div class="box"> 
-              <select class="select" >
+              <select class="select" id="select_1" onChange="changeLeave()">
                 <option>==== 선택 ====</option>
-                <option>일반휴학</option>
-                <option>입영휴학</option>
-                <option>질병휴학</option>
-                <option>임신출산육아휴학</option>
-                <option>창업휴학</option>
-                <option>재휴학</option>
+                <option value="일반휴학">일반휴학</option>
+                <option value="입영휴학">입영휴학</option>
+                <option value="질병휴학">질병휴학</option>
+                <option value="임신출산육아휴학">임신출산육아휴학</option>
+                <option value="창업휴학">창업휴학</option>
+                <option value="재휴학">재휴학</option>
               </select>
-              <select class="select" >
+              <select class="select" id="set1">
                 <option>==== 선택 ====</option>
                 <option>6개월</option>
                 <option>1년</option>
+                <option>2년</option>
+              </select>
+              <select class="select" id="set2">
+                <option>==== 선택 ====</option>
                 <option>2년</option>
               </select>
               <button class="select" onclick="button_leave();">신청하기</button>
@@ -152,13 +156,13 @@
                 <div>
               <dl class="line" style="position: static;">
                 <dt style="color: #c5d9e8;">휴학년도/학기</dt>
-                <dd style="margin: auto;">2020/2</dd>
+                <dd style="margin: auto;"></dd>
               </dl>
               </div>
               <div>
               <dl class="line" style="position: relative; bottom: 49px; left: 100px;">
                 <dt style="color: #c5d9e8;">복학년도/학기</dt>
-                <dd style="margin: auto;">2021/1</dd>
+                <dd style="margin: auto;"></dd>
               </dl>
             </div> 
             </div>
@@ -171,6 +175,21 @@
       <!-- End of Main Content -->
       
       <script src="<%=request.getContextPath()%>/resources/js/register_button.js"></script>
+		
+	   <script>
+	       function changeLeave(){
+	    	   var select_1 = $('#select_1').children('option:selected').val();
+	    	   console.log(select_1);
+	    	   
+	    	   if(select_1 == '입영휴학'){
+	    			$('#set2').css('display',"block");
+	    			 $('#set1').css('display',"none");
+	    	   } else{
+	    		   $('#set1').css('display',"block");
+	    		   $('#set2').css('display',"none");
+	    	   }
+	    	   }
+	   </script>
 				<!-- 여기까지 내용  -->
 
 			<!-- Footer -->
