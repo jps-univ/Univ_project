@@ -99,7 +99,7 @@
                 <div>
                     <dl class="line" style="position: static;">
                         <dt style="color: #c5d9e8;">휴학신청상태</dt>
-                        <dd style="margin: auto;">${ studentLeave.stdStatus }</dd>
+                        <dd id="" style="margin: auto;">${ studentLeave.stdStatus }</dd>
                     </dl>
                   </div>
                   <div>
@@ -125,7 +125,7 @@
             <div class="con3">
               <h4 class="list">휴학사유및기간</h4>
               <div class="box"> 
-              <select class="select" id="select_1" onChange="changeLeave()">
+              <select class="select" id="select_1" name="reasonsLeave" onChange="changeLeave()">
                 <option>==== 선택 ====</option>
                 <option value="일반휴학">일반휴학</option>
                 <option value="입영휴학">입영휴학</option>
