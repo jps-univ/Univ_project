@@ -20,8 +20,6 @@
 
 $(function(){
 	$("#College").change(function(){
-
-		
 		$.ajax({
 			url:"admin_Lecture_Department.do",
 			dataType:"json",
