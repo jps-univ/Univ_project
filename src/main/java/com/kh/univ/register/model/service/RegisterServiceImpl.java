@@ -13,10 +13,18 @@ public class RegisterServiceImpl implements RegisterService{
 	@Autowired
 	private RegisterDao rDao;
 	
+	// 휴학페이지
 	@Override
 	public Register selectLeave(Student studentL) {
 	
 		return rDao.selectLeave(studentL);
+	}
+
+	// 휴학신청
+	@Override
+	public int leaveApply(Register register) {
+		
+		return rDao.leaveApply(register);
 	}
 
 }

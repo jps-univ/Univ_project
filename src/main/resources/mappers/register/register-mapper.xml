@@ -31,4 +31,18 @@
      
   </select>
   
+  <insert id="leaveAppl">
+       INSERT INTO TB_STUDENT_STATUS 
+           (STATUS_NO,
+			STUDENT_ID,
+			STUDENT_STATUS,
+			APPLICATION_STATUS,
+			APPLICATION_DATE,
+			REASONS_LEAVE,
+			LEAVE_PERIOD)
+	  VALUES
+	  (SEQ_STATUS.NEXTVAL, #{stdId}, #{stdStatus}, '휴학신청중', SYSDATE, #{reasonsLeave}, #{leavePeriod})	
+	  	
+  </insert>
+  
   </mapper>

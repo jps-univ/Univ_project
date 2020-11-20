@@ -19,4 +19,10 @@ public class RegisterDao {
 		return sqlSession.selectOne("RegisterMapper.selectLeave", studentL);
 	}
 
+	// 휴학신청
+	public int leaveApply(Register register) {
+		
+		return sqlSession.insert("RegisterMapper.leaveApply", register);
+	}
+
 }
