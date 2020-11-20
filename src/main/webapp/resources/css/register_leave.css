@@ -111,6 +111,7 @@ html, body {
     margin-bottom: 10px;
 }
 
+#set1,#set2{display:none;}
 .con4{
     display: inline-block;
     margin-right: 100px;

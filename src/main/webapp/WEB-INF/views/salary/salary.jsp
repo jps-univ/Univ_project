@@ -115,83 +115,6 @@
                       <td>${ s.salaryTotal }</td>
                   </tr>
                   </c:forEach>
-<!--                   <tr class="line">
-                      <td>2019</td>
-                      <td>02</td>
-                      <td>기업은행</td>
-                      <td>990-009078-02-010</td>
-                      <td>12,777,000</td>
-                  </tr>
-                  <tr class="line">
-                      <td>2019</td>
-                      <td>03</td>
-                      <td>기업은행</td>
-                      <td>990-009078-02-010</td>
-                      <td>9,777,000</td>
-                  </tr>
-                  <tr class="line">
-                      <td>2019</td>
-                      <td>04</td>
-                      <td>기업은행</td>
-                      <td>990-009078-02-010</td>
-                      <td>9,777,000</td>
-                  </tr>
-                  <tr class="line">
-                      <td>2019</td>
-                      <td>05</td>
-                      <td>기업은행</td>
-                      <td>990-009078-02-010</td>
-                      <td>9,777,000</td>
-                  </tr>
-                  <tr class="line">
-                      <td>2019</td>
-                      <td>06</td>
-                      <td>기업은행</td>
-                      <td>990-009078-02-010</td>
-                      <td>9,777,000</td>
-                  </tr>
-                  <tr class="line">
-                      <td>2019</td>
-                      <td>07</td>
-                      <td>기업은행</td>
-                      <td>990-009078-02-010</td>
-                      <td>9,777,000</td>
-                  </tr>   
-                  <tr class="line">
-                      <td>2019</td>
-                      <td>08</td>
-                      <td>기업은행</td>
-                      <td>990-009078-02-010</td>
-                      <td>9,777,000</td>
-                  </tr>   
-                  <tr class="line">
-                      <td>2019</td>
-                      <td>09</td>
-                      <td>기업은행</td>
-                      <td>990-009078-02-010</td>
-                      <td>12,777,000</td>
-                  </tr>   
-                  <tr class="line">
-                      <td>2019</td>
-                      <td>10</td>
-                      <td>기업은행</td>
-                      <td>990-009078-02-010</td>
-                      <td>9,777,000</td>
-                  </tr>   
-                  <tr class="line">
-                      <td>2019</td>
-                      <td>11</td>
-                      <td>기업은행</td>
-                      <td>990-009078-02-010</td>
-                      <td>9,777,000</td>
-                  </tr>   
-                  <tr class="line">
-                      <td>2019</td>
-                      <td>12</td>
-                      <td>기업은행</td>
-                      <td>990-009078-02-010</td>
-                      <td>9,777,000</td>
-                  </tr>    -->
               </tbody>
             </table>
           </form>
@@ -231,13 +154,6 @@
             				$("#salaryTable tbody").empty();
             				$("#salaryTable").append();
 	              				for(var index =0; index < data.length;index++){
-	              				/* $("#salaryTable tbody").append("<tr>");
-            					$("#salaryTable tbody tr").append("<td><input type="+"radio "+"name ="+"checkRadio "+"id="+"checkRadio "+"value=" +data[index].salaryNo+">");
-            					$("#salaryTable tbody tr").append("<td>"+data[index].schoolYear);
-            					$("#salaryTable tbody tr").append("<td>"+data[index].schoolMonth);
-            					$("#salaryTable tbody tr").append("<td>"+data[index].profBank);
-            					$("#salaryTable tbody tr").append("<td>"+data[index].profAccount);
-            					$("#salaryTable tbody tr").append("<td>"+data[index].salaryTotal); */
             					var $tr =$('<tr>');
             					var $input= $("<td><input type="+"radio "+"name ="+"checkRadio "+"id="+"checkRadio "+"class="+"checkRadio "+"value=" +data[index].salaryNo+">");
             					var $schoolYear =$('<td>').text(data[index].schoolYear);
