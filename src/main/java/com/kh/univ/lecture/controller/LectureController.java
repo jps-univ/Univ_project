@@ -294,8 +294,8 @@ public class LectureController {
 
         int result = lectureService.requestRegisterClass(lecture);
         if (result > 0){
-            return "강의등록 요청이 완료되었습니다.";
-        }else return "강의등록 요청에 실패하였습니다";
+            return "ok";
+        }else return "fail";
     }
 
     /**
@@ -328,6 +328,6 @@ public class LectureController {
                 System.out.println(i+"번째 수업시간 인서트 실패");
             }
         }
-        return "시간표가 잘 등록되었습니다.";
+        return "ok";
     }
 }
