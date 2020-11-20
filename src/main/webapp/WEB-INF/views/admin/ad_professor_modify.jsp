@@ -173,24 +173,12 @@
                 <table id="total_std" class=" table-hover" >
                     <thead>
                         <tr>
-                            <th>
-                                <p>교번</p>
-                            </th>
-                            <th>
-                                <p>성명</p>
-                            </th>
-                            <th>
-                                <p>핸드폰</p>
-                            </th>
-                            <th>
-                                <p>대학</p>
-                            </th>
-                            <th>
-                                <p>담당학과</p>
-                            </th>
-                            <th>
-                                <p>연구실</p>
-                            </th>
+                            <th><p>교번</p></th>
+                            <th><p>성명</p></th>
+                            <th><p>핸드폰</p></th>
+                            <th><p>대학</p></th>
+                            <th><p>담당학과</p></th>
+                            <th><p>연구실</p></th>
                            
                         </tr>
                     </thead>

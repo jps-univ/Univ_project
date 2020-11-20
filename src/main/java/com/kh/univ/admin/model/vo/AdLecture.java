@@ -19,13 +19,15 @@ public class AdLecture {
     
     private String total;			// 강의시간 합치기
     private String proName;
+    private String collegeCode;
+    
 	public AdLecture() {
 		super();
 	}
 
 	public AdLecture(int classSeq, String classCode, String deptCode, int profId, String className, String room,
 			int gradeSize, int classSemester, int classYear, String classApprove, int classLevel, String classType,
-			String total, String proName) {
+			String total, String proName, String collegeCode) {
 		super();
 		this.classSeq = classSeq;
 		this.classCode = classCode;
@@ -41,7 +43,9 @@ public class AdLecture {
 		this.classType = classType;
 		this.total = total;
 		this.proName = proName;
+		this.collegeCode = collegeCode;
 	}
+
 
 	public int getClassSeq() {
 		return classSeq;
@@ -131,6 +135,18 @@ public class AdLecture {
 	public void setProName(String proName) {
 		this.proName = proName;
 	}
+	
+	public String getCollegeCode() {
+		return collegeCode;
+	}
+	
+	
+	
+	public void setCollegeCode(String collegeCode) {
+		this.collegeCode = collegeCode;
+	}
+
+
 
 	@Override
 	public String toString() {
@@ -138,8 +154,11 @@ public class AdLecture {
 				+ profId + ", className=" + className + ", room=" + room + ", gradeSize=" + gradeSize
 				+ ", classSemester=" + classSemester + ", classYear=" + classYear + ", classApprove=" + classApprove
 				+ ", classLevel=" + classLevel + ", classType=" + classType + ", total=" + total + ", proName="
-				+ proName + "]";
+				+ proName + ", collegeCode=" + collegeCode + "]";
 	}
+
+
+
 
 
     

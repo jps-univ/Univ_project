@@ -46,6 +46,9 @@
         <result property="classType" column="CLASS_TYPE"/>
         <result property="total" column="TOTAL"/>
         <result property="proName" column="PROFESSOR_NAME"/>
+        <result property="collegeCode" column="COLLEGE_CODE"/>
+        
+        
         
         
 
@@ -142,6 +145,7 @@
                a.CLASS_TYPE,
                subquery1.total,
                a.ROOM,
+               c.COLLEGE_CODE,
                a.CLASS_YEAR,
                a.CLASS_SEMESTER,
                a.GRADE_SIZE,

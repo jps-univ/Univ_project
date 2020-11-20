@@ -27,12 +27,111 @@
 				data:{
 					classSeq:$(this).parent().children().eq(0).text()
 				},success:function(lecture){
+					$("#LectureName").val(lecture.className);
+					$("#classCode").val(lecture.classCode);
+					$("#status").val(lecture.classType);
+					$("#College").val(lecture.collegeCode);
+					$.ajax({
+						url:"student_Modify_DeptCheck.do",
+            			dataType:"json",
+            			data:{
+            				collegeCode:$("#College").val()
+            			},success:function(dept){
+            				$("#departmentCode").empty();
+            				$('#departmentCode').append("<option><학과를 선택해주세요></option>");
+             				for(var index =0; index < dept.length;index++){
+            					var department = $("<option value="+ dept[index].departmentCode+ ">" + dept[index].departmentName +"</option>");
+            					$('#departmentCode').append(department);
+            				}
+             				$("#departmentCode").val(lecture.deptCode);
+            				$.ajax({
+            					url:"admin_Lecture_Professor.do",
+            					dataType:"json",
+            					data:{
+            						departmentCode :$("#departmentCode").val()
+            					},success:function(prof){
+            						var professorCode=$("#professorCode");
+            						professorCode.empty();
+        							professorCode.append("<option>교수를선택해주세요</option>");
+        							for(var p=0; p<prof.length;p++){
+        								var professorName = $("<option value="+prof[p].professorId+">"+prof[p].professorName+"</option>");
+        								professorCode.append(professorName);
+        								console.log(professorCode);
+        							}
+        							$("#professorCode").val(lecture.profId);
+            					}
+            				})
+            			},error:function(){
+            				console.log("전송 실패");
+            			}
+            			
+					});
+					
 					console.log(lecture);
+					$("#classTime").val(lecture.total);
+					$("#room").val(lecture.room);
+					$("#gradeSize").val(lecture.gradeSize);
+					$("#classYear").val(lecture.classYear);
+					$("#classSemester").val(lecture.classSemester);
+					$("#classLevel").val(lecture.classLevel);
+					
+					
 				},error:function(){
 					console.log("전송실패");
 				}
 			});
 		});
+	});
+	
+	$(function(){
+		$("#College").change(function(){
+			$.ajax({
+				url:"admin_Lecture_Department.do",
+				dataType:"json",
+				data:{
+					CollegeCode:$(this).val()
+				},success:function(data){
+					var deptChoose = "<option>학과를 선택해주세요</option>";
+					$("#professorCode").empty();
+					$("#professorCode").append(deptChoose);
+					
+					$("#departmentCode").empty();
+					$("#departmentCode").append(deptChoose)
+					for(var index =0;index<data.length;index++){
+						var department = $("<option value="+ data[index].departmentCode+ ">" + data[index].departmentName +"</option>");
+						$("#departmentCode").append(department);
+					}
+					$("#departmentCode").change(function(){
+						$.ajax({
+							url:"admin_Lecture_Professor.do",
+							dataType:"json",
+							data:{
+								departmentCode:$(this).val()
+							},success:function(prof){
+								console.log(prof);
+								var professorCode = $("#professorCode");
+								professorCode.empty();
+								professorCode.append("<option>교수를선택해주세요</option>");
+								for(var p=0; p<prof.length;p++){
+									var professorName = $("<option value="+prof[p].professorId+">"+prof[p].professorName+"</option>");
+									professorCode.append(professorName);
+									console.log(professorCode);
+								}
+								
+								
+								
+							},error:function(){
+								console.log("교수이름 전송실패");
+							}
+						})
+					});
+					
+				},error:function(){
+					console.log("전송실패");
+				}
+			});
+		});
+		
 	});
 
 
@@ -116,7 +215,7 @@
 			              <td><p>강의명</p></td>
 			              <td><input type="text" id="LectureName" class="LectureData" name="className"></td>
 						  <td><p>강의 코드</p></td>
-			              <td><input type="text"  class="LectureData" name="classCode"></td>
+			              <td><input type="text"  class="LectureData" name="classCode" id="classCode"></td>
 			            </tr>
             			 <tr>
 				              <td><p>이수 구분</p></td>
@@ -149,12 +248,12 @@
 				                	</select>
 				              	</td>
 				 				<td><p>강의시간</p></td>
-				              <td><input type="text" placeholder="ex) 월1/월2/화3"  class="LectureData" name="classTime"></td>
+				              <td><input type="text" placeholder="ex) 월1/월2/화3"  class="LectureData" name="classTime" id="classTime"></td>
 				            </tr>
 				            
 				            <tr>
 							  <td><p>강의실</p></td>
-				              <td><input type="text"  class="LectureData" name="room"></td>
+				              <td><input type="text"  class="LectureData" name="room" id="room"></td>
 				              <td><p>학점</p></td>
 				              <td><select name="gradeSize" id="gradeSize"  class="LectureData"  form="lectureForm">
 					                  <option value="0">-----</option>
@@ -165,20 +264,20 @@
 				            </tr>
                         	<tr>
 			              		<td><p>수강년도/학기</p></td>
-			              		<td><select  class="LectureData" name="classYear" form="lectureForm">
+			              		<td><select  class="LectureData" name="classYear" form="lectureForm" id="classYear">
 			             				<option value="0">선택</option >
 			             				<option value="2019">2019년</option>
 			             				<option value="2020">2020년</option>	
 			             				<option value="2021">2021년</option>	
 			             	  		</select>
-			             			<select  class="LectureData" name="classSemester" form="lectureForm">
+			             			<select  class="LectureData" name="classSemester" form="lectureForm" id="classSemester">
 					             		<option value="0">선택</option>
 					             		<option value="1">1</option>
 					             		<option value="2">2</option>
 			             			</select>
 			             		</td>
 			              		<td><p>수강학년</p></td>
-			              		<td><select  class="LectureData" name="classLevel" form="lectureForm">
+			              		<td><select  class="LectureData" name="classLevel" form="lectureForm" id="classLevel">
 			              				<option value="0">선택</option>
 			              				<option value="1">1</option>
 			              				<option value="2">2</option>
@@ -219,12 +318,8 @@
                                 </div>
                                 <tbody>
                                     <tr>
-                                        <td>
-                                            <div>강의명</div>
-                                        </td>
-                                        <td>
-                                            <div></div>
-                                        </td>
+                                        <td><div>강의명</div></td>
+                                        <td><div></div></td>
                                         <td>
                                             <div>담당교수</div>
                                         </td>
