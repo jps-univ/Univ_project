@@ -44,7 +44,8 @@ $(function(){
 	$("#timetable nav").remove();
 	$("#timetable footer").remove();
 	$("#timetable .container-fluid").children('br:first').remove();
-	
+	$("#timetable .container-fluid").css("display","");
+	$("#timetable").css("display","");
 	
     
 });
@@ -90,7 +91,7 @@ function setPageing(pageInfo) {
 	var searchCondition = $("#searhKind").val();
 	
 		$pagination.append($("<li>").append($("<a>").text("<<")).css("cursor","pointer").click(function(){	
-			setList(1,searchCondition);
+			getList(1,searchCondition);
 		}));
 	   	   
 		if(currentPage <= 1) { 
@@ -102,7 +103,7 @@ function setPageing(pageInfo) {
 		 } 
 		 for(var p= startPage; p <= endPage; p++){
 			if(p == currentPage){
-			$pagination.append($("<li>").append($("<a>").text(p)).attr("disabled",true));
+			$pagination.append($("<li>").append($("<a>").text(p).css({"background":"#E6EDF2","color":"white"})).attr("disabled",true));
 		 }else{ 
 			$pagination.append($("<li>").append($("<a>").text(p)).css("cursor","pointer").click(function(){
 				getList($(this).children().text(),searchCondition);

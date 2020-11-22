@@ -360,7 +360,7 @@
                                         async: false,
                                         success: function (data) {
                                             console.log(data);
-                                            ajaxResult = "ok";
+                                            ajaxResult = data;
                                         }, error: function (data) {
                                             ajaxResult = "fail"
                                         }
@@ -405,8 +405,8 @@
 
                                             registerClass();
 
-                                            // console.log(ajaxResult);
-                                            if (ajaxResult == "ok") {
+                                            console.log(ajaxResult);
+                                            if (ajaxResult === "ok") {
                                                 checkClassTime();
                                                 registerClassTime();
                                                 $('.register').hide();

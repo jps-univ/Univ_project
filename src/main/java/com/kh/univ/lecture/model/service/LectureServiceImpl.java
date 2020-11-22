@@ -32,18 +32,18 @@ public class LectureServiceImpl implements LectureService {
     }
 
     @Override
-    public ArrayList<LectureTime> getDayHourList(int stdId) {
-        return lectureDao.getDayHourList(stdId);
+    public ArrayList<LectureTime> getDayHourList(HashMap map) {
+        return lectureDao.getDayHourList(map);
     }
 
     @Override
-    public ArrayList<LectureTime> getDayHourListBasket(int stdId) {
-        return lectureDao.getDayHourListBasket(stdId);
+    public ArrayList<LectureTime> getDayHourListBasket(HashMap map) {
+        return lectureDao.getDayHourListBasket(map);
     }
 
     @Override
-    public ArrayList<LectureTime> getDayHourList2(int classSeq) {
-        return lectureDao.getDayHourList2(classSeq);
+    public ArrayList<LectureTime> getDayHourList2(HashMap map) {
+        return lectureDao.getDayHourList2(map);
     }
 
     @Override
@@ -57,13 +57,13 @@ public class LectureServiceImpl implements LectureService {
     }
 
     @Override
-    public ArrayList<Lecture> selectList(int stdId) {
-        return lectureDao.selectList(stdId);
+    public ArrayList<Lecture> selectList(HashMap map) {
+        return lectureDao.selectList(map);
     }
 
     @Override
-    public ArrayList<Lecture> selectBasket(int stdId) {
-        return lectureDao.selectBasket(stdId);
+    public ArrayList<Lecture> selectBasket(HashMap map) {
+        return lectureDao.selectBasket(map);
     }
 
     @Override
@@ -96,6 +96,11 @@ public class LectureServiceImpl implements LectureService {
     @Override
     public int insertClassTime(LectureTime lecTime) {
         return lectureDao.insertClassTime(lecTime);
+    }
+
+    @Override
+    public ArrayList<Lecture> getDeleteTable(int profId) {
+        return lectureDao.getDeleteTable(profId);
     }
 
 

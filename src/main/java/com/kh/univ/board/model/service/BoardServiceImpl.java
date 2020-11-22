@@ -44,4 +44,14 @@ public class BoardServiceImpl implements BoardService {
 	public int registAnswer(Board board) {
 		return bDao.updateAnswer(board);
 	}
+
+	@Override
+	public int upsertNotice(Board board) {
+		return bDao.upsertNotice(board);
+	}
+
+	@Override
+	public int deleteNotice(Board board) {
+		return bDao.deleteNotice(board);
+	}
 }

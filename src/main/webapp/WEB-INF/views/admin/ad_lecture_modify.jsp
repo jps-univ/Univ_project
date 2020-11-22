@@ -13,9 +13,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    
     <link rel="stylesheet" href="${contextPath }/resources/css/admin/ad_lecture_modify.css?ver=3" type="text/css">
-      <link rel="stylesheet" href="${contextPath }/resources/css/class_plan.css">
-     <style></style>
-    
+      <link rel="stylesheet" href="${contextPath }/resources/css/admin/ad_class_plan.css?ver=1" type="text/css">
 </head>
 <body>
 <script>
@@ -27,6 +25,7 @@
 				data:{
 					classSeq:$(this).parent().children().eq(0).text()
 				},success:function(lecture){
+					$("#classSeq").val(lecture.classSeq);
 					$("#LectureName").val(lecture.className);
 					$("#classCode").val(lecture.classCode);
 					$("#status").val(lecture.classType);
@@ -56,7 +55,6 @@
         							for(var p=0; p<prof.length;p++){
         								var professorName = $("<option value="+prof[p].professorId+">"+prof[p].professorName+"</option>");
         								professorCode.append(professorName);
-        								console.log(professorCode);
         							}
         							$("#professorCode").val(lecture.profId);
             					}
@@ -67,7 +65,6 @@
             			
 					});
 					
-					console.log(lecture);
 					$("#classTime").val(lecture.total);
 					$("#room").val(lecture.room);
 					$("#gradeSize").val(lecture.gradeSize);
@@ -108,7 +105,6 @@
 							data:{
 								departmentCode:$(this).val()
 							},success:function(prof){
-								console.log(prof);
 								var professorCode = $("#professorCode");
 								professorCode.empty();
 								professorCode.append("<option>교수를선택해주세요</option>");
@@ -165,7 +161,7 @@
                 <table id="rest_lecture" class=" table-hover">
                     <thead>
                         <tr>
-                            <th><p>강의 코드</p></th>
+                            <th><p>강의 번호</p></th>
                             <th><p>강의명</p></th>
                             <th><p>교수명</p></th>
 							<th><p>이수구분</p></th>
@@ -203,6 +199,7 @@
                     <option>교수명</option>
                     <option>개설학과</option>
                 </select>
+                <input type ="hidden" value="0" id="classSeq">
                 <input type="search">
                 <input type="button" value="검색">
             </div>
@@ -319,59 +316,27 @@
                                 <tbody>
                                     <tr>
                                         <td><div>강의명</div></td>
-                                        <td><div></div></td>
-                                        <td>
-                                            <div>담당교수</div>
-                                        </td>
-                                        <td>
-                                            <div></div>
-                                        </td>
-                                        <td>
-                                            <div>이메일</div>
-                                        </td>
-                                        <td>
-                                            <div></div>
-                                        </td>
+                                        <td><p id="mlectureName"></p></td>
+                                        <td><div>담당교수</div></td>
+                                        <td><p id="mProfessorName"></p></td>
+                                        <td><div>강의실</div></td>
+                                        <td><p id="mRoom"></p></td>
                                     </tr>
                                     <tr>
-                                        <td>
-                                            <div>년도</div>
-                                        </td>
-                                        <td>
-                                            <div></div>
-                                        </td>
-                                        <td>
-                                            <div>학기</div>
-                                        </td>
-                                        <td>
-                                            <div></div>
-                                        </td>
-                                        <td>
-                                            <div>학점</div>
-                                        </td>
-                                        <td>
-                                            <div></div>
-                                        </td>
+                                        <td><div>년도</div></td>
+                                        <td><p id="mYear"></p></td>
+                                        <td><div>학기</div></td>
+                                        <td><p id="mSemester"></p></td>
+                                        <td><div>학점</div></td>
+                                        <td><p id="mGradeSize"></p></td>
                                     </tr>
                                     <tr>
-                                        <td>
-                                            <div>이수구분</div>
-                                        </td>
-                                        <td>
-                                            <div></div>
-                                        </td>
-                                        <td>
-                                            <div>전공영역</div>
-                                        </td>
-                                        <td>
-                                            <div></div>
-                                        </td>
-                                        <td>
-                                            <div>과목코드</div>
-                                        </td>
-                                        <td>
-                                            <div></div>
-                                        </td>
+                                        <td><div>이수구분</div></td>
+                                        <td><p id="mClassStatus"></p></td>
+                                        <td><div>전공영역</div></td>
+                                        <td><p id="mDepartment"></p></td>
+                                        <td><div>과목코드</div></td>
+                                        <td><p id="mclassCode"></p></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -384,18 +349,10 @@
                             <table id="class_goal">
                                 <tbody>
                                     <tr>
-                                        <td>
-                                            <div>교육목표</div>
-                                        </td>
-                                        <td>
-                                            <div></div>
-                                        </td>
-                                        <td>
-                                            <div>주교재</div>
-                                        </td>
-                                        <td>
-                                            <div></div>
-                                        </td>
+                                        <td><div>교육목표</div></td>
+                                        <td><p id="mclassCode"></p></td>
+                                        <td><div>주교재</div></td>
+                                        <td><p id="mclassCode"></p></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -407,148 +364,70 @@
                             <table id="class_detail_table" border="1">
                                 <thead>
                                     <tr height="30px;">
-                                        <td>
-                                            <p>주차</p>
-                                        </td>
-                                        <td>
-                                            <p>주제</p>
-                                        </td>
-                                        <td>
-                                            <p>세부 내용</p>
-                                        </td>
+                                        <td><p>주차</p></td>
+                                        <td><p>주제</p></td>
+                                        <td><p>세부 내용</p></td>
                                     </tr>
                                 </thead>
                                 <tr>
-                                    <td class="detail_head">
-                                        <div>주차</div>
-                                    </td>
-                                    <td class="detail_head">
-                                        <div>주제</div>
-                                    </td>
-                                    <td class="detail_head">
-                                        <div>세부 내용</div>
-                                    </td>
+                                    <td class="detail_head"><div>주차</div></td>
+                                    <td class="detail_head"><div>주제</div></td>
+                                    <td class="detail_head"><div>세부 내용</div></td>
                                 </tr>
                                 <tr>
-                                    <td class="detail_head">
-                                        <div>주차</div>
-                                    </td>
-                                    <td class="detail_head">
-                                        <div>주제</div>
-                                    </td>
-                                    <td class="detail_head">
-                                        <div>세부 내용</div>
-                                    </td>
+                                    <td class="detail_head"><div>주차</div></td>
+                                    <td class="detail_head"><div>주제</div></td>
+                                    <td class="detail_head"><div>세부 내용</div></td>
                                 </tr>
                                 <tr>
-                                    <td class="detail_head">
-                                        <div>주차</div>
-                                    </td>
-                                    <td class="detail_head">
-                                        <div>주제</div>
-                                    </td>
-                                    <td class="detail_head">
-                                        <div>세부 내용</div>
-                                    </td>
+                                    <td class="detail_head"><div>주차</div></td>
+                                    <td class="detail_head"><div>주제</div></td>
+                                    <td class="detail_head"><div>세부 내용</div></td>
                                 </tr>
                                 <tr>
-                                    <td class="detail_head">
-                                        <div>주차</div>
-                                    </td>
-                                    <td class="detail_head">
-                                        <div>주제</div>
-                                    </td>
-                                    <td class="detail_head">
-                                        <div>세부 내용</div>
-                                    </td>
+                                    <td class="detail_head"><div>주차</div></td>
+                                    <td class="detail_head"><div>주제</div></td>
+                                    <td class="detail_head"><div>세부 내용</div></td>
                                 </tr>
                                 <tr>
-                                    <td class="detail_head">
-                                        <div>주차</div>
-                                    </td>
-                                    <td class="detail_head">
-                                        <div>주제</div>
-                                    </td>
-                                    <td class="detail_head">
-                                        <div>세부 내용</div>
-                                    </td>
+                                    <td class="detail_head"><div>주차</div></td>
+                                    <td class="detail_head"><div>주제</div></td>
+                                    <td class="detail_head"><div>세부 내용</div></td>
                                 </tr>
                                 <tr>
-                                    <td class="detail_head">
-                                        <div>주차</div>
-                                    </td>
-                                    <td class="detail_head">
-                                        <div>주제</div>
-                                    </td>
-                                    <td class="detail_head">
-                                        <div>세부 내용</div>
-                                    </td>
+                                    <td class="detail_head"><div>주차</div></td>
+                                    <td class="detail_head"><div>주제</div></td>
+                                    <td class="detail_head"><div>세부 내용</div></td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <div>1</div>
-                                    </td>
-                                    <td>
-                                        <div>html</div>
-                                    </td>
-                                    <td>
-                                        <div>알아서 만들기</div>
-                                    </td>
+                                    <td><div>1</div></td>
+                                    <td><div>html</div></td>
+                                    <td><div>알아서 만들기</div></td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <div>1</div>
-                                    </td>
-                                    <td>
-                                        <div>html</div>
-                                    </td>
-                                    <td>
-                                        <div>알아서 만들기</div>
-                                    </td>
+                                    <td><div>1</div></td>
+                                    <td><div>html</div></td>
+                                    <td><div>알아서 만들기</div></td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <div>1</div>
-                                    </td>
-                                    <td>
-                                        <div>html</div>
-                                    </td>
-                                    <td>
-                                        <div>알아서 만들기</div>
-                                    </td>
+                                    <td><div>1</div></td>
+                                    <td><div>html</div></td>
+                                    <td><div>알아서 만들기</div></td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <div>1</div>
-                                    </td>
-                                    <td>
-                                        <div>html</div>
-                                    </td>
-                                    <td>
-                                        <div>알아서 만들기</div>
-                                    </td>
+                                    <td><div>1</div></td>
+                                    <td><div>html</div></td>
+                                    <td><div>알아서 만들기</div></td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <div>1</div>
-                                    </td>
-                                    <td>
-                                        <div>html</div>
-                                    </td>
-                                    <td>
-                                        <div>알아서 만들기</div>
-                                    </td>
+                                    <td><div>1</div></td>
+                                    <td><div>html</div></td>
+                                    <td><div>알아서 만들기</div></td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <div>1</div>
-                                    </td>
-                                    <td>
-                                        <div>html</div>
-                                    </td>
-                                    <td>
-                                        <div>알아서 만들기</div>
-                                    </td>
+                                    <td><div>1</div></td>
+                                    <td><div>html</div></td>
+                                    <td><div>알아서 만들기</div></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -581,6 +460,54 @@
 
         // When the user clicks the button, open the modal 
         btn.onclick = function () {
+        	var classSeq = document.getElementById("classSeq").value;
+        	var className = document.getElementById("LectureName").value;
+        	
+        	var p = document.getElementById("professorCode");
+        	var professorName = p.options[p.selectedIndex].text;
+        	
+        	var room = document.getElementById("room").value;
+        	var classCode = document.getElementById("classCode").value;
+        	
+        	var Department = document.getElementById("departmentCode");
+        	var DepartmentName = Department.options[Department.selectedIndex].text;
+        	
+        	var grade = document.getElementById("gradeSize");
+        	var gradeSize = grade.options[grade.selectedIndex].text;
+        	
+        	var Year = document.getElementById("classYear");
+        	var classYear = Year.options[Year.selectedIndex].text;
+        	
+        	var semester = document.getElementById("classSemester");
+        	var classSemester = semester.options[semester.selectedIndex].text; 
+        	
+        	var status = document.getElementById("status").value;
+        	
+
+        	document.getElementById("mlectureName").innerHTML=className;
+        	document.getElementById("mProfessorName").innerHTML=professorName;	
+        	document.getElementById("mRoom").innerHTML=room;
+        	document.getElementById("mclassCode").innerHTML=classCode;
+        	document.getElementById("mDepartment").innerHTML=DepartmentName;
+        	document.getElementById("mGradeSize").innerHTML=gradeSize;
+        	document.getElementById("mYear").innerHTML=classYear;
+        	document.getElementById("mSemester").innerHTML=classSemester;
+        	document.getElementById("mClassStatus").innerHTML=status;
+        	
+        	
+        	console.log(classSeq);
+        	$.ajax({
+        		url:"",
+        		type:"",
+        		data:{
+        			
+        		},success:function(plan){
+        			$("#mlectureName").val($("#LectureName").val());
+        		},error:function(error){
+        			console.log("전송 실패");
+        		}
+        			
+        	})
             modal.style.display = "block";
         }
 

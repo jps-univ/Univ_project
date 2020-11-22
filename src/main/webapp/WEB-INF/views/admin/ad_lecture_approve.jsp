@@ -69,9 +69,10 @@
 								<td><a id="myBtn">조회하기</a></td>
 								<td>
                                     <select class="appStatus">
-                                        <option value="1">보류</option>
-                                        <option value="2">재검토</option>
-                                        <option value="3">승인</option>
+                                        <option value="YW">승인대기</option>
+                                        <option value="DW">삭제대기</option>
+                                        <option value="Y">승인</option>
+                                        <option value="N">삭제/비활성화</option>
                                     </select>
                                 </td>
 
@@ -107,64 +108,28 @@
                                     </div>
                                     <tbody>
                                         <tr>
-                                            <td>
-                                                <div>강의명</div>
-                                            </td>
-                                            <td>
-                                                <div></div>
-                                            </td>
-                                            <td>
-                                                <div>담당교수</div>
-                                            </td>
-                                            <td>
-                                                <div></div>
-                                            </td>
-                                            <td>
-                                                <div>이메일</div>
-                                            </td>
-                                            <td>
-                                                <div></div>
-                                            </td>
+                                            <td><div>강의명</div></td>
+                                            <td><div></div></td>
+                                            <td><div>담당교수</div></td>
+                                            <td><div></div></td>
+                                            <td><div>이메일</div></td>
+                                            <td><div></div></td>
                                         </tr>
                                         <tr>
-                                            <td>
-                                                <div>년도</div>
-                                            </td>
-                                            <td>
-                                                <div></div>
-                                            </td>
-                                            <td>
-                                                <div>학기</div>
-                                            </td>
-                                            <td>
-                                                <div></div>
-                                            </td>
-                                            <td>
-                                                <div>학점</div>
-                                            </td>
-                                            <td>
-                                                <div></div>
-                                            </td>
+                                            <td><div>년도</div></td>
+                                            <td><div></div></td>
+                                            <td><div>학기</div></td>
+                                            <td><div></div></td>
+                                            <td><div>학점</div></td>
+                                            <td><div></div></td>
                                         </tr>
                                         <tr>
-                                            <td>
-                                                <div>이수구분</div>
-                                            </td>
-                                            <td>
-                                                <div></div>
-                                            </td>
-                                            <td>
-                                                <div>전공영역</div>
-                                            </td>
-                                            <td>
-                                                <div></div>
-                                            </td>
-                                            <td>
-                                                <div>과목코드</div>
-                                            </td>
-                                            <td>
-                                                <div></div>
-                                            </td>
+                                            <td><div>이수구분</div></td>
+                                            <td><div></div></td>
+                                            <td><div>전공영역</div></td>
+                                            <td><div></div></td>
+                                            <td><div>과목코드</div></td>
+                                            <td><div></div></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -177,18 +142,10 @@
                                 <table id="class_goal">
                                     <tbody>
                                         <tr>
-                                            <td>
-                                                <div>교육목표</div>
-                                            </td>
-                                            <td>
-                                                <div></div>
-                                            </td>
-                                            <td>
-                                                <div>주교재</div>
-                                            </td>
-                                            <td>
-                                                <div></div>
-                                            </td>
+                                            <td><div>교육목표</div></td>
+                                            <td><div></div></td>
+                                            <td><div>주교재</div></td>
+                                            <td><div></div></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -200,148 +157,70 @@
                                 <table id="class_detail_table" border="1">
                                     <thead>
                                         <tr height="30px;">
-                                            <td>
-                                                <p>주차</p>
-                                            </td>
-                                            <td>
-                                                <p>주제</p>
-                                            </td>
-                                            <td>
-                                                <p>세부 내용</p>
-                                            </td>
+                                            <td><p>주차</p></td>
+                                            <td><p>주제</p></td>
+                                            <td><p>세부 내용</p></td>
                                         </tr>
                                     </thead>
                                     <tr>
-                                        <td class="detail_head">
-                                            <div>주차</div>
-                                        </td>
-                                        <td class="detail_head">
-                                            <div>주제</div>
-                                        </td>
-                                        <td class="detail_head">
-                                            <div>세부 내용</div>
-                                        </td>
+                                        <td class="detail_head"><div>주차</div></td>
+                                        <td class="detail_head"><div>주제</div></td>
+                                        <td class="detail_head"><div>세부 내용</div></td>
                                     </tr>
                                     <tr>
-                                        <td class="detail_head">
-                                            <div>주차</div>
-                                        </td>
-                                        <td class="detail_head">
-                                            <div>주제</div>
-                                        </td>
-                                        <td class="detail_head">
-                                            <div>세부 내용</div>
-                                        </td>
+                                        <td class="detail_head"><div>주차</div></td>
+                                        <td class="detail_head"><div>주제</div></td>
+                                        <td class="detail_head"><div>세부 내용</div></td>
                                     </tr>
                                     <tr>
-                                        <td class="detail_head">
-                                            <div>주차</div>
-                                        </td>
-                                        <td class="detail_head">
-                                            <div>주제</div>
-                                        </td>
-                                        <td class="detail_head">
-                                            <div>세부 내용</div>
-                                        </td>
+                                        <td class="detail_head"><div>주차</div></td>
+                                        <td class="detail_head"><div>주제</div></td>
+                                        <td class="detail_head"><div>세부 내용</div></td>
                                     </tr>
                                     <tr>
-                                        <td class="detail_head">
-                                            <div>주차</div>
-                                        </td>
-                                        <td class="detail_head">
-                                            <div>주제</div>
-                                        </td>
-                                        <td class="detail_head">
-                                            <div>세부 내용</div>
-                                        </td>
+                                        <td class="detail_head"><div>주차</div></td>
+                                        <td class="detail_head"><div>주제</div></td>
+                                        <td class="detail_head"><div>세부 내용</div></td>
                                     </tr>
                                     <tr>
-                                        <td class="detail_head">
-                                            <div>주차</div>
-                                        </td>
-                                        <td class="detail_head">
-                                            <div>주제</div>
-                                        </td>
-                                        <td class="detail_head">
-                                            <div>세부 내용</div>
-                                        </td>
+                                        <td class="detail_head"><div>주차</div></td>
+                                        <td class="detail_head"><div>주제</div></td>
+                                        <td class="detail_head"><div>세부 내용</div></td>
                                     </tr>
                                     <tr>
-                                        <td class="detail_head">
-                                            <div>주차</div>
-                                        </td>
-                                        <td class="detail_head">
-                                            <div>주제</div>
-                                        </td>
-                                        <td class="detail_head">
-                                            <div>세부 내용</div>
-                                        </td>
+                                        <td class="detail_head"><div>주차</div></td>
+                                        <td class="detail_head"><div>주제</div></td>
+                                        <td class="detail_head"><div>세부 내용</div></td>
                                     </tr>
                                     <tr>
-                                        <td>
-                                            <div>1</div>
-                                        </td>
-                                        <td>
-                                            <div>html</div>
-                                        </td>
-                                        <td>
-                                            <div>알아서 만들기</div>
-                                        </td>
+                                        <td><div>1</div></td>
+                                        <td><div>html</div></td>
+                                        <td><div>알아서 만들기</div></td>
                                     </tr>
                                     <tr>
-                                        <td>
-                                            <div>1</div>
-                                        </td>
-                                        <td>
-                                            <div>html</div>
-                                        </td>
-                                        <td>
-                                            <div>알아서 만들기</div>
-                                        </td>
+                                        <td><div>1</div></td>
+                                        <td><div>html</div></td>
+                                        <td><div>알아서 만들기</div></td>
                                     </tr>
                                     <tr>
-                                        <td>
-                                            <div>1</div>
-                                        </td>
-                                        <td>
-                                            <div>html</div>
-                                        </td>
-                                        <td>
-                                            <div>알아서 만들기</div>
-                                        </td>
+                                        <td><div>1</div></td>
+                                        <td><div>html</div></td>
+                                        <td><div>알아서 만들기</div></td>
                                     </tr>
                                     <tr>
-                                        <td>
-                                            <div>1</div>
-                                        </td>
-                                        <td>
-                                            <div>html</div>
-                                        </td>
-                                        <td>
-                                            <div>알아서 만들기</div>
-                                        </td>
+                                        <td><div>1</div></td>
+                                        <td><div>html</div></td>
+                                        <td><div>알아서 만들기</div></td>
                                     </tr>
                                     <tr>
-                                        <td>
-                                            <div>1</div>
-                                        </td>
-                                        <td>
-                                            <div>html</div>
-                                        </td>
-                                        <td>
-                                            <div>알아서 만들기</div>
-                                        </td>
+                                        <td><div>1</div></td>
+                                        <td><div>html</div></td>
+                                        <td><div>알아서 만들기</div></td>
                                     </tr>
                                     <tr>
-                                        <td>
-                                            <div>1</div>
-                                        </td>
-                                        <td>
-                                            <div>html</div>
-                                        </td>
-                                        <td>
-                                            <div>알아서 만들기</div>
-                                        </td>
+                                        <td><div>1</div></td>
+                                        <td><div>html</div></td>
+                                        <td><div>알아서 만들기</div></td>
                                     </tr>
                                     </tbody>
                                 </table>

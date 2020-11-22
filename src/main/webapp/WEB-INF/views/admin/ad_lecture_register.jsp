@@ -96,8 +96,8 @@ $(function(){
         <h2>강의 등록</h2>
         <hr>
       </div>
-      <div id="reg_table_area">
         <form method="post" id="lectureForm" action="admin_Lecture_insert.do">
+      <div id="reg_table_area">
           <table id="reg_lecture">
             <tr>
               <td><p>강의명</p></td>
@@ -166,14 +166,16 @@ $(function(){
              		<option value="2">2</option>
              	</select>
              </td>
+             
               <td><p>수강학년</p></td>
-              <td><select  class="LectureData" name="classLevel" form="lecureForm">t
+              <td><select  class="LectureData" name="classLevel" form="lecureForm">
               		<option value="0">선택</option>
               		<option value="1">1</option>
               		<option value="2">2</option>
               		<option value="3">3</option>
               		<option value="4">4</option>
-               	  </select></td>
+               	  </select>
+              </td>
             </tr>
 
           </table>
