@@ -28,15 +28,15 @@ public class LectureDao {
         return (ArrayList) sqlSession.selectList("lectureMapper.selectDept",collegeCode);
     }
 
-    public ArrayList<LectureTime> getDayHourList(int stdId) {
-        return (ArrayList) sqlSession.selectList("lectureMapper.selectDayHour",stdId);
+    public ArrayList<LectureTime> getDayHourList(HashMap map) {
+        return (ArrayList) sqlSession.selectList("lectureMapper.selectDayHour",map);
     }
-    public ArrayList<LectureTime> getDayHourListBasket(int stdId) {
-        return (ArrayList) sqlSession.selectList("lectureMapper.selectDayHourBasket",stdId);
+    public ArrayList<LectureTime> getDayHourListBasket(HashMap map) {
+        return (ArrayList) sqlSession.selectList("lectureMapper.selectDayHourBasket",map);
     }
 
-    public ArrayList<LectureTime> getDayHourList2(int classSeq) {
-        return (ArrayList) sqlSession.selectList("lectureMapper.selectDayHour2",classSeq);
+    public ArrayList<LectureTime> getDayHourList2(HashMap map) {
+        return (ArrayList) sqlSession.selectList("lectureMapper.selectDayHour2",map);
 
     }
 
@@ -47,11 +47,11 @@ public class LectureDao {
         return sqlSession.insert("lectureMapper.insertBasketClass",map);
     }
 
-    public ArrayList<Lecture> selectList(int stdId) {
-        return (ArrayList) sqlSession.selectList("lectureMapper.selectMyTime",stdId);
+    public ArrayList<Lecture> selectList(HashMap map) {
+        return (ArrayList) sqlSession.selectList("lectureMapper.selectMyTime",map);
     }
-    public ArrayList<Lecture> selectBasket(int stdId) {
-        return (ArrayList) sqlSession.selectList("lectureMapper.selectMyBasket",stdId);
+    public ArrayList<Lecture> selectBasket(HashMap map) {
+        return (ArrayList) sqlSession.selectList("lectureMapper.selectMyBasket",map);
     }
 
     public int deleteMyClass(HashMap map) {
@@ -76,5 +76,9 @@ public class LectureDao {
 
     public int insertClassTime(LectureTime lecTime) {
         return sqlSession.insert("lectureMapper.insertClassTime", lecTime);
+    }
+
+    public ArrayList<Lecture> getDeleteTable(int profId) {
+        return (ArrayList)sqlSession.selectList("lectureMapper.getDeleteTable",profId);
     }
 }

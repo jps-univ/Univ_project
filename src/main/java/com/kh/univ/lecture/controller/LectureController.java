@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 
 @Controller
@@ -26,6 +28,26 @@ public class LectureController {
     @Autowired
     private LectureService lectureService;
 
+    public int callYear(){
+        SimpleDateFormat format1 = new SimpleDateFormat( "yyyy");
+
+        Date time = new Date();
+
+        int classYear = Integer.parseInt(format1.format(time));
+
+        return classYear;
+    }
+    public int callSemester(){
+        SimpleDateFormat format2 = new SimpleDateFormat( "MM");
+        Date time = new Date();
+        String month = format2.format(time);
+        int classSemester;
+        if(month.equals("01") || month.equals("02")||month.equals("03")||month.equals("04")||month.equals("05")||month.equals("06")){
+            classSemester = 1;
+        }else classSemester = 2;
+
+        return classSemester;
+    }
     @RequestMapping("requestRegisterLecture.do")
     public String requestRegisterLecture() {
         return "lectureManagement/requestRegisterLecture";
@@ -70,12 +92,16 @@ public class LectureController {
         SearchCondition sc = new SearchCondition();
 
 
+
+        System.out.println("현재는 "+callYear()+"년도 "+callSemester()+"학기");
         sc.setClassType(classType);
         sc.setInputClassName(inputClassName);
         sc.setClassLevel(classLevel);
         sc.setCollegeCode(collegeCode);
         sc.setDepartmentName(departmentName);
         sc.setClassName(className);
+        sc.setClassYear(callYear());
+        sc.setClassSemester(callSemester());
         ArrayList<Lecture> list = lectureService.selectList(sc);
         ObjectMapper mapper = new ObjectMapper();
 
@@ -133,13 +159,20 @@ public class LectureController {
         boolean noDuplicate = true;
         System.out.println("등록을 원하는 클래스 시퀀스 : " + classSeq);
         System.out.println("등록하려는 학생의 학번 : " + stdId);
+        HashMap map = new HashMap();
+        map.put("stdId",stdId);
+        map.put("classSeq",classSeq);
+        map.put("classYear",callYear());
+        map.put("classSemester",callSemester());
+
+
         ArrayList<LectureTime> list = new ArrayList<>();
         if (request.getServletPath().equals("/registerClass.do")) {
-            list = lectureService.getDayHourList(stdId);
-        } else list = lectureService.getDayHourListBasket(stdId);
+            list = lectureService.getDayHourList(map);
+        } else list = lectureService.getDayHourListBasket(map);
 
 
-        ArrayList<LectureTime> list2 = lectureService.getDayHourList2(classSeq);
+        ArrayList<LectureTime> list2 = lectureService.getDayHourList2(map);
         ArrayList dayHourList = new ArrayList();
         ArrayList dayHourList2 = new ArrayList();
         for (LectureTime time : list) {
@@ -214,11 +247,17 @@ public class LectureController {
     public String getMyLectureList(HttpSession session, HttpServletRequest request) throws JsonProcessingException {
         Student user = (Student) session.getAttribute("loginUser");
         int stdId = user.getStdId();
+        HashMap map = new HashMap();
+
+        map.put("stdId",stdId);
+        map.put("classYear",callYear());
+        map.put("classSemester",callSemester());
+
         ArrayList<Lecture> list = new ArrayList<>();
         if (request.getServletPath().equals("/getMyLectureList.do")) {
-            list = lectureService.selectList(stdId);
+            list = lectureService.selectList(map);
         } else if (request.getServletPath().equals("/getMyBasketList.do")) {
-            list = lectureService.selectBasket(stdId);
+            list = lectureService.selectBasket(map);
         }
         ObjectMapper mapper = new ObjectMapper();
 
@@ -329,5 +368,18 @@ public class LectureController {
             }
         }
         return "ok";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "getDeleteTable.do", produces = "application/json; charset=utf-8")
+    public String getDeleteTable(HttpSession session) throws JsonProcessingException {
+//        Professor user = (Professor) session.getAttribute("loginUser");
+        int profId = ((Professor)session.getAttribute("loginUser")).getProfId();
+        ArrayList<Lecture> list = lectureService.getDeleteTable(profId);
+        ObjectMapper mapper = new ObjectMapper();
+
+        String jsonStr = mapper.writeValueAsString(list);
+        return jsonStr;
+
     }
 }

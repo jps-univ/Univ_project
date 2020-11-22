@@ -9,6 +9,9 @@ public class SearchCondition
     private String className;
     private int classLevel;
 
+    private int classYear;
+    private int classSemester;
+
     public SearchCondition() {}
 
     public SearchCondition(String classType, String inputClassName, String collegeCode, String departmentName, String className, int classLevel) {
@@ -18,6 +21,33 @@ public class SearchCondition
         this.departmentName = departmentName;
         this.className = className;
         this.classLevel = classLevel;
+    }
+
+    public SearchCondition(String classType, String inputClassName, String collegeCode, String departmentName, String className, int classLevel, int classYear, int classSemester) {
+        this.classType = classType;
+        this.inputClassName = inputClassName;
+        this.collegeCode = collegeCode;
+        this.departmentName = departmentName;
+        this.className = className;
+        this.classLevel = classLevel;
+        this.classYear = classYear;
+        this.classSemester = classSemester;
+    }
+
+    public int getClassSemester() {
+        return classSemester;
+    }
+
+    public void setClassSemester(int classSemester) {
+        this.classSemester = classSemester;
+    }
+
+    public int getClassYear() {
+        return classYear;
+    }
+
+    public void setClassYear(int classYear) {
+        this.classYear = classYear;
     }
 
     public String getClassType() {

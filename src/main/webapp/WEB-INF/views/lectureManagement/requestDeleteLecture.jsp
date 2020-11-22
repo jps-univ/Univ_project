@@ -45,7 +45,31 @@
     <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-
+            var table = $('#deleteRqTable').DataTable({
+                'ajax': {
+                    'url': 'getDeleteTable.do',
+                    'type': 'post',
+                    'dataType': 'json',
+                    'dataSrc': ''
+                },
+                'columns': [
+                    {'data': 'classSeq'},
+                    {'data': 'classCode'},
+                    {'data': 'className'},
+                    {'data': 'room'},
+                    {'data': 'classType'},
+                    {'data': 'classYear'},
+                    {'data': 'classSemester'},
+                    {'data': 'classApprove'}
+                ],
+                'columnDefs': [
+                    {
+                        'targets': 0,
+                        'visible': false,
+                        'className': 'classSeq'
+                    }
+                ]
+            });
         });
     </script>
     <%--    수강신청,장바구니 탭 클릭 시 화면 변화--%>
@@ -87,10 +111,11 @@
                         <div class="card-body">
 
                             <div class="table-responsive delete">
-                                <table id="testTb" class="table table-striped table-bordered table-hover"
-                                       cellspacing="0">
+                                <table id="deleteRqTable" class="table table-striped table-bordered table-hover"
+                                       cellspacing="0" style="width: 97%">
                                     <thead>
                                     <tr>
+                                        <th style="display: none">강의시퀀스</th>
                                         <th>과목코드</th>
                                         <th>과목이름</th>
                                         <th>강의실</th>
@@ -100,7 +125,7 @@
                                         <th>상태</th>
                                     </tr>
                                     </thead>
-<%--                                    commit--%>
+                                    <%--                                    commit--%>
                                     <!-- tbody 태그 필요 없다. -->
                                 </table>
                             </div>
