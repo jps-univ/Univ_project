@@ -8,4 +8,7 @@ public interface RegisterService {
 	// 휴학페이지
 	Register selectLeave(Student studentL);
 
+	// 휴학신청
+	int leaveApply(Register register);
+
 }

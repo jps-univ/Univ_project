@@ -4,7 +4,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.member.model.vo.Student;
@@ -34,7 +36,7 @@ public class RegisterController {
 //	    }
 		
 	
-	// 휴학페이지
+	    // 휴학페이지
 		@RequestMapping("leave.do")
 	    public ModelAndView Leave(HttpSession session, ModelAndView mv)
 		{
@@ -47,6 +49,26 @@ public class RegisterController {
 			
 	        return mv;
 	    }
+		
+		// 휴학신청
+		@ResponseBody
+		@RequestMapping("leaveApply.do")
+		public String leaveApply(HttpSession session, Register register) {
+			
+			Student studentL = (Student)session.getAttribute("loginUser");
+			
+			register.setStdId(studentL.getStdId());
+			
+			int result = rService.leaveApply(register);
+			System.out.println("result" + result);
+			
+			if(result > 0) {
+				return "ok";
+			}else {
+				return "fail";
+			}
+			
+		}
 		
 		   
 		@RequestMapping("returning.do")
