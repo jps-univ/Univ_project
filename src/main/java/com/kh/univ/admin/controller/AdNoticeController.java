@@ -25,8 +25,10 @@ public class AdNoticeController {
 	}
 	
 	@RequestMapping("adNAnswer.do")
-	public String AdNoticeAnswer() {
-		return "admin/ad_notice_answer";
+	public ModelAndView AdNoticeAnswer(Board board, ModelAndView model) {
+		model.addObject("board",bService.findById(board));
+		model.setViewName("admin/ad_notice_answer");
+		return model;
 	}
 	
 	@RequestMapping("adQAnswer.do")
