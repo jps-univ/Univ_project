@@ -69,9 +69,10 @@
 								<td><a id="myBtn">조회하기</a></td>
 								<td>
                                     <select class="appStatus">
-                                        <option value="1">보류</option>
-                                        <option value="2">재검토</option>
-                                        <option value="3">승인</option>
+                                        <option value="YW">승인대기</option>
+                                        <option value="DW">삭제대기</option>
+                                        <option value="Y">승인</option>
+                                        <option value="N">삭제/비활성화</option>
                                     </select>
                                 </td>
 
