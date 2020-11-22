@@ -30,8 +30,9 @@ $(function(){
     	registQna();
     });
     
-    $("#searhKind").val("Q");
-	getList(1,"Q");
+    $("#searhKind").val("N");
+	//getList(1,"Q");
+    $("#faqBtn").click();
 	
 	//시간표 제외영억
 	$("#timetable link").remove();
@@ -63,7 +64,7 @@ function getList(currentPage, searchKind) {
 	}
 	
 	$.ajax({
-		url:"boardList.do",
+		url:"boardProfessorList.do",
 		type:"post",
 		data:JSON.stringify(params),
 		contentType:"application/json",
