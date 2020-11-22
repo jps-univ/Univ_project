@@ -19,5 +19,9 @@ public interface BoardService {
 	int registQna(Board board);
 
 	int registAnswer(Board board);
+
+	int upsertNotice(Board board);
+
+	int deleteNotice(Board board);
 	
 }
