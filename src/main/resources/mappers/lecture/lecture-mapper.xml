@@ -54,6 +54,8 @@
           AND a.DEPARTMENT_CODE = c.DEPARTMENT_CODE
           AND a.PROFESSOR_ID = d.PROFESSOR_ID
           AND a.CLASS_APPROVE = 'Y'
+          AND a.CLASS_YEAR = #{classYear}
+          AND a.CLASS_SEMESTER = #{classSemester}
          <if test="!classType.equals('전체')">
             AND a.CLASS_TYPE = #{classType}
          </if>
@@ -84,32 +86,44 @@
         FROM TB_DEPARTMENT
         WHERE COLLEGE_CODE = #{collegeCode}
     </select>
-    <select id="selectDayHour" resultMap="lectureTimeMap" parameterType="_int">
+<!--    시간표 중복확인을 위해 내 현재 수강신청 시간표를 가져옴.-->
+    <select id="selectDayHour" resultMap="lectureTimeMap" parameterType="Lecture">
         SELECT CONCAT(DAY,HOUR) AS DAY_HOUR
-        FROM  TB_REGISTER_CLASS a,TB_CLASS_TIME b
+        FROM  TB_REGISTER_CLASS a,TB_CLASS_TIME b, TB_CLASS c
         WHERE a.CLASS_SEQ=b.CLASS_SEQ
+          AND a.CLASS_SEQ = c.CLASS_SEQ
           AND a.STUDENT_ID=#{stdId}
+          AND c.CLASS_YEAR = #{classYear}
+          AND c.CLASS_SEMESTER = #{classSemester}
     </select>
-    <select id="selectDayHourBasket" resultMap="lectureTimeMap" parameterType="_int">
-        SELECT CONCAT(DAY,HOUR) AS DAY_HOUR
-        FROM  TB_BASKET_CLASS a,TB_CLASS_TIME b
-        WHERE a.CLASS_SEQ=b.CLASS_SEQ
-          AND a.STUDENT_ID=#{stdId}
-    </select>
-    <select id="selectDayHour2" resultMap="lectureTimeMap">
+    <!--    시간표 중복확인을 위해 클래스타임테이블에서 해당과목의 시간표를 가져옴 -->
+    <select id="selectDayHour2" resultMap="lectureTimeMap" parameterType="Lecture">
         SELECT CONCAT(DAY,HOUR) AS DAY_HOUR
         FROM TB_CLASS_TIME
         WHERE CLASS_SEQ=#{classSeq}
     </select>
+<!--    장바구니도 시간표중복확인을 해야함-->
+    <select id="selectDayHourBasket" resultMap="lectureTimeMap" parameterType="Lecture">
+        SELECT CONCAT(DAY,HOUR) AS DAY_HOUR
+        FROM  TB_BASKET_CLASS a,TB_CLASS_TIME b, TB_CLASS c
+        WHERE a.CLASS_SEQ=b.CLASS_SEQ
+          AND a.CLASS_SEQ = c.CLASS_SEQ
+          AND a.STUDENT_ID=#{stdId}
+          AND c.CLASS_YEAR = #{classYear}
+          AND c.CLASS_SEMESTER = #{classSemester}
+    </select>
+<!--   수강신청테이블에 넣음 -->
     <insert id="insertRegisterClass" parameterType="LectureApplication">
         INSERT INTO TB_REGISTER_CLASS
         VALUES (SEQ_REGISTER_CLASS.nextval, #{stdId},#{classSeq})
     </insert>
+<!--    장바구니테이블에 넣음 -->
     <insert id="insertBasketClass" parameterType="LectureApplication">
         INSERT INTO TB_BASKET_CLASS
         VALUES (SEQ_BASKET_CLASS.nextval, #{stdId},#{classSeq})
     </insert>
-    <select id="selectMyTime" resultMap="lectureMap">
+<!--    내 수강신청 테이블에서 데이터 가져옴 -->
+    <select id="selectMyTime" resultMap="lectureMap" parameterType="Lecture">
         SELECT a.CLASS_SEQ,
                a.CLASS_NAME,
                c.DEPARTMENT_NAME AS DEPARTMENT_CODE,
@@ -132,8 +146,11 @@
           AND a.PROFESSOR_ID = d.PROFESSOR_ID
           AND e.STUDENT_ID = #{stdId}
           AND a.CLASS_APPROVE = 'Y'
+          AND a.CLASS_YEAR = #{classYear}
+          AND a.CLASS_SEMESTER = #{classSemester}
     </select>
-    <select id="selectMyBasket" resultMap="lectureMap">
+<!--    장바구니테이블에서 데이터 뽑아옴-->
+    <select id="selectMyBasket" resultMap="lectureMap" parameterType="Lecture">
         SELECT a.CLASS_SEQ,
                a.CLASS_NAME,
                c.DEPARTMENT_NAME AS DEPARTMENT_CODE,
@@ -156,30 +173,45 @@
           AND a.PROFESSOR_ID = d.PROFESSOR_ID
           AND e.STUDENT_ID = #{stdId}
           AND a.CLASS_APPROVE = 'Y'
+          AND a.CLASS_YEAR = #{classYear}
+          AND a.CLASS_SEMESTER = #{classSemester}
     </select>
+<!--    내 수강신청에서 삭제 -->
     <delete id="deleteMyClass" parameterType="LectureApplication">
         DELETE FROM TB_REGISTER_CLASS WHERE STUDENT_ID=#{stdId} AND CLASS_SEQ=#{classSeq}
     </delete>
+<!--    내 장바구니에서 삭제-->
     <delete id="deleteMyBasket" parameterType="LectureApplication">
         DELETE FROM TB_BASKET_CLASS WHERE STUDENT_ID=#{stdId} AND CLASS_SEQ=#{classSeq}
     </delete>
 
+<!--    과목코드 중복방지를 위한 쿼리문-->
     <select id="codeCheck" parameterType="string" resultType="_int">
         SELECT COUNT(*)
         FROM TB_CLASS
         WHERE CLASS_CODE=#{classCode}
           AND CLASS_APPROVE = 'Y'
     </select>
+<!--    교수 강의등록요청할때 승인상태를 N으로 해서 디비에넣음-->
     <insert id="requestRegisterClass" parameterType="Lecture">
         INSERT INTO TB_CLASS
         VALUES (SEQ_CLASS.nextval,#{classCode},#{deptCode},#{profId},#{className},#{room},#{gradeSize},#{classSemester},#{classYear},'N',#{classLevel},#{classType})
     </insert>
+<!--    클래스시퀀스를 가져와서 거기에 맞는 시간표를 함께 넣기위함-->
     <select id="selectClassSeq" parameterType="string" resultType="_int">
         SELECT CLASS_SEQ
         FROM TB_CLASS
         WHERE CLASS_CODE=#{classCode}
     </select>
+<!--    교수가 강의등록할때 함께 넣은 시간표를 디비에 넣어줌-->
     <insert id="insertClassTime" parameterType="LectureTime">
         INSERT INTO TB_CLASS_TIME VALUES (SEQ_CLASS_TIME.nextval,#{classSeq},#{day},#{hour})
     </insert>
+
+<!--    교수가 강의삭제요청할 데이터를 뽑아옴-->
+    <select id="getDeleteTable" resultMap="lectureMap">
+        SELECT CLASS_SEQ, CLASS_CODE, CLASS_NAME, ROOM, CLASS_TYPE, CLASS_YEAR, CLASS_SEMESTER, CLASS_APPROVE
+        FROM TB_CLASS
+        WHERE PROFESSOR_ID=#{profId}
+    </select>
 </mapper>
