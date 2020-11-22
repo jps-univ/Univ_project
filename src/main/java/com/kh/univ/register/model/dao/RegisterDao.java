@@ -25,4 +25,16 @@ public class RegisterDao {
 		return sqlSession.insert("RegisterMapper.leaveApply", register);
 	}
 
+	// 복학페이지
+	public Register selectReturning(Student studentR) {
+		
+		return sqlSession.selectOne("RegisterMapper.selectReturning", studentR);
+	}
+
+	// 졸업페이지
+	public Register selectGraduation(Student studentG) {
+	
+		return sqlSession.selectOne("RegisterMapper.selectGraduation", studentG);
+	}
+
 }

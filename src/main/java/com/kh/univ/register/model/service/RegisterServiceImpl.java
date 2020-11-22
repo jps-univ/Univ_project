@@ -27,4 +27,18 @@ public class RegisterServiceImpl implements RegisterService{
 		return rDao.leaveApply(register);
 	}
 
+	// 복학페이지
+	@Override
+	public Register selectReturning(Student studentR) {
+	
+		return rDao.selectReturning(studentR);
+	}
+
+	// 졸업페이지
+	@Override
+	public Register selectGraduation(Student studentG) {
+		
+		return rDao.selectGraduation(studentG);
+	}
+
 }

@@ -31,6 +31,7 @@
      
   </select>
   
+  <!-- 휴학신청 -->
   <insert id="leaveAppl">
        INSERT INTO TB_STUDENT_STATUS 
            (STATUS_NO,
@@ -44,5 +45,35 @@
 	  (SEQ_STATUS.NEXTVAL, #{stdId}, #{stdStatus}, '휴학신청중', SYSDATE, #{reasonsLeave}, #{leavePeriod})	
 	  	
   </insert>
+  
+  <!-- 복학페이지 -->
+  <select id="selectReturning" resultMap="RegisterResultSet">
+     SELECT 
+        STATUS_NO,
+        APPLICATION_STATUS,
+        STUDENT_STATUS,
+        SEMESTER,
+        APPLICATION_DATE,
+        RETURNING_DATE
+     FROM
+        TB_STUDENT_STATUS
+      JOIN TB_STUDENT USING(STUDENT_ID)
+      WHERE STUDENT_ID = #{stdId}  
+  </select>
+  
+  <!-- 졸업페이지 -->
+  <select id="selectGraduation" resultMap="RegisterResultSet">
+       SELECT 
+        STATUS_NO,
+        APPLICATION_STATUS,
+        STUDENT_STATUS,
+        GRADUATION_DATE,
+        SEMESTER,
+        APPLICATION_DATE,
+     FROM
+        TB_STUDENT_STATUS
+      JOIN TB_STUDENT USING(STUDENT_ID)
+      WHERE STUDENT_ID = #{stdId} 
+  </select>
   
   </mapper>

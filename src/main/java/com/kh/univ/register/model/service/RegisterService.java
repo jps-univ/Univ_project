@@ -11,4 +11,10 @@ public interface RegisterService {
 	// 휴학신청
 	int leaveApply(Register register);
 
+	// 복학페이지
+	Register selectReturning(Student studentR);
+
+	// 졸업페이지
+	Register selectGraduation(Student studentG);
+
 }

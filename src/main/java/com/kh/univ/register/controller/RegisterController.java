@@ -28,13 +28,6 @@ public class RegisterController {
 //
 //	      return mv;
 //	   }
-	   
-//		@RequestMapping("leave.do")
-//	    public String Leave()
-//		{
-//	        return "register/register_leave";
-//	    }
-		
 	
 	    // 휴학페이지
 		@RequestMapping("leave.do")
@@ -71,16 +64,34 @@ public class RegisterController {
 		}
 		
 		   
-		@RequestMapping("returning.do")
-		public String Returing()
-	    {
-		    return "register/register_returning";
-		}
+		// 복학페이지
+		@RequestMapping("returning.do")		
+	    public ModelAndView Returning(HttpSession session, ModelAndView mv)
+		{
+			Student studentR = (Student)session.getAttribute("loginUser");
+			
+			Register studentReturning = rService.selectReturning(studentR);
+			System.out.println(studentReturning);
+			mv.addObject("studentReturning", studentReturning);
+			mv.setViewName("register/register_returning");
+			
+	        return mv;
+	    }
 		
+		
+		
+		// 졸업페이지
 		@RequestMapping("graduation.do")
-		public String Graduation()
-	    {
-		    return "register/register_graduation";
-		}
+	    public ModelAndView Graduation(HttpSession session, ModelAndView mv)
+		{
+			Student studentG = (Student)session.getAttribute("loginUser");
+			
+			Register studentGraduation = rService.selectGraduation(studentG);
+			System.out.println(studentGraduation);
+			mv.addObject("studentReturning", studentGraduation);
+			mv.setViewName("register/register_graduation");
+			
+	        return mv;
+	    }
 
 }
