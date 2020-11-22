@@ -12,7 +12,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    
-    <link rel="stylesheet" href="${contextPath }/resources/css/admin/ad_lecture_modify.css?ver=3" type="text/css">
+    <link rel="stylesheet" href="${contextPath }/resources/css/admin/ad_lecture_modify.css?ver=4" type="text/css">
       <link rel="stylesheet" href="${contextPath }/resources/css/admin/ad_class_plan.css?ver=1" type="text/css">
 </head>
 <body>
@@ -71,6 +71,16 @@
 					$("#classYear").val(lecture.classYear);
 					$("#classSemester").val(lecture.classSemester);
 					$("#classLevel").val(lecture.classLevel);
+					
+					$("#classBook").val(lecture.classBook);
+					$("#classTarget").val(lecture.classTarget);
+					$("#classOutLine").val(lecture.classOutLine);
+					
+					console.log("책"+lecture.classBook);
+					console.log("목표"+lecture.classTarget);
+					console.log("개요"+lecture.classOutLine);
+
+					
 					
 					
 				},error:function(){
@@ -243,6 +253,9 @@
 				              		<select id="professorCode"  class="LectureData" name="profId" form="lectureForm">
 				               			<option>학과를 먼저 선택해주세요..</option>
 				                	</select>
+				                	<input type="hidden" id="classOutLine"/>
+				                	<input type="hidden" id="classTarget"/>
+				                	<input type="hidden" id="classBook"/>
 				              	</td>
 				 				<td><p>강의시간</p></td>
 				              <td><input type="text" placeholder="ex) 월1/월2/화3"  class="LectureData" name="classTime" id="classTime"></td>
@@ -285,6 +298,7 @@
 			           		 <tr>
                             	<td><p>강의 계획서</p></td>	
                             	<td colspan="3"><a id="myBtn">작성하러가기</a></td>
+                            	
                        		 </tr>
 
                     </table>
@@ -344,15 +358,15 @@
                                 <div>교과목 개요</div>
                             </div>
                             <div id="class_sum_content">
-                                <div>내용</div>
+                                <div><input type="text" id="mclassOutLine"></div>
                             </div>
                             <table id="class_goal">
                                 <tbody>
                                     <tr>
                                         <td><div>교육목표</div></td>
-                                        <td><p id="mclassCode"></p></td>
+                                        <td><input type="text" id="mclassTarget"></td>
                                         <td><div>주교재</div></td>
-                                        <td><p id="mclassCode"></p></td>
+                                        <td><input type="text" id="mclassBook"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -482,7 +496,9 @@
         	var classSemester = semester.options[semester.selectedIndex].text; 
         	
         	var status = document.getElementById("status").value;
-        	
+        	var classOutLine = document.getElementById("classOutLine").value;
+        	var classTarget = document.getElementById("classTarget").value;
+        	var classBook = document.getElementById("classBook").value;
 
         	document.getElementById("mlectureName").innerHTML=className;
         	document.getElementById("mProfessorName").innerHTML=professorName;	
@@ -494,13 +510,16 @@
         	document.getElementById("mSemester").innerHTML=classSemester;
         	document.getElementById("mClassStatus").innerHTML=status;
         	
-        	
+        	document.getElementById("mclassOutLine").innerHTML=classOutLine;
+        	document.getElementById("mclassTarget").innerHTML=classTarget;
+        	document.getElementById("mclassBook").innerHTML=classBook;
+
         	console.log(classSeq);
         	$.ajax({
-        		url:"",
-        		type:"",
+        		url:"ad_classPlan.do",
+        		type:"json",
         		data:{
-        			
+        			classSeq:$('#classSeq').val();
         		},success:function(plan){
         			$("#mlectureName").val($("#LectureName").val());
         		},error:function(error){

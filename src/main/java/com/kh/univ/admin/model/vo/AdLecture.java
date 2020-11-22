@@ -15,11 +15,16 @@ public class AdLecture {
     private String classApprove;	// 강의 승인 여부
     private int classLevel;			// 수강 학년-
     private String classType;		// 이수 구분-
+    private String classOutLine;	// 개요
+    private String classTarget;		// 목표
+    private String classBook;		// 교재
     
     
     private String total;			// 강의시간 합치기
     private String proName;
     private String collegeCode;
+    
+    
     
 	public AdLecture() {
 		super();
@@ -27,7 +32,8 @@ public class AdLecture {
 
 	public AdLecture(int classSeq, String classCode, String deptCode, int profId, String className, String room,
 			int gradeSize, int classSemester, int classYear, String classApprove, int classLevel, String classType,
-			String total, String proName, String collegeCode) {
+			String classOutLine, String classTarget, String classBook, String total, String proName,
+			String collegeCode) {
 		super();
 		this.classSeq = classSeq;
 		this.classCode = classCode;
@@ -41,10 +47,15 @@ public class AdLecture {
 		this.classApprove = classApprove;
 		this.classLevel = classLevel;
 		this.classType = classType;
+		this.classOutLine = classOutLine;
+		this.classTarget = classTarget;
+		this.classBook = classBook;
 		this.total = total;
 		this.proName = proName;
 		this.collegeCode = collegeCode;
 	}
+
+
 
 
 	public int getClassSeq() {
@@ -139,23 +150,44 @@ public class AdLecture {
 	public String getCollegeCode() {
 		return collegeCode;
 	}
-	
-	
-	
 	public void setCollegeCode(String collegeCode) {
 		this.collegeCode = collegeCode;
 	}
+	public String getClassOutLine() {
+		return classOutLine;
+	}
 
+	public void setClassOutLine(String classOutLine) {
+		this.classOutLine = classOutLine;
+	}
 
+	public String getClassTarget() {
+		return classTarget;
+	}
+
+	public void setClassTarget(String classTarget) {
+		this.classTarget = classTarget;
+	}
+
+	public String getClassBook() {
+		return classBook;
+	}
+
+	public void setClassBook(String classBook) {
+		this.classBook = classBook;
+	}
 
 	@Override
 	public String toString() {
 		return "AdLecture [classSeq=" + classSeq + ", classCode=" + classCode + ", deptCode=" + deptCode + ", profId="
 				+ profId + ", className=" + className + ", room=" + room + ", gradeSize=" + gradeSize
 				+ ", classSemester=" + classSemester + ", classYear=" + classYear + ", classApprove=" + classApprove
-				+ ", classLevel=" + classLevel + ", classType=" + classType + ", total=" + total + ", proName="
+				+ ", classLevel=" + classLevel + ", classType=" + classType + ", classOutLine=" + classOutLine
+				+ ", classTarget=" + classTarget + ", classBook=" + classBook + ", total=" + total + ", proName="
 				+ proName + ", collegeCode=" + collegeCode + "]";
 	}
+
+
 
 
 

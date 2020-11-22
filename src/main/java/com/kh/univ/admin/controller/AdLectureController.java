@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.admin.model.service.AdLectureService;
+import com.kh.univ.admin.model.vo.AdClassPlan;
 import com.kh.univ.admin.model.vo.AdClassTime;
 import com.kh.univ.admin.model.vo.AdCollege;
 import com.kh.univ.admin.model.vo.AdDepartment;
@@ -120,6 +121,7 @@ public class AdLectureController {
 	public ModelAndView lectureModify(ModelAndView mv) {
 		ArrayList<AdCollege> adCollegeSelect = adLectureService.adCollegeSelect();
 		ArrayList<AdLecture> selectAdLectureList = adLectureService.selectAdLectureList();
+		
 		System.out.println(selectAdLectureList);
 		mv.addObject("selectAdLectureList",selectAdLectureList);
 		mv.addObject("adCollege", adCollegeSelect);
@@ -130,12 +132,15 @@ public class AdLectureController {
 	@ResponseBody
 	@RequestMapping("lecture_Modify_selectOne.do")
 	public AdLecture lectureModifySelectOne(int classSeq) {
-		System.out.println(classSeq);
 		AdLecture lectureSelectOne = adLectureService.lectureSelectOne(classSeq);
-		System.out.println(lectureSelectOne);
 		return lectureSelectOne;
+	}
+	
+	@ResponseBody
+	@RequestMapping("ad_classPlan.do")
+	public ArrayList<AdClassPlan> adClassPlan() {
 		
-		
+		return null;
 	}
 	/**
 	 * 3. 휴강 관리(관리자)

@@ -187,3 +187,9 @@ a{
     background-color: whitesmoke;
     height: 50px;
 }
+#mclassOutLine,
+#mclassTarget,
+#mclassBook{
+	width:100%;
+	heigth:100%;
+}
