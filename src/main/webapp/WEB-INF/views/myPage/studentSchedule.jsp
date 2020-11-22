@@ -416,7 +416,7 @@
 	<script src="${contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 	<!-- Page level custom scripts -->
-	<script src="${contextPath}/resources/js/demo/datatables-demo.js"></script>
+	<%-- <script src="${contextPath}/resources/js/demo/datatables-demo.js"></script> --%>
 
 </body>
 </html>

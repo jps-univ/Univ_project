@@ -75,7 +75,7 @@
                         <!-- 퀵링크 영역 끝 -->
 
                         <!-- 시간표 영역 시작 -->
-                        <div class="timetable" id="timetable" style="width:60%;">
+                        <div class="timetable" id="timetable" style="width:60%; display:none;">
                             <!-- <p style="text-align: center; font-size: 30pt;">시간표 들어갈 영역</p> -->
                             <jsp:include page="/studentSchedule.do">
                             	<jsp:param name="classSemester" value="1"></jsp:param>
@@ -459,17 +459,17 @@
     <!-- Bootstrap core JavaScript-->
     <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
     <script src="${contextPath}/resources/js/main_page.js"></script>
-    <script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <%-- <script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> --%>
 
     <!-- Core plugin JavaScript-->
     <script src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="${contextPath}/resources/vendor/chart.js/Chart.min.js"></script>
+    <%-- <script src="${contextPath}/resources/vendor/chart.js/Chart.min.js"></script> --%>
 
     <!-- Page level custom scripts -->
-    <script src="${contextPath}/resources/js/demo/chart-area-demo.js"></script>
-    <script src="${contextPath}/resources/js/demo/chart-pie-demo.js"></script>
+    <%-- <script src="${contextPath}/resources/js/demo/chart-area-demo.js"></script>
+    <script src="${contextPath}/resources/js/demo/chart-pie-demo.js"></script> --%>
 
 </body>
 

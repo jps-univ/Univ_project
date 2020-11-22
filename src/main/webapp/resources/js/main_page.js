@@ -44,7 +44,8 @@ $(function(){
 	$("#timetable nav").remove();
 	$("#timetable footer").remove();
 	$("#timetable .container-fluid").children('br:first').remove();
-	
+	$("#timetable .container-fluid").css("display","");
+	$("#timetable").css("display","");
 	
     
 });

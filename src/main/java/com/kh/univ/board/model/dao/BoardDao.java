@@ -47,4 +47,13 @@ public class BoardDao {
 		return sqlSession.insert("boardMapper.updateAnswer", board);
 	}
 
+	public int upsertNotice(Board board) {
+		System.out.println("board : " + board);
+		return (board.getBoardId() != 0) ? sqlSession.update("boardMapper.updateNotice", board) : sqlSession.insert("boardMapper.save", board);
+	}
+
+	public int deleteNotice(Board board) {
+		return sqlSession.delete("boardMapper.deleteById", board);
+	}
+
 }

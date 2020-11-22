@@ -10,7 +10,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="<%=path%>/resources/css/admin/ad_notice_answer.css">
+  <link rel="stylesheet" href="<%=path%>/resources/css/admin/ad_qna_answer.css">
+  <script type="text/javascript" src="<%=path %>/resources/ckeditor/ckeditor.js"></script>
   <title>진포상대학교</title>
 </head>
 <body>
@@ -29,44 +30,58 @@
 	<!-- 사이드바 끝 -->
 
     <!-- 본문 -->
+    <form action="enrollNotice.do" method="POST" id="formSubmit">
     <div class="col-sm-9 page">
         <div id="container">
             <div id="rest_table_area">
                 <table class="table table-bordered question-table">
+                <colgroup>
+                	<col style="width:8%;">
+                	<col style="width:*">
+                </colgroup>
                     <thead>
                         <tr>
                             <th>
                                 <p>제목</p>
                             </th>
+                            <td>
+                            	<input type="text" name="bTitle" style="width:100%;" class="form-control validation" value="${board.bTitle}" />
+                            </td>
                         </tr>
                         <tr>
                             <th>
-                                <p style="min-height: 240px;">내용</p>
+                                <p>작성자</p>
                             </th>
+                            <td>
+                            	<p>${loginUser.stdName}</p>
+                            </td>
                         </tr>
                         <tr>
-                            <th>
-                                <span style="min-height: 240px;">첨부파일</span>
-                                <span id="fileArea">
-                                    <p style="text-align:center; line-height:75px;">클릭시 첨부파일을 선택할 수 있습니다.</p>
-                                </span>
-                            </th>
+                            <td style="text-align:center; font-weight:bold;">
+                                <p>내용</p>
+                            </td>
+                            <td>
+                            	<div><textarea id="p_content" style="width:100%;">${board.bContents}</textarea></div>
+                            </td>
                         </tr>
                     </thead>
                 </table>
             </div>
 
             <div>
-                <button type="button" class="btn" id="writeBtn">취소</button>
-                <button type="button" class="btn" id="writeBtn" style="margin-right: 20px;">등록</button>
+                <button type="button" class="btn writeBtn" id="delBtn">삭제</button>
+                <button type="button" class="btn writeBtn" id="writeBtn" style="margin-right: 20px;">수정</button>
+                <button type="button" class="btn writeBtn" id="cancleBtn" style="display:none; margin-right: 20px;">취소</button>
             </div>
             
         </div>
     </div>
-    <input id="fileSelect" type="file" style="display: none;">
-      
-     
-    
+    	<input type="hidden" name="stdId" value="${loginUser.stdId}" />
+		<input type="hidden" name="bType" value="N"/>
+    	<input type="hidden" value="${board.boardId}" name="boardId" id="boardId" />
+    	<input type="hidden" value="" name="bContents" id="bContents"/>
+    </form>
+    	
 </div>
     <!-- 본문 끝 -->
 
@@ -75,10 +90,67 @@
   <span style="margin: 0 0 10px;">진포상대학</span>
 </footer>
 <!-- footer 끝 -->
-<script>
-    $("#fileArea").click(function(){
-        $("#fileSelect").click();
-    })
-</script>
+	<script>
+	$(function() { 
+		
+		CKEDITOR.replace('p_content'
+                , {height: 400});
+	
+		
+	if($("#boardId").val() == "") {
+		$("#writeBtn").text("등록");
+		$("#cancleBtn").css("display","");
+		$("#delBtn").css("display","none");
+	} else {
+		
+	}
+		
+	$("#writeBtn").on('click',function(){
+		$("#bContents").val(CKEDITOR.instances["p_content"].getData());
+		if($("#boardId").val() == "") {
+			$("#boardId").val(0);
+		}
+		if(validation()) {
+			$("#formSubmit").submit();
+		} else {
+			alert("필수 입력사항을 입력하세요.");
+		}
+		
+	});
+	
+		$("#cancleBtn").click(function() {
+			history.back(0);
+		});
+		
+		$("#delBtn").click(function() {
+			if(confirm("정말록 삭제 하시겠습니끼?")) {
+				deleteNotice();
+			}
+			});
+		
+	});
+	
+	function deleteNotice() {
+		$("#formSubmit").attr("action","removeNotice.do");
+		$("#formSubmit").submit();
+	}
+	
+	function validation() {
+		
+		var validationCnt = 0;
+		$(".validation").each(function(idx, item){
+			if($(item).val() == "") {
+				$(item).css("border","1px solid red");
+				validationCnt++;
+			}
+		});
+		
+		if(CKEDITOR.instances["p_content"].getData() == "") {
+			validationCnt++;
+		}
+		
+		return (validationCnt > 0)?false:true;
+	}
+	</script>
 </body>
 </html>
