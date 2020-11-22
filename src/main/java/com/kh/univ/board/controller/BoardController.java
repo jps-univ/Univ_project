@@ -21,6 +21,7 @@ import com.kh.univ.board.model.service.BoardService;
 import com.kh.univ.board.model.vo.Board;
 import com.kh.univ.board.model.vo.PageInfo;
 import com.kh.univ.common.PaginationBoard;
+import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
 
 @Controller
@@ -47,6 +48,36 @@ public class BoardController {
 		Student student = (Student) session.getAttribute("loginUser");
 		System.out.println("seession : " + student);
 		params.put("stdId", student.getStdId());
+		
+		int bCnt = bService.getBoardListCnt(params);
+		int currentPage = 1;
+		
+		if(params.get("currentPage") != null && Integer.parseInt(params.get("currentPage").toString()) > 1) {
+			currentPage = Integer.parseInt(params.get("currentPage").toString());
+		} else {
+			currentPage = 1;
+		}
+		
+		System.out.println("page :" + currentPage);
+		System.out.println("params : " + params);
+		PageInfo pi = PaginationBoard.getPageInfo(currentPage, bCnt);
+		params.put("pi",pi);
+		
+		ArrayList<Board> nList = bService.getBoardList(params);
+		
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("pi",pi);
+		resultMap.put("boardList",nList);
+		
+		return new ResponseEntity<HashMap<String,Object>>(resultMap,HttpStatus.OK);
+		
+	}
+	
+	@RequestMapping(value="boardProfessorList.do", method=RequestMethod.POST)
+	public @ResponseBody ResponseEntity<HashMap<String,Object>> getBoardProfessorList(HttpServletRequest request, HttpServletResponse reponse, @RequestBody HashMap<String, Object> params) {
+		HttpSession session = request.getSession();
+		Professor professor = (Professor) session.getAttribute("loginUser");
+		params.put("stdId", professor.getProfId());
 		
 		int bCnt = bService.getBoardListCnt(params);
 		int currentPage = 1;
