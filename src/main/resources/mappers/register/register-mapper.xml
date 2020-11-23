@@ -33,7 +33,7 @@
   </select>
   
   <!-- 휴학신청 -->
-  <insert id="leaveAppl">
+  <insert id="leaveApply">
        INSERT INTO TB_STUDENT_STATUS 
            (STATUS_NO,
 			STUDENT_ID,

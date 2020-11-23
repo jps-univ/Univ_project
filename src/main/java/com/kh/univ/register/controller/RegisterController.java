@@ -88,7 +88,7 @@ public class RegisterController {
 			
 			Register studentGraduation = rService.selectGraduation(studentG);
 			System.out.println(studentGraduation);
-			mv.addObject("studentReturning", studentGraduation);
+			mv.addObject("studentGraduation", studentGraduation);
 			mv.setViewName("register/register_graduation");
 			
 	        return mv;
