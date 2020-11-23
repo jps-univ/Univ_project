@@ -42,6 +42,7 @@
         <typeAlias type="com.kh.univ.admin.model.vo.AdProfessor" alias="AdProfessor"/>
         <typeAlias type="com.kh.univ.admin.model.vo.AdLecture" alias="AdLecture"/>
         <typeAlias type="com.kh.univ.admin.model.vo.AdClassTime" alias="AdClassTime"/>
+        <typeAlias type="com.kh.univ.admin.model.vo.AdClassPlan" alias="AdClassPlan"/>
         
 
         

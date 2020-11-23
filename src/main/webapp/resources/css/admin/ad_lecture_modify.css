@@ -185,7 +185,7 @@ a{
 #class_plan_area  input[type=text]{
     border: none;
     background-color: whitesmoke;
-    height: 50px;
+    height: 100%;
 }
 #mclassOutLine,
 #mclassTarget,
