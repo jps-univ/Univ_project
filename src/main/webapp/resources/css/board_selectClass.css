@@ -147,11 +147,10 @@ ul li{
 }
 
 #main_con{
-    float: right;
-    width: 85%;
-    height: 100%;
-    margin: 0;
-    overflow-y:hidden; width:1000px; height:1000px;
+    overflow-y: hidden;
+    width: 1000px;
+    height: 1000px;
+    margin: auto;
 }
 
 /*------------------------본문-----------------*/
@@ -257,10 +256,12 @@ ul li{
 }
 
 #rest_table_area{
-    padding: 10px; 
+    padding: 10px;
     height: 30%;
-
-    margin-top: 45px;
+    border-radius: 7px;
+    width: 80%;
+    margin: auto;
+    text-align: center;
     }
     
     #rest_lecture{

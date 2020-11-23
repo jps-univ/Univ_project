@@ -147,11 +147,10 @@ ul li{
 }
 
 #main_con{
-    float: right;
-    width: 85%;
-    height: 100%;
-    margin: 0;
-    overflow-y:hidden; width:1000px; height:1000px;
+    overflow-y: hidden;
+    width: 1000px;
+    height: 1000px;
+    margin: auto;
 }
 
 /*------------------------본문-----------------*/
@@ -176,22 +175,18 @@ ul li{
     position: relative;
     float: right;
     top: 33px;
-    margin-right: 31%;
+    margin-right: 41%;
     border-radius: 3px;
  }
 
 
  #rest_table_area{
-    padding: 10px; 
+    padding: 10px;
     height: 30%;
-    margin-top: 25px;
-    background-color: white;
-/*     border-top: 1px solid rgb(136, 130, 130);
-    border-bottom: 1px solid rgb(136, 130, 130); */
     border-radius: 7px;
     width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
+    text-align: center;
     }
     
     #rest_notice{
