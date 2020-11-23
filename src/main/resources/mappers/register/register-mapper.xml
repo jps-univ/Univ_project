@@ -63,7 +63,7 @@
   
   <!-- 졸업페이지 -->
   <select id="selectGraduation" resultMap="RegisterResultSet">
-       SELECT 
+     SELECT 
         STATUS_NO,
         APPLICATION_STATUS,
         STUDENT_STATUS,
