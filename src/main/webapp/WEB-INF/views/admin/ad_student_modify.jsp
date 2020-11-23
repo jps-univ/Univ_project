@@ -196,30 +196,14 @@
                 <table id="total_std" class=" table-hover" >
                     <thead>
                         <tr>
-                            <th onclick="a();">
-                                <p>학번</p>
-                            </th>
-                            <th>
-                                <p>성명</p>
-                            </th>
-                            <th>
-                                <p>생년월일</p>
-                            </th>
-                            <th>
-                                <p>대학</p>
-                            </th>
-                            <th>
-                                <p>학과</p>
-                            </th>
-                            <th>
-                                <p>과정구분</p>
-                            </th>
-                            <th>
-                                <p>학년</p>
-                            </th>
-                            <th>
-                                <p>학적상태</p>
-                            </th>
+                            <th onclick="a();"><p>학번</p></th>
+                            <th><p>성명</p></th>
+                            <th><p>생년월일</p></th>
+                            <th><p>대학</p></th>
+                            <th><p>학과</p></th>
+                            <th><p>과정구분</p></th>
+                            <th><p>학년</p></th>
+                            <th><p>학적상태</p></th>
                         </tr>
                     </thead>
                     <tbody>

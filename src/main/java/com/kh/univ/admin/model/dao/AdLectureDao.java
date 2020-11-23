@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.univ.admin.model.vo.AdClassPlan;
 import com.kh.univ.admin.model.vo.AdClassTime;
 import com.kh.univ.admin.model.vo.AdCollege;
 import com.kh.univ.admin.model.vo.AdDepartment;
@@ -65,5 +66,10 @@ public class AdLectureDao {
 	public ArrayList<AdLecture> lectureApprove() {
 		// TODO Auto-generated method stub
 		return (ArrayList)sqlSession.selectList("adminLectureMapper.lectureApprove");
+	}
+
+	public ArrayList<AdClassPlan> adClassPlanSelect(int classSeq) {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList("adminLectureMapper.classPlanSelect",classSeq);
 	}
 }
