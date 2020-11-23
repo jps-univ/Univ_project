@@ -147,11 +147,10 @@ ul li{
 }
 
 #main_con{
-    float: right;
-    width: 85%;
-    height: 100%;
-    margin: 0;
-    overflow-y:hidden; width:1000px; height:1000px;
+    overflow-y: hidden;
+    width: 1000px;
+    height: 1000px;
+    margin: auto;
 }
 
 /*------------------------본문-----------------*/
