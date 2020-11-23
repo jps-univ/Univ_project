@@ -41,16 +41,19 @@ public class ClassBoardController {
 	public String selectClass(HttpSession session, Model model) {
 		
 		Object user = session.getAttribute("loginUser");
-		
+		String userName = "";
 		if (user instanceof Student ) {
 			user = (Student)session.getAttribute("loginUser");
+			userName = ((Student) user).getStdName();
 		}else if (user instanceof Professor){
 			user = (Professor)session.getAttribute("loginUser");
+			userName = ((Professor) user).getProfName();
 		}
 		
 //		System.out.println(user);
 		
 		session.setAttribute("user", user);
+		session.setAttribute("userName", userName);
 		
 		return "classBoard/selectClass";
 	}
