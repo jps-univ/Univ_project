@@ -158,6 +158,24 @@ public class AdLectureController {
 		return adClassPlanSelect;
 		
 	}
+	
+	/**
+	 * 2_4. 강의 update
+	 * @param lecture
+	 * @return
+	 */
+	@RequestMapping("ad_lecture_update.do")
+	public String lectureUpdate(AdLecture lecture) {
+		System.out.println(lecture);
+		int result = adLectureService.lectureUpdate(lecture);
+		
+		if(result>0) {
+			return "redirect:lecture_Modify.do";
+		}else {
+			return "common/errorPage";
+		}
+	
+	}
 	/**
 	 * 3. 휴강 관리(관리자)
 	 * @return

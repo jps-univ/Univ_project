@@ -249,3 +249,10 @@
     vertical-align: middle;
     display: table-cell;
 }
+#class_detail_table tbody tr td{
+	height:30px;
+}
+.detail_head>input{
+	width:100%;
+	height:100%;
+}

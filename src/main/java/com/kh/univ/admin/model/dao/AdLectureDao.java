@@ -72,4 +72,9 @@ public class AdLectureDao {
 		// TODO Auto-generated method stub
 		return (ArrayList)sqlSession.selectList("adminLectureMapper.classPlanSelect",classSeq);
 	}
+
+	public int lectureUpdate(AdLecture lecture) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("adminLectureMapper.lectureUpdate",lecture);
+	}
 }

@@ -33,4 +33,6 @@ public interface AdLectureService {
 
 	ArrayList<AdClassPlan> adClassPlanSelect(int classSeq);
 
+	int lectureUpdate(AdLecture lecture);
+
 }

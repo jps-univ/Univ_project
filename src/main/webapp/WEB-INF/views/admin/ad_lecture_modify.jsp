@@ -12,8 +12,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    
-    <link rel="stylesheet" href="${contextPath }/resources/css/admin/ad_lecture_modify.css?ver=5" type="text/css">
-      <link rel="stylesheet" href="${contextPath }/resources/css/admin/ad_class_plan.css?ver=6" type="text/css">
+    <link rel="stylesheet" href="${contextPath }/resources/css/admin/ad_lecture_modify.css?ver=6" type="text/css">
+      <link rel="stylesheet" href="${contextPath }/resources/css/admin/ad_class_plan.css?ver=8" type="text/css">
 </head>
 <body>
 <script>
@@ -209,14 +209,14 @@
                     <option>교수명</option>
                     <option>개설학과</option>
                 </select>
-                <input type ="text" value="0" id="classSeq">
                 <input type="search">
                 <input type="button" value="검색">
             </div>
 
 
             <div id="ad_lecture_UD">
-                <form>
+                <form method="post" action="ad_lecture_update.do" id="lectureForm">
+                <input type ="hidden" value="0" id="classSeq" name="classSeq">
                     <table id="UD_lecture">
 			            <tr>
 			              <td><p>강의명</p></td>
@@ -302,10 +302,10 @@
                        		 </tr>
 
                     </table>
+            <input type="submit" value="수정" id="lecture_btn">
                 </form>
             </div>
 
-            <input type="button" value="수정">
             <br><br><br><br><br><br><br>
 
         </div>
@@ -466,14 +466,14 @@
         		data:{
         			classSeq:$("#classSeq").val()	
         		},success:function(plan){
-        			console.log(plan[0].weekPlan);
         			$("#class_detail_table tbody").empty();
         			
         			for(var p = 0; p<plan.length; p++){
-        				if(plan[p].weekPlan != null){
+        				
+        				if(plan !=null){
 							var $tr = $('<tr>');
 							var $week = $("<td><input type="+"text "+"name ="+"week"+"class="+"detail_head "+">");
-							var $topic = $("<td><input type="+"text "+"name ="+"topic"+[p] +"class="+"detail_head "+">");
+							var $topic = $("<td><input type="+"text "+"name ="+"topic "+"class="+"detail_head "+">");
 							var $weekPlan= $("<td><input type="+"text "+"name ="+"weekPlan "+"class="+"detail_head "+">");
         					$($week).children().attr('value',plan[p].week);
         					$($topic).children().attr('value',plan[p].topic);
@@ -482,13 +482,14 @@
 							$tr.append($topic);
 							$tr.append($weekPlan);
 							$("#class_detail_table tbody").append($tr);
+							
         				}else{
         					alert("강의계획서가 등록 되지 않았습니다.");
         				}
         			}
         			
         		},error:function(error){
-        			console.log($("#classSeq").val());
+        			$("#class_detail_table tbody").empty();
         			
         		}
         			
@@ -500,6 +501,7 @@
         span.onclick = function () {
             modal.style.display = "none";
         }
+        
         canceal.onclick = function () {
             modal.style.display = "none";
         }

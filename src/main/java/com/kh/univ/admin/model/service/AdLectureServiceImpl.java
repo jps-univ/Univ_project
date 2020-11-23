@@ -80,4 +80,10 @@ public class AdLectureServiceImpl implements AdLectureService{
 		// TODO Auto-generated method stub
 		return adLectureDao.adClassPlanSelect(classSeq);
 	}
+
+	@Override
+	public int lectureUpdate(AdLecture lecture) {
+		// TODO Auto-generated method stub
+		return adLectureDao.lectureUpdate(lecture);
+	}
 }

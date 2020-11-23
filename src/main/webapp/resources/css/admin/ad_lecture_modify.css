@@ -193,3 +193,10 @@ a{
 	width:100%;
 	heigth:100%;
 }
+
+#lecture_btn{
+	width:50px;
+	margin-top: 10px;
+	float:right;
+	
+}

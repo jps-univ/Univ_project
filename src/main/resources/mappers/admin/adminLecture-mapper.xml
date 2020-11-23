@@ -201,4 +201,21 @@
 		ORDER BY WEEK
 			
 	</select>
+	
+	<update id="lectureUpdate" parameterType="AdLecture">
+		UPDATE TB_CLASS
+		SET 
+		CLASS_CODE =#{classCode},
+		DEPARTMENT_CODE=#{deptCode},
+		PROFESSOR_ID=#{profId},
+		CLASS_NAME=#{className},
+		ROOM=#{room},
+		GRADE_SIZE=#{gradeSize},
+		CLASS_SEMESTER=#{classSemester},
+		CLASS_YEAR=#{classYear},
+		CLASS_LEVEL=#{classLevel},
+		CLASS_TYPE=#{classType}
+		WHERE CLASS_SEQ=#{classSeq}
+
+	</update>
 </mapper>
