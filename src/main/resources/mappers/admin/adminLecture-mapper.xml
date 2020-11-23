@@ -83,6 +83,7 @@
     	<id property="planNO" column="PLAN_NO"/>
     	<result property="classSeq" column="CLASS_SEQ"/>
     	<result property="week" column="WEEK"/>
+    	<result property="topic" column="TOPIC"/>
     	<result property="weekPlan" column="WEEK_PLAN"/>
     </resultMap>
     
@@ -194,7 +195,7 @@
     </select>
 	
 	<select id="classPlanSelect" parameterType="AdClassPlan" resultMap="adClassPlanResultSet">
-		SELECT PLAN_NO,CLASS_SEQ,WEEK,WEEK_PLAN
+		SELECT PLAN_NO,CLASS_SEQ,WEEK,TOPIC,WEEK_PLAN
 		FROM CLASS_PLAN
 		WHERE CLASS_SEQ=#{classSeq}
 		ORDER BY WEEK
