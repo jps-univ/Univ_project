@@ -19,7 +19,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 	
 	<!-- Custom styles for this template -->
-	<link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
+	<link href="${contextPath}/resources/css/sb-admin-2.min2.css" rel="stylesheet">
 	
 	<!-- Custom styles for this page -->
 	<link href="${contextPath}/resources/css/register_graduation.css" rel="stylesheet">
@@ -125,7 +125,7 @@
                 <div>
                     <dl class="line" style="position: relative; right: 80px;">
                         <dt style="color: #c5d9e8;">현재학적상태</dt>
-                        <dd style="margin: auto;">휴학</dd>
+                        <dd style="margin: auto;">${ studentGraduation.stdStatus }</dd>
                     </dl>
                 </div>
                 <div>
@@ -144,7 +144,7 @@
                     <dl class="line" style="position: relative; right: 20px;">
 
                         <dt style="color: #c5d9e8;">총이수학기</dt>
-                        <dd style="margin: auto;">10</dd>
+                        <dd style="margin: auto;">${ studentGraduation.stdSemester }</dd>
                     </dl>
                 </div>
                 <div>
