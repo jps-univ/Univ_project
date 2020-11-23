@@ -383,13 +383,12 @@
                                         <td><p>세부 내용</p></td>
                                     </tr>
                                 </thead>
-                                <tr>
-                                    <td class="detail_head"><div>주차</div></td>
-                                    <td class="detail_head"><div>주제</div></td>
-                                    <td class="detail_head"><div>세부 내용</div></td>
-                                </tr>
-
-
+                                <tbody>
+	                                <tr>
+	                                    <td class="detail_head"><div>주차</div></td>
+	                                    <td class="detail_head"><div>주제</div></td>
+	                                    <td class="detail_head"><div>세부 내용</div></td>
+	                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -438,7 +437,7 @@
         	
         	var Year = document.getElementById("classYear");
         	var classYear = Year.options[Year.selectedIndex].text;
-        	
+ 
         	var semester = document.getElementById("classSemester");
         	var classSemester = semester.options[semester.selectedIndex].text; 
         	
@@ -467,12 +466,24 @@
         		data:{
         			classSeq:$("#classSeq").val()	
         		},success:function(plan){
+        			console.log(plan[0].weekPlan);
+        			$("#class_detail_table tbody").empty();
+        			
         			for(var p = 0; p<plan.length; p++){
         				if(plan[p].weekPlan != null){
 							var $tr = $('<tr>');
-							var $input = $<"<td><input type="+"text"+"name ="+"week"+""
+							var $week = $("<td><input type="+"text "+"name ="+"week"+"class="+"detail_head "+">");
+							var $topic = $("<td><input type="+"text "+"name ="+"topic"+[p] +"class="+"detail_head "+">");
+							var $weekPlan= $("<td><input type="+"text "+"name ="+"weekPlan "+"class="+"detail_head "+">");
+        					$($week).children().attr('value',plan[p].week);
+        					$($topic).children().attr('value',plan[p].topic);
+        					$($weekPlan).children().attr('value',plan[p].weekPlan);
+							$tr.append($week);
+							$tr.append($topic);
+							$tr.append($weekPlan);
+							$("#class_detail_table tbody").append($tr);
         				}else{
-        					
+        					alert("강의계획서가 등록 되지 않았습니다.");
         				}
         			}
         			
