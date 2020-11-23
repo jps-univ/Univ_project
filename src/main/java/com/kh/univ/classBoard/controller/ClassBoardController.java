@@ -69,8 +69,8 @@ public class ClassBoardController {
 		int userYear =  Integer.parseInt(request.getParameter("userYear"));
 		int userGrade = Integer.parseInt(request.getParameter("userGrade"));
 		
-		System.out.println(userYear);
-		System.out.println(userGrade);
+		System.out.println("select : " + userYear);
+		System.out.println("select : " + userGrade);
 		
 		if (user instanceof Student ) {
 			user = (Student)session.getAttribute("loginUser");
@@ -82,11 +82,11 @@ public class ClassBoardController {
 			session.setAttribute("userId", userId);
 		}
 		
-		System.out.println(userId);
+		System.out.println("select : " + userId);
 		
 		
 		ArrayList<Lecture> lecList = cbService.classList(userId, userYear, userGrade);
-		System.out.println(lecList);
+		System.out.println("select : " + lecList);
 	
 		JSONArray jArr = new JSONArray();
 		
@@ -116,15 +116,15 @@ public class ClassBoardController {
 	 * @return
 	 */
 	@RequestMapping("classBoardMain.do")
-	public ModelAndView classBoardMain(String profName, String classSeq, HttpSession session, ModelAndView mv) {
+	public ModelAndView classBoardMain(String profName, int classSeq, HttpSession session, ModelAndView mv) {
 		
-//		System.out.println("메인넘어갈때 seq : " + request.getParameter("classSeq"));
 		session.setAttribute("classSeq", classSeq);
 		session.setAttribute("profName", profName);
 		
 		
+//		mv.addObject("Seq", classSeq);
+		System.out.println("메인넘어갈때 seq : " + classSeq);
 		mv.addObject("Seq", classSeq);
-
 		mv.setViewName("classBoard/classBoardMain");
 		
 		return mv;
@@ -152,12 +152,12 @@ public class ClassBoardController {
 				
 		// list array로 가져오기
 		int classSeq = 0;
-		if(session.getAttribute("classSeq") != null ) {
-			classSeq = Integer.parseInt((String) session.getAttribute("classSeq"));
-		}
+//		if(session.getAttribute("classSeq") != null ) {
+//			classSeq = Integer.parseInt((String) session.getAttribute("classSeq"));
+//		}
 
-
-		
+		classSeq = Integer.parseInt((String) session.getAttribute("classSeq"));
+		System.out.println("notice seq : " + classSeq);
 		
 		// paging처리
 		int listCount = cbService.getNoticeListCount(classSeq);

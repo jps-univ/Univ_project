@@ -79,7 +79,7 @@
 
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">홍길동님 환영합니다.</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${userName }님 환영합니다.</span>
               </a>
             </li>
 
@@ -109,11 +109,11 @@
                 <li class="drop" style="margin-left: 12%;"><a href="#">강의 정보</a></li>
                     <ul class="drop_submenu">
                         <li><a href="classPlan.do">강의 계획서</a></li> 
-                        <li><a href="cNoticeList.do">공지 사항</a></li>
+                        <li><a href="cNoticeList.do?classSeq=${Seq }">공지 사항</a></li>
                     </ul>
                 <li class="drop" style="margin-left: 14%;"><a href="#">학습 활동</a></li>
                     <ul class="drop_submenu">
-                        <li><a href="assignmentList.do">과제</a></li>
+                        <li><a href="assignmentList.do?ClassSeq=${Seq }">과제</a></li>
                     </ul>
                 <li class="drop" style="margin-left: 15%;"><a href="#">성적 관리</a></li>
                     <ul class="drop_submenu">
