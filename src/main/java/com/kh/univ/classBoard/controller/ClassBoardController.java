@@ -26,7 +26,7 @@ import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
 
-@SessionAttributes({"classSeq","user","profName"})
+
 @Controller
 public class ClassBoardController {
 
@@ -39,6 +39,10 @@ public class ClassBoardController {
 	 */
 	@RequestMapping("selectClass.do")
 	public String selectClass(HttpSession session, Model model) {
+		
+		
+		session.removeAttribute("classSeq");
+		session.removeAttribute("profName");
 		
 		Object user = session.getAttribute("loginUser");
 		String userName = "";
@@ -118,13 +122,17 @@ public class ClassBoardController {
 	@RequestMapping("classBoardMain.do")
 	public ModelAndView classBoardMain(String profName, int classSeq, HttpSession session, ModelAndView mv) {
 		
+
+		
 		session.setAttribute("classSeq", classSeq);
 		session.setAttribute("profName", profName);
 		
 		
-//		mv.addObject("Seq", classSeq);
 		System.out.println("메인넘어갈때 seq : " + classSeq);
+		System.out.println("메인넘어갈때 profName : " + profName);
 		mv.addObject("Seq", classSeq);
+		mv.addObject("profN", profName);
+		
 		mv.setViewName("classBoard/classBoardMain");
 		
 		return mv;
@@ -156,7 +164,7 @@ public class ClassBoardController {
 //			classSeq = Integer.parseInt((String) session.getAttribute("classSeq"));
 //		}
 
-		classSeq = Integer.parseInt((String) session.getAttribute("classSeq"));
+		classSeq = (int) session.getAttribute("classSeq");
 		System.out.println("notice seq : " + classSeq);
 		
 		// paging처리

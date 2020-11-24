@@ -3,8 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <% String path = request.getContextPath(); %>
 <c:set var="contextPath" value="<%= request.getContextPath()%>"/>
-<c:set var="Seq" value="${classSeq }"/>
-<c:set var="profName" value="${profName }"/>
+
+<c:set var="Seq" value="${ Seq}"/>
+<c:set var="profN" value="${profN}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +40,7 @@
 
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${userName }님 환영합니다.</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${userName }님 환영합니다. ${profN } + ${Seq }+${classSeq }</span>
               </a>
             </li>
 
