@@ -27,14 +27,18 @@ public class StudentManagementServiceImple implements StudentManagementService {
 	}
 
 	@Override
-	public ArrayList<StudentManagement> gradeView() {
-		return smDao.gradeView();
+	public ArrayList<StudentManagement> gradeView(Map map) {
+		return smDao.gradeView(map);
 	}
 
 	@Override
 	public int insertGrade(GradeA g) {
 		return smDao.insertGrade(g);
 	}
+//	@Override
+//	public int insertGrade(Map map) {
+//		return smDao.insertGrade(map);
+//	}
 
 //	@Override
 //	public ArrayList<StudentManagement> selectListDetailList2(Map map) {
