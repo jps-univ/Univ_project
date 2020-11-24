@@ -3,14 +3,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <% String path = request.getContextPath(); %>
 <c:set var="contextPath" value="<%= request.getContextPath()%>"/>
+
+<c:set var="Seq" value="${classSeq }"/>
+<c:set var="profName" value="${profName}"/>
 <!DOCTYPE html>
 <html>
 <head>
 
 </head>
 <body>
-	
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+          		
+          		 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
           <!-- Topbar Navbar 로그인창 -->
           <ul class="navbar-nav ml-auto">
@@ -37,7 +40,7 @@
 
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${loginUser.stdName}님 환영합니다.</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${userName }님 환영합니다. ${profName } + ${classSeq }</span>
               </a>
             </li>
 
@@ -54,33 +57,26 @@
         <!-- End of Topbar -->
 
         <!-- page top bar -->
-        <div class="top_bar">
-            <table class="professor_info">
-            <tbody>
-              <tr>
-                <td><div id="semi_title">수강과목조회</div></td>
-                <td><div id="semi_notice">공지사항</div></td>
-              </tr>
-            </tbody>
-            </table>
-        </div>
         
+        <div class="top_bar">
+           <h1>강의게시판</h1>
+        </div>
+ 
 
-        <!-- second navibar -->
         <!-- second navibar -->
         <div class="sec_navi shadow">
             <ul id="sec_navibar">
-                <li class="drop"><a href="#">Home</a></li>
-                <li class="drop"><a href="#">강의 정보</a></li>
+                <li class="drop" style="margin-left: 10%;"><a href="selectClass.do">수강 과목 조회</a></li>
+                <li class="drop" style="margin-left: 12%;"><a href="#">강의 정보</a></li>
                     <ul class="drop_submenu">
                         <li><a href="classPlan.do">강의 계획서</a></li> 
                         <li><a href="cNoticeList.do">공지 사항</a></li>
                     </ul>
-                <li class="drop"><a href="#">학습 활동</a></li>
+                <li class="drop" style="margin-left: 14%;"><a href="#">학습 활동</a></li>
                     <ul class="drop_submenu">
                         <li><a href="assignmentList.do">과제</a></li>
                     </ul>
-                <li class="drop"><a href="#">성적 관리</a></li>
+                <li class="drop" style="margin-left: 15%;"><a href="#">성적 관리</a></li>
                     <ul class="drop_submenu">
                         <li><a href="gradeObjectionList.do">성적 이의 신청</a></li>
                     </ul>                    
