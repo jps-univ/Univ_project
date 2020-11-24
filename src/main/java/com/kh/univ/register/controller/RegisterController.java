@@ -34,7 +34,13 @@ public class RegisterController {
 //	      return mv;
 //	   }
 	
-	    // 휴학페이지
+	   
+		/**
+		 * 1. 휴학 페이지 
+		 * @param session
+		 * @param mv
+		 * @return
+		 */
 		@RequestMapping("leave.do")
 	    public ModelAndView Leave(HttpSession session, ModelAndView mv)
 		{
@@ -55,7 +61,13 @@ public class RegisterController {
 	        return mv;
 	    }
 		
-		// 휴학신청
+		
+		/**
+		 * 1_2. 휴학 신청
+		 * @param session
+		 * @param register
+		 * @return
+		 */
 		@ResponseBody
 		@RequestMapping("leaveApply.do")
 		public String leaveApply(HttpSession session, InsertRegister register) {
@@ -96,6 +108,11 @@ public class RegisterController {
 			
 			
 		}
+		/**
+		 * 1_2_2. 휴학 신청 페이지 날짜 계산메소드
+		 * @param addDate
+		 * @return
+		 */
 		public  String DateCalculator(int addDate) {
 			Date today = new Date();
 			Calendar cal = Calendar.getInstance();
