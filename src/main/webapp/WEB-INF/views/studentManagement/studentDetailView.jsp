@@ -147,10 +147,10 @@ margin-right: 10px;
           <br><br>
           <table border="0" cellspacing="0" width="700px" id="tb">
           <c:forEach var="std" items="${ list }" end="0">
-          <form action="studentSchedule.do" method="post">
+          <form action="stListDetail.do" method="post">
             <tr>
-                <td><h4 id="code">과목코드 : </h4></td>
-                <td><input type="text" id="text1" placeholder="${ std.classId }" disabled name="classId" value="${ std.classId }"></td>
+                <td><h4 id="code">과목번호 : </h4></td>
+                <td><input type="text" id="text1" placeholder="${ std.classSeq }" disabled name="classSeq" value="${ std.classSeq }"></td>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <td><h4 id="code">교과목명 : </h4></td>
                 <td><input type="text" id="text2" placeholder="${ std.className }" disabled></td>
@@ -191,6 +191,8 @@ margin-right: 10px;
                         </thead>
                         <tbody>
                         	<c:forEach var="std" items="${ list }">
+                        	<form action="stListDetail.do" method="post">
+                        	<%-- <c:if test="${ std.classId eq '' }"> --%>
 	                            <tr>
 	                                <td>${ std.stdName }</td>
 	                                <td>${ std.stdId }</td>
@@ -199,6 +201,8 @@ margin-right: 10px;
 	                                <td>${ std.stdTel }</td>
 	                                <td>${ std.stdEmail }</td>
 	                            </tr>
+	                            <%-- </c:if> --%>
+	                            </form>
 							</c:forEach>
                         </tbody>
                     </table>

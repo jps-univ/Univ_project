@@ -12,8 +12,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    
-    <link rel="stylesheet" href="${contextPath }/resources/css/admin/ad_lecture_modify.css?ver=4" type="text/css">
-      <link rel="stylesheet" href="${contextPath }/resources/css/admin/ad_class_plan.css?ver=1" type="text/css">
+    <link rel="stylesheet" href="${contextPath }/resources/css/admin/ad_lecture_modify.css?ver=6" type="text/css">
+      <link rel="stylesheet" href="${contextPath }/resources/css/admin/ad_class_plan.css?ver=8" type="text/css">
 </head>
 <body>
 <script>
@@ -209,14 +209,14 @@
                     <option>교수명</option>
                     <option>개설학과</option>
                 </select>
-                <input type ="hidden" value="0" id="classSeq">
                 <input type="search">
                 <input type="button" value="검색">
             </div>
 
 
             <div id="ad_lecture_UD">
-                <form>
+                <form method="post" action="ad_lecture_update.do" id="lectureForm">
+                <input type ="hidden" value="0" id="classSeq" name="classSeq">
                     <table id="UD_lecture">
 			            <tr>
 			              <td><p>강의명</p></td>
@@ -302,10 +302,10 @@
                        		 </tr>
 
                     </table>
+            <input type="submit" value="수정" id="lecture_btn">
                 </form>
             </div>
 
-            <input type="button" value="수정">
             <br><br><br><br><br><br><br>
 
         </div>
@@ -358,7 +358,7 @@
                                 <div>교과목 개요</div>
                             </div>
                             <div id="class_sum_content">
-                                <div><input type="text" id="mclassOutLine"></div>
+                                <input type="text" id="mclassOutLine">
                             </div>
                             <table id="class_goal">
                                 <tbody>
@@ -383,66 +383,12 @@
                                         <td><p>세부 내용</p></td>
                                     </tr>
                                 </thead>
-                                <tr>
-                                    <td class="detail_head"><div>주차</div></td>
-                                    <td class="detail_head"><div>주제</div></td>
-                                    <td class="detail_head"><div>세부 내용</div></td>
-                                </tr>
-                                <tr>
-                                    <td class="detail_head"><div>주차</div></td>
-                                    <td class="detail_head"><div>주제</div></td>
-                                    <td class="detail_head"><div>세부 내용</div></td>
-                                </tr>
-                                <tr>
-                                    <td class="detail_head"><div>주차</div></td>
-                                    <td class="detail_head"><div>주제</div></td>
-                                    <td class="detail_head"><div>세부 내용</div></td>
-                                </tr>
-                                <tr>
-                                    <td class="detail_head"><div>주차</div></td>
-                                    <td class="detail_head"><div>주제</div></td>
-                                    <td class="detail_head"><div>세부 내용</div></td>
-                                </tr>
-                                <tr>
-                                    <td class="detail_head"><div>주차</div></td>
-                                    <td class="detail_head"><div>주제</div></td>
-                                    <td class="detail_head"><div>세부 내용</div></td>
-                                </tr>
-                                <tr>
-                                    <td class="detail_head"><div>주차</div></td>
-                                    <td class="detail_head"><div>주제</div></td>
-                                    <td class="detail_head"><div>세부 내용</div></td>
-                                </tr>
-                                <tr>
-                                    <td><div>1</div></td>
-                                    <td><div>html</div></td>
-                                    <td><div>알아서 만들기</div></td>
-                                </tr>
-                                <tr>
-                                    <td><div>1</div></td>
-                                    <td><div>html</div></td>
-                                    <td><div>알아서 만들기</div></td>
-                                </tr>
-                                <tr>
-                                    <td><div>1</div></td>
-                                    <td><div>html</div></td>
-                                    <td><div>알아서 만들기</div></td>
-                                </tr>
-                                <tr>
-                                    <td><div>1</div></td>
-                                    <td><div>html</div></td>
-                                    <td><div>알아서 만들기</div></td>
-                                </tr>
-                                <tr>
-                                    <td><div>1</div></td>
-                                    <td><div>html</div></td>
-                                    <td><div>알아서 만들기</div></td>
-                                </tr>
-                                <tr>
-                                    <td><div>1</div></td>
-                                    <td><div>html</div></td>
-                                    <td><div>알아서 만들기</div></td>
-                                </tr>
+                                <tbody>
+	                                <tr>
+	                                    <td class="detail_head"><div>주차</div></td>
+	                                    <td class="detail_head"><div>주제</div></td>
+	                                    <td class="detail_head"><div>세부 내용</div></td>
+	                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -491,7 +437,7 @@
         	
         	var Year = document.getElementById("classYear");
         	var classYear = Year.options[Year.selectedIndex].text;
-        	
+ 
         	var semester = document.getElementById("classSemester");
         	var classSemester = semester.options[semester.selectedIndex].text; 
         	
@@ -501,29 +447,50 @@
         	var classBook = document.getElementById("classBook").value;
 
         	document.getElementById("mlectureName").innerHTML=className;
-        	document.getElementById("mProfessorName").innerHTML=professorName;	
+        	document.getElementById("mProfessorName").innerHTML=professorName;
         	document.getElementById("mRoom").innerHTML=room;
         	document.getElementById("mclassCode").innerHTML=classCode;
         	document.getElementById("mDepartment").innerHTML=DepartmentName;
         	document.getElementById("mGradeSize").innerHTML=gradeSize;
         	document.getElementById("mYear").innerHTML=classYear;
         	document.getElementById("mSemester").innerHTML=classSemester;
-        	document.getElementById("mClassStatus").innerHTML=status;
-        	
-        	document.getElementById("mclassOutLine").innerHTML=classOutLine;
-        	document.getElementById("mclassTarget").innerHTML=classTarget;
-        	document.getElementById("mclassBook").innerHTML=classBook;
+        	document.getElementById("mClassStatus").innerHTML=status;       	
+        	document.getElementById("mclassOutLine").value=classOutLine;
+        	document.getElementById("mclassTarget").value=classTarget;
+        	document.getElementById("mclassBook").value=classBook;
 
         	console.log(classSeq);
-        	$.ajax({
-        		url:"ad_classPlan.do",
-        		type:"json",
+        	jQuery.ajax({
+        		url:"ad_classplan.do",
+        		dataType:"json",
         		data:{
-        			classSeq:$('#classSeq').val();
+        			classSeq:$("#classSeq").val()	
         		},success:function(plan){
-        			$("#mlectureName").val($("#LectureName").val());
+        			$("#class_detail_table tbody").empty();
+        			
+        			for(var p = 0; p<plan.length; p++){
+        				
+        				if(plan !=null){
+							var $tr = $('<tr>');
+							var $week = $("<td><input type="+"text "+"name ="+"week"+"class="+"detail_head "+">");
+							var $topic = $("<td><input type="+"text "+"name ="+"topic "+"class="+"detail_head "+">");
+							var $weekPlan= $("<td><input type="+"text "+"name ="+"weekPlan "+"class="+"detail_head "+">");
+        					$($week).children().attr('value',plan[p].week);
+        					$($topic).children().attr('value',plan[p].topic);
+        					$($weekPlan).children().attr('value',plan[p].weekPlan);
+							$tr.append($week);
+							$tr.append($topic);
+							$tr.append($weekPlan);
+							$("#class_detail_table tbody").append($tr);
+							
+        				}else{
+        					alert("강의계획서가 등록 되지 않았습니다.");
+        				}
+        			}
+        			
         		},error:function(error){
-        			console.log("전송 실패");
+        			$("#class_detail_table tbody").empty();
+        			
         		}
         			
         	})
@@ -534,6 +501,7 @@
         span.onclick = function () {
             modal.style.display = "none";
         }
+        
         canceal.onclick = function () {
             modal.style.display = "none";
         }

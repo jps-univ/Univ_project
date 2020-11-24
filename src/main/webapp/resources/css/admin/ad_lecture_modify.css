@@ -185,11 +185,18 @@ a{
 #class_plan_area  input[type=text]{
     border: none;
     background-color: whitesmoke;
-    height: 50px;
+    height: 100%;
 }
 #mclassOutLine,
 #mclassTarget,
 #mclassBook{
 	width:100%;
 	heigth:100%;
+}
+
+#lecture_btn{
+	width:50px;
+	margin-top: 10px;
+	float:right;
+	
 }

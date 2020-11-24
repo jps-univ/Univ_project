@@ -5,6 +5,7 @@
   <resultMap id="RegisterResultSet" type="Register">
   <id property="stdId" column="STUDENT_ID"/>
   <result property="statusNO" column="STATUS_NO"/>
+  <result property="stdSemester" column="SEMESTER"/>
   <result property="stdStatus" column="STUDENT_STATUS"/>
   <result property="applicationStatus" column="APPLICATION_STATUS"/>
   <result property="applicationDate" column="APPLICATION_DATE"/>
@@ -32,7 +33,7 @@
   </select>
   
   <!-- 휴학신청 -->
-  <insert id="leaveAppl">
+  <insert id="leaveApply">
        INSERT INTO TB_STUDENT_STATUS 
            (STATUS_NO,
 			STUDENT_ID,
@@ -69,7 +70,7 @@
         STUDENT_STATUS,
         GRADUATION_DATE,
         SEMESTER,
-        APPLICATION_DATE,
+        APPLICATION_DATE
      FROM
         TB_STUDENT_STATUS
       JOIN TB_STUDENT USING(STUDENT_ID)

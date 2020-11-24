@@ -122,25 +122,59 @@ public class AdLectureController {
 		ArrayList<AdCollege> adCollegeSelect = adLectureService.adCollegeSelect();
 		ArrayList<AdLecture> selectAdLectureList = adLectureService.selectAdLectureList();
 		
-		System.out.println(selectAdLectureList);
 		mv.addObject("selectAdLectureList",selectAdLectureList);
 		mv.addObject("adCollege", adCollegeSelect);
 		mv.setViewName("admin/ad_lecture_modify");
 		return mv;
 	}
 	
+	/**
+	 * 2_2. 강의 수정 강의 하나 select 하기
+	 * @param classSeq
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("lecture_Modify_selectOne.do")
 	public AdLecture lectureModifySelectOne(int classSeq) {
+		
 		AdLecture lectureSelectOne = adLectureService.lectureSelectOne(classSeq);
+		System.out.println(lectureSelectOne);
 		return lectureSelectOne;
 	}
 	
+	/**
+	 * 2_3. 강의 수정 classSeq로 강의계획서 가져오기 
+	 * 
+	 * @param classSeq
+	 * @return
+	 */
 	@ResponseBody
-	@RequestMapping("ad_classPlan.do")
-	public ArrayList<AdClassPlan> adClassPlan() {
+	@RequestMapping("ad_classplan.do")
+	public ArrayList<AdClassPlan> adClassPlan(int classSeq) {
 		
-		return null;
+		ArrayList<AdClassPlan> adClassPlanSelect = adLectureService.adClassPlanSelect(classSeq);
+		System.out.println(adClassPlanSelect);
+		
+		return adClassPlanSelect;
+		
+	}
+	
+	/**
+	 * 2_4. 강의 update
+	 * @param lecture
+	 * @return
+	 */
+	@RequestMapping("ad_lecture_update.do")
+	public String lectureUpdate(AdLecture lecture) {
+		System.out.println(lecture);
+		int result = adLectureService.lectureUpdate(lecture);
+		
+		if(result>0) {
+			return "redirect:lecture_Modify.do";
+		}else {
+			return "common/errorPage";
+		}
+	
 	}
 	/**
 	 * 3. 휴강 관리(관리자)
@@ -162,6 +196,7 @@ public class AdLectureController {
 		System.out.println(lectureApprove);
 		mv.addObject("lectureApprove",lectureApprove);
 		mv.setViewName("admin/ad_lecture_approve");
+		
 		return mv;
 	}
 }
