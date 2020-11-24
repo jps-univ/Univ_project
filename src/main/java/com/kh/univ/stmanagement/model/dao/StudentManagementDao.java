@@ -24,13 +24,17 @@ public class StudentManagementDao {
 		return (ArrayList)sqlSession.selectList("StudentManagementMapper.selectdDetailList",map);
 	}
 
-	public ArrayList<StudentManagement> gradeView() {
-		return (ArrayList)sqlSession.selectList("StudentManagementMapper.gradeView");
+	public ArrayList<StudentManagement> gradeView(Map map) {
+		return (ArrayList)sqlSession.selectList("StudentManagementMapper.gradeView",map);
 	}
 
 	public int insertGrade(GradeA g) {
 		return sqlSession.insert("StudentManagementMapper.grade",g);
 	}
+	
+//	public int insertGrade(Map map) {
+//		return sqlSession.insert("StudentManagementMapper.grade",map);
+//	}
 
 //	public ArrayList<StudentManagement> selectDetailList2(Map map) {
 //		return (ArrayList)sqlSession.selectList("StudentManagementMapper.selectdDetailList2",map);

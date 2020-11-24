@@ -44,7 +44,7 @@
 
         <!-- Topbar -->
         
-        <c:import url="../common/pageTopbar.jsp" />
+        <%@include file="../common/pageTopbar.jsp" %>
 
 
         <div id="main_con">  

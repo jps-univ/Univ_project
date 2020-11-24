@@ -44,10 +44,10 @@
 
         <!-- Topbar -->
   		  		
-  		  		<c:import url="../common/pageTopbar.jsp" />
+  	  	    <%@include file="../common/pageTopbar.jsp" %>
         
         <div id="main_con">  
-          <p id="select_title">주차별 활동 ${seq }</p>
+          <p id="select_title">주차별 활동 ${Seq }</p>
           <div id="weekPlan">
             <div id="rest_table_area">
                     <table id="rest_lecture"  class="shadow table-hover">

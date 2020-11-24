@@ -145,7 +145,7 @@ margin-right: 10px;
 				
 				<!-- 여기서부터 내용  -->
 				<!-- Begin Page Content -->
-				<form action="gradeinsert.do" method="post" enctype="multipart/form-data">
+				
        <div id="body">
           <div id="bar">
               <p id="main2">성적관리</p>
@@ -153,14 +153,17 @@ margin-right: 10px;
           </div>
           <br><br><br>
           <!-- <h2 id="year">2020년 2학기 성적관리</h2> -->
+         <form action="gradeinsert.do" method="post" enctype="multipart/form-data">
           <table border="0" cellspacing="0" width="1000px" id="tb">
+          <c:forEach var="std" items="${ list }" end="0">
             <tr>
-                <td><h4 id="code">과목코드 : </h4></td>
-                <td><input type="text" id="text1" name="classCode" placeholder="EE1033" disabled value="EE1033"></td>
+                <td><h4 id="code">과목번호 : </h4></td>
+                <td><input type="text" id="text1" name="classSeq" placeholder="${ std.classSeq }" disabled value="${ std.classSeq }"></td>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <td><h4 id="code">교과목명 : </h4></td>
-                <td><input type="text" id="text2" placeholder="전자 회로2" disabled></td>
+                <td><input type="text" id="text2" name="className" placeholder="${ std.className }" disabled name="${ std.className }" value="${ std.className }"></td>
             </tr>
+            </c:forEach>
         </table>
           <br>
           <div class="col-sm-9 page">
@@ -187,7 +190,8 @@ margin-right: 10px;
                 <hr>
             </div>
             <div id="rest_table_area">
-                <method method="GET">
+               <!--  <method method="GET"> -->
+                
                     <table id="rest_lecture"  class=" table-hover">
                         <thead>
                             <tr>
@@ -211,6 +215,7 @@ margin-right: 10px;
                         </thead>
                         <tbody>
                         <c:forEach var="std" items="${ list }">
+                        
                             <tr>
                                 <td>${ std.stdId }</td>
                                 <td><input type="radio" name="gradePoint" value="A+"></td>
@@ -232,16 +237,19 @@ margin-right: 10px;
 
                         </tbody>
                     </table>
-                </method>
-            </method>
+                <!-- </method> -->
         </div>
         <br><br>
         <div id="btn">
         <!-- 첨부파일을 등록할려고하니 속성값에 method="post" enctype="multipart/form-data" 꼭 지정하자 -->
 		
         <button onclick="location.href='gradeinsert.do';" id="btn1">완료</button>
+        <input type="hidden" id="text1" name="classId" disabled value="${ std.classId }">
+        </div>
         </div>
         </form>
+        </div>
+        </div>
         <br><br><br>
         
         <script>
