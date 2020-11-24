@@ -1,6 +1,7 @@
 package com.kh.univ.register.model.service;
 
 import com.kh.univ.member.model.vo.Student;
+import com.kh.univ.register.model.vo.InsertRegister;
 import com.kh.univ.register.model.vo.Register;
 
 public interface RegisterService {
@@ -9,7 +10,7 @@ public interface RegisterService {
 	Register selectLeave(Student studentL);
 
 	// 휴학신청
-	int leaveApply(Register register);
+	int leaveApply(InsertRegister register);
 
 	// 복학페이지
 	Register selectReturning(Student studentR);

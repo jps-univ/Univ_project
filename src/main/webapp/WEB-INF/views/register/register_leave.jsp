@@ -28,6 +28,8 @@
 
 	</style>
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+	<script src="${contextPath}/resources/js/register_button.js"></script>
+	
 </head>
 
 <body id="page-top">
@@ -99,13 +101,13 @@
                 <div>
                     <dl class="line" style="position: static;">
                         <dt style="color: #c5d9e8;">휴학신청상태</dt>
-                        <dd id="" style="margin: auto;">${ studentLeave.stdStatus }</dd>
+                        <dd id="applicationStatus" style="margin: auto;">${ studentLeave.applicationStatus}</dd>
                     </dl>
                   </div>
                   <div>
                     <dl class="line" style="position: relative; bottom: 49px; left: 110px;">
                         <dt style="color: #c5d9e8;">현재학적상태</dt>
-                        <dd style="margin: auto;">${ studentLeave.stdStatus }</dd>
+                        <dd id="stdStatus" style="margin: auto;">${ studentLeave.stdStatus  }</dd>
                     </dl>
                   </div>
                   <div>
@@ -144,7 +146,16 @@
                 <option>==== 선택 ====</option>
                 <option>2년</option>
               </select>
-              <button class="select" onclick="button_leave();">신청하기</button>
+              
+
+              <c:choose>
+              	<c:when test="${studentLeave.applicationStatus eq '신청가능' }">
+             		 <button class="select" onclick="button_leave();">신청하기</button>
+              	</c:when>
+                <c:when test="${studentLeave.applicationStatus ne '신청가능' }">
+             		 <button class="select" onclick="button_leave();" disabled >신청하기</button>
+              	</c:when>
+              </c:choose>
               <!-- <input class="select" 
                       type="submit" value="저장"> -->
             </div>
@@ -156,13 +167,13 @@
                 <div>
               <dl class="line" style="position: static;">
                 <dt style="color: #c5d9e8;">휴학년도/학기</dt>
-                <dd style="margin: auto;"></dd>
+                <dd style="margin: auto;">${ studentLeave.leaveDate  }</dd>
               </dl>
               </div>
               <div>
               <dl class="line" style="position: relative; bottom: 49px; left: 100px;">
                 <dt style="color: #c5d9e8;">복학년도/학기</dt>
-                <dd style="margin: auto;"></dd>
+                <dd style="margin: auto;">${ studentLeave.returningDate  }</dd>
               </dl>
             </div> 
             </div>
@@ -174,7 +185,7 @@
       </div>
       <!-- End of Main Content -->
       
-      <script src="<%=request.getContextPath()%>/resources/js/register_button.js"></script>
+
 		
 	   <script>
 	       function changeLeave(){
@@ -187,8 +198,60 @@
 	    	   } else{
 	    		   $('#set1').css('display',"block");
 	    		   $('#set2').css('display',"none");
-	    	   }
-	    	   }
+	    	   		}
+	    		}
+	       
+	       
+	       function button_leave() {
+	    	    
+	    		if(confirm("휴학신청하시겠습니까?"))
+	    		{
+	    			var stdStatus =  $('#stdStatus').text();//학적 상태
+	    			var reasonsLeave = $('#select_1').val();	//휴학사유
+	    			
+	    			if(reasonsLeave == '입영휴학'){
+	    				var leavePeriod	 = $('#set2').val();	
+	    			}else{
+	    				var leavePeriod	 = $('#set1').val();	
+	    			}
+	    							
+	    			$.ajax({
+	    				url:"leaveApply.do",
+	    				type:"post",
+	    				data:{
+	    					stdStatus:stdStatus,
+	    					reasonsLeave : reasonsLeave,
+	    					leavePeriod : leavePeriod
+	    			},success:function(result)
+	    				{
+	    					if(result =="ok"){
+	    						
+	    						alert("휴학이 신청되었습니다.");
+	    						location.href="leave.do";
+	    						
+	    					}else{
+	    						alert("실패하였습니다.");
+	    					}
+	    				},
+	    			error:function(request, status, errorData)
+	    			{
+						console.log(request.status);
+						console.log(request.responseText);
+						console.log(errorData);
+	    				alert("휴학이 신청되지 않았습니다.");
+	    				
+	    				}
+	    				
+	    			});
+	    		
+	    		} else{
+	    			alert("취소되었습니다.");
+	    		}
+	    	}
+	    	
+	       
+	       
+	   
 	   </script>
 				<!-- 여기까지 내용  -->
 

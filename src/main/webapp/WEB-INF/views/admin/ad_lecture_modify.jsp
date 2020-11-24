@@ -30,19 +30,26 @@
 					$("#classCode").val(lecture.classCode);
 					$("#status").val(lecture.classType);
 					$("#College").val(lecture.collegeCode);
+					
 					$.ajax({
 						url:"student_Modify_DeptCheck.do",
             			dataType:"json",
             			data:{
             				collegeCode:$("#College").val()
+            				
             			},success:function(dept){
+            				
             				$("#departmentCode").empty();
             				$('#departmentCode').append("<option><학과를 선택해주세요></option>");
+            				
              				for(var index =0; index < dept.length;index++){
+             					
             					var department = $("<option value="+ dept[index].departmentCode+ ">" + dept[index].departmentName +"</option>");
             					$('#departmentCode').append(department);
             				}
+             				
              				$("#departmentCode").val(lecture.deptCode);
+             				
             				$.ajax({
             					url:"admin_Lecture_Professor.do",
             					dataType:"json",
@@ -71,18 +78,13 @@
 					$("#classYear").val(lecture.classYear);
 					$("#classSemester").val(lecture.classSemester);
 					$("#classLevel").val(lecture.classLevel);
-					
 					$("#classBook").val(lecture.classBook);
 					$("#classTarget").val(lecture.classTarget);
 					$("#classOutLine").val(lecture.classOutLine);
-					
 					console.log("책"+lecture.classBook);
 					console.log("목표"+lecture.classTarget);
 					console.log("개요"+lecture.classOutLine);
 
-					
-					
-					
 				},error:function(){
 					console.log("전송실패");
 				}
