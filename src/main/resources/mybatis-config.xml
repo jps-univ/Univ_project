@@ -23,6 +23,7 @@
         <typeAlias type="com.kh.univ.test.model.vo.Test" alias="Test"/>
         <typeAlias type="com.kh.univ.salary.model.vo.Salary" alias="Salary"/>
         <typeAlias type="com.kh.univ.register.model.vo.Register" alias="Register"/>
+        <typeAlias type="com.kh.univ.register.model.vo.InsertRegister" alias="InsertRegister"/>
         <typeAlias type="com.kh.univ.consulting.model.vo.Consulting" alias="Consulting"/>
         
 

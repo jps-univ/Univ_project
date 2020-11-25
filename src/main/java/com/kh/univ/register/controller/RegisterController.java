@@ -1,5 +1,9 @@
 package com.kh.univ.register.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.member.model.vo.Student;
 import com.kh.univ.register.model.service.RegisterService;
+import com.kh.univ.register.model.vo.InsertRegister;
 import com.kh.univ.register.model.vo.Register;
 
 @Controller
@@ -29,37 +34,93 @@ public class RegisterController {
 //	      return mv;
 //	   }
 	
-	    // 휴학페이지
+	   
+		/**
+		 * 1. 휴학 페이지 
+		 * @param session
+		 * @param mv
+		 * @return
+		 */
 		@RequestMapping("leave.do")
 	    public ModelAndView Leave(HttpSession session, ModelAndView mv)
 		{
 			Student studentL = (Student)session.getAttribute("loginUser");
-			
 			Register studentLeave = rService.selectLeave(studentL);
-			System.out.println(studentLeave);
+			System.out.println("무슨 것이들 있냐?"+studentLeave);
+			
+			if(studentLeave.getStdStatus()==null) {
+				studentLeave.setStdStatus("재학");
+				if(studentLeave.getApplicationStatus()==null) {
+					studentLeave.setApplicationStatus("신청가능");
+				}
+			}
+			
 			mv.addObject("studentLeave", studentLeave);
 			mv.setViewName("register/register_leave");
 			
 	        return mv;
 	    }
 		
-		// 휴학신청
+		
+		/**
+		 * 1_2. 휴학 신청
+		 * @param session
+		 * @param register
+		 * @return
+		 */
 		@ResponseBody
 		@RequestMapping("leaveApply.do")
-		public String leaveApply(HttpSession session, Register register) {
+		public String leaveApply(HttpSession session, InsertRegister register) {
 			
 			Student studentL = (Student)session.getAttribute("loginUser");
-			
+			Date today = new Date();
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(today);
 			register.setStdId(studentL.getStdId());
+			register.setApplicationStatus("휴학신청중");
+			register.setLeaveDate(new SimpleDateFormat("yy-MM-dd").format(today));
+			register.setApplicationDate(new SimpleDateFormat("yy-MM-dd").format(today));
+
+			if(register.getLeavePeriod().equals("6개월")) {
+				
+				int addDate = 6;
+				register.setReturningDate(DateCalculator(addDate));
+				
+			}else if(register.getLeavePeriod().equals("1년")) {
+				
+				int addDate = 12;
+				register.setReturningDate(DateCalculator(addDate));
+
+			}else {
+				
+				int addDate = 24;
+				register.setReturningDate(DateCalculator(addDate));
+			}
+
 			
 			int result = rService.leaveApply(register);
-			System.out.println("result" + result);
 			
 			if(result > 0) {
 				return "ok";
 			}else {
 				return "fail";
 			}
+			
+			
+		}
+		/**
+		 * 1_2_2. 휴학 신청 페이지 날짜 계산메소드
+		 * @param addDate
+		 * @return
+		 */
+		public  String DateCalculator(int addDate) {
+			Date today = new Date();
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(today);
+			cal.set(Calendar.MONTH,cal.get(Calendar.MONTH)+(int)addDate);
+			Date backDate = cal.getTime();
+			
+			return new SimpleDateFormat("yy-MM-dd").format(backDate);
 			
 		}
 		

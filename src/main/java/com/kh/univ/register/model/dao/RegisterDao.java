@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.univ.member.model.vo.Student;
+import com.kh.univ.register.model.vo.InsertRegister;
 import com.kh.univ.register.model.vo.Register;
 
 @Repository("rDao")
@@ -20,7 +21,7 @@ public class RegisterDao {
 	}
 
 	// 휴학신청
-	public int leaveApply(Register register) {
+	public int leaveApply(InsertRegister register) {
 		
 		return sqlSession.insert("RegisterMapper.leaveApply", register);
 	}
