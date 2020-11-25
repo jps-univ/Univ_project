@@ -85,9 +85,20 @@
             <h4 class="return">복학신청</h4>
          </div>
 
-         <div>
-           <button class="button" onclick="button_return();">신청하기</button>
-         </div>
+         
+         <c:choose>
+            <c:when test="${studentReturning.applicationStatus eq '신청가능' }">
+               <div>
+                 <button class="button" onclick="button_return();">신청하기</button>
+               </div>
+            </c:when>
+            <c:when test="${studentReturning.applicationStatus ne '신청가능' }">
+               <div>
+                 <button class="button" onclick="button_return();" disabled >신청하기</button>
+               </div>
+            </c:when>
+         </c:choose>
+         
 
          <div class="request">
               <label style="font-size: 12pt; margin-right: 100px;">
@@ -175,6 +186,7 @@
         
       </div>
       <!-- End of Main Content -->
+      
       
       <script src="<%=request.getContextPath()%>/resources/js/register_button.js"></script>
 				<!-- 여기까지 내용  -->

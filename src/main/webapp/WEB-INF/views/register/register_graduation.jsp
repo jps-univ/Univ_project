@@ -22,7 +22,7 @@
 	<link href="${contextPath}/resources/css/sb-admin-2.min2.css" rel="stylesheet">
 	
 	<!-- Custom styles for this page -->
-	<link href="${contextPath}/resources/css/register_graduation.css" rel="stylesheet">
+	<link href="${contextPath}/resources/css/register_graduation.css?ver=1" rel="stylesheet">
 	<%--    <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />--%>
 	<style>
 
@@ -86,9 +86,20 @@
           <h4 class="graduation">졸업신청</h4>
         </div>
 
-        <div>
-          <button id="button" onclick="button_graduation();">신청하기</button>
-        </div>
+        
+          <c:choose>
+            <c:when test="${studentGraduation.applicationStatus eq '신청가능' }">
+               <div>
+                 <button class="button" onclick="button_graduation();">신청하기</button>
+               </div>
+            </c:when>
+            <c:when test="${studentGraduation.applicationStatus ne '신청가능' }">
+               <div>
+                 <button class="button" onclick="button_graduation();" disabled >신청하기</button>
+               </div>
+            </c:when>
+         </c:choose>
+        
 
         <div class="request">
             <label style="font-size: 12pt; margin-right: 100px;">
