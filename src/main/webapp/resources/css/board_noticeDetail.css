@@ -297,10 +297,12 @@ ul li{
 
 #textContent{
     border: 1px solid rgb(136, 134, 134, .3);
-    height: 90%;
+    height: 95%;
+    width: 97%
     border-radius: 7px;
     padding: 1%;
-    width: 98%;
+    margin: auto;
+
 }
 
 

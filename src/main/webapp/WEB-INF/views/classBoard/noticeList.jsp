@@ -63,7 +63,9 @@
 						<tbody>
 							<tr>
 								<td><div id="board_title">과 목 공 지</div></td>
+								<c:if test="${ user.status eq 'p' }">
 								<td><button class="btn btn-primary btn-sm" id="board_button">등록하기</button></td>
+								</c:if>
 							</tr>
 					</table>
 
@@ -107,13 +109,40 @@
 					
 				<div class="container1">
                     <ul class="pagination">
-                    	<li><a href="#"> ← </a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                    	<li><a href="#"> → </a></li>
+                    	<c:if test="${ pi.currentPage eq 1 }">
+                    		<li><a href="#">이전</a></li>
+                    	</c:if>
+                    	
+                    	<c:if test="${ pi.currentPage ne 1 }">
+                    		<c:url var="before" value="cNoticeList.do">
+                    			<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
+                    		</c:url>
+		                   		<li><a href="${ before }">이전</a></li>
+                    	</c:if>
+                    	
+                    	<c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }">
+	                    	<c:if test="${ p eq pi.currentPage }">
+								<li><a href="#">[${ p }]</a></li>
+							</c:if>
+							
+							<c:if test="${ p ne pi.currentPage }">
+								<c:url var="pagination" value="cNoticeList.do">
+									<c:param name="currentPage" value="${ p }"/>
+								</c:url>
+								<li><a href="${ pagination }">${ p }</a></li>
+							</c:if>
+						</c:forEach>
+                       
+                       	<c:if test="${ pi.currentPage eq 1 }">
+                    		<li><a href="#">다음</a></li>
+                    	</c:if>
+                    	
+                    	<c:if test="${ pi.currentPage ne 1 }">
+                    		<c:url var="after" value="cNoticeList.do">
+                    			<c:param name="currentPage" value="${ pi.currentPage +1 }"/>
+                    		</c:url>
+		                   		<li><a href="${ after }">다음</a></li>
+                    	</c:if>
                     </ul>
                 </div>
 				
