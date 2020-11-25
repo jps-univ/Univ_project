@@ -125,14 +125,24 @@ public class RegisterController {
 		}
 		
 		   
-		// 복학페이지
+		
+		/**
+		 * 2. 복학페이지
+		 * @param session
+		 * @param mv
+		 * @return
+		 */
 		@RequestMapping("returning.do")		
 	    public ModelAndView Returning(HttpSession session, ModelAndView mv)
 		{
 			Student studentR = (Student)session.getAttribute("loginUser");
-			
 			Register studentReturning = rService.selectReturning(studentR);
 			System.out.println(studentReturning);
+			
+//			if(studentReturning.getStdStatus() == "휴학") {
+//				
+//			}
+			
 			mv.addObject("studentReturning", studentReturning);
 			mv.setViewName("register/register_returning");
 			
