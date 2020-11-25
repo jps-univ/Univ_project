@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "adminUnivmapper">
+
+	<resultMap id="LectureResultSet" type="AdLeave">
+	
+		  <id property="stdId" column="STUDENT_ID"/>
+		  <result property="statusNO" column="STATUS_NO"/>
+		  <result property="stdSemester" column="SEMESTER"/>
+		  <result property="stdStatus" column="STUDENT_STATUS"/>
+		  <result property="applicationStatus" column="APPLICATION_STATUS"/>
+		  <result property="applicationDate" column="APPLICATION_DATE"/>
+		  <result property="reasonsLeave" column="REASONS_LEAVE"/>
+		  <result property="leavePeriod" column="LEAVE_PERIOD"/>
+		  <result property="leaveDate" column="LEAVE_DATE"/>
+		  <result property="returningDate" column="RETURNING_DATE"/>
+		  <result property="graduationDate" column="GRADUATION_DATE"/>
+		  <result property="stdName" column="STUDENT_NAME"/>
+		  <result property="departmentName" column="DEPARTMENT_NAME"/>
+		  
+ 	 </resultMap>
+
+	<select id="UnivLeaveList" parameterType="AdLeave" resultMap="LectureResultSet">
+		SELECT STUDENT_ID, STUDENT_NAME,DEPARTMENT_NAME,SEMESTER,APPLICATION_STATUS,REASONS_LEAVE,LEAVE_PERIOD,APPLICATION_DATE,RETURNING_DATE
+		FROM TB_STUDENT_STATUS
+		JOIN TB_STUDENT USING (STUDENT_ID)
+		JOIN TB_DEPARTMENT USING (DEPARTMENT_CODE)
+		WHERE APPLICATION_STATUS='휴학신청중'
+	</select>
+	
+</mapper>

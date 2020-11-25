@@ -1,0 +1,21 @@
+package com.kh.univ.admin.model.dao;
+
+import java.util.ArrayList;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.kh.univ.admin.model.vo.AdLeave;
+
+@Repository("adUnivDao")
+public class AdUnivDao {
+
+	@Autowired
+	private SqlSessionTemplate sqlSession;
+
+	public ArrayList<AdLeave> adLeaveList() {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList("adminUnivmapper.UnivLeaveList");
+	}
+}

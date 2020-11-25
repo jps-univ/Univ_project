@@ -131,43 +131,27 @@
             <div id="std_card_table_area">
                 <table id="std_card_table">
                     <tr>
-                        <td class="stdtext">
-                            <p>전화번호</p>
-                        </td>
+                        <td class="stdtext"><p>전화번호</p></td>
                         <td><input id="stdPhone"name="stdPhone" type="text"></td>
-                        <td class="stdtext">
-                            <p>핸드폰</p>
-                        </td>
+                        <td class="stdtext"><p>핸드폰</p></td>
                         <td><input id="stdTel"name="stdTel" type="text"></td>
                     </tr>
                     <tr>
-                        <td class="stdtext">
-                            <p>이메일</p>
-                        </td>
+                        <td class="stdtext"><p>이메일</p></td>
                         <td><input id="stdEmail"name="stdEmail" type="text"></td>
-                        <td class="stdtext">
-                            <p>은행명</p>
-                        </td>
+                        <td class="stdtext"><p>은행명</p></td>
                         <td><input id="stdBank"name="stdBank" type="text"></td>
                     </tr>
                     <tr>
-                        <td class="stdtext">
-                            <p>학생주소</p>
-                        </td>
+                        <td class="stdtext"><p>학생주소</p></td>
                         <td><input id="stdAddress"name="stdAddress" type="text"></td>
-                        <td class="stdtext">
-                            <p>계좌번호</p>
-                        </td>
+                        <td class="stdtext"><p>계좌번호</p></td>
                         <td><input id="stdAccount" name="stdAccount"type="text"></td>
                     </tr>
                     <tr>
-                        <td class="stdtext">
-                            <p>상세주소</p>
-                        </td>
+                        <td class="stdtext"><p>상세주소</p></td>
                         <td><input id="stdAddressDetail"name="stdAddressDetail" type="text"></td>
-                        <td class="stdtext">
-                            <p>예금주</p>
-                        </td>
+                        <td class="stdtext"><p>예금주</p></td>
                         <td><input id="stdAccountHolder" name="stdAccountHolder"type="text"></td>
                     </tr>
 
