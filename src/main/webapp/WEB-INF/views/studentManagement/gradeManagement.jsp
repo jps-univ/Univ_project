@@ -161,11 +161,13 @@ margin-right: 10px;
                 <td><input type="text" id="text1" name="classSeq" placeholder="${ std.classSeq }" disabled value="${ std.classSeq }"></td>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <td><h4 id="code">교과목명 : </h4></td>
-                <td><input type="text" id="text2" name="className" placeholder="${ std.className }" disabled name="${ std.className }" value="${ std.className }"></td>
+                <td><input type="text" id="text2" name="className" placeholder="${ std.className }" disabled value="${ std.className }"></td>
             </tr>
+            <tr>
+        		<td><input type="hidden" id="text1" name="classId" disabled value="${ std.classId }" placeholder="${ std.classId }"></td>
+        	</tr>
             </c:forEach>
         </table>
-          <br>
           <div class="col-sm-9 page">
             <div id="content_title">
                 <h2>2020년 2학기 성적관리</h2>
@@ -231,7 +233,7 @@ margin-right: 10px;
                                 <td><input type="radio" name="gradePoint" value="D"></td>
                                 <td><input type="radio" name="gradePoint" value="D-"></td>
                                 <td><input type="radio" name="gradePoint" value="F"></td>
-                            	<td><input type="hidden" name="studentId" value="${ std.stdId }"></td>
+                            	<td><input type="hidden" name="stdId" value="${ std.stdId }"></td>
                             </tr>
                          </c:forEach>
 
@@ -242,9 +244,8 @@ margin-right: 10px;
         <br><br>
         <div id="btn">
         <!-- 첨부파일을 등록할려고하니 속성값에 method="post" enctype="multipart/form-data" 꼭 지정하자 -->
-		
-        <button onclick="location.href='gradeinsert.do';" id="btn1">완료</button>
-        <input type="hidden" id="text1" name="classId" disabled value="${ std.classId }">
+		<button onclick="location.href='gradeinsert.do';">글쓰기</button>
+        <input type="button" value="완료2" id="btn1" onclick="Btn()">
         </div>
         </div>
         </form>
@@ -292,5 +293,48 @@ margin-right: 10px;
 	<!-- Page level custom scripts -->
 	<script src="${contextPath}/resources/js/demo/datatables-demo.js"></script>
 
+	<!-- <script type="text/javascript">
+		function Btn()
+		{
+			var classId = ${ "#classId" };
+			var stdId = ${ "#stdId" };
+			var gradePoint = $("#gradePoint").val();
+			var gradeNo = $("#gradeNo").val();
+			
+			if(confirm("변경하시겠습니까?"))
+			{
+				$.ajax(
+				{
+					url:"gradeinsert.do",
+					data:{"classId" : classId, "stdId" : stdId, "gradePoint" : gradePoint, "gradeNo" : gradeNo,
+					type:"post",
+					success:function(data)
+					{
+						if(data == "ok")
+						{
+							console.log("성공");
+							alert("변경되었습니다.");
+							/* location.reload(); */
+						}
+						else
+						{
+							alert("실패하였습니다.");
+						}
+					},
+					error:function(request, status, errorData)
+					{
+						console.log(request.status);
+						console.log(request.responseText);
+						console.log(errorData); 
+					}
+					});
+			}
+			else
+			{
+				alert("취소되었습니다.");
+				return;
+			}
+		}
+	</script> -->
 </body>
 </html>

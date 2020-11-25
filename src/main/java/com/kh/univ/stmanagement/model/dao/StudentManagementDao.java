@@ -32,9 +32,9 @@ public class StudentManagementDao {
 		return sqlSession.insert("StudentManagementMapper.grade",g);
 	}
 	
-//	public int insertGrade(Map map) {
-//		return sqlSession.insert("StudentManagementMapper.grade",map);
-//	}
+	public int insertGrade(Map map) {
+		return sqlSession.insert("StudentManagementMapper.grade",map);
+	}
 
 //	public ArrayList<StudentManagement> selectDetailList2(Map map) {
 //		return (ArrayList)sqlSession.selectList("StudentManagementMapper.selectdDetailList2",map);
