@@ -244,7 +244,7 @@ margin-right: 10px;
         <br><br>
         <div id="btn">
         <!-- 첨부파일을 등록할려고하니 속성값에 method="post" enctype="multipart/form-data" 꼭 지정하자 -->
-		<button onclick="location.href='gradeinsert.do';">글쓰기</button>
+		<button onclick="Btn();">글쓰기</button>
         <input type="button" value="완료2" id="btn1" onclick="Btn()">
         </div>
         </div>
@@ -254,7 +254,7 @@ margin-right: 10px;
         <br><br><br>
         
         <script>
-        	
+
         </script>
 				<!-- 여기까지 내용  -->
 
@@ -296,9 +296,9 @@ margin-right: 10px;
 	<!-- <script type="text/javascript">
 		function Btn()
 		{
-			var classId = ${ "#classId" };
-			var stdId = ${ "#stdId" };
-			var gradePoint = $("#gradePoint").val();
+			var classId = ${ "#classId" };   ->x
+			var stdId = ${ "#stdId" };			->x
+			var gradePoint = $("#gradePoint").val(); ->이런한 방식으로 선언해야함 ..
 			var gradeNo = $("#gradeNo").val();
 			
 			if(confirm("변경하시겠습니까?"))
