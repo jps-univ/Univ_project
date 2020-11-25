@@ -10,8 +10,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.member.model.vo.Professor;
@@ -89,24 +92,33 @@ public class StudentManagementController {
 	}
 	
 	@RequestMapping(value="stGrade.do", method=RequestMethod.POST)
-		public ModelAndView StudentGrade(ModelAndView mv, Model model, HttpSession session, StudentManagement stdM) {
+		public ModelAndView StudentGrade(ModelAndView mv, Model model, HttpSession session, StudentManagement stdM, GradeA g) {
 		Professor professor = (Professor)session.getAttribute("loginUser");
 		
 		int profId       = professor.getProfId();
 		String classId   = stdM.getClassId();
 		String className = stdM.getClassName();
 		int classSeq     = stdM.getClassSeq();
+		int stdId        = g.getStdId();
+		String gradePoint = g.getGradePoint();
+		int gradeNo       = g.getGradeNo();
 		
 		Map map = new HashMap();
 		map.put("profId", profId);
 		map.put("classId", classId);
 		map.put("className", className);
 		map.put("classSeq", classSeq);
+		map.put("stdId", stdId);
+		map.put("gradeNo", gradeNo);
+		map.put("gradePoint", gradePoint);
 		
 		ArrayList<StudentManagement> list = smService.gradeView(map);
 			
 			mv.addObject("list", list);
+			mv.addObject("map", map);
 			mv.setViewName("studentManagement/gradeManagement");
+			
+//			session.setAttribute("loginUser", map);
 			return mv;
 	}
 	
@@ -126,56 +138,60 @@ public class StudentManagementController {
 //	}
 	
 //	
-//	@RequestMapping(value="gradeinsert.do", method=RequestMethod.POST)
-//	public String boardInsertView(GradeA g,HttpSession session, StudentManagement stdM) {
-//		
-//		Professor professor = (Professor)session.getAttribute("loginUser");
-//		
-//		int profId        = professor.getProfId();
-//		int classSeq      = stdM.getClassSeq();
-//		int studentId     = g.getStudentId();
-//		String gradePoint = g.getGradePoint();
-//		int gradeNo       = g.getGradeNo();
-//		String classCode  = g.getClassCode();
-//		
-//		Map map = new HashMap();
-//		map.put("profId", profId);
-//		map.put("studentId", studentId);
-//		map.put("gradePoint", gradePoint);
-//		map.put("classSeq", classSeq);
-//		map.put("gradeNo", gradeNo);
-//		
-//		
-//		System.out.println(g);
-//		System.out.println(map);
-//		int result = smService.insertGrade(map);
-//		
-//		System.out.println("result는 : "+result);
-//		
-//		if(result > 0) {
-//			return "redirect:stGrade.do";
-//		}else {
-//			return "common/errorPage";
-//		}
-//	}
-	
 	@RequestMapping(value="gradeinsert.do", method=RequestMethod.POST)
-	public String boardInsertView(GradeA g,HttpSession session) {
-		Professor professor = (Professor)session.getAttribute("loginUser");
+	public String boardInsertView(GradeA g,HttpSession session, StudentManagement stdM) {
 		
-		g.setProfId(professor.getProfId());
+		Professor professor = (Professor) session.getAttribute("loginUser");
 		
-		int result = smService.insertGrade(g);
+		int profId        = professor.getProfId();
+		int classSeq      = stdM.getClassSeq();
+		int stdId     = g.getStdId();
+		String gradePoint = g.getGradePoint();
+		int gradeNo       = g.getGradeNo();
+		String classId  = g.getClassId();
+		
+		Map map = new HashMap();
+		map.put("profId", profId);
+		map.put("stdId", stdId);
+		map.put("gradePoint", gradePoint);
+		map.put("classSeq", classSeq);
+		map.put("gradeNo", gradeNo);
+		map.put("classId", classId);
+		
 		
 		System.out.println(g);
+		System.out.println(map);
+		int result = smService.insertGrade(map);
 		
-		System.out.println("result : " + result);
+		System.out.println("result는 : "+result);
 		
 		if(result > 0) {
-			return "완";
+			return "redirect:stGrade.do";
 		}else {
-			return "실";
+			return "common/errorPage";
 		}
-		
 	}
+	
+//	@ResponseBody
+//	@RequestMapping(value="gradeinsert.do", method=RequestMethod.POST)
+//	public String boardInsertView(GradeA g,HttpSession session) {
+//		Professor professor = (Professor)session.getAttribute("loginUser");
+//		
+//		g.setProfId(professor.getProfId());
+//		
+//		int result = smService.insertGrade(g);
+//		
+//		System.out.println(g);
+//		
+//		System.out.println("result : " + result);
+//		
+//		if(result > 0) {
+//			
+//			g.setClassCode(classCode);
+//			return "완";
+//		}else {
+//			return "실";
+//		}
+//		
+//	}
 }

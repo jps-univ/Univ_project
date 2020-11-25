@@ -3,8 +3,8 @@ package com.kh.univ.stmanagement.model.vo;
 public class GradeA {
 
 	private int gradeNo;
-	private int studentId;
-	private String classCode;
+	private int stdId;
+	private String classId;
 	private String gradePoint;
 	private int classSeq;
 	private String className;
@@ -14,12 +14,12 @@ public class GradeA {
 		super();
 	}
 
-	public GradeA(int gradeNo, int studentId, String classCode, String gradePoint, int classSeq, String className,
+	public GradeA(int gradeNo, int stdId, String classId, String gradePoint, int classSeq, String className,
 			int profId) {
 		super();
 		this.gradeNo = gradeNo;
-		this.studentId = studentId;
-		this.classCode = classCode;
+		this.stdId = stdId;
+		this.classId = classId;
 		this.gradePoint = gradePoint;
 		this.classSeq = classSeq;
 		this.className = className;
@@ -34,20 +34,20 @@ public class GradeA {
 		this.gradeNo = gradeNo;
 	}
 
-	public int getStudentId() {
-		return studentId;
+	public int getStdId() {
+		return stdId;
 	}
 
-	public void setStudentId(int studentId) {
-		this.studentId = studentId;
+	public void setStdId(int stdId) {
+		this.stdId = stdId;
 	}
 
-	public String getClassCode() {
-		return classCode;
+	public String getClassId() {
+		return classId;
 	}
 
-	public void setClassCode(String classCode) {
-		this.classCode = classCode;
+	public void setClassId(String classId) {
+		this.classId = classId;
 	}
 
 	public String getGradePoint() {
@@ -84,8 +84,8 @@ public class GradeA {
 
 	@Override
 	public String toString() {
-		return "GradeA [gradeNo=" + gradeNo + ", studentId=" + studentId + ", classCode=" + classCode + ", gradePoint="
-				+ gradePoint + ", classSeq=" + classSeq + ", className=" + className + ", profId=" + profId + "]";
+		return "GradeA [gradeNo=" + gradeNo + ", stdId=" + stdId + ", classId=" + classId + ", gradePoint=" + gradePoint
+				+ ", classSeq=" + classSeq + ", className=" + className + ", profId=" + profId + "]";
 	}
 
 	
