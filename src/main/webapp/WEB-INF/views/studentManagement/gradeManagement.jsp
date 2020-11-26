@@ -96,6 +96,7 @@ margin-right: 10px;
 #select3{ position: absolute; right: 370px; margin-top: -40px;}
 #year{ text-align: center; }
 #text1,#text2,#text3{ width: 170px; }
+#std{ border: 0px;}
   </style>
 <head>
 	<meta charset="UTF-8">
@@ -153,18 +154,17 @@ margin-right: 10px;
           </div>
           <br><br><br>
           <!-- <h2 id="year">2020년 2학기 성적관리</h2> -->
-         <form action="gradeinsert.do" method="post" enctype="multipart/form-data">
           <table border="0" cellspacing="0" width="1000px" id="tb">
           <c:forEach var="std" items="${ list }" end="0">
             <tr>
                 <td><h4 id="code">과목번호 : </h4></td>
-                <td><input type="text" id="text1" name="classSeq" placeholder="${ std.classSeq }" disabled value="${ std.classSeq }"></td>
+                <td><input type="text" id="text1" name="classSeq" class="classSeq" placeholder="${ std.classSeq }" disabled value="${ std.classSeq }"></td>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <td><h4 id="code">교과목명 : </h4></td>
-                <td><input type="text" id="text2" name="className" placeholder="${ std.className }" disabled value="${ std.className }"></td>
+                <td><input type="text" id="text2" name="className" class="className" placeholder="${ std.className }" disabled value="${ std.className }"></td>
             </tr>
             <tr>
-        		<td><input type="hidden" id="text1" name="classId" disabled value="${ std.classId }" placeholder="${ std.classId }"></td>
+        		<td><input type="hidden" id="text1" name="classId" class="classId" disabled value="${ std.classId }" placeholder="${ std.classId }"></td>
         	</tr>
             </c:forEach>
         </table>
@@ -198,7 +198,7 @@ margin-right: 10px;
                         <thead>
                             <tr>
                                 <th>
-                                    <pre>               </pre>
+                                    <pre></pre>
                                 </th>
                                 <th><pre>  A+  </pre></th>
                                 <th><pre>  A  </pre></th>
@@ -219,21 +219,21 @@ margin-right: 10px;
                         <c:forEach var="std" items="${ list }">
                         
                             <tr>
-                                <td>${ std.stdId }</td>
-                                <td><input type="radio" name="gradePoint" value="A+"></td>
-                                <td><input type="radio" name="gradePoint" value="A" ></td>
-                                <td><input type="radio" name="gradePoint" value="A-"></td>
-                                <td><input type="radio" name="gradePoint" value="B+"></td>
-                                <td><input type="radio" name="gradePoint" value="B"></td>
-                                <td><input type="radio" name="gradePoint" value="B-"></td>
-                                <td><input type="radio" name="gradePoint" value="C+"></td>
-                                <td><input type="radio" name="gradePoint" value="C"></td>
-                                <td><input type="radio" name="gradePoint" value="C-"></td>
-                                <td><input type="radio" name="gradePoint" value="D+"></td>
-                                <td><input type="radio" name="gradePoint" value="D"></td>
-                                <td><input type="radio" name="gradePoint" value="D-"></td>
-                                <td><input type="radio" name="gradePoint" value="F"></td>
-                            	<td><input type="hidden" name="stdId" value="${ std.stdId }"></td>
+                            	<td><p  id=${ std.stdId } class="stdId">${ std.stdId }</p></td>
+                                <%-- <td>${ std.stdId }</td> --%>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="A+"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="A" ></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="A-"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="B+"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="B"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="B-"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="C+"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="C"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="C-"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="D+"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="D"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="D-"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="F"></td>
                             </tr>
                          </c:forEach>
 
@@ -248,7 +248,6 @@ margin-right: 10px;
         <input type="button" value="완료2" id="btn1" onclick="Btn()">
         </div>
         </div>
-        </form>
         </div>
         </div>
         <br><br><br>
@@ -293,20 +292,25 @@ margin-right: 10px;
 	<!-- Page level custom scripts -->
 	<script src="${contextPath}/resources/js/demo/datatables-demo.js"></script>
 
-	<!-- <script type="text/javascript">
+	<script type="text/javascript">
 		function Btn()
 		{
-			var classId = ${ "#classId" };   ->x
-			var stdId = ${ "#stdId" };			->x
-			var gradePoint = $("#gradePoint").val(); ->이런한 방식으로 선언해야함 ..
-			var gradeNo = $("#gradeNo").val();
+			var classId = $(".classId").val();   //->x
+			var stdId = $(".stdId").val();			//->x
+			var gradePoint = $(".gradePoint").val(); //->이런한 방식으로 선언해야함 ..
+			var gradeNo = $(".gradeNo").val();
 			
+			console.log(classId);
+			console.log(stdId);
+			console.log(gradePoint);
+			console.log(gradeNo);
 			if(confirm("변경하시겠습니까?"))
 			{
+				/* for(var i=0; i<stdId.length; i++){ */
 				$.ajax(
 				{
 					url:"gradeinsert.do",
-					data:{"classId" : classId, "stdId" : stdId, "gradePoint" : gradePoint, "gradeNo" : gradeNo,
+					data:{"classId" : classId, "stdId" : stdId, "gradePoint" : gradePoint},
 					type:"post",
 					success:function(data)
 					{
@@ -314,7 +318,6 @@ margin-right: 10px;
 						{
 							console.log("성공");
 							alert("변경되었습니다.");
-							/* location.reload(); */
 						}
 						else
 						{
@@ -328,13 +331,16 @@ margin-right: 10px;
 						console.log(errorData); 
 					}
 					});
+				/* } */
 			}
+			
 			else
 			{
 				alert("취소되었습니다.");
 				return;
 			}
-		}
-	</script> -->
+		
+	}
+	</script>
 </body>
 </html>
