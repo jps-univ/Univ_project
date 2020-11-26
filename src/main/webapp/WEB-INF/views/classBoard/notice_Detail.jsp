@@ -93,23 +93,6 @@
                   </div>        
               </form>
 
-              <script>
-                  $(document).ready(function() {
-                      $('.summernote').summernote();
-                  });
-                  
-                  
-                  
-                  $(function(){
-                      $('.drop_submenu').slideUp();
-                      $('.drop').click(function(){
-                        $('.drop_submenu').slideUp();
-                        $(this).next('ul').toggle();
-                      });
-                    });
-                  
-      
-              </script>    
 
 
             

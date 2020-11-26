@@ -139,8 +139,15 @@ public class RegisterController {
 			Register studentReturning = rService.selectReturning(studentR);
 			System.out.println(studentReturning);
 			
-//			if(studentReturning.getStdStatus() == "휴학") {
 //				
+//				if(studentReturning.getStdStatus() == "휴학") {
+//					studentReturning.setApplicationStatus("신청가능");
+//				}else {
+//					studentReturning.setApplicationStatus("신청불가");
+//				}
+				
+//			if(studentReturning.getStdStatus() != (null || "졸업")) {
+//				studentReturning.setStdStatus("휴학");
 //			}
 			
 			mv.addObject("studentReturning", studentReturning);

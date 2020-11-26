@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.classBoard.service.ClassBoardService;
+import com.kh.univ.classBoard.vo.ClassAssignment;
 import com.kh.univ.classBoard.vo.ClassNotice;
 import com.kh.univ.classBoard.vo.PageInfo;
 import com.kh.univ.common.Pagination;
@@ -32,6 +33,11 @@ public class ClassBoardController {
 
 	@Autowired
 	private ClassBoardService cbService;
+	
+	// classSeq
+	// profName
+	// user
+	// userName
 	
 	/**
 	 * 1. 강의 선택창 하윙
@@ -216,11 +222,35 @@ public class ClassBoardController {
 	 * @return
 	 */
 	@RequestMapping("assignmentList.do")
-	public String assignmentList() {
-		return "classBoard/assignmentList";
+	public ModelAndView assignmentList(ModelAndView mv, @RequestParam(value="currentPag", required = false, defaultValue = "1") int currentPage
+			,HttpSession session) {
+		
+		int classSeq = 0;
+//		if(session.getAttribute("classSeq") != null ) {
+//			classSeq = Integer.parseInt((String) session.getAttribute("classSeq"));
+//		}
+
+		classSeq = (int) session.getAttribute("classSeq");
+		System.out.println("assign seq : " + classSeq);
+		
+		// paging처리
+		int listCount = cbService.getAssignmentListCount(classSeq);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		ArrayList<ClassAssignment> aNotice = cbService.assignmentList(pi, classSeq);
+
+		
+		mv.addObject("NoticeList", aNotice);
+		mv.addObject("pi",pi);
+		System.out.println(aNotice);
+		if(classSeq != 0) {
+			mv.setViewName("classBoard/assignmentList");
+		}
+		
+		return mv;
 	}
 
-	
+
 	
 	/**
 	 * 4-1. 과제 디테일 페이지
