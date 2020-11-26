@@ -55,7 +55,7 @@ html, body {
     display: inline-block;
 }
 
-#button{
+.button{
     width: 90px;
     height: 25px;
     font-size: 10pt;

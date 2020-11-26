@@ -20,18 +20,19 @@
  	
 	<resultMap id="GradeResultSet" type="GradeA">
  		<id property="gradeNo" column="GRADE_NO"/>
- 		<result property="studentId" column="STUDENT_ID"/>
- 		<result property="classCode" column="CLASS_CODE"/>
+ 		<result property="stdId" column="STUDENT_ID"/>
+ 		<result property="classId" column="CLASS_CODE"/>
  		<result property="gradePoint" column="GRADE_POINT"/>
  		<result property="classSeq" column="CLASS_SEQ"/>
  		<result property="className" column="CLASS_NAME"/>
+ 		<result property="profId" column="PROFESSOR_ID"/>
  	</resultMap>
  	
  	<resultMap type="GradeInsert" id="GradeInsertResultSet">
  		<id property="gradeNo" column="GRADE_NO"></id>
- 		<result property="studentId" column="STUDENT_ID"></result>
- 		<result property="professorId" column="PROFESSOR_ID"></result>
- 		<result property="classCode" column="CLASS_CODE"></result>
+ 		<result property="stdId" column="STUDENT_ID"></result>
+ 		<result property="profId" column="PROFESSOR_ID"></result>
+ 		<result property="classId" column="CLASS_CODE"></result>
  		<result property="gradePoint" column="GRADE_POINT"></result>
  		<result property="classSemester" column="CLASS_SEMESTER"></result>
  		<result property="classYear" column="CLASS_YEAR"></result>
@@ -82,11 +83,12 @@
 	
 
 	<!--  성적관리 조회 -->
-	<select id="gradeView" resultMap="StudentManagementResultSet">
+	<select id="gradeView" resultMap="GradeResultSet">
 		SELECT
 			C.CLASS_SEQ,
 			C.CLASS_NAME,
-			S.STUDENT_ID
+			S.STUDENT_ID,
+			C.CLASS_CODE
 		FROM
 			TB_STUDENT S
 		LEFT OUTER JOIN
@@ -97,9 +99,9 @@
 			C.CLASS_SEQ = #{classSeq} AND PROFESSOR_ID = #{profId}
 	</select>
 	
-	<insert id="grade">
+	<insert id="grade" >
 		INSERT INTO TB_GRADE
 		(CLASS_CODE,STUDENT_ID,GRADE_POINT,GRADE_NO)
-		VALUES('E123',#{studentId},#{gradePoint},GRADE_NO.NEXTVAL)
+		VALUES(#{classId},#{stdId},#{gradePoint},GRADE_NO.NEXTVAL)
 	</insert>
 </mapper>

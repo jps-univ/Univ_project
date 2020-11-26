@@ -85,9 +85,20 @@
             <h4 class="return">복학신청</h4>
          </div>
 
-         <div>
-           <button class="button" onclick="button_return();">신청하기</button>
-         </div>
+         
+         <c:choose>
+            <c:when test="${studentReturning.applicationStatus eq '신청가능' }">
+               <div>
+                 <button class="button" onclick="button_return();">신청하기</button>
+               </div>
+            </c:when>
+            <c:when test="${studentReturning.applicationStatus ne '신청가능' }">
+               <div>
+                 <button class="button" onclick="button_return();" disabled >신청하기</button>
+               </div>
+            </c:when>
+         </c:choose>
+         
 
          <div class="request">
               <label style="font-size: 12pt; margin-right: 100px;">
@@ -117,7 +128,7 @@
                 <div>
                     <dl class="line" style="position: static;">
                         <dt style="color: #c5d9e8;">복학신청상태</dt>
-                        <dd style="margin: auto;">신청불가</dd>
+                        <dd style="margin: auto;">${ studentReturning.applicationStatus }</dd>
                     </dl>
                   </div>
                   <div>
@@ -129,7 +140,7 @@
                   <div>
                     <dl class="line" style="position: relative; bottom: 30px;">
                         <dt style="color: #c5d9e8;">최종등록년도/학기</dt>
-                        <dd style="margin: auto;">2019/2</dd>
+                        <dd style="margin: auto;"></dd>
                     </dl>
                   </div>
                   <div>
@@ -146,25 +157,25 @@
                 <div>
                     <dl class="line" style="position: static;">
                         <dt style="color: #c5d9e8;">최종등록일자</dt>
-                        <dd style="margin: auto;">2019/10/16</dd>
+                        <dd style="margin: auto;"></dd>
                     </dl>
                   </div>
                   <div>
                     <dl class="line" style="position: relative; bottom: 49px; left: 100px;">
                         <dt style="color: #c5d9e8;">복학년도/학기</dt>
-                        <dd style="margin: auto;">2021/2</dd>
+                        <dd style="margin: auto;"></dd>
                     </dl>
                   </div>
                   <div>
                     <dl class="line" style="position: relative; bottom: 30px;">
                         <dt style="color: #c5d9e8;">학적변동일자</dt>
-                        <dd style="margin: auto;">----------</dd>
+                        <dd style="margin: auto;"></dd>
                     </dl>
                   </div>
                   <div>
                     <dl class="line" style="position: relative; bottom: 79px; left: 110px;">
                         <dt style="color: #c5d9e8;">복학신청일자</dt>
-                        <dd style="margin: auto;">----------</dd>
+                        <dd style="margin: auto;"></dd>
                     </dl>
                   </div>
                 </div>
@@ -175,6 +186,7 @@
         
       </div>
       <!-- End of Main Content -->
+      
       
       <script src="<%=request.getContextPath()%>/resources/js/register_button.js"></script>
 				<!-- 여기까지 내용  -->

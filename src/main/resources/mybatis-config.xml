@@ -47,6 +47,7 @@
         <typeAlias type="com.kh.univ.admin.model.vo.AdLecture" alias="AdLecture"/>
         <typeAlias type="com.kh.univ.admin.model.vo.AdClassTime" alias="AdClassTime"/>
         <typeAlias type="com.kh.univ.admin.model.vo.AdClassPlan" alias="AdClassPlan"/>
+        <typeAlias type="com.kh.univ.admin.model.vo.AdLeave" alias="AdLeave"/>
         
 
         
@@ -74,5 +75,6 @@
         <mapper resource="mappers/admin/adminStudent-mapper.xml"/>
         <mapper resource="mappers/admin/adminProfessor-mapper.xml"/>
         <mapper resource="mappers/admin/adminLecture-mapper.xml"/>
+        <mapper resource="mappers/admin/adminUniv-mapper.xml"/>
     </mappers>
 </configuration>

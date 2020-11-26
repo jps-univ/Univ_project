@@ -43,91 +43,43 @@
                     <table id="rest_lecture" class=" table-hover">
                         <thead>
                             <tr>
-                                <th>
-                                    <p>학번</p>
-                                </th>
-                                <th>
-                                    <p>이름</p>
-                                </th>
-                                <th>
-                                    <p>단과대학</p>
-                                </th>
-                                <th>
-                                    <p>학과</p>
-                                </th>
-                                <th>
-                                    <p>학년</p>
-                                </th>
-                                <th>
-                                    <p>휴학사유</p>
-                                </th>
-                                <th>
-                                    <p>졸업신청일</p>
-                                </th>
-                                <th>
-                                    <p>승인 여부</p>
-                                </th>
+                                <th><p>학번</p></th>
+                                <th><p>이름</p></th>
+                                <th><p>학과</p></th>
+                                <th><p>이수학기</p></th>
+                                <th><p>휴학 사유</p></th>
+                                <th><p>휴학 기간</p></th>
+                                <th><p>휴학신청일</p></th>
+                                <th><p>복학예정일</p></th>
+                                <th><p>승인 여부</p></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><input type="hidden" id="lectureNo">1</td>
-                                <td>유승제</td>
-                                <td>과학기술대학</td>
-                                <td>컴퓨터공학과</td>
-                                <td>4학년</td>
-                                <td>재학중</td>
-                                <td>2020-10-20</td>
-                                <td>
-                                    <select class="appStatus">
-                                        <option value="1">보류</option>
-                                        <option value="2">재검토</option>
-                                        <option value="3">승인</option>
-                                    </select>
-                                </td>
-                            </tr>
 
-                            <tr>
-                                <td><input type="hidden" id="lectureNo">1</td>
-                                <td>유승제</td>
-                                <td>과학기술대학</td>
-                                <td>컴퓨터공학과</td>
-                                <td>4학년</td>
-                                <td>재학중</td>
-                                <td>2020-10-20</td>
-
-                                <td>
-                                    <select class="appStatus">
-                                        <option value="1">보류</option>
-                                        <option value="2">재검토</option>
-                                        <option value="3">승인</option>
-                                    </select>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td><input type="hidden" id="lectureNo">1</td>
-                                <td>유승제</td>
-                                <td>과학기술대학</td>
-                                <td>컴퓨터공학과</td>
-                                <td>4학년</td>
-                                <td>재학중</td>
-                                <td>2020-10-20</td>
-
-                                <td>
-                                    <select class="appStatus">
-                                        <option value="1">보류</option>
-                                        <option value="2">재검토</option>
-                                        <option value="3">승인</option>
-                                    </select>
-                                </td>
-                            </tr>
+                            <c:forEach var ="l" items="${adLeaveList}">
+                            	<tr>
+	                            	<td>${l.stdId }</td> 
+	                                <td>${l.stdName }</td>
+	                                <td>${l.departmentName }</td>
+	                                <td>${l.stdSemester }</td>
+	                                <td>${l.reasonsLeave }</td>
+	                                <td>${l.leavePeriod }</td>
+	                                <td>${l.applicationDate }</td>
+	                                <td>${l.returningDate }</td>
+	                                <td>
+	                                    <select class="appStatus">
+	                                        <option value="1">보류</option>
+	                                        <option value="2">휴학</option>
+	                                    </select>
+	                                </td>
+                            	</tr>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </div>
 
                 <hr>
-                <input type="submit" id="approve_btn" value="수정">
+                <input type="button" id="approve_btn" value="수정">
             </form>
             
             <!-- 본문 끝 -->
@@ -140,10 +92,31 @@
             totalApproveBtn.onclick = function () {
 
                 for (var i = 0; approve.length; i++) {
-                    approve[i].value = "3";
+                    approve[i].value = "2";
                 }
 
             }
+      	
+        </script> 
+        <script>
+        
+        
+       
+        	
+        	$(function(){
+        		$('#approve_btn').click(function(){
+        			var appStatus = document.getElementsByClassName("appStatus");
+        			console.log(appStatus[0]);
+	        			for(var i = 0; i<appStatus.length;i++){
+        				if(appStatus[i].value =='2'){
+        					console.log(appStatus[i].parent.children.eq[0].text());
+        					
+        				}
+        			} 
+        		});
+        		
+        	});
+        
         </script>
         
 

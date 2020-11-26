@@ -12,11 +12,11 @@ public interface StudentManagementService {
 
 	ArrayList<StudentManagement> selectDetailList(Map map);
 
-	ArrayList<StudentManagement> gradeView(Map map);
+	ArrayList<GradeA> gradeView(Map map);
 
 	int insertGrade(GradeA g);
 	
-//	int insertGrade(Map map);
+	int insertGrade(Map map);
 
 //	ArrayList<StudentManagement> selectListDetailList2(Map map);
 }

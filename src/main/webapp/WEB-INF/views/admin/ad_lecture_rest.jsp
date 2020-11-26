@@ -42,30 +42,14 @@
                     <table id="rest_lecture"  class=" table-hover">
                         <thead>
                             <tr>
-                                <th>
-                                    <p>강의 코드</p>
-                                </th>
-                                <th>
-                                    <p>교수 번호</p>
-                                </th>
-                                <th>
-                                    <p>휴강 날짜</p>
-                                </th>
-                                <th>
-                                    <p>보강 날짜</p>
-                                </th>
-                                <th>
-                                    <p>보강 시간</p>
-                                </th>
-                                <th>
-                                    <p>사유</p>
-                                </th>
-                                <th>
-                                    <p>강의실</p>
-                                </th>
-                                <th>
-                                    <p>승인 여부</p>
-                                </th>
+                                <th><p>강의 코드</p></th>
+                                <th><p>교수 번호</p></th>
+                                <th><p>휴강 날짜</p></th>
+                                <th><p>보강 날짜</p></th>
+                                <th><p>보강 시간</p></th>
+                                <th><p>사유</p></th>
+                                <th><p>강의실</p></th>
+                                <th><p>승인 여부</p></th>
                             </tr>
                         </thead>
                         <tbody>
