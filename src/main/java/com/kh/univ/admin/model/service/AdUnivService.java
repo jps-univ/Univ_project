@@ -8,5 +8,8 @@ public interface AdUnivService {
 
 	ArrayList<AdLeave> adLeaveList();
 
+	int adLeaveUpdate(String string);
+
+
 	
 }

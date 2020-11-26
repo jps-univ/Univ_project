@@ -28,4 +28,12 @@
 		WHERE APPLICATION_STATUS='휴학신청중'
 	</select>
 	
+	<insert id="UnivLeaveUpdate">
+		UPDATE TB_STUDENT_STATUS
+		SET STUDENT_STATUS='휴학',
+	    APPLICATION_STATUS='휴학'
+		WHERE STUDENT_ID=#{string}
+	
+	</insert>
+	
 </mapper>

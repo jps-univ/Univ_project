@@ -19,4 +19,12 @@ public class AdUnivServiceImpl implements AdUnivService{
 		// TODO Auto-generated method stub
 		return adUnivDao.adLeaveList();
 	}
+
+	@Override
+	public int adLeaveUpdate(String string) {
+		// TODO Auto-generated method stub
+		return adUnivDao.adLeaveUpdate(string);
+	}
+
+
 }
