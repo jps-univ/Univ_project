@@ -14,19 +14,18 @@ public class InsertRegister {
 	private String leaveDate;				// 휴학날짜
 	private String returningDate;			// 복학 날짜
 	private String graduationDate;		// 졸업 날짜
-	
-	
+
+	private String returngingAsk;		// 복학신청 날짜
+
+
 	public InsertRegister() {
 		super();
 	}
 
 
-
-
-
 	public InsertRegister(int statusNO, int stdId, int stdSemester, String stdStatus, String applicationStatus,
 			String applicationDate, String reasonsLeave, String leavePeriod, String leaveDate, String returningDate,
-			String graduationDate) {
+			String graduationDate, String returngingAsk) {
 		super();
 		this.statusNO = statusNO;
 		this.stdId = stdId;
@@ -39,10 +38,8 @@ public class InsertRegister {
 		this.leaveDate = leaveDate;
 		this.returningDate = returningDate;
 		this.graduationDate = graduationDate;
+		this.returngingAsk = returngingAsk;
 	}
-
-
-
 
 
 	public int getStatusNO() {
@@ -95,8 +92,6 @@ public class InsertRegister {
 	}
 
 
-
-
 	public String getReasonsLeave() {
 		return reasonsLeave;
 	}
@@ -116,16 +111,9 @@ public class InsertRegister {
 		this.leavePeriod = leavePeriod;
 	}
 
-
-
-
-
 	public String getApplicationDate() {
 		return applicationDate;
 	}
-
-
-
 
 
 	public void setApplicationDate(String applicationDate) {
@@ -134,14 +122,9 @@ public class InsertRegister {
 
 
 
-
-
 	public String getLeaveDate() {
 		return leaveDate;
 	}
-
-
-
 
 
 	public void setLeaveDate(String leaveDate) {
@@ -149,15 +132,9 @@ public class InsertRegister {
 	}
 
 
-
-
-
 	public String getReturningDate() {
 		return returningDate;
 	}
-
-
-
 
 
 	public void setReturningDate(String returningDate) {
@@ -165,30 +142,39 @@ public class InsertRegister {
 	}
 
 
-
-
-
 	public String getGraduationDate() {
 		return graduationDate;
 	}
-
-
-
-
 
 	public void setGraduationDate(String graduationDate) {
 		this.graduationDate = graduationDate;
 	}
 
+	public String getReturngingAsk() {
+		return returngingAsk;
+	}
 
-
+	public void setReturngingAsk(String returngingAsk) {
+		this.returngingAsk = returngingAsk;
+	}
 
 
 	@Override
 	public String toString() {
-		return "Register [statusNO=" + statusNO + ", stdId=" + stdId + ", stdSemester=" + stdSemester + ", stdStatus="
-				+ stdStatus + ", applicationStatus=" + applicationStatus + ", applicationDate=" + applicationDate
-				+ ", reasonsLeave=" + reasonsLeave + ", leavePeriod=" + leavePeriod + ", leaveDate=" + leaveDate
-				+ ", returningDate=" + returningDate + ", graduationDate=" + graduationDate + "]";
+		return "InsertRegister [statusNO=" + statusNO + ", stdId=" + stdId + ", stdSemester=" + stdSemester
+				+ ", stdStatus=" + stdStatus + ", applicationStatus=" + applicationStatus + ", applicationDate="
+				+ applicationDate + ", reasonsLeave=" + reasonsLeave + ", leavePeriod=" + leavePeriod + ", leaveDate="
+				+ leaveDate + ", returningDate=" + returningDate + ", graduationDate=" + graduationDate
+				+ ", returngingAsk=" + returngingAsk + "]";
 	}
+
+
+
+
+
+
+
+
+
+
 }

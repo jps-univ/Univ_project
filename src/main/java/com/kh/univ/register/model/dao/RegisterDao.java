@@ -38,4 +38,9 @@ public class RegisterDao {
 		return sqlSession.selectOne("RegisterMapper.selectGraduation", studentG);
 	}
 
+	public int updateReturning(InsertRegister insertRegister) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("RegisterMapper.updateReturning",insertRegister);
+	}
+
 }
