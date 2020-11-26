@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.univ.classBoard.vo.ClassAssignment;
 import com.kh.univ.classBoard.vo.ClassNotice;
 import com.kh.univ.classBoard.vo.PageInfo;
 import com.kh.univ.lecture.model.vo.Lecture;
@@ -45,6 +46,20 @@ public class ClassBoardDao {
 
 	public ClassNotice noticeDetail(int nId) {
 		return (ClassNotice)sqlSession.selectOne("classBoardMapper.noticeDetail",nId);
+	}
+
+
+
+	public int assignListCount(int classSeq) {
+		return sqlSession.selectOne("classBoardMapper.assignListCount", classSeq);
+	}
+
+
+
+	public ArrayList<ClassAssignment> assignmentList(PageInfo pi, int classSeq) {
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("classBoardMapper.assignmentList",classSeq, rowBounds);
 	}
 	
 	

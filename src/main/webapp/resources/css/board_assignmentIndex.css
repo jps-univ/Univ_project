@@ -241,3 +241,29 @@ ul li{
     margin-bottom: 0;
     
     }
+    
+        
+    .pagination>li>a {
+    position: relative;
+    float:left;
+    padding:6px 12px;
+    line-height:1.42857143;
+    color:#337ab7;
+    background-color:#fff;
+    border:1px solid #ddd;
+}
+
+.pagination{
+    justify-content:center;
+    margin-top: 15%;
+}
+
+.container1{
+    text-align: center;
+}
+
+.container{
+    width: 100%;
+    padding: 0;
+    max-width: 100%;
+}

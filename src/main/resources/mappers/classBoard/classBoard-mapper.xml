@@ -33,6 +33,40 @@
         <result property="profName" column="NAME"/>
     </resultMap>
 
+	<resultMap id="assignmentList" type="ClassAssignment">
+		<id property="aSeq" column="A_SEQ"/>
+		<result property="aTitle" column="A_TITLE"/>
+		<result property="aContent" column="A_CONTENT"/>
+		<result property="dueDate" column="DUE_DATE"/>
+		<result property="profId" column="PROFESSOR_ID"/>
+		<result property="classSeq" column="CLASS_SEQ"/>
+		<result property="aCount" column="ACOUNT"/>
+		<result property="aCreateDate" column="ACREATE_DATE"/>
+		<result property="aModifyDate" column="AMODIFY_DATE"/>
+		<result property="aStatus" column="ASTATUS"/>
+	</resultMap>
+	
+	<resultMap id="ProfessorResultSet" type="Professor">
+      <id property="profId" column="PROFESSOR_ID"/>
+      <result property="profPwd" column="PASSWORD"/>
+      <result property="profName" column="NAME"/>
+      <result property="profBirth" column="BIRTH_NO"/>
+      <result property="profDepartment" column="DEPARTMENT_CODE"/>
+      <result property="profImage" column="IMAGE"/>
+      <result property="profSalary" column="SALARY"/>
+      <result property="profPhone" column="PHONE"/>
+      <result property="profEmail" column="EMAIL"/>
+      <result property="profAddress" column="ADDRESS"/>
+      <result property="profAddressDetail" column="ADDRESS_DETAIL"/>
+      <result property="profBank" column="BANK"/>
+      <result property="profAccount" column="ACCOUNT"/>
+      <result property="profAccountHolder" column="ACCOUNT_HOLDER"/>
+      <result property="profSmsAgree" column="SMS_AGREE"/>
+      <result property="profEmailAgree" column="EMAIL_AGREE"/>
+      <result property="lab" column="LAB"/>
+      <result property="status" column="STATUS"/>
+      <result property="profTel" column="TEL"/>
+   </resultMap>
 
 	<select id="selectClassList" parameterType="hashMap" resultMap="classList">
 		SELECT A.CLASS_SEQ, A.CLASS_CODE, A.PROFESSOR_ID, A.CLASS_NAME, A.GRADE_SIZE, A.CLASS_SEMESTER, B.NAME
@@ -57,11 +91,25 @@
 		FROM TB_NOTICE A JOIN TB_PROFESSOR B USING(PROFESSOR_ID)
 		WHERE NOTICE_ID=#{nId}
 	</select>
-	
+	      
 	<select id="selectNoticeCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM TB_NOTICE
 		WHERE CLASS_SEQ = #{classSeq}
 	</select>
+	
+	<select id="assignListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM TB_ASSIGNMENT
+		WHERE CLASS_SEQ=#{classSeq}
+	</select>
+	
+	<select id="assignmentList" resultMap="assignmentList">
+		SELECT *
+		FROM TB_ASSIGNMENT
+		WHERE CLASS_SEQ=#{classSeq}
+	</select>
+
+	
 	
 </mapper>

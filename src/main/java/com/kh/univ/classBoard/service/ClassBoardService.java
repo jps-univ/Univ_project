@@ -2,6 +2,7 @@ package com.kh.univ.classBoard.service;
 
 import java.util.ArrayList;
 
+import com.kh.univ.classBoard.vo.ClassAssignment;
 import com.kh.univ.classBoard.vo.ClassNotice;
 import com.kh.univ.classBoard.vo.PageInfo;
 import com.kh.univ.lecture.model.vo.Lecture;
@@ -37,6 +38,25 @@ public interface ClassBoardService {
 	 * @return
 	 */
 	ClassNotice noticeDetail(int nId);
+
+	
+	/**
+	 * 3. 과제
+	 * 3_1. 과제 리스트 갯수 불러오기
+	 * @param classSeq
+	 * @return
+	 */
+	int getAssignmentListCount(int classSeq);
+
+	
+	/**
+	 * 3. 과재
+	 * 3_2. 과제 리스트 가져오기
+	 * @param pi
+	 * @param classSeq
+	 * @return
+	 */
+	ArrayList<ClassAssignment> assignmentList(PageInfo pi, int classSeq);
 
 
 

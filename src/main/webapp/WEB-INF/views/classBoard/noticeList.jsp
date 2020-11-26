@@ -122,7 +122,7 @@
                     	
                     	<c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }">
 	                    	<c:if test="${ p eq pi.currentPage }">
-								<li><a href="#">[${ p }]</a></li>
+								<li><a href="#"><b>${ p }</b></a></li>
 							</c:if>
 							
 							<c:if test="${ p ne pi.currentPage }">
@@ -133,11 +133,11 @@
 							</c:if>
 						</c:forEach>
                        
-                       	<c:if test="${ pi.currentPage eq 1 }">
+                       	<c:if test="${ pi.currentPage eq pi.maxPage }">
                     		<li><a href="#">다음</a></li>
                     	</c:if>
                     	
-                    	<c:if test="${ pi.currentPage ne 1 }">
+                    	<c:if test="${ pi.currentPage ne pi.maxPage }">
                     		<c:url var="after" value="cNoticeList.do">
                     			<c:param name="currentPage" value="${ pi.currentPage +1 }"/>
                     		</c:url>
@@ -159,7 +159,7 @@
             
             
             <!-- Footer -->
-<%--             <c:import url="../common/footer.jsp"/> --%>
+             <c:import url="../common/footer.jsp"/> 
             <!-- End of Footer -->
 
         </div>

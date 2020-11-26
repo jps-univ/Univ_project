@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.univ.classBoard.dao.ClassBoardDao;
+import com.kh.univ.classBoard.vo.ClassAssignment;
 import com.kh.univ.classBoard.vo.ClassNotice;
 import com.kh.univ.classBoard.vo.PageInfo;
 import com.kh.univ.lecture.model.vo.Lecture;
@@ -39,6 +40,17 @@ public class ClassBoardServiceImpl implements ClassBoardService {
 	@Override
 	public ArrayList<ClassNotice> NoticeList(PageInfo pi, int classSeq) {
 		return cbDao.noticeList(pi, classSeq);
+	}
+
+	
+	@Override
+	public int getAssignmentListCount(int classSeq) {
+		return cbDao.assignListCount(classSeq);
+	}
+
+	@Override
+	public ArrayList<ClassAssignment> assignmentList(PageInfo pi, int classSeq) {
+		return cbDao.assignmentList(pi, classSeq);
 	}
 
 	
