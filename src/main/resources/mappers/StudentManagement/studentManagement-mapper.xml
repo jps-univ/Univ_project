@@ -25,6 +25,7 @@
  		<result property="gradePoint" column="GRADE_POINT"/>
  		<result property="classSeq" column="CLASS_SEQ"/>
  		<result property="className" column="CLASS_NAME"/>
+ 		<result property="profId" column="PROFESSOR_ID"/>
  	</resultMap>
  	
  	<resultMap type="GradeInsert" id="GradeInsertResultSet">
@@ -82,7 +83,7 @@
 	
 
 	<!--  성적관리 조회 -->
-	<select id="gradeView" resultMap="StudentManagementResultSet">
+	<select id="gradeView" resultMap="GradeResultSet">
 		SELECT
 			C.CLASS_SEQ,
 			C.CLASS_NAME,

@@ -27,7 +27,7 @@ public class StudentManagementServiceImple implements StudentManagementService {
 	}
 
 	@Override
-	public ArrayList<StudentManagement> gradeView(Map map) {
+	public ArrayList<GradeA> gradeView(Map map) {
 		return smDao.gradeView(map);
 	}
 

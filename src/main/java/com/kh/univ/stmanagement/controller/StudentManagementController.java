@@ -92,14 +92,14 @@ public class StudentManagementController {
 	}
 	
 	@RequestMapping(value="stGrade.do", method=RequestMethod.POST)
-		public ModelAndView StudentGrade(ModelAndView mv, Model model, HttpSession session, StudentManagement stdM, GradeA g) {
+		public ModelAndView StudentGrade(ModelAndView mv, Model model, HttpSession session, GradeA g) {
 		Professor professor = (Professor)session.getAttribute("loginUser");
 		
-		int profId       = professor.getProfId();
-		String classId   = stdM.getClassId();
-		String className = stdM.getClassName();
-		int classSeq     = stdM.getClassSeq();
-		int stdId        = g.getStdId();
+		int profId        = professor.getProfId();
+		String classId    = g.getClassId();
+		String className  = g.getClassName();
+		int classSeq      = g.getClassSeq();
+		int stdId         = g.getStdId();
 		String gradePoint = g.getGradePoint();
 		int gradeNo       = g.getGradeNo();
 		
@@ -112,7 +112,7 @@ public class StudentManagementController {
 		map.put("gradeNo", gradeNo);
 		map.put("gradePoint", gradePoint);
 		
-		ArrayList<StudentManagement> list = smService.gradeView(map);
+		ArrayList<GradeA> list = smService.gradeView(map);
 			
 			mv.addObject("list", list);
 			mv.addObject("map", map);
@@ -142,9 +142,10 @@ public class StudentManagementController {
 	public String boardInsertView(GradeA g,HttpSession session, StudentManagement stdM) {
 		
 		Professor professor = (Professor) session.getAttribute("loginUser");
+		System.out.println( "주호"+g);
 		
 		int profId        = professor.getProfId();
-		int classSeq      = stdM.getClassSeq();
+		int classSeq      = g.getClassSeq();
 		int stdId     = g.getStdId();
 		String gradePoint = g.getGradePoint();
 		int gradeNo       = g.getGradeNo();
@@ -159,7 +160,6 @@ public class StudentManagementController {
 		map.put("classId", classId);
 		
 		
-		System.out.println(g);
 		System.out.println(map);
 		int result = smService.insertGrade(map);
 		

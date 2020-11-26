@@ -12,7 +12,7 @@ public interface StudentManagementService {
 
 	ArrayList<StudentManagement> selectDetailList(Map map);
 
-	ArrayList<StudentManagement> gradeView(Map map);
+	ArrayList<GradeA> gradeView(Map map);
 
 	int insertGrade(GradeA g);
 	
