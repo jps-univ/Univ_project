@@ -219,21 +219,21 @@ margin-right: 10px;
                         <c:forEach var="std" items="${ list }">
                         
                             <tr>
-                            	<td><input type="text" name="stdId" id="std" class="stdId" value="${ std.stdId }" disabled ></td>
+                            	<td><p  id=${ std.stdId } class="stdId">${ std.stdId }</p></td>
                                 <%-- <td>${ std.stdId }</td> --%>
-                                <td><input type="radio" name="grade" class="gradePoint" value="A+"></td>
-                                <td><input type="radio" name="grade" class="gradePoint" value="A" ></td>
-                                <td><input type="radio" name="grade" class="gradePoint" value="A-"></td>
-                                <td><input type="radio" name="grade" class="gradePoint" value="B+"></td>
-                                <td><input type="radio" name="grade" class="gradePoint" value="B"></td>
-                                <td><input type="radio" name="grade" class="gradePoint" value="B-"></td>
-                                <td><input type="radio" name="grade" class="gradePoint" value="C+"></td>
-                                <td><input type="radio" name="grade" class="gradePoint" value="C"></td>
-                                <td><input type="radio" name="grade" class="gradePoint" value="C-"></td>
-                                <td><input type="radio" name="grade" class="gradePoint" value="D+"></td>
-                                <td><input type="radio" name="grade" class="gradePoint" value="D"></td>
-                                <td><input type="radio" name="grade" class="gradePoint" value="D-"></td>
-                                <td><input type="radio" name="grade" class="gradePoint" value="F"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="A+"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="A" ></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="A-"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="B+"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="B"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="B-"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="C+"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="C"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="C-"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="D+"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="D"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="D-"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="F"></td>
                             </tr>
                          </c:forEach>
 

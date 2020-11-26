@@ -91,8 +91,8 @@ public class StudentManagementController {
 		return "studentManagement/attendance";
 	}
 	
-	@RequestMapping(value="stGrade.do", method=RequestMethod.POST)
-		public ModelAndView StudentGrade(ModelAndView mv, Model model, HttpSession session, GradeA g) {
+	@RequestMapping("stGrade.do")
+		public ModelAndView StudentGrade(ModelAndView mv, HttpSession session, GradeA g) {
 		Professor professor = (Professor)session.getAttribute("loginUser");
 		
 		int profId        = professor.getProfId();
@@ -138,7 +138,7 @@ public class StudentManagementController {
 //	}
 	
 //	
-	@RequestMapping(value="gradeinsert.do", method=RequestMethod.POST)
+	@RequestMapping("gradeinsert.do")
 	public String boardInsertView(GradeA g,HttpSession session, StudentManagement stdM) {
 		
 		Professor professor = (Professor) session.getAttribute("loginUser");
