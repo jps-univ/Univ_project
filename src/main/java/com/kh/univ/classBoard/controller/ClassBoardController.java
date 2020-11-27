@@ -52,19 +52,23 @@ public class ClassBoardController {
 		
 		Object user = session.getAttribute("loginUser");
 		String userName = "";
+		String userStatus = "";
 		if (user instanceof Student ) {
 			user = (Student)session.getAttribute("loginUser");
 			userName = ((Student) user).getStdName();
+			userStatus = ((Student) user).getStatus();
 		}else if (user instanceof Professor){
 			user = (Professor)session.getAttribute("loginUser");
 			userName = ((Professor) user).getProfName();
+			userStatus = ((Professor) user).getStatus();
 		}
-		
+
 //		System.out.println(user);
 		
 		session.setAttribute("user", user);
 		session.setAttribute("userName", userName);
-		
+		session.setAttribute("userStatus", userStatus);
+		System.out.println("userStatus" + userStatus);
 		return "classBoard/selectClass";
 	}
 	
