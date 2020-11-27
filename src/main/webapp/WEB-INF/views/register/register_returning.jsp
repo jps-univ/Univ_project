@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="false"%>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
 <html lang="ko">
@@ -189,11 +191,45 @@
       
       
    <%--    <script src="<%=request.getContextPath()%>/resources/js/register_button.js"></script> --%>
-   		<script>
-   			function button_return(){
-   				location.href="returning_approve.do";
-   			}
-   		</script>
+ 	   <script>
+ 	   
+   		  function button_returning(){
+   				
+	    		if(confirm("복학신청하시겠습니까?"))
+	    							
+	    			$.ajax({
+	    				url:"returning_approve.do",
+	    				type:"post",
+	    				data:{
+	    					stdStatus:stdStatus
+	    					
+	    			},success:function(result)
+	    				{
+	    					if(result =="ok"){
+	    						
+	    						alert("복학이 신청되었습니다.");
+	    						location.href="returning.do";
+	    						
+	    					}else{
+	    						alert("실패하였습니다.");
+	    					}
+	    				},
+	    			error:function(request, status, errorData)
+	    			{
+						console.log(request.status);
+						console.log(request.responseText);
+						console.log(errorData);
+	    				alert("복학이 신청되지 않았습니다.");
+	    				
+	    				}
+	    				
+	    			});
+	    		
+	    			alert("취소되었습니다.");
+	    		}
+
+	    	   			  
+   		</script> 
 				<!-- 여기까지 내용  -->
 
 			<!-- Footer -->

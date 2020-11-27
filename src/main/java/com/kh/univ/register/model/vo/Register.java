@@ -6,7 +6,7 @@ import java.sql.Date;
 public class Register {
 	private int statusNO;				// 학적코드
 	private int stdId;					// 학번
-	private int stdSemester;                // 학기
+	private int stdSemester;            // 학기
 	private String stdStatus;			// 학적 상태
 	private String applicationStatus;	// 신청 상태
 	private Date applicationDate;		// 신청 날짜
@@ -41,9 +41,6 @@ public class Register {
 		this.graduationDate = graduationDate;
 		this.returngingAsk = returngingAsk;
 	}
-
-
-
 
 
 	public int getStatusNO() {
@@ -161,15 +158,9 @@ public class Register {
 	}
 
 
-
-
-
 	public void setReturngingAsk(Date returngingAsk) {
 		this.returngingAsk = returngingAsk;
 	}
-
-
-
 
 
 	@Override
@@ -181,12 +172,5 @@ public class Register {
 				+ returngingAsk + "]";
 	}
 
-
-
-
-
-
-
-	
 	
 }
