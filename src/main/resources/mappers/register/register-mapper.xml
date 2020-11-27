@@ -98,6 +98,7 @@
       WHERE STUDENT_ID = #{stdId} 
   </select>
   
+  <!-- 복학정보 insert -->
   <update id="updateReturning" parameterType="InsertRegister">
 	UPDATE TB_STUDENT_STATUS
 	SET 
@@ -105,5 +106,15 @@
 		  STUDENT_STATUS=#{stdStatus},
 		  RETURNING_ASK_DATE=#{returngingAsk}
 	WHERE STUDENT_ID=#{stdId}
+  </update>
+  
+  <!-- 졸업정보 insert -->
+  <update id="updateGraduation" parameterType="InsertRegister">
+    UPDATE TB_STUDENT_STATUS
+	SET 
+		  APPLICATION_STATUS=#{applicationStatus},
+		  STUDENT_STATUS=#{stdStatus}
+	WHERE STUDENT_ID=#{stdId}
+  
   </update>
   </mapper>

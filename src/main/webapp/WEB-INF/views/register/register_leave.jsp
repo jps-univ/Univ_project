@@ -206,7 +206,7 @@
 	    	    
 	    		if(confirm("휴학신청하시겠습니까?"))
 	    		{
-	    			var stdStatus =  $('#stdStatus').text();//학적 상태
+	    			var stdStatus =  $('#stdStatus').text();    //학적 상태
 	    			var reasonsLeave = $('#select_1').val();	//휴학사유
 	    			
 	    			if(reasonsLeave == '입영휴학'){

@@ -179,7 +179,11 @@ public class RegisterController {
 		}
 		
 		
-		// 졸업페이지
+		/** 3. 졸업페이지
+		 * @param session
+		 * @param mv
+		 * @return
+		 */
 		@RequestMapping("graduation.do")
 	    public ModelAndView Graduation(HttpSession session, ModelAndView mv)
 		{
@@ -198,5 +202,29 @@ public class RegisterController {
 			
 	        return mv;
 	    }
+		
+		/**
+		 * 3_2. 졸업 정보 INSERT
+		 * @return
+		 */
+		@RequestMapping("graduation_approve.do")
+		public String GraduationApprove(HttpSession session, InsertRegister insertRegister) {
+			Student studentG = (Student)session.getAttribute("loginUser");
+			Date today = new Date();
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(today);
+			
+			insertRegister.setStdId(studentG.getStdId());
+			insertRegister.setApplicationStatus("졸업신청중");
+			insertRegister.setStdStatus("졸업신청중");
+			insertRegister.setReturngingAsk(new SimpleDateFormat("yy-MM-dd").format(today));
+			int result = rService.updateGraduation(insertRegister);
+			System.out.println(insertRegister);
+			if(result>0) {
+				return "redirect:graduation.do";
+			}else {
+				return "common/errorPage";
+			}
+		}
 
 }
