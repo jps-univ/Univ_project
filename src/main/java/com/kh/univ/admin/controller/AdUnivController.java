@@ -33,6 +33,11 @@ public class AdUnivController {
 		
 		return mv;
 	}
+	/**
+	 * 1_2. 휴학 신청한 사람들 승인 처리 하기 
+	 * @param stdId
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("ad_leave_update.do")
 	public String adLeaveUpdate(String[] stdId) {
@@ -55,8 +60,30 @@ public class AdUnivController {
 	 * @return
 	 */
 	@RequestMapping("ad_student_return.do")
-	public String AdStudentReturn() {
-		return "admin/ad_student_return";
+	public ModelAndView AdStudentReturn(ModelAndView mv) {
+		
+		ArrayList<AdLeave> adReturnList = adUnivService.adReturnList();
+		mv.addObject("adReturnList",adReturnList);
+		mv.setViewName("admin/ad_student_return");
+		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping("ad_return_update.do")
+	public String adReturnUpdate(String[] stdId) {
+		
+		for(int i =0 ; i<stdId.length;i++) {
+			
+			int result = adUnivService.adReturnUpdate(stdId[i]);
+			
+			if(result>0) {
+				System.out.println(i+"번째 데이터 추가 성공");
+			}else {
+				return "fail";
+			}
+		}
+		
+				return "ok";
 	}
 	
 	/**

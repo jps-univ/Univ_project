@@ -5,7 +5,7 @@ import java.sql.Date;
 public class AdLeave {
 	
 	private int statusNO;				// 학적코드
-	private String stdId;					// 학번--
+	private String stdId;				// 학번--
 	private int stdSemester;            // 학기--
 	private String stdStatus;			// 학적 상태
 	private String applicationStatus;	// 신청 상태--
@@ -15,6 +15,7 @@ public class AdLeave {
 	private Date leaveDate;				// 휴학날짜--
 	private Date returningDate;			// 복학 날짜--
 	private Date graduationDate;		// 졸업 날짜
+	private Date returningAsk;			// 복학신청 날	
 	
 	private String stdName;				// 학생 이름
 	private String departmentName;
@@ -24,11 +25,9 @@ public class AdLeave {
 		super();
 	}
 
-
-
 	public AdLeave(int statusNO, String stdId, int stdSemester, String stdStatus, String applicationStatus,
 			Date applicationDate, String reasonsLeave, String leavePeriod, Date leaveDate, Date returningDate,
-			Date graduationDate, String stdName, String departmentName) {
+			Date graduationDate, Date returningAsk, String stdName, String departmentName) {
 		super();
 		this.statusNO = statusNO;
 		this.stdId = stdId;
@@ -41,11 +40,10 @@ public class AdLeave {
 		this.leaveDate = leaveDate;
 		this.returningDate = returningDate;
 		this.graduationDate = graduationDate;
+		this.returningAsk = returningAsk;
 		this.stdName = stdName;
 		this.departmentName = departmentName;
 	}
-
-
 
 	public int getStatusNO() {
 		return statusNO;
@@ -169,25 +167,28 @@ public class AdLeave {
 		return departmentName;
 	}
 
-
-
 	public void setDepartmentName(String departmentName) {
 		this.departmentName = departmentName;
 	}
 
 
 
+	public Date getReturningAsk() {
+		return returningAsk;
+	}
+
+	public void setReturningAsk(Date returningAsk) {
+		this.returningAsk = returningAsk;
+	}
+
 	@Override
 	public String toString() {
 		return "AdLeave [statusNO=" + statusNO + ", stdId=" + stdId + ", stdSemester=" + stdSemester + ", stdStatus="
 				+ stdStatus + ", applicationStatus=" + applicationStatus + ", applicationDate=" + applicationDate
 				+ ", reasonsLeave=" + reasonsLeave + ", leavePeriod=" + leavePeriod + ", leaveDate=" + leaveDate
-				+ ", returningDate=" + returningDate + ", graduationDate=" + graduationDate + ", stdName=" + stdName
-				+ ", departmentName=" + departmentName + "]";
+				+ ", returningDate=" + returningDate + ", graduationDate=" + graduationDate + ", returningAsk="
+				+ returningAsk + ", stdName=" + stdName + ", departmentName=" + departmentName + "]";
 	}
-
-
-
 
 
 
