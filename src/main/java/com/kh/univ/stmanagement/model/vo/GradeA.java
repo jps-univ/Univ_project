@@ -2,13 +2,13 @@ package com.kh.univ.stmanagement.model.vo;
 
 public class GradeA {
 
-	private int gradeNo;
-	private int stdId;
-	private String classId;
-	private String gradePoint;
-	private int classSeq;
-	private String className;
-	private int profId;
+	private int gradeNo;		// 성적테이블 번호
+	private int stdId;			// 학번
+	private String classId;		// 수업코드
+	private String gradePoint;	// 성적
+	private int classSeq;		// 성적 시퀀스
+	private String className;	// 수업이름
+	private int profId;			// 교수아이디
 	
 	public GradeA() {
 		super();
