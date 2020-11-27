@@ -32,6 +32,49 @@
   
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+  <style>
+      .page {
+        margin-top: 130px;
+        margin-left: 330px;
+    }
+
+    #container {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        color: #252525;
+    }
+
+    .question-table p {
+        margin: 10px;
+    }
+
+    .table-bordered {
+        border: 5px solid #ddd;
+    }
+
+    #answer {
+        border: 1px solid #555;
+        width: 99%;
+        height: 110px;
+        resize: none;
+    }
+
+    .writeBtn {
+        float: right;
+    }
+
+    /* footer */
+    footer {
+        background-color: #555;
+        color: white;
+        padding: 15px;
+    }
+    
+    .question-table th {
+    	text-align:center;
+    }
+  
+  </style>
 </head>
 
 <body id="page-top">
@@ -59,89 +102,147 @@
           <!-- main content -->
           <div id="main_con">
               <div id="write_title"><p>과제</p></div>
-              <form id="write_assignment">
-                  <div id="write_content"  class="shadow">
-                      <table id="title_secret">
-                          <tbody>
-                              <tr>
-                                  <td><label class="write_subject">제목</label></td>
-                                  <td>가나다라마바사</td>
-                              </tr>
-                              <tr>
-                                  <td><label class="write_subject">비밀글</label></td>
-                                  <td><input type="checkbox" name="secret_mode" id="secret_mode" checked="checked" disabled="disabled"></td>
-                              </tr>
-                              <tr>
-                                  <td><label class="write_subject2">내용</label></td>
-                                  <td><div id="textContent">내용</div></td>
-                              </tr>
-                              <tr>
-                                  <td><label class="write_subject">첨부파일</label></td>
-                                  <td><input type="file" name="uploadFile"></td>
-                              </tr>
-                          </tbody>
-                      </table>
-                  </div>        
-              </form>
+              <div class="col-sm-9 page">
+        <div id="container">
+            <div id="rest_table_area">
+                <table class="table table-bordered question-table">
+                <colgroup>
+                	<col style="width:8%;">
+                	<col style="width:*">
+                </colgroup>
+                    <thead>
+                        <tr>
+                            <th>
+                                <p>제목</p>
+                            </th>
+                            <td>
+                            	<p>${board.bTitle}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <p>첨부파일</p>
+                            </th>
+                            <td>
+                            	<p>${board.stdName}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center; font-weight:bold;">
+                                <p>내용</p>
+                            </td>
+                            <td>
+                            	<div><p>${board.bContents}</p></div>
+                            </td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
 
-              <script>
-                  $(document).ready(function() {
-                      $('.summernote').summernote();
-                  });
-              </script>    
-
-
-              <form id="reply_form">
-                  <div id="reply_div" class="shadow">
-                      <table id="board_reply">
-                          <tbody>
-                              <tr>
-                                  <td><label class="write_reply">댓글작성</label></td>
-                                  <td><textarea>과제가 싫어요</textarea></td>
-                                  <td><button id="reply_button">등록</button></td>
-                              </tr>
-                              <tr>
-                                  <td><label class="reply_upload">첨부파일</label></td>
-                                  <td colspan="2"><input type="file" name="uploadFile"></td>
-                              </tr>
-                          </tbody>
-                      </table>
-                  </div>        
-              </form>
+            
+        </div>
 
 
 
-              <div class="replyList">
-                <form class="reply_list">
-                    <div class="replyList_div" class="shadow">
-                        <table class="board_replyList">
-                            <tbody>
-                                <tr>
-                                    <td><label class="stu_no">댓글작성</label></td>
-                                    <td><label class="date">20201010</td>
-                                </tr>
-                                <tr>
-                                    <td><div class="textContent">내용</div></td>
-                                    <td>
-                                      <button id="reply_update">수정</button>
-                                      <button id="reply_delete">삭제</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"><input type="file" name="uploadFile"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>        
-                </form>
-              </div>
-             
-             
-
-
+              
+       		<c:if test="${ userStatus eq 'P' }" >
+             <div class="container-fluid">
+		
+		          <!-- DataTales Example -->
+		          <div class="card shadow mb-4">
+		            <div class="card-header py-3">
+		              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+		            </div>
+		            <div class="card-body">
+		              <div class="table-responsive">
+		                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+		                  <thead>
+		                    <tr>
+		                      <th>Name</th>
+		                      <th>Position</th>
+		                      <th>Office</th>
+		                      <th>Age</th>
+		                      <th>Start date</th>
+		                      <th>Salary</th>
+		                    </tr>
+		                  </thead>
+		                  <tfoot>
+		                    <tr>
+		                      <th>Name</th>
+		                      <th>Position</th>
+		                      <th>Office</th>
+		                      <th>Age</th>
+		                      <th>Start date</th>
+		                      <th>Salary</th>
+		                    </tr>
+		                  </tfoot>
+		                  <tbody>
+		                    <tr>
+		                      <td>Tiger Nixon</td>
+		                      <td>System Architect</td>
+		                      <td>Edinburgh</td>
+		                      <td>61</td>
+		                      <td>2011/04/25</td>
+		                      <td>$320,800</td>
+		                    </tr>
+             			  </tbody>
+		                </table>
+		              </div>
+		            </div>
+		          </div>
+				</div>
+			</c:if>
+			
+			
+			<c:if test="${userStatus eq 'S' }">
+			<div class="container-fluid">
+				<div class="card shadow mb-4">
+		            <div class="card-header py-3">
+		              <h6 class="m-0 font-weight-bold text-primary">진행 상황</h6>
+		            </div>
+		
+		            <div class="card-body">
+		              <div class="table-responsive">
+		                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+		                <tbody>
+		                  <tr align="center">
+		                    <th style="width:10%">제출 기간</th>
+		                    <th style="width:25%">첨부 파일</th>
+		                    <th style="width:15%">제출/수정</th>
+		                    <th style="width:10%">점수</th>
+		                    <th style="width:40%">feedback</th>
+		                  </tr>
+		                  <c:forEach var="c" items="${ consult }">
+			                  <c:if test="${ c.consultingStatus eq '진행'}">
+				                  <tr align="center">
+				                    <td id="td_consult">${ c.profName }</td>
+				                    <td id="td_consult">${ c.consultingStatus } 중</td>
+				                    <td id="td_consult">${ c.progressDate }</td>
+				                    <td>
+				                      <input type="button" class="btn btn-secondary" value="신청취소" id="cancleConsulting" onclick="cancleConsulting(event)">
+				                      <input type="hidden" id="hidden_consultingNo" value="${ c.consultingNo }">
+				                    </td>
+				                  </tr>
+			                  </c:if>     
+		                  </c:forEach>  
+		                 </tbody>
+		                </table>
+		              </div>
+		            </div>
+		          </div>			
+			</div>
+			
+			
+			</c:if>
+			
+			
+			
+			
+			
+			
 
         </div>
-       
+       <!-- end of main con -->
 
       </div>
 

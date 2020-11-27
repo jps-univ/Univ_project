@@ -50,9 +50,17 @@ public class AdUnivController {
 		
 				return "ok";
 	}
+	/**
+	 * 2. 학생 복학 관리
+	 * @return
+	 */
+	@RequestMapping("ad_student_return.do")
+	public String AdStudentReturn() {
+		return "admin/ad_student_return";
+	}
 	
 	/**
-	 * 2. 학생 졸업 관리
+	 * 3. 학생 졸업 관리
 	 * @return
 	 */
 	@RequestMapping("ad_student_graduate.do")
@@ -60,13 +68,5 @@ public class AdUnivController {
 		return "admin/ad_student_graduate";
 	}
 	
-	/**
-	 * 3. 학생 복학 관리
-	 * @return
-	 */
-	@RequestMapping("ad_student_return.do")
-	public String AdStudentReturn() {
-		return "admin/ad_student_return";
-	}
 	
 }
