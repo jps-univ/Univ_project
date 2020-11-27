@@ -296,8 +296,8 @@ margin-right: 10px;
 		function Btn()
 		{
 			var classId = $(".classId").val();   //->x
-			var stdId = $(".stdId").val();			//->x
-			var gradePoint = $(".gradePoint").val(); //->이런한 방식으로 선언해야함 ..
+			var stdId = document.getElementsByClassName("stdId");			//->x
+			var gradePoint = document.getElementsByClassName("gradePoint"); //->이런한 방식으로 선언해야함 ..
 			var gradeNo = $(".gradeNo").val();
 			
 			console.log(classId);
@@ -306,6 +306,14 @@ margin-right: 10px;
 			console.log(gradeNo);
 			if(confirm("변경하시겠습니까?"))
 			{
+				for(var i=0; i<stdId.length; i++){
+					if(gradePoint[i].checked){
+						console.log($(".appStatus").eq(i).parent().parent().children().eq(0).text());
+    					stdId.push($(".appStatus").eq(i).parent().parent().children().eq(0).text());
+						console.log($(".gradePoint").eq(i).parent().parent().children().eq(i).text());
+    					gradePoint.push($(".gradePoint").eq(i).parent().parent().children().eq(i).text());
+					}
+				}
 				/* for(var i=0; i<stdId.length; i++){ */
 				$.ajax(
 				{
