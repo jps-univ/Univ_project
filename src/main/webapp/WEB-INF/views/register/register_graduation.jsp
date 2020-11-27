@@ -153,7 +153,6 @@
                 </div>
                 <div>
                     <dl class="line" style="position: relative; right: 20px;">
-
                         <dt style="color: #c5d9e8;">총이수학기</dt>
                         <dd style="margin: auto;">${ studentGraduation.stdSemester }</dd>
                     </dl>
