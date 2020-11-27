@@ -245,7 +245,7 @@ margin-right: 10px;
         <div id="btn">
         <!-- 첨부파일을 등록할려고하니 속성값에 method="post" enctype="multipart/form-data" 꼭 지정하자 -->
 		<button onclick="Btn();">글쓰기</button>
-        <input type="button" value="완료2" id="btn1" onclick="Btn()">
+        <input type="button" value="완료2" id="btn1" onclick="Btn();">
         </div>
         </div>
         </div>
@@ -295,18 +295,21 @@ margin-right: 10px;
 	<script type="text/javascript">
 		function Btn()
 		{
-			var classId = $(".classId").val();   //->x
+/* 			var classId = $(".classId").val();   //->x
 			var stdId = document.getElementsByClassName("stdId");			//->x
 			var gradePoint = document.getElementsByClassName("gradePoint"); //->이런한 방식으로 선언해야함 ..
-			var gradeNo = $(".gradeNo").val();
+			var gradeNo = $(".gradeNo").val(); */
 			
-			console.log(classId);
-			console.log(stdId);
-			console.log(gradePoint);
-			console.log(gradeNo);
+			var dataArry = new Array();
+			var dataLength =$("#rest_lecture tbody tr");  	// 들어온 데이터의 갯수
+			var checked = dataLength.eq(1).children().eq(13).children().is(':checked');
+
+			//console.log(dataLength.eq(0).children().eq(1).children().is()==':checked');
+			
+			console.log(dataLength.eq(1).children().eq(0).children().text());
 			if(confirm("변경하시겠습니까?"))
 			{
-				for(var i=0; i<stdId.length; i++){
+			/* 	for(var i=0; i<stdId.length; i++){
 					if(gradePoint[i].checked){
 						console.log($(".stsdId").eq(i).parent().parent().children().eq(0).text());
     					stdId.push($(".stdId").eq(i).parent().parent().children().eq(0).text());
@@ -315,11 +318,28 @@ margin-right: 10px;
 					}
 				}
 				/* for(var i=0; i<stdId.length; i++){ */
+ 		 		for(var i = 0 ; i<dataLength.length; i++){
+					 for(var j =1;j<14;j++){
+						 if(dataLength.eq(i).children().eq(j).children().is(':checked')){
+							 
+							 console.log(i+"번쨰 학번" + dataLength.eq(i).children().eq(0).children().text());
+							 console.log(i+"번째 데이터 값"+dataLength.eq(i).children().eq(j).children().val());
+							 dataArry.push(dataLength.eq(i).children().eq(0).children().text());
+							 dataArry.push(dataLength.eq(i).children().eq(j).children().val());
+							 
+							 
+						 }else{
+							 console.log(i+"번쨰 줄에 선택된 값이 없습니다.");
+						 }
+						 
+					 }
+				} 
+				
 				$.ajax(
 				{
 					url:"gradeinsert.do",
-					data:{"classId" : classId, "stdId" : stdId, "gradePoint" : gradePoint},
-					type:"post",
+					data:{gradeArry:dataArry},
+					traditional: true,
 					success:function(data)
 					{
 						if(data == "ok")
@@ -339,7 +359,7 @@ margin-right: 10px;
 						console.log(errorData); 
 					}
 					});
-				/* } */
+				 
 			}
 			
 			else
@@ -348,7 +368,7 @@ margin-right: 10px;
 				return;
 			}
 		
-	}
+		}
 	</script>
 </body>
 </html>
