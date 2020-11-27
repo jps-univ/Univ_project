@@ -139,38 +139,52 @@ public class StudentManagementController {
 	
 //	
 	@RequestMapping("gradeinsert.do")
-	public String boardInsertView(GradeA g,HttpSession session, StudentManagement stdM) {
+	public String boardInsertView(GradeA g, String[] gradeArry, String classId) {
 		
-		Professor professor = (Professor) session.getAttribute("loginUser");
-		System.out.println( "주호"+g);
+		System.out.println(classId);
+	    for(int i =0; i<gradeArry.length; i++) {
+		g.setStdId(Integer.parseInt(gradeArry[i]));
+		g.setGradePoint(gradeArry[i+1]);
+		i=i+1;
+		int result = smService.insertGrade(g);
+		System.out.println(g);
 		
-		int profId        = professor.getProfId();
-		int classSeq      = g.getClassSeq();
-		int stdId     = g.getStdId();
-		String gradePoint = g.getGradePoint();
-		int gradeNo       = g.getGradeNo();
-		String classId  = g.getClassId();
-		
-		Map map = new HashMap();
-		map.put("profId", profId);
-		map.put("stdId", stdId);
-		map.put("gradePoint", gradePoint);
-		map.put("classSeq", classSeq);
-		map.put("gradeNo", gradeNo);
-		map.put("classId", classId);
-		
-		
-		System.out.println(map);
-		int result = smService.insertGrade(map);
-		
-		System.out.println("result는 : "+result);
-		
-		if(result > 0) {
-			return "redirect:stGrade.do";
-		}else {
-			return "common/errorPage";
-		}
 	}
+		
+		
+		
+		
+//		Professor professor = (Professor) session.getAttribute("loginUser");
+//		System.out.println( "주호"+g);
+//		
+//		int profId        = professor.getProfId();
+//		int classSeq      = g.getClassSeq();
+//		int stdId     = g.getStdId();
+//		String gradePoint = g.getGradePoint();
+//		int gradeNo       = g.getGradeNo();
+//		String classId  = g.getClassId();
+//		
+//		Map map = new HashMap();
+//		map.put("profId", profId);
+//		map.put("stdId", stdId);
+//		map.put("gradePoint", gradePoint);
+//		map.put("classSeq", classSeq);
+//		map.put("gradeNo", gradeNo);
+//		map.put("classId", classId);
+//		
+		
+		//int result = smService.insertGrade(map);
+		
+		
+//		if(result > 0) {
+//			return "redirect:stGrade.do";
+//		}else {
+//			return "common/errorPage";
+//		}
+		return null;
+	}
+	
+	
 	
 //	@ResponseBody
 //	@RequestMapping(value="gradeinsert.do", method=RequestMethod.POST)
