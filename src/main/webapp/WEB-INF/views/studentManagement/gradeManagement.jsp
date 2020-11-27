@@ -308,8 +308,8 @@ margin-right: 10px;
 			{
 				for(var i=0; i<stdId.length; i++){
 					if(gradePoint[i].checked){
-						console.log($(".appStatus").eq(i).parent().parent().children().eq(0).text());
-    					stdId.push($(".appStatus").eq(i).parent().parent().children().eq(0).text());
+						console.log($(".stsdId").eq(i).parent().parent().children().eq(0).text());
+    					stdId.push($(".stdId").eq(i).parent().parent().children().eq(0).text());
 						console.log($(".gradePoint").eq(i).parent().parent().children().eq(i).text());
     					gradePoint.push($(".gradePoint").eq(i).parent().parent().children().eq(i).text());
 					}

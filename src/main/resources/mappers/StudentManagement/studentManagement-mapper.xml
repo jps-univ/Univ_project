@@ -99,7 +99,7 @@
 			C.CLASS_SEQ = #{classSeq} AND PROFESSOR_ID = #{profId}
 	</select>
 	
-	<insert id="grade" >
+	<insert id="grade">
 		INSERT INTO TB_GRADE
 		(CLASS_CODE,STUDENT_ID,GRADE_POINT,GRADE_NO)
 		VALUES(#{classId},#{stdId},#{gradePoint},GRADE_NO.NEXTVAL)
