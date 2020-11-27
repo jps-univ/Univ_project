@@ -295,8 +295,8 @@ margin-right: 10px;
 	<script type="text/javascript">
 		function Btn()
 		{
-/* 			var classId = $(".classId").val();   //->x
-			var stdId = document.getElementsByClassName("stdId");			//->x
+ 			 var classId = $(".classId").val();   //->x */
+			/*var stdId = document.getElementsByClassName("stdId");			//->x
 			var gradePoint = document.getElementsByClassName("gradePoint"); //->이런한 방식으로 선언해야함 ..
 			var gradeNo = $(".gradeNo").val(); */
 			
@@ -338,7 +338,7 @@ margin-right: 10px;
 				$.ajax(
 				{
 					url:"gradeinsert.do",
-					data:{gradeArry:dataArry},
+					data:{gradeArry:dataArry, classId : classId},
 					traditional: true,
 					success:function(data)
 					{

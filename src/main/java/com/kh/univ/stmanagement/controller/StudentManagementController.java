@@ -139,10 +139,16 @@ public class StudentManagementController {
 	
 //	
 	@RequestMapping("gradeinsert.do")
-	public String boardInsertView(GradeA g, String[] gradeArry) {
+	public String boardInsertView(GradeA g, String[] gradeArry, String classId) {
 		
+		System.out.println(classId);
 	for(int i =0; i<gradeArry.length; i++) {
-		System.out.println(gradeArry[i]);
+		g.setStdId(Integer.parseInt(gradeArry[i]));
+		g.setGradePoint(gradeArry[i+1]);
+		i=i+1;
+		int result = smService.insertGrade(g);
+		System.out.println(g);
+		
 	}
 		
 		
