@@ -24,9 +24,6 @@ public class Register {
 	}
 
 
-
-
-
 	public Register(int statusNO, int stdId, int stdSemester, String stdStatus, String applicationStatus,
 			Date applicationDate, String reasonsLeave, String leavePeriod, Date leaveDate, Date returningDate,
 			Date graduationDate, Date returngingAsk) {

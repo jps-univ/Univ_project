@@ -40,7 +40,8 @@
       FROM
           TB_PAYMENT
       JOIN TB_STUDENT USING(STUDENT_ID)
-      WHERE STUDENT_ID = #{stdId}
+      WHERE 
+      STUDENT_ID = #{stdId}
 
    </select>
   
