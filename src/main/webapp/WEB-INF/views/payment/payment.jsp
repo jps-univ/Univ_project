@@ -111,8 +111,9 @@
                 <c:forEach var="p" items="${ list }">
                 <tr class="line">
                 	<td><input type="radio" name="checkRadio" class="checkRadio" value="${ p.paymentNo }"></td>
-                    <td>${ p.schoolYear }학년도</td>
-                    <fmt:parseNumber var="Semester" value="${ (p.stdSemester + 1) % 2 }" integerOnly="true"/>
+                	<c:set var="dueDate" value="${ fn:substring( p.dueDate, 0, 4 )  }"/>
+                    <td>${ dueDate }학년도</td>
+                    <fmt:parseNumber var="Semester" value="${ (p.schoolYear + 1) % 2 }" integerOnly="true"/>
                     <c:choose>
                         <c:when test="${ Semester eq 0 }">
                     		<td>1학기</td>
@@ -121,7 +122,7 @@
                     		<td>2학기</td>
                         </c:when>
                     </c:choose>
-                    <fmt:parseNumber var="stdSemester" value="${ (p.stdSemester + 1) div 2 }" integerOnly="true"/>
+                    <fmt:parseNumber var="stdSemester" value="${ (p.schoolYear + 1) div 2 }" integerOnly="true"/>
                     <td>${ stdSemester }학년</td>
                     <td>${ p.dueDate }</td>
                     <td>${ p.paymentAmount }</td>

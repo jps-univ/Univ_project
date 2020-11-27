@@ -1,10 +1,12 @@
 package com.kh.univ.admin.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.admin.model.service.AdUnivService;
@@ -31,9 +33,34 @@ public class AdUnivController {
 		
 		return mv;
 	}
+	@ResponseBody
+	@RequestMapping("ad_leave_update.do")
+	public String adLeaveUpdate(String[] stdId) {
+		
+		for(int i =0 ; i<stdId.length;i++) {
+			
+			int result = adUnivService.adLeaveUpdate(stdId[i]);
+			
+			if(result>0) {
+				System.out.println(i+"번째 데이터 추가 성공");
+			}else {
+				return "fail";
+			}
+		}
+		
+				return "ok";
+	}
+	/**
+	 * 2. 학생 복학 관리
+	 * @return
+	 */
+	@RequestMapping("ad_student_return.do")
+	public String AdStudentReturn() {
+		return "admin/ad_student_return";
+	}
 	
 	/**
-	 * 2. 학생 졸업 관리
+	 * 3. 학생 졸업 관리
 	 * @return
 	 */
 	@RequestMapping("ad_student_graduate.do")
@@ -41,13 +68,5 @@ public class AdUnivController {
 		return "admin/ad_student_graduate";
 	}
 	
-	/**
-	 * 3. 학생 복학 관리
-	 * @return
-	 */
-	@RequestMapping("ad_student_return.do")
-	public String AdStudentReturn() {
-		return "admin/ad_student_return";
-	}
 	
 }

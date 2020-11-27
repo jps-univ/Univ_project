@@ -16,6 +16,8 @@ public class Register {
 	private Date returningDate;			// 복학 날짜
 	private Date graduationDate;		// 졸업 날짜
 	
+	private Date returngingAsk;		// 복학신청 날짜
+	
 	
 	public Register() {
 		super();
@@ -24,7 +26,7 @@ public class Register {
 
 	public Register(int statusNO, int stdId, int stdSemester, String stdStatus, String applicationStatus,
 			Date applicationDate, String reasonsLeave, String leavePeriod, Date leaveDate, Date returningDate,
-			Date graduationDate) {
+			Date graduationDate, Date returngingAsk) {
 		super();
 		this.statusNO = statusNO;
 		this.stdId = stdId;
@@ -37,7 +39,11 @@ public class Register {
 		this.leaveDate = leaveDate;
 		this.returningDate = returningDate;
 		this.graduationDate = graduationDate;
+		this.returngingAsk = returngingAsk;
 	}
+
+
+
 
 
 	public int getStatusNO() {
@@ -150,13 +156,35 @@ public class Register {
 	}
 
 
+	public Date getReturngingAsk() {
+		return returngingAsk;
+	}
+
+
+
+
+
+	public void setReturngingAsk(Date returngingAsk) {
+		this.returngingAsk = returngingAsk;
+	}
+
+
+
+
+
 	@Override
 	public String toString() {
 		return "Register [statusNO=" + statusNO + ", stdId=" + stdId + ", stdSemester=" + stdSemester + ", stdStatus="
 				+ stdStatus + ", applicationStatus=" + applicationStatus + ", applicationDate=" + applicationDate
 				+ ", reasonsLeave=" + reasonsLeave + ", leavePeriod=" + leavePeriod + ", leaveDate=" + leaveDate
-				+ ", returningDate=" + returningDate + ", graduationDate=" + graduationDate + "]";
+				+ ", returningDate=" + returningDate + ", graduationDate=" + graduationDate + ", returngingAsk="
+				+ returngingAsk + "]";
 	}
+
+
+
+
+
 
 
 	

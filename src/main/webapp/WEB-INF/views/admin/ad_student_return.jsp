@@ -43,30 +43,15 @@
                     <table id="rest_lecture" class=" table-hover">
                         <thead>
                             <tr>
-                                <th>
-                                    <p>학번</p>
-                                </th>
-                                <th>
-                                    <p>이름</p>
-                                </th>
-                                <th>
-                                    <p>단과대학</p>
-                                </th>
-                                <th>
-                                    <p>학과</p>
-                                </th>
-                                <th>
-                                    <p>학년</p>
-                                </th>
-                                <th>
-                                    <p>입학구분</p>
-                                </th>
-                                <th>
-                                    <p>복학신청일</p>
-                                </th>
-                                <th>
-                                    <p>승인 여부</p>
-                                </th>
+                                <th><p>학번</p></th>
+                                <th><p>이름</p></th>
+                                <th><p>학과</p></th>
+                                <th><p>이수학기</p></th>
+                                <th><p>휴학 사유</p></th>
+                                <th><p>휴학 기간</p></th>
+                                <th><p>휴학신청일</p></th>
+                                <th><p>복학신청일</p></th>
+                                <th><p>승인 여부</p></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -87,41 +72,9 @@
                                 </td>
                             </tr>
 
-                            <tr>
-                                <td><input type="hidden" id="lectureNo">1</td>
-                                <td>유승제</td>
-                                <td>과학기술대학</td>
-                                <td>컴퓨터공학과</td>
-                                <td>4학년</td>
-                                <td>재학중</td>
-                                <td>2020-10-20</td>
 
-                                <td>
-                                    <select class="appStatus">
-                                        <option value="1">보류</option>
-                                        <option value="2">재검토</option>
-                                        <option value="3">승인</option>
-                                    </select>
-                                </td>
-                            </tr>
 
-                            <tr>
-                                <td><input type="hidden" id="lectureNo">1</td>
-                                <td>유승제</td>
-                                <td>과학기술대학</td>
-                                <td>컴퓨터공학과</td>
-                                <td>4학년</td>
-                                <td>재학중</td>
-                                <td>2020-10-20</td>
-
-                                <td>
-                                    <select class="appStatus">
-                                        <option value="1">보류</option>
-                                        <option value="2">재검토</option>
-                                        <option value="3">승인</option>
-                                    </select>
-                                </td>
-                            </tr>
+ 
                         </tbody>
                     </table>
                 </div>

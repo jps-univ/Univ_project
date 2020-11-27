@@ -157,7 +157,7 @@
                 <div>
                     <dl class="line" style="position: static;">
                         <dt style="color: #c5d9e8;">최종등록일자</dt>
-                        <dd style="margin: auto;"></dd>
+                        <dd style="margin: auto;">${ studentReturning.applicationDate }</dd>
                     </dl>
                   </div>
                   <div>
@@ -169,13 +169,13 @@
                   <div>
                     <dl class="line" style="position: relative; bottom: 30px;">
                         <dt style="color: #c5d9e8;">학적변동일자</dt>
-                        <dd style="margin: auto;"></dd>
+                        <dd style="margin: auto;">${ studentReturning.applicationDate }</dd>
                     </dl>
                   </div>
                   <div>
                     <dl class="line" style="position: relative; bottom: 79px; left: 110px;">
                         <dt style="color: #c5d9e8;">복학신청일자</dt>
-                        <dd style="margin: auto;"></dd>
+                        <dd style="margin: auto;">${ studentReturning.returngingAsk }</dd>
                     </dl>
                   </div>
                 </div>
@@ -188,7 +188,12 @@
       <!-- End of Main Content -->
       
       
-      <script src="<%=request.getContextPath()%>/resources/js/register_button.js"></script>
+   <%--    <script src="<%=request.getContextPath()%>/resources/js/register_button.js"></script> --%>
+   		<script>
+   			function button_return(){
+   				location.href="returning_approve.do";
+   			}
+   		</script>
 				<!-- 여기까지 내용  -->
 
 			<!-- Footer -->

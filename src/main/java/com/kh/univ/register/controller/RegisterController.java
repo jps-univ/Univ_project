@@ -50,10 +50,13 @@ public class RegisterController {
 			
 			if(studentLeave.getStdStatus()==null) {
 				studentLeave.setStdStatus("재학");
-				if(studentLeave.getApplicationStatus()==null) {
-					studentLeave.setApplicationStatus("신청가능");
-				}
 			}
+			if(studentLeave.getApplicationStatus()==null || studentLeave.getApplicationStatus().equals("재학") ) {
+				studentLeave.setApplicationStatus("신청가능");
+			}else {
+				studentLeave.setApplicationStatus("신청불가");
+			}
+			
 			
 			mv.addObject("studentLeave", studentLeave);
 			mv.setViewName("register/register_leave");
@@ -138,17 +141,12 @@ public class RegisterController {
 			Student studentR = (Student)session.getAttribute("loginUser");
 			Register studentReturning = rService.selectReturning(studentR);
 			System.out.println(studentReturning);
-			
-//				
-//				if(studentReturning.getStdStatus() == "휴학") {
-//					studentReturning.setApplicationStatus("신청가능");
-//				}else {
-//					studentReturning.setApplicationStatus("신청불가");
-//				}
-				
-//			if(studentReturning.getStdStatus() != (null || "졸업")) {
-//				studentReturning.setStdStatus("휴학");
-//			}
+						
+				if(studentReturning.getStdStatus().equals("휴학")) {
+					studentReturning.setApplicationStatus("신청가능");
+				}else {
+					studentReturning.setApplicationStatus("신청불가");
+				}
 			
 			mv.addObject("studentReturning", studentReturning);
 			mv.setViewName("register/register_returning");
@@ -156,6 +154,29 @@ public class RegisterController {
 	        return mv;
 	    }
 		
+		/**
+		 * 2_2. 복학 정보 INSERT
+		 * @return
+		 */
+		@RequestMapping("returning_approve.do")
+		public String ReturningApprove(HttpSession session, InsertRegister insertRegister) {
+			Student studentR = (Student)session.getAttribute("loginUser");
+			Date today = new Date();
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(today);
+			
+			insertRegister.setStdId(studentR.getStdId());
+			insertRegister.setApplicationStatus("복학신청중");
+			insertRegister.setStdStatus("복학신청중");
+			insertRegister.setReturngingAsk(new SimpleDateFormat("yy-MM-dd").format(today));
+			int result = rService.updateReturning(insertRegister);
+			System.out.println(insertRegister);
+			if(result>0) {
+				return "redirect:returning.do";
+			}else {
+				return "common/errorPage";
+			}
+		}
 		
 		
 		// 졸업페이지
@@ -163,9 +184,15 @@ public class RegisterController {
 	    public ModelAndView Graduation(HttpSession session, ModelAndView mv)
 		{
 			Student studentG = (Student)session.getAttribute("loginUser");
-			
 			Register studentGraduation = rService.selectGraduation(studentG);
 			System.out.println(studentGraduation);
+			
+			if(studentGraduation.getStdSemester() == 8) {
+				studentGraduation.setApplicationStatus("신청가능");
+			}else {
+				studentGraduation.setApplicationStatus("신청불가");
+			}
+			
 			mv.addObject("studentGraduation", studentGraduation);
 			mv.setViewName("register/register_graduation");
 			

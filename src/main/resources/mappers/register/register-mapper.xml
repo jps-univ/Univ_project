@@ -14,6 +14,7 @@
 	  <result property="leaveDate" column="LEAVE_DATE"/>
 	  <result property="returningDate" column="RETURNING_DATE"/>
 	  <result property="graduationDate" column="GRADUATION_DATE"/>
+	  <result property="returngingAsk" column="RETURNING_ASK_DATE"/>
   </resultMap>
   
   <resultMap id="InsertRegisterResultSet" type="InsertRegister">
@@ -28,6 +29,7 @@
 	  <result property="leaveDate" column="LEAVE_DATE"/>
 	  <result property="returningDate" column="RETURNING_DATE"/>
 	  <result property="graduationDate" column="GRADUATION_DATE"/>
+	  <result property="returngingAsk" column="RETURNING_ASK_DATE"/>
   </resultMap>
   
   <!-- 휴학페이지 -->
@@ -73,7 +75,8 @@
         STUDENT_STATUS,
         SEMESTER,
         APPLICATION_DATE,
-        RETURNING_DATE
+        RETURNING_DATE,
+        RETURNING_ASK_DATE
      FROM
         TB_STUDENT_STATUS
       JOIN TB_STUDENT USING(STUDENT_ID)
@@ -95,4 +98,12 @@
       WHERE STUDENT_ID = #{stdId} 
   </select>
   
+  <update id="updateReturning" parameterType="InsertRegister">
+	UPDATE TB_STUDENT_STATUS
+	SET 
+		  APPLICATION_STATUS=#{applicationStatus},
+		  STUDENT_STATUS=#{stdStatus},
+		  RETURNING_ASK_DATE=#{returngingAsk}
+	WHERE STUDENT_ID=#{stdId}
+  </update>
   </mapper>

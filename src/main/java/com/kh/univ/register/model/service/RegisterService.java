@@ -18,4 +18,6 @@ public interface RegisterService {
 	// 졸업페이지
 	Register selectGraduation(Student studentG);
 
+	int updateReturning(InsertRegister insertRegister);
+
 }

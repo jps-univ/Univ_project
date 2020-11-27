@@ -42,4 +42,10 @@ public class RegisterServiceImpl implements RegisterService{
 		return rDao.selectGraduation(studentG);
 	}
 
+	@Override
+	public int updateReturning(InsertRegister insertRegister) {
+		// TODO Auto-generated method stub
+		return rDao.updateReturning(insertRegister);
+	}
+
 }
