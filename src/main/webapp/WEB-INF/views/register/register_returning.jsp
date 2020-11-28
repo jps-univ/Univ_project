@@ -24,7 +24,7 @@
 	<link href="${contextPath}/resources/css/sb-admin-2.min2.css" rel="stylesheet">
 	
 	<!-- Custom styles for this page -->
-	<link href="${contextPath}/resources/css/register_returning.css" rel="stylesheet">
+	<link href="${contextPath}/resources/css/register_returning.css?ver=1" rel="stylesheet">
 	<%--    <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />--%>
 	<style>
 
@@ -123,7 +123,7 @@
           <hr style="margin-top: 10px; margin-bottom: 40px; width: 60%;">
  
          
-          <div class="con1">
+<%--           <div class="con1">
             <!--복학신청관련정보-->
             <div class="con2">
                 <h4 class="list">복학신청관련정보</h4>
@@ -139,12 +139,12 @@
                         <dd style="margin: auto;">${ studentReturning.stdStatus }</dd>
                     </dl>
                   </div>
-                  <div>
+<!--                   <div>
                     <dl class="line" style="position: relative; bottom: 30px;">
                         <dt style="color: #c5d9e8;">최종등록년도/학기</dt>
                         <dd style="margin: auto;"></dd>
                     </dl>
-                  </div>
+                  </div> -->
                   <div>
                     <dl class="line" style="position: relative; bottom: 79px; left: 110px;">
                         <dt style="color: #c5d9e8;">총이수학기</dt>
@@ -180,8 +180,53 @@
                     </dl>
                   </div>
                 </div>
-          </div>  
+          </div>   --%>
           
+          
+         <div class="con1">
+        <!--복학신청관련정보-->
+        <!-- <div class="con2"> -->
+            <h4 class="list">복학신청관련정보</h4>
+        <!-- </div>      -->
+                <div>
+                    <dl class="line" style="position: relative; right: 100px;">
+                        <dt style="color: #c5d9e8;">복학신청상태</dt>
+                        <dd style="margin: auto;">${ studentReturning.applicationStatus }</dd>
+                    </dl>
+                </div>
+                <div>
+                    <dl class="line" style="position: relative; right: 75px;">
+                        <dt style="color: #c5d9e8;">현재학적상태</dt>
+                        <dd style="margin: auto;">${ studentReturning.stdStatus }</dd>
+                    </dl>
+                </div>
+                <div>
+                    <dl class="line" style="position: relative; right: 50px;">
+                        <dt style="color: #c5d9e8;">복학신청일자</dt>
+                        <dd style="margin: auto;">${ studentReturning.returngingAsk }</dd>
+                    </dl>
+                </div>
+<!--                 <div>
+                    <dl class="line" style="position: relative; right: 40px;">
+                        <dt style="color: #c5d9e8;">최종등록년도/학기</dt>
+                        <dd style="margin: auto;"></dd>
+                    </dl>
+                </div> -->
+                <div>
+                    <dl class="line" style="position: relative; right: 25px;">
+                        <dt style="color: #c5d9e8;">총이수학기</dt>
+                        <dd style="margin: auto;">${ studentReturning.stdSemester }</dd>
+                    </dl>
+                </div>
+                <div>
+                    <dl class="line" style="position: relative;">
+                        <dt style="color: #c5d9e8;">학적변동일자</dt>
+                        <dd style="margin: auto;">${ studentReturning.applicationDate }</dd>
+                    </dl>
+                </div>
+            <!-- </div>   -->
+
+          </div>
          
         <!-- /.container-fluid -->
         

@@ -134,25 +134,25 @@
                     </dl>
                 </div>
                 <div>
-                    <dl class="line" style="position: relative; right: 80px;">
+                    <dl class="line" style="position: relative; right: 75px;">
                         <dt style="color: #c5d9e8;">현재학적상태</dt>
                         <dd style="margin: auto;">${ studentGraduation.stdStatus }</dd>
                     </dl>
                 </div>
                 <div>
-                    <dl class="line" style="position: relative; right: 60px;">
+                    <dl class="line" style="position: relative; right: 50px;">
                         <dt style="color: #c5d9e8;">졸업신청일자</dt>
                         <dd style="margin: auto;">${ studentGraduation.applicationDate }</dd>
                     </dl>
                 </div>
-                <div>
+<!--                 <div>
                     <dl class="line" style="position: relative; right: 40px;">
                         <dt style="color: #c5d9e8;">최종등록년도/학기</dt>
                         <dd style="margin: auto;"></dd>
                     </dl>
-                </div>
+                </div> -->
                 <div>
-                    <dl class="line" style="position: relative; right: 20px;">
+                    <dl class="line" style="position: relative; right: 25px;">
                         <dt style="color: #c5d9e8;">총이수학기</dt>
                         <dd style="margin: auto;">${ studentGraduation.stdSemester }</dd>
                     </dl>
