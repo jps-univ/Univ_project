@@ -316,8 +316,7 @@ margin-right: 10px;
 						console.log($(".gradePoint").eq(i).parent().parent().children().eq(i).text());
     					gradePoint.push($(".gradePoint").eq(i).parent().parent().children().eq(i).text());
 					}
-				}
-				/* for(var i=0; i<stdId.length; i++){ */
+				} */
  		 		for(var i = 0 ; i<dataLength.length; i++){
 					 for(var j =1;j<14;j++){
 						 if(dataLength.eq(i).children().eq(j).children().is(':checked')){
@@ -334,7 +333,7 @@ margin-right: 10px;
 						 
 					 }
 				} 
-				
+				/* if(stdId != null){} */
 				$.ajax(
 				{
 					url:"gradeinsert.do",

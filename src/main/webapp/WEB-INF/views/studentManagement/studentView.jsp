@@ -195,7 +195,10 @@
 	                              <td><button onclick="location.href='stGrade.do';" id="btn1" name="classSeq" value="${ std.classSeq }">
 	                                                                    성적</button></td>
 	                               </form>
-	                              <td><button id="btn2"><a href="attendance.do">출석</a></button></td>
+	                               <form action="attendanceList.do" method="post">
+	                              <td><button onclick="location.href='attendanceList.do';" id="btn1" name="classSeq" value="${ std.classSeq }">
+	                              	출석</button></td>
+	                              	</form>
 	                          </tr>
 	                        </c:forEach> 
 	                      </tbody>
