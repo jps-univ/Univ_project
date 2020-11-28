@@ -3,6 +3,7 @@
 <mapper namespace="RegisterMapper">
 
   <resultMap id="RegisterResultSet" type="Register">
+  
 	  <id property="stdId" column="STUDENT_ID"/>
 	  <result property="statusNO" column="STATUS_NO"/>
 	  <result property="stdSemester" column="SEMESTER"/>
@@ -78,8 +79,8 @@
         RETURNING_DATE,
         RETURNING_ASK_DATE
      FROM
-        TB_STUDENT_STATUS
-      JOIN TB_STUDENT USING(STUDENT_ID)
+        TB_STUDENT
+     LEFT JOIN TB_STUDENT_STATUS USING(STUDENT_ID)
       WHERE STUDENT_ID = #{stdId}  
   </select>
   

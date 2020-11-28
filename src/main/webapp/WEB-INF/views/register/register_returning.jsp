@@ -115,7 +115,7 @@
               <label style="color: #BDD4E9; font-size: 12pt; margin-left: 100px;">       
                   <i class="far fa-check-square"
                   style="color: #BDD4E9;font-size: 30px; position: relative; top: 5px;"></i>
-                  <b>처리완료  </b>
+                  <b>처리완료</b>
               </label>
           </div>
           
@@ -152,7 +152,6 @@
                     </dl>
                   </div>
                 </div>
-
             <!--휴/복학 시기-->
             <div class="con3">
                 <h4 class="list">휴/복학시기</h4>
