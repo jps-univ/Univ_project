@@ -26,4 +26,6 @@ public interface RegisterService {
 
 	int insertGraduation(InsertRegister insertRegister);
 
+	int deleteStatus(Student studentL);
+
 }

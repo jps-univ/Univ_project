@@ -76,14 +76,17 @@ public class RegisterController {
 	public String leaveApply(HttpSession session, InsertRegister register) {
 
 		Student studentL = (Student)session.getAttribute("loginUser");
+		Register studentLeave = rService.selectLeave(studentL);
 		Date today = new Date();
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(today);
+
 		register.setStdId(studentL.getStdId());
 		register.setApplicationStatus("휴학신청중");
 		register.setLeaveDate(new SimpleDateFormat("yy-MM-dd").format(today));
 		register.setApplicationDate(new SimpleDateFormat("yy-MM-dd").format(today));
-
+		
+		
 		if(register.getLeavePeriod().equals("6개월")) {
 
 			int addDate = 6;
@@ -100,14 +103,42 @@ public class RegisterController {
 			register.setReturningDate(DateCalculator(addDate));
 		}
 
+		if(studentLeave.getStatusNO() !=0) {
 
-		int result = rService.leaveApply(register);
+			int delete =rService.deleteStatus(studentL);
+			
+			if(delete >0) {
+				int result = rService.leaveApply(register);
+				
+				if(result > 0) {
+					return "ok";
+				}else {
+					return "fail";
+				}
 
-		if(result > 0) {
-			return "ok";
+			}else {
+				return "fail";
+			}
+
 		}else {
-			return "fail";
+			int result = rService.leaveApply(register);
+
+			if(result > 0) {
+				return "ok";
+			}else {
+				return "fail";
+			}
 		}
+
+
+
+
+
+
+
+
+
+
 
 
 	}
@@ -141,16 +172,16 @@ public class RegisterController {
 		Student studentR = (Student)session.getAttribute("loginUser");
 		Register studentReturning = rService.selectReturning(studentR);
 		System.out.println("ㅇ"+studentReturning);
-//		if(studentReturning.getStdStatus().equals("null")|| studentReturning.getStdStatus().equals("휴학"))		{
-//			studentReturning.setApplicationStatus("신청가능");
-//
-//		}else {
-//			studentReturning.setApplicationStatus("신청불가");
-//		}
-		
+		//		if(studentReturning.getStdStatus().equals("null")|| studentReturning.getStdStatus().equals("휴학"))		{
+		//			studentReturning.setApplicationStatus("신청가능");
+		//
+		//		}else {
+		//			studentReturning.setApplicationStatus("신청불가");
+		//		}
+
 		if(studentReturning.getStatusNO()==0 || !studentReturning.getStdStatus().equals("휴학")) {
 			studentReturning.setApplicationStatus("신청불가");
-			
+
 		}else {
 			studentReturning.setApplicationStatus("신청가능");
 		}
@@ -201,17 +232,17 @@ public class RegisterController {
 		Register studentGraduation = rService.selectGraduation(studentG);
 		System.out.println("asdasd"+studentGraduation);
 
-//		if(studentGraduation.getStdSemester() == 8) {
-//			studentGraduation.setApplicationStatus("신청가능");
-//		}else {
-//			studentGraduation.setApplicationStatus("신청불가");
-//		}
+		//		if(studentGraduation.getStdSemester() == 8) {
+		//			studentGraduation.setApplicationStatus("신청가능");
+		//		}else {
+		//			studentGraduation.setApplicationStatus("신청불가");
+		//		}
 		if(studentGraduation.getStatusNO() !=0) {
-			
+
 			if(studentGraduation.getStdSemester() < 8 || !studentGraduation.getStdStatus().equals("재학")) {
 				studentGraduation.setApplicationStatus("신청불가");
 				System.out.println("신청불가");
-				
+
 			}else{
 				studentGraduation.setApplicationStatus("신청가능");
 				System.out.println("신청가능");
@@ -219,18 +250,18 @@ public class RegisterController {
 			}
 		}else {
 			if(studentGraduation.getStdSemester() < 8) {
-				
+
 				studentGraduation.setApplicationStatus("신청불가");
 				System.out.println("신청불가");
-				
+
 			}else{
 				studentGraduation.setApplicationStatus("신청가능");
 				System.out.println("신청가능");
 
 			}
-			
+
 		}
-		
+
 
 
 		mv.addObject("studentGraduation", studentGraduation);
@@ -250,7 +281,7 @@ public class RegisterController {
 		Date today = new Date();
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(today);
-		
+
 		if(studentGraduation.getStatusNO()==0 ) {// 한번도 휴학을 한적이 없다.
 			insertRegister.setStdId(studentG.getStdId());
 			insertRegister.setApplicationStatus("졸업신청중");
@@ -263,7 +294,7 @@ public class RegisterController {
 				return "common/errorPage";
 			}
 		}else {
-			
+
 			insertRegister.setStdId(studentG.getStdId());
 			insertRegister.setApplicationStatus("졸업신청중");
 			insertRegister.setStdStatus("졸업신청중");
@@ -275,7 +306,7 @@ public class RegisterController {
 			}else {
 				return "common/errorPage";
 			}
-			
+
 		}
 
 

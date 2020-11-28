@@ -55,4 +55,9 @@ public class RegisterDao {
 		return sqlSession.insert("RegisterMapper.insertGraduation", insertRegister);
 	}
 
+	public int deleteStatus(Student studentL) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("RegisterMapper.deleteStatus",studentL);
+	}
+
 }

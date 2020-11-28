@@ -67,6 +67,10 @@
 	  (SEQ_STATUS.NEXTVAL, #{stdId}, #{stdStatus}, #{applicationStatus}, #{applicationDate}, #{reasonsLeave}, #{leavePeriod},#{leaveDate},#{returningDate})	
 	  	
   </insert>
+  <delete id="deleteStatus">
+ 	 DELETE FROM TB_STUDENT_STATUS
+	 WHERE STUDENT_ID = #{stdId}  
+  </delete>
   
   <!-- 복학페이지 -->
   <select id="selectReturning" resultMap="RegisterResultSet">
