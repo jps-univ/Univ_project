@@ -103,44 +103,44 @@
           <div id="main_con">
               <div id="write_title"><p>과제</p></div>
               <div class="col-sm-9 page">
-        <div id="container">
-            <div id="rest_table_area">
-                <table class="table table-bordered question-table">
-                <colgroup>
-                	<col style="width:8%;">
-                	<col style="width:*">
-                </colgroup>
-                    <thead>
-                        <tr>
-                            <th>
-                                <p>제목</p>
-                            </th>
-                            <td>
-                            	<p>${board.bTitle}</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <p>첨부파일</p>
-                            </th>
-                            <td>
-                            	<p>${board.stdName}</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align:center; font-weight:bold;">
-                                <p>내용</p>
-                            </td>
-                            <td>
-                            	<div><p>${board.bContents}</p></div>
-                            </td>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-
-            
-        </div>
+		        <div id="container">
+		            <div id="rest_table_area">
+		                <table class="table table-bordered question-table">
+		                <colgroup>
+		                	<col style="width:8%;">
+		                	<col style="width:*">
+		                </colgroup>
+		                    <thead>
+		                        <tr>
+		                            <th>
+		                                <p>제목</p>
+		                            </th>
+		                            <td>
+		                            	<p>${board.bTitle}</p>
+		                            </td>
+		                        </tr>
+		                        <tr>
+		                            <th>
+		                                <p>첨부파일</p>
+		                            </th>
+		                            <td>
+		                            	<p>${board.stdName}</p>
+		                            </td>
+		                        </tr>
+		                        <tr>
+		                            <td style="text-align:center; font-weight:bold;">
+		                                <p>내용</p>
+		                            </td>
+		                            <td>
+		                            	<div><p>${board.bContents}</p></div>
+		                            </td>
+		                        </tr>
+		                    </thead>
+		                </table>
+		            </div>
+		
+		            
+		        </div>
 
 
 
@@ -157,14 +157,13 @@
 		              <div class="table-responsive">
 		                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 		                  <thead>
-		                    <tr>
-		                      <th>Name</th>
-		                      <th>Position</th>
-		                      <th>Office</th>
-		                      <th>Age</th>
-		                      <th>Start date</th>
-		                      <th>Salary</th>
-		                    </tr>
+			                  <tr align="center">
+			                    <th style="width:15%">학번</th>
+			                    <th style="width:20%">첨부 파일</th>
+			                    <th style="width:10%">점수</th>
+			                    <th style="width:40%">feedback</th>
+			                    <th style="width:15%">제출/수정</th>
+			                  </tr>
 		                  </thead>
 		                  <tfoot>
 		                    <tr>
@@ -206,11 +205,11 @@
 		                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 		                <tbody>
 		                  <tr align="center">
-		                    <th style="width:10%">제출 기간</th>
-		                    <th style="width:25%">첨부 파일</th>
-		                    <th style="width:15%">제출/수정</th>
+		                    <th style="width:15%">제출 기간</th>
+		                    <th style="width:20%">첨부 파일</th>
 		                    <th style="width:10%">점수</th>
 		                    <th style="width:40%">feedback</th>
+		                    <th style="width:15%">제출/수정</th>
 		                  </tr>
 		                  <c:forEach var="c" items="${ consult }">
 			                  <c:if test="${ c.consultingStatus eq '진행'}">

@@ -53,6 +53,16 @@ public class ClassBoardServiceImpl implements ClassBoardService {
 		return cbDao.assignmentList(pi, classSeq);
 	}
 
+	@Override
+	public int insertClassNotice(ClassNotice cn) {
+		return cbDao.insertNotice(cn);
+	}
+
+	@Override
+	public int insertClassAssignment(ClassAssignment ca) {
+		return cbDao.insertAssignment(ca);
+	}
+
 	
 
 

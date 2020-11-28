@@ -138,45 +138,44 @@
 
 
 
-/* 등록 버튼 */
-#button_div{
-    width: 100%;
-}
+    /* 본문 */
+    .page {
+        margin-top: 130px;
+        margin-left: 330px;
+    }
 
-#button_div table{
-    width: 80%;
-    margin: auto;
-    margin-top: 1%;
-}
+    #container {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        color: #252525;
+    }
 
-#button_div table tr td:nth-child(1){
-    width: 90%;
-}
+    .question-table p {
+        margin: 10px;
+    }
 
-#button_div table tr td:nth-child(2){
-    width: 5%;
-}
+    .table-bordered {
+        border: 5px solid #ddd;
+    }
 
-#button_div table tr td:nth-child(3){
-    width: 5%;
-}
+    #answer {
+        border: 1px solid #555;
+        width: 99%;
+        height: 110px;
+        resize: none;
+    }
 
-#board_button1{
-    float: right;
-    border-radius: 3px;
-    height: 35px;
-    width: 50px;
-    background-color: darkslategrey;
-    border: none;
-    color: whitesmoke;
-}
+    .writeBtn {
+        float: right;
+    }
 
-#board_button2{
-    float: right;
-    border-radius: 3px;
-    height: 35px;
-    width: 50px;
-    background-color: whitesmoke;
-    border: 1px solid rgb(136, 134, 134, .3);
-    color: darkslategray;
-}
+    /* footer */
+    footer {
+        background-color: #555;
+        color: white;
+        padding: 15px;
+    }
+    
+    .question-table th {
+    	text-align:center;
+    }

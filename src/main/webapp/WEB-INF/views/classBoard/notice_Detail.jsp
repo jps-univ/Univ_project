@@ -86,7 +86,12 @@
                               </tr>
                               <tr>
                                   <td><label class="write_subject">첨부파일</label></td>
-                                  <td><input type="file" name="uploadFile"></td>
+                                  <td>
+									<c:if test="${ !empty n.originalFileName }">
+										<a href="${contextPath }/resources/uploadFiles/${n.renameFileName}" 
+										download="${n.originalFileName }"> ${ n.originalFileName }</a>
+									</c:if>
+                                  </td>
                               </tr>
                           </tbody>
                       </table>

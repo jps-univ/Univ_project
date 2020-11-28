@@ -13,14 +13,19 @@ public class ClassAssignment {
 	private Date aCreateDate;
 	private Date aModifyDate;
 	private String aStatus;
+	private String originalFileName;
+	private String renameFileName;
 	
+	private String profName;
+	private int stdId;
 	
 	public ClassAssignment() {
 		super();
 	}
 
 	public ClassAssignment(int aSeq, String aTitle, String aContent, Date dueDate, int profId, int classSeq, int aCount,
-			Date aCreateDate, Date aModifyDate, String aStatus) {
+			Date aCreateDate, Date aModifyDate, String aStatus, String originalFileName, String renameFileName,
+			String profName, int stdId) {
 		super();
 		this.aSeq = aSeq;
 		this.aTitle = aTitle;
@@ -32,6 +37,10 @@ public class ClassAssignment {
 		this.aCreateDate = aCreateDate;
 		this.aModifyDate = aModifyDate;
 		this.aStatus = aStatus;
+		this.originalFileName = originalFileName;
+		this.renameFileName = renameFileName;
+		this.profName = profName;
+		this.stdId = stdId;
 	}
 
 	public int getaSeq() {
@@ -114,14 +123,46 @@ public class ClassAssignment {
 		this.aStatus = aStatus;
 	}
 
+	public String getOriginalFileName() {
+		return originalFileName;
+	}
+
+	public void setOriginalFileName(String originalFileName) {
+		this.originalFileName = originalFileName;
+	}
+
+	public String getRenameFileName() {
+		return renameFileName;
+	}
+
+	public void setRenameFileName(String renameFileName) {
+		this.renameFileName = renameFileName;
+	}
+
+	public String getProfName() {
+		return profName;
+	}
+
+	public void setProfName(String profName) {
+		this.profName = profName;
+	}
+
+	public int getStdId() {
+		return stdId;
+	}
+
+	public void setStdId(int stdId) {
+		this.stdId = stdId;
+	}
+
 	@Override
 	public String toString() {
 		return "ClassAssignment [aSeq=" + aSeq + ", aTitle=" + aTitle + ", aContent=" + aContent + ", dueDate="
 				+ dueDate + ", profId=" + profId + ", classSeq=" + classSeq + ", aCount=" + aCount + ", aCreateDate="
-				+ aCreateDate + ", aModifyDate=" + aModifyDate + ", aStatus=" + aStatus + "]";
+				+ aCreateDate + ", aModifyDate=" + aModifyDate + ", aStatus=" + aStatus + ", originalFileName="
+				+ originalFileName + ", renameFileName=" + renameFileName + ", profName=" + profName + ", stdId="
+				+ stdId + "]";
 	}
-	
-	
-	
-	
+
+
 }
