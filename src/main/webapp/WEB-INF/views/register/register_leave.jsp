@@ -110,18 +110,6 @@
                         <dd id="stdStatus" style="margin: auto;">${ studentLeave.stdStatus  }</dd>
                     </dl>
                   </div>
-<!--                   <div>
-                    <dl class="line" style="position: relative; bottom: 30px;">
-                        <dt style="color: #c5d9e8;">최종등록년도/학기</dt>
-                        <dd style="margin: auto;"></dd>
-                    </dl>
-                  </div> -->
-<!--                   <div>
-                    <dl class="line" style="position: relative; bottom: 79px; left: 110px;">
-                        <dt style="color: #c5d9e8;">최종등록일자</dt>
-                        <dd style="margin: auto;"></dd>
-                    </dl>
-                  </div> -->
                 </div>
             <!--휴학 사유 및 기간-->
             <div class="con3">

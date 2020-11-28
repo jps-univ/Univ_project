@@ -142,15 +142,9 @@
                 <div>
                     <dl class="line" style="position: relative; right: 50px;">
                         <dt style="color: #c5d9e8;">졸업신청일자</dt>
-                        <dd style="margin: auto;">${ studentGraduation.applicationDate }</dd>
+                        <dd style="margin: auto;">${ studentGraduation.graduationDate }</dd>
                     </dl>
                 </div>
-<!--                 <div>
-                    <dl class="line" style="position: relative; right: 40px;">
-                        <dt style="color: #c5d9e8;">최종등록년도/학기</dt>
-                        <dd style="margin: auto;"></dd>
-                    </dl>
-                </div> -->
                 <div>
                     <dl class="line" style="position: relative; right: 25px;">
                         <dt style="color: #c5d9e8;">총이수학기</dt>
@@ -172,7 +166,7 @@
 
             <!-- End of Main Content -->
       
-      <script src="<%=request.getContextPath()%>/resources/js/register_button.js"></script>
+      <!--  --><script src="<%=request.getContextPath()%>/resources/js/register_button.js"></script>
 				<!-- 여기까지 내용  -->
 
 			<!-- Footer -->
@@ -181,8 +175,14 @@
 
 		</div>
 		<!-- End of Content Wrapper -->
+		<script>
+		function button_graduation(){
+			
+			location.href="graduation_approve.do";
+		}
 		
- 	   <script>
+		</script>
+<!--  	   <script>
  	   
    		  function button_graduation(){
    				
@@ -221,7 +221,7 @@
 	    	
 	    	
    			  
-   		</script> 
+   		</script>  -->
 
 	</div>
 	<!-- End of Page Wrapper -->

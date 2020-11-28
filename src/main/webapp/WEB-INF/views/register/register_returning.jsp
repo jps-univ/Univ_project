@@ -91,12 +91,12 @@
          <c:choose>
             <c:when test="${studentReturning.applicationStatus eq '신청가능' }">
                <div>
-                 <button class="button" onclick="button_return();">신청하기</button>
+                 <button class="button" onclick="button_returning();">신청하기</button>
                </div>
             </c:when>
             <c:when test="${studentReturning.applicationStatus ne '신청가능' }">
                <div>
-                 <button class="button" onclick="button_return();" disabled >신청하기</button>
+                 <button class="button" onclick="button_returning();" disabled >신청하기</button>
                </div>
             </c:when>
          </c:choose>
@@ -123,64 +123,7 @@
           <hr style="margin-top: 10px; margin-bottom: 40px; width: 60%;">
  
          
-<%--           <div class="con1">
-            <!--복학신청관련정보-->
-            <div class="con2">
-                <h4 class="list">복학신청관련정보</h4>
-                <div>
-                    <dl class="line" style="position: static;">
-                        <dt style="color: #c5d9e8;">복학신청상태</dt>
-                        <dd style="margin: auto;">${ studentReturning.applicationStatus }</dd>
-                    </dl>
-                  </div>
-                  <div>
-                    <dl class="line" style="position: relative; bottom: 49px; left: 110px;">
-                        <dt style="color: #c5d9e8;">현재학적상태</dt>
-                        <dd style="margin: auto;">${ studentReturning.stdStatus }</dd>
-                    </dl>
-                  </div>
-<!--                   <div>
-                    <dl class="line" style="position: relative; bottom: 30px;">
-                        <dt style="color: #c5d9e8;">최종등록년도/학기</dt>
-                        <dd style="margin: auto;"></dd>
-                    </dl>
-                  </div> -->
-                  <div>
-                    <dl class="line" style="position: relative; bottom: 79px; left: 110px;">
-                        <dt style="color: #c5d9e8;">총이수학기</dt>
-                        <dd style="margin: auto;">${ studentReturning.stdSemester }</dd>
-                    </dl>
-                  </div>
-                </div>
-            <!--휴/복학 시기-->
-            <div class="con3">
-                <h4 class="list">휴/복학시기</h4>
-                <div>
-                    <dl class="line" style="position: static;">
-                        <dt style="color: #c5d9e8;">최종등록일자</dt>
-                        <dd style="margin: auto;">${ studentReturning.applicationDate }</dd>
-                    </dl>
-                  </div>
-                  <div>
-                    <dl class="line" style="position: relative; bottom: 49px; left: 100px;">
-                        <dt style="color: #c5d9e8;">복학년도/학기</dt>
-                        <dd style="margin: auto;"></dd>
-                    </dl>
-                  </div>
-                  <div>
-                    <dl class="line" style="position: relative; bottom: 30px;">
-                        <dt style="color: #c5d9e8;">학적변동일자</dt>
-                        <dd style="margin: auto;">${ studentReturning.applicationDate }</dd>
-                    </dl>
-                  </div>
-                  <div>
-                    <dl class="line" style="position: relative; bottom: 79px; left: 110px;">
-                        <dt style="color: #c5d9e8;">복학신청일자</dt>
-                        <dd style="margin: auto;">${ studentReturning.returngingAsk }</dd>
-                    </dl>
-                  </div>
-                </div>
-          </div>   --%>
+
           
           
          <div class="con1">
@@ -188,7 +131,43 @@
         <!-- <div class="con2"> -->
             <h4 class="list">복학신청관련정보</h4>
         <!-- </div>      -->
+        	<c:if test="${studentReturning.statusNO ==0 }">
                 <div>
+                    <dl class="line" style="position: relative; right: 100px;">
+                        <dt style="color: #c5d9e8;">복학신청상태</dt>
+                        <dd style="margin: auto;">${ studentReturning.applicationStatus }</dd>
+                    </dl>
+                </div>
+                <div>
+                    <dl class="line" style="position: relative; right: 75px;">
+                        <dt style="color: #c5d9e8;">현재학적상태</dt>
+                        <dd style="margin: auto;">재학</dd>
+                    </dl>
+                </div>
+                <div>
+                    <dl class="line" style="position: relative; right: 50px;">
+                        <dt style="color: #c5d9e8;">복학신청일자</dt>
+                        <dd style="margin: auto;"></dd>
+                    </dl>
+                </div>
+                <div>
+                    <dl class="line" style="position: relative; right: 25px;">
+                        <dt style="color: #c5d9e8;">총이수학기</dt>
+                        <dd style="margin: auto;">${ studentReturning.stdSemester }</dd>
+                    </dl>
+                </div>
+                <div>
+                    <dl class="line" style="position: relative;">
+                        <dt style="color: #c5d9e8;">학적변동일자</dt>
+                        <dd style="margin: auto;"></dd>
+                    </dl>
+                </div>
+        
+        
+        
+        </c:if>
+        <c:if test="${studentReturning.statusNO !=0 }">
+                       <div>
                     <dl class="line" style="position: relative; right: 100px;">
                         <dt style="color: #c5d9e8;">복학신청상태</dt>
                         <dd style="margin: auto;">${ studentReturning.applicationStatus }</dd>
@@ -206,12 +185,6 @@
                         <dd style="margin: auto;">${ studentReturning.returngingAsk }</dd>
                     </dl>
                 </div>
-<!--                 <div>
-                    <dl class="line" style="position: relative; right: 40px;">
-                        <dt style="color: #c5d9e8;">최종등록년도/학기</dt>
-                        <dd style="margin: auto;"></dd>
-                    </dl>
-                </div> -->
                 <div>
                     <dl class="line" style="position: relative; right: 25px;">
                         <dt style="color: #c5d9e8;">총이수학기</dt>
@@ -224,6 +197,11 @@
                         <dd style="margin: auto;">${ studentReturning.applicationDate }</dd>
                     </dl>
                 </div>
+        
+        
+        
+        </c:if>
+      
             <!-- </div>   -->
 
           </div>
@@ -232,10 +210,17 @@
         
       </div>
       <!-- End of Main Content -->
+      <script>
+      function button_returning(){
+    	  
+    	  location.href="returning_approve.do";
+      }
       
       
-   <%--    <script src="<%=request.getContextPath()%>/resources/js/register_button.js"></script> --%>
- 	   <script>
+      
+      </script>
+      
+<!--  	   <script>
  	   
    		  function button_returning(){
    				
@@ -273,7 +258,7 @@
 	    		}
 
 	    	   			  
-   		</script> 
+   		</script>  -->
 				<!-- 여기까지 내용  -->
 
 			<!-- Footer -->

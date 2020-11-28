@@ -140,12 +140,19 @@ public class RegisterController {
 	{
 		Student studentR = (Student)session.getAttribute("loginUser");
 		Register studentReturning = rService.selectReturning(studentR);
-		System.out.println(studentReturning);
-		if(studentReturning.getStdStatus() != null || studentReturning.getStdStatus().equals("휴학"))		{
-			studentReturning.setApplicationStatus("신청가능");
-
-		}else {
+		System.out.println("ㅇ"+studentReturning);
+//		if(studentReturning.getStdStatus().equals("null")|| studentReturning.getStdStatus().equals("휴학"))		{
+//			studentReturning.setApplicationStatus("신청가능");
+//
+//		}else {
+//			studentReturning.setApplicationStatus("신청불가");
+//		}
+		
+		if(studentReturning.getStatusNO()==0) {
 			studentReturning.setApplicationStatus("신청불가");
+			
+		}else {
+			studentReturning.setApplicationStatus("신청가능");
 		}
 
 		mv.addObject("studentReturning", studentReturning);
@@ -192,12 +199,19 @@ public class RegisterController {
 	{
 		Student studentG = (Student)session.getAttribute("loginUser");
 		Register studentGraduation = rService.selectGraduation(studentG);
-		System.out.println(studentGraduation);
+		System.out.println("asdasd"+studentGraduation);
 
-		if(studentGraduation.getStdSemester() == 8) {
-			studentGraduation.setApplicationStatus("신청가능");
-		}else {
+//		if(studentGraduation.getStdSemester() == 8) {
+//			studentGraduation.setApplicationStatus("신청가능");
+//		}else {
+//			studentGraduation.setApplicationStatus("신청불가");
+//		}
+		
+		if(studentGraduation.getStatusNO()==0 || studentGraduation.getStdSemester() <= 8) {
 			studentGraduation.setApplicationStatus("신청불가");
+			
+		}else {
+			studentGraduation.setApplicationStatus("신청가능");
 		}
 
 		mv.addObject("studentGraduation", studentGraduation);
@@ -220,7 +234,7 @@ public class RegisterController {
 		insertRegister.setStdId(studentG.getStdId());
 		insertRegister.setApplicationStatus("졸업신청중");
 		insertRegister.setStdStatus("졸업신청중");
-		insertRegister.setApplicationDate(new SimpleDateFormat("yy-MM-dd").format(today));
+		insertRegister.setGraduationDate(new SimpleDateFormat("yy-MM-dd").format(today));
 		int result = rService.updateGraduation(insertRegister);
 		System.out.println(insertRegister);
 		if(result>0) {

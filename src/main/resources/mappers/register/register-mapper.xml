@@ -94,8 +94,8 @@
         SEMESTER,
         APPLICATION_DATE
      FROM
-        TB_STUDENT_STATUS
-      JOIN TB_STUDENT USING(STUDENT_ID)
+        TB_STUDENT
+      LEFT JOIN TB_STUDENT_STATUS USING(STUDENT_ID)
       WHERE STUDENT_ID = #{stdId} 
   </select>
   
@@ -114,7 +114,8 @@
     UPDATE TB_STUDENT_STATUS
 	SET 
 		  APPLICATION_STATUS=#{applicationStatus},
-		  STUDENT_STATUS=#{stdStatus}
+		  STUDENT_STATUS=#{stdStatus},
+		  GRADUATION_DATE=#{graduationDate}
 	WHERE STUDENT_ID=#{stdId}
   
   </update>
