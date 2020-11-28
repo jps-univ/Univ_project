@@ -148,7 +148,7 @@ public class RegisterController {
 //			studentReturning.setApplicationStatus("신청불가");
 //		}
 		
-		if(studentReturning.getStatusNO()==0) {
+		if(studentReturning.getStatusNO()==0 || !studentReturning.getStdStatus().equals("휴학")) {
 			studentReturning.setApplicationStatus("신청불가");
 			
 		}else {
@@ -207,11 +207,14 @@ public class RegisterController {
 //			studentGraduation.setApplicationStatus("신청불가");
 //		}
 		
-		if(studentGraduation.getStatusNO()==0 || studentGraduation.getStdSemester() <= 8) {
+		if(studentGraduation.getStdSemester() < 8 || !studentGraduation.getStdStatus().equals("재학")) {
 			studentGraduation.setApplicationStatus("신청불가");
+			System.out.println("신청불가");
 			
-		}else {
+		}else{
 			studentGraduation.setApplicationStatus("신청가능");
+			System.out.println("신청가능");
+
 		}
 
 		mv.addObject("studentGraduation", studentGraduation);
@@ -227,21 +230,40 @@ public class RegisterController {
 	@RequestMapping("graduation_approve.do")
 	public String GraduationApprove(HttpSession session, InsertRegister insertRegister) {
 		Student studentG = (Student)session.getAttribute("loginUser");
+		Register studentGraduation = rService.selectGraduation(studentG);
 		Date today = new Date();
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(today);
-
-		insertRegister.setStdId(studentG.getStdId());
-		insertRegister.setApplicationStatus("졸업신청중");
-		insertRegister.setStdStatus("졸업신청중");
-		insertRegister.setGraduationDate(new SimpleDateFormat("yy-MM-dd").format(today));
-		int result = rService.updateGraduation(insertRegister);
-		System.out.println(insertRegister);
-		if(result>0) {
-			return "redirect:graduation.do";
+		
+		if(studentGraduation.getStatusNO()==0 ) {// 한번도 휴학을 한적이 없다.
+			insertRegister.setStdId(studentG.getStdId());
+			insertRegister.setApplicationStatus("졸업신청중");
+			insertRegister.setStdStatus("졸업신청중");
+			insertRegister.setGraduationDate(new SimpleDateFormat("yy-MM-dd").format(today));
+			int result = rService.insertGraduation(insertRegister);
+			if(result>0) {
+				return "redirect:graduation.do";
+			}else {
+				return "common/errorPage";
+			}
 		}else {
-			return "common/errorPage";
+			
+			insertRegister.setStdId(studentG.getStdId());
+			insertRegister.setApplicationStatus("졸업신청중");
+			insertRegister.setStdStatus("졸업신청중");
+			insertRegister.setGraduationDate(new SimpleDateFormat("yy-MM-dd").format(today));
+			int result = rService.updateGraduation(insertRegister);
+			System.out.println(insertRegister);
+			if(result>0) {
+				return "redirect:graduation.do";
+			}else {
+				return "common/errorPage";
+			}
+			
 		}
+
+
+
 	}
 
 }

@@ -24,4 +24,6 @@ public interface RegisterService {
 	// 졸업정보 insert
 	int updateGraduation(InsertRegister insertRegister);
 
+	int insertGraduation(InsertRegister insertRegister);
+
 }

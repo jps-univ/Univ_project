@@ -119,4 +119,19 @@
 	WHERE STUDENT_ID=#{stdId}
   
   </update>
+  
+  
+  <insert id="insertGraduation" parameterType="InsertRegister">
+    INSERT INTO TB_STUDENT_STATUS 
+           (STATUS_NO,
+			STUDENT_ID,
+			STUDENT_STATUS,
+			APPLICATION_STATUS,
+			GRADUATION_DATE
+			)
+	  VALUES
+	  (SEQ_STATUS.NEXTVAL, #{stdId}, #{stdStatus}, #{applicationStatus},#{graduationDate})	
+	  	
+  
+  </insert>
   </mapper>

@@ -56,4 +56,9 @@ public class RegisterServiceImpl implements RegisterService{
 		return rDao.updateGraduation(insertRegister);
 	}
 
+	@Override
+	public int insertGraduation(InsertRegister insertRegister) {
+		// TODO Auto-generated method stub
+		return rDao.insertGraduation(insertRegister);	}
+
 }

@@ -50,4 +50,9 @@ public class RegisterDao {
 		return sqlSession.update("RegisterMapper.updateGraduation", insertRegister);
 	}
 
+	public int insertGraduation(InsertRegister insertRegister) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("RegisterMapper.insertGraduation", insertRegister);
+	}
+
 }
