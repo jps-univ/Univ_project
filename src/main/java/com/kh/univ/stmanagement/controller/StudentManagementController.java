@@ -4,21 +4,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.stmanagement.model.service.StudentManagementService;
+import com.kh.univ.stmanagement.model.vo.Attendance;
 import com.kh.univ.stmanagement.model.vo.GradeA;
 import com.kh.univ.stmanagement.model.vo.StudentManagement;
 
@@ -87,7 +83,7 @@ public class StudentManagementController {
 	}
 	
 	@RequestMapping("attendance.do")
-	public String Attendance() {
+	public String Attendance(ModelAndView mv, HttpSession session) {
 		return "studentManagement/attendance";
 	}
 	
@@ -184,7 +180,20 @@ public class StudentManagementController {
 		return null;
 	}
 	
-	
+//	@RequestMapping("gradeinsert.do")
+//	public String boardInsertView(GradeA g, String[] gradeArry, String classId) {
+//		
+//		System.out.println(classId);
+//	    for(int i =0; i<gradeArry.length; i++) {
+//		g.setStdId(Integer.parseInt(gradeArry[i]));
+//		g.setGradePoint(gradeArry[i+1]);
+//		i=i+1;
+//		int result = smService.insertGrade(g);
+//		System.out.println(g);
+//		
+//	}
+//	    return null;
+//	}
 	
 //	@ResponseBody
 //	@RequestMapping(value="gradeinsert.do", method=RequestMethod.POST)
@@ -208,4 +217,34 @@ public class StudentManagementController {
 //		}
 //		
 //	}
+	
+	@RequestMapping("attendanceList.do")
+	public ModelAndView AttendanceList(ModelAndView mv, HttpSession session, Attendance att) {
+	Professor professor = (Professor)session.getAttribute("loginUser");
+	
+	int profId        = professor.getProfId();
+	String classId    = att.getClassId();
+	String className  = att.getClassName();
+	int classSeq      = att.getClassSeq();
+	int stdId         = att.getStdId();
+	String attStatus  = att.getAttStatus();
+	int attNo         = att.getAttNo();
+	
+	Map map = new HashMap();
+	map.put("profId", profId);
+	map.put("classId", classId);
+	map.put("className", className);
+	map.put("classSeq", classSeq);
+	map.put("stdId", stdId);
+	map.put("attStatus", attStatus);
+	map.put("attNo", attNo);
+	
+	ArrayList<Attendance> list = smService.attendanceView(map);
+		
+		mv.addObject("list", list);
+		mv.addObject("map", map);
+		mv.setViewName("studentManagement/attendance");
+		
+		return mv;
+}
 }

@@ -3,6 +3,7 @@ package com.kh.univ.stmanagement.model.service;
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.kh.univ.stmanagement.model.vo.Attendance;
 import com.kh.univ.stmanagement.model.vo.GradeA;
 import com.kh.univ.stmanagement.model.vo.StudentManagement;
 
@@ -15,6 +16,8 @@ public interface StudentManagementService {
 	ArrayList<GradeA> gradeView(Map map);
 
 	int insertGrade(GradeA g);
+
+	ArrayList<Attendance> attendanceView(Map map);
 	
 //	int insertGrade(Map map);
 

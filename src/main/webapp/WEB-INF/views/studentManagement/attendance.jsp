@@ -136,7 +136,7 @@ margin-right: 10px;
 			<div id="content">
 
 				<!-- Topbar -->
-				<c:import url="../common/topbar.jsp" />
+				<c:import url="../common/topbar_professor.jsp" />
 				<!-- End of Topbar -->
 				
 				<!-- 여기서부터 내용  -->
@@ -148,13 +148,18 @@ margin-right: 10px;
           <br><br><br>
           <!-- <h2 id="year">2020년 2학기 출결관리</h2> -->
           <table border="0" cellspacing="0" width="700px" id="tb">
-              <tr>
-                  <td><h4 id="code">과목코드 : </h4></td>
-                  <td><input type="text" id="text1" placeholder="전자 회로 2" disabled></td>
-                  &nbsp;&nbsp;&nbsp;&nbsp;
-                  <td><h4 id="code">교과목명 : </h4></td>
-                  <td><input type="text" id="text2" placeholder="EE1033" disabled></td>
-              </tr>
+           <c:forEach var="std" items="${ list }" end="0">
+            <tr>
+                <td><h4 id="code">과목번호 : </h4></td>
+                <td><input type="text" id="text1" name="classSeq" class="classSeq" placeholder="${ std.classSeq }" disabled value="${ std.classSeq }"></td>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <td><h4 id="code">교과목명 : </h4></td>
+                <td><input type="text" id="text2" name="className" class="className" placeholder="${ std.className }" disabled value="${ std.className }"></td>
+            </tr>
+            <tr>
+        		<td><input type="hidden" id="text1" name="classId" class="classId" disabled value="${ std.classId }" placeholder="${ std.classId }"></td>
+        	</tr>
+            </c:forEach>
           </table>
           <br>
           <div class="col-sm-9 page">
@@ -180,8 +185,9 @@ margin-right: 10px;
                             </tr>
                         </thead>
                         <tbody>
+                         <c:forEach var="std" items="${ list }">
                             <tr>
-                                <td>김아무개</td>
+                                <td><p  id=${ std.stdId } class="stdId">${ std.stdId }</p></td>
                                 <td><input type="checkbox"></td>
                                 <td><input type="checkbox"></td>
                                 <td><input type="checkbox"></td>
@@ -190,7 +196,7 @@ margin-right: 10px;
                                 <td><input type="checkbox"></td>
                                 <td><input type="checkbox"></td>
                             </tr>
-                            
+                            </c:forEach>
                         </tbody>
 
 
