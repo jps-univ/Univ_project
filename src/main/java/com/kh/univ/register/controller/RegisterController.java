@@ -206,16 +206,32 @@ public class RegisterController {
 //		}else {
 //			studentGraduation.setApplicationStatus("신청불가");
 //		}
-		
-		if(studentGraduation.getStdSemester() < 8 || !studentGraduation.getStdStatus().equals("재학")) {
-			studentGraduation.setApplicationStatus("신청불가");
-			System.out.println("신청불가");
+		if(studentGraduation.getStatusNO() !=0) {
 			
-		}else{
-			studentGraduation.setApplicationStatus("신청가능");
-			System.out.println("신청가능");
+			if(studentGraduation.getStdSemester() < 8 || !studentGraduation.getStdStatus().equals("재학")) {
+				studentGraduation.setApplicationStatus("신청불가");
+				System.out.println("신청불가");
+				
+			}else{
+				studentGraduation.setApplicationStatus("신청가능");
+				System.out.println("신청가능");
 
+			}
+		}else {
+			if(studentGraduation.getStdSemester() < 8) {
+				
+				studentGraduation.setApplicationStatus("신청불가");
+				System.out.println("신청불가");
+				
+			}else{
+				studentGraduation.setApplicationStatus("신청가능");
+				System.out.println("신청가능");
+
+			}
+			
 		}
+		
+
 
 		mv.addObject("studentGraduation", studentGraduation);
 		mv.setViewName("register/register_graduation");
