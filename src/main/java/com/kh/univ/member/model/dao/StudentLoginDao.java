@@ -18,9 +18,9 @@ public class StudentLoginDao {
 		return (Student)sqlSession.selectOne("StudentMapper.loginStudent",student);
 	}
 
-	public List<Student> findId(Student std) {
-		return sqlSession.selectList("StudentMapper.findId",std);
-	}
+//	public List<Student> findId(Student std) {
+//		return sqlSession.selectList("StudentMapper.findId",std);
+//	}
 
 	public Student findByNameAndEmail(Student student) {
 		return sqlSession.selectOne("StudentMapper.findByNameAndEmail",student);
