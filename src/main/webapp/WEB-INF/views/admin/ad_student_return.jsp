@@ -85,6 +85,7 @@
 
         </div>
         <script>
+        
             var totalApproveBtn = document.getElementById("total_approve");
 
             var approve = document.getElementsByClassName("appStatus");
