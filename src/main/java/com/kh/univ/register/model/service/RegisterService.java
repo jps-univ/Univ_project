@@ -18,6 +18,14 @@ public interface RegisterService {
 	// 졸업페이지
 	Register selectGraduation(Student studentG);
 
+	// 복학정보 insert
 	int updateReturning(InsertRegister insertRegister);
+
+	// 졸업정보 insert
+	int updateGraduation(InsertRegister insertRegister);
+
+	int insertGraduation(InsertRegister insertRegister);
+
+	int deleteStatus(Student studentL);
 
 }

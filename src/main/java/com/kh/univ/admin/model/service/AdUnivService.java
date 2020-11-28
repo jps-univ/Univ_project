@@ -10,6 +10,10 @@ public interface AdUnivService {
 
 	int adLeaveUpdate(String string);
 
+	ArrayList<AdLeave> adReturnList();
+
+	int adReturnUpdate(String string);
+
 
 	
 }

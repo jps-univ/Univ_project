@@ -55,26 +55,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><input type="hidden" id="lectureNo">1</td>
-                                <td>유승제</td>
-                                <td>과학기술대학</td>
-                                <td>컴퓨터공학과</td>
-                                <td>4학년</td>
-                                <td>재학중</td>
-                                <td>2020-10-20</td>
-                                <td>
-                                    <select class="appStatus">
-                                        <option value="1">보류</option>
-                                        <option value="2">재검토</option>
-                                        <option value="3">승인</option>
-                                    </select>
-                                </td>
-                            </tr>
-
-
-
- 
+                    		 <c:forEach var ="l" items="${adReturnList}">
+                            	<tr>
+	                            	<td>${l.stdId }</td> 
+	                                <td>${l.stdName }</td>
+	                                <td>${l.departmentName }</td>
+	                                <td>${l.stdSemester }</td>
+	                                <td>${l.reasonsLeave }</td>
+	                                <td>${l.leavePeriod }</td>
+	                                <td>${l.applicationDate }</td>
+	                                <td>${l.returningAsk }</td>
+	                                <td>
+	                                    <select class="appStatus">
+	                                        <option value="1">보류</option>
+	                                        <option value="2">재학</option>
+	                                    </select>
+	                                </td>
+                            	</tr>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -87,19 +85,69 @@
 
         </div>
         <script>
+        
             var totalApproveBtn = document.getElementById("total_approve");
 
             var approve = document.getElementsByClassName("appStatus");
             totalApproveBtn.onclick = function () {
 
                 for (var i = 0; approve.length; i++) {
-                    approve[i].value = "3";
+                    approve[i].value = "2";
                 }
 
             }
         </script>
         
-
+    <script>
+        
+        
+        	$(function(){
+        		
+        		$('#approve_btn').click(function(){
+        			var stdId = new Array();	//  학번을 담을 배열 추가 
+        			var appStatus = document.getElementsByClassName("appStatus");
+        			var app = $(".appStatus").eq(2).parent().parent().children().eq(0).text();	// 학번 뽑기 
+        		
+        			console.log(app);
+        			console.log(appStatus.length);
+        			
+ 	        			for(var i = 0; i<appStatus.length;i++){
+	        				
+	        				if(appStatus[i].value =='2'){
+	        					console.log($(".appStatus").eq(i).parent().parent().children().eq(0).text());
+	        					stdId.push($(".appStatus").eq(i).parent().parent().children().eq(0).text());
+	        				} 
+        			}  
+ 	        			console.log(stdId);
+ 	        			$.ajax({
+ 	        				url         :"ad_return_update.do",
+ 	        				traditional : true,
+ 	        				data :{ 
+ 	        						stdId :stdId
+ 	        				},success:function(result){
+ 	        					
+ 	        					if(result == 'ok'){
+ 	        						console.log("전송성공");
+ 	        						alert(appStatus.length+"명의 상태가 변경되었습니다.");
+ 	        						location.href="ad_student_return.do";
+ 	        						
+ 	        					}
+ 	        				},error:function(request, status, errorData){
+ 	        					
+ 	        					console.log(request.status);
+ 	   							console.log(request.responseText);
+ 	   							console.log(errorData); 
+ 	        					
+ 	        				}
+ 	        				
+ 	        			
+ 	        			});
+        		
+        		});
+        		
+        	});
+        
+        </script>
 
         <!-- footer -->
         <footer class="container-fluid navbar-fixed-bottom">

@@ -38,9 +38,26 @@ public class RegisterDao {
 		return sqlSession.selectOne("RegisterMapper.selectGraduation", studentG);
 	}
 
+	// 복학정보 insert
 	public int updateReturning(InsertRegister insertRegister) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("RegisterMapper.updateReturning",insertRegister);
+	}
+
+	// 졸업정보 insert
+	public int updateGraduation(InsertRegister insertRegister) {
+
+		return sqlSession.update("RegisterMapper.updateGraduation", insertRegister);
+	}
+
+	public int insertGraduation(InsertRegister insertRegister) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("RegisterMapper.insertGraduation", insertRegister);
+	}
+
+	public int deleteStatus(Student studentL) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("RegisterMapper.deleteStatus",studentL);
 	}
 
 }

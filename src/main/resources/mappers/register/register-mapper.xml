@@ -3,6 +3,7 @@
 <mapper namespace="RegisterMapper">
 
   <resultMap id="RegisterResultSet" type="Register">
+  
 	  <id property="stdId" column="STUDENT_ID"/>
 	  <result property="statusNO" column="STATUS_NO"/>
 	  <result property="stdSemester" column="SEMESTER"/>
@@ -67,6 +68,11 @@
 	  	
   </insert>
   
+  <delete id="deleteStatus">
+ 	 DELETE FROM TB_STUDENT_STATUS
+	 WHERE STUDENT_ID = #{stdId}  
+  </delete>
+  
   <!-- 복학페이지 -->
   <select id="selectReturning" resultMap="RegisterResultSet">
      SELECT 
@@ -78,8 +84,8 @@
         RETURNING_DATE,
         RETURNING_ASK_DATE
      FROM
-        TB_STUDENT_STATUS
-      JOIN TB_STUDENT USING(STUDENT_ID)
+        TB_STUDENT
+     LEFT JOIN TB_STUDENT_STATUS USING(STUDENT_ID)
       WHERE STUDENT_ID = #{stdId}  
   </select>
   
@@ -93,11 +99,12 @@
         SEMESTER,
         APPLICATION_DATE
      FROM
-        TB_STUDENT_STATUS
-      JOIN TB_STUDENT USING(STUDENT_ID)
+        TB_STUDENT
+      LEFT JOIN TB_STUDENT_STATUS USING(STUDENT_ID)
       WHERE STUDENT_ID = #{stdId} 
   </select>
   
+  <!-- 복학정보 insert -->
   <update id="updateReturning" parameterType="InsertRegister">
 	UPDATE TB_STUDENT_STATUS
 	SET 
@@ -106,4 +113,30 @@
 		  RETURNING_ASK_DATE=#{returngingAsk}
 	WHERE STUDENT_ID=#{stdId}
   </update>
+  
+  <!-- 졸업정보 insert -->
+  <update id="updateGraduation" parameterType="InsertRegister">
+    UPDATE TB_STUDENT_STATUS
+	SET 
+		  APPLICATION_STATUS=#{applicationStatus},
+		  STUDENT_STATUS=#{stdStatus},
+		  GRADUATION_DATE=#{graduationDate}
+	WHERE STUDENT_ID=#{stdId}
+  
+  </update>
+  
+  
+  <insert id="insertGraduation" parameterType="InsertRegister">
+    INSERT INTO TB_STUDENT_STATUS 
+           (STATUS_NO,
+			STUDENT_ID,
+			STUDENT_STATUS,
+			APPLICATION_STATUS,
+			GRADUATION_DATE
+			)
+	  VALUES
+	  (SEQ_STATUS.NEXTVAL, #{stdId}, #{stdStatus}, #{applicationStatus},#{graduationDate})	
+	  	
+  
+  </insert>
   </mapper>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="false"%>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
 <html lang="ko">
@@ -22,7 +24,7 @@
 	<link href="${contextPath}/resources/css/sb-admin-2.min2.css" rel="stylesheet">
 	
 	<!-- Custom styles for this page -->
-	<link href="${contextPath}/resources/css/register_returning.css" rel="stylesheet">
+	<link href="${contextPath}/resources/css/register_returning.css?ver=1" rel="stylesheet">
 	<%--    <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />--%>
 	<style>
 
@@ -89,12 +91,12 @@
          <c:choose>
             <c:when test="${studentReturning.applicationStatus eq '신청가능' }">
                <div>
-                 <button class="button" onclick="button_return();">신청하기</button>
+                 <button class="button" onclick="button_returning();">신청하기</button>
                </div>
             </c:when>
             <c:when test="${studentReturning.applicationStatus ne '신청가능' }">
                <div>
-                 <button class="button" onclick="button_return();" disabled >신청하기</button>
+                 <button class="button" onclick="button_returning();" disabled >신청하기</button>
                </div>
             </c:when>
          </c:choose>
@@ -113,7 +115,7 @@
               <label style="color: #BDD4E9; font-size: 12pt; margin-left: 100px;">       
                   <i class="far fa-check-square"
                   style="color: #BDD4E9;font-size: 30px; position: relative; top: 5px;"></i>
-                  <b>처리완료  </b>
+                  <b>처리완료</b>
               </label>
           </div>
           
@@ -121,79 +123,142 @@
           <hr style="margin-top: 10px; margin-bottom: 40px; width: 60%;">
  
          
-          <div class="con1">
-            <!--복학신청관련정보-->
-            <div class="con2">
-                <h4 class="list">복학신청관련정보</h4>
+
+          
+          
+         <div class="con1">
+        <!--복학신청관련정보-->
+        <!-- <div class="con2"> -->
+            <h4 class="list">복학신청관련정보</h4>
+        <!-- </div>      -->
+        	<c:if test="${studentReturning.statusNO ==0 }">
                 <div>
-                    <dl class="line" style="position: static;">
+                    <dl class="line" style="position: relative; right: 100px;">
                         <dt style="color: #c5d9e8;">복학신청상태</dt>
                         <dd style="margin: auto;">${ studentReturning.applicationStatus }</dd>
                     </dl>
-                  </div>
-                  <div>
-                    <dl class="line" style="position: relative; bottom: 49px; left: 110px;">
+                </div>
+                <div>
+                    <dl class="line" style="position: relative; right: 75px;">
                         <dt style="color: #c5d9e8;">현재학적상태</dt>
-                        <dd style="margin: auto;">${ studentReturning.stdStatus }</dd>
+                        <dd style="margin: auto;">재학</dd>
                     </dl>
-                  </div>
-                  <div>
-                    <dl class="line" style="position: relative; bottom: 30px;">
-                        <dt style="color: #c5d9e8;">최종등록년도/학기</dt>
+                </div>
+                <div>
+                    <dl class="line" style="position: relative; right: 50px;">
+                        <dt style="color: #c5d9e8;">복학신청일자</dt>
                         <dd style="margin: auto;"></dd>
                     </dl>
-                  </div>
-                  <div>
-                    <dl class="line" style="position: relative; bottom: 79px; left: 110px;">
+                </div>
+                <div>
+                    <dl class="line" style="position: relative; right: 25px;">
                         <dt style="color: #c5d9e8;">총이수학기</dt>
                         <dd style="margin: auto;">${ studentReturning.stdSemester }</dd>
                     </dl>
-                  </div>
                 </div>
-
-            <!--휴/복학 시기-->
-            <div class="con3">
-                <h4 class="list">휴/복학시기</h4>
                 <div>
-                    <dl class="line" style="position: static;">
-                        <dt style="color: #c5d9e8;">최종등록일자</dt>
-                        <dd style="margin: auto;">${ studentReturning.applicationDate }</dd>
-                    </dl>
-                  </div>
-                  <div>
-                    <dl class="line" style="position: relative; bottom: 49px; left: 100px;">
-                        <dt style="color: #c5d9e8;">복학년도/학기</dt>
+                    <dl class="line" style="position: relative;">
+                        <dt style="color: #c5d9e8;">학적변동일자</dt>
                         <dd style="margin: auto;"></dd>
                     </dl>
-                  </div>
-                  <div>
-                    <dl class="line" style="position: relative; bottom: 30px;">
-                        <dt style="color: #c5d9e8;">학적변동일자</dt>
-                        <dd style="margin: auto;">${ studentReturning.applicationDate }</dd>
+                </div>
+        
+        
+        
+        </c:if>
+        <c:if test="${studentReturning.statusNO !=0 }">
+                       <div>
+                    <dl class="line" style="position: relative; right: 100px;">
+                        <dt style="color: #c5d9e8;">복학신청상태</dt>
+                        <dd style="margin: auto;">${ studentReturning.applicationStatus }</dd>
                     </dl>
-                  </div>
-                  <div>
-                    <dl class="line" style="position: relative; bottom: 79px; left: 110px;">
+                </div>
+                <div>
+                    <dl class="line" style="position: relative; right: 75px;">
+                        <dt style="color: #c5d9e8;">현재학적상태</dt>
+                        <dd style="margin: auto;">${ studentReturning.stdStatus }</dd>
+                    </dl>
+                </div>
+                <div>
+                    <dl class="line" style="position: relative; right: 50px;">
                         <dt style="color: #c5d9e8;">복학신청일자</dt>
                         <dd style="margin: auto;">${ studentReturning.returngingAsk }</dd>
                     </dl>
-                  </div>
                 </div>
-          </div>  
-          
+                <div>
+                    <dl class="line" style="position: relative; right: 25px;">
+                        <dt style="color: #c5d9e8;">총이수학기</dt>
+                        <dd style="margin: auto;">${ studentReturning.stdSemester }</dd>
+                    </dl>
+                </div>
+                <div>
+                    <dl class="line" style="position: relative;">
+                        <dt style="color: #c5d9e8;">학적변동일자</dt>
+                        <dd style="margin: auto;">${ studentReturning.applicationDate }</dd>
+                    </dl>
+                </div>
+        
+        
+        
+        </c:if>
+      
+            <!-- </div>   -->
+
+          </div>
          
         <!-- /.container-fluid -->
         
       </div>
       <!-- End of Main Content -->
+      <script>
+      function button_returning(){
+    	  
+    	  location.href="returning_approve.do";
+      }
       
       
-   <%--    <script src="<%=request.getContextPath()%>/resources/js/register_button.js"></script> --%>
-   		<script>
-   			function button_return(){
-   				location.href="returning_approve.do";
-   			}
-   		</script>
+      
+      </script>
+      
+<!--  	   <script>
+ 	   
+   		  function button_returning(){
+   				
+	    		if(confirm("복학신청하시겠습니까?"))
+	    							
+	    			$.ajax({
+	    				url:"returning_approve.do",
+	    				type:"post",
+	    				data:{
+	    					stdStatus:stdStatus
+	    					
+	    			},success:function(result)
+	    				{
+	    					if(result =="ok"){
+	    						
+	    						alert("복학이 신청되었습니다.");
+	    						location.href="returning.do";
+	    						
+	    					}else{
+	    						alert("실패하였습니다.");
+	    					}
+	    				},
+	    			error:function(request, status, errorData)
+	    			{
+						console.log(request.status);
+						console.log(request.responseText);
+						console.log(errorData);
+	    				alert("복학이 신청되지 않았습니다.");
+	    				
+	    				}
+	    				
+	    			});
+	    		
+	    			alert("취소되었습니다.");
+	    		}
+
+	    	   			  
+   		</script>  -->
 				<!-- 여기까지 내용  -->
 
 			<!-- Footer -->

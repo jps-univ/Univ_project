@@ -26,5 +26,17 @@ public class AdUnivServiceImpl implements AdUnivService{
 		return adUnivDao.adLeaveUpdate(string);
 	}
 
+	@Override
+	public ArrayList<AdLeave> adReturnList() {
+		// TODO Auto-generated method stub
+		return adUnivDao.adReturnList();
+	}
+
+	@Override
+	public int adReturnUpdate(String string) {
+		// TODO Auto-generated method stub
+		return adUnivDao.adReturnUpdate(string);
+	}
+
 
 }

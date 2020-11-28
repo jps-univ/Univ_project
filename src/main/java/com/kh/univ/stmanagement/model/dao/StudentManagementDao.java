@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.univ.stmanagement.model.vo.Attendance;
 import com.kh.univ.stmanagement.model.vo.GradeA;
 import com.kh.univ.stmanagement.model.vo.StudentManagement;
 
@@ -30,6 +31,10 @@ public class StudentManagementDao {
 
 	public int insertGrade(GradeA g) {
 		return sqlSession.insert("StudentManagementMapper.grade",g);
+	}
+
+	public ArrayList<Attendance> attendanceView(Map map) {
+		return (ArrayList)sqlSession.selectList("StudentManagementMapper.attendanceView", map);
 	}
 	
 //	public int insertGrade(Map map) {

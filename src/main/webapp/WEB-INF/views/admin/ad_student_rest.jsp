@@ -139,12 +139,9 @@
  	   							console.log(errorData); 
  	        					
  	        				}
- 	        				
- 	        			
+ 	        				        			
  	        			});
-        		
-        		});
-        		
+        		});	
         	});
         
         </script>

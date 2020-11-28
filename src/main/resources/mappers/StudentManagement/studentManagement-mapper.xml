@@ -28,14 +28,14 @@
  		<result property="profId" column="PROFESSOR_ID"/>
  	</resultMap>
  	
- 	<resultMap type="GradeInsert" id="GradeInsertResultSet">
- 		<id property="gradeNo" column="GRADE_NO"></id>
+ 	<resultMap type="Attendance" id="AttendanceResultSet">
+ 		<id property="attNo" column="ATTENDANCE_NO"></id>
  		<result property="stdId" column="STUDENT_ID"></result>
- 		<result property="profId" column="PROFESSOR_ID"></result>
+ 		<result property="className" column="CLASS_NAME"></result>
  		<result property="classId" column="CLASS_CODE"></result>
- 		<result property="gradePoint" column="GRADE_POINT"></result>
- 		<result property="classSemester" column="CLASS_SEMESTER"></result>
- 		<result property="classYear" column="CLASS_YEAR"></result>
+ 		<result property="classSeq" column="CLASS_SEQ"></result>
+ 		<result property="attStatus" column="ATTENDANCE_STATUS"></result>
+ 		<result property="profId" column="PROFESSOR_ID"></result>
  	</resultMap>
 
 	<!-- 수강생 조회 매퍼  -->
@@ -104,4 +104,20 @@
 		(CLASS_CODE,STUDENT_ID,GRADE_POINT,GRADE_NO)
 		VALUES(#{classId},#{stdId},#{gradePoint},GRADE_NO.NEXTVAL)
 	</insert>
+	
+	<select id="attendanceView" resultMap="AttendanceResultSet">
+		SELECT
+			C.CLASS_SEQ,
+			C.CLASS_NAME,
+			S.STUDENT_ID,
+			C.CLASS_CODE
+		FROM
+			TB_STUDENT S
+		LEFT OUTER JOIN
+			TB_REGISTER_CLASS R ON S.STUDENT_ID = R.STUDENT_ID
+		LEFT OUTER JOIN
+			TB_CLASS C ON R.CLASS_SEQ = C.CLASS_SEQ
+		WHERE
+			C.CLASS_SEQ = #{classSeq} AND PROFESSOR_ID = #{profId}
+	</select>
 </mapper>
