@@ -217,7 +217,7 @@ public class RegisterController {
 			insertRegister.setStdId(studentG.getStdId());
 			insertRegister.setApplicationStatus("졸업신청중");
 			insertRegister.setStdStatus("졸업신청중");
-			insertRegister.setReturngingAsk(new SimpleDateFormat("yy-MM-dd").format(today));
+			insertRegister.setApplicationDate(new SimpleDateFormat("yy-MM-dd").format(today));
 			int result = rService.updateGraduation(insertRegister);
 			System.out.println(insertRegister);
 			if(result>0) {
