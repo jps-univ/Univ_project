@@ -11,7 +11,7 @@ import com.kh.univ.admin.model.vo.AdProfessor;
 import com.kh.univ.lecture.model.vo.Lecture;
 
 public interface AdLectureService {
-
+//dd
 
 	ArrayList<AdCollege> adCollegeSelect();
 
