@@ -158,8 +158,8 @@
 		              <div class="table-responsive">
 		                <table class="table table-bordered" id="test" width="100%" cellspacing="0">
 		                <tbody>                
-		                  <tr align="center">
-		                  	<td>번호</td>
+ 		                  <tr align="center">
+		                  	<th>번호</th>
 		                    <th id="th_college">학부</th>
 		                    <th id="th_department">학과</th>
 		                    <th id="th_profName">성명</th>
@@ -188,14 +188,30 @@
 		                  </tr>                
 		                 </c:forEach>
 		                 --%>
-		                  <tr align="center" >
-
-		                  </tr>                
 		                 </tbody>
 		                </table>
+
 		              </div>
 		            </div>
 		          </div>
+		          
+<!-- 		          <div class="card-body">
+			          <table class="table table-striped table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+			          	<thead>
+							<tr align="center">
+								<th>번호</th>
+								<th id="th_college">학부</th>
+								<th id="th_department">학과</th>
+								<th id="th_profName">성명</th>
+								<th id="th_profId">연구실</th>
+								<th id="th_apply">상담 신청</th>
+							</tr>
+			          	</thead>
+			          	<tbody id="test3">
+
+			          	</tbody>
+			          </table>
+		          </div> -->
 		
 		          <div class="card shadow mb-4">
 		            <div class="card-header py-3">
@@ -419,6 +435,7 @@
             			{
  	            			var iNum = i;
  	            			var num = ++iNum;
+ 	            			
 		            		var result = $('<tr align="center" class="test2"><td>'+ num +'</td><td id="td_college">' + data[i].collegeName + '</td>' +
 				            				'<td id="td_department">' + data[i].departmentName + '</td>' + 
 				            				'<td id="td_profName">' + data[i].profName + '</td>' + 
@@ -427,6 +444,7 @@
 				            				'<input type="hidden" id="hidden_profName" value="' + data[i].profId + '"> </td></tr>'
 		            					  );
             			}
+	            		
 	            		
 	            		$("#test").append(result);
 	            	}

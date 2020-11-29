@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.univ.classBoard.vo.PageInfo;
 import com.kh.univ.consulting.model.vo.Consulting;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.member.model.vo.Professor;
@@ -82,5 +83,17 @@ public class StudentMyPageServiceImpl implements StudentMyPageService
 	public int cancleConsulting(Consulting consulting) 
 	{
 		return msDao.cancleConsulting(consulting);
+	}
+
+	@Override
+	public int getProfCount(Map map) 
+	{
+		return msDao.getProfCount(map);
+	}
+
+	@Override
+	public ArrayList<Professor> selectProfessor2(PageInfo pi) 
+	{
+		return msDao.selectProfessor2(pi);
 	}
 }

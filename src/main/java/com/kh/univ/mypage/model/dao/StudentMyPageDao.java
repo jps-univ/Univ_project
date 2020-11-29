@@ -1,18 +1,18 @@
 package com.kh.univ.mypage.model.dao;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.univ.classBoard.vo.PageInfo;
 import com.kh.univ.consulting.model.vo.Consulting;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
-import com.kh.univ.register.model.vo.Register;
 
 @Repository("msDao")
 public class StudentMyPageDao 
@@ -97,5 +97,42 @@ public class StudentMyPageDao
 	public int cancleConsulting(Consulting consulting)
 	{
 		return sqlSession.update("StudentMyPageMapper.cancleConsulting", consulting);
+	}
+
+	public int getProfCount(Map map) 
+	{
+		if(map.get("profName") == "" && !(map.get("profCollege").equals("c0")) && !(map.get("departmentName").equals("전체")))
+		{
+			return sqlSession.selectOne("StudentMyPageMapper.getProfCountCD", map);		
+		}
+		else if(!(map.get("profName") == "") && !(map.get("profCollege").equals("c0")) && map.get("departmentName").equals("전체"))
+		{
+			return sqlSession.selectOne("StudentMyPageMapper.getProfCountCN", map);
+		}
+		else if(!(map.get("profName") == "") && map.get("profCollege").equals("c0") && map.get("departmentName").equals("전체"))
+		{
+			return sqlSession.selectOne("StudentMyPageMapper.getProfCountN", map);
+		}
+		else if(map.get("profName") == "" && !(map.get("profCollege").equals("c0")) && map.get("departmentName").equals("전체")) 
+		{
+			return sqlSession.selectOne("StudentMyPageMapper.getProfCountC", map);
+		}
+		else if(map.get("profName") == "" && map.get("profCollege").equals("c0") && map.get("departmentName").equals("전체")) 
+		{
+			return sqlSession.selectOne("StudentMyPageMapper.getProfCountALL", map);
+		}
+		else
+		{
+			return sqlSession.selectOne("StudentMyPageMapper.getProfCount", map);
+		}
+	}
+
+	public ArrayList<Professor> selectProfessor2(PageInfo pi) 
+	{
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("StudentMyPageMapper.selectProfessorAll", null, rowBounds);
 	}
 }
