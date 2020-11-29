@@ -120,4 +120,10 @@
 		WHERE
 			C.CLASS_SEQ = #{classSeq} AND PROFESSOR_ID = #{profId}
 	</select>
+	
+	<insert id="attinsert">
+		INSERT INTO TB_ATTENDANCE
+		(CLASS_CODE,STUDENT_ID,ATTENDANCE_STATUS,ATTENDANCE_NO)
+		VALUES(#{classId},#{stdId},#{attStatus},ATTENDANCE_NO.NEXTVAL)
+	</insert>
 </mapper>

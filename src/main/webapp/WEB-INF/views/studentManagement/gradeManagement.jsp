@@ -244,8 +244,7 @@ margin-right: 10px;
         <br><br>
         <div id="btn">
         <!-- 첨부파일을 등록할려고하니 속성값에 method="post" enctype="multipart/form-data" 꼭 지정하자 -->
-		<button onclick="Btn();">글쓰기</button>
-        <input type="button" value="완료2" id="btn1" onclick="Btn();">
+		<button onclick="Btn();" id="btn1">완료</button>
         </div>
         </div>
         </div>
