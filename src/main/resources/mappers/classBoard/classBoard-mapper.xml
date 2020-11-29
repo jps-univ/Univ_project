@@ -66,6 +66,7 @@
 		<result property="aSeq" column="A_SEQ"/>
     	<result property="originalFileName" column="ORIGINFILE"/>
     	<result property="renameFileName" column="RENAMEFILE"/>
+    	<result property="profComment" column="PROCOMMENT"/>
 		<result property="sCreateDate" column="SCREATEDATE"/>
 		<result property="sModifyDate" column="SMODIFYDATE"/>
 		
@@ -149,5 +150,53 @@
 		VALUES(SEQ_ASSIGNMENT.NEXTVAL, #{aTitle}, #{aContent}, #{dueDate}, #{profId},
 		#{classSeq}, 1, SYSDATE, SYSDATE, 'Y',  #{originalFileName}, #{renameFileName})
 	</insert>
+	
+	<select id="assignmentDetail" resultMap="assignmentList">
+		SELECT *
+		FROM TB_ASSIGNMENT
+		WHERE A_SEQ=#{aSeq}
+	</select>
+	
+	<select id="profSassign" resultMap="sAssignmentList">
+		SELECT *
+		FROM TB_SASSIGNMENT
+		WHERE A_SEQ=#{aSeq}
+		AND S_TITLE='Y'
+	</select>
+	
+	<select id="stdSassign" parameterType="hashMap" resultMap="sAssignmentList">
+		SELECT *
+		FROM TB_SASSIGNMENT
+		WHERE A_SEQ=#{aSeq}
+		AND STUDENT_ID=#{userId}
+	</select>
+	
+	<insert id="insertStdAssign" parameterType="ReplyAssignment">
+		INSERT INTO TB_SASSIGNMENT
+		VALUES(SEQ_SASSIGNMENT.NEXTVAL, 'Y', #{sContent}, #{score}, #{classSeq},
+		 #{stdId}, #{aSeq}, #{originalFileName}, #{renameFileName}, #{profComment},SYSDATE, SYSDATE)
+	</insert>
+	
+	<select id="selectStdAssign" resultMap="sAssignmentList">
+		SELECT *
+		FROM TB_SASSIGNMENT
+		WHERE STUDENT_ID=${stdId}
+		AND A_SEQ=${aSeq}
+	</select>
+	
+	<update id="updateStdFile" parameterType="ReplyAssignment">
+		UPDATE TB_SASSIGNMENT
+		SET ORIGINFILE=#{originalFileName}, RENAMEFILE=#{renameFileName}
+		WHERE STUDENT_ID=${stdId}
+		AND A_SEQ=${aSeq}
+	</update>
+	
+	
+	<update id="insertScore" parameterType="ReplyAssignment">
+		UPDATE TB_SASSIGNMENT
+		SET S_TITLE='N', SCORE=#{score}, PROCOMMENT=#{profComment}
+		WHERE S_SEQ=#{sSeq}
+	</update>
+	
 	
 </mapper>

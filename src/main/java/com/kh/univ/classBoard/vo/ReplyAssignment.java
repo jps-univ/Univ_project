@@ -7,13 +7,13 @@ public class ReplyAssignment {
 	private int sSeq;
 	private String sTitle;
 	private String sContent;
-	private int score;
+	private String score;
 	private int classSeq;
 	private int stdId;
 	private int aSeq;
 	private String originalFileName;
 	private String renameFileName;
-	private String porfComment;
+	private String profComment;
 	private Date sCreateDate;
 	private Date sModifyDate;
 	
@@ -25,8 +25,8 @@ public class ReplyAssignment {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReplyAssignment(int sSeq, String sTitle, String sContent, int score, int classSeq, int stdId, int aSeq,
-			String originalFileName, String renameFileName, String porfComment, Date sCreateDate, Date sModifyDate,
+	public ReplyAssignment(int sSeq, String sTitle, String sContent, String score, int classSeq, int stdId, int aSeq,
+			String originalFileName, String renameFileName, String profComment, Date sCreateDate, Date sModifyDate,
 			int profId, String profName) {
 		super();
 		this.sSeq = sSeq;
@@ -38,7 +38,7 @@ public class ReplyAssignment {
 		this.aSeq = aSeq;
 		this.originalFileName = originalFileName;
 		this.renameFileName = renameFileName;
-		this.porfComment = porfComment;
+		this.profComment = profComment;
 		this.sCreateDate = sCreateDate;
 		this.sModifyDate = sModifyDate;
 		this.profId = profId;
@@ -69,11 +69,11 @@ public class ReplyAssignment {
 		this.sContent = sContent;
 	}
 
-	public int getScore() {
+	public String getScore() {
 		return score;
 	}
 
-	public void setScore(int score) {
+	public void setScore(String score) {
 		this.score = score;
 	}
 
@@ -117,12 +117,12 @@ public class ReplyAssignment {
 		this.renameFileName = renameFileName;
 	}
 
-	public String getPorfComment() {
-		return porfComment;
+	public String getProfComment() {
+		return profComment;
 	}
 
-	public void setPorfComment(String porfComment) {
-		this.porfComment = porfComment;
+	public void setProfComment(String profComment) {
+		this.profComment = profComment;
 	}
 
 	public Date getsCreateDate() {
@@ -161,10 +161,10 @@ public class ReplyAssignment {
 	public String toString() {
 		return "ReplyAssignment [sSeq=" + sSeq + ", sTitle=" + sTitle + ", sContent=" + sContent + ", score=" + score
 				+ ", classSeq=" + classSeq + ", stdId=" + stdId + ", aSeq=" + aSeq + ", originalFileName="
-				+ originalFileName + ", renameFileName=" + renameFileName + ", porfComment=" + porfComment
+				+ originalFileName + ", renameFileName=" + renameFileName + ", profComment=" + profComment
 				+ ", sCreateDate=" + sCreateDate + ", sModifyDate=" + sModifyDate + ", profId=" + profId + ", profName="
 				+ profName + "]";
 	}
 
-
+	
 }

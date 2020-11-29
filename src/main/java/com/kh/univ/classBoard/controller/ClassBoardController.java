@@ -17,14 +17,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.univ.classBoard.service.ClassBoardService;
 import com.kh.univ.classBoard.vo.ClassAssignment;
 import com.kh.univ.classBoard.vo.ClassNotice;
 import com.kh.univ.classBoard.vo.PageInfo;
+import com.kh.univ.classBoard.vo.ReplyAssignment;
 import com.kh.univ.common.Pagination;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.member.model.vo.Professor;
@@ -327,8 +328,36 @@ public class ClassBoardController {
 	 * @return
 	 */
 	@RequestMapping("assignmentDetail.do")
-	public String assignmentDetail() {
-		return "classBoard/assignmentDetail";
+	public ModelAndView assginmentDetail(ModelAndView mv, HttpSession session, int aSeq) {
+		System.out.println(aSeq);
+		System.out.println(session.getAttribute("userId"));
+
+
+		ClassAssignment result = cbService.assignmentDetail(aSeq);
+		System.out.println(result);
+		System.out.println("detail:"+result.getOriginalFileName());
+		System.out.println("detail:"+result.getRenameFileName());
+		mv.addObject("aDetail", result);
+		
+		Object user = session.getAttribute("loginUser");
+		if(user instanceof Student) {
+			
+			int userId = (int) session.getAttribute("userId");
+			ReplyAssignment sra = cbService.stdSassignmentlist(aSeq, userId);
+			System.out.println(userId);
+			mv.addObject("stdDetail", sra);
+			System.out.println("stdDetail : " + sra);
+			
+			
+		}else if(user instanceof Professor){
+			ArrayList<ReplyAssignment> pra = cbService.prdSassignmentlist(aSeq);
+			System.out.println("sdetail:"+ pra);
+			mv.addObject("rDetail", pra);			
+		}
+		
+		mv.setViewName("classBoard/assignmentDetail");
+
+		return mv;
 	}
 
 	/**
@@ -382,7 +411,53 @@ public class ClassBoardController {
 	}
 
 	
+	@RequestMapping("submitAssign.do")
+	public String submitAssign(HttpServletRequest request, HttpSession session, Model model,
+			@RequestParam(name = "uploadFile", required = false) MultipartFile file) {
+	
 
+		int aSeq = Integer.parseInt(request.getParameter("aSeq1"));
+		System.out.println(aSeq);
+		int classSeq = (int)session.getAttribute("classSeq");
+		int stdId = Integer.parseInt(request.getParameter("stdId"));
+		
+		ReplyAssignment ra = cbService.insertStdAssignment(aSeq, classSeq, stdId);
+				
+				
+		if (!file.getOriginalFilename().equals("")) {
+			String renameFileName = saveFile(file, request);
+
+			if (renameFileName != null) { // 파일이 잘 저장된 경우
+				ra.setOriginalFileName(file.getOriginalFilename());
+				ra.setRenameFileName(renameFileName);
+			} System.out.println("rename" + renameFileName); 
+			}
+		System.out.println(ra);
+        int result = cbService.updateStdFile(ra);
+		if (result > 0) {
+			model.addAttribute("aSeq", aSeq);
+			return "redirect:assignmentDetail.do";
+		} else {
+			return "common/errorPage";
+		}
+		
+	}
+	
+	@RequestMapping("scoreAssign.do")
+	public String scoreAssign(ReplyAssignment ra, HttpServletRequest request, Model model) {
+		System.out.println("prof score" + ra);
+
+		int result = cbService.insertScore(ra);
+		int aSeq = ra.getaSeq();
+		if (result > 0) {
+			model.addAttribute("aSeq", aSeq);
+			return "redirect:assignmentDetail.do";
+		} else {
+			return "common/errorPage";
+		}
+	}
+	
+	
 	/**
 	 * 5. 성적 이의 신청 리스트 페이지
 	 * 

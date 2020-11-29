@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.kh.univ.classBoard.vo.ClassAssignment;
 import com.kh.univ.classBoard.vo.ClassNotice;
 import com.kh.univ.classBoard.vo.PageInfo;
+import com.kh.univ.classBoard.vo.ReplyAssignment;
 import com.kh.univ.lecture.model.vo.Lecture;
 
 public interface ClassBoardService {
@@ -74,6 +75,54 @@ public interface ClassBoardService {
 	 * @return
 	 */
 	int insertClassAssignment(ClassAssignment ca);
+
+	/**
+	 * 3_4. 과제 디테일
+	 * @param aSeq
+	 * @return
+	 */
+	ClassAssignment assignmentDetail(int aSeq);
+
+	
+	/**
+	 * 3_5. pros과제 디테일
+	 * @param aSeq
+	 * @return
+	 */
+	ArrayList<ReplyAssignment> prdSassignmentlist(int aSeq);
+
+	
+	/**
+	 * 
+	 * 3_6. 학생 assigndetail
+	 * @param aSeq
+	 * @param userId
+	 * @return
+	 */
+	ReplyAssignment stdSassignmentlist(int aSeq, int userId);
+
+	/**
+	 * 3_7 학생 제출
+	 * @param ra
+	 * @return
+	 */
+	ReplyAssignment insertStdAssignment(int aSeq, int classSeq, int stdId);
+
+	
+	/**
+	 * 3_8 과제 채점
+	 * @param ra
+	 * @return
+	 */
+	int insertScore(ReplyAssignment ra);
+
+	/**
+	 * 3_9 학생 파일 업로드
+	 * @param ra
+	 * @return
+	 */
+	int updateStdFile(ReplyAssignment ra);
+
 
 	
 

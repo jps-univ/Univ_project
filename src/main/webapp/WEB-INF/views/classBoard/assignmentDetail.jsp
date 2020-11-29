@@ -9,6 +9,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="contextPath" value="<%= request.getContextPath()%>" />
+<c:set var="a" value="${ aDetail }"/>
+<c:set var="s" value="${ stdDetail }"/>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -116,7 +119,7 @@
 		                                <p>제목</p>
 		                            </th>
 		                            <td>
-		                            	<p>${board.bTitle}</p>
+		                            	<p>${a.aTitle}</p>
 		                            </td>
 		                        </tr>
 		                        <tr>
@@ -124,7 +127,10 @@
 		                                <p>첨부파일</p>
 		                            </th>
 		                            <td>
-		                            	<p>${board.stdName}</p>
+										<c:if test="${ !empty a.originalFileName }">
+											<a href="${contextPath }/resources/uploadFiles/${a.renameFileName}" 
+											download="${a.originalFileName }"> ${ a.originalFileName }</a>
+										</c:if>
 		                            </td>
 		                        </tr>
 		                        <tr>
@@ -132,7 +138,7 @@
 		                                <p>내용</p>
 		                            </td>
 		                            <td>
-		                            	<div><p>${board.bContents}</p></div>
+		                            	<div><p>${a.aContent}</p></div>
 		                            </td>
 		                        </tr>
 		                    </thead>
@@ -155,43 +161,84 @@
 		            </div>
 		            <div class="card-body">
 		              <div class="table-responsive">
+<!-- 			                    <form action="scoreAssign.do" method="get" enctype="multipart/form-data"> -->
 		                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 		                  <thead>
 			                  <tr align="center">
-			                    <th style="width:15%">학번</th>
+			                    <th style="width:5%">번호</th>
+			                    <th style="width:10%">학번</th>
 			                    <th style="width:20%">첨부 파일</th>
 			                    <th style="width:10%">점수</th>
 			                    <th style="width:40%">feedback</th>
 			                    <th style="width:15%">제출/수정</th>
 			                  </tr>
 		                  </thead>
-		                  <tfoot>
-		                    <tr>
-		                      <th>Name</th>
-		                      <th>Position</th>
-		                      <th>Office</th>
-		                      <th>Age</th>
-		                      <th>Start date</th>
-		                      <th>Salary</th>
-		                    </tr>
-		                  </tfoot>
 		                  <tbody>
-		                    <tr>
-		                      <td>Tiger Nixon</td>
-		                      <td>System Architect</td>
-		                      <td>Edinburgh</td>
-		                      <td>61</td>
-		                      <td>2011/04/25</td>
-		                      <td>$320,800</td>
-		                    </tr>
+		                  	<c:forEach var="r" items="${rDetail}">
+				                    <tr>
+				                      <td>
+				                      	<input type="hidden"  id="sSeq" name="sSeq" value="${r.sSeq }" >${r.sSeq }
+				                      	<input type="hidden"  id="aSeq" name="aSeq" value="${r.aSeq }" >
+				                      </td>
+				                      <td>
+				                     	<input type="hidden"  id="stdId" name="stdId" value="${r.stdId }">${r.stdId }
+				                      </td>
+				                      <td>
+				                      	<c:if test="${ !empty r.originalFileName }">
+										<a href="${contextPath }/resources/uploadFiles/${r.renameFileName}" 
+										download="${r.originalFileName }"> ${ r.originalFileName }</a>
+										</c:if>
+				                      </td>
+				                      <td>
+	<%-- 			                      	<c:if test="${ empty r.score }"> --%>
+						                  <select id="selectScore" name="selectScore">
+					                        <option value="A+">A+</option>
+					                        <option value="A0">A0</option>
+					                        <option value="A-">A-</option>
+					                        <option value="B+">B+</option>
+					                        <option value="B0">B0</option>
+					                        <option value="B-">B-</option>
+					                        <option value="C+">C+</option>
+					                        <option value="C0">C0</option>
+					                        <option value="C-">C-</option>
+					                        <option value="D+">D+</option>
+					                        <option value="F">F</option>
+					                      </select>
+	
+				                      </td>
+				                      <td>
+		                                <input type="text" size="40" id="profComment" name="profComment">			                      	
+				                      </td>
+				                      <td>
+	      				                <input type="submit" class="btn btn-secondary" value="채점" id="score" onclick="scoring();">
+				                      </td>
+				                    </tr>
+		                    </c:forEach>
              			  </tbody>
 		                </table>
+<!-- 								</form> -->
 		              </div>
 		            </div>
 		          </div>
 				</div>
 			</c:if>
-			
+		<script>
+				function scoring(){
+					if(confirm("채점완료하시겠습니까?")){
+						$.ajax({
+							url:"scoreAssign.do",
+							data:{
+								stdId:$('#stdId').val(),
+								sSeq:$('#sSeq').val(),
+								profComment:$('#profComment').val(),
+								score:$('#selectScore').val(),
+							},success:function(data){
+								alert("성공적으로 채점되었습니다.");
+							}
+						})
+					}
+				}
+			</script>
 			
 			<c:if test="${userStatus eq 'S' }">
 			<div class="container-fluid">
@@ -202,8 +249,9 @@
 		
 		            <div class="card-body">
 		              <div class="table-responsive">
+		              	<form action="submitAssign.do" method="post" enctype="multipart/form-data">
 		                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-		                <tbody>
+		                <thead>
 		                  <tr align="center">
 		                    <th style="width:15%">제출 기간</th>
 		                    <th style="width:20%">첨부 파일</th>
@@ -211,29 +259,39 @@
 		                    <th style="width:40%">feedback</th>
 		                    <th style="width:15%">제출/수정</th>
 		                  </tr>
-		                  <c:forEach var="c" items="${ consult }">
-			                  <c:if test="${ c.consultingStatus eq '진행'}">
-				                  <tr align="center">
-				                    <td id="td_consult">${ c.profName }</td>
-				                    <td id="td_consult">${ c.consultingStatus } 중</td>
-				                    <td id="td_consult">${ c.progressDate }</td>
-				                    <td>
-				                      <input type="button" class="btn btn-secondary" value="신청취소" id="cancleConsulting" onclick="cancleConsulting(event)">
-				                      <input type="hidden" id="hidden_consultingNo" value="${ c.consultingNo }">
-				                    </td>
-				                  </tr>
-			                  </c:if>     
-		                  </c:forEach>  
+		                 </thead>
+		                 <tbody>
+				          <tr align="center">
+				            <td>${ a.dueDate }</td>
+				            <td>
+                              <input type="file" class="uploadFile" name="uploadFile">
+								<c:if test="${ !empty s.originalFileName }">
+									<a href="${contextPath }/resources/uploadFiles/${s.renameFileName}" 
+									download="${s.originalFileName }"> ${ s.originalFileName }</a>
+								</c:if>
+							</td>
+				            <td>${ s.score }</td>
+				            <td>${ s.profComment }+${userId }+${a.aSeq }+${classSeq }
+				              <input type="hidden" id="classSeq" name="classSeq" value="${ classSeq }">
+				              <input type="hidden" id="stdId" name="stdId" value="${ userId }">
+ 				              <input type="hidden" id="aSeq" name="aSeq1" value="${a.aSeq }">
+				              <input type="hidden" id="profId" name="profId" value="${a.profId }">
+				             </td>
+				            <td>
+				              <input type="submit" class="btn btn-secondary" value="제출" id="submitAssign" >
+				            </td>
+				          </tr>
 		                 </tbody>
 		                </table>
+		                </form>
 		              </div>
 		            </div>
 		          </div>			
 			</div>
 			
+
 			
-			</c:if>
-			
+		</c:if></div>			
 			
 			
 			

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.univ.classBoard.vo.ClassAssignment;
 import com.kh.univ.classBoard.vo.ClassNotice;
 import com.kh.univ.classBoard.vo.PageInfo;
+import com.kh.univ.classBoard.vo.ReplyAssignment;
 import com.kh.univ.lecture.model.vo.Lecture;
 
 @Repository("cbDao")
@@ -74,6 +75,59 @@ public class ClassBoardDao {
 	public int insertAssignment(ClassAssignment ca) {
 		return sqlSession.insert("classBoardMapper.insertAssignment",ca);
 	}
+
+
+
+	public ClassAssignment assignmentDetail(int aSeq) {
+		return sqlSession.selectOne("classBoardMapper.assignmentDetail",aSeq);
+	}
+
+
+
+	public ArrayList<ReplyAssignment> profSassignmentlist(int aSeq) {
+		return (ArrayList)sqlSession.selectList("classBoardMapper.profSassign",aSeq);
+	}
+
+
+
+	public ReplyAssignment stdSassignment(int aSeq, int userId) {
+		Map map = new HashMap();
+		map.put("userId", userId);
+		map.put("aSeq", aSeq);
+		return sqlSession.selectOne("classBoardMapper.stdSassign", map);
+	}
+
+
+
+
+
+
+
+	public int insertScore(ReplyAssignment ra) {
+		return sqlSession.update("classBoardMapper.insertScore", ra);
+	}
+
+
+
+	public ReplyAssignment insertStdAssign(int aSeq, int classSeq, int stdId) {
+		Map map = new HashMap();
+		map.put("stdId", stdId);
+		map.put("aSeq", aSeq);
+		map.put("classSeq", classSeq);
+		int result = sqlSession.insert("classBoardMapper.insertStdAssign", map);
+		
+		return sqlSession.selectOne("classBoardMapper.selectStdAssign", map);
+	}
+
+
+
+	public int updateStdFile(ReplyAssignment ra) {
+		return sqlSession.update("classBoardMapper.updateStdFile", ra);
+	}
+
+
+
+
 	
 	
 }
