@@ -45,5 +45,6 @@ public class AdUnivServiceImpl implements AdUnivService{
 
 	}
 
+	// 아무거나ㅠㅠㅠ아무거
 
 }
