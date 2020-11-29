@@ -16,6 +16,8 @@ public interface AdUnivService {
 
 	ArrayList<AdLeave> adGraduateSelect();
 
+	
+	// 아무거나ㅠㅠㅠ아무거
 
 	
 }

@@ -218,4 +218,6 @@
 		WHERE CLASS_SEQ=#{classSeq}
 
 	</update>
+	
+	<!-- 아무거나ㅠㅠㅠ아무거	 -->
 </mapper>

@@ -38,4 +38,6 @@ public class AdUnivDao {
 		// TODO Auto-generated method stub
 		return (ArrayList)sqlSession.selectList("adminUnivmapper.adGraduateSelect");
 	}
+	
+	// 아무거나ㅠㅠㅠ아무거
 }
