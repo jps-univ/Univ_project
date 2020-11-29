@@ -46,6 +46,11 @@ public class StudentManagementServiceImple implements StudentManagementService {
 		return smDao.attendanceView(map);
 	}
 
+	@Override
+	public int insertAtt(Attendance att) {
+		return smDao.attendanceInsert(att);
+	}
+
 //	@Override
 //	public ArrayList<StudentManagement> selectListDetailList2(Map map) {
 //		return smDao.selectDetailList2(map);

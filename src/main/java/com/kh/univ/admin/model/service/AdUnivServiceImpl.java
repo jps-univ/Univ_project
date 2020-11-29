@@ -38,5 +38,19 @@ public class AdUnivServiceImpl implements AdUnivService{
 		return adUnivDao.adReturnUpdate(string);
 	}
 
+	@Override
+	public ArrayList<AdLeave> adGraduateSelect() {
+		// TODO Auto-generated method stub
+ 		return adUnivDao.adGraduateSelect();
+
+	}
+
+	@Override
+	public int adgraduateUpdate(String string) {
+		// TODO Auto-generated method stub
+ 		return adUnivDao.adgraduateUpdate(string);
+	}
+
+	// 아무거나ㅠㅠㅠ아무거
 
 }

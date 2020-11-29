@@ -46,6 +46,7 @@
 		.fail{color:red;}
 		.ok2{color:green;}
 		.fail2{color:red;}
+		#changePwd{display:none;}
 	</style>
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
 </head>
@@ -125,6 +126,7 @@
 							
 							<div align="right">
 							    <input type="button" class="btn btn-primary" id="changePwd" value="변경" onclick="changePwd()">
+							    <input type="button" class="btn btn-secondary" id="changePwd2" value="변경">
 							</div>
 						</div>
                   	
@@ -277,14 +279,15 @@
 						{
 							$(".fail2").hide();
 							$(".ok2").show();
-							/* $("#changePwd").css('visibility', 'visible'); */
+							$("#changePwd").show();
+							$("#changePwd2").hide();
 						}
 						else
 						{
 							$(".fail2").show();
 							$(".ok2").hide();
-							/* $("#changePwd").css('visibility', 'hidden'); */
-
+							$("#changePwd").hide();
+							$("#changePwd2").show();
 						}
 					});
 				});

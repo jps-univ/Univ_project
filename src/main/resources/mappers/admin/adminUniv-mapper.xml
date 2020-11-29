@@ -30,13 +30,13 @@
 		WHERE APPLICATION_STATUS='휴학신청중'
 	</select>
 	
-	<insert id="UnivLeaveUpdate">
+	<update id="UnivLeaveUpdate">
 		UPDATE TB_STUDENT_STATUS
 		SET STUDENT_STATUS='휴학',
 	    APPLICATION_STATUS='휴학'
 		WHERE STUDENT_ID=#{string}
 	
-	</insert>
+	</update>
 	<select id="UnivReturnList" parameterType="AdLeave" resultMap="LectureResultSet">
 	
 		SELECT STUDENT_ID, STUDENT_NAME,DEPARTMENT_NAME,SEMESTER,APPLICATION_STATUS,REASONS_LEAVE,
@@ -48,11 +48,33 @@
 	
 	</select>
 	
-		<insert id="UnivReturnUpdate">
-		UPDATE TB_STUDENT_STATUS
+	<update id="UnivReturnUpdate">
+		
+	UPDATE TB_STUDENT_STATUS
 		SET STUDENT_STATUS='재학',
-	    APPLICATION_STATUS='재학'
+		APPLICATION_STATUS='재학'
+	WHERE STUDENT_ID=#{string}
+	
+	</update>
+		
+		<select id="adGraduateSelect" parameterType="AdLeave" resultMap="LectureResultSet" >
+		
+		SELECT STUDENT_ID, STUDENT_NAME,DEPARTMENT_NAME,SEMESTER,APPLICATION_STATUS,REASONS_LEAVE,
+		LEAVE_PERIOD,APPLICATION_DATE,RETURNING_DATE,RETURNING_ASK_DATE,GRADUATION_DATE
+		FROM TB_STUDENT_STATUS
+		JOIN TB_STUDENT USING (STUDENT_ID)
+		JOIN TB_DEPARTMENT USING (DEPARTMENT_CODE)
+		WHERE APPLICATION_STATUS='졸업신청중'
+		
+		</select>
+		
+	<update id="adgraduateUpdate">
+		UPDATE TB_STUDENT_STATUS
+		SET STUDENT_STATUS='졸업',
+		APPLICATION_STATUS='졸업'
 		WHERE STUDENT_ID=#{string}
 	
-		</insert>
+	</update>
+		
+   <!-- 아무거나ㅠㅠㅠ아무거	 --> 	
 </mapper>

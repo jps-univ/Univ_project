@@ -121,7 +121,16 @@
 											<th>학년</th>
 											<td>${ semester }학년</td>
 											<th>학적</th>
-											<td>${ register.stdStatus }</td>
+											<td>
+												<c:choose>
+													<c:when test="${ register.stdStatus eq null}">
+														재학중
+													</c:when>
+													<c:otherwise>
+														${ register.stdStatus }
+													</c:otherwise>
+												</c:choose>
+											</td>
 										</tr>
 										<tr>
 											<th>입학구분</th>

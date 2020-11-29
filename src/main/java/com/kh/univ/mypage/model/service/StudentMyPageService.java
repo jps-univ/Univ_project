@@ -3,6 +3,7 @@ package com.kh.univ.mypage.model.service;
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.kh.univ.classBoard.vo.PageInfo;
 import com.kh.univ.consulting.model.vo.Consulting;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.member.model.vo.Professor;
@@ -87,4 +88,13 @@ public interface StudentMyPageService
 	 * @return
 	 */
 	int cancleConsulting(Consulting consulting);
+
+	/**
+	 * 교수 페이징 처리
+	 * @param map
+	 * @return
+	 */
+	int getProfCount(Map map);
+
+	ArrayList<Professor> selectProfessor2(PageInfo pi);
 }

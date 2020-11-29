@@ -36,6 +36,10 @@ public class StudentManagementDao {
 	public ArrayList<Attendance> attendanceView(Map map) {
 		return (ArrayList)sqlSession.selectList("StudentManagementMapper.attendanceView", map);
 	}
+
+	public int attendanceInsert(Attendance att) {
+		return sqlSession.insert("StudentManagementMapper.attinsert",att);
+	}
 	
 //	public int insertGrade(Map map) {
 //		return sqlSession.insert("StudentManagementMapper.grade",map);
