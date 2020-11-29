@@ -29,11 +29,11 @@
    (commons-fileupload, commons-io jar파일이 있어야 한다.)
    maxUploadsize : 최대 업로드 가능한 바이트 크기, 기본값은 -1 (-1의 의미는 제한이 없음을 의미한다.)
    maxInMemorySize : 디스크에 임시파일을 생성하기 전에 메모리에 보관할 수 있는 최대 바이트 크기, 기본값은 10240바이트 이타. -->
-	<!--  <bean id="multipartResolver"
+	<bean id="multipartResolver"
          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
              <property name="maxUploadSize" value="100000000"/>
              <property name="maxInMemorySize" value="100000000"/>
-   </bean> -->
+   </bean>
    
    <!-- 이메일 인증 : Gmail -->
   <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">

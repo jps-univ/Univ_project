@@ -36,6 +36,7 @@
         <typeAlias type="com.kh.univ.board.model.vo.Board" alias="Board"/>
         <typeAlias type="com.kh.univ.classBoard.vo.ClassNotice" alias="ClassNotice"/>
 		<typeAlias type="com.kh.univ.classBoard.vo.ClassAssignment" alias="ClassAssignment"/>
+		<typeAlias type="com.kh.univ.classBoard.vo.ReplyAssignment" alias="ReplyAssignment"/>
 		
 		
         <!-- <typeAlias type="com.kh.univ.stmanagement.model.vo.GradeInsert" alias="GradeInsert"/> -->

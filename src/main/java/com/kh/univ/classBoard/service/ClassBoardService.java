@@ -41,6 +41,15 @@ public interface ClassBoardService {
 
 	
 	/**
+	 * 2_4. 공지사항 작성 
+	 * 
+	 * @param cn
+	 * @return
+	 */
+	int insertClassNotice(ClassNotice cn);
+
+	
+	/**
 	 * 3. 과제
 	 * 3_1. 과제 리스트 갯수 불러오기
 	 * @param classSeq
@@ -57,6 +66,16 @@ public interface ClassBoardService {
 	 * @return
 	 */
 	ArrayList<ClassAssignment> assignmentList(PageInfo pi, int classSeq);
+
+	
+	/**
+	 * 3_3. 과제 등록하기
+	 * @param ca
+	 * @return
+	 */
+	int insertClassAssignment(ClassAssignment ca);
+
+	
 
 
 

@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="contextPath" value="<%= request.getContextPath()%>" />
 <!DOCTYPE html>
@@ -26,7 +26,7 @@
   <link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="${contextPath}/resources/css/lecBoard_base.css">       
-  <link rel="stylesheet" href="${contextPath}/resources/css/wirte_notice.css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/write_notice.css">
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
@@ -40,7 +40,7 @@
 
     <!-- Sidebar -->
     <div id="main_sidebar">
-   		<c:import url="../common/sidebar.jsp" />
+         <c:import url="../common/sidebar.jsp" />
     </div>
     
     <!-- End of Sidebar -->
@@ -52,55 +52,70 @@
       <div id="content">
 
         <!-- Topbar -->
-  		<c:import url="../common/pageTopbar.jsp" />
+        <c:import url="../common/pageTopbar.jsp" />
         
 
         <!-- main content -->
         <div id="main_con">
-          <div id="write_title"><p>과제 등록</p></div>
-            <form id="write_assignment">
-                <div id="write_content"  class="shadow">
-                    <table id="title_secret">
-                        <tbody>
-                            <tr>
-                                <td><label class="write_subject">제목</label></td>
-                                <td><input type="text" size="35" name="search" id="textTitle"></td>
-                            </tr>
-                            <tr>
-                                <td><label class="write_subject">비밀글</label></td>
-                                <td><input type="checkbox" name="secret_mode" id="secret_mode" value="unseen"></td>
-                            </tr>
-                            <tr>
-                                <td><label class="write_subject2">내용</label></td>
-                                <td><textarea class="summernote"><p>Hello Summernote</p></textarea></td>
-                            </tr>
-                   		     	<tr>
-                                <td><label class="write_subject">첨부파일</label></td>
-                                <td><input type="file" name="uploadFile"></td>
-	                	      	</tr>
-                        </tbody>
-                    </table>
-                </div>        
+           <form action="enrollcNotice.do" method="post" enctype="multipart/form-data">
+       	    <div class="col-sm-9 page">
+              <div id="container">
+                  <div id="rest_table_area">
+                      <table class="table table-bordered question-table">
+                      <colgroup>
+                         <col style="width:8%;">
+                         <col style="width:*">
+                      </colgroup>
+                          <thead>
+                              <tr>
+                                  <th>
+                                      <p>제목</p>
+                                  </th>
+                                  <td>
+                                <input type="text" size="30" class="nTitle" name="nTitle">
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <th>
+                                      <p>첨부파일</p>
+                                  </th>
+                                  <td>
+                              <input type="file" class="uploadFile" name="uploadFile">
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td style="text-align:center; font-weight:bold;">
+                                      <p>내용</p>
+                                  </td>
+                                  <td>
+                                      <textarea class="nContent" name="nContent"></textarea>
+                                  </td>
+                              </tr>
+                          </thead>
+                      </table>
+                  </div>
+
+                  <div>
+                     <input type="submit" value="제출!">
+<!--                       <input type="submit" class="btn writeBtn" value="등록"> -->
+                      <input type="button" class="btn writeBtn" onclick="cancelBtn()" value="취소!" id="cancelBtn" style="margin-right: 20px;">
+                      <input type="hidden" id="classSeq" name="classSeq" value="${classSeq }">
+                      <input type="hidden" id="profName" name="profName" value="${profName }">
+                      <c:if test="${ user.status eq 'P' }">
+                      <input type="hidden" id="profId" name="profId" value="${userId }">
+                      </c:if>
+                      <c:if test="${ user.status eq 'S' }">
+                      <input type="hidden" id="stdId" name="stdId" value="${userId }">
+                      </c:if>
+                  </div>
+
+                 </div>
             </form>
-            <div id="button_div">
-                <table>
-                    <tr>
-                        <td></td>
-                        <td><button id="board_button1">등록</button></td>
-                        <td><button id="board_button2">취소</button></td>
-                    </tr>
-                </table>
-            </div>  
-          </div>               
-        </div>
+         </div>
+         
+<%--              <input type="hidden" id="currentPage" value="${(int) currentPage}" name="currentPage" /> --%>
 
-
-
-        <script>
-            $(document).ready(function() {
-                $('.summernote').summernote();
-            });
-        </script>     
+ 
        
 
 
@@ -109,39 +124,39 @@
     <!-- End of Content Wrapper -->
 
   </div>
-  <!-- End of Page Wrapper -->	
+  <!-- End of Page Wrapper -->   
 
 
 
 
-	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top"> <i
-		class="fas fa-angle-up"></i>
-	</a>
+   <!-- Scroll to Top Button-->
+   <a class="scroll-to-top rounded" href="#page-top"> <i
+      class="fas fa-angle-up"></i>
+   </a>
 
-	<!-- Logout Modal-->
-	<c:import url="../common/logoutModal.jsp" />
+   <!-- Logout Modal-->
+   <c:import url="../common/logoutModal.jsp" />
 
-	<!-- Bootstrap core JavaScript-->
-	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-	<script
-		src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <!-- Bootstrap core JavaScript-->
+   <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+   <script
+      src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<!-- Core plugin JavaScript-->
-	<script
-		src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+   <!-- Core plugin JavaScript-->
+   <script
+      src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-	<!-- Custom scripts for all pages-->
-	<script src="${contextPath}/resources/js/sb-admin-2.min.js"></script>
+   <!-- Custom scripts for all pages-->
+   <script src="${contextPath}/resources/js/sb-admin-2.min.js"></script>
 
-	<!-- Page level plugins -->
-	<script
-		src="${contextPath}/resources/vendor/datatables/jquery.dataTables.min.js"></script>
-	<script
-		src="${contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+   <!-- Page level plugins -->
+   <script
+      src="${contextPath}/resources/vendor/datatables/jquery.dataTables.min.js"></script>
+   <script
+      src="${contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-	<!-- Page level custom scripts -->
-	<script src="${contextPath}/resources/js/demo/datatables-demo.js"></script>
+   <!-- Page level custom scripts -->
+   <script src="${contextPath}/resources/js/demo/datatables-demo.js"></script>
 
 </body>
 

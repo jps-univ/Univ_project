@@ -14,6 +14,8 @@ public interface AdUnivService {
 
 	int adReturnUpdate(String string);
 
+	ArrayList<AdLeave> adGraduateSelect();
+
 
 	
 }

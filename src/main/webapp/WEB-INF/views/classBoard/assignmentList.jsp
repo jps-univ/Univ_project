@@ -54,8 +54,9 @@
                 <tbody>
                     <tr>
                         <td><div id="board_title">과 제 목 록</div></td>
-                        <c:if test="${user.status eq 'p' }">
-                        <td><button class="btn btn-primary btn-sm" id="board_button">등록하기</button></td>
+                        <c:if test="${user.status eq 'P' }">
+                        <td><button class="btn btn-primary btn-sm" id="board_button" 
+										onclick="location.href='assignmentWrite.do'">등록하기</button></td>
                         </c:if>
                     </tr>
             </table>
@@ -87,7 +88,7 @@
                                 <c:forEach var="a" items="${ NoticeList }">
 								<tr>
 									<td>${ a.aSeq }</td>
-									<td><a href="assignmentDetail.do?aSeq="${ a.aSeq }>${a.aTitle }</a></td>
+									<td><a href="assignmentDetail.do?aSeq=${ a.aSeq }">${a.aTitle }</a></td>
 									<td>${ a.dueDate }</td>
 									<td>${ profName }</td>
 									<td>${ a.aCount }</td>

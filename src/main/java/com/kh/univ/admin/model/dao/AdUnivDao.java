@@ -33,4 +33,9 @@ public class AdUnivDao {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("adminUnivmapper.UnivReturnUpdate",string);
 	}
+
+	public ArrayList<AdLeave> adGraduateSelect() {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList("adminUnivmapper.adGraduateSelect");
+	}
 }

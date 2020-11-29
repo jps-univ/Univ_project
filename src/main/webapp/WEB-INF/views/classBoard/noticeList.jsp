@@ -63,8 +63,9 @@
 						<tbody>
 							<tr>
 								<td><div id="board_title">과 목 공 지</div></td>
-								<c:if test="${ user.status eq 'p' }">
-								<td><button class="btn btn-primary btn-sm" id="board_button">등록하기</button></td>
+								<c:if test="${ user.status eq 'P' }">
+								<td><button type="button" class="btn btn-primary btn-sm" id="board_button" 
+										onclick="location.href='cNoticeWrite.do'">등록하기</button></td>
 								</c:if>
 							</tr>
 					</table>

@@ -61,6 +61,19 @@ public class ClassBoardDao {
 		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("classBoardMapper.assignmentList",classSeq, rowBounds);
 	}
+
+
+
+	public int insertNotice(ClassNotice cn) {
+
+		return sqlSession.insert("classBoardMapper.insertNotice",cn);
+	}
+
+
+
+	public int insertAssignment(ClassAssignment ca) {
+		return sqlSession.insert("classBoardMapper.insertAssignment",ca);
+	}
 	
 	
 }
