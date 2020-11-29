@@ -96,7 +96,56 @@
 
             }
         </script>
+            <script>
         
+        
+        	$(function(){
+        		
+        		$('#approve_btn').click(function(){
+        			var stdId = new Array();	//  학번을 담을 배열 추가 
+        			var appStatus = document.getElementsByClassName("appStatus");
+        			var app = $(".appStatus").eq(2).parent().parent().children().eq(0).text();	// 학번 뽑기 
+        		
+        			console.log(app);
+        			console.log(appStatus.length);
+        			
+ 	        			for(var i = 0; i<appStatus.length;i++){
+	        				
+	        				if(appStatus[i].value =='2'){
+	        					console.log($(".appStatus").eq(i).parent().parent().children().eq(0).text());
+	        					stdId.push($(".appStatus").eq(i).parent().parent().children().eq(0).text());
+	        				} 
+        			}  
+ 	        			console.log(stdId);
+ 	        			$.ajax({
+ 	        				url         :"ad_return_graduate.do",
+ 	        				traditional : true,
+ 	        				data :{ 
+ 	        						stdId :stdId
+ 	        				},success:function(result){
+ 	        					
+ 	        					if(result == 'ok'){
+ 	        						console.log("전송성공");
+ 	        						alert(appStatus.length+"명의 상태가 변경되었습니다.");
+ 	        						location.href="ad_student_graduate.do";
+ 	        						
+ 	        					}
+ 	        				},error:function(request, status, errorData){
+ 	        					
+ 	        					console.log(request.status);
+ 	   							console.log(request.responseText);
+ 	   							console.log(errorData); 
+ 	        					
+ 	        				}
+ 	        				
+ 	        			
+ 	        			});
+        		
+        		});
+        		
+        	});
+        
+        </script>
 
 
         <!-- footer -->

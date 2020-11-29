@@ -45,6 +45,12 @@ public class AdUnivServiceImpl implements AdUnivService{
 
 	}
 
+	@Override
+	public int adgraduateUpdate(String string) {
+		// TODO Auto-generated method stub
+ 		return adUnivDao.adgraduateUpdate(string);
+	}
+
 	// 아무거나ㅠㅠㅠ아무거
 
 }

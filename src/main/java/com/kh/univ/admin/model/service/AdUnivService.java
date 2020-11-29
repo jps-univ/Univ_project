@@ -16,6 +16,8 @@ public interface AdUnivService {
 
 	ArrayList<AdLeave> adGraduateSelect();
 
+	int adgraduateUpdate(String string);
+
 	
 	// 아무거나ㅠㅠㅠ아무거
 

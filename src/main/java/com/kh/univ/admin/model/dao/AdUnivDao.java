@@ -21,7 +21,7 @@ public class AdUnivDao {
 
 	public int adLeaveUpdate(String string) {
 		// TODO Auto-generated method stub
-		return sqlSession.insert("adminUnivmapper.UnivLeaveUpdate",string);
+		return sqlSession.update("adminUnivmapper.UnivLeaveUpdate",string);
 	}
 
 	public ArrayList<AdLeave> adReturnList() {
@@ -31,12 +31,17 @@ public class AdUnivDao {
 
 	public int adReturnUpdate(String string) {
 		// TODO Auto-generated method stub
-		return sqlSession.insert("adminUnivmapper.UnivReturnUpdate",string);
+		return sqlSession.update("adminUnivmapper.UnivReturnUpdate",string);
 	}
 
 	public ArrayList<AdLeave> adGraduateSelect() {
 		// TODO Auto-generated method stub
 		return (ArrayList)sqlSession.selectList("adminUnivmapper.adGraduateSelect");
+	}
+
+	public int adgraduateUpdate(String string) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("adminUnivmapper.adgraduateUpdate",string);
 	}
 	
 	// 아무거나ㅠㅠㅠ아무거
