@@ -246,5 +246,19 @@ public class StudentManagementController {
 		mv.setViewName("studentManagement/attendance");
 		
 		return mv;
-}
+	}
+	@RequestMapping("attinsert.do")
+	public String AttendanceInsert(Attendance att, String[] attArry, String classId) {
+		
+		System.out.println(classId);
+	    for(int i =0; i<attArry.length; i++) {
+		att.setStdId(Integer.parseInt(attArry[i]));
+		att.setAttStatus(attArry[i+1]);
+		i=i+1;
+		int result = smService.insertAtt(att);
+		System.out.println(att);
+		
+	}
+	    return null;
+	}
 }

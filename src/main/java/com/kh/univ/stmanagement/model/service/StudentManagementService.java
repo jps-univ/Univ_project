@@ -18,6 +18,8 @@ public interface StudentManagementService {
 	int insertGrade(GradeA g);
 
 	ArrayList<Attendance> attendanceView(Map map);
+
+	int insertAtt(Attendance att);
 	
 //	int insertGrade(Map map);
 
