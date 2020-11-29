@@ -102,5 +102,21 @@ public class AdUnivController {
 	
 	// 아무거나ㅠㅠㅠ아무거
 	
-	
+	@ResponseBody
+	@RequestMapping("ad_return_graduate.do")
+	public String adgraduateUpdate(String[] stdId) {
+		
+		for(int i =0 ; i<stdId.length;i++) {
+			
+			int result = adUnivService.adgraduateUpdate(stdId[i]);
+			
+			if(result>0) {
+				System.out.println(i+"번째 데이터 추가 성공");
+			}else {
+				return "fail";
+			}
+		}
+		
+				return "ok";
+	}
 }
