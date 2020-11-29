@@ -91,8 +91,13 @@ public class AdUnivController {
 	 * @return
 	 */
 	@RequestMapping("ad_student_graduate.do")
-	public String AdStudentGraduate() {
-		return "admin/ad_student_graduate";
+	public ModelAndView  AdStudentGraduate(ModelAndView mv) {
+		
+		ArrayList<AdLeave> adReturnList = adUnivService.adGraduateSelect();
+		System.out.println(adReturnList);
+		mv.addObject("adReturnList",adReturnList);
+		mv.setViewName("admin/ad_student_graduate");
+		return mv;
 	}
 	
 	
