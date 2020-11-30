@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="GradeMapper">
-<resultMap id="GradeResultSet" type="StudentGrade">
+<resultMap id="GradeResultSet" type="StdGrade">
 	<id property="stdId" column="STUDENT_ID"/>
 	<result property="classYear" column="CLASS_YEAR"/>
 	<result property="className" column="CLASS_NAME"/>
@@ -12,7 +12,7 @@
 </resultMap>
 
 
- <select id="selectList" resultMap="StudentGrade">
+ <select id="selectList" resultMap="GradeResultSet">
  	SELECT
  		CLASS_YEAR,
  		CLASS_NAME,
