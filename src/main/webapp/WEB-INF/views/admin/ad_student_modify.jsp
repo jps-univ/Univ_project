@@ -131,43 +131,27 @@
             <div id="std_card_table_area">
                 <table id="std_card_table">
                     <tr>
-                        <td class="stdtext">
-                            <p>전화번호</p>
-                        </td>
+                        <td class="stdtext"><p>전화번호</p></td>
                         <td><input id="stdPhone"name="stdPhone" type="text"></td>
-                        <td class="stdtext">
-                            <p>핸드폰</p>
-                        </td>
+                        <td class="stdtext"><p>핸드폰</p></td>
                         <td><input id="stdTel"name="stdTel" type="text"></td>
                     </tr>
                     <tr>
-                        <td class="stdtext">
-                            <p>이메일</p>
-                        </td>
+                        <td class="stdtext"><p>이메일</p></td>
                         <td><input id="stdEmail"name="stdEmail" type="text"></td>
-                        <td class="stdtext">
-                            <p>은행명</p>
-                        </td>
+                        <td class="stdtext"><p>은행명</p></td>
                         <td><input id="stdBank"name="stdBank" type="text"></td>
                     </tr>
                     <tr>
-                        <td class="stdtext">
-                            <p>학생주소</p>
-                        </td>
+                        <td class="stdtext"><p>학생주소</p></td>
                         <td><input id="stdAddress"name="stdAddress" type="text"></td>
-                        <td class="stdtext">
-                            <p>계좌번호</p>
-                        </td>
+                        <td class="stdtext"><p>계좌번호</p></td>
                         <td><input id="stdAccount" name="stdAccount"type="text"></td>
                     </tr>
                     <tr>
-                        <td class="stdtext">
-                            <p>상세주소</p>
-                        </td>
+                        <td class="stdtext"><p>상세주소</p></td>
                         <td><input id="stdAddressDetail"name="stdAddressDetail" type="text"></td>
-                        <td class="stdtext">
-                            <p>예금주</p>
-                        </td>
+                        <td class="stdtext"><p>예금주</p></td>
                         <td><input id="stdAccountHolder" name="stdAccountHolder"type="text"></td>
                     </tr>
 
@@ -196,30 +180,14 @@
                 <table id="total_std" class=" table-hover" >
                     <thead>
                         <tr>
-                            <th onclick="a();">
-                                <p>학번</p>
-                            </th>
-                            <th>
-                                <p>성명</p>
-                            </th>
-                            <th>
-                                <p>생년월일</p>
-                            </th>
-                            <th>
-                                <p>대학</p>
-                            </th>
-                            <th>
-                                <p>학과</p>
-                            </th>
-                            <th>
-                                <p>과정구분</p>
-                            </th>
-                            <th>
-                                <p>학년</p>
-                            </th>
-                            <th>
-                                <p>학적상태</p>
-                            </th>
+                            <th onclick="a();"><p>학번</p></th>
+                            <th><p>성명</p></th>
+                            <th><p>생년월일</p></th>
+                            <th><p>대학</p></th>
+                            <th><p>학과</p></th>
+                            <th><p>과정구분</p></th>
+                            <th><p>학년</p></th>
+                            <th><p>학적상태</p></th>
                         </tr>
                     </thead>
                     <tbody>

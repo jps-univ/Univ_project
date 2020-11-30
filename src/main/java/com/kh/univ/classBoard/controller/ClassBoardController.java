@@ -1,7 +1,9 @@
 package com.kh.univ.classBoard.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,79 +17,94 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.univ.classBoard.service.ClassBoardService;
+import com.kh.univ.classBoard.vo.ClassAssignment;
 import com.kh.univ.classBoard.vo.ClassNotice;
 import com.kh.univ.classBoard.vo.PageInfo;
+import com.kh.univ.classBoard.vo.ReplyAssignment;
 import com.kh.univ.common.Pagination;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
 
-@SessionAttributes({"classSeq","user","profName"})
 @Controller
 public class ClassBoardController {
 
 	@Autowired
 	private ClassBoardService cbService;
-	
+
+	// classSeq
+	// profName
+	// user
+	// userName
+
 	/**
 	 * 1. 강의 선택창 하윙
+	 * 
 	 * @return
 	 */
 	@RequestMapping("selectClass.do")
 	public String selectClass(HttpSession session, Model model) {
-		
+
+		session.removeAttribute("classSeq");
+		session.removeAttribute("profName");
+
 		Object user = session.getAttribute("loginUser");
-		
-		if (user instanceof Student ) {
-			user = (Student)session.getAttribute("loginUser");
-		}else if (user instanceof Professor){
-			user = (Professor)session.getAttribute("loginUser");
+		String userName = "";
+		String userStatus = "";
+		if (user instanceof Student) {
+			user = (Student) session.getAttribute("loginUser");
+			userName = ((Student) user).getStdName();
+			userStatus = ((Student) user).getStatus();
+		} else if (user instanceof Professor) {
+			user = (Professor) session.getAttribute("loginUser");
+			userName = ((Professor) user).getProfName();
+			userStatus = ((Professor) user).getStatus();
 		}
-		
+
 //		System.out.println(user);
-		
+
 		session.setAttribute("user", user);
-		
+		session.setAttribute("userName", userName);
+		session.setAttribute("userStatus", userStatus);
+		System.out.println("userStatus" + userStatus);
 		return "classBoard/selectClass";
 	}
-	
-	
+
 	@RequestMapping("classList.do")
-	public void classList(HttpSession session, HttpServletRequest request, HttpServletResponse response ) throws IOException {
+	public void classList(HttpSession session, HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
 		response.setContentType("application/json); charset=utf-8");
-		
-		
+
 		Object user = session.getAttribute("loginUser");
 		int userId = 0;
-		int userYear =  Integer.parseInt(request.getParameter("userYear"));
+		int userYear = Integer.parseInt(request.getParameter("userYear"));
 		int userGrade = Integer.parseInt(request.getParameter("userGrade"));
-		
-		System.out.println(userYear);
-		System.out.println(userGrade);
-		
-		if (user instanceof Student ) {
-			user = (Student)session.getAttribute("loginUser");
+
+		System.out.println("select : " + userYear);
+		System.out.println("select : " + userGrade);
+
+		if (user instanceof Student) {
+			user = (Student) session.getAttribute("loginUser");
 			userId = ((Student) user).getStdId();
 			session.setAttribute("userId", userId);
-		}else if (user instanceof Professor){
-			user = (Professor)session.getAttribute("loginUser");
+		} else if (user instanceof Professor) {
+			user = (Professor) session.getAttribute("loginUser");
 			userId = ((Professor) user).getProfId();
 			session.setAttribute("userId", userId);
 		}
-		
-		System.out.println(userId);
-		
-		
+
+		System.out.println("select : " + userId);
+
 		ArrayList<Lecture> lecList = cbService.classList(userId, userYear, userGrade);
-		System.out.println(lecList);
-	
+		System.out.println("select : " + lecList);
+
 		JSONArray jArr = new JSONArray();
-		
-		
+
 		for (Lecture l : lecList) {
 			JSONObject jObj = new JSONObject();
 			jObj.put("classSeq", l.getClassSeq());
@@ -104,31 +121,30 @@ public class ClassBoardController {
 		out.print(jArr.toJSONString());
 
 	}
-	
-	
-	
-	
+
 	/**
 	 * 
 	 * @return
 	 */
 	@RequestMapping("classBoardMain.do")
-	public ModelAndView classBoardMain(String profName, String classSeq, HttpSession session, ModelAndView mv) {
-		
-//		System.out.println("메인넘어갈때 seq : " + request.getParameter("classSeq"));
+	public ModelAndView classBoardMain(String profName, int classSeq, HttpSession session, ModelAndView mv) {
+
 		session.setAttribute("classSeq", classSeq);
 		session.setAttribute("profName", profName);
-		
-		
+
+		System.out.println("메인넘어갈때 seq : " + classSeq);
+		System.out.println("메인넘어갈때 profName : " + profName);
 		mv.addObject("Seq", classSeq);
+		mv.addObject("profN", profName);
 
 		mv.setViewName("classBoard/classBoardMain");
-		
+
 		return mv;
 	}
-	
+
 	/**
 	 * 2. 강의계획서 페이지
+	 * 
 	 * @return
 	 */
 	@RequestMapping("classPlan.do")
@@ -136,121 +152,320 @@ public class ClassBoardController {
 		return "classBoard/classPlan";
 	}
 
-	
-	
 	/**
 	 * 3. 공지사항 리스트 페이지
+	 * 
 	 * @return
 	 */
 	@RequestMapping("cNoticeList.do")
-	public ModelAndView noticeList(ModelAndView mv, @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage
-								,HttpSession session){
+	public ModelAndView noticeList(ModelAndView mv,
+			@RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage,
+			HttpSession session) {
 
-				
 		// list array로 가져오기
 		int classSeq = 0;
-		if(session.getAttribute("classSeq") != null ) {
-			classSeq = Integer.parseInt((String) session.getAttribute("classSeq"));
-		}
+//		if(session.getAttribute("classSeq") != null ) {
+//			classSeq = Integer.parseInt((String) session.getAttribute("classSeq"));
+//		}
 
+		classSeq = (int) session.getAttribute("classSeq");
+		System.out.println("notice seq : " + classSeq);
 
-		
-		
 		// paging처리
 		int listCount = cbService.getNoticeListCount(classSeq);
-		
+
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		ArrayList<ClassNotice> cNotice = cbService.NoticeList(pi, classSeq);
 
 		mv.addObject("NoticeList", cNotice);
-		mv.addObject("pi",pi);
+		mv.addObject("pi", pi);
 		System.out.println(cNotice);
-		if(classSeq != 0) {
+		if (classSeq != 0) {
 			mv.setViewName("classBoard/noticeList");
 		}
-		
+
 		return mv;
 	}
-	
-	
-	
-	
+
 	/*
-	 * 3. 공지사항
-	 * notice detail페이지
+	 * 3. 공지사항 notice detail페이지
 	 * 
 	 */
 	@RequestMapping("cNoticeDetail.do")
 	public ModelAndView noticeDetail(ModelAndView mv, HttpSession session, int nId) {
-			System.out.println(nId);
-			System.out.println(session.getAttribute("userId"));
-			
-			ClassNotice result = cbService.noticeDetail(nId);
-			System.out.println(result);
-			
-			mv.addObject("noticeDetail", result);
-			mv.setViewName("classBoard/notice_Detail");
-			
+		System.out.println(nId);
+		System.out.println(session.getAttribute("userId"));
+
+		ClassNotice result = cbService.noticeDetail(nId);
+		System.out.println(result);
+		System.out.println("detail:"+result.getOriginalFileName());
+		System.out.println("detail:"+result.getRenameFileName());
+		mv.addObject("noticeDetail", result);
+		mv.setViewName("classBoard/notice_Detail");
+
 		return mv;
 	}
-	
-	
-	
-	
-	
-	
-	
+
+	@RequestMapping("cNoticeWrite.do")
+	public ModelAndView noticeWrite(ModelAndView mv, HttpSession session) {
+
+		mv.setViewName("classBoard/write_notice");
+
+		return mv;
+	}
+
+	public String saveFile(MultipartFile file, HttpServletRequest request) {
+		// 파일이 저장될 경로를 설정하자
+		// 웹서버 contextPath를 불러와서 폴더의 경로를 가져온다.(webapp하위의 resources)
+		// C:\springWordspace\springProject\src\main\webapp\resources
+		String root = request.getSession().getServletContext().getRealPath("resources");
+
+		// root 하위의 buploadFiles 폴더를 연결
+		// \를 문자로 인식하기 위해서는 \\를 사용한다.
+		// C:\springWordspace\springProject\src\main\webapp\resources\buploadFiles
+		// String savePath = root + "\\buploadFiles";
+		String savePath = root + File.separator + "uploadFiles";
+
+		File folder = new File(savePath); // savePath의 폴더를 불러온다.
+
+		if (!folder.exists()) {
+			// 폴더가 없으면 만들어라.
+			folder.mkdirs();
+		}
+
+		// 원본 파일명을 년원일시분초.파일확장자명으로 변경
+		String originalFileName = file.getOriginalFilename(); // test.png
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+
+		String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "."
+				+ originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
+
+		String renamePath = folder + File.separator + renameFileName; // 실제 저장될 파일 경로 + 파일명
+
+		try {
+			file.transferTo(new File(renamePath)); // 전달받은 file이 rename명으로 이때 서버에 저장이된다.
+		} catch (Exception e) {
+			System.out.println("파일 전송 에러 : " + e.getMessage());
+		}
+		return renameFileName;
+	}
+
+	@RequestMapping("enrollcNotice.do")
+	public String insertBoard(ClassNotice cn, HttpServletRequest request,
+			@RequestParam(name = "uploadFile", required = false) MultipartFile file) {
+
+//		System.out.println("등록시 : " + cn.getClassSeq());
+//		System.out.println("등록시 : " + cn.getnContent());
+//		System.out.println("등록시 : " + cn.getnTitle());
+		System.out.println("등록시 : " + cn.getProfName());
+//		System.out.println(cn);
+
+		
+		if (!file.getOriginalFilename().equals("")) {
+			String renameFileName = saveFile(file, request);
+
+			if (renameFileName != null) { // 파일이 잘 저장된 경우
+				cn.setOriginalFileName(file.getOriginalFilename());
+				cn.setRenameFileName(renameFileName);
+			} System.out.println("rename" + renameFileName); 
+			}
+		  
+		  
+		  System.out.println("등록시 : " + file.getOriginalFilename());
+		 
+        int result = cbService.insertClassNotice(cn);
+
+		if (result > 0) {
+			return "redirect:cNoticeList.do";
+		} else {
+			return "common/errorPage";
+		}
+	}
+
 	/**
 	 * 4. 과제 리스트 페이지
+	 * 
 	 * @return
 	 */
 	@RequestMapping("assignmentList.do")
-	public String assignmentList() {
-		return "classBoard/assignmentList";
+	public ModelAndView assignmentList(ModelAndView mv,
+			@RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage,
+			HttpSession session) {
+
+		int classSeq = 0;
+//		if(session.getAttribute("classSeq") != null ) {
+//			classSeq = Integer.parseInt((String) session.getAttribute("classSeq"));
+//		}
+
+		classSeq = (int) session.getAttribute("classSeq");
+		System.out.println("assign seq : " + classSeq);
+
+		// paging처리
+		int listCount = cbService.getAssignmentListCount(classSeq);
+
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		ArrayList<ClassAssignment> aNotice = cbService.assignmentList(pi, classSeq);
+		System.out.println("currentPage : " + currentPage);
+		System.out.println("listCount : " + listCount);
+		System.out.println("endPage : " + pi.getEndPage());
+		System.out.println("maxPage : " + pi.getMaxPage());
+		
+		
+		mv.addObject("NoticeList", aNotice);
+		mv.addObject("pi", pi);
+		System.out.println(aNotice);
+		if (classSeq != 0) {
+			mv.setViewName("classBoard/assignmentList");
+		}
+
+		return mv;
 	}
 
-	
-	
 	/**
 	 * 4-1. 과제 디테일 페이지
+	 * 
 	 * @return
 	 */
 	@RequestMapping("assignmentDetail.do")
-	public String assignmentDetail() {
-		return "classBoard/assignmentDetail";
+	public ModelAndView assginmentDetail(ModelAndView mv, HttpSession session, int aSeq) {
+		System.out.println(aSeq);
+		System.out.println(session.getAttribute("userId"));
+
+
+		ClassAssignment result = cbService.assignmentDetail(aSeq);
+		System.out.println(result);
+		System.out.println("detail:"+result.getOriginalFileName());
+		System.out.println("detail:"+result.getRenameFileName());
+		mv.addObject("aDetail", result);
+		
+		Object user = session.getAttribute("loginUser");
+		if(user instanceof Student) {
+			
+			int userId = (int) session.getAttribute("userId");
+			ReplyAssignment sra = cbService.stdSassignmentlist(aSeq, userId);
+			System.out.println(userId);
+			mv.addObject("stdDetail", sra);
+			System.out.println("stdDetail : " + sra);
+			
+			
+		}else if(user instanceof Professor){
+			ArrayList<ReplyAssignment> pra = cbService.prdSassignmentlist(aSeq);
+			System.out.println("sdetail:"+ pra);
+			mv.addObject("rDetail", pra);			
+		}
+		
+		mv.setViewName("classBoard/assignmentDetail");
+
+		return mv;
 	}
-	
-	
+
 	/**
 	 * 4-2. 학생 - 과제 제출 페이지
+	 * 
 	 * @return
 	 */
-	@RequestMapping("assignmentEnroll.do")
-	public String assignmentEnroll() {
-		return "classBoard/assignmentEnroll_stu";
+	@RequestMapping("enrollaNotice.do")
+	public String insertassignment(ClassAssignment ca, HttpServletRequest request,
+			@RequestParam(name = "uploadFile", required = false) MultipartFile file) {
+
+//		System.out.println("등록시 : " + cn.getClassSeq());
+//		System.out.println("등록시 : " + cn.getnContent());
+//		System.out.println("등록시 : " + cn.getnTitle());
+		System.out.println("등록시 : " + ca.getProfName());
+//		System.out.println(cn);
+
+		
+		if (!file.getOriginalFilename().equals("")) {
+			String renameFileName = saveFile(file, request);
+
+			if (renameFileName != null) { // 파일이 잘 저장된 경우
+				ca.setOriginalFileName(file.getOriginalFilename());
+				ca.setRenameFileName(renameFileName);
+			} System.out.println("rename" + renameFileName); 
+			}
+		  
+		  
+		  System.out.println("등록시 : " + file.getOriginalFilename());
+		 
+        int result = cbService.insertClassAssignment(ca);
+
+		if (result > 0) {
+			return "redirect:assignmentList.do";
+		} else {
+			return "common/errorPage";
+		}
 	}
-	
-	
+
 	/**
 	 * 4-2. 학생 - 과제 제출 페이지
+	 * 
 	 * @return
 	 */
 	@RequestMapping("assignmentWrite.do")
-	public String assignmentWrite() {
-		return "classBoard/assignmentWrite_professor";
+	public ModelAndView assignmentWrite(ModelAndView mv, HttpSession session) {
+		
+		mv.setViewName("classBoard/write_assignment");
+
+		return mv;
 	}
+
+	
+	@RequestMapping("submitAssign.do")
+	public String submitAssign(HttpServletRequest request, HttpSession session, Model model,
+			@RequestParam(name = "uploadFile", required = false) MultipartFile file) {
 	
 
+		int aSeq = Integer.parseInt(request.getParameter("aSeq1"));
+		System.out.println(aSeq);
+		int classSeq = (int)session.getAttribute("classSeq");
+		int stdId = Integer.parseInt(request.getParameter("stdId"));
+		
+		ReplyAssignment ra = cbService.insertStdAssignment(aSeq, classSeq, stdId);
+				
+				
+		if (!file.getOriginalFilename().equals("")) {
+			String renameFileName = saveFile(file, request);
+
+			if (renameFileName != null) { // 파일이 잘 저장된 경우
+				ra.setOriginalFileName(file.getOriginalFilename());
+				ra.setRenameFileName(renameFileName);
+			} System.out.println("rename" + renameFileName); 
+			}
+		System.out.println(ra);
+        int result = cbService.updateStdFile(ra);
+		if (result > 0) {
+			model.addAttribute("aSeq", aSeq);
+			return "redirect:assignmentDetail.do";
+		} else {
+			return "common/errorPage";
+		}
+		
+	}
+	
+	@RequestMapping("scoreAssign.do")
+	public String scoreAssign(ReplyAssignment ra, HttpServletRequest request, Model model) {
+		System.out.println("prof score" + ra);
+
+		int result = cbService.insertScore(ra);
+		int aSeq = ra.getaSeq();
+		if (result > 0) {
+			model.addAttribute("aSeq", aSeq);
+			return "redirect:assignmentDetail.do";
+		} else {
+			return "common/errorPage";
+		}
+	}
+	
+	
 	/**
 	 * 5. 성적 이의 신청 리스트 페이지
+	 * 
 	 * @return
 	 */
 	@RequestMapping("gradeObjectionList.do")
 	public String gradeObjectionList() {
 		return "classBoard/gradeObjectionList";
 	}
-	
-	
-	
-	
+
 }

@@ -19,10 +19,10 @@
 	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 	
 	<!-- Custom styles for this template -->
-	<link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
+	<link href="${contextPath}/resources/css/sb-admin-2.min2.css" rel="stylesheet">
 	
 	<!-- Custom styles for this page -->
-	<link href="${contextPath}/resources/css/register_graduation.css" rel="stylesheet">
+	<link href="${contextPath}/resources/css/register_graduation.css?ver=1" rel="stylesheet">
 	<%--    <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />--%>
 	<style>
 
@@ -86,9 +86,20 @@
           <h4 class="graduation">졸업신청</h4>
         </div>
 
-        <div>
-          <button id="button" onclick="button_graduation();">신청하기</button>
-        </div>
+        
+          <c:choose>
+            <c:when test="${studentGraduation.applicationStatus eq '신청가능' }">
+               <div>
+                 <button class="button" onclick="button_graduation();">신청하기</button>
+               </div>
+            </c:when>
+            <c:when test="${studentGraduation.applicationStatus ne '신청가능' }">
+               <div>
+                 <button class="button" onclick="button_graduation();" disabled >신청하기</button>
+               </div>
+            </c:when>
+         </c:choose>
+        
 
         <div class="request">
             <label style="font-size: 12pt; margin-right: 100px;">
@@ -119,38 +130,31 @@
                 <div>
                     <dl class="line" style="position: relative; right: 100px;">
                         <dt style="color: #c5d9e8;">졸업신청상태</dt>
-                        <dd style="margin: auto;">신청불가</dd>
+                        <dd style="margin: auto;">${ studentGraduation.applicationStatus }</dd>
                     </dl>
                 </div>
                 <div>
-                    <dl class="line" style="position: relative; right: 80px;">
+                    <dl class="line" style="position: relative; right: 75px;">
                         <dt style="color: #c5d9e8;">현재학적상태</dt>
-                        <dd style="margin: auto;">휴학</dd>
+                        <dd style="margin: auto;">${ studentGraduation.stdStatus }</dd>
                     </dl>
                 </div>
                 <div>
-                    <dl class="line" style="position: relative; right: 60px;">
+                    <dl class="line" style="position: relative; right: 50px;">
                         <dt style="color: #c5d9e8;">졸업신청일자</dt>
-                        <dd style="margin: auto;">----------</dd>
+                        <dd style="margin: auto;">${ studentGraduation.graduationDate }</dd>
                     </dl>
                 </div>
                 <div>
-                    <dl class="line" style="position: relative; right: 40px;">
-                        <dt style="color: #c5d9e8;">최종등록년도/학기</dt>
-                        <dd style="margin: auto;">2019/2</dd>
-                    </dl>
-                </div>
-                <div>
-                    <dl class="line" style="position: relative; right: 20px;">
-
+                    <dl class="line" style="position: relative; right: 25px;">
                         <dt style="color: #c5d9e8;">총이수학기</dt>
-                        <dd style="margin: auto;">10</dd>
+                        <dd style="margin: auto;">${ studentGraduation.stdSemester }</dd>
                     </dl>
                 </div>
                 <div>
                     <dl class="line" style="position: relative;">
                         <dt style="color: #c5d9e8;">학적변동일자</dt>
-                        <dd style="margin: auto;">----------</dd>
+                        <dd style="margin: auto;">${ studentGraduation.applicationDate }</dd>
                     </dl>
                 </div>
             <!-- </div>   -->
@@ -162,7 +166,7 @@
 
             <!-- End of Main Content -->
       
-      <script src="<%=request.getContextPath()%>/resources/js/register_button.js"></script>
+      <!--  --><script src="<%=request.getContextPath()%>/resources/js/register_button.js"></script>
 				<!-- 여기까지 내용  -->
 
 			<!-- Footer -->
@@ -171,6 +175,53 @@
 
 		</div>
 		<!-- End of Content Wrapper -->
+		<script>
+		function button_graduation(){
+			
+			location.href="graduation_approve.do";
+		}
+		
+		</script>
+<!--  	   <script>
+ 	   
+   		  function button_graduation(){
+   				
+	    		if(confirm("졸업신청하시겠습니까?"))
+	    							
+	    			$.ajax({
+	    				url:"graduation_approve.do",
+	    				type:"post",
+	    				data:{
+	    					stdStatus:stdStatus
+	    					
+	    			},success:function(result)
+	    				{
+	    					if(result =="ok"){
+	    						
+	    						alert("졸업이 신청되었습니다.");
+	    						location.href="graduation.do";
+	    						
+	    					}else{
+	    						alert("실패하였습니다.");
+	    					}
+	    				},
+	    			error:function(request, status, errorData)
+	    			{
+						console.log(request.status);
+						console.log(request.responseText);
+						console.log(errorData);
+	    				alert("졸업이 신청되지 않았습니다.");
+	    				
+	    				}
+	    				
+	    			});
+	    		
+	    			alert("취소되었습니다.");
+	    		}
+	    	
+	    	
+   			  
+   		</script>  -->
 
 	</div>
 	<!-- End of Page Wrapper -->

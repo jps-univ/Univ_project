@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.univ.admin.model.dao.AdLectureDao;
+import com.kh.univ.admin.model.vo.AdClassPlan;
 import com.kh.univ.admin.model.vo.AdClassTime;
 import com.kh.univ.admin.model.vo.AdCollege;
 import com.kh.univ.admin.model.vo.AdDepartment;
@@ -72,5 +73,17 @@ public class AdLectureServiceImpl implements AdLectureService{
 	public ArrayList<AdLecture> lectureApprove() {
 		// TODO Auto-generated method stub
 		return adLectureDao.lectureApprove();
+	}
+
+	@Override
+	public ArrayList<AdClassPlan> adClassPlanSelect(int classSeq) {
+		// TODO Auto-generated method stub
+		return adLectureDao.adClassPlanSelect(classSeq);
+	}
+
+	@Override
+	public int lectureUpdate(AdLecture lecture) {
+		// TODO Auto-generated method stub
+		return adLectureDao.lectureUpdate(lecture);
 	}
 }

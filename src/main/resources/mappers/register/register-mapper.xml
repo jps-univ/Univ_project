@@ -3,32 +3,140 @@
 <mapper namespace="RegisterMapper">
 
   <resultMap id="RegisterResultSet" type="Register">
-  <id property="stdId" column="STUDENT_ID"/>
-  <result property="statusNO" column="STATUS_NO"/>
-  <result property="stdStatus" column="STUDENT_STATUS"/>
-  <result property="applicationStatus" column="APPLICATION_STATUS"/>
-  <result property="applicationDate" column="APPLICATION_DATE"/>
-  <result property="reasonsLeave" column="REASONS_LEAVE"/>
-  <result property="leavePeriod" column="LEAVE_PERIOD"/>
-  <result property="leaveDate" column="LEAVE_DATE"/>
-  <result property="leaveDate" column="RETURNING_DATE"/>
-  <result property="graduationDate" column="GRADUATION_DATE"/>
+  
+	  <id property="stdId" column="STUDENT_ID"/>
+	  <result property="statusNO" column="STATUS_NO"/>
+	  <result property="stdSemester" column="SEMESTER"/>
+	  <result property="stdStatus" column="STUDENT_STATUS"/>
+	  <result property="applicationStatus" column="APPLICATION_STATUS"/>
+	  <result property="applicationDate" column="APPLICATION_DATE"/>
+	  <result property="reasonsLeave" column="REASONS_LEAVE"/>
+	  <result property="leavePeriod" column="LEAVE_PERIOD"/>
+	  <result property="leaveDate" column="LEAVE_DATE"/>
+	  <result property="returningDate" column="RETURNING_DATE"/>
+	  <result property="graduationDate" column="GRADUATION_DATE"/>
+	  <result property="returngingAsk" column="RETURNING_ASK_DATE"/>
+  </resultMap>
+  
+  <resultMap id="InsertRegisterResultSet" type="InsertRegister">
+	  <id property="stdId" column="STUDENT_ID"/>
+	  <result property="statusNO" column="STATUS_NO"/>
+	  <result property="stdSemester" column="SEMESTER"/>
+	  <result property="stdStatus" column="STUDENT_STATUS"/>
+	  <result property="applicationStatus" column="APPLICATION_STATUS"/>
+	  <result property="applicationDate" column="APPLICATION_DATE"/>
+	  <result property="reasonsLeave" column="REASONS_LEAVE"/>
+	  <result property="leavePeriod" column="LEAVE_PERIOD"/>
+	  <result property="leaveDate" column="LEAVE_DATE"/>
+	  <result property="returningDate" column="RETURNING_DATE"/>
+	  <result property="graduationDate" column="GRADUATION_DATE"/>
+	  <result property="returngingAsk" column="RETURNING_ASK_DATE"/>
   </resultMap>
   
   <!-- 휴학페이지 -->
   <select id="selectLeave" resultMap="RegisterResultSet">
      SELECT 
+     	STUDENT_ID,
         STATUS_NO,
         STUDENT_STATUS,
         APPLICATION_STATUS,
         APPLICATION_DATE,
         REASONS_LEAVE,
         LEAVE_PERIOD,
-        LEAVE_DATE
-     FROM
-            TB_STUDENT_STATUS
+        LEAVE_DATE,
+        RETURNING_DATE
+     FROM TB_STUDENT
+    LEFT JOIN TB_STUDENT_STATUS USING(STUDENT_ID)
      WHERE STUDENT_ID = #{stdId}      
      
   </select>
   
+  <!-- 휴학신청 -->
+  <insert id="leaveApply" parameterType="InsertRegister">
+       INSERT INTO TB_STUDENT_STATUS 
+           (STATUS_NO,
+			STUDENT_ID,
+			STUDENT_STATUS,
+			APPLICATION_STATUS,
+			APPLICATION_DATE,
+			REASONS_LEAVE,
+			LEAVE_PERIOD,
+			LEAVE_DATE,
+			RETURNING_DATE)
+	  VALUES
+	  (SEQ_STATUS.NEXTVAL, #{stdId}, #{stdStatus}, #{applicationStatus}, #{applicationDate}, #{reasonsLeave}, #{leavePeriod},#{leaveDate},#{returningDate})	
+	  	
+  </insert>
+  
+  <delete id="deleteStatus">
+ 	 DELETE FROM TB_STUDENT_STATUS
+	 WHERE STUDENT_ID = #{stdId}  
+  </delete>
+  
+  <!-- 복학페이지 -->
+  <select id="selectReturning" resultMap="RegisterResultSet">
+     SELECT 
+        STATUS_NO,
+        APPLICATION_STATUS,
+        STUDENT_STATUS,
+        SEMESTER,
+        APPLICATION_DATE,
+        RETURNING_DATE,
+        RETURNING_ASK_DATE
+     FROM
+        TB_STUDENT
+     LEFT JOIN TB_STUDENT_STATUS USING(STUDENT_ID)
+      WHERE STUDENT_ID = #{stdId}  
+  </select>
+  
+  <!-- 졸업페이지 -->
+  <select id="selectGraduation" resultMap="RegisterResultSet">
+     SELECT 
+        STATUS_NO,
+        APPLICATION_STATUS,
+        STUDENT_STATUS,
+        GRADUATION_DATE,
+        SEMESTER,
+        APPLICATION_DATE
+     FROM
+        TB_STUDENT
+      LEFT JOIN TB_STUDENT_STATUS USING(STUDENT_ID)
+      WHERE STUDENT_ID = #{stdId} 
+  </select>
+  
+  <!-- 복학정보 insert -->
+  <update id="updateReturning" parameterType="InsertRegister">
+	UPDATE TB_STUDENT_STATUS
+	SET 
+		  APPLICATION_STATUS=#{applicationStatus},
+		  STUDENT_STATUS=#{stdStatus},
+		  RETURNING_ASK_DATE=#{returngingAsk}
+	WHERE STUDENT_ID=#{stdId}
+  </update>
+  
+  <!-- 졸업정보 insert -->
+  <update id="updateGraduation" parameterType="InsertRegister">
+    UPDATE TB_STUDENT_STATUS
+	SET 
+		  APPLICATION_STATUS=#{applicationStatus},
+		  STUDENT_STATUS=#{stdStatus},
+		  GRADUATION_DATE=#{graduationDate}
+	WHERE STUDENT_ID=#{stdId}
+  
+  </update>
+  
+  
+  <insert id="insertGraduation" parameterType="InsertRegister">
+    INSERT INTO TB_STUDENT_STATUS 
+           (STATUS_NO,
+			STUDENT_ID,
+			STUDENT_STATUS,
+			APPLICATION_STATUS,
+			GRADUATION_DATE
+			)
+	  VALUES
+	  (SEQ_STATUS.NEXTVAL, #{stdId}, #{stdStatus}, #{applicationStatus},#{graduationDate})	
+	  	
+  
+  </insert>
   </mapper>

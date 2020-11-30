@@ -12,8 +12,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    
-    <link rel="stylesheet" href="${contextPath }/resources/css/admin/ad_lecture_modify.css?ver=3" type="text/css">
-      <link rel="stylesheet" href="${contextPath }/resources/css/class_plan.css">
+    <link rel="stylesheet" href="${contextPath }/resources/css/admin/ad_lecture_modify.css?ver=6" type="text/css">
+      <link rel="stylesheet" href="${contextPath }/resources/css/admin/ad_class_plan.css?ver=8" type="text/css">
 </head>
 <body>
 <script>
@@ -25,23 +25,31 @@
 				data:{
 					classSeq:$(this).parent().children().eq(0).text()
 				},success:function(lecture){
+					$("#classSeq").val(lecture.classSeq);
 					$("#LectureName").val(lecture.className);
 					$("#classCode").val(lecture.classCode);
 					$("#status").val(lecture.classType);
 					$("#College").val(lecture.collegeCode);
+					
 					$.ajax({
 						url:"student_Modify_DeptCheck.do",
             			dataType:"json",
             			data:{
             				collegeCode:$("#College").val()
+            				
             			},success:function(dept){
+            				
             				$("#departmentCode").empty();
             				$('#departmentCode').append("<option><학과를 선택해주세요></option>");
+            				
              				for(var index =0; index < dept.length;index++){
+             					
             					var department = $("<option value="+ dept[index].departmentCode+ ">" + dept[index].departmentName +"</option>");
             					$('#departmentCode').append(department);
             				}
+             				
              				$("#departmentCode").val(lecture.deptCode);
+             				
             				$.ajax({
             					url:"admin_Lecture_Professor.do",
             					dataType:"json",
@@ -54,7 +62,6 @@
         							for(var p=0; p<prof.length;p++){
         								var professorName = $("<option value="+prof[p].professorId+">"+prof[p].professorName+"</option>");
         								professorCode.append(professorName);
-        								console.log(professorCode);
         							}
         							$("#professorCode").val(lecture.profId);
             					}
@@ -65,15 +72,19 @@
             			
 					});
 					
-					console.log(lecture);
 					$("#classTime").val(lecture.total);
 					$("#room").val(lecture.room);
 					$("#gradeSize").val(lecture.gradeSize);
 					$("#classYear").val(lecture.classYear);
 					$("#classSemester").val(lecture.classSemester);
 					$("#classLevel").val(lecture.classLevel);
-					
-					
+					$("#classBook").val(lecture.classBook);
+					$("#classTarget").val(lecture.classTarget);
+					$("#classOutLine").val(lecture.classOutLine);
+					console.log("책"+lecture.classBook);
+					console.log("목표"+lecture.classTarget);
+					console.log("개요"+lecture.classOutLine);
+
 				},error:function(){
 					console.log("전송실패");
 				}
@@ -106,7 +117,6 @@
 							data:{
 								departmentCode:$(this).val()
 							},success:function(prof){
-								console.log(prof);
 								var professorCode = $("#professorCode");
 								professorCode.empty();
 								professorCode.append("<option>교수를선택해주세요</option>");
@@ -163,7 +173,7 @@
                 <table id="rest_lecture" class=" table-hover">
                     <thead>
                         <tr>
-                            <th><p>강의 코드</p></th>
+                            <th><p>강의 번호</p></th>
                             <th><p>강의명</p></th>
                             <th><p>교수명</p></th>
 							<th><p>이수구분</p></th>
@@ -207,7 +217,8 @@
 
 
             <div id="ad_lecture_UD">
-                <form>
+                <form method="post" action="ad_lecture_update.do" id="lectureForm">
+                <input type ="hidden" value="0" id="classSeq" name="classSeq">
                     <table id="UD_lecture">
 			            <tr>
 			              <td><p>강의명</p></td>
@@ -244,6 +255,9 @@
 				              		<select id="professorCode"  class="LectureData" name="profId" form="lectureForm">
 				               			<option>학과를 먼저 선택해주세요..</option>
 				                	</select>
+				                	<input type="hidden" id="classOutLine"/>
+				                	<input type="hidden" id="classTarget"/>
+				                	<input type="hidden" id="classBook"/>
 				              	</td>
 				 				<td><p>강의시간</p></td>
 				              <td><input type="text" placeholder="ex) 월1/월2/화3"  class="LectureData" name="classTime" id="classTime"></td>
@@ -286,13 +300,14 @@
 			           		 <tr>
                             	<td><p>강의 계획서</p></td>	
                             	<td colspan="3"><a id="myBtn">작성하러가기</a></td>
+                            	
                        		 </tr>
 
                     </table>
+            <input type="submit" value="수정" id="lecture_btn">
                 </form>
             </div>
 
-            <input type="button" value="수정">
             <br><br><br><br><br><br><br>
 
         </div>
@@ -317,27 +332,27 @@
                                 <tbody>
                                     <tr>
                                         <td><div>강의명</div></td>
-                                        <td><div></div></td>
+                                        <td><p id="mlectureName"></p></td>
                                         <td><div>담당교수</div></td>
-                                        <td><div></div></td>
-                                        <td><div>이메일</div></td>
-                                        <td><div></div></td>
+                                        <td><p id="mProfessorName"></p></td>
+                                        <td><div>강의실</div></td>
+                                        <td><p id="mRoom"></p></td>
                                     </tr>
                                     <tr>
                                         <td><div>년도</div></td>
-                                        <td><div></div></td>
+                                        <td><p id="mYear"></p></td>
                                         <td><div>학기</div></td>
-                                        <td><div></div></td>
+                                        <td><p id="mSemester"></p></td>
                                         <td><div>학점</div></td>
-                                        <td><div></div></td>
+                                        <td><p id="mGradeSize"></p></td>
                                     </tr>
                                     <tr>
                                         <td><div>이수구분</div></td>
-                                        <td><div></div></td>
+                                        <td><p id="mClassStatus"></p></td>
                                         <td><div>전공영역</div></td>
-                                        <td><div></div></td>
+                                        <td><p id="mDepartment"></p></td>
                                         <td><div>과목코드</div></td>
-                                        <td><div></div></td>
+                                        <td><p id="mclassCode"></p></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -345,15 +360,15 @@
                                 <div>교과목 개요</div>
                             </div>
                             <div id="class_sum_content">
-                                <div>내용</div>
+                                <input type="text" id="mclassOutLine">
                             </div>
                             <table id="class_goal">
                                 <tbody>
                                     <tr>
                                         <td><div>교육목표</div></td>
-                                        <td><div></div></td>
+                                        <td><input type="text" id="mclassTarget"></td>
                                         <td><div>주교재</div></td>
-                                        <td><div></div></td>
+                                        <td><input type="text" id="mclassBook"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -370,66 +385,12 @@
                                         <td><p>세부 내용</p></td>
                                     </tr>
                                 </thead>
-                                <tr>
-                                    <td class="detail_head"><div>주차</div></td>
-                                    <td class="detail_head"><div>주제</div></td>
-                                    <td class="detail_head"><div>세부 내용</div></td>
-                                </tr>
-                                <tr>
-                                    <td class="detail_head"><div>주차</div></td>
-                                    <td class="detail_head"><div>주제</div></td>
-                                    <td class="detail_head"><div>세부 내용</div></td>
-                                </tr>
-                                <tr>
-                                    <td class="detail_head"><div>주차</div></td>
-                                    <td class="detail_head"><div>주제</div></td>
-                                    <td class="detail_head"><div>세부 내용</div></td>
-                                </tr>
-                                <tr>
-                                    <td class="detail_head"><div>주차</div></td>
-                                    <td class="detail_head"><div>주제</div></td>
-                                    <td class="detail_head"><div>세부 내용</div></td>
-                                </tr>
-                                <tr>
-                                    <td class="detail_head"><div>주차</div></td>
-                                    <td class="detail_head"><div>주제</div></td>
-                                    <td class="detail_head"><div>세부 내용</div></td>
-                                </tr>
-                                <tr>
-                                    <td class="detail_head"><div>주차</div></td>
-                                    <td class="detail_head"><div>주제</div></td>
-                                    <td class="detail_head"><div>세부 내용</div></td>
-                                </tr>
-                                <tr>
-                                    <td><div>1</div></td>
-                                    <td><div>html</div></td>
-                                    <td><div>알아서 만들기</div></td>
-                                </tr>
-                                <tr>
-                                    <td><div>1</div></td>
-                                    <td><div>html</div></td>
-                                    <td><div>알아서 만들기</div></td>
-                                </tr>
-                                <tr>
-                                    <td><div>1</div></td>
-                                    <td><div>html</div></td>
-                                    <td><div>알아서 만들기</div></td>
-                                </tr>
-                                <tr>
-                                    <td><div>1</div></td>
-                                    <td><div>html</div></td>
-                                    <td><div>알아서 만들기</div></td>
-                                </tr>
-                                <tr>
-                                    <td><div>1</div></td>
-                                    <td><div>html</div></td>
-                                    <td><div>알아서 만들기</div></td>
-                                </tr>
-                                <tr>
-                                    <td><div>1</div></td>
-                                    <td><div>html</div></td>
-                                    <td><div>알아서 만들기</div></td>
-                                </tr>
+                                <tbody>
+	                                <tr>
+	                                    <td class="detail_head"><div>주차</div></td>
+	                                    <td class="detail_head"><div>주제</div></td>
+	                                    <td class="detail_head"><div>세부 내용</div></td>
+	                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -461,6 +422,80 @@
 
         // When the user clicks the button, open the modal 
         btn.onclick = function () {
+        	var classSeq = document.getElementById("classSeq").value;
+        	var className = document.getElementById("LectureName").value;
+        	
+        	var p = document.getElementById("professorCode");
+        	var professorName = p.options[p.selectedIndex].text;
+        	
+        	var room = document.getElementById("room").value;
+        	var classCode = document.getElementById("classCode").value;
+        	
+        	var Department = document.getElementById("departmentCode");
+        	var DepartmentName = Department.options[Department.selectedIndex].text;
+        	
+        	var grade = document.getElementById("gradeSize");
+        	var gradeSize = grade.options[grade.selectedIndex].text;
+        	
+        	var Year = document.getElementById("classYear");
+        	var classYear = Year.options[Year.selectedIndex].text;
+ 
+        	var semester = document.getElementById("classSemester");
+        	var classSemester = semester.options[semester.selectedIndex].text; 
+        	
+        	var status = document.getElementById("status").value;
+        	var classOutLine = document.getElementById("classOutLine").value;
+        	var classTarget = document.getElementById("classTarget").value;
+        	var classBook = document.getElementById("classBook").value;
+
+        	document.getElementById("mlectureName").innerHTML=className;
+        	document.getElementById("mProfessorName").innerHTML=professorName;
+        	document.getElementById("mRoom").innerHTML=room;
+        	document.getElementById("mclassCode").innerHTML=classCode;
+        	document.getElementById("mDepartment").innerHTML=DepartmentName;
+        	document.getElementById("mGradeSize").innerHTML=gradeSize;
+        	document.getElementById("mYear").innerHTML=classYear;
+        	document.getElementById("mSemester").innerHTML=classSemester;
+        	document.getElementById("mClassStatus").innerHTML=status;       	
+        	document.getElementById("mclassOutLine").value=classOutLine;
+        	document.getElementById("mclassTarget").value=classTarget;
+        	document.getElementById("mclassBook").value=classBook;
+
+        	console.log(classSeq);
+        	jQuery.ajax({
+        		url:"ad_classplan.do",
+        		dataType:"json",
+        		data:{
+        			classSeq:$("#classSeq").val()	
+        		},success:function(plan){
+        			$("#class_detail_table tbody").empty();
+        			
+        			for(var p = 0; p<plan.length; p++){
+        				
+        				if(plan !=null){
+							var $tr = $('<tr>');
+							var $week = $("<td><input type="+"text "+"name ="+"week"+"class="+"detail_head "+">");
+							var $topic = $("<td><input type="+"text "+"name ="+"topic "+"class="+"detail_head "+">");
+							var $weekPlan= $("<td><input type="+"text "+"name ="+"weekPlan "+"class="+"detail_head "+">");
+        					$($week).children().attr('value',plan[p].week);
+        					$($topic).children().attr('value',plan[p].topic);
+        					$($weekPlan).children().attr('value',plan[p].weekPlan);
+							$tr.append($week);
+							$tr.append($topic);
+							$tr.append($weekPlan);
+							$("#class_detail_table tbody").append($tr);
+							
+        				}else{
+        					alert("강의계획서가 등록 되지 않았습니다.");
+        				}
+        			}
+        			
+        		},error:function(error){
+        			$("#class_detail_table tbody").empty();
+        			
+        		}
+        			
+        	})
             modal.style.display = "block";
         }
 
@@ -468,6 +503,7 @@
         span.onclick = function () {
             modal.style.display = "none";
         }
+        
         canceal.onclick = function () {
             modal.style.display = "none";
         }

@@ -24,6 +24,8 @@
 	<result property="lab" column="LAB"/>
 	<result property="status" column="STATUS"/>
 
+	
+
 	<result property="collegeName" column="COLLEGE_NAME"/>
 	<result property="departmentName" column="DEPARTMENT_NAME"/>
 	<result property="collegeCode" column="COLLEGE_CODE"/>
@@ -47,11 +49,9 @@
         <result property="total" column="TOTAL"/>
         <result property="proName" column="PROFESSOR_NAME"/>
         <result property="collegeCode" column="COLLEGE_CODE"/>
-        
-        
-        
-        
-
+	    <result property="classOutLine" column="CLASS_OUTLINE"/>
+		<result property="classTarget" column="CLASS_TARGET"/>
+		<result property="classBook" column="CLASS_BOOK"/>
     </resultMap>
     
     <resultMap id="adClassTimeMap" type="AdClassTime">
@@ -61,17 +61,16 @@
         <result property="hour" column="HOUR"/>
     </resultMap>
 
-    
     <!-- select ResultMap -->
     <resultMap type="AdDepartment" id="adDepartmentResultSet">
     	<id property="departmentCode" column="DEPARTMENT_CODE"/>
     	<result property="departmentName" column="DEPARTMENT_NAME"/>
     	<result property="collegeCode" column="COLLEGE_CODE"/>
     </resultMap>
+    
     <resultMap type="AdCollege" id="adCollegeResultSet">
     	<id property="collegeCode" column="COLLEGE_CODE"/>
     	<result property="collegeName" column="COLLEGE_NAME"/>
-    	
     </resultMap>
     
     <resultMap type="AdProfessor" id="adProfessorResultSet">
@@ -79,6 +78,14 @@
     	<result property="professorName" column="NAME"/>
     </resultMap>
     
+    <!-- classPlan -->
+    <resultMap type="AdClassPlan" id="adClassPlanResultSet">
+    	<id property="planNO" column="PLAN_NO"/>
+    	<result property="classSeq" column="CLASS_SEQ"/>
+    	<result property="week" column="WEEK"/>
+    	<result property="topic" column="TOPIC"/>
+    	<result property="weekPlan" column="WEEK_PLAN"/>
+    </resultMap>
     
     <!-- 단과대학 조회하기 (select -> option) -->
     <select id="adLectureCollege" parameterType="AdCollege" resultMap="adCollegeResultSet">
@@ -132,7 +139,6 @@
         WHERE subquery1.CLASS_SEQ = a.CLASS_SEQ
           AND a.DEPARTMENT_CODE = c.DEPARTMENT_CODE
           AND a.PROFESSOR_ID = d.PROFESSOR_ID
-    
     </select>
     
     <select id="LectureSelectOne" parameterType="AdLecture" resultMap="adLectureMap">
@@ -149,7 +155,10 @@
                a.CLASS_YEAR,
                a.CLASS_SEMESTER,
                a.GRADE_SIZE,
-               a.CLASS_LEVEL
+               a.CLASS_LEVEL,
+               a.CLASS_OUTLINE,
+               a.CLASS_TARGET,
+               a.CLASS_BOOK
         FROM TB_CLASS a,
              (SELECT CLASS_SEQ, LISTAGG(CONCAT(DAY, HOUR), '/') WITHIN GROUP (ORDER BY CLASS_TIME_SEQ ) AS total
               FROM TB_CLASS_TIME b
@@ -184,5 +193,31 @@
           AND a.CLASS_APPROVE = 'N'
     
     </select>
+	
+	<select id="classPlanSelect" parameterType="AdClassPlan" resultMap="adClassPlanResultSet">
+		SELECT PLAN_NO,CLASS_SEQ,WEEK,TOPIC,WEEK_PLAN
+		FROM CLASS_PLAN
+		WHERE CLASS_SEQ=#{classSeq}
+		ORDER BY WEEK
+			
+	</select>
+	
+	<update id="lectureUpdate" parameterType="AdLecture">
+		UPDATE TB_CLASS
+		SET 
+		CLASS_CODE =#{classCode},
+		DEPARTMENT_CODE=#{deptCode},
+		PROFESSOR_ID=#{profId},
+		CLASS_NAME=#{className},
+		ROOM=#{room},
+		GRADE_SIZE=#{gradeSize},
+		CLASS_SEMESTER=#{classSemester},
+		CLASS_YEAR=#{classYear},
+		CLASS_LEVEL=#{classLevel},
+		CLASS_TYPE=#{classType}
+		WHERE CLASS_SEQ=#{classSeq}
 
+	</update>
+	
+	<!-- 아무거나ㅠㅠㅠ아무거	 -->
 </mapper>

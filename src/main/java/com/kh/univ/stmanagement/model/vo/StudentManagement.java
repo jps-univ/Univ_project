@@ -15,6 +15,7 @@ public class StudentManagement {
 	private String stdEmail;  		// 이메일
 	private String roomNo;			// 강의장
 	private int profId;				// 교번
+	private int classSeq;			// 클래스 시퀀스
 	
     private Student student; 
 	
@@ -24,7 +25,7 @@ public class StudentManagement {
 
 	public StudentManagement(String className, String classId, String classType, int classTime, String stdName,
 			int stdId, String stdDepartment, String stdSemester, String stdTel, String stdEmail, String roomNo,
-			int profId, Student student) {
+			int profId, int classSeq, Student student) {
 		super();
 		this.className = className;
 		this.classId = classId;
@@ -38,6 +39,7 @@ public class StudentManagement {
 		this.stdEmail = stdEmail;
 		this.roomNo = roomNo;
 		this.profId = profId;
+		this.classSeq = classSeq;
 		this.student = student;
 	}
 
@@ -137,6 +139,14 @@ public class StudentManagement {
 		this.profId = profId;
 	}
 
+	public int getClassSeq() {
+		return classSeq;
+	}
+
+	public void setClassSeq(int classSeq) {
+		this.classSeq = classSeq;
+	}
+
 	public Student getStudent() {
 		return student;
 	}
@@ -150,8 +160,8 @@ public class StudentManagement {
 		return "StudentManagement [className=" + className + ", classId=" + classId + ", classType=" + classType
 				+ ", classTime=" + classTime + ", stdName=" + stdName + ", stdId=" + stdId + ", stdDepartment="
 				+ stdDepartment + ", stdSemester=" + stdSemester + ", stdTel=" + stdTel + ", stdEmail=" + stdEmail
-				+ ", roomNo=" + roomNo + ", profId=" + profId + ", student=" + student + "]";
+				+ ", roomNo=" + roomNo + ", profId=" + profId + ", classSeq=" + classSeq + ", student=" + student + "]";
 	}
-	
+
 	
 }

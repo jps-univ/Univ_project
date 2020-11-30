@@ -6,6 +6,7 @@ import java.sql.Date;
 public class Register {
 	private int statusNO;				// 학적코드
 	private int stdId;					// 학번
+	private int stdSemester;            // 학기
 	private String stdStatus;			// 학적 상태
 	private String applicationStatus;	// 신청 상태
 	private Date applicationDate;		// 신청 날짜
@@ -15,17 +16,21 @@ public class Register {
 	private Date returningDate;			// 복학 날짜
 	private Date graduationDate;		// 졸업 날짜
 	
+	private Date returngingAsk;		// 복학신청 날짜
+	
 	
 	public Register() {
 		super();
 	}
 
 
-	public Register(int statusNO, int stdId, String stdStatus, String applicationStatus, Date applicationDate,
-			String reasonsLeave, String leavePeriod, Date leaveDate, Date returningDate, Date graduationDate) {
+	public Register(int statusNO, int stdId, int stdSemester, String stdStatus, String applicationStatus,
+			Date applicationDate, String reasonsLeave, String leavePeriod, Date leaveDate, Date returningDate,
+			Date graduationDate, Date returngingAsk) {
 		super();
 		this.statusNO = statusNO;
 		this.stdId = stdId;
+		this.stdSemester = stdSemester;
 		this.stdStatus = stdStatus;
 		this.applicationStatus = applicationStatus;
 		this.applicationDate = applicationDate;
@@ -34,6 +39,7 @@ public class Register {
 		this.leaveDate = leaveDate;
 		this.returningDate = returningDate;
 		this.graduationDate = graduationDate;
+		this.returngingAsk = returngingAsk;
 	}
 
 
@@ -54,6 +60,16 @@ public class Register {
 
 	public void setStdId(int stdId) {
 		this.stdId = stdId;
+	}
+
+
+	public int getStdSemester() {
+		return stdSemester;
+	}
+
+
+	public void setStdSemester(int stdSemester) {
+		this.stdSemester = stdSemester;
 	}
 
 
@@ -137,13 +153,24 @@ public class Register {
 	}
 
 
+	public Date getReturngingAsk() {
+		return returngingAsk;
+	}
+
+
+	public void setReturngingAsk(Date returngingAsk) {
+		this.returngingAsk = returngingAsk;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Register [statusNO=" + statusNO + ", stdId=" + stdId + ", stdStatus=" + stdStatus
-				+ ", applicationStatus=" + applicationStatus + ", applicationDate=" + applicationDate
+		return "Register [statusNO=" + statusNO + ", stdId=" + stdId + ", stdSemester=" + stdSemester + ", stdStatus="
+				+ stdStatus + ", applicationStatus=" + applicationStatus + ", applicationDate=" + applicationDate
 				+ ", reasonsLeave=" + reasonsLeave + ", leavePeriod=" + leavePeriod + ", leaveDate=" + leaveDate
-				+ ", returningDate=" + returningDate + ", graduationDate=" + graduationDate + "]";
+				+ ", returningDate=" + returningDate + ", graduationDate=" + graduationDate + ", returngingAsk="
+				+ returngingAsk + "]";
 	}
-	
+
 	
 }

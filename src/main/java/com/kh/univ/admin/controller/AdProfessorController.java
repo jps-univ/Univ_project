@@ -39,6 +39,11 @@ public class AdProfessorController {
 		return mv;
 	}
 	
+	/**
+	 * 1_2 교수 정보 INSERT
+	 * @param pro
+	 * @return
+	 */
 	@RequestMapping("professor_Register_Insert.do")
 	public String professorRegisterInsert(Professor pro) {
 		System.out.println(pro);
@@ -69,6 +74,12 @@ public class AdProfessorController {
 		mv.setViewName("admin/ad_professor_modify");
 		return mv;
 	}
+	
+	/**
+	 * 2_2. 교수 한명 UPDATE
+	 * @param pro
+	 * @return
+	 */
 	@RequestMapping("professor_Modify_Update.do")
 	public String professorModifyUpdate(Professor pro) {
 		System.out.println(pro);
@@ -82,6 +93,12 @@ public class AdProfessorController {
 		
 	}
 	
+	/**
+	 * 2_3. 교수 한명 정보 SELECT
+	 * 
+	 * @param profId
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("professor_Modify_one.do")
 	public Professor professorModifyOne(int profId){
@@ -90,6 +107,11 @@ public class AdProfessorController {
 		return selectOne;
 	}
 	
+	/**
+	 * 2_4. 교수 담당 학과 SELECT
+	 * @param collegeCode
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value="professor_Modify_DeptCheck.do",produces="application/json;charset=UTF-8")
 	public ArrayList<Department> professorDeptCheck(String collegeCode){

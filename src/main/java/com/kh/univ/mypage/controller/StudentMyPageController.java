@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
-import javax.tools.DocumentationTool.Location;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -17,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kh.univ.classBoard.vo.PageInfo;
+import com.kh.univ.common.Pagination;
 import com.kh.univ.consulting.model.vo.Consulting;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.member.model.vo.College;
@@ -35,11 +36,7 @@ public class StudentMyPageController
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 
-	/*
-	 * @RequestMapping("student_info.do") public String StudentInfo() { return
-	 * "myPage/studentInfo"; }
-	 */
-
+	// 학생 개인정보 페이지
 	@RequestMapping("student_info.do")
 	public ModelAndView StudentInfo(ModelAndView mv, Student student, HttpSession session) 
 	{
@@ -61,35 +58,32 @@ public class StudentMyPageController
 		return mv;
 	}
 
+	// 학생 비밀번호 변경 페이지
 	@RequestMapping("student_password.do")
 	public String StudentPassword() 
 	{
 		return "myPage/studentPassword";
 	}
 
+	// 학생 전체 시간표 페이지
 	@RequestMapping("student_schedule.do")
 	public String StudentSchedule() 
 	{
 		return "myPage/studentSchedule";
 	}
 
-	/*
-	 * @RequestMapping("student_consulting.do") public String StudentConsulting() {
-	 * return "myPage/studentConsulting"; }
-	 */
-
-	// 상담 신청 페이지
+	// 학생 상담 신청 페이지
 	@RequestMapping("student_consulting.do")
 	public ModelAndView StudentConsulting(ModelAndView mv, Professor professor, HttpSession session)
 	{
 		Student student = (Student)session.getAttribute("loginUser");
-
+		
 		ArrayList<Consulting> consult = msService.selectApply(student);
-
+		
 		mv.addObject("consult", consult);
-
+		
 		mv.setViewName("myPage/studentConsulting");
-
+		
 		return mv;
 	}
 
@@ -209,32 +203,8 @@ public class StudentMyPageController
 		return mv;
 	}
 
-	// 교수 조회
 	/*
-	@ResponseBody
-	@RequestMapping("selectProfessor.do")
-	public ModelAndView SelectProfessor(ModelAndView mv, Professor professor, Department department)
-	{
-		String profName = professor.getProfName();
-		String profCollege = professor.getProfCollege();
-		String departmentName = department.getDepartmentName();
-
-		Map map = new HashMap();
-
-		map.put("profName", profName);
-		map.put("profCollege", profCollege);
-		map.put("departmentName", departmentName);
-
-		ArrayList<Professor> selectProf = msService.selectProfessor(map);
-
-		mv.addObject("selectProf", selectProf);
-
-		mv.setViewName("myPage/studentConsulting");
-
-		return mv;
-	}
-	*/
-	
+	// 교수 조회
 	@ResponseBody
 	@RequestMapping(value="selectProfessor.do", produces="application/json; charset=UTF-8")
 	public String SelectProfessor(ModelAndView mv, Professor professor, Department department) throws JsonProcessingException
@@ -244,7 +214,7 @@ public class StudentMyPageController
 		String profName = professor.getProfName();
 		String profCollege = professor.getProfCollege();
 		String departmentName = department.getDepartmentName();
-
+		
 		Map map = new HashMap();
 		
 		map.put("profName", profName);
@@ -257,6 +227,39 @@ public class StudentMyPageController
 		
 		return jsonStr;
 	}
+	*/
+	
+	// 교수 조회 페이징 처리
+	@ResponseBody
+	@RequestMapping(value="selectProfessor.do", produces="application/json; charset=UTF-8")
+	public String SelectProfessor(ModelAndView mv, Professor professor, Department department) throws JsonProcessingException
+	{
+		ObjectMapper mapper = new ObjectMapper();
+		
+		String profName = professor.getProfName();
+		String profCollege = professor.getProfCollege();
+		String departmentName = department.getDepartmentName();
+
+		int currentPage = 1;
+		Map map = new HashMap();
+		
+		map.put("profName", profName);
+		map.put("profCollege", profCollege);
+		map.put("departmentName", departmentName);
+		
+		ArrayList<Professor> selectProf = msService.selectProfessor(map);
+
+		// 페이징
+		int profCount = msService.getProfCount(map);
+		PageInfo pi = Pagination.getPageInfo(currentPage, profCount);
+				
+		ArrayList<Professor> list = msService.selectProfessor2(pi);
+		
+		String jsonStr = mapper.writeValueAsString(selectProf);
+		
+		return jsonStr;
+	}
+	
 
 	// 상담 신청
 	@ResponseBody

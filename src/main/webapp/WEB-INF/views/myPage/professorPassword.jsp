@@ -41,6 +41,12 @@
 		    white-space: nowrap;
 		    color: #4e73df;
 		}
+		.guide{display:none; font-size:15px; top:12px; right:10px;}
+		.ok{color:green;}
+		.fail{color:red;}
+		.ok2{color:green;}
+		.fail2{color:red;}
+		#changePwd{display:none;}
 	</style>
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
 </head>
@@ -103,12 +109,16 @@
 								      <th id="th_pwd">새 비밀번호</th>
 								      <td>
 								          <input type="password" name="profPwd" id="inputNewPwd">
+								          <span class="guide ok">사용 가능</span>
+										  <span class="guide fail">사용 불가능(8자 이상, 최소 하나의 숫자와 하나의 특수문자를 포함해야 합니다.)</span>
 								      </td>
 								    </tr>
 								    <tr>
 								      <th id="th_pwd">새 비밀번호 확인</th>
 								      <td>
 								          <input type="password" name="profPwd" id="checkNewPwd">
+								          <span class="guide ok2">비밀번호 일치</span>
+										  <span class="guide fail2">비밀번호 불일치</span>
 								      </td>
 								    </tr>
 								</tbody>
@@ -116,6 +126,7 @@
 							
 							<div align="right">
 							    <input type="button" class="btn btn-primary" id="changePwd" value="변경" onclick="changePwd()">
+							    <input type="button" class="btn btn-secondary" id="changePwd2" value="변경">
 							</div>
 						</div>
                   	
@@ -190,8 +201,13 @@
 			var profId = ${ loginUser.profId };
 			var profPwd = $("#inputNewPwd").val();
 			var checkPwd = $("#checkNewPwd").val();
+			var pwdCheck = RegExp(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/);
 			
-			if(profPwd == checkPwd)
+			if(!pwdCheck.test(profPwd))
+			{
+				alert("비밀번호를 다시 입력해주세요.");
+			}
+			else if(profPwd == checkPwd)
 			{
 				if(confirm("변경하시겠습니까?"))
 				{
@@ -234,8 +250,47 @@
 			{
 				alert("비밀번호가 일치하지 않습니다.");
 			}
-				
 		}
+		
+		$(function()
+				{
+					$("#inputNewPwd").on("keyup", function()
+					{
+						var newPwd = $("#inputNewPwd").val();
+						var pwdCheck = RegExp(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/);
+
+						if(pwdCheck.test(newPwd))
+						{
+							$(".fail").hide();
+							$(".ok").show();
+						}
+						else
+						{
+							$(".fail").show();
+							$(".ok").hide();
+						}
+					});
+					
+					$("#checkNewPwd").on("keyup", function(){
+						var newPwd = $("#inputNewPwd").val();
+						var checkNewPwd = $("#checkNewPwd").val();
+						
+						if(checkNewPwd == newPwd)
+						{
+							$(".fail2").hide();
+							$(".ok2").show();
+							$("#changePwd").show();
+							$("#changePwd2").hide();
+						}
+						else
+						{
+							$(".fail2").show();
+							$(".ok2").hide();
+							$("#changePwd").hide();
+							$("#changePwd2").show();
+						}
+					});
+				});
 	</script>
 
 	<!-- Bootstrap core JavaScript-->

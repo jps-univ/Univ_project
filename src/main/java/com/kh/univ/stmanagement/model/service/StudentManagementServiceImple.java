@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.univ.stmanagement.model.dao.StudentManagementDao;
+import com.kh.univ.stmanagement.model.vo.Attendance;
 import com.kh.univ.stmanagement.model.vo.GradeA;
 import com.kh.univ.stmanagement.model.vo.StudentManagement;
 
@@ -27,13 +28,27 @@ public class StudentManagementServiceImple implements StudentManagementService {
 	}
 
 	@Override
-	public ArrayList<StudentManagement> gradeView() {
-		return smDao.gradeView();
+	public ArrayList<GradeA> gradeView(Map map) {
+		return smDao.gradeView(map);
 	}
 
 	@Override
 	public int insertGrade(GradeA g) {
 		return smDao.insertGrade(g);
+	}
+//	@Override
+//	public int insertGrade(Map map) {
+//		return smDao.insertGrade(map);
+//	}
+
+	@Override
+	public ArrayList<Attendance> attendanceView(Map map) {
+		return smDao.attendanceView(map);
+	}
+
+	@Override
+	public int insertAtt(Attendance att) {
+		return smDao.attendanceInsert(att);
 	}
 
 //	@Override

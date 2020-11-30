@@ -30,9 +30,71 @@
     	<result property="nCreateDate" column="NCREATE_DATE"/>
     	<result property="nModifyDate" column="NMODIFY_DATE"/>
     	<result property="status" column="STATUS"/>
+    	<result property="originalFileName" column="ORIGINFILE"/>
+    	<result property="renameFileName" column="RENAMEFILE"/>
+
         <result property="profName" column="NAME"/>
     </resultMap>
 
+
+
+	<resultMap id="assignmentList" type="ClassAssignment">
+		<id property="aSeq" column="A_SEQ"/>
+		<result property="aTitle" column="A_TITLE"/>
+		<result property="aContent" column="A_CONTENT"/>
+		<result property="dueDate" column="DUE_DATE"/>
+		<result property="profId" column="PROFESSOR_ID"/>
+		<result property="classSeq" column="CLASS_SEQ"/>
+		<result property="aCount" column="ACOUNT"/>
+		<result property="aCreateDate" column="ACREATE_DATE"/>
+		<result property="aModifyDate" column="AMODIFY_DATE"/>
+		<result property="aStatus" column="ASTATUS"/>
+    	<result property="originalFileName" column="ORIGINFILE"/>
+    	<result property="renameFileName" column="RENAMEFILE"/>
+		
+		<result property="profName" column="NAME"/>
+		<result property="stdId" column="STUDENT_ID"/>
+	</resultMap>
+
+	<resultMap id="sAssignmentList" type="ReplyAssignment">
+		<id property="sSeq" column="S_SEQ"/>
+		<result property="sTitle" column="S_TITLE"/>
+		<result property="sContent" column="S_CONTENT"/>
+		<result property="score" column="SCORE"/>
+		<result property="classSeq" column="CLASS_SEQ"/>
+		<result property="stdId" column="STUDENT_ID"/>
+		<result property="aSeq" column="A_SEQ"/>
+    	<result property="originalFileName" column="ORIGINFILE"/>
+    	<result property="renameFileName" column="RENAMEFILE"/>
+    	<result property="profComment" column="PROCOMMENT"/>
+		<result property="sCreateDate" column="SCREATEDATE"/>
+		<result property="sModifyDate" column="SMODIFYDATE"/>
+		
+		<result property="profId" column="PROFESSOR_ID"/>
+		<result property="profName" column="NAME"/>
+	</resultMap>
+	
+	<resultMap id="ProfessorResultSet" type="Professor">
+      <id property="profId" column="PROFESSOR_ID"/>
+      <result property="profPwd" column="PASSWORD"/>
+      <result property="profName" column="NAME"/>
+      <result property="profBirth" column="BIRTH_NO"/>
+      <result property="profDepartment" column="DEPARTMENT_CODE"/>
+      <result property="profImage" column="IMAGE"/>
+      <result property="profSalary" column="SALARY"/>
+      <result property="profPhone" column="PHONE"/>
+      <result property="profEmail" column="EMAIL"/>
+      <result property="profAddress" column="ADDRESS"/>
+      <result property="profAddressDetail" column="ADDRESS_DETAIL"/>
+      <result property="profBank" column="BANK"/>
+      <result property="profAccount" column="ACCOUNT"/>
+      <result property="profAccountHolder" column="ACCOUNT_HOLDER"/>
+      <result property="profSmsAgree" column="SMS_AGREE"/>
+      <result property="profEmailAgree" column="EMAIL_AGREE"/>
+      <result property="lab" column="LAB"/>
+      <result property="status" column="STATUS"/>
+      <result property="profTel" column="TEL"/>
+   </resultMap>
 
 	<select id="selectClassList" parameterType="hashMap" resultMap="classList">
 		SELECT A.CLASS_SEQ, A.CLASS_CODE, A.PROFESSOR_ID, A.CLASS_NAME, A.GRADE_SIZE, A.CLASS_SEMESTER, B.NAME
@@ -53,15 +115,88 @@
 	</select>
 	
 	<select id="noticeDetail" resultMap="noticeList">
-		SELECT A.NTITLE, A.STATUS, B.NAME, A.NCONTENT, A.RENAMEFILE
+		SELECT A.NTITLE, A.STATUS, B.NAME, A.NCONTENT, A.RENAMEFILE, A.ORIGINFILE
 		FROM TB_NOTICE A JOIN TB_PROFESSOR B USING(PROFESSOR_ID)
 		WHERE NOTICE_ID=#{nId}
 	</select>
-	
+	      
 	<select id="selectNoticeCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM TB_NOTICE
 		WHERE CLASS_SEQ = #{classSeq}
 	</select>
+	
+	<insert id="insertNotice" parameterType="ClassNotice">
+		INSERT INTO TB_NOTICE
+		VALUES(
+			SEQ_NOTICE.NEXTVAL, #{nTitle}, #{nContent}, #{profId}, #{classSeq},
+			1, SYSDATE , SYSDATE, 'N', #{originalFileName}, #{renameFileName})
+	</insert>
+
+	<select id="assignListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM TB_ASSIGNMENT
+		WHERE CLASS_SEQ=#{classSeq}
+	</select>
+	
+	<select id="assignmentList" resultMap="assignmentList">
+		SELECT *
+		FROM TB_ASSIGNMENT
+		WHERE CLASS_SEQ=#{classSeq}
+	</select>
+
+	<insert id="insertAssignment" parameterType="ClassAssignment">
+		INSERT INTO TB_ASSIGNMENT
+		VALUES(SEQ_ASSIGNMENT.NEXTVAL, #{aTitle}, #{aContent}, #{dueDate}, #{profId},
+		#{classSeq}, 1, SYSDATE, SYSDATE, 'Y',  #{originalFileName}, #{renameFileName})
+	</insert>
+	
+	<select id="assignmentDetail" resultMap="assignmentList">
+		SELECT *
+		FROM TB_ASSIGNMENT
+		WHERE A_SEQ=#{aSeq}
+	</select>
+	
+	<select id="profSassign" resultMap="sAssignmentList">
+		SELECT *
+		FROM TB_SASSIGNMENT
+		WHERE A_SEQ=#{aSeq}
+		AND S_TITLE='Y'
+	</select>
+	
+	<select id="stdSassign" parameterType="hashMap" resultMap="sAssignmentList">
+		SELECT *
+		FROM TB_SASSIGNMENT
+		WHERE A_SEQ=#{aSeq}
+		AND STUDENT_ID=#{userId}
+	</select>
+	
+	<insert id="insertStdAssign" parameterType="ReplyAssignment">
+		INSERT INTO TB_SASSIGNMENT
+		VALUES(SEQ_SASSIGNMENT.NEXTVAL, 'Y', #{sContent}, #{score}, #{classSeq},
+		 #{stdId}, #{aSeq}, #{originalFileName}, #{renameFileName}, #{profComment},SYSDATE, SYSDATE)
+	</insert>
+	
+	<select id="selectStdAssign" resultMap="sAssignmentList">
+		SELECT *
+		FROM TB_SASSIGNMENT
+		WHERE STUDENT_ID=${stdId}
+		AND A_SEQ=${aSeq}
+	</select>
+	
+	<update id="updateStdFile" parameterType="ReplyAssignment">
+		UPDATE TB_SASSIGNMENT
+		SET ORIGINFILE=#{originalFileName}, RENAMEFILE=#{renameFileName}
+		WHERE STUDENT_ID=${stdId}
+		AND A_SEQ=${aSeq}
+	</update>
+	
+	
+	<update id="insertScore" parameterType="ReplyAssignment">
+		UPDATE TB_SASSIGNMENT
+		SET S_TITLE='N', SCORE=#{score}, PROCOMMENT=#{profComment}
+		WHERE S_SEQ=#{sSeq}
+	</update>
+	
 	
 </mapper>

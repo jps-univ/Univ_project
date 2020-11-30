@@ -156,6 +156,9 @@
                               <th>
                                   <p>강의번호</p>
                               </th>
+                              <!-- <th>
+                                  <p>클래스번호</p>
+                              </th> -->
                               <th>
                                   <p>이수구분</p>
                               </th>
@@ -175,16 +178,28 @@
 	                      <form action="stListDetail.do" method="post">	                          
 	                      <tr>
 	                              <td style="cursor:pointer">${ std.className }</td>
-	                              <td style="cursor:pointer">
+	                              <%-- <td style="cursor:pointer">
 	                              <button onclick="location.href='stListDetail.do';" id="btn1" name="classId" value="${ std.classId }">
 	                              ${ std.classId }</button>
+	                              <input type="button" name="classId" value="${ std.classId }" location.href='stListDetail.do;'>
+	                              </td> --%>
+	                              <td style="cursor:pointer">
+	                              <button onclick="location.href='stListDetail.do';" id="btn1" name="classSeq" value="${ std.classSeq }">
+	                          		</form>
+	                              ${ std.classSeq }</button>
+	                              <%-- <input type="button" name="classId" value="${ std.classId }" location.href='stListDetail.do;'> --%>
 	                              </td>
 	                              <td style="cursor:pointer"><a href="stListDetail.do">${ std.classType }</a></td>
 	                              <td style="cursor:pointer"><a href="stListDetail.do">${ std.roomNo }</a></td>
-	                              <td><button id="btn1"><a href="stGrade.do">성적</a></button></td>
-	                              <td><button id="btn2"><a href="attendance.do">출석</a></button></td>
+	                               <form action="stGrade.do" method="post">	  
+	                              <td><button onclick="location.href='stGrade.do';" id="btn1" name="classSeq" value="${ std.classSeq }">
+	                                                                    성적</button></td>
+	                               </form>
+	                               <form action="attendanceList.do" method="post">
+	                              <td><button onclick="location.href='attendanceList.do';" id="btn1" name="classSeq" value="${ std.classSeq }">
+	                              	출석</button></td>
+	                              	</form>
 	                          </tr>
-	                          </form>
 	                        </c:forEach> 
 	                      </tbody>
                   </table>

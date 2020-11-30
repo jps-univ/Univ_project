@@ -57,51 +57,74 @@
 
         <!-- main content -->
         <div id="main_con">
-          <div id="write_title"><p>과제 등록</p></div>
-            <form id="write_assignment">
-                <div id="write_content"  class="shadow">
-                    <table id="title_secret">
-                        <tbody>
-                            <tr>
-                                <td><label class="write_subject">제목</label></td>
-                                <td><input type="text" size="35" name="search" id="textTitle"></td>
-                            </tr>
-                            <tr>
-                                <td><label class="write_subject">비밀글</label></td>
-                                <td><input type="checkbox" name="secret_mode" id="secret_mode" value="unseen"></td>
-                            </tr>
-                            <tr>
-                                <td><label class="write_subject2">내용</label></td>
-                                <td><textarea class="summernote"><p>Hello Summernote</p></textarea></td>
-                            </tr>
-                   		     	<tr>
-                                <td><label class="write_subject">첨부파일</label></td>
-                                <td><input type="file" name="uploadFile"></td>
-	                	      	</tr>
-                        </tbody>
-                    </table>
-                </div>        
+          <form action="enrollaNotice.do" method="post" enctype="multipart/form-data">
+       	    <div class="col-sm-9 page">
+              <div id="container">
+                  <div id="rest_table_area">
+                      <table class="table table-bordered question-table">
+                      <colgroup>
+                         <col style="width:8%;">
+                         <col style="width:*">
+                      </colgroup>
+                          <thead>
+                              <tr>
+                                  <th>
+                                      <p>제목</p>
+                                  </th>
+                                  <td>
+                                <input type="text" size="30" class="aTitle" name="aTitle">
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <th>
+                                      <p>첨부파일</p>
+                                  </th>
+                                  <td>
+                              <input type="file" class="uploadFile" name="uploadFile">
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <th>
+                                      <p>기한</p>
+                                  </th>
+                                  <td>
+                              <input type="date" class="dueDate" name="dueDate">
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td style="text-align:center; font-weight:bold;">
+                                      <p>내용</p>
+                                  </td>
+                                  <td>
+                                      <textarea class="aContent" name="aContent"></textarea>
+                                  </td>
+                              </tr>
+                          </thead>
+                      </table>
+                  </div>
+
+                  <div>
+                     <input type="submit" value="제출!">
+<!--                       <input type="submit" class="btn writeBtn" value="등록"> -->
+                      <input type="button" class="btn writeBtn" onclick="cancelBtn()" value="취소!" id="cancelBtn" style="margin-right: 20px;">
+                      <input type="hidden" id="classSeq" name="classSeq" value="${classSeq }">
+                      <input type="hidden" id="profName" name="profName" value="${profName }">
+                      <c:if test="${ user.status eq 'P' }">
+                      <input type="hidden" id="profId" name="profId" value="${userId }">
+                      </c:if>
+                      <c:if test="${ user.status eq 'S' }">
+                      <input type="hidden" id="stdId" name="stdId" value="${userId }">
+                      </c:if>
+
+                  </div>
+
+                 </div>
             </form>
-            <div id="button_div">
-                <table>
-                    <tr>
-                        <td></td>
-                        <td><button id="board_button1">등록</button></td>
-                        <td><button id="board_button2">취소</button></td>
-                    </tr>
-                </table>
-            </div>  
-          </div>               
+                      
         </div>
 
 
 
-        <script>
-            $(document).ready(function() {
-                $('.summernote').summernote();
-            });
-        </script>     
-       
 
 
 

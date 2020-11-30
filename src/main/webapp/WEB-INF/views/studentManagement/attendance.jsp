@@ -136,7 +136,7 @@ margin-right: 10px;
 			<div id="content">
 
 				<!-- Topbar -->
-				<c:import url="../common/topbar.jsp" />
+				<c:import url="../common/topbar_professor.jsp" />
 				<!-- End of Topbar -->
 				
 				<!-- 여기서부터 내용  -->
@@ -148,13 +148,18 @@ margin-right: 10px;
           <br><br><br>
           <!-- <h2 id="year">2020년 2학기 출결관리</h2> -->
           <table border="0" cellspacing="0" width="700px" id="tb">
-              <tr>
-                  <td><h4 id="code">과목코드 : </h4></td>
-                  <td><input type="text" id="text1" placeholder="전자 회로 2" disabled></td>
-                  &nbsp;&nbsp;&nbsp;&nbsp;
-                  <td><h4 id="code">교과목명 : </h4></td>
-                  <td><input type="text" id="text2" placeholder="EE1033" disabled></td>
-              </tr>
+           <c:forEach var="std" items="${ list }" end="0">
+            <tr>
+                <td><h4 id="code">과목번호 : </h4></td>
+                <td><input type="text" id="text1" name="classSeq" class="classSeq" placeholder="${ std.classSeq }" disabled value="${ std.classSeq }"></td>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <td><h4 id="code">교과목명 : </h4></td>
+                <td><input type="text" id="text2" name="className" class="className" placeholder="${ std.className }" disabled value="${ std.className }"></td>
+            </tr>
+            <tr>
+        		<td><input type="hidden" id="text1" name="classId" class="classId" disabled value="${ std.classId }" placeholder="${ std.classId }"></td>
+        	</tr>
+            </c:forEach>
           </table>
           <br>
           <div class="col-sm-9 page">
@@ -170,27 +175,109 @@ margin-right: 10px;
                                 <th>
                                     <pre>               </pre>
                                 </th>
-                                <th><pre> 10/1   </pre></th>
-                                <th><pre> 10/2   </pre></th>
-                                <th><pre> 10/3   </pre></th>
-                                <th><pre> 10/4   </pre></th>
-                                <th><pre> 10/5   </pre></th>
-                                <th><pre> 10/6   </pre></th>
-                                <th><pre> 10/7   </pre></th>
+                                <%-- <% for(int i=1; i<16; i++) { %> --%>
+                                <th><pre>       1회차            </pre></th>
+                                <%-- <%} %> --%>
+                                <th><pre>       2회차            </pre></th>
+                                <th><pre>       3회차            </pre></th>
+                                <th><pre>       4회차            </pre></th>
+                                <th><pre>       5회차            </pre></th>
+                                <th><pre>       6회차            </pre></th>
+                                <th><pre>       7회차            </pre></th>
+                                <th><pre>       8회차            </pre></th>
+                                <th><pre>       9회차            </pre></th>
+                                <th><pre>       10회차          </pre></th>
+                                <th><pre>       11회차          </pre></th>
+                                <th><pre>       12회차          </pre></th>
+                                <th><pre>       13회차          </pre></th>
+                                <th><pre>       14회차          </pre></th>
+                                <th><pre>       15회차          </pre></th>
                             </tr>
                         </thead>
                         <tbody>
+                         <c:forEach var="std" items="${ list }">
                             <tr>
-                                <td>김아무개</td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
-                                <td><input type="checkbox"></td>
+                                <td><p  id=${ std.stdId } class="stdId">${ std.stdId }</p></td>
+                                <%-- <% for(int i=1; i<16; i++) { %> --%>
+                                <td>
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="1회차출석">출석
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="1회차지각">지각
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="1회차결석">결석
+                                </td>
+                                <%-- <%} %> --%>
+                                <td>
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="2회차출석">출석
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="2회차지각">지각
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="2회차결석">결석
+                                </td>
+                                <td>
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="3회차출석">출석
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="3회차지각">지각
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="3회차결석">결석
+                                </td>
+                                <td>
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="4회차출석">출석
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="4회차지각">지각
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="4회차결석">결석
+                                </td>
+                                <td>
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="5회차출석">출석
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="5회차지각">지각
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="5회차결석">결석
+                                </td>
+                                <td>
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="6회차출석">출석
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="6회차지각">지각
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="6회차결석">결석
+                                </td>
+                                <td>
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="7회차출석">출석
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="7회차지각">지각
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="7회차결석">결석
+                                </td>
+                                <td>
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="8회차출석">출석
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="8회차지각">지각
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="8회차결석">결석
+                                </td>
+                                <td>
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="9회차출석">출석
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="9회차지각">지각
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="9회차결석">결석
+                                </td>
+                                <td>
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="10회차출석">출석
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="10회차지각">지각
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="10회차결석">결석
+                                </td>
+                                <td>
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="11회차출석">출석
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="11회차지각">지각
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="11회차결석">결석
+                                </td>
+                                <td>
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="12회차출석">출석
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="12회차지각">지각
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="12회차결석">결석
+                                </td>
+                                <td>
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="13회차출석">출석
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="13회차지각">지각
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="13회차결석">결석
+                                </td>
+                                <td>
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="14회차출석">출석
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="14회차지각">지각
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="14회차결석">결석
+                                </td>
+                                <td>
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="15회차출석">출석
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="15회차지각">지각
+                                <input type="radio" name="${ std.stdId }" class="attStatus" value="15회차결석">결석
+                                </td>
+                               
                             </tr>
-                            
+                            </c:forEach>
                         </tbody>
 
 
@@ -201,7 +288,7 @@ margin-right: 10px;
         </div>
         <br><br>
         <div id="btn">
-        <input type="button" id="btn1" value="완료" onclick="location.href='../index.html'">
+        <button onclick="Btn();" id="btn1">완료</button>
         </div>
         <br><br><br>
 				<!-- 여기까지 내용  -->
@@ -241,5 +328,70 @@ margin-right: 10px;
 	<!-- Page level custom scripts -->
 	<script src="${contextPath}/resources/js/demo/datatables-demo.js"></script>
 
+
+	<script type="text/javascript">
+		function Btn()
+		{
+ 		    var classId = $(".classId").val();   //->x */
+			var dataArry = new Array();
+			var dataLength =$("#rest_lecture tbody tr");  	// 들어온 데이터의 갯수
+			var checked = dataLength.eq(1).children().eq(45).children().is(':checked');
+
+			console.log(dataLength.eq(1).children().eq(0).children().text());
+			if(confirm("변경하시겠습니까?"))
+			{
+ 		 		for(var i = 0 ; i<dataLength.length; i++){
+					 for(var j =1;j<16;j++){
+						for(var k=1; k<4; k++){ 
+						 if(dataLength.eq(i).children().eq(j).children().eq(k).is(':checked')){
+							 
+							 console.log(i+"번쨰 학번" + dataLength.eq(i).children().eq(0).children().text());
+							 console.log(i+"번째 데이터 값"+dataLength.eq(i).children().eq(j).children().eq(k).val());
+							 dataArry.push(dataLength.eq(i).children().eq(0).children().text());
+							 dataArry.push(dataLength.eq(i).children().eq(j).children().eq(k).val());
+							 
+						 
+						 }else{
+							 console.log(i+"번쨰 줄에 선택된 값이 없습니다.");
+						  } 
+						 
+						 }
+					 }
+				} 
+				$.ajax(
+				{
+					url:"attinsert.do",
+					data:{attArry:dataArry, classId : classId},
+					traditional: true,
+					success:function(data)
+					{
+						if(data == "ok")
+						{
+							console.log("성공");
+							alert("변경되었습니다.");
+						}
+						else
+						{
+							alert("실패하였습니다.");
+						}
+					},
+					error:function(request, status, errorData)
+					{
+						console.log(request.status);
+						console.log(request.responseText);
+						console.log(errorData); 
+					}
+					});
+				 
+			}
+			
+			else
+			{
+				alert("취소되었습니다.");
+				return;
+			}
+		
+		}
+	</script>
 </body>
 </html>

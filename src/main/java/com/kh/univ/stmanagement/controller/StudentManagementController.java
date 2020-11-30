@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.stmanagement.model.service.StudentManagementService;
+import com.kh.univ.stmanagement.model.vo.Attendance;
 import com.kh.univ.stmanagement.model.vo.GradeA;
 import com.kh.univ.stmanagement.model.vo.StudentManagement;
 
@@ -29,12 +29,14 @@ public class StudentManagementController {
 		
 		Professor professor = (Professor)session.getAttribute("loginUser");
 		
-		int profId = professor.getProfId();
+		int profId     = professor.getProfId();
 		String classId = stdM.getClassId();
+		int classSeq   = stdM.getClassSeq();
 		
 		Map map = new HashMap();
 		map.put("profId", profId);
 		map.put("classId", classId);
+		map.put("classSeq", classSeq);
 		
 		ArrayList<StudentManagement> list = smService.selectList(map);
 		
@@ -60,13 +62,15 @@ public class StudentManagementController {
 		Professor professor = (Professor)session.getAttribute("loginUser");
 		
 		int profId = professor.getProfId();
-		String classId = stdM.getClassId();
+		String classId   = stdM.getClassId();
 		String className = stdM.getClassName();
+		int classSeq     = stdM.getClassSeq();
 		
 		Map map = new HashMap();
 		map.put("profId", profId);
 		map.put("classId", classId);
 		map.put("className", className);
+		map.put("classSeq", classSeq);
 		
 		ArrayList<StudentManagement> list = smService.selectDetailList(map);
 		System.out.println("디비에서 가져오나요?"+list);
@@ -79,31 +83,182 @@ public class StudentManagementController {
 	}
 	
 	@RequestMapping("attendance.do")
-	public String Attendance() {
+	public String Attendance(ModelAndView mv, HttpSession session) {
 		return "studentManagement/attendance";
 	}
 	
 	@RequestMapping("stGrade.do")
-		public ModelAndView StudentGrade(ModelAndView mv) {
-			
-			ArrayList<StudentManagement> list = smService.gradeView();
+		public ModelAndView StudentGrade(ModelAndView mv, HttpSession session, GradeA g) {
+		Professor professor = (Professor)session.getAttribute("loginUser");
+		
+		int profId        = professor.getProfId();
+		String classId    = g.getClassId();
+		String className  = g.getClassName();
+		int classSeq      = g.getClassSeq();
+		int stdId         = g.getStdId();
+		String gradePoint = g.getGradePoint();
+		int gradeNo       = g.getGradeNo();
+		
+		Map map = new HashMap();
+		map.put("profId", profId);
+		map.put("classId", classId);
+		map.put("className", className);
+		map.put("classSeq", classSeq);
+		map.put("stdId", stdId);
+		map.put("gradeNo", gradeNo);
+		map.put("gradePoint", gradePoint);
+		
+		ArrayList<GradeA> list = smService.gradeView(map);
 			
 			mv.addObject("list", list);
+			mv.addObject("map", map);
 			mv.setViewName("studentManagement/gradeManagement");
+			
+//			session.setAttribute("loginUser", map);
 			return mv;
 	}
 	
+//	@RequestMapping("gradeinsert.do")
+//	public String boardInsertView(GradeA g,HttpServletRequest request) {
+//		
+//		System.out.println(g);
+//		int result = smService.insertGrade(g);
+//		
+//		System.out.println("result : " + result);
+//		
+//		if(result > 0) {
+//			return "redirect:stGrade.do";
+//		}else {
+//			return "common/errorPage";
+//		}
+//	}
+	
+//	
 	@RequestMapping("gradeinsert.do")
-	public String boardInsertView(GradeA g,HttpServletRequest request) {
+	public String boardInsertView(GradeA g, String[] gradeArry, String classId) {
 		
-		System.out.println(g);
+		System.out.println(classId);
+	    for(int i =0; i<gradeArry.length; i++) {
+		g.setStdId(Integer.parseInt(gradeArry[i]));
+		g.setGradePoint(gradeArry[i+1]);
+		i=i+1;
 		int result = smService.insertGrade(g);
+		System.out.println(g);
 		
-		if(result > 0) {
-			return "redirect:stGrade.do";
-		}else {
-			return "common/errorPage";
-		}
+	}
+		
+		
+		
+		
+//		Professor professor = (Professor) session.getAttribute("loginUser");
+//		System.out.println( "주호"+g);
+//		
+//		int profId        = professor.getProfId();
+//		int classSeq      = g.getClassSeq();
+//		int stdId     = g.getStdId();
+//		String gradePoint = g.getGradePoint();
+//		int gradeNo       = g.getGradeNo();
+//		String classId  = g.getClassId();
+//		
+//		Map map = new HashMap();
+//		map.put("profId", profId);
+//		map.put("stdId", stdId);
+//		map.put("gradePoint", gradePoint);
+//		map.put("classSeq", classSeq);
+//		map.put("gradeNo", gradeNo);
+//		map.put("classId", classId);
+//		
+		
+		//int result = smService.insertGrade(map);
+		
+		
+//		if(result > 0) {
+//			return "redirect:stGrade.do";
+//		}else {
+//			return "common/errorPage";
+//		}
+		return null;
 	}
 	
+//	@RequestMapping("gradeinsert.do")
+//	public String boardInsertView(GradeA g, String[] gradeArry, String classId) {
+//		
+//		System.out.println(classId);
+//	    for(int i =0; i<gradeArry.length; i++) {
+//		g.setStdId(Integer.parseInt(gradeArry[i]));
+//		g.setGradePoint(gradeArry[i+1]);
+//		i=i+1;
+//		int result = smService.insertGrade(g);
+//		System.out.println(g);
+//		
+//	}
+//	    return null;
+//	}
+	
+//	@ResponseBody
+//	@RequestMapping(value="gradeinsert.do", method=RequestMethod.POST)
+//	public String boardInsertView(GradeA g,HttpSession session) {
+//		Professor professor = (Professor)session.getAttribute("loginUser");
+//		
+//		g.setProfId(professor.getProfId());
+//		
+//		int result = smService.insertGrade(g);
+//		
+//		System.out.println(g);
+//		
+//		System.out.println("result : " + result);
+//		
+//		if(result > 0) {
+//			
+//			g.setClassCode(classCode);
+//			return "완";
+//		}else {
+//			return "실";
+//		}
+//		
+//	}
+	
+	@RequestMapping("attendanceList.do")
+	public ModelAndView AttendanceList(ModelAndView mv, HttpSession session, Attendance att) {
+	Professor professor = (Professor)session.getAttribute("loginUser");
+	
+	int profId        = professor.getProfId();
+	String classId    = att.getClassId();
+	String className  = att.getClassName();
+	int classSeq      = att.getClassSeq();
+	int stdId         = att.getStdId();
+	String attStatus  = att.getAttStatus();
+	int attNo         = att.getAttNo();
+	
+	Map map = new HashMap();
+	map.put("profId", profId);
+	map.put("classId", classId);
+	map.put("className", className);
+	map.put("classSeq", classSeq);
+	map.put("stdId", stdId);
+	map.put("attStatus", attStatus);
+	map.put("attNo", attNo);
+	
+	ArrayList<Attendance> list = smService.attendanceView(map);
+		
+		mv.addObject("list", list);
+		mv.addObject("map", map);
+		mv.setViewName("studentManagement/attendance");
+		
+		return mv;
+	}
+	@RequestMapping("attinsert.do")
+	public String AttendanceInsert(Attendance att, String[] attArry, String classId) {
+		
+		System.out.println(classId);
+	    for(int i =0; i<attArry.length; i++) {
+		att.setStdId(Integer.parseInt(attArry[i]));
+		att.setAttStatus(attArry[i+1]);
+		i=i+1;
+		int result = smService.insertAtt(att);
+		System.out.println(att);
+		
+	}
+	    return null;
+	}
 }

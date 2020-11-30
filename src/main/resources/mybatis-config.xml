@@ -7,7 +7,8 @@
 
     <!-- typeAliases -->
     <typeAliases>
-    	<typeAlias type="com.kh.univ.grade.model.vo.Grade" alias="Grade"/>    	
+    	<typeAlias type="com.kh.univ.grade.model.vo.Grade" alias="Grade"/> 
+    	<typeAlias type="com.kh.univ.grade.model.vo.StudentGrade" alias="StdGrade"/>   	
 		<typeAlias type="com.kh.univ.member.model.vo.Student" alias="Student"/>
 		<typeAlias type="com.kh.univ.member.model.vo.Professor" alias="Professor"/>
 		<typeAlias type="com.kh.univ.member.model.vo.Department" alias="Department"/>
@@ -19,21 +20,26 @@
 		<typeAlias type="com.kh.univ.lecture.model.vo.LectureApplication" alias="LectureApplication"/>
 		<typeAlias type="com.kh.univ.lecture.model.vo.LectureEvaluation" alias="LectureEvaluation"/>
 		<typeAlias type="com.kh.univ.lecture.model.vo.EvaluationResult" alias="EvaluationResult"/>
-		<typeAlias  type="com.kh.univ.lecture.model.vo.SearchCondition" alias="SearchCondition"/>
+		<typeAlias type="com.kh.univ.lecture.model.vo.SearchCondition" alias="SearchCondition"/>
         <typeAlias type="com.kh.univ.test.model.vo.Test" alias="Test"/>
         <typeAlias type="com.kh.univ.salary.model.vo.Salary" alias="Salary"/>
         <typeAlias type="com.kh.univ.register.model.vo.Register" alias="Register"/>
+        <typeAlias type="com.kh.univ.register.model.vo.InsertRegister" alias="InsertRegister"/>
         <typeAlias type="com.kh.univ.consulting.model.vo.Consulting" alias="Consulting"/>
         
 
         <typeAlias type="com.kh.univ.stmanagement.model.vo.GradeA" alias="GradeA"/>
-        <typeAlias type="com.kh.univ.stmanagement.model.vo.GradeInsert" alias="GradeInsert"/>
+        <typeAlias type="com.kh.univ.stmanagement.model.vo.Attendance" alias="Attendance"/>
 
 
 
 
         <typeAlias type="com.kh.univ.board.model.vo.Board" alias="Board"/>
         <typeAlias type="com.kh.univ.classBoard.vo.ClassNotice" alias="ClassNotice"/>
+		<typeAlias type="com.kh.univ.classBoard.vo.ClassAssignment" alias="ClassAssignment"/>
+		<typeAlias type="com.kh.univ.classBoard.vo.ReplyAssignment" alias="ReplyAssignment"/>
+		
+		
         <!-- <typeAlias type="com.kh.univ.stmanagement.model.vo.GradeInsert" alias="GradeInsert"/> -->
         
         <!-- admin -->
@@ -42,6 +48,8 @@
         <typeAlias type="com.kh.univ.admin.model.vo.AdProfessor" alias="AdProfessor"/>
         <typeAlias type="com.kh.univ.admin.model.vo.AdLecture" alias="AdLecture"/>
         <typeAlias type="com.kh.univ.admin.model.vo.AdClassTime" alias="AdClassTime"/>
+        <typeAlias type="com.kh.univ.admin.model.vo.AdClassPlan" alias="AdClassPlan"/>
+        <typeAlias type="com.kh.univ.admin.model.vo.AdLeave" alias="AdLeave"/>
         
 
         
@@ -64,10 +72,12 @@
         <mapper resource="mappers/classBoard/classBoard-mapper.xml"/>
         <mapper resource="mappers/board/board-mapper.xml"/> 
         <mapper resource="mappers/register/register-mapper.xml"/>
+        <mapper resource="mappers/grade/grade-mapper.xml"/>
         
         <!-- 관리자 mappers -->
         <mapper resource="mappers/admin/adminStudent-mapper.xml"/>
         <mapper resource="mappers/admin/adminProfessor-mapper.xml"/>
         <mapper resource="mappers/admin/adminLecture-mapper.xml"/>
+        <mapper resource="mappers/admin/adminUniv-mapper.xml"/>
     </mappers>
 </configuration>

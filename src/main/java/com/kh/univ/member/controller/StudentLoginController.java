@@ -42,7 +42,7 @@ public class StudentLoginController
    private JavaMailSender javaMailSender;
    
    // 로그인
-   @PostMapping("studentLogin.do")
+   @RequestMapping("studentLogin.do")
    public String login(HttpSession session ,Student student, Model model)
    {
 	   Professor professor = new Professor();
@@ -119,7 +119,7 @@ public class StudentLoginController
    }
    
    //비밀번호 암호화용 테스트 메서드
-   @GetMapping("pwdCheck.do")
+   @RequestMapping("pwdCheck.do")
    public String pwdCheck(HttpSession session) {
       String userId = "testUser";
       String userPwd = "1";

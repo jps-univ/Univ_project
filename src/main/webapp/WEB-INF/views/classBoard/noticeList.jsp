@@ -51,76 +51,9 @@
 
                 
                 <!-- pagetopbar -->
-                  		  		
-  		  		  <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                
+                <c:import url="../common/pageTopbar.jsp" />
 
-          <!-- Topbar Navbar 로그인창 -->
-          <ul class="navbar-nav ml-auto">
-
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </li>
-
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">홍길동님 환영합니다.</span>
-              </a>
-            </li>
-
-            <div class="topbar-divider d-none d-sm-block"></div>
-
-            <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="modal" data-target="#logoutModal" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">로그아웃</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <!-- End of Topbar -->
-
-        <!-- page top bar -->
-        
-        <div class="top_bar">
-           <h1>강의게시판</h1>
-        </div>
- 
-
-        <!-- second navibar -->
-        <div class="sec_navi shadow">
-            <ul id="sec_navibar">
-                <li class="drop" style="margin-left: 10%;"><a href="selectClass.do">수강 과목 조회</a></li>
-                <li class="drop" style="margin-left: 12%;"><a href="#">강의 정보</a></li>
-                    <ul class="drop_submenu">
-                        <li><a href="classPlan.do">강의 계획서</a></li> 
-                        <li><a href="cNoticeList.do">공지 사항</a></li>
-                    </ul>
-                <li class="drop" style="margin-left: 14%;"><a href="#">학습 활동</a></li>
-                    <ul class="drop_submenu">
-                        <li><a href="assignmentList.do">과제</a></li>
-                    </ul>
-                <li class="drop" style="margin-left: 15%;"><a href="#">성적 관리</a></li>
-                    <ul class="drop_submenu">
-                        <li><a href="gradeObjectionList.do">성적 이의 신청</a></li>
-                    </ul>                    
-            </ul>
-        </div>
                 <!-- End of pageTopbar -->
                 
                 
@@ -130,7 +63,10 @@
 						<tbody>
 							<tr>
 								<td><div id="board_title">과 목 공 지</div></td>
-								<td><button class="btn btn-primary btn-sm" id="board_button">등록하기</button></td>
+								<c:if test="${ user.status eq 'P' }">
+								<td><button type="button" class="btn btn-primary btn-sm" id="board_button" 
+										onclick="location.href='cNoticeWrite.do'">등록하기</button></td>
+								</c:if>
 							</tr>
 					</table>
 
@@ -171,19 +107,49 @@
 							</table>
 						</form>
 					</div>
+					
+				<div class="container1">
+                    <ul class="pagination">
+                    	<c:if test="${ pi.currentPage eq 1 }">
+                    		<li><a href="#">이전</a></li>
+                    	</c:if>
+                    	
+                    	<c:if test="${ pi.currentPage ne 1 }">
+                    		<c:url var="before" value="cNoticeList.do">
+                    			<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
+                    		</c:url>
+		                   		<li><a href="${ before }">이전</a></li>
+                    	</c:if>
+                    	
+                    	<c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }">
+	                    	<c:if test="${ p eq pi.currentPage }">
+								<li><a href="#"><b>${ p }</b></a></li>
+							</c:if>
+							
+							<c:if test="${ p ne pi.currentPage }">
+								<c:url var="pagination" value="cNoticeList.do">
+									<c:param name="currentPage" value="${ p }"/>
+								</c:url>
+								<li><a href="${ pagination }">${ p }</a></li>
+							</c:if>
+						</c:forEach>
+                       
+                       	<c:if test="${ pi.currentPage eq pi.maxPage }">
+                    		<li><a href="#">다음</a></li>
+                    	</c:if>
+                    	
+                    	<c:if test="${ pi.currentPage ne pi.maxPage }">
+                    		<c:url var="after" value="cNoticeList.do">
+                    			<c:param name="currentPage" value="${ pi.currentPage +1 }"/>
+                    		</c:url>
+		                   		<li><a href="${ after }">다음</a></li>
+                    	</c:if>
+                    </ul>
+                </div>
+				
 				</div>
-
-      <script>
-       
-       $(function(){
-           $('.drop_submenu').slideUp();
-           $('.drop').click(function(){
-             $('.drop_submenu').slideUp();
-             $(this).next('ul').toggle();
-           });
-         });
-       
-       </script>
+				
+				
 
 
 			</div>
@@ -194,7 +160,7 @@
             
             
             <!-- Footer -->
-<%--             <c:import url="../common/footer.jsp"/> --%>
+             <c:import url="../common/footer.jsp"/> 
             <!-- End of Footer -->
 
         </div>

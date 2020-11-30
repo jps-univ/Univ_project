@@ -96,6 +96,7 @@ margin-right: 10px;
 #select3{ position: absolute; right: 370px; margin-top: -40px;}
 #year{ text-align: center; }
 #text1,#text2,#text3{ width: 170px; }
+#std{ border: 0px;}
   </style>
 <head>
 	<meta charset="UTF-8">
@@ -145,7 +146,7 @@ margin-right: 10px;
 				
 				<!-- 여기서부터 내용  -->
 				<!-- Begin Page Content -->
-				<form action="gradeinsert.do" method="post" enctype="multipart/form-data">
+				
        <div id="body">
           <div id="bar">
               <p id="main2">성적관리</p>
@@ -154,15 +155,19 @@ margin-right: 10px;
           <br><br><br>
           <!-- <h2 id="year">2020년 2학기 성적관리</h2> -->
           <table border="0" cellspacing="0" width="1000px" id="tb">
+          <c:forEach var="std" items="${ list }" end="0">
             <tr>
-                <td><h4 id="code">과목코드 : </h4></td>
-                <td><input type="text" id="text1" name="classCode" placeholder="EE1033" disabled value="EE1033"></td>
+                <td><h4 id="code">과목번호 : </h4></td>
+                <td><input type="text" id="text1" name="classSeq" class="classSeq" placeholder="${ std.classSeq }" disabled value="${ std.classSeq }"></td>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <td><h4 id="code">교과목명 : </h4></td>
-                <td><input type="text" id="text2" placeholder="전자 회로2" disabled></td>
+                <td><input type="text" id="text2" name="className" class="className" placeholder="${ std.className }" disabled value="${ std.className }"></td>
             </tr>
+            <tr>
+        		<td><input type="hidden" id="text1" name="classId" class="classId" disabled value="${ std.classId }" placeholder="${ std.classId }"></td>
+        	</tr>
+            </c:forEach>
         </table>
-          <br>
           <div class="col-sm-9 page">
             <div id="content_title">
                 <h2>2020년 2학기 성적관리</h2>
@@ -187,12 +192,13 @@ margin-right: 10px;
                 <hr>
             </div>
             <div id="rest_table_area">
-                <method method="GET">
+               <!--  <method method="GET"> -->
+                
                     <table id="rest_lecture"  class=" table-hover">
                         <thead>
                             <tr>
                                 <th>
-                                    <pre>               </pre>
+                                    <pre></pre>
                                 </th>
                                 <th><pre>  A+  </pre></th>
                                 <th><pre>  A  </pre></th>
@@ -211,41 +217,42 @@ margin-right: 10px;
                         </thead>
                         <tbody>
                         <c:forEach var="std" items="${ list }">
+                        
                             <tr>
-                                <td>${ std.stdId }</td>
-                                <td><input type="radio" name="gradePoint" value="A+"></td>
-                                <td><input type="radio" name="gradePoint" value="A" ></td>
-                                <td><input type="radio" name="gradePoint" value="A-"></td>
-                                <td><input type="radio" name="gradePoint" value="B+"></td>
-                                <td><input type="radio" name="gradePoint" value="B"></td>
-                                <td><input type="radio" name="gradePoint" value="B-"></td>
-                                <td><input type="radio" name="gradePoint" value="C+"></td>
-                                <td><input type="radio" name="gradePoint" value="C"></td>
-                                <td><input type="radio" name="gradePoint" value="C-"></td>
-                                <td><input type="radio" name="gradePoint" value="D+"></td>
-                                <td><input type="radio" name="gradePoint" value="D"></td>
-                                <td><input type="radio" name="gradePoint" value="D-"></td>
-                                <td><input type="radio" name="gradePoint" value="F"></td>
-                            	<td><input type="hidden" name="studentId" value="${ std.stdId }"></td>
+                            	<td><p  id=${ std.stdId } class="stdId">${ std.stdId }</p></td>
+                                <%-- <td>${ std.stdId }</td> --%>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="A+"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="A" ></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="A-"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="B+"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="B"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="B-"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="C+"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="C"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="C-"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="D+"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="D"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="D-"></td>
+                                <td><input type="radio" name="${ std.stdId }" class="gradePoint" value="F"></td>
                             </tr>
                          </c:forEach>
 
                         </tbody>
                     </table>
-                </method>
-            </method>
+                <!-- </method> -->
         </div>
         <br><br>
         <div id="btn">
         <!-- 첨부파일을 등록할려고하니 속성값에 method="post" enctype="multipart/form-data" 꼭 지정하자 -->
-		
-        <button onclick="location.href='gradeinsert.do';" id="btn1">완료</button>
+		<button onclick="Btn();" id="btn1">완료</button>
         </div>
-        </form>
+        </div>
+        </div>
+        </div>
         <br><br><br>
         
         <script>
-        	
+
         </script>
 				<!-- 여기까지 내용  -->
 
@@ -284,5 +291,82 @@ margin-right: 10px;
 	<!-- Page level custom scripts -->
 	<script src="${contextPath}/resources/js/demo/datatables-demo.js"></script>
 
+	<script type="text/javascript">
+		function Btn()
+		{
+ 			 var classId = $(".classId").val();   //->x */
+			/*var stdId = document.getElementsByClassName("stdId");			//->x
+			var gradePoint = document.getElementsByClassName("gradePoint"); //->이런한 방식으로 선언해야함 ..
+			var gradeNo = $(".gradeNo").val(); */
+			
+			var dataArry = new Array();
+			var dataLength =$("#rest_lecture tbody tr");  	// 들어온 데이터의 갯수
+			var checked = dataLength.eq(1).children().eq(13).children().is(':checked');
+
+			//console.log(dataLength.eq(0).children().eq(1).children().is()==':checked');
+			
+			console.log(dataLength.eq(1).children().eq(0).children().text());
+			if(confirm("변경하시겠습니까?"))
+			{
+			/* 	for(var i=0; i<stdId.length; i++){
+					if(gradePoint[i].checked){
+						console.log($(".stsdId").eq(i).parent().parent().children().eq(0).text());
+    					stdId.push($(".stdId").eq(i).parent().parent().children().eq(0).text());
+						console.log($(".gradePoint").eq(i).parent().parent().children().eq(i).text());
+    					gradePoint.push($(".gradePoint").eq(i).parent().parent().children().eq(i).text());
+					}
+				} */
+ 		 		for(var i = 0 ; i<dataLength.length; i++){
+					 for(var j =1;j<14;j++){
+						 if(dataLength.eq(i).children().eq(j).children().is(':checked')){
+							 
+							 console.log(i+"번쨰 학번" + dataLength.eq(i).children().eq(0).children().text());
+							 console.log(i+"번째 데이터 값"+dataLength.eq(i).children().eq(j).children().val());
+							 dataArry.push(dataLength.eq(i).children().eq(0).children().text());
+							 dataArry.push(dataLength.eq(i).children().eq(j).children().val());
+							 
+							 
+						 }else{
+							 console.log(i+"번쨰 줄에 선택된 값이 없습니다.");
+						 }
+						 
+					 }
+				} 
+				/* if(stdId != null){} */
+				$.ajax(
+				{
+					url:"gradeinsert.do",
+					data:{gradeArry:dataArry, classId : classId},
+					traditional: true,
+					success:function(data)
+					{
+						if(data == "ok")
+						{
+							console.log("성공");
+							alert("변경되었습니다.");
+						}
+						else
+						{
+							alert("실패하였습니다.");
+						}
+					},
+					error:function(request, status, errorData)
+					{
+						console.log(request.status);
+						console.log(request.responseText);
+						console.log(errorData); 
+					}
+					});
+				 
+			}
+			
+			else
+			{
+				alert("취소되었습니다.");
+				return;
+			}
+		
+		}
+	</script>
 </body>
 </html>

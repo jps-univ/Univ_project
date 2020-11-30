@@ -15,30 +15,34 @@
  		<result property="stdEmail" column="EMAIL"/>
  		<result property="roomNo" column="ROOM"/>
  		<result property="profId" column="PROFESSOR_ID"/>
+ 		<result property="classSeq" column="CLASS_SEQ"/>
  	</resultMap>
  	
-	<resultMap id="GradeResultSet" type="Grade">
+	<resultMap id="GradeResultSet" type="GradeA">
  		<id property="gradeNo" column="GRADE_NO"/>
- 		<result property="studentId" column="STUDENT_ID"/>
- 		<result property="classCode" column="CLASS_CODE"/>
+ 		<result property="stdId" column="STUDENT_ID"/>
+ 		<result property="classId" column="CLASS_CODE"/>
  		<result property="gradePoint" column="GRADE_POINT"/>
+ 		<result property="classSeq" column="CLASS_SEQ"/>
+ 		<result property="className" column="CLASS_NAME"/>
+ 		<result property="profId" column="PROFESSOR_ID"/>
  	</resultMap>
  	
- 	<resultMap type="GradeInsert" id="GradeInsertResultSet">
- 		<id property="gradeNo" column="GRADE_NO"></id>
- 		<result property="studentId" column="STUDENT_ID"></result>
- 		<result property="professorId" column="PROFESSOR_ID"></result>
- 		<result property="classCode" column="CLASS_CODE"></result>
- 		<result property="gradePoint" column="GRADE_POINT"></result>
- 		<result property="classSemester" column="CLASS_SEMESTER"></result>
- 		<result property="classYear" column="CLASS_YEAR"></result>
+ 	<resultMap type="Attendance" id="AttendanceResultSet">
+ 		<id property="attNo" column="ATTENDANCE_NO"></id>
+ 		<result property="stdId" column="STUDENT_ID"></result>
+ 		<result property="className" column="CLASS_NAME"></result>
+ 		<result property="classId" column="CLASS_CODE"></result>
+ 		<result property="classSeq" column="CLASS_SEQ"></result>
+ 		<result property="attStatus" column="ATTENDANCE_STATUS"></result>
+ 		<result property="profId" column="PROFESSOR_ID"></result>
  	</resultMap>
 
 	<!-- 수강생 조회 매퍼  -->
 	<select id="selectList" resultMap="StudentManagementResultSet">
 		SELECT
 			CLASS_NAME,
-			CLASS_CODE,
+			CLASS_SEQ,
 			CLASS_TYPE,
 			ROOM
 		FROM
@@ -48,7 +52,7 @@
 	</select>
 	
 	<!-- 수강생 상세조회 매퍼 -->
-	<select id="selectdDetailList" resultMap="StudentManagementResultSet">
+	<!-- <select id="selectdDetailList" resultMap="StudentManagementResultSet">
 		SELECT
 			STUDENT_NAME,STUDENT_ID,CLASS_CODE,CLASS_NAME,DEPARTMENT_NAME,SEMESTER,PHONE,EMAIL
 		FROM
@@ -58,37 +62,68 @@
 		LEFT JOIN
 			TB_CLASS USING(DEPARTMENT_CODE)
 		WHERE
-			PROFESSOR_ID = #{profId} AND CLASS_CODE = #{classId}
-		ORDER BY
-			STUDENT_NAME
-	</select>
-	
-<!-- 		<select id="selectdDetailList2" resultMap="StudentManagementResultSet">
-		SELECT
-			STUDENT_NAME,STUDENT_ID,CLASS_CODE,CLASS_NAME,DEPARTMENT_NAME,SEMESTER,PHONE,EMAIL
-		FROM
-			TB_STUDENT
-		LEFT JOIN
-			TB_DEPARTMENT USING(DEPARTMENT_CODE)
-		LEFT JOIN
-			TB_CLASS USING(DEPARTMENT_CODE)
-		WHERE
-			PROFESSOR_ID = #{profId} AND CLASS_CODE = #{classId}
+			CLASS_CODE = #{classId}
 		ORDER BY
 			STUDENT_NAME
 	</select> -->
 	
-	<!--  성적관리 조회 -->
-	<select id="gradeView" resultMap="StudentManagementResultSet">
+	<!-- 수강생 상세조회 매퍼 -->
+	<select id="selectdDetailList" resultMap="StudentManagementResultSet">
 		SELECT
-			STUDENT_ID
+			S.STUDENT_NAME, S.STUDENT_ID, C.CLASS_CODE, C.CLASS_NAME, S.SEMESTER, S.PHONE, S.EMAIL, C.CLASS_SEQ
 		FROM
-			TB_STUDENT
+			TB_STUDENT S
+		LEFT OUTER JOIN
+			TB_REGISTER_CLASS R ON S.STUDENT_ID = R.STUDENT_ID
+		LEFT OUTER JOIN
+			TB_CLASS C ON R.CLASS_SEQ = C.CLASS_SEQ
+		WHERE
+			C.CLASS_SEQ = #{classSeq} AND PROFESSOR_ID = #{profId}
 	</select>
 	
-	<insert id="grade" parameterType="Grade">
+
+	<!--  성적관리 조회 -->
+	<select id="gradeView" resultMap="GradeResultSet">
+		SELECT
+			C.CLASS_SEQ,
+			C.CLASS_NAME,
+			S.STUDENT_ID,
+			C.CLASS_CODE
+		FROM
+			TB_STUDENT S
+		LEFT OUTER JOIN
+			TB_REGISTER_CLASS R ON S.STUDENT_ID = R.STUDENT_ID
+		LEFT OUTER JOIN
+			TB_CLASS C ON R.CLASS_SEQ = C.CLASS_SEQ
+		WHERE
+			C.CLASS_SEQ = #{classSeq} AND PROFESSOR_ID = #{profId}
+	</select>
+	
+	<insert id="grade">
 		INSERT INTO TB_GRADE
-		VALUES(
-			#{classCode},#{studentId},#{gradePoint},#{gradeNo})
+		(CLASS_CODE,STUDENT_ID,GRADE_POINT,GRADE_NO)
+		VALUES(#{classId},#{stdId},#{gradePoint},GRADE_NO.NEXTVAL)
+	</insert>
+	
+	<select id="attendanceView" resultMap="AttendanceResultSet">
+		SELECT
+			C.CLASS_SEQ,
+			C.CLASS_NAME,
+			S.STUDENT_ID,
+			C.CLASS_CODE
+		FROM
+			TB_STUDENT S
+		LEFT OUTER JOIN
+			TB_REGISTER_CLASS R ON S.STUDENT_ID = R.STUDENT_ID
+		LEFT OUTER JOIN
+			TB_CLASS C ON R.CLASS_SEQ = C.CLASS_SEQ
+		WHERE
+			C.CLASS_SEQ = #{classSeq} AND PROFESSOR_ID = #{profId}
+	</select>
+	
+	<insert id="attinsert">
+		INSERT INTO TB_ATTENDANCE
+		(CLASS_CODE,STUDENT_ID,ATTENDANCE_STATUS,ATTENDANCE_NO)
+		VALUES(#{classId},#{stdId},#{attStatus},ATTENDANCE_NO.NEXTVAL)
 	</insert>
 </mapper>
