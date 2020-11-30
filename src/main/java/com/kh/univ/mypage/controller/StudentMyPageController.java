@@ -82,7 +82,7 @@ public class StudentMyPageController
 		
 		mv.addObject("consult", consult);
 		
-		mv.setViewName("myPage/studentConsulting");
+		mv.setViewName("myPage/studentConsulting2");
 		
 		return mv;
 	}
@@ -235,7 +235,7 @@ public class StudentMyPageController
 	public String SelectProfessor(ModelAndView mv, Professor professor, Department department) throws JsonProcessingException
 	{
 		ObjectMapper mapper = new ObjectMapper();
-		
+
 		String profName = professor.getProfName();
 		String profCollege = professor.getProfCollege();
 		String departmentName = department.getDepartmentName();

@@ -58,9 +58,6 @@
 		#td_profName{
 		vertical-align: middle;
 		}
- 		#td_profId{
-		visibility: hidden;
-		}
  		#td_lab{
 		vertical-align: middle;
 		}
@@ -156,7 +153,7 @@
 		              <!-- </form> -->
 		              
 		              <br>
-<!-- 		              <div class="card-body">
+ 		              <div class="card-body">
 		              <div class="table-responsive">
 		                <table class="table table-bordered" id="test" width="100%" cellspacing="0">
 		                <tbody>              
@@ -171,10 +168,10 @@
 		                 </tbody>
 		                </table>
 		              </div>
-		            </div> -->
+		            </div>
 
 		          
-	 		          <div class="card-body">
+<!-- 	 		          <div class="card-body">
 		 		          <div class="table-responsive">
 					          <table class="table table-bordered" id="selectProf" width="100%" cellspacing="0">
 					          	<thead>
@@ -185,12 +182,11 @@
 										<th id="th_profName">성명</th>
 										<th id="th_lab">연구실</th>
 										<th id="th_apply">상담 신청</th>
-										<th id="th_profId">교번</th>
 									</tr>
 					          	</thead>
 					          </table>
 				          </div>
-			          </div>
+			          </div> -->
 			        </div>
 		
 		          <div class="card shadow mb-4">
@@ -346,67 +342,6 @@
 	<c:import url="../common/logoutModal.jsp" />
 	
 	<script type="text/javascript">
-		function selectProfessor()
-	    {
-	    	var profName = $("#searchProfName").val();
-	    	var profCollege = $("#selectCollege").val();
-	    	var departmentName = $("#selectDepartment").val();
-	    	
-	        table = $('#selectProf').DataTable(
-	        {
-	            //컨트롤러에서 보내줄 때 해당 함수의 반환형은 String이어야 하고 리스트를 뽑아온다고 하면 'dataSrc' : '' 로 해줘야함.
-	            'ajax': 
-	            {
-	                'url': 'selectProfessor.do',
-	                'type': 'post',
-	                'data': {'profName' : profName, 'profCollege' : profCollege, 'departmentName' : departmentName},
-	                'dataType': 'json',
-	                'dataSrc': ''
-	            },
-	            // 'colunms' 옵션에는 각 data 에게 넘어오는 변수명(컬럼값)을 매칭해줘야함 꼭 .
-	            // 그리고 테이블만들어줄때도 넘어오는 값이 4개라면 테이블의 th 갯수도 꼭 4개. 맞춰줘야함
-	            'columns': 
-	            [
-	                {'data': 'collegeName'},
-	                {'data': 'collegeName'},
-	                {'data': 'departmentName'},
-	                {'data': 'profName'},
-	                {'data': 'lab'},
-	                {'data': ''},
-	                {'data': 'profId'}
-	            ],
-	            'columnDefs': [
-	                {
-	                    'targets': [1, 2],
-	                    'width': '20%'
-	                },
-	                {
-	                    'targets': [3, 4, 5],
-	                    'width': '15%'
-	                },
-	                {   'targets': [6],
-	                	'visible': false
-	                },
-	                {
-	                	"targets"   : [ 5 ],
-	                    "orderable" : false,
-	                    "searchable": false,
-	                    "className" : "center",
-	                    "render"    : function ( data, type, row ) 
-	                    			   {
-	                                        var html = '<input type="button" class="btn btn-success" value="상담신청" id="applyConsulting" onclick="applyConsulting()">';
-	                                        return html;
-	                                    }
-	                    }
-	            ],
-	            'searching': false,
-	            'paging': true,
-	            'bDestroy': true,
-	            'scrollX': false,
-	            'destroy': true
-	        });
-	    }
-		
 	    function changeCollege() 
 	    {
 	    	var college = $('#selectCollege').val();
@@ -437,7 +372,7 @@
 	    }
 	    
 	    // 교수 조회
-	    function selectProfessortest()
+	    function selectProfessor()
 	    {
 	    	var profName = $("#searchProfName").val();
 	    	var profCollege = $("#selectCollege").val();
@@ -495,14 +430,9 @@
 	    }
 	    
 	    // 상담 신청 
-	    function applyConsulting()
+	    function applyConsulting(event)
 	    {
 	    	var profId = event.target.nextElementSibling.value;
-	    	var test = table.row(this).data();
-	    	console.log(test);
-	    	/* var profId = test.profId; */
-	    	/* console.log(profId); */
-	    	
 	        
 	        if(confirm("신청하시겠습니까?"))
 	    	{
