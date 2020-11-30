@@ -7,7 +7,8 @@
 
     <!-- typeAliases -->
     <typeAliases>
-    	<typeAlias type="com.kh.univ.grade.model.vo.Grade" alias="Grade"/>    	
+    	<typeAlias type="com.kh.univ.grade.model.vo.Grade" alias="Grade"/> 
+    	<typeAlias type="com.kh.univ.grade.model.vo.StudentGrade" alias="StdGrade"/>   	
 		<typeAlias type="com.kh.univ.member.model.vo.Student" alias="Student"/>
 		<typeAlias type="com.kh.univ.member.model.vo.Professor" alias="Professor"/>
 		<typeAlias type="com.kh.univ.member.model.vo.Department" alias="Department"/>
@@ -71,6 +72,7 @@
         <mapper resource="mappers/classBoard/classBoard-mapper.xml"/>
         <mapper resource="mappers/board/board-mapper.xml"/> 
         <mapper resource="mappers/register/register-mapper.xml"/>
+        <mapper resource="mappers/grade/grade-mapper.xml"/>
         
         <!-- 관리자 mappers -->
         <mapper resource="mappers/admin/adminStudent-mapper.xml"/>

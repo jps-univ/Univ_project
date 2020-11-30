@@ -12,6 +12,7 @@ public class GradeDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
+	
 	public ArrayList<StudentGrade> selectList(int i) {
 		// TODO Auto-generated method stub
 		return (ArrayList)sqlSession.selectList("GradeMapper.selectList",i);
