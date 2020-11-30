@@ -370,6 +370,12 @@ public class LectureController {
         return "ok";
     }
 
+    /**
+     * 강의 삭제요청,수정요청을 하기 위해 리스트를 뽑아옴
+     * @param session
+     * @return
+     * @throws JsonProcessingException
+     */
     @ResponseBody
     @RequestMapping(value = "getDeleteTable.do", produces = "application/json; charset=utf-8")
     public String getDeleteTable(HttpSession session) throws JsonProcessingException {
@@ -381,5 +387,19 @@ public class LectureController {
         String jsonStr = mapper.writeValueAsString(list);
         return jsonStr;
 
+    }
+
+    /**
+     * 삭제요청이지만 사실 데이터베이스에서는 삭제가 아니라 업데이트로 상태값을 바꿔준다.
+     * @param classSeq
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "requestDeleteClass.do", produces = "application/json; charset=utf-8")
+    public String requestDeleteClass(int classSeq){
+        int result = lectureService.requestDeleteClass(classSeq);
+        if (result > 0){
+            return "ok";
+        }else return "fail";
     }
 }

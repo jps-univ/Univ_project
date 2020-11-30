@@ -41,6 +41,16 @@
         td.dt-body-center {
             text-align: center;
         }
+        .top {
+            background-color: #edf1fc;
+            border-bottom: solid #4e73df;
+            height: 100px;
+            padding: 40px;
+            position: relative;
+            bottom: 25px;
+            white-space: nowrap;
+            color: #4e73df;
+        }
     </style>
     <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
     <script>
@@ -60,7 +70,16 @@
                     {'data': 'classType'},
                     {'data': 'classYear'},
                     {'data': 'classSemester'},
-                    {'data': 'classApprove'}
+                    {
+                        'data': 'classApprove',
+                        'render': function (data, type, row) {
+                            if (row.classApprove === 'Y') {
+                                return '<p style="margin: 0%">승인</p>'
+                            }else if (row.classApprove === 'YW') {
+                                return '<p style="margin: 0%">승인대기</p>'
+                            }
+                        }
+                    }
                 ],
                 'columnDefs': [
                     {
@@ -69,6 +88,36 @@
                         'className': 'classSeq'
                     }
                 ]
+            });
+            $('#deleteRqTable').off('click').on('click', 'tbody tr', function () {
+                var mySelectedIndex = table.row(this).data();
+                var seq = mySelectedIndex.classSeq;
+                var con = confirm("정말 해당과목을 삭제요청하시겠습니까?");
+
+                // $('#myRegisterTable tbody tr ').css({
+                //     'color' : 'red'
+                // });
+                // var selectedIndex = table.row(this).data();
+                if (con == true) {
+                    console.log(mySelectedIndex);
+                    $.ajax({
+                        url: 'requestDeleteClass.do',
+                        type: 'post',
+                        data: {
+                            classSeq: seq
+                        }, dataType: 'text'
+                        , success: function (data) {
+                            alert(data);
+                            table.ajax.reload();
+                        }, error: function (error) {
+                            console.log(error);
+                            alert("에러발생");
+                        }
+                    });
+                } else if (con == false) {
+                    return;
+                }
+
             });
         });
     </script>
@@ -93,19 +142,21 @@
                 <!-- Topbar -->
                 <c:import url="../common/topbar_professor.jsp"/>
                 <!-- End of Topbar -->
-
+                <div class="top">
+                    <h1>강의삭제</h1>
+                </div>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-1 text-gray-800">강의삭제</h1>
+                    <h1 class="h3 mb-1 text-gray-800"></h1>
 
 
                     <!-- Content Row -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3" style="height: 75px;">
                             <div>
-                                <p id="explain1">강의 삭제 요청 페이지입니다.</p>
+                                <p id="explain1">강의 삭제 요청 페이지입니다. <br>
                             </div>
                         </div>
                         <div class="card-body">
@@ -131,9 +182,7 @@
                             </div>
                         </div>
                         <div id="buttonArea1" class=" card-body" align="center">
-                            <button id="deleteBtn" class="btn btn-success"
-                                    onclick="">삭제요청
-                            </button>
+
                         </div>
 
                     </div>
