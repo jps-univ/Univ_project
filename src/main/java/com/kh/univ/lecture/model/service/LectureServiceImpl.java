@@ -103,5 +103,10 @@ public class LectureServiceImpl implements LectureService {
         return lectureDao.getDeleteTable(profId);
     }
 
+    @Override
+    public int requestDeleteClass(int classSeq) {
+        return lectureDao.requestDeleteClass(classSeq);
+    }
+
 
 }

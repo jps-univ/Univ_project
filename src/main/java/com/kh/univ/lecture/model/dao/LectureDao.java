@@ -81,4 +81,8 @@ public class LectureDao {
     public ArrayList<Lecture> getDeleteTable(int profId) {
         return (ArrayList)sqlSession.selectList("lectureMapper.getDeleteTable",profId);
     }
+
+    public int requestDeleteClass(int classSeq) {
+        return sqlSession.update("lectureMapper.requestDeleteClass", classSeq);
+    }
 }

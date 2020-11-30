@@ -49,4 +49,6 @@ public interface LectureService {
 
     // 교수의 삭제요청할 테이블을 갖고옴
     ArrayList<Lecture> getDeleteTable(int profId);
+
+    int requestDeleteClass(int classSeq);
 }

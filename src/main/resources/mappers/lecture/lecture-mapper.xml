@@ -192,10 +192,10 @@
         WHERE CLASS_CODE=#{classCode}
           AND CLASS_APPROVE = 'Y'
     </select>
-<!--    교수 강의등록요청할때 승인상태를 N으로 해서 디비에넣음-->
+<!--    교수 강의등록요청할때 승인상태를 Y Wait (웨이트) 으로 해서 디비에넣음-->
     <insert id="requestRegisterClass" parameterType="Lecture">
         INSERT INTO TB_CLASS
-        VALUES (SEQ_CLASS.nextval,#{classCode},#{deptCode},#{profId},#{className},#{room},#{gradeSize},#{classSemester},#{classYear},'N',#{classLevel},#{classType})
+        VALUES (SEQ_CLASS.nextval,#{classCode},#{deptCode},#{profId},#{className},#{room},#{gradeSize},#{classSemester},#{classYear},'YW',#{classLevel},#{classType})
     </insert>
 <!--    클래스시퀀스를 가져와서 거기에 맞는 시간표를 함께 넣기위함-->
     <select id="selectClassSeq" parameterType="string" resultType="_int">
@@ -213,5 +213,11 @@
         SELECT CLASS_SEQ, CLASS_CODE, CLASS_NAME, ROOM, CLASS_TYPE, CLASS_YEAR, CLASS_SEMESTER, CLASS_APPROVE
         FROM TB_CLASS
         WHERE PROFESSOR_ID=#{profId}
+        AND (CLASS_APPROVE = 'Y' OR CLASS_APPROVE = 'YW')
     </select>
+<!--    교수가 삭제요청하면 상태값을 DW로 요청-->
+    <update id="requestDeleteClass" parameterType="Lecture">
+        UPDATE TB_CLASS SET CLASS_APPROVE='DW'
+        WHERE CLASS_SEQ = #{classSeq}
+    </update>
 </mapper>
