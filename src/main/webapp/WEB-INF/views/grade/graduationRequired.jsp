@@ -163,6 +163,23 @@
 	<!-- Logout Modal-->
 	<c:import url="../common/logoutModal.jsp" />
 
+	<script>
+		$(document).ready(function(){
+			var table = $('#graduation-t').DataTable({
+				ajax:{
+					'url':'MOCK_DATA.json',
+					'dataSrc':''
+				},
+				columns:[
+					{"data":"marjor_sortation"},
+					{"data":"required_grade"},
+					{"data":"present_grade"},
+					{"data":"completion_status"},
+					{"data":"comment"}
+				]
+			});
+		});
+	</script>
 	<!-- Bootstrap core JavaScript-->
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
 	<script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

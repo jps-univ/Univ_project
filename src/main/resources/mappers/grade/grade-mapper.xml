@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="GradeMapper">
+<resultMap id="GradeResultSet" type="StudentGrade">
+	<id property="stdId" column="STUDENT_ID"/>
+	<result property="classYear" column="CLASS_YEAR"/>
+	<result property="className" column="CLASS_NAME"/>
+	<result property="gradePoint" column="GRADE_POINT"/>
+	<result property="gradeSize" column="GRADE_SIZE"/>
+	<result property="classType" column="CLASS_TYPE"/>
+	
+</resultMap>
+
+
+ <select id="selectList" resultMap="StudentGrade">
+ 	SELECT
+ 		CLASS_YEAR,
+ 		CLASS_NAME,
+ 		GRADE_POINT,
+ 		GRADE_SIZE,
+ 		CLASS_TYPE
+ 	FROM
+ 		TB_STUDENT_GRADE
+ 	JOIN TB_STUDENT USING(STUDENT_ID)
+ 	WHERE
+ 	STUDENT_ID = #{stdId}
+ 		
+ </select>
+   
+   
+   
+</mapper>

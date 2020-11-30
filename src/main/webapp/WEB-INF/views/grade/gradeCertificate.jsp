@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
 <html lang="ko">
 
@@ -42,7 +44,8 @@
 
 		<!-- Content Wrapper -->
 		<div id="content-wrapper" class="d-flex flex-column">
-
+			<c:if test="${!empty sessionScope.loginUser }">
+			</c:if>
 			<!-- Main Content -->
 			<div id="content">
 
@@ -64,6 +67,10 @@
   <p class="HStyle0">
   <div style="margin: auto;">
       <table border="1" cellspacing="0" cellpadding="0" style='border-collapse:collapse;border:none;'>
+         	
+            <c:set var="birth" value="${ loginUser.stdBirth }"/>
+            <c:set var="department" value="${loginUser.stdDepartment }"/>
+            <c:forEach var="g" items="${list }">
           <tr>
               <td  rowspan="2" width="53" height="50" valign="middle"
                   style='border-left:solid #000000 1.1pt;border-right:solid #000000 0.4pt;border-top:solid #000000 1.1pt;border-bottom:solid #000000 0.4pt;padding:1.4pt 1.4pt 1.4pt 1.4pt'>
@@ -71,7 +78,7 @@
               </td>
               <td rowspan="2" width="149" height="50" valign="middle"
                   style='border-left:solid #000000 0.4pt;border-right:solid #000000 0.4pt;border-top:solid #000000 1.1pt;border-bottom:solid #000000 0.4pt;padding:1.4pt 1.4pt 1.4pt 1.4pt'>
-                  <p class="HStyle0" style='text-align:center;'>&nbsp;</p>
+                  <p class="HStyle0" style='text-align:center;'>${loginUser.stdId }</p>
               </td>
               <td rowspan="2" width="66" height="50" valign="middle"
                   style='border-left:solid #000000 0.4pt;border-right:solid #000000 0.4pt;border-top:solid #000000 1.1pt;border-bottom:solid #000000 0.4pt;padding:1.4pt 1.4pt 1.4pt 1.4pt'>
@@ -81,7 +88,7 @@
               </td>
               <td width="136" height="26" valign="middle"
                   style='border-left:solid #000000 0.4pt;border-right:solid #000000 0.4pt;border-top:solid #000000 1.1pt;border-bottom:dotted #000000 0.4pt;padding:1.4pt 1.4pt 1.4pt 1.4pt'>
-                  <p class="HStyle0" style='text-align:center;'>&nbsp;</p>
+                  <p class="HStyle0" style='text-align:center;'>${loginUser.stdName }</p>
               </td>
               <td rowspan="2" colspan="2" width="202" height="50" valign="middle"
                   style='border-left:solid #000000 0.4pt;border-right:solid #000000 0.4pt;border-top:solid #000000 1.1pt;border-bottom:solid #000000 0.4pt;padding:1.4pt 1.4pt 1.4pt 1.4pt'>
@@ -94,7 +101,9 @@
               </td>
               <td rowspan="2" width="150" height="50" valign="middle"
                   style='border-left:solid #000000 0.4pt;border-right:solid #000000 0.4pt;border-top:solid #000000 1.1pt;border-bottom:solid #000000 0.4pt;padding:1.4pt 1.4pt 1.4pt 1.4pt'>
-                  <p class="HStyle0" style='text-align:center;'>&nbsp;</p>
+                  <p class="HStyle0" style='text-align:center;'>
+                  	<c:out value="${loginUser.stdEntrance }"/>
+                  </p>
               </td>
               <td rowspan="2" width="50" height="50" valign="middle"
                   style='border-left:solid #000000 0.4pt;border-right:solid #000000 0.4pt;border-top:solid #000000 1.1pt;border-bottom:solid #000000 0.4pt;padding:1.4pt 1.4pt 1.4pt 1.4pt'>
@@ -119,7 +128,20 @@
               </td>
               <td width="149" height="41" valign="middle"
                   style='border-left:solid #000000 0.4pt;border-right:solid #000000 0.4pt;border-top:solid #000000 0.4pt;border-bottom:solid #000000 0.4pt;padding:1.4pt 1.4pt 1.4pt 1.4pt'>
-                  <p class="HStyle0" style='text-align:center;line-height:130%;'>&nbsp;</p>
+                  
+                  <p class="HStyle0" style='text-align:center;line-height:130%;'>
+            			<c:set var="gender" value="${ fn:substring(birth, 7, 8) }"/>
+            			<c:if test="${gender eq 1 or gender eq 3 }">
+            				(남)
+            				
+            			</c:if>
+            			
+            			<c:if test="${gender eq 2 or gender eq 4 }">
+            				(여)
+            				
+            			</c:if>
+						
+                  </p>
               </td>
               <td width="66" height="41" valign="middle"
                   style='border-left:solid #000000 0.4pt;border-right:solid #000000 0.4pt;border-top:solid #000000 0.4pt;border-bottom:solid #000000 0.4pt;padding:1.4pt 1.4pt 1.4pt 1.4pt'>
@@ -127,7 +149,11 @@
               </td>
               <td width="136" height="41" valign="middle"
                   style='border-left:solid #000000 0.4pt;border-right:solid #000000 0.4pt;border-top:solid #000000 0.4pt;border-bottom:solid #000000 0.4pt;padding:1.4pt 1.4pt 1.4pt 1.4pt'>
-                  <p class="HStyle0" style='text-align:center;line-height:130%;'>&nbsp;</p>
+                  <p class="HStyle0" style='text-align:center;line-height:130%;'>
+                  	
+					 ${ fn:substring(birth, 0, 2) }.${ fn:substring(birth, 2, 4) }.${ fn:substring(birth, 4, 6) }
+												
+                  </p>
               </td>
               <td width="67" height="41" valign="middle"
                   style='border-left:solid #000000 0.4pt;border-right:solid #000000 0.4pt;border-top:solid #000000 0.4pt;border-bottom:solid #000000 0.4pt;padding:1.4pt 1.4pt 1.4pt 1.4pt'>
@@ -135,7 +161,10 @@
               </td>
               <td colspan="5" width="516" height="41" valign="middle"
                   style='border-left:solid #000000 0.4pt;border-right:solid #000000 1.1pt;border-top:solid #000000 0.4pt;border-bottom:solid #000000 0.4pt;padding:1.4pt 1.4pt 1.4pt 1.4pt'>
-                  <p class="HStyle0">&nbsp;</p>
+                  <p class="HStyle0" >
+                  	<c:out value="${loginUser.stdDepartment }"/>
+                  	
+                  </p>
               </td>
           </tr>
           <tr>
@@ -164,7 +193,9 @@
           <tr>
               <td rowspan="6" colspan="2" width="202" height="382" valign="middle"
                   style='border-left:solid #000000 1.1pt;border-right:solid #000000 0.4pt;border-top:solid #000000 0.4pt;border-bottom:solid #000000 1.1pt;padding:1.4pt 1.4pt 1.4pt 1.4pt'>
-                  <p class="HStyle0"><span style='letter-spacing:-4%;'>&nbsp;</span></p>
+                  <p class="HStyle0"><span style='letter-spacing:-4%;' value="${g.classType }">
+                  	
+                  </span></p>
               </td>
               <td rowspan="6" colspan="2" width="202" height="382" valign="middle"
                   style='border-left:solid #000000 0.4pt;border-right:solid #000000 0.4pt;border-top:solid #000000 0.4pt;border-bottom:solid #000000 1.1pt;padding:1.4pt 1.4pt 1.4pt 1.4pt'>
@@ -218,6 +249,7 @@
                   <p class="HStyle0" style='text-align:center;'><span style='font-weight:bold;'>&nbsp;</span></p>
               </td>
           </tr>
+          </c:forEach>
       </table>
       </p>
 
@@ -227,6 +259,8 @@
       <p class="HStyle0" style='line-height:130%;'>&nbsp;별도지정교과목: S(급제) U(낙제) 단, 평점은 부여하지 않음.</p>
 
       <p class="HStyle0"><br /></p>
+      
+      
   </div>
      
 <!-- Footer -->
@@ -246,22 +280,13 @@
 
 	<!-- Logout Modal-->
 	<c:import url="../common/logoutModal.jsp" />
+	
 	<script>
-		//데이터 넣어야합니다~
 		$(document).ready(function(){
-			var table = $('#grade-top').DataTable({
-				'url' : 'gradeCertificate.do',
-				'type' : 'get',
-				'data' : {
-					
-				},
-				'columns': [
-					
-				],
-			
-			});
+				
 		});
 	</script>
+	
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
