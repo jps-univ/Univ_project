@@ -6,6 +6,7 @@ import java.util.Map;
 import com.kh.univ.classBoard.vo.PageInfo;
 import com.kh.univ.consulting.model.vo.Consulting;
 import com.kh.univ.lecture.model.vo.Lecture;
+import com.kh.univ.member.model.vo.Image;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
 
@@ -97,4 +98,18 @@ public interface StudentMyPageService
 	int getProfCount(Map map);
 
 	ArrayList<Professor> selectProfessor2(PageInfo pi);
+
+	/**
+	 * 학생 이미지 저장
+	 * @param i
+	 * @return
+	 */
+	int insertStdImage(Image i);
+
+	/**
+	 * 학생 이미지 조회
+	 * @param sessionStudent
+	 * @return
+	 */
+	ArrayList<Image> selectStdImage(Student student);
 }

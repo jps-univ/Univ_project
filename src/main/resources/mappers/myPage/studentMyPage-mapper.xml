@@ -227,6 +227,15 @@
     	<result property="profName" column="NAME"/>
     </resultMap>
     
+    <!-- 이미지 ResultMap -->
+    <resultMap id="ImageResultSet" type="Image">
+    	<id property="imageNo" column="IMAGE_NO"/>
+    	<result property="stdId" column="STUDENT_ID"/>
+    	<result property="profId" column="PROFESSOR_ID"/>
+    	<result property="originalImageName" column="ORIGINAL_IMAGENAME"/>
+    	<result property="renameImageName" column="RENAME_IMAGENAME"/>
+    </resultMap>
+    
  	<!-- 학생 개인정보 변경 -->
  	<update id="changeStdPersonalInfo">
  		UPDATE TB_STUDENT SET
@@ -388,5 +397,19 @@
 		FROM TB_PROFESSOR P
 		LEFT OUTER JOIN TB_DEPARTMENT D ON P.DEPARTMENT_CODE = D.DEPARTMENT_CODE
 		LEFT OUTER JOIN TB_COLLEGE C ON D.COLLEGE_CODE = C.COLLEGE_CODE
+ 	</select>
+ 	
+ 	<!-- 이미지 저장 -->
+ 	<insert id="insertStdImage">
+		INSERT INTO TB_IMAGE
+		(IMAGE_NO, STUDENT_ID, ORIGINAL_IMAGENAME, RENAME_IMAGENAME)
+		VALUES
+		(SEQ_IMAGE.NEXTVAL, #{stdId}, #{originalImageName}, #{renameImageName})
+ 	</insert>
+ 	
+ 	<!-- 이미지 조회 -->
+ 	<select id="selectStdImage" resultMap="ImageResultSet">
+ 		SELECT * FROM TB_IMAGE
+ 		WHERE STUDENT_ID = #{stdId}
  	</select>
  </mapper>

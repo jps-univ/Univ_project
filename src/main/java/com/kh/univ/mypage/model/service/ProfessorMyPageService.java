@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.kh.univ.consulting.model.vo.Consulting;
 import com.kh.univ.lecture.model.vo.Lecture;
+import com.kh.univ.member.model.vo.Image;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
 
@@ -86,4 +87,18 @@ public interface ProfessorMyPageService
 	 * @return
 	 */
 	int changeConsulting(Consulting consulting);
+
+	/**
+	 * 교수 이미지 저장
+	 * @param i
+	 * @return
+	 */
+	int insertProfImage(Image i);
+
+	/**
+	 * 교수 이미지 조회
+	 * @param professor
+	 * @return
+	 */
+	ArrayList<Image> selectProfImage(Professor professor);
 }

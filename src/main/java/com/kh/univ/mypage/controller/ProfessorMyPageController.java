@@ -1,9 +1,12 @@
 package com.kh.univ.mypage.controller;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +14,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.univ.consulting.model.vo.Consulting;
 import com.kh.univ.lecture.model.vo.Lecture;
+import com.kh.univ.member.model.vo.Image;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
 import com.kh.univ.mypage.model.service.ProfessorMyPageService;
@@ -35,14 +41,26 @@ public class ProfessorMyPageController
 		Professor sessioProfessor = (Professor)session.getAttribute("loginUser");
 
 		Professor profDepartment = mpService.selectProfDepartment(sessioProfessor);
+		ArrayList<Image> profImage = mpService.selectProfImage(sessioProfessor);
 
 		String departmentName = profDepartment.getDepartmentName();
 		String collegeCode = profDepartment.getCollegeCode();
 		String collegeName = profDepartment.getCollegeName();
+		Image image;
+		
+		if(profImage.isEmpty())
+		{
+			image = null;
+		}
+		else
+		{
+			image = profImage.get(profImage.size() - 1);
+		}
 
 		mv.addObject("department", departmentName);
 		mv.addObject("college", collegeCode);
 		mv.addObject("college", collegeName);
+		mv.addObject("image", image);
 
 		mv.setViewName("myPage/professorInfo");
 
@@ -262,5 +280,79 @@ public class ProfessorMyPageController
 			return "fail";
 		}
 	}
-
+	
+	@RequestMapping("insertProfImage.do")
+	public String insettImage(HttpSession session, HttpServletRequest request, Image i, @RequestParam(name="uploadImage", required=false) MultipartFile file)
+	{
+		Professor professor = (Professor)session.getAttribute("loginUser");
+		String profId = Integer.toString(professor.getProfId());
+		
+		if(!file.getOriginalFilename().equals(""))
+		{
+			// 서버에 업로드 진행
+			// saveFile 메소드 : 저장하고자 하는 file과 request를 전달해서 서버에 업로드시키고 저장된 파일명을 반환해주는 메소드
+			String renameFileName = saveFile(profId, file, request);
+			
+			// 파일이 잘 저장된 경우
+			if(renameFileName != null)
+			{
+				i.setProfId(professor.getProfId());
+				i.setOriginalImageName(file.getOriginalFilename());
+				i.setRenameImageName(renameFileName);
+			}
+		}
+		
+		System.out.println(i);
+		int result = mpService.insertProfImage(i);
+		
+		if(result > 0)
+		{
+			return "redirect:professor_info.do";
+		}
+		else
+		{
+			return "common/errorPage";
+		}
+	}
+	
+	public String saveFile(String profId, MultipartFile file, HttpServletRequest reqeust)
+	{
+		// 파일이 저장된 경로를 설정하자
+		// 웹 서버 contextPath를 불러와서 폴더의 경로를 가져온다.(webapp하위의 resources)
+		// D:\spring\workspace1\springProject\src\main\webapp\resources
+		String root = reqeust.getSession().getServletContext().getRealPath("resources");
+		
+		// root 하위의 buploadFiles 폴더를 연결
+		// \를 문자로 인식하기 위해서는 \\를 사용한다.
+		// D:\spring\workspace1\springProject\src\main\webapp\resources\buploadFiles
+		String savePath = root + "\\uploadProfImage";
+		
+		File folder = new File(savePath);		// savePath의 폴더를 불러온다.
+		
+		if(!folder.exists())
+		{
+			// 폴더가 없으면 만들어라.
+			folder.mkdirs();
+		}
+		
+		// 원본 파일명을 년월시분초.파일확장자명으로 변경
+		String originalFileName = file.getOriginalFilename();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		// 20200929191535.png
+		String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "." + originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
+		
+		String renamePath = folder + "\\" + profId + "_" + renameFileName;		// 실제 저장될 파일 경로 + 파일명
+		
+		try
+		{
+			file.transferTo(new File(renamePath)); 				// 전달받은 file이 rename명으로 이때 서버에 저장된다.
+		}
+		catch(Exception e)
+		{
+			System.out.println("파일 전송 에러 : " + e.getMessage());
+		}
+		
+		return renameFileName;
+	}
 }
