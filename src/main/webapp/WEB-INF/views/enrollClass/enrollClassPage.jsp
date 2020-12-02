@@ -159,7 +159,7 @@
                 'destroy': true,
                 'scrollX': false,
                 'language': lang_kor,
-                "lengthMenu": [ 5, 10, 25, 50, 75 ]
+                "lengthMenu": [ 10, 25, 50, 75 ]
             });
 
 

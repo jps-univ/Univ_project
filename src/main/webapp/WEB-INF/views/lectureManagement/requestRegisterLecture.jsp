@@ -42,18 +42,18 @@
             text-align: center;
         }
 
-        span.guide {
+        span.guide, span.tguide {
             display: none;
             font-size: 12px;
             top: 12px;
             right: 10px;
         }
 
-        span.ok {
+        span.ok, span.tok {
             color: green;
         }
 
-        span.error1 {
+        span.error1, span.terror1 {
             color: red;
         }
 
@@ -84,7 +84,33 @@
             $('.addPlan').hide();
             $('#buttonArea2').hide();
             $('#explain2').hide();
-            $('.addArea tr th:nth-child(2)').css({})
+            // $('.addArea tr th:nth-child(2)').css({})
+        });
+        // select[name*='daySelect']
+        $(document).on("click, change", "input[name*='hourInput']", function () {
+            dayHour = $(this).prev().val() + $(this).val();
+            var classYear = $('#classYear').val();
+            var classSemester = $('#classSemester').val();
+            console.log(dayHour);
+            $.ajax({
+                url: 'timeDupCheck.do',
+                data: {
+                    classYear:classYear,
+                    classSemester:classSemester,
+                    dayHour: dayHour
+                }, success: function (data) {
+                    if (data == "ok") {
+                        $(".terror1").hide();
+                        $(".tok").show();
+                        $("#timeDupCheck").val(1);
+                    } else {
+                        $(".terror1").show();
+                        $(".tok").hide();
+                        $("#timeDupCheck").val(0);
+                    }
+                }, error: function (request, status, errorData) {
+                }
+            });
         });
 
     </script>
@@ -203,6 +229,7 @@
                                             </button>
                                             <script>
                                                 $(document).on('click', 'button[name=addDays]', function () {
+                                                    if ($("#timeDupCheck").val()==1 && !(dayHour.includes('undefined'))){
                                                     var addDays = "";
                                                     addDays += '<tr name="lectureTime">';
                                                     addDays += '<th>강의시간</th>';
@@ -225,14 +252,23 @@
                                                     var trDays = $("tr[name=lectureTime]:last");
                                                     // $('.addAtrea').append(addDays);
                                                     trDays.after(addDays);
+                                                    $("#timeDupCheck").val(0);
+                                                    }else return false;
                                                 });
                                                 $(document).on('click', 'button[name=delDays]', function () {
-
+                                                    $(".terror1").hide();
+                                                    $(".tok").show();
+                                                    $("#timeDupCheck").val(1);
                                                     var trDays = $(this).parent().parent();
                                                     trDays.remove();
                                                 });
 
                                             </script>
+                                            <span class="tguide tok">사용가능 시간</span><span class="tguide terror1">중복된 시간표 존재</span>
+                                            <input type="hidden"
+                                                   name="timeDupCheck"
+                                                   id="timeDupCheck"
+                                                   value="0"/>
                                         </th>
                                     </tr>
 
@@ -271,77 +307,92 @@
                                     <tr>
                                         <td>1주차</td>
                                         <td><input type="text" style="width: 75%" name="topic"></td>
-                                        <td><textarea style="resize: none; height:75px; width: 100%;" name="weekPlan"></textarea></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"
+                                                      name="weekPlan"></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>2주차</td>
                                         <td><input type="text" style="width: 75%" name="topic"></td>
-                                        <td><textarea style="resize: none; height:75px; width: 100%;" name="weekPlan"></textarea></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"
+                                                      name="weekPlan"></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>3주차</td>
                                         <td><input type="text" style="width: 75%" name="topic"></td>
-                                        <td><textarea style="resize: none; height:75px; width: 100%;" name="weekPlan"></textarea></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"
+                                                      name="weekPlan"></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>4주차</td>
                                         <td><input type="text" style="width: 75%" name="topic"></td>
-                                        <td><textarea style="resize: none; height:75px; width: 100%;" name="weekPlan"></textarea></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"
+                                                      name="weekPlan"></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>5주차</td>
                                         <td><input type="text" style="width: 75%" name="topic"></td>
-                                        <td><textarea style="resize: none; height:75px; width: 100%;" name="weekPlan"></textarea></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"
+                                                      name="weekPlan"></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>6주차</td>
                                         <td><input type="text" style="width: 75%" name="topic"></td>
-                                        <td><textarea style="resize: none; height:75px; width: 100%;" name="weekPlan"></textarea></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"
+                                                      name="weekPlan"></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>7주차</td>
                                         <td><input type="text" style="width: 75% " name="topic"></td>
-                                        <td><textarea style="resize: none; height:75px; width: 100%;" name="weekPlan"></textarea></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"
+                                                      name="weekPlan"></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>8주차</td>
                                         <td><input type="text" style="width: 75%" name="topic"></td>
-                                        <td><textarea style="resize: none; height:75px; width: 100%;" name="weekPlan"></textarea></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"
+                                                      name="weekPlan"></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>9주차</td>
                                         <td><input type="text" style="width: 75%" name="topic"></td>
-                                        <td><textarea style="resize: none; height:75px; width: 100%;" name="weekPlan"></textarea></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"
+                                                      name="weekPlan"></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>10주차</td>
                                         <td><input type="text" style="width: 75%" name="topic"></td>
-                                        <td><textarea style="resize: none; height:75px; width: 100%;" name="weekPlan"></textarea></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"
+                                                      name="weekPlan"></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>11주차</td>
                                         <td><input type="text" style="width: 75%" name="topic"></td>
-                                        <td><textarea style="resize: none; height:75px; width: 100%;" name="weekPlan"></textarea></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"
+                                                      name="weekPlan"></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>12주차</td>
                                         <td><input type="text" style="width: 75%" name="topic"></td>
-                                        <td><textarea style="resize: none; height:75px; width: 100%;" name="weekPlan"></textarea></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"
+                                                      name="weekPlan"></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>13주차</td>
                                         <td><input type="text" style="width: 75%" name="topic"></td>
-                                        <td><textarea style="resize: none; height:75px; width: 100%;" name="weekPlan"></textarea></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"
+                                                      name="weekPlan"></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>14주차</td>
                                         <td><input type="text" style="width: 75%" name="topic"></td>
-                                        <td><textarea style="resize: none; height:75px; width: 100%;" name="weekPlan"></textarea></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"
+                                                      name="weekPlan"></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>15주차</td>
                                         <td><input type="text" style="width: 75%" name="topic"></td>
-                                        <td><textarea style="resize: none; height:75px; width: 100%;" name="weekPlan"></textarea></td>
+                                        <td><textarea style="resize: none; height:75px; width: 100%;"
+                                                      name="weekPlan"></textarea></td>
                                     </tr>
 
                                     </tbody>
@@ -355,8 +406,8 @@
                             </button>
                             <script>
                                 var ajaxResult = "";
-                                var dayList = "";
-                                var hourList = "";
+                                var dayList = [];
+                                var hourList = [];
 
                                 function registerClass() {
                                     $.ajax({
@@ -381,6 +432,20 @@
                                     });
                                 }
 
+
+                                function checkClassTime() {
+                                    for (var i = 0; i < $("select[name*='daySelect']").length; i++) {
+                                        dayList.push($("select[name*='daySelect']").eq(i).val());
+                                        // dayList += $("select[name*='daySelect']").eq(i).val();
+                                        // dayList += ',';
+                                    }
+                                    for (var i = 0; i < $("input[name*='hourInput']").length; i++) {
+                                        hourList.push($("input[name*='hourInput']").eq(i).val());
+                                        // hourList += $("input[name*='hourInput']").eq(i).val();
+                                        // hourList += ',';
+                                    }
+                                }
+
                                 function registerClassTime() {
                                     $.ajax({
                                         url: "requestRegisterTime.do",
@@ -397,16 +462,6 @@
                                     });
                                 }
 
-                                function checkClassTime() {
-                                    for (var i = 0; i < $("select[name*='daySelect']").length; i++) {
-                                        dayList += $("select[name*='daySelect']").eq(i).val();
-                                        dayList += ',';
-                                    }
-                                    for (var i = 0; i < $("input[name*='hourInput']").length; i++) {
-                                        hourList += $("input[name*='hourInput']").eq(i).val();
-                                        hourList += ',';
-                                    }
-                                }
 
                                 function checkRegister() {
                                     if ($("#codeDuplicateCheck").val() == 0) {
@@ -414,6 +469,9 @@
                                         $("#codeDuplicateCheck").focus();
                                         return false;
 
+                                    } else if ($("#timeDupCheck").val() == 0){
+                                        alert("시간표를 확인해주세요.");
+                                        return false;
                                     } else {
                                         if (confirm("확인을 누르시면 등록 요청 후 강의계획서 입력창으로 이동합니다.") === true) {
 
@@ -463,12 +521,13 @@
                                             }
                                         });
                                     });
-
                                 });
+
                             </script>
                         </div>
                         <div id="buttonArea2" class="buttonArea card-body" align="center">
-                            <button id="addNext" class="btn btn-secondary" onclick="requestRegisterPlan();">다음에 저장</button>
+                            <button id="addNext" class="btn btn-secondary" onclick="requestRegisterPlan();">다음에 저장
+                            </button>
                             <button id="addPlanBtn" class="btn btn-success" onclick="requestRegisterPlan();">강의계획서 첨부
                             </button>
                             <script>
@@ -478,6 +537,7 @@
                                     addWeekPlan();
 
                                 }
+
                                 function addThreeItem() {
                                     $.ajax({
                                         url: "addThreeItem.do",
@@ -486,7 +546,7 @@
                                             classTarget: $("#classTarget").val(),
                                             classOutline: $("#classOutline").val(),
                                             classBook: $("#classBook").val()
-                                        },dataType:'text',
+                                        }, dataType: 'text',
                                         success: function (data) {
                                             console.log(data)
                                         }, error: function () {
@@ -498,7 +558,7 @@
                                 function addWeekPlan() {
                                     var weekPlanArray = [];
                                     var topicArray = [];
-                                    for (var i = 0; i < 15 ; i++){
+                                    for (var i = 0; i < 15; i++) {
                                         weekPlanArray.push(document.getElementsByName("weekPlan")[i].value);
                                         topicArray.push(document.getElementsByName("topic")[i].value);
                                     }
@@ -509,13 +569,13 @@
                                         url: "addWeekPlan.do",
                                         data: {
                                             //JSON 문자열로 바꿔준다.
-                                            classCode:$('#classCode').val(),
-                                            weekPlanArray:weekPlanArray,
-                                            topicArray:topicArray
-                                        },dataType:'text',
-                                        success:function (data) {
+                                            classCode: $('#classCode').val(),
+                                            weekPlanArray: weekPlanArray,
+                                            topicArray: topicArray
+                                        }, dataType: 'text',
+                                        success: function (data) {
                                             location.reload();
-                                        },error:function () {
+                                        }, error: function () {
                                             alert("계획서 등록 중 에러")
                                         }
                                     });

@@ -176,8 +176,6 @@
                                         <th>상태</th>
                                     </tr>
                                     </thead>
-                                    <%--                                    commit--%>
-                                    <!-- tbody 태그 필요 없다. -->
                                 </table>
                             </div>
                         </div>
