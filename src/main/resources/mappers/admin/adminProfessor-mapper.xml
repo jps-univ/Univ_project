@@ -58,7 +58,7 @@ VALUES(#{profId},#{profPwd},#{profName},#{profBirth},
 #{profDepartment},#{profImage},#{profPhone},#{profEmail},
 #{profAddress},#{profAddressDetail},#{profBank},#{profAccount},
 #{profAccountHolder},
-#{profSmsAgree},#{profEmailAgree},#{lab},'P','0')
+'N','N',#{lab},'P','0')
 </insert>
 
 <select id="selectAdminProfessorOne" parameterType="Professor" resultMap="ProfessorResultSet">

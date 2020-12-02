@@ -63,7 +63,7 @@
  	INSERT INTO TB_STUDENT 
 	VALUES(#{stdId},#{stdPwd},#{stdName},#{stdBirth},#{stdDepartment},#{stdCourse},
 	#{stdSemester},#{stdEnterDiv},#{stdImage},#{stdPhone},#{stdEmail},#{stdAddress},#{stdAddressDetail},
-	#{stdBank},#{stdAccount},#{stdAccountHolder},#{stdSmsAgree},#{stdEmailAgree},#{stdEntrance},#{stdTel},default)
+	#{stdBank},#{stdAccount},#{stdAccountHolder},'N','N',#{stdEntrance},#{stdTel},default)
  	</insert>
  	
  	

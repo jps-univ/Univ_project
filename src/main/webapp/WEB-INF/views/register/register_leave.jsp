@@ -27,6 +27,7 @@
 	<style>
 
 	</style>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
 	<script src="${contextPath}/resources/js/register_button.js"></script>
 	
@@ -191,7 +192,10 @@
 	       
 	       
 	       function button_leave() {
-	    	    
+	    	   let sock = new SockJS("http://localhost:8181/univ/echo/");
+	    	  
+	    	   sock.send("1");
+	    	    	
 	    		if(confirm("휴학신청하시겠습니까?"))
 	    		{
 	    			var stdStatus =  $('#stdStatus').text();    //학적 상태
@@ -233,13 +237,11 @@
 	    			});
 	    		
 	    		} else{
+	    			
 	    			alert("취소되었습니다.");
 	    		}
 	    	}
-	    	
-	       
-	       
-	   
+	    	   
 	   </script>
 				<!-- 여기까지 내용  -->
 
