@@ -76,6 +76,9 @@
     .question-table th {
     	text-align:center;
     }
+    
+    #main_con{
+    width:95%}
   
   </style>
 </head>
@@ -107,6 +110,7 @@
               <div id="write_title"><p>과제</p></div>
               <div class="col-sm-9 page">
 		        <div id="container">
+                  <div class="card shadow mb-4">  
 		            <div id="rest_table_area">
 		                <table class="table table-bordered question-table">
 		                <colgroup>
@@ -144,7 +148,7 @@
 		                    </thead>
 		                </table>
 		            </div>
-		
+    			  </div>
 		            
 		        </div>
 
@@ -279,7 +283,8 @@
 				              <input type="hidden" id="profId" name="profId" value="${a.profId }">
 				             </td>
 				            <td>
-				              <input type="submit" class="btn btn-secondary" value="제출" id="submitAssign" >
+				              <input type="submit" class="btn btn-secondary" value="제출" id="submitAssign">
+				              <input type="button" class="btn btn-secondary" value="수정" id="modifyAssign">
 				            </td>
 				          </tr>
 		                 </tbody>
@@ -294,7 +299,15 @@
 			
 		</c:if></div>			
 			
+<!-- 			<script>
+				$('#submitAssign').on('click',function(){
+					console.log('제출');
+					$.ajax({
+						url:'submitAg.do'
+					})
+				})
 			
+			</script> -->
 			
 			
 			

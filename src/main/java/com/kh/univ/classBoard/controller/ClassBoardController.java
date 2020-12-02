@@ -25,6 +25,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kh.univ.admin.controller.AdLectureController;
+import com.kh.univ.admin.model.vo.AdClassPlan;
 import com.kh.univ.classBoard.service.ClassBoardService;
 import com.kh.univ.classBoard.vo.ClassAssignment;
 import com.kh.univ.classBoard.vo.ClassNotice;
@@ -40,6 +42,7 @@ public class ClassBoardController {
 
 	@Autowired
 	private ClassBoardService cbService;
+	
 
 	// classSeq
 	// profName
@@ -125,6 +128,9 @@ public class ClassBoardController {
 		out.print(jArr.toJSONString());
 
 	}
+	
+	
+	
 
 	/**
 	 * 
@@ -137,10 +143,15 @@ public class ClassBoardController {
 		session.setAttribute("profName", profName);
 
 		System.out.println("메인넘어갈때 seq : " + classSeq);
-		System.out.println("메인넘어갈때 profName : " + profName);
+		System.out.println("메인넘어갈때 profName : " + profName);		
+		classSeq=110;
+		ArrayList<AdClassPlan> adClassPlanSelect = cbService.adClassPlanSelect(classSeq);
+		System.out.println(adClassPlanSelect);
+
 		mv.addObject("Seq", classSeq);
 		mv.addObject("profN", profName);
-
+		mv.addObject("cPlan", adClassPlanSelect);
+		
 		mv.setViewName("classBoard/classBoardMain");
 
 		return mv;

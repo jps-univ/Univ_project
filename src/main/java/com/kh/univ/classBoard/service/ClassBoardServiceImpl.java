@@ -6,6 +6,7 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.univ.admin.model.vo.AdClassPlan;
 import com.kh.univ.classBoard.dao.ClassBoardDao;
 import com.kh.univ.classBoard.vo.ClassAssignment;
 import com.kh.univ.classBoard.vo.ClassNotice;
@@ -116,6 +117,11 @@ public class ClassBoardServiceImpl implements ClassBoardService {
 	@Override
 	public ArrayList<ReplyAssignment> callObjectionList(HashMap map) {
 		return cbDao.callObjectionList(map);
+	}
+
+	@Override
+	public ArrayList<AdClassPlan> adClassPlanSelect(int classSeq) {
+		return cbDao.adClassPlanSelect(classSeq);
 	}
 
 

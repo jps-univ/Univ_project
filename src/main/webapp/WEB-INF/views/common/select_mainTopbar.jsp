@@ -67,16 +67,16 @@
         <div class="sec_navi shadow">
             <ul id="sec_navibar">
                 <li class="drop" style="margin-left: 10%;"><a href="selectClass.do">수강 과목 조회</a></li>
-                <li class="drop" style="margin-left: 12%;"><a href="#">강의 정보</a></li>
+                <li class="drop" style="margin-left: 12%;"><a class="alertWarn" href="#">강의 정보</a></li>
                     <ul class="drop_submenu">
                         <li><a href="classPlan.do">강의 계획서</a></li> 
                         <li><a href="cNoticeList.do">공지 사항</a></li>
                     </ul>
-                <li class="drop" style="margin-left: 14%;"><a href="#">학습 활동</a></li>
+                <li class="drop" style="margin-left: 14%;"><a class="alertWarn" href="#">학습 활동</a></li>
                     <ul class="drop_submenu">
                         <li><a href="assignmentList.do">과제</a></li>
                     </ul>
-                <li class="drop" style="margin-left: 15%;"><a href="#">성적 관리</a></li>
+                <li class="drop" style="margin-left: 15%;"><a class="alertWarn" href="#">성적 관리</a></li>
                     <ul class="drop_submenu">
                         <li><a href="gradeObjectionList.do">성적 이의 신청</a></li>
                     </ul>                    
@@ -84,6 +84,12 @@
         </div>
 
         <script>
+        
+        	$('.alertWarn').on('click',function alert1(){
+        		alert("과목을 먼저 선택하세요.");
+        		location.href = "selectClass.do";
+        	});
+        
             $(function(){
               $('.drop_submenu').slideUp();
               $('.drop').click(function(){
