@@ -22,6 +22,22 @@
   <link rel="stylesheet" href="${contextPath}/resources/css/board_gradeObjection.css?ver=1">
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <style>
+  #answer {
+        border: 1px solid #555;
+        width: 99%;
+        height: 110px;
+        resize: none;
+  }
+  #gradeTable{
+  	align: center;
+	vertical-align: middle;
+  }
+  #replyBoard tr th{
+ 	align: center;
+  }
+   th.dt-center, td.dt-center { text-align: center; }
+  </style>
 </head>
 
 <body id="page-top">
@@ -31,7 +47,12 @@
 
     <!-- Sidebar -->
     <div id="main_sidebar">
-   		<c:import url="../common/sidebar.jsp" />
+	      <c:if test="${ userStatus eq 'S' }" >
+   			<c:import url="../common/sidebar.jsp" />
+   		  </c:if>
+	      <c:if test="${ userStatus eq 'P' }" >
+   			<c:import url="../common/sidebar_professor.jsp" />
+   		  </c:if>
     </div>
     
     <!-- End of Sidebar -->
@@ -48,53 +69,150 @@
 
         <!-- main content -->
         <div id="main_con">
-            <table id="title_button">
-                <tbody>
-                    <tr>
-                        <td><div id="board_title">성적이의신청</div></td>
-                        <td><button class="btn btn-primary btn-sm" id="board_button">등록하기</button></td>
-                    </tr>
-            </table>
+                    <!-- Begin Page Content -->
+        <div class="container-fluid">
 
-            <!-- 공지사항 목록 조회  -->
-            <div id="rest_table_area">
-                    <form method="GET">
-                        <table id="rest_notice"  class=" table-hover">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        <p>번호</p>
-                                    </th>
-                                    <th>
-                                        <p>제목</p>
-                                    </th>
-                                    <th>
-                                        <p>작성자</p>
-                                    </th>
-                                    <th>
-                                        <p>작성일</p>
-                                    </th>
-                                    <th>
-                                        <p>조회수</p>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>점수 장난하냐</td>
-                                    <td>김주호</td>
-                                    <td>2020/10/14</td>
-                                    <td>1</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </form>
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">성적이의신청</h1>
+		
+		<c:if test="${ userStatus eq 'S' }" >
+		
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">성적 조회</h6>
             </div>
-        </div>
-       
+            <div class="card-body">
+              <div class="table-responsive">
+              	<table id="gradeTable" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr align="center">
+                      <th>번호</th>
+                      <th>과제 제목</th>
+                      <th>성적</th>
+                    </tr>
+                  </thead>
+  				</table>
+			  </div>	
+             </div>
+            </div>
+	       </div>
+
+          <div class="card shadow mb-4">	       
+			<div id="container">
+		            <div id="rest_table_area">
+		                <table class="table table-bordered question-table">
+		                <colgroup>
+		                	<col style="width:8%;">
+
+		                	<col style="width:*">
+		                </colgroup>
+		                    <thead>
+		                        <tr align="center">
+		                            <th style="font-size: 14px; vertical-align: middle;">
+		                            	 FEEDBACK
+		                            </th>
+		                            <td id="proFeedback">
+		                            </td>
+		                        </tr>
+		                        <tr align="center">
+		                            <th style="	vertical-align: middle;">
+		                            	    건의 내용
+		                            </th>
+		                            <td id="studOpinion">
+		                            	 <textarea id="answer" name="bAnswer"></textarea>
+		                            </td>
+		                        </tr>
+		                        <tr align="center">
+		                            <th style="	vertical-align: middle;">
+		                                	교수 답변
+		                            </th>
+		                            <td id="profAnswer">
+		                            </td>
+		                        </tr>
+		                    </thead>
+		                </table>
+		                <input id="handOutQA" type="button" value="등록" class="btn btn-primary btn-sm">
+		                <input id="modifyQA" type="button" value="수정" class="btn btn-primary btn-sm">
+		            </div>
+				</div>
+		            
+		       </div>
+		
+		<script>
+		 	$(document).ready(function callGradeTable(){
+				console.log("시작!");
+				table=$('#gradeTable').DataTable({
+					'ajax':{
+						'url':"callGrade.do",
+						'type':'post',
+						'dataType':"json",
+						'dataSrc':''
+					},
+				'columns':[
+					{'data':'aSeq'},
+					{'data':'aTitle'},
+					{'data':'score'}
+				],
+				'columnDefs':[
+					{
+						'targets':0,
+						'width':'10%'
+					},
+					{
+						'targets':2,
+						'width':'10%'
+					},
+					{	'targets': [0,1,2],
+						'className':'dt-center'	
+					}
+				],
+                'searching': true,
+                'paging': true,
+                // 'bDestroy': true,
+                'destroy': true,
+                'scrollX': false,
+                'scrollY': true
+                
+				});
+				
+				
+				$('#gradeTable tbody').on('click','tr',function(){
+					console.log("?");
+					$.ajax({
+						url:'callGradeDetail.do',
+						data:{aSeq:$(this).children().eq(0).text()},
+						dataType:"json",
+						success:function(data){
+							console.log(data);
+							$('#proFeedback').text(data.profComment);
+							$('#profAnswer').text(data.profReply);
+			
+							if(data.studQa != null){
+								
+							$('#studOpinion').children().val(data.studQa);
+							};
+						}
+					});
+				});
+			});
+			
+		
+		</script>
+		</c:if>
+		
+		
+		
+		
+
+		
+		
+		
+	  </div>
+	<!-- End of Main con -->
 
       </div>
+	<!--  ENd of Main content -->
 
 
     </div>

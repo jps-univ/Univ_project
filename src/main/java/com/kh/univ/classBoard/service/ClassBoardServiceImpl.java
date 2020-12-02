@@ -1,6 +1,7 @@
 package com.kh.univ.classBoard.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -95,6 +96,26 @@ public class ClassBoardServiceImpl implements ClassBoardService {
 	@Override
 	public int updateStdFile(ReplyAssignment ra) {
 		return cbDao.updateStdFile(ra);
+	}
+
+	@Override
+	public ArrayList<ReplyAssignment> callStdGrade(HashMap map) {
+		return cbDao.callStdGrade(map);
+	}
+
+	@Override
+	public ReplyAssignment callGradeDetail(HashMap map) {
+		return cbDao.callGradeDetail(map);
+	}
+
+	@Override
+	public ReplyAssignment callObjectionDetail(HashMap map) {
+		return cbDao.callObjectionDetail(map);
+	}
+
+	@Override
+	public ArrayList<ReplyAssignment> callObjectionList(HashMap map) {
+		return cbDao.callObjectionList(map);
 	}
 
 

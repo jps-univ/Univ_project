@@ -1,9 +1,11 @@
 package com.kh.univ.lecture.model.service;
 
+import com.kh.univ.admin.model.vo.AdClassPlan;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.lecture.model.vo.LectureTime;
 import com.kh.univ.lecture.model.vo.SearchCondition;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,4 +53,10 @@ public interface LectureService {
     ArrayList<Lecture> getDeleteTable(int profId);
 
     int requestDeleteClass(int classSeq);
+
+    int updateAdditional(HashMap map);
+
+    int insertPlan(AdClassPlan ap);
+
+    int timeDupCheck(HashMap map);
 }

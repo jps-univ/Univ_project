@@ -16,7 +16,13 @@ public class ReplyAssignment {
 	private String profComment;
 	private Date sCreateDate;
 	private Date sModifyDate;
+	private String profReply;
+	private String studQa;
+	private String statusReply;
 	
+	private String aTitle;
+
+
 	private int profId;
 	private String profName;
 	
@@ -27,7 +33,7 @@ public class ReplyAssignment {
 
 	public ReplyAssignment(int sSeq, String sTitle, String sContent, String score, int classSeq, int stdId, int aSeq,
 			String originalFileName, String renameFileName, String profComment, Date sCreateDate, Date sModifyDate,
-			int profId, String profName) {
+			String profReply, String studQa, String statusReply, String aTitle, int profId, String profName) {
 		super();
 		this.sSeq = sSeq;
 		this.sTitle = sTitle;
@@ -41,9 +47,14 @@ public class ReplyAssignment {
 		this.profComment = profComment;
 		this.sCreateDate = sCreateDate;
 		this.sModifyDate = sModifyDate;
+		this.profReply = profReply;
+		this.studQa = studQa;
+		this.statusReply = statusReply;
+		this.aTitle = aTitle;
 		this.profId = profId;
 		this.profName = profName;
 	}
+	
 
 	public int getsSeq() {
 		return sSeq;
@@ -59,6 +70,14 @@ public class ReplyAssignment {
 
 	public void setsTitle(String sTitle) {
 		this.sTitle = sTitle;
+	}
+
+	public String getaTitle() {
+		return aTitle;
+	}
+
+	public void setaTitle(String aTitle) {
+		this.aTitle = aTitle;
 	}
 
 	public String getsContent() {
@@ -141,6 +160,30 @@ public class ReplyAssignment {
 		this.sModifyDate = sModifyDate;
 	}
 
+	public String getProfReply() {
+		return profReply;
+	}
+
+	public void setProfReply(String profReply) {
+		this.profReply = profReply;
+	}
+
+	public String getStudQa() {
+		return studQa;
+	}
+
+	public void setStudQa(String studQa) {
+		this.studQa = studQa;
+	}
+
+	public String getStatusReply() {
+		return statusReply;
+	}
+
+	public void setStatusReply(String statusReply) {
+		this.statusReply = statusReply;
+	}
+
 	public int getProfId() {
 		return profId;
 	}
@@ -162,8 +205,17 @@ public class ReplyAssignment {
 		return "ReplyAssignment [sSeq=" + sSeq + ", sTitle=" + sTitle + ", sContent=" + sContent + ", score=" + score
 				+ ", classSeq=" + classSeq + ", stdId=" + stdId + ", aSeq=" + aSeq + ", originalFileName="
 				+ originalFileName + ", renameFileName=" + renameFileName + ", profComment=" + profComment
-				+ ", sCreateDate=" + sCreateDate + ", sModifyDate=" + sModifyDate + ", profId=" + profId + ", profName="
-				+ profName + "]";
+				+ ", sCreateDate=" + sCreateDate + ", sModifyDate=" + sModifyDate + ", profReply=" + profReply
+				+ ", studQa=" + studQa + ", statusReply=" + statusReply + ", aTitle=" + aTitle + ", profId=" + profId
+				+ ", profName=" + profName + ", getsSeq()=" + getsSeq() + ", getsTitle()=" + getsTitle()
+				+ ", getsContent()=" + getsContent() + ", getScore()=" + getScore() + ", getClassSeq()=" + getClassSeq()
+				+ ", getStdId()=" + getStdId() + ", getaSeq()=" + getaSeq() + ", getOriginalFileName()="
+				+ getOriginalFileName() + ", getRenameFileName()=" + getRenameFileName() + ", getProfComment()="
+				+ getProfComment() + ", getsCreateDate()=" + getsCreateDate() + ", getsModifyDate()=" + getsModifyDate()
+				+ ", getProfReply()=" + getProfReply() + ", getStudQa()=" + getStudQa() + ", getStatusReply()="
+				+ getStatusReply() + ", getProfId()=" + getProfId() + ", getProfName()=" + getProfName()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
 	}
 
 	

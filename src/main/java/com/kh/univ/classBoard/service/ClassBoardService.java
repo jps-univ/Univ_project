@@ -1,6 +1,7 @@
 package com.kh.univ.classBoard.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.kh.univ.classBoard.vo.ClassAssignment;
 import com.kh.univ.classBoard.vo.ClassNotice;
@@ -122,6 +123,32 @@ public interface ClassBoardService {
 	 * @return
 	 */
 	int updateStdFile(ReplyAssignment ra);
+
+	
+	/**
+	 * 학생 성적 조회ㅂ
+	 * @param map
+	 * @return
+	 */
+	ArrayList<ReplyAssignment> callStdGrade(HashMap map);
+
+	
+	/**
+	 * 학생, 교수 성적이의 신청 내용
+	 * @param map
+	 * @return
+	 */
+	ReplyAssignment callGradeDetail(HashMap map);
+
+	
+	ArrayList<ReplyAssignment> callObjectionList(HashMap map);
+
+	/**
+	 * 교수, 학생 이의신청 조회
+	 * @param map
+	 * @return
+	 */
+	ReplyAssignment callObjectionDetail(HashMap map);
 
 
 	

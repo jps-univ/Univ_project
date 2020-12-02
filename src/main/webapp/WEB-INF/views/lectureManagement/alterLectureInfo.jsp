@@ -54,6 +54,74 @@
     </style>
     <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
     <%--    수강신청,장바구니 탭 클릭 시 화면 변화--%>
+    <script>
+        $(document).ready(function () {
+            var table = $('#alterTable').DataTable({
+                'ajax': {
+                    'url': 'getDeleteTable.do',
+                    'type': 'post',
+                    'dataType': 'json',
+                    'dataSrc': ''
+                },
+                'columns': [
+                    {'data': 'classSeq'},
+                    {'data': 'classCode'},
+                    {'data': 'className'},
+                    {'data': 'room'},
+                    {'data': 'classType'},
+                    {'data': 'classYear'},
+                    {'data': 'classSemester'},
+                    {
+                        'data': 'classApprove',
+                        'render': function (data, type, row) {
+                            if (row.classApprove === 'Y') {
+                                return '<p style="margin: 0%">승인</p>'
+                            }else if (row.classApprove === 'YW') {
+                                return '<p style="margin: 0%">승인대기</p>'
+                            }
+                        }
+                    }
+                ],
+                'columnDefs': [
+                    {
+                        'targets': 0,
+                        'visible': false,
+                        'className': 'classSeq'
+                    }
+                ]
+            });
+            $('#alterTable').off('click').on('click', 'tbody tr', function () {
+                var mySelectedIndex = table.row(this).data();
+                var seq = mySelectedIndex.classSeq;
+                var con = confirm("정말 해당과목을 삭제요청하시겠습니까?");
+
+                // $('#myRegisterTable tbody tr ').css({
+                //     'color' : 'red'
+                // });
+                // var selectedIndex = table.row(this).data();
+                if (con == true) {
+                    console.log(mySelectedIndex);
+                    $.ajax({
+                        url: 'requestDeleteClass.do',
+                        type: 'post',
+                        data: {
+                            classSeq: seq
+                        }, dataType: 'text'
+                        , success: function (data) {
+                            alert(data);
+                            table.ajax.reload();
+                        }, error: function (error) {
+                            console.log(error);
+                            alert("에러발생");
+                        }
+                    });
+                } else if (con == false) {
+                    return;
+                }
+
+            });
+        });
+    </script>
 </head>
 
 <body id="page-top">
@@ -94,28 +162,25 @@
                         <div class="card-body">
 
                             <div class="table-responsive alter">
-                                <table id="testTb" class="table table-striped table-bordered table-hover"
-                                       cellspacing="0">
+                                <table id="alterTable" class="table table-striped table-bordered table-hover"
+                                       cellspacing="0" style="width: 97%">
                                     <thead>
                                     <tr>
-                                        <th>장바구니</th>
-                                        <th>학년</th>
-                                        <th>코드</th>
-                                        <%--                                            <th>분반</th>--%>
-                                        <%--                                            <th>교과목명</th>--%>
-                                        <%--                                            <th>이수구분</th>--%>
-                                        <%--                                            <th>학점</th>--%>
-                                        <%--                                            <th>수업계획서</th>--%>
+                                        <th style="display: none">강의시퀀스</th>
+                                        <th>과목코드</th>
+                                        <th>과목이름</th>
+                                        <th>강의실</th>
+                                        <th>이수구분</th>
+                                        <th>년도</th>
+                                        <th>학기</th>
+                                        <th>상태</th>
                                     </tr>
                                     </thead>
-                                    <!-- tbody 태그 필요 없다. -->
                                 </table>
                             </div>
                         </div>
                         <div id="buttonArea1" class=" card-body" align="center">
-                            <button id="alterBtn" class="btn btn-success"
-                                    onclick="">수정하기
-                            </button>
+
                         </div>
 
                     </div>

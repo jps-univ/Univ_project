@@ -2,6 +2,7 @@ package com.kh.univ.lecture.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kh.univ.admin.model.vo.AdClassPlan;
 import com.kh.univ.lecture.model.service.LectureService;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.lecture.model.vo.LectureTime;
@@ -11,16 +12,14 @@ import com.kh.univ.member.model.vo.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
+import java.util.*;
 
 @Controller
 public class LectureController {
@@ -101,12 +100,14 @@ public class LectureController {
         sc.setDepartmentName(departmentName);
         sc.setClassName(className);
         sc.setClassYear(callYear());
+//        sc.setClassYear(2021);
         sc.setClassSemester(callSemester());
+//        sc.setClassSemester(1);
         ArrayList<Lecture> list = lectureService.selectList(sc);
         ObjectMapper mapper = new ObjectMapper();
 
         String jsonStr = mapper.writeValueAsString(list);
-
+        System.out.println(jsonStr);
         return jsonStr;
     }
 
@@ -155,6 +156,7 @@ public class LectureController {
     }
 
     // 시간표 중복체크함수.
+    // 학생의 수강신청 시에 중복체크함수
     private boolean checkDuplicate(int stdId, int classSeq, HttpServletRequest request) {
         boolean noDuplicate = true;
         System.out.println("등록을 원하는 클래스 시퀀스 : " + classSeq);
@@ -173,7 +175,9 @@ public class LectureController {
 
 
         ArrayList<LectureTime> list2 = lectureService.getDayHourList2(map);
+//        내가 갖고있는 시간표
         ArrayList dayHourList = new ArrayList();
+//        내가 수강신청하려고 클릭한 과목의 시간표
         ArrayList dayHourList2 = new ArrayList();
         for (LectureTime time : list) {
             dayHourList.add(time.getDayHour());
@@ -314,6 +318,32 @@ public class LectureController {
             return "ok";
         }
     }
+    /**
+     * 교수가 강의 요청을 할 때 강의시간이 중복인지 확인
+     * @param
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("timeDupCheck.do")
+    public String timeDupCheck(HttpSession session,
+                               int classYear,
+                               int classSemester,
+                               String dayHour) {
+        int profId = ((Professor)session.getAttribute("loginUser")).getProfId();
+
+        HashMap map = new HashMap();
+        map.put("profId",profId);
+        map.put("classYear",classYear);
+        map.put("classSemester",classSemester);
+        map.put("dayHour",dayHour);
+        int result = lectureService.timeDupCheck(map);
+
+        if (result > 0) {
+            return "fail";
+        } else {
+            return "ok";
+        }
+    }
 
     /**
      * 교수 강의등록요청 컨트롤러
@@ -346,20 +376,36 @@ public class LectureController {
      */
     @ResponseBody
     @RequestMapping(value = "requestRegisterTime.do", produces = "application/json; charset=utf-8")
-    public String requestRegisterTime(String classCode,String dayList, String hourList){
+    public String requestRegisterTime(String classCode,
+                                      @RequestParam(value = "dayList[]") List<String> dayList,
+                                      @RequestParam(value = "hourList[]") List<String> hourList
+//                                      String dayList,
+//                                      String hourList
+    ){
         int classSeq = lectureService.selectClassSeq(classCode);
         System.out.println(dayList);
         System.out.println(hourList);
 
         LectureTime lecTime = new LectureTime();
 
-        String[] dayArray = dayList.split(",");
-        String[] hourArray = hourList.split(",");
+//        String[] dayArray = dayList.split(",");
+//        String[] hourArray = hourList.split(",");
 
-        for (int i = 0; i < dayArray.length; i++ ){
+//        for (int i = 0; i < dayArray.length; i++ ){
+//            lecTime.setClassSeq(classSeq);
+//            lecTime.setDay(dayArray[i]);
+//            lecTime.setHour(hourArray[i]);
+//            int result = lectureService.insertClassTime(lecTime);
+//            if(result>0) {
+//                System.out.println(i+"번째 수업시간 인서트");
+//            }else {
+//                System.out.println(i+"번째 수업시간 인서트 실패");
+//            }
+//        }
+        for (int i = 0; i < dayList.size(); i++ ){
             lecTime.setClassSeq(classSeq);
-            lecTime.setDay(dayArray[i]);
-            lecTime.setHour(hourArray[i]);
+            lecTime.setDay(dayList.get(i));
+            lecTime.setHour(hourList.get(i));
             int result = lectureService.insertClassTime(lecTime);
             if(result>0) {
                 System.out.println(i+"번째 수업시간 인서트");
@@ -369,6 +415,75 @@ public class LectureController {
         }
         return "ok";
     }
+
+    /**
+     * null로 저장된 세개의 컬럼을 파라미터로 받아온 값으로 업데이트
+     * @param classCode
+     * @param classBook
+     * @param classOutline
+     * @param classTarget
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "addThreeItem.do", produces = "application/json; charset=utf-8")
+    public String requestRegisterPlan(
+                                      String classCode,
+                                      String classBook,
+                                      String classOutline,
+                                      String classTarget){
+        int classSeq = lectureService.selectClassSeq(classCode);
+
+        HashMap map = new HashMap();
+        map.put("classSeq", classSeq);
+        map.put("classBook", classBook);
+        map.put("classOutline", classOutline);
+        map.put("classTarget", classTarget);
+        System.out.println(map);
+
+        //
+        int result = lectureService.updateAdditional(map);
+        if (result > 0){
+            return "업데이트 완료";
+        }else return "업데이트 중 에러 발생";
+    }
+
+    /**
+     * 15주간의 주제와 수업내용을 배열로서 저장한다.
+     * @param session
+     * @param classCode
+     * @param weekPlanArray
+     * @param topicArray
+     * @return
+     * @throws JsonProcessingException
+     */
+    @ResponseBody
+    @RequestMapping(value = "addWeekPlan.do", produces = "application/json; charset=utf-8")
+    public String addWeekPlan(String classCode,
+//                              이렇게 지정해줘야 js 배열객체를 리스트로 뽑아올 수 있다.
+                              @RequestParam(value = "weekPlanArray[]") List<String> weekPlanArray,
+                              @RequestParam(value = "topicArray[]") List<String> topicArray)
+            throws JsonProcessingException {
+
+
+        int classSeq = lectureService.selectClassSeq(classCode);
+        System.out.println("클래스코드는 :" + classCode);
+        AdClassPlan ap = new AdClassPlan();
+        for (int i = 0; i<weekPlanArray.size(); i++){
+            ap.setClassSeq(classSeq);
+            ap.setWeek(i+1);
+            ap.setWeekPlan(weekPlanArray.get(i));
+            ap.setTopic(topicArray.get(i));
+            int result = lectureService.insertPlan(ap);
+            if (result>0){
+                System.out.println(i+"번째 플랜 등록완료 ");
+            }else {
+                System.out.println(i+"번째에서 플랜등록 에러");
+            }
+        }
+        return null;
+
+    }
+
 
     /**
      * 강의 삭제요청,수정요청을 하기 위해 리스트를 뽑아옴
@@ -388,6 +503,7 @@ public class LectureController {
         return jsonStr;
 
     }
+
 
     /**
      * 삭제요청이지만 사실 데이터베이스에서는 삭제가 아니라 업데이트로 상태값을 바꿔준다.

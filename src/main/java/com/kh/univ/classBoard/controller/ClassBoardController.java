@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,10 +18,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.univ.classBoard.service.ClassBoardService;
 import com.kh.univ.classBoard.vo.ClassAssignment;
 import com.kh.univ.classBoard.vo.ClassNotice;
@@ -215,25 +219,16 @@ public class ClassBoardController {
 	}
 
 	public String saveFile(MultipartFile file, HttpServletRequest request) {
-		// 파일이 저장될 경로를 설정하자
-		// 웹서버 contextPath를 불러와서 폴더의 경로를 가져온다.(webapp하위의 resources)
-		// C:\springWordspace\springProject\src\main\webapp\resources
 		String root = request.getSession().getServletContext().getRealPath("resources");
 
-		// root 하위의 buploadFiles 폴더를 연결
-		// \를 문자로 인식하기 위해서는 \\를 사용한다.
-		// C:\springWordspace\springProject\src\main\webapp\resources\buploadFiles
-		// String savePath = root + "\\buploadFiles";
 		String savePath = root + File.separator + "uploadFiles";
 
 		File folder = new File(savePath); // savePath의 폴더를 불러온다.
 
 		if (!folder.exists()) {
-			// 폴더가 없으면 만들어라.
 			folder.mkdirs();
 		}
 
-		// 원본 파일명을 년원일시분초.파일확장자명으로 변경
 		String originalFileName = file.getOriginalFilename(); // test.png
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -446,7 +441,7 @@ public class ClassBoardController {
 	@RequestMapping("scoreAssign.do")
 	public String scoreAssign(ReplyAssignment ra, HttpServletRequest request, Model model) {
 		System.out.println("prof score" + ra);
-
+ 
 		int result = cbService.insertScore(ra);
 		int aSeq = ra.getaSeq();
 		if (result > 0) {
@@ -458,14 +453,115 @@ public class ClassBoardController {
 	}
 	
 	
+	
+	
+	
 	/**
 	 * 5. 성적 이의 신청 리스트 페이지
 	 * 
 	 * @return
 	 */
 	@RequestMapping("gradeObjectionList.do")
-	public String gradeObjectionList() {
-		return "classBoard/gradeObjectionList";
+	public String gradeObjectionList(HttpSession session) {
+		String a = "";
+		if( session.getAttribute("loginUser") instanceof Student) {
+		
+		a="classBoard/gradeObjectionList";
+		
+	}else if(session.getAttribute("loginUser") instanceof Professor) {
+		
+		a="classBoard/gradeObjectionList_P";
+		
+		}
+		return a;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="callGrade.do", produces="application/json; charset=utf-8")
+	public String callGrade(HttpSession session, HttpServletRequest request) throws JsonProcessingException {
+		System.out.println("list조회 시작 : ");
+		ArrayList<ReplyAssignment> rList = new ArrayList<ReplyAssignment>();
+		
+		if( session.getAttribute("loginUser") instanceof Student) {
+			int stdId = (int)session.getAttribute("userId");
+			int classSeq = (int)session.getAttribute("classSeq");
+			HashMap map = new HashMap();
+			
+			map.put("stdId", stdId);
+			map.put("classSeq", classSeq);
+			
+			rList= cbService.callStdGrade(map);
+			System.out.println("std :" + rList);
+			
+		}	
+		else if(session.getAttribute("loginUser") instanceof Professor) {
+			int profId = (int)session.getAttribute("userId");
+			int classSeq = (int)session.getAttribute("classSeq");
+			HashMap map = new HashMap();
+			
+			map.put("stdId", profId);
+			map.put("classSeq", classSeq);
+			
+			rList= cbService.callObjectionList(map);
+			System.out.println("pro"+ rList);
+		}
+		
+		
+		
+        ObjectMapper mapper = new ObjectMapper();
+
+        String jsonStr = mapper.writeValueAsString(rList);
+        return jsonStr;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="callGradeDetail.do", produces="application/json; charset=utf-8")
+	public String gradeQuestion(HttpSession session, HttpServletRequest request, int aSeq) throws JsonProcessingException {
+		
+		ReplyAssignment ra = new ReplyAssignment();
+		
+
+		int stdId = (int)session.getAttribute("userId");
+		int classSeq = (int)session.getAttribute("classSeq");
+		System.out.println("ase : " + aSeq);
+		HashMap map = new HashMap();
+		map.put("stdId", stdId);
+		map.put("classSeq", classSeq);
+		map.put("aSeq",aSeq);
+		
+		ra= cbService.callGradeDetail(map);
+		System.out.println(ra);
+			
+		
+		
+		ObjectMapper mapper = new ObjectMapper();
+        String jsonStr = mapper.writeValueAsString(ra);
+        return jsonStr;
+	}
+
+	
+	@ResponseBody
+	@RequestMapping(value="callObjectionDetail.do", produces="application/json; charset=utf-8")
+	public String gradeAnswer(HttpSession session, HttpServletRequest request, int sSeq) throws JsonProcessingException {
+		
+		ReplyAssignment ra = new ReplyAssignment();
+		
+		
+		int profId = (int)session.getAttribute("userId");
+		int classSeq = (int)session.getAttribute("classSeq");
+		System.out.println("sseq : " + sSeq);
+		HashMap map = new HashMap();
+		map.put("classSeq", classSeq);
+		map.put("sSeq",sSeq);
+		
+		ra= cbService.callObjectionDetail(map);
+		System.out.println("prof ra :"+ra);
+		
+		
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonStr = mapper.writeValueAsString(ra);
+		return jsonStr;
 	}
 
 }
