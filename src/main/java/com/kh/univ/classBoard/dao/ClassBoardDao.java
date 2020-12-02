@@ -127,6 +127,30 @@ public class ClassBoardDao {
 
 
 
+	public ArrayList<ReplyAssignment> callStdGrade(HashMap map) {
+		return (ArrayList)sqlSession.selectList("classBoardMapper.callStdGrade", map);
+	}
+
+
+
+	public ReplyAssignment callGradeDetail(HashMap map) {
+		return sqlSession.selectOne("classBoardMapper.callGradeDetail",map);
+	}
+
+
+
+	public ArrayList<ReplyAssignment> callObjectionList(HashMap map) {
+		return (ArrayList)sqlSession.selectList("classBoardMapper.callObjectionList",map);
+	}
+
+
+
+	public ReplyAssignment callObjectionDetail(HashMap map) {
+		return sqlSession.selectOne("classBoardMapper.callObjectionDetail",map);
+	}
+
+
+
 
 	
 	

@@ -234,6 +234,7 @@
 								score:$('#selectScore').val(),
 							},success:function(data){
 								alert("성공적으로 채점되었습니다.");
+								location.reload();
 							}
 						})
 					}
