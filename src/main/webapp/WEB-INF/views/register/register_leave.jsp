@@ -192,9 +192,8 @@
 	       
 	       
 	       function button_leave() {
-	    	   let sock = new SockJS("http://localhost:8181/univ/echo/");
 	    	  
-	    	   sock.send("1");
+	    	   
 	    	    	
 	    		if(confirm("휴학신청하시겠습니까?"))
 	    		{

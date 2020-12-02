@@ -84,15 +84,6 @@
         </div>
         
     </nav>
-    <script type="text/javascript">
-    let sock = new SockJS("http://localhost:8181/univ/echo/");
-	sock.onmessage = onMessage;
-	
-	// 서버로부터 메시지를 받았을 때
-	function onMessage(msg) {
-		var data = msg.data;
-		$("#asd").append(data + "<br/>");
-	}
-    </script>
+   
 </body>
 </html>
