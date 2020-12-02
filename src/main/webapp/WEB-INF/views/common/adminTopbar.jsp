@@ -8,6 +8,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 <style>
 #logout_btn,#welcome{
     position: relative;
@@ -75,11 +78,12 @@
                         <li><a href="<%=path%>/adNList.do">공지사항 관리</a></li>
                     </ul>
                 </li>
-                 <li id="welcome"><a>관리자님 환영합니다</a></li>
+                 <li id="welcome"><a id="asd">관리자님 환영합니다</a></li>
                 <li id="logout_btn"><a href="studentLogout.do">로그아웃</a></li>
             </ul>
         </div>
         
     </nav>
+   
 </body>
 </html>

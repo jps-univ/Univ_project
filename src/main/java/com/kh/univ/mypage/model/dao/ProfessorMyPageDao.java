@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.univ.consulting.model.vo.Consulting;
 import com.kh.univ.lecture.model.vo.Lecture;
+import com.kh.univ.member.model.vo.Image;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
 import com.kh.univ.register.model.vo.Register;
@@ -73,5 +74,15 @@ public class ProfessorMyPageDao
 	public int changeConsulting(Consulting consulting) 
 	{
 		return sqlSession.update("ProfessorMyPageMapper.changeConsulting", consulting);
+	}
+
+	public int insertProfImage(Image i) 
+	{
+		return sqlSession.insert("ProfessorMyPageMapper.insertProfImage", i);
+	}
+	
+	public ArrayList<Image> selectProfImage(Professor professor) 
+	{
+		return (ArrayList)sqlSession.selectList("ProfessorMyPageMapper.selectProfImage", professor);
 	}
 }

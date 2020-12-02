@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.univ.classBoard.vo.PageInfo;
 import com.kh.univ.consulting.model.vo.Consulting;
 import com.kh.univ.lecture.model.vo.Lecture;
+import com.kh.univ.member.model.vo.Image;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
 
@@ -134,5 +135,15 @@ public class StudentMyPageDao
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
 		return (ArrayList)sqlSession.selectList("StudentMyPageMapper.selectProfessorAll", null, rowBounds);
+	}
+
+	public int insertStdImage(Image i)
+	{
+		return sqlSession.insert("StudentMyPageMapper.insertStdImage", i);
+	}
+
+	public ArrayList<Image> selectStdImage(Student student) 
+	{
+		return (ArrayList)sqlSession.selectList("StudentMyPageMapper.selectStdImage", student);
 	}
 }

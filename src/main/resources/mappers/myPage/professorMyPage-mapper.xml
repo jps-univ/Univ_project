@@ -122,7 +122,16 @@
 		<result property="departmentName" column="DEPARTMENT_NAME"/>
 		<result property="collegeName" column="COLLEGE_NAME"/>
     </resultMap>
-   
+    
+    <!-- 이미지 ResultMap -->
+    <resultMap id="ImageResultSet" type="Image">
+    	<id property="imageNo" column="IMAGE_NO"/>
+    	<result property="stdId" column="STUDENT_ID"/>
+    	<result property="profId" column="PROFESSOR_ID"/>
+    	<result property="originalImageName" column="ORIGINAL_IMAGENAME"/>
+    	<result property="renameImageName" column="RENAME_IMAGENAME"/>
+    </resultMap>
+    
    	<!-- 교수 학부, 학과 조회 -->
  	<select id="selectProfDepartment" parameterType="Professor" resultMap="ProfDepartmentResultSet">
  		SELECT * FROM TB_PROFESSOR
@@ -204,4 +213,18 @@
  		UPDATE TB_CONSULTING SET PROGRESS_DATE = #{progressDate}
 		WHERE CONSULTING_NO = #{consultingNo}
  	</update>
+ 	
+ 	<!-- 이미지 저장 -->
+ 	<insert id="insertProfImage">
+		INSERT INTO TB_IMAGE
+		(IMAGE_NO, PROFESSOR_ID, ORIGINAL_IMAGENAME, RENAME_IMAGENAME)
+		VALUES
+		(SEQ_IMAGE.NEXTVAL, #{profId}, #{originalImageName}, #{renameImageName})
+ 	</insert>
+ 	
+ 	<!-- 이미지 조회 -->
+ 	<select id="selectProfImage" resultMap="ImageResultSet">
+ 		SELECT * FROM TB_IMAGE
+ 		WHERE PROFESSOR_ID = #{profId}
+ 	</select>
  </mapper>

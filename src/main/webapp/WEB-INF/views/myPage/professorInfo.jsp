@@ -38,6 +38,15 @@
 		    white-space: nowrap;
 		    color: #4e73df;
 		}
+		#input_image{
+			width: 100%;
+		}
+		#td_image{
+			width: 5%;
+		}
+		#image{
+			width: 100%;
+		}
 	</style>
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
 </head>
@@ -71,15 +80,26 @@
 		
 		            <!-- DataTales Example -->
 		            <div class="card shadow mb-4">
+		            <form action="insertProfImage.do" method="post" enctype="multipart/form-data" onsubmit="return insertImage()">
 		              <div class="card-header py-3">
-		                <h6 class="m-0 font-weight-bold text-primary">기본정보</h6>
+		                <h6 class="m-0 font-weight-bold text-primary">기본정보
+		                	<input type="submit" class="btn btn-primary btn-sm" value="저장" id="changeInfo">
+		                </h6>
 		              </div>
 		              <div class="card-body">
 		                <div class="table-responsive">
 		                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 		                    <tbody>
 		                      <tr align="center">
-		                        <td rowspan="6">이미지</td>
+		                        <td rowspan="5">
+	    							<c:set var="profImage" value="${ loginUser.profId }_${ image.renameImageName }"/>
+	    							<c:choose>
+ 	    								<c:when test="${ empty image }">이미지</c:when>
+	    								<c:otherwise>
+											<img id="image" alt="" src="${contextPath}/resources/uploadProfImage/${ profImage }"/>
+	    								</c:otherwise>
+	    							</c:choose>
+		                        </td>
 		                      </tr>
 		                      <tr>
 		                        <th>교번</th>
@@ -118,21 +138,15 @@
 		                        <td>${ department }</td>
 		                      </tr>
 		                      <tr>
-		                        <th></th>
-		                        <td></td>
-		                        <th></th>
-		                        <td></td>
-		                      </tr>
-		                      <tr>
-		                        <th></th>
-		                        <td></td>
-		                        <th></th>
-		                        <td></td>
+								<td colspan="4">
+									<input type="file" id="input_image" name="uploadImage"/>
+								</td>
 		                      </tr>
 		                    </tbody>
 		                  </table>
 		                </div>
 		              </div>
+		              </form>
 		            </div>
 		  
 		            <div class="card shadow mb-4">
@@ -168,6 +182,8 @@
 		                                <option <c:if test="${ loginUser.profBank eq '농협' }"> selected="selected"</c:if>>농협</option>
 		                                <option <c:if test="${ loginUser.profBank eq '기업은행' }"> selected="selected"</c:if>>기업은행</option>
 		                                <option <c:if test="${ loginUser.profBank eq '우리은행' }"> selected="selected"</c:if>>우리은행</option>
+		                                <option <c:if test="${ loginUser.profBank eq '하나은행' }"> selected="selected"</c:if>>하나은행</option>
+		                                <option <c:if test="${ loginUser.profBank eq '카카오뱅크' }"> selected="selected"</c:if>>카카오뱅크</option>
 		                            </select>
 		                        </td>
 		                      </tr>
@@ -384,6 +400,20 @@
 				return;
 			}
 		}
+		
+	    function insertImage()
+	    {
+	        if(confirm("저장하시겠습니까?"))
+	    	{
+	        	console.log("test");
+	        	return true;
+	    	}
+	    	else
+	    	{
+	    		alert("취소되었습니다.");
+				return false;
+	    	}
+	    }
 	</script>
 
 	<!-- Bootstrap core JavaScript-->

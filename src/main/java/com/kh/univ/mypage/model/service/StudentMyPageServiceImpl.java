@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.univ.classBoard.vo.PageInfo;
 import com.kh.univ.consulting.model.vo.Consulting;
 import com.kh.univ.lecture.model.vo.Lecture;
+import com.kh.univ.member.model.vo.Image;
 import com.kh.univ.member.model.vo.Professor;
 import com.kh.univ.member.model.vo.Student;
 import com.kh.univ.mypage.model.dao.StudentMyPageDao;
@@ -95,5 +96,17 @@ public class StudentMyPageServiceImpl implements StudentMyPageService
 	public ArrayList<Professor> selectProfessor2(PageInfo pi) 
 	{
 		return msDao.selectProfessor2(pi);
+	}
+
+	@Override
+	public int insertStdImage(Image i)
+	{
+		return msDao.insertStdImage(i);
+	}
+
+	@Override
+	public ArrayList<Image> selectStdImage(Student student) 
+	{
+		return msDao.selectStdImage(student);
 	}
 }

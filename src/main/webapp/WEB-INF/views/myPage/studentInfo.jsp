@@ -38,6 +38,15 @@
 		    white-space: nowrap;
 		    color: #4e73df;
 		}
+		#input_image{
+			width: 100%;
+		}
+		#td_image{
+			width: 5%;
+		}
+		#image{
+			width: 85%;
+		}
 	</style>
 	<%-- <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script> --%>
 </head>
@@ -70,15 +79,26 @@
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
+						<form action="insertStdImage.do" method="post" enctype="multipart/form-data" onsubmit="return insertImage()">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">기본정보</h6>
+							<h6 class="m-0 font-weight-bold text-primary">기본정보
+								<input type="submit" class="btn btn-primary btn-sm" value="저장" id="changeInfo">
+							</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<tbody>
 										<tr align="center">
-											<td rowspan="6">이미지</td>
+											<td id="td_image" rowspan="5">
+												<c:set var="stdImage" value="${ loginUser.stdId }_${ image.renameImageName }"/>
+				    							<c:choose>
+			 	    								<c:when test="${ empty image }">이미지</c:when>
+				    								<c:otherwise>
+														<img id="image" alt="" src="${contextPath}/resources/uploadStdImage/${ stdImage }"/>
+				    								</c:otherwise>
+				    							</c:choose>										
+											</td>
 										</tr>
 										<tr>
 											<th>학번</th>
@@ -133,15 +153,18 @@
 											</td>
 										</tr>
 										<tr>
+											<td colspan="2">
+												<input type="file" id="input_image" name="uploadImage"/>
+											</td>
+											<td></td>
 											<th>입학구분</th>
 											<td>${ loginUser.stdEnterDiv }(${ loginUser.stdEntrance })</td>
-											<th></th>
-											<td></td>
 										</tr>
 									</tbody>
 								</table>
 							</div>
 						</div>
+						</form>
 					</div>
 
 					<div class="card shadow mb-4">
@@ -177,6 +200,7 @@
 					                                <option <c:if test="${ loginUser.stdBank eq '농협' }"> selected="selected"</c:if>>농협</option>
 					                                <option <c:if test="${ loginUser.stdBank eq '기업은행' }"> selected="selected"</c:if>>기업은행</option>
 					                                <option <c:if test="${ loginUser.stdBank eq '우리은행' }"> selected="selected"</c:if>>우리은행</option>
+					                                <option <c:if test="${ loginUser.stdBank eq '하나은행' }"> selected="selected"</c:if>>하나은행</option>
 					                            </select>
 					                        </td>
 										</tr>
@@ -354,7 +378,6 @@
 			}
 		}
 		
-		
 		function agreeBtn()
 		{
 			var stdId = ${ loginUser.stdId };
@@ -394,6 +417,20 @@
 				return;
 			}
 		}
+		
+	    function insertImage()
+	    {
+	        if(confirm("저장하시겠습니까?"))
+	    	{
+	        	console.log("test");
+	        	return true;
+	    	}
+	    	else
+	    	{
+	    		alert("취소되었습니다.");
+				return false;
+	    	}
+	    }
 	</script>
 
 	<!-- Bootstrap core JavaScript-->

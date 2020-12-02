@@ -13,6 +13,7 @@
 		<typeAlias type="com.kh.univ.member.model.vo.Professor" alias="Professor"/>
 		<typeAlias type="com.kh.univ.member.model.vo.Department" alias="Department"/>
 		<typeAlias type="com.kh.univ.member.model.vo.College" alias="College"/>
+		<typeAlias type="com.kh.univ.member.model.vo.Image" alias="Image"/>
 		<typeAlias type="com.kh.univ.stmanagement.model.vo.StudentManagement" alias="StudentManagement"/>
 		<typeAlias type="com.kh.univ.payment.model.vo.Payment" alias="Payment"/>
 		<typeAlias type="com.kh.univ.lecture.model.vo.Lecture" alias="Lecture"/>

@@ -70,8 +70,6 @@
 		#div_selectProf{
 		margin: 1% 0% 0% 20%;
 		}
-		.even{text-align: center;}
-		.odd{text-align: center;}
 		.top{
 		    background-color: #edf1fc;
 		    border-bottom: solid #4e73df;
@@ -81,15 +79,6 @@
 		    bottom: 25px;
 		    white-space: nowrap;
 		    color: #4e73df;
-		}
-		#profTable{
-		overflow: hidden;
-		}
-		.col-md-5{
-		display: none;
-		}
-		.pagination{
-		margin-left: 60%;
 		}
 	</style>
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
@@ -164,7 +153,7 @@
 		              <!-- </form> -->
 		              
 		              <br>
-<!-- 		              <div class="card-body">
+ 		              <div class="card-body">
 		              <div class="table-responsive">
 		                <table class="table table-bordered" id="test" width="100%" cellspacing="0">
 		                <tbody>              
@@ -179,25 +168,25 @@
 		                 </tbody>
 		                </table>
 		              </div>
-		            </div> -->
+		            </div>
 
 		          
-	 		          <div class="card-body">
-		 		          <div class="table-responsive" id="profTable">
+<!-- 	 		          <div class="card-body">
+		 		          <div class="table-responsive">
 					          <table class="table table-bordered" id="selectProf" width="100%" cellspacing="0">
 					          	<thead>
 									<tr align="center">
+										<th>번호</th>
 										<th id="th_college">학부</th>
 										<th id="th_department">학과</th>
 										<th id="th_profName">성명</th>
-										<th id="td_profId">교번</th>
 										<th id="th_lab">연구실</th>
 										<th id="th_apply">상담 신청</th>
 									</tr>
 					          	</thead>
 					          </table>
 				          </div>
-			          </div>
+			          </div> -->
 			        </div>
 		
 		          <div class="card shadow mb-4">
@@ -353,65 +342,6 @@
 	<c:import url="../common/logoutModal.jsp" />
 	
 	<script type="text/javascript">
-		function selectProfessor()
-	    {
-	    	var profName = $("#searchProfName").val();
-	    	var profCollege = $("#selectCollege").val();
-	    	var departmentName = $("#selectDepartment").val();
-	    	
-	        table = $('#selectProf').DataTable(
-	        {
-	            //컨트롤러에서 보내줄 때 해당 함수의 반환형은 String이어야 하고 리스트를 뽑아온다고 하면 'dataSrc' : '' 로 해줘야함.
-	            'ajax': 
-	            {
-	                'url': 'selectProfessor.do',
-	                'type': 'post',
-	                'data': {'profName' : profName, 'profCollege' : profCollege, 'departmentName' : departmentName},
-	                'dataType': 'json',
-	                'dataSrc': ''
-	            },
-	            // 'colunms' 옵션에는 각 data 에게 넘어오는 변수명(컬럼값)을 매칭해줘야함 꼭 .
-	            // 그리고 테이블만들어줄때도 넘어오는 값이 4개라면 테이블의 th 갯수도 꼭 4개. 맞춰줘야함
-	            'columns': 
-	            [
-	                {'data': 'collegeName'},
-	                {'data': 'departmentName'},
-	                {'data': 'profName'},
-	                {'data': 'profId'},
-	                {'data': 'lab'},
-	                {'data': ''}
-	            ],
-	            'columnDefs': [
-	                {
-	                    'targets': [0, 1],
-	                    'width': '20%',
-	                    'vertical-align': 'middle'
-	                },
-	                {
-	                    'targets': [2, 3, 4],
-	                    'width': '15%'
-	                },
-	                {
-	                	"targets"   : [ 5 ],
-	                    "orderable" : false,
-	                    "searchable": false,
-	                    "className" : "center",
-	                    "render"    : function ( data, type, row ) 
-	                    			   {
-	                                        var html = '<input type="button" class="btn btn-success" value="상담신청" id="applyConsulting" onclick="applyConsulting(event)">';
-	                                        return html;
-	                                    }
-	                    }
-	            ],
-	            'searching': false,
-	            'paging': true,
-	            'bDestroy': true,
-	            'scrollX': false,
-	            'destroy': true,
-	            "lengthMenu": [ 5, 10, 25, 50, 75 ]
-	        });
-	    }
-		
 	    function changeCollege() 
 	    {
 	    	var college = $('#selectCollege').val();
@@ -442,7 +372,7 @@
 	    }
 	    
 	    // 교수 조회
-	    function selectProfessortest()
+	    function selectProfessor()
 	    {
 	    	var profName = $("#searchProfName").val();
 	    	var profCollege = $("#selectCollege").val();
@@ -502,11 +432,7 @@
 	    // 상담 신청 
 	    function applyConsulting(event)
 	    {
-	    	var profId = event.target.parentElement.parentElement.children[3].innerHTML;
-	    	console.log(profId);
-	    	/* var profId = test.profId; */
-	    	/* console.log(profId); */
-	    	
+	    	var profId = event.target.nextElementSibling.value;
 	        
 	        if(confirm("신청하시겠습니까?"))
 	    	{
