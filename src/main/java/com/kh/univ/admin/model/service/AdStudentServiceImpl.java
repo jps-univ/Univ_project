@@ -1,6 +1,7 @@
 package com.kh.univ.admin.model.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,12 +55,13 @@ public class AdStudentServiceImpl implements AdStudentService{
 		return adStudentDao.insertOne(std);
 	}
 
-
-
 	@Override
-	public ArrayList<Student> collegeSearch(String collegeCode, String departmentCode, int searchSemester) {
+	public ArrayList<Student> searchStd(Map map) {
 		// TODO Auto-generated method stub
-		return adStudentDao.searchCollege(collegeCode,departmentCode,searchSemester);
+		return adStudentDao.searchStd(map);
 	}
+
+
+
 
 }

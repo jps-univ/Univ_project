@@ -75,8 +75,6 @@
                                         <option value="N">삭제/비활성화</option>
                                     </select>
                                 </td>
-
-								
 							</tr>
                             </c:forEach>
                         </tbody>
@@ -106,123 +104,69 @@
                                     <div id="class_info_title">
                                         <div>교과목 개요</div>
                                     </div>
-                                    <tbody>
-                                        <tr>
-                                            <td><div>강의명</div></td>
-                                            <td><div></div></td>
-                                            <td><div>담당교수</div></td>
-                                            <td><div></div></td>
-                                            <td><div>이메일</div></td>
-                                            <td><div></div></td>
-                                        </tr>
-                                        <tr>
-                                            <td><div>년도</div></td>
-                                            <td><div></div></td>
-                                            <td><div>학기</div></td>
-                                            <td><div></div></td>
-                                            <td><div>학점</div></td>
-                                            <td><div></div></td>
-                                        </tr>
-                                        <tr>
-                                            <td><div>이수구분</div></td>
-                                            <td><div></div></td>
-                                            <td><div>전공영역</div></td>
-                                            <td><div></div></td>
-                                            <td><div>과목코드</div></td>
-                                            <td><div></div></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div id="class_sum_title">
-                                    <div>교과목 개요</div>
-                                </div>
-                                <div id="class_sum_content">
-                                    <div>내용</div>
-                                </div>
-                                <table id="class_goal">
-                                    <tbody>
-                                        <tr>
-                                            <td><div>교육목표</div></td>
-                                            <td><div></div></td>
-                                            <td><div>주교재</div></td>
-                                            <td><div></div></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                   <tbody>
+                                    <tr>
+                                        <td><div>강의명</div></td>
+                                        <td><p id="mlectureName"></p></td>
+                                        <td><div>담당교수</div></td>
+                                        <td><p id="mProfessorName"></p></td>
+                                        <td><div>강의실</div></td>
+                                        <td><p id="mRoom"></p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div>년도</div></td>
+                                        <td><p id="mYear"></p></td>
+                                        <td><div>학기</div></td>
+                                        <td><p id="mSemester"></p></td>
+                                        <td><div>학점</div></td>
+                                        <td><p id="mGradeSize"></p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div>이수구분</div></td>
+                                        <td><p id="mClassStatus"></p></td>
+                                        <td><div>전공영역</div></td>
+                                        <td><p id="mDepartment"></p></td>
+                                        <td><div>과목코드</div></td>
+                                        <td><p id="mclassCode"></p></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div id="class_sum_title">
+                                <div>교과목 개요</div>
+                            </div>
+                            <div id="class_sum_content">
+                                <input type="text" id="mclassOutLine">
+                            </div>
+                            <table id="class_goal">
+                                <tbody>
+                                    <tr>
+                                        <td><div>교육목표</div></td>
+                                        <td><input type="text" id="mclassTarget"></td>
+                                        <td><div>주교재</div></td>
+                                        <td><input type="text" id="mclassBook"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
-                                <div id="class_detail_title">
-                                    <div>주차별 계획</div>
-                                </div>
+                            <div id="class_detail_title">
+                                <div>주차별 계획</div>
+                            </div>
 
-                                <table id="class_detail_table" border="1">
-                                    <thead>
-                                        <tr height="30px;">
-                                            <td><p>주차</p></td>
-                                            <td><p>주제</p></td>
-                                            <td><p>세부 내용</p></td>
-                                        </tr>
-                                    </thead>
-                                    <tr>
-                                        <td class="detail_head"><div>주차</div></td>
-                                        <td class="detail_head"><div>주제</div></td>
-                                        <td class="detail_head"><div>세부 내용</div></td>
+                            <table id="class_detail_table" border="1">
+                                <thead>
+                                    <tr height="30px;">
+                                        <td><p>주차</p></td>
+                                        <td><p>주제</p></td>
+                                        <td><p>세부 내용</p></td>
                                     </tr>
-                                    <tr>
-                                        <td class="detail_head"><div>주차</div></td>
-                                        <td class="detail_head"><div>주제</div></td>
-                                        <td class="detail_head"><div>세부 내용</div></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="detail_head"><div>주차</div></td>
-                                        <td class="detail_head"><div>주제</div></td>
-                                        <td class="detail_head"><div>세부 내용</div></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="detail_head"><div>주차</div></td>
-                                        <td class="detail_head"><div>주제</div></td>
-                                        <td class="detail_head"><div>세부 내용</div></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="detail_head"><div>주차</div></td>
-                                        <td class="detail_head"><div>주제</div></td>
-                                        <td class="detail_head"><div>세부 내용</div></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="detail_head"><div>주차</div></td>
-                                        <td class="detail_head"><div>주제</div></td>
-                                        <td class="detail_head"><div>세부 내용</div></td>
-                                    </tr>
-                                    <tr>
-                                        <td><div>1</div></td>
-                                        <td><div>html</div></td>
-                                        <td><div>알아서 만들기</div></td>
-                                    </tr>
-                                    <tr>
-                                        <td><div>1</div></td>
-                                        <td><div>html</div></td>
-                                        <td><div>알아서 만들기</div></td>
-                                    </tr>
-                                    <tr>
-                                        <td><div>1</div></td>
-                                        <td><div>html</div></td>
-                                        <td><div>알아서 만들기</div></td>
-                                    </tr>
-                                    <tr>
-                                        <td><div>1</div></td>
-                                        <td><div>html</div></td>
-                                        <td><div>알아서 만들기</div></td>
-                                    </tr>
-                                    <tr>
-                                        <td><div>1</div></td>
-                                        <td><div>html</div></td>
-                                        <td><div>알아서 만들기</div></td>
-                                    </tr>
-                                    <tr>
-                                        <td><div>1</div></td>
-                                        <td><div>html</div></td>
-                                        <td><div>알아서 만들기</div></td>
-                                    </tr>
-                                    </tbody>
+                                </thead>
+                                <tbody>
+	                                <tr>
+	                                    <td class="detail_head"><div>주차</div></td>
+	                                    <td class="detail_head"><div>주제</div></td>
+	                                    <td class="detail_head"><div>세부 내용</div></td>
+	                                </tr>
+                                </tbody>
                                 </table>
                             </div>
                         </div>
@@ -243,7 +187,7 @@
             var modal = document.getElementById("myModal");
 
             // Get the button that opens the modal
-            var btn = document.getElementById("myBtn");
+            var btn = document.getElementById("myBtn")[1];
 
             // Get the <span> element that closes the modal
             var span = document.getElementsByClassName("close")[0];

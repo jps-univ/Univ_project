@@ -1,6 +1,7 @@
 package com.kh.univ.admin.model.dao;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -46,11 +47,10 @@ public class AdStudentDao {
 		return sqlSession.insert("adminStudentMapper.insertOne",std);
 	}
 
-	public ArrayList<Student> searchCollege(String collegeCode, String departmentCode, int searchSemester) {
 
-		
-		return null;
-//		return (ArrayList)sqlSession.selectMap("adminStudentMapper.searchCollege",collegeCode,departmentCode);
+	public ArrayList<Student> searchStd(Map map) {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList("adminStudentMapper",map);
 	}
 
 }
