@@ -100,7 +100,8 @@ public class StudentMyPageController
 		
 		mv.addObject("consult", consult);
 		
-		mv.setViewName("myPage/studentConsulting2");
+		mv.setViewName("myPage/studentConsulting");
+		/* mv.setViewName("myPage/studentConsulting2"); */
 		
 		return mv;
 	}

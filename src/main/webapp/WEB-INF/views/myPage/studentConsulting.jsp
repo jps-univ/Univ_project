@@ -58,9 +58,6 @@
 		#td_profName{
 		vertical-align: middle;
 		}
- 		#td_profId{
-		visibility: hidden;
-		}
  		#td_lab{
 		vertical-align: middle;
 		}
@@ -73,6 +70,8 @@
 		#div_selectProf{
 		margin: 1% 0% 0% 20%;
 		}
+		.even{text-align: center;}
+		.odd{text-align: center;}
 		.top{
 		    background-color: #edf1fc;
 		    border-bottom: solid #4e73df;
@@ -82,6 +81,15 @@
 		    bottom: 25px;
 		    white-space: nowrap;
 		    color: #4e73df;
+		}
+		#profTable{
+		overflow: hidden;
+		}
+		.col-md-5{
+		display: none;
+		}
+		.pagination{
+		margin-left: 60%;
 		}
 	</style>
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
@@ -175,17 +183,16 @@
 
 		          
 	 		          <div class="card-body">
-		 		          <div class="table-responsive">
+		 		          <div class="table-responsive" id="profTable">
 					          <table class="table table-bordered" id="selectProf" width="100%" cellspacing="0">
 					          	<thead>
 									<tr align="center">
-										<th>번호</th>
 										<th id="th_college">학부</th>
 										<th id="th_department">학과</th>
 										<th id="th_profName">성명</th>
+										<th id="td_profId">교번</th>
 										<th id="th_lab">연구실</th>
 										<th id="th_apply">상담 신청</th>
-										<th id="th_profId">교번</th>
 									</tr>
 					          	</thead>
 					          </table>
@@ -368,24 +375,21 @@
 	            'columns': 
 	            [
 	                {'data': 'collegeName'},
-	                {'data': 'collegeName'},
 	                {'data': 'departmentName'},
 	                {'data': 'profName'},
+	                {'data': 'profId'},
 	                {'data': 'lab'},
-	                {'data': ''},
-	                {'data': 'profId'}
+	                {'data': ''}
 	            ],
 	            'columnDefs': [
 	                {
-	                    'targets': [1, 2],
-	                    'width': '20%'
+	                    'targets': [0, 1],
+	                    'width': '20%',
+	                    'vertical-align': 'middle'
 	                },
 	                {
-	                    'targets': [3, 4, 5],
+	                    'targets': [2, 3, 4],
 	                    'width': '15%'
-	                },
-	                {   'targets': [6],
-	                	'visible': false
 	                },
 	                {
 	                	"targets"   : [ 5 ],
@@ -394,7 +398,7 @@
 	                    "className" : "center",
 	                    "render"    : function ( data, type, row ) 
 	                    			   {
-	                                        var html = '<input type="button" class="btn btn-success" value="상담신청" id="applyConsulting" onclick="applyConsulting()">';
+	                                        var html = '<input type="button" class="btn btn-success" value="상담신청" id="applyConsulting" onclick="applyConsulting(event)">';
 	                                        return html;
 	                                    }
 	                    }
@@ -403,7 +407,8 @@
 	            'paging': true,
 	            'bDestroy': true,
 	            'scrollX': false,
-	            'destroy': true
+	            'destroy': true,
+	            "lengthMenu": [ 5, 10, 25, 50, 75 ]
 	        });
 	    }
 		
@@ -495,11 +500,10 @@
 	    }
 	    
 	    // 상담 신청 
-	    function applyConsulting()
+	    function applyConsulting(event)
 	    {
-	    	var profId = event.target.nextElementSibling.value;
-	    	var test = table.row(this).data();
-	    	console.log(test);
+	    	var profId = event.target.parentElement.parentElement.children[3].innerHTML;
+	    	console.log(profId);
 	    	/* var profId = test.profId; */
 	    	/* console.log(profId); */
 	    	

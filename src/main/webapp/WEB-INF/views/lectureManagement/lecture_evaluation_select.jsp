@@ -96,7 +96,7 @@
                                   
 								<tbody>
 									<c:forEach var="s" items="${ schedule }" varStatus="status">
-										<form action="lecture_evaluation.do" method="post" onsubmit="evaluation()">
+										<form action="lecture_evaluation.do" method="post" onsubmit="return evaluation()">
 											<tr align="center">
 										       <c:choose>
 										       	<%-- <c:when test="${ s.evaluation.evalNo eq '0'}"> --%>
@@ -193,11 +193,12 @@
         if(confirm("평가하시겠습니까?"))
     	{
         	console.log("test");
+        	return true;
     	}
     	else
     	{
     		alert("취소되었습니다.");
-			return;
+			return false;
     	}
     }
     </script>
