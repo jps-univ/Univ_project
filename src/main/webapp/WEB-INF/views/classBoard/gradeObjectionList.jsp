@@ -32,11 +32,14 @@
   #gradeTable{
   	align: center;
 	vertical-align: middle;
+	width:97%;
   }
   #replyBoard tr th{
  	align: center;
   }
    th.dt-center, td.dt-center { text-align: center; }
+     #gradeTable_wrapper{
+  width:97%}
   </style>
 </head>
 

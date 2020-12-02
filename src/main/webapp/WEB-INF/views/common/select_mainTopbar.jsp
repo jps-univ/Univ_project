@@ -4,16 +4,16 @@
 <% String path = request.getContextPath(); %>
 <c:set var="contextPath" value="<%= request.getContextPath()%>"/>
 
-<c:set var="Seq" value="${classSeq }"/>
-<c:set var="profName" value="${profName}"/>
+<c:set var="Seq" value="${ Seq}"/>
+<c:set var="profN" value="${profN}"/>
 <!DOCTYPE html>
 <html>
 <head>
 
 </head>
 <body>
-          		
-          		 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                
+                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
           <!-- Topbar Navbar 로그인창 -->
           <ul class="navbar-nav ml-auto">
@@ -40,7 +40,7 @@
 
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${userName }님 환영합니다. ${profName } + ${classSeq }</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${userName }님 환영합니다. ${profN } + ${Seq }+${classSeq }</span>
               </a>
             </li>
 
