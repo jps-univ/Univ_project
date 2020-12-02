@@ -5,6 +5,7 @@ import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.lecture.model.vo.LectureTime;
 import com.kh.univ.lecture.model.vo.SearchCondition;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -56,4 +57,6 @@ public interface LectureService {
     int updateAdditional(HashMap map);
 
     int insertPlan(AdClassPlan ap);
+
+    int timeDupCheck(HashMap map);
 }

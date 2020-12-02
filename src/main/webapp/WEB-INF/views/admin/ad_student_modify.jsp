@@ -44,23 +44,15 @@
                     <table id="std_info_table">
                         <tr>
                             <td rowspan="5" id="img_area"><img src="#" alt="preview" id="std_img"></td>
-                            <td class="stdtext">
-                                <p>학번</p>
-                            </td>
+                            <td class="stdtext"><p>학번</p></td>
                             <td><input id="stdId" name="stdId" type="text"></td>
-                            <td class="stdtext">
-                                <p>성명</p>
-                            </td>
+                            <td class="stdtext"><p>성명</p></td>
                             <td><input id="stdName" name="stdName" type="text"></td>
                         </tr>
                         <tr>
-                            <td class="stdtext">
-                                <p>생년월일(성별)</p>
-                            </td>
+                            <td class="stdtext"><p>생년월일(성별)</p></td>
                             <td><input id="stdBirth"name="stdBirth" type="text"></td>
-                            <td class="stdtext">
-                                <p>대학</p>
-                            </td>
+                            <td class="stdtext"><p>대학</p></td>
                             <td>
                             	<select id="stdCollege"name="stdCollege">
                             		<option>---</option>
@@ -71,33 +63,23 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="stdtext">
-                                <p>학부(과)</p>
-                            </td>
+                            <td class="stdtext"><p>학부(과)</p></td>
                             <td>
                             	<select id="stdDepartment" name="stdDepartment" form="stdForm">
                             		<option><학과를 선택해주세요></option>
                             	</select>
                             </td>
-                            <td class="stdtext">
-                                <p>과정구분</p>
-                            </td>
+                            <td class="stdtext"><p>과정구분</p></td>
                             <td><input id="stdCourse" name="stdCourse"type="text"></td>
                         </tr>
                         <tr>
-                            <td class="stdtext">
-                                <p>학년</p>
-                            </td>
+                            <td class="stdtext"><p>학년</p></td>
                             <td><input id="stdSemester"name="stdSemester" type="text"></td>
-                            <td class="stdtext">
-                                <p>학적상태</p>
-                            </td>
+                            <td class="stdtext"><p>학적상태</p></td>
                             <td><input id="stdSchoolReg" name="stdSchoolReg"type="text"></td>
                         </tr>
                         <tr>
-                            <td class="stdtext">
-                                <p>입학구분</p>
-                            </td>
+                            <td class="stdtext"><p>입학구분</p></td>
                             <td><input id="stdEnterDiv"name="stdEnterDiv" type="text"></td>
                             <td class="stdtext"></td>
                             <td><input type="text"></td>
@@ -172,7 +154,7 @@
                 <option value="0">------</option>
             </select> 학년 : <select name="searchSemester" id="searchSemester">
                 <option value="0">------</option>
-            </select> <input type="button" value="검색"></pre>
+            </select> <input type="button" value="검색" id="searchBtn"></pre>
                 
             
             <div id="total_std_area">
@@ -202,13 +184,12 @@
                             <td>${s.stdCourse}</td>
                             <td>${Semester}</td>
                             <td>
-                          	<c:if test="${empty s.register.stdStatus }">
-                          	재학
-                          	</c:if>
-                          	<c:if test="${!empty s.register.stdStatus }">
-                          	${s.register.stdStatus} 
-                          	</c:if>
-                          	
+	                          	<c:if test="${empty s.register.stdStatus }">
+	                          	재학
+	                          	</c:if>
+	                          	<c:if test="${!empty s.register.stdStatus }">
+	                          	${s.register.stdStatus} 
+	                          	</c:if>                      	
                           	</td>
                           
                         </tr>
@@ -218,6 +199,57 @@
                     </tbody>
                 </table>
                 <script>
+                $(function(){
+                	$("#searchBtn").click(function(){
+                		$.ajax({
+							url:"ad_student_search.do",
+							dataType:"json",
+							data:{
+								searchDepartment:$("#searchDepartment").val(),
+								searchSemester:$("#searchSemester").val()
+							},success:function(data){
+								
+							},error:function(){
+								
+							}
+                		});
+                	});
+                });
+                
+                $(function searchSemester(){
+                	$("#searchDepartment").change(function(){
+                		$('#searchSemester').empty();
+        				$('#searchSemester').append("<option><학년을 선택해주세요></option>");
+         				for(var index =1; index < 5;index++){
+        					var searchSemester = $("<option value="+ index+ ">" + index+"</option>");
+        					$('#searchSemester').append(searchSemester);
+        				}
+     				});
+                });
+                $(function searchOption(){
+                	$("#searchCollege").change(function(){
+                		
+                		$.ajax({
+                			url:"student_Modify_DeptCheck.do",
+                			dataType:"json",
+                			data:{
+                				collegeCode:$(this).val()
+                			},success:function(data){
+                				$('#searchDepartment').empty();
+                				$('#searchDepartment').append("<option><학과를 선택해주세요></option>");
+                 				for(var index =0; index < data.length;index++){
+                					var department = $("<option value="+ data[index].departmentCode+ ">" + data[index].departmentName +"</option>");
+                					$('#searchDepartment').append(department);
+                				}
+                 				
+                				
+                			},error:function(){
+                				console.log("fail");
+                			}
+                			
+                		});
+                	});
+                });
                 
                 $(function(){
                     $("#total_std tbody td").click(function(){
@@ -319,33 +351,7 @@
                 	
                 });
                 
-/*                 $(function search(){
-                	$("#searchCollege").change(function(){
-                		
-                		$.ajax({
-                			url:"student_Modify_DeptCheck.do",
-                			dataType:"json",
-                			data:{
-                				collegeCode:$(this).val(),
-                				departmentCode:$("#searchDepartment").val(),
-                				searchSemester:$("#searchSemester").val()
-                				
-                			},success:function(data){
-                				
-                				$('#searchDepartment').empty();
-                				$('#searchDepartment').append("<option value="+"0"+"><학과를 선택해주세요></option>");
-                 				for(var index =0; index < data.length;index++){
-                					var department = $("<option value="+ data[index].departmentCode+ ">" + data[index].departmentName +"</option>");
-                					$('#searchDepartment').append(department);
-                				}
-                				
-                			},error:function(){
-                				console.log("fail");
-                			}
-                			
-                		})
-                	});
-                });  */
+
 
                 
                 </script>

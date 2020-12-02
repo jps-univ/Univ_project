@@ -191,7 +191,7 @@
         WHERE subquery1.CLASS_SEQ = a.CLASS_SEQ
           AND a.DEPARTMENT_CODE = c.DEPARTMENT_CODE
           AND a.PROFESSOR_ID = d.PROFESSOR_ID
-          AND a.CLASS_APPROVE = 'N'
+          AND a.CLASS_APPROVE = 'YW'
     
     </select>
 	

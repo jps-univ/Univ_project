@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -93,5 +94,10 @@ public class LectureDao {
 
     public int insertPlan(AdClassPlan ap) {
         return sqlSession.insert("lectureMapper.insertPlan", ap);
+    }
+
+
+    public int timeDupCheck(HashMap map) {
+        return sqlSession.selectOne("lectureMapper.timeDupCheck",map);
     }
 }

@@ -69,10 +69,6 @@
 	                                </td>
                             	</tr>
                             </c:forEach>
-
-
-
-  
                         </tbody>
                     </table>
                 </div>
@@ -96,9 +92,8 @@
 
             }
         </script>
-            <script>
         
-        
+        <script>
         	$(function(){
         		
         		$('#approve_btn').click(function(){
@@ -144,7 +139,6 @@
         		});
         		
         	});
-        
         </script>
 
 

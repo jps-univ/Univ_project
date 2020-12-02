@@ -195,6 +195,20 @@
         FROM TB_CLASS
         WHERE CLASS_CODE=#{classCode}
     </select>
+    <!--    시간표 중복방지를 위한 쿼리문-->
+    <select id="timeDupCheck" resultType="_int">
+        SELECT COUNT(*)
+        FROM (
+                 SELECT CONCAT(b.DAY, b.HOUR) AS DAY_HOUR
+                 FROM TB_CLASS a,
+                      TB_CLASS_TIME b
+                 WHERE a.CLASS_SEQ = b.CLASS_SEQ
+                   AND a.PROFESSOR_ID = #{profId}
+                   AND a.CLASS_YEAR = #{classYear}
+                   AND a.CLASS_SEMESTER = #{classSemester}
+             ) subquery
+        WHERE subquery.DAY_HOUR = #{dayHour}
+    </select>
 <!--    교수 강의등록요청할때 승인상태를 Y Wait (웨이트) 으로 해서 디비에넣음-->
     <insert id="requestRegisterClass" parameterType="Lecture">
         INSERT INTO TB_CLASS

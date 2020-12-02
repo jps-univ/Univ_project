@@ -8,6 +8,7 @@ import com.kh.univ.lecture.model.vo.SearchCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -117,6 +118,11 @@ public class LectureServiceImpl implements LectureService {
     @Override
     public int insertPlan(AdClassPlan ap) {
         return lectureDao.insertPlan(ap);
+    }
+
+    @Override
+    public int timeDupCheck(HashMap map) {
+        return lectureDao.timeDupCheck(map);
     }
 
 

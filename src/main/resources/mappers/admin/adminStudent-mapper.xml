@@ -131,5 +131,8 @@
 		LEFT JOIN TB_DEPARTMENT USING (DEPARTMENT_CODE)
 		LEFT JOIN TB_COLLEGE USING(COLLEGE_CODE)
  	</select>
-
+	
+	<select id="searchStudent" >
+	
+	</select>
 </mapper>

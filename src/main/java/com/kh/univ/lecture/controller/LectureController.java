@@ -156,6 +156,7 @@ public class LectureController {
     }
 
     // 시간표 중복체크함수.
+    // 학생의 수강신청 시에 중복체크함수
     private boolean checkDuplicate(int stdId, int classSeq, HttpServletRequest request) {
         boolean noDuplicate = true;
         System.out.println("등록을 원하는 클래스 시퀀스 : " + classSeq);
@@ -174,7 +175,9 @@ public class LectureController {
 
 
         ArrayList<LectureTime> list2 = lectureService.getDayHourList2(map);
+//        내가 갖고있는 시간표
         ArrayList dayHourList = new ArrayList();
+//        내가 수강신청하려고 클릭한 과목의 시간표
         ArrayList dayHourList2 = new ArrayList();
         for (LectureTime time : list) {
             dayHourList.add(time.getDayHour());
@@ -315,6 +318,32 @@ public class LectureController {
             return "ok";
         }
     }
+    /**
+     * 교수가 강의 요청을 할 때 강의시간이 중복인지 확인
+     * @param
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("timeDupCheck.do")
+    public String timeDupCheck(HttpSession session,
+                               int classYear,
+                               int classSemester,
+                               String dayHour) {
+        int profId = ((Professor)session.getAttribute("loginUser")).getProfId();
+
+        HashMap map = new HashMap();
+        map.put("profId",profId);
+        map.put("classYear",classYear);
+        map.put("classSemester",classSemester);
+        map.put("dayHour",dayHour);
+        int result = lectureService.timeDupCheck(map);
+
+        if (result > 0) {
+            return "fail";
+        } else {
+            return "ok";
+        }
+    }
 
     /**
      * 교수 강의등록요청 컨트롤러
@@ -347,20 +376,36 @@ public class LectureController {
      */
     @ResponseBody
     @RequestMapping(value = "requestRegisterTime.do", produces = "application/json; charset=utf-8")
-    public String requestRegisterTime(String classCode,String dayList, String hourList){
+    public String requestRegisterTime(String classCode,
+                                      @RequestParam(value = "dayList[]") List<String> dayList,
+                                      @RequestParam(value = "hourList[]") List<String> hourList
+//                                      String dayList,
+//                                      String hourList
+    ){
         int classSeq = lectureService.selectClassSeq(classCode);
         System.out.println(dayList);
         System.out.println(hourList);
 
         LectureTime lecTime = new LectureTime();
 
-        String[] dayArray = dayList.split(",");
-        String[] hourArray = hourList.split(",");
+//        String[] dayArray = dayList.split(",");
+//        String[] hourArray = hourList.split(",");
 
-        for (int i = 0; i < dayArray.length; i++ ){
+//        for (int i = 0; i < dayArray.length; i++ ){
+//            lecTime.setClassSeq(classSeq);
+//            lecTime.setDay(dayArray[i]);
+//            lecTime.setHour(hourArray[i]);
+//            int result = lectureService.insertClassTime(lecTime);
+//            if(result>0) {
+//                System.out.println(i+"번째 수업시간 인서트");
+//            }else {
+//                System.out.println(i+"번째 수업시간 인서트 실패");
+//            }
+//        }
+        for (int i = 0; i < dayList.size(); i++ ){
             lecTime.setClassSeq(classSeq);
-            lecTime.setDay(dayArray[i]);
-            lecTime.setHour(hourArray[i]);
+            lecTime.setDay(dayList.get(i));
+            lecTime.setHour(hourList.get(i));
             int result = lectureService.insertClassTime(lecTime);
             if(result>0) {
                 System.out.println(i+"번째 수업시간 인서트");
