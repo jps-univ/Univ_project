@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<script>
+		alert("정보를 잘못 입력하셨습니다.");
+		history.go(-1);
+	</script>
 </body>
 </html>
