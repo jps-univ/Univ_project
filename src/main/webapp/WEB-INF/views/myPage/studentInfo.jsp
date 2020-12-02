@@ -200,6 +200,7 @@
 					                                <option <c:if test="${ loginUser.stdBank eq '농협' }"> selected="selected"</c:if>>농협</option>
 					                                <option <c:if test="${ loginUser.stdBank eq '기업은행' }"> selected="selected"</c:if>>기업은행</option>
 					                                <option <c:if test="${ loginUser.stdBank eq '우리은행' }"> selected="selected"</c:if>>우리은행</option>
+					                                <option <c:if test="${ loginUser.stdBank eq '하나은행' }"> selected="selected"</c:if>>하나은행</option>
 					                            </select>
 					                        </td>
 										</tr>

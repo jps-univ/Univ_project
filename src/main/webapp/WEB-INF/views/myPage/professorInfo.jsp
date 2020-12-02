@@ -182,6 +182,8 @@
 		                                <option <c:if test="${ loginUser.profBank eq '농협' }"> selected="selected"</c:if>>농협</option>
 		                                <option <c:if test="${ loginUser.profBank eq '기업은행' }"> selected="selected"</c:if>>기업은행</option>
 		                                <option <c:if test="${ loginUser.profBank eq '우리은행' }"> selected="selected"</c:if>>우리은행</option>
+		                                <option <c:if test="${ loginUser.profBank eq '하나은행' }"> selected="selected"</c:if>>하나은행</option>
+		                                <option <c:if test="${ loginUser.profBank eq '카카오뱅크' }"> selected="selected"</c:if>>카카오뱅크</option>
 		                            </select>
 		                        </td>
 		                      </tr>
