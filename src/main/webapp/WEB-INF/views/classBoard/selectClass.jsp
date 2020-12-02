@@ -30,8 +30,14 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
+    <!-- Sidebar -->
     <div id="main_sidebar">
-   		<c:import url="../common/sidebar.jsp" />
+	      <c:if test="${ userStatus eq 'S' }" >
+   			<c:import url="../common/sidebar.jsp" />
+   		  </c:if>
+	      <c:if test="${ userStatus eq 'P' }" >
+   			<c:import url="../common/sidebar_professor.jsp" />
+   		  </c:if>
     </div>
     
     <!-- End of Sidebar -->

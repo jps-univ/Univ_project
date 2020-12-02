@@ -69,7 +69,11 @@
     	<result property="profComment" column="PROCOMMENT"/>
 		<result property="sCreateDate" column="SCREATEDATE"/>
 		<result property="sModifyDate" column="SMODIFYDATE"/>
+		<result property="profReply" column="PROFESSOR_REPLY"/>
+		<result property="studQa" column="STUDENT_QA"/>
+		<result property="statusReply" column="REPLU_STATUS"/>
 		
+		<result property="aTitle" column="A_TITLE"/>
 		<result property="profId" column="PROFESSOR_ID"/>
 		<result property="profName" column="NAME"/>
 	</resultMap>
@@ -197,6 +201,38 @@
 		SET S_TITLE='N', SCORE=#{score}, PROCOMMENT=#{profComment}
 		WHERE S_SEQ=#{sSeq}
 	</update>
+	
+	<select id="callStdGrade" resultMap="sAssignmentList">
+		SELECT *
+		FROM (SELECT A.A_SEQ, B.A_TITLE, A.SCORE, A.CLASS_SEQ, A.STUDENT_ID
+		FROM TB_SASSIGNMENT A RIGHT JOIN TB_ASSIGNMENT B ON (A.A_SEQ=B.A_SEQ))
+		WHERE CLASS_SEQ=#{classSeq} AND STUDENT_ID=#{stdId}
+	</select>
+	
+	<select id="callGradeDetail" resultMap="sAssignmentList">
+		SELECT *
+		FROM TB_SASSIGNMENT
+		WHERE CLASS_SEQ=#{classSeq}
+		AND STUDENT_ID=#{stdId}
+		AND A_SEQ=#{aSeq}	
+	</select>
+	
+	
+	
+	<select id="callObjectionList" resultMap="sAssignmentList">
+		SELECT *
+		FROM TB_SASSIGNMENT A JOIN TB_ASSIGNMENT B ON (A.A_SEQ=B.A_SEQ)
+		WHERE A.CLASS_SEQ=#{classSeq} AND A.REPLY_STATUS='N' 
+	</select>
+	
+	
+	<select id="callObjectionDetail" resultMap="sAssignmentList">
+		SELECT *
+		FROM TB_SASSIGNMENT
+		WHERE CLASS_SEQ=#{classSeq}
+		AND S_SEQ=#{sSeq}
+	</select>
+	
 	
 	
 </mapper>

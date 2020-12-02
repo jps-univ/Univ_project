@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: moduhan
-  Date: 2020-10-16
-  Time: 21:14
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -25,10 +18,26 @@
   <!-- Custom styles for this template-->
   <link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="${contextPath}/resources/css/lecBoard_base.css">       
-  <link rel="stylesheet" href="${contextPath}/resources/css/grade_objection_detail.css">
+ <%--  <link rel="stylesheet" href="${contextPath}/resources/css/lecBoard_base.css">    --%>    
+  <link rel="stylesheet" href="${contextPath}/resources/css/board_gradeObjection.css?ver=1">
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <style>
+  #answer {
+        border: 1px solid #555;
+        width: 99%;
+        height: 110px;
+        resize: none;
+  }
+  #gradeTable{
+  	align: center;
+	vertical-align: middle;
+  }
+  #replyBoard tr th{
+ 	align: center;
+  }
+   th.dt-center, td.dt-center { text-align: center; }
+  </style>
 </head>
 
 <body id="page-top">
@@ -38,7 +47,12 @@
 
     <!-- Sidebar -->
     <div id="main_sidebar">
-   		<c:import url="../common/sidebar.jsp" />
+	      <c:if test="${ userStatus eq 'S' }" >
+   			<c:import url="../common/sidebar.jsp" />
+   		  </c:if>
+	      <c:if test="${ userStatus eq 'P' }" >
+   			<c:import url="../common/sidebar_professor.jsp" />
+   		  </c:if>
     </div>
     
     <!-- End of Sidebar -->
@@ -50,90 +64,150 @@
       <div id="content">
 
         <!-- Topbar -->
-  		<c:import url="../common/pageTopbar.jsp" />
         
+        <c:import url="../common/pageTopbar.jsp" />
 
-		<!-- main content -->
-          <div id="main_con">
-              <div id="write_title"><p>과제</p></div>
-              <form id="write_assignment">
-                  <div id="write_content"  class="shadow">
-                      <table id="title_secret">
-                          <tbody>
-                              <tr>
-                                  <td><label class="write_subject">제목</label></td>
-                                  <td>가나다라마바사</td>
-                              </tr>
-                              <tr>
-                                  <td><label class="write_subject">비밀글</label></td>
-                                  <td><input type="checkbox" name="secret_mode" id="secret_mode" checked="checked" disabled="disabled"></td>
-                              </tr>
-                              <tr>
-                                  <td><label class="write_subject2">내용</label></td>
-                                  <td><div id="textContent">내용</div></td>
-                              </tr>
-                              <tr>
-                                  <td><label class="write_subject">첨부파일</label></td>
-                                  <td><input type="file" name="uploadFile"></td>
-                              </tr>
-                          </tbody>
-                      </table>
-                  </div>        
-              </form>
+        <!-- main content -->
+        <div id="main_con">
+                    <!-- Begin Page Content -->
+        <div class="container-fluid">
 
-
-
-              <form id="reply_form">
-                  <div id="reply_div" class="shadow">
-                      <table id="board_reply">
-                          <tbody>
-                              <tr>
-                                  <td><label class="write_reply">댓글작성</label></td>
-                                  <td><textarea>과제가 싫어요</textarea></td>
-                                  <td><button id="reply_button">등록</button></td>
-                              </tr>
-                              <tr>
-                                  <td><label class="reply_upload">첨부파일</label></td>
-                                  <td colspan="2"><input type="file" name="uploadFile"></td>
-                              </tr>
-                          </tbody>
-                      </table>
-                  </div>        
-              </form>
-
-
-
-              <div class="replyList">
-                <form class="reply_list">
-                    <div class="replyList_div" class="shadow">
-                        <table class="board_replyList">
-                            <tbody>
-                                <tr>
-                                    <td><label class="stu_no">댓글작성</label></td>
-                                    <td><label class="date">20201010</td>
-                                </tr>
-                                <tr>
-                                    <td><div class="textContent">내용</div></td>
-                                    <td>
-                                      <button id="reply_update">수정</button>
-                                      <button id="reply_delete">삭제</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"><input type="file" name="uploadFile"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>        
-                </form>
-              </div>
-             
-             
-           
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">성적이의신청</h1>
+		
+		      <c:if test="${ userStatus eq 'P' }" >
+      
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">성적 이의 조회</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                 <table id="gradeTable" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr align="center">
+                      <th>번호</th>
+                      <th>학번</th>
+                      <th>성적</th>
+                    </tr>
+                  </thead>
+              </table>
+           </div>   
+             </div>
+            </div>
           </div>
-       
+
+      <div class="card shadow mb-4">          
+         <div id="container">
+                  <div id="rest_table_area">
+                      <table class="table table-bordered question-table">
+                      <colgroup>
+                         <col style="width:8%;">
+
+                         <col style="width:*">
+                      </colgroup>
+                          <thead>
+                              <tr align="center">
+                                  <th style="font-size: 14px; vertical-align: middle;">
+                                      FEEDBACK
+                                  </th>
+                                  <td id="proFeedback">
+                                  </td>
+                              </tr>
+                              <tr align="center">
+                                  <th style="   vertical-align: middle;">
+                                         건의 내용
+                                  </th>
+                                  <td id="studOpinion">
+                                  </td>
+                              </tr>
+                              <tr align="center">
+                                  <th style="   vertical-align: middle;">
+                                         교수 답변
+                                  </th>
+                                  <td id="profAnswer">
+                                      <textarea id="answer" name="bAnswer"></textarea>
+                                  </td>
+                              </tr>
+                          </thead>
+                      </table>
+                      <input id="handOutQA" type="button" value="등록" class="btn btn-primary btn-sm">
+                      <input id="modifyQA" type="button" value="수정" class="btn btn-primary btn-sm">
+                  </div>
+            </div>
+                  
+             </div>
+      
+      </c:if>
+      
+         <script>
+            $(document).ready(function callObjectionTable(){
+            table=$('#gradeTable').DataTable({
+               'ajax':{
+                  'url':"callGrade.do",
+                  'type':'post',
+                  'dataType':"json",
+                  'dataSrc':''
+               },
+            'columns':[
+               {'data':'sSeq'},
+               {'data':'stdId'},
+               {'data':'score'},
+            ],
+            'columnDefs':[
+               {
+                  'targets':0,
+                  'width':'10%'
+               },
+               {
+                  'targets':2,
+                  'width':'10%'
+               },
+               {   'targets': [0,1,2],
+                  'className':'dt-center'   
+               }
+            ],
+                'searching': true,
+                'paging': true,
+                // 'bDestroy': true,
+                'destroy': true,
+                'scrollX': false,
+                'scrollY': true
+                
+            });
+            
+            
+            $('#gradeTable tbody').on('click','tr',function(){
+               console.log("?");
+               $.ajax({
+                  
+                  url:'callObjectionDetail.do',
+                  data:{sSeq:$(this).children().eq(0).text()},
+                  dataType:"json",
+                  success:function(data){
+                     console.log(data);
+                     $('#proFeedback').text(data.profComment);
+                     $('#studOpinion').text(data.studQa);
+                     $('#profAnswer').children().val(data.profReply);
+                  }
+               });
+            });
+         });      
+      </script>
+		
+		
+		
+		
+
+		
+		
+		
+	  </div>
+	<!-- End of Main con -->
 
       </div>
+	<!--  ENd of Main content -->
 
 
     </div>
