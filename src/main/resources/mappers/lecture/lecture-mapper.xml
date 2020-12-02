@@ -16,6 +16,10 @@
         <result property="classLevel" column="CLASS_LEVEL"/>
         <result property="classType" column="CLASS_TYPE"/>
 
+        <result property="classBook" column="CLASS_BOOK"/>
+        <result property="classTarget" column="CLASS_TARGET"/>
+        <result property="classOutline" column="CLASS_OUTLINE"/>
+
         <result property="lectureTime" column="TOTAL"/>
         <result property="profName" column="PROFESSOR_NAME"/>
     </resultMap>
@@ -190,12 +194,11 @@
         SELECT COUNT(*)
         FROM TB_CLASS
         WHERE CLASS_CODE=#{classCode}
-          AND CLASS_APPROVE = 'Y'
     </select>
 <!--    교수 강의등록요청할때 승인상태를 Y Wait (웨이트) 으로 해서 디비에넣음-->
     <insert id="requestRegisterClass" parameterType="Lecture">
         INSERT INTO TB_CLASS
-        VALUES (SEQ_CLASS.nextval,#{classCode},#{deptCode},#{profId},#{className},#{room},#{gradeSize},#{classSemester},#{classYear},'YW',#{classLevel},#{classType})
+        VALUES (SEQ_CLASS.nextval,#{classCode},#{deptCode},#{profId},#{className},#{room},#{gradeSize},#{classSemester},#{classYear},'YW',#{classLevel},#{classType},null,null,null)
     </insert>
 <!--    클래스시퀀스를 가져와서 거기에 맞는 시간표를 함께 넣기위함-->
     <select id="selectClassSeq" parameterType="string" resultType="_int">
@@ -220,4 +223,16 @@
         UPDATE TB_CLASS SET CLASS_APPROVE='DW'
         WHERE CLASS_SEQ = #{classSeq}
     </update>
+    <update id="updateAdditional" parameterType="Lecture">
+        UPDATE TB_CLASS
+            <set>
+                <if test="classOutline != null">CLASS_OUTLINE = #{classOutline},</if>
+                <if test="classTarget != null">CLASS_TARGET = #{classTarget},</if>
+                <if test="classBook != null">CLASS_BOOK = #{classBook}</if>
+            </set>
+        WHERE CLASS_SEQ = #{classSeq}
+    </update>
+    <insert id="insertPlan" parameterType="AdClassPlan">
+        INSERT INTO CLASS_PLAN VALUES (SEQ_CLASS_PLAN.nextval,#{classSeq},#{week},#{weekPlan},#{topic})
+    </insert>
 </mapper>

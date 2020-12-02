@@ -1,5 +1,6 @@
 package com.kh.univ.lecture.model.service;
 
+import com.kh.univ.admin.model.vo.AdClassPlan;
 import com.kh.univ.lecture.model.dao.LectureDao;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.lecture.model.vo.LectureTime;
@@ -106,6 +107,16 @@ public class LectureServiceImpl implements LectureService {
     @Override
     public int requestDeleteClass(int classSeq) {
         return lectureDao.requestDeleteClass(classSeq);
+    }
+
+    @Override
+    public int updateAdditional(HashMap map) {
+        return  lectureDao.updateAdditional(map);
+    }
+
+    @Override
+    public int insertPlan(AdClassPlan ap) {
+        return lectureDao.insertPlan(ap);
     }
 
 

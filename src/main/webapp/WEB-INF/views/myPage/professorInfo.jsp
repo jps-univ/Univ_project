@@ -80,10 +80,10 @@
 		
 		            <!-- DataTales Example -->
 		            <div class="card shadow mb-4">
-		            <form action="insertProfImage.do" method="post" enctype="multipart/form-data">
+		            <form action="insertProfImage.do" method="post" enctype="multipart/form-data" onsubmit="return insertImage()">
 		              <div class="card-header py-3">
 		                <h6 class="m-0 font-weight-bold text-primary">기본정보
-		                	<input type="submit" class="btn btn-primary btn-sm" value="저장" id="changeInfo" onclick="imageBtn()">
+		                	<input type="submit" class="btn btn-primary btn-sm" value="저장" id="changeInfo">
 		                </h6>
 		              </div>
 		              <div class="card-body">
@@ -182,6 +182,8 @@
 		                                <option <c:if test="${ loginUser.profBank eq '농협' }"> selected="selected"</c:if>>농협</option>
 		                                <option <c:if test="${ loginUser.profBank eq '기업은행' }"> selected="selected"</c:if>>기업은행</option>
 		                                <option <c:if test="${ loginUser.profBank eq '우리은행' }"> selected="selected"</c:if>>우리은행</option>
+		                                <option <c:if test="${ loginUser.profBank eq '하나은행' }"> selected="selected"</c:if>>하나은행</option>
+		                                <option <c:if test="${ loginUser.profBank eq '카카오뱅크' }"> selected="selected"</c:if>>카카오뱅크</option>
 		                            </select>
 		                        </td>
 		                      </tr>
@@ -398,6 +400,20 @@
 				return;
 			}
 		}
+		
+	    function insertImage()
+	    {
+	        if(confirm("저장하시겠습니까?"))
+	    	{
+	        	console.log("test");
+	        	return true;
+	    	}
+	    	else
+	    	{
+	    		alert("취소되었습니다.");
+				return false;
+	    	}
+	    }
 	</script>
 
 	<!-- Bootstrap core JavaScript-->

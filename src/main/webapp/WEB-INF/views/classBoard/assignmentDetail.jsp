@@ -26,20 +26,20 @@
   <link href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <!-- Custom styles for this template-->
-  <link href="${contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="${contextPath}/resources/css/sb-admin-2.min3-boardClass.css?ver=1" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="${contextPath}/resources/css/lecBoard_base.css">       
-  <link rel="stylesheet" href="${contextPath}/resources/css/assignment_detail.css">
+<%--   <link rel="stylesheet" href="${contextPath}/resources/css/lecBoard_base.css">    --%>    
+  <link rel="stylesheet" href="${contextPath}/resources/css/assignment_detail.css?ver=1">
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
   <style>
-      .page {
+/*       .page {
         margin-top: 130px;
         margin-left: 330px;
-    }
+    } */
 
     #container {
         margin-top: 30px;

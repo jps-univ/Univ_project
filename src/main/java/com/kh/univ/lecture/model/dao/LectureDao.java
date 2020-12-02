@@ -1,5 +1,6 @@
 package com.kh.univ.lecture.model.dao;
 
+import com.kh.univ.admin.model.vo.AdClassPlan;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.lecture.model.vo.LectureTime;
 import com.kh.univ.lecture.model.vo.SearchCondition;
@@ -84,5 +85,13 @@ public class LectureDao {
 
     public int requestDeleteClass(int classSeq) {
         return sqlSession.update("lectureMapper.requestDeleteClass", classSeq);
+    }
+
+    public int updateAdditional(HashMap map) {
+        return sqlSession.update("lectureMapper.updateAdditional", map);
+    }
+
+    public int insertPlan(AdClassPlan ap) {
+        return sqlSession.insert("lectureMapper.insertPlan", ap);
     }
 }

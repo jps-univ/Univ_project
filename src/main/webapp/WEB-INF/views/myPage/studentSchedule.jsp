@@ -109,9 +109,9 @@
 		                      <th id="day">금요일</th>
 		                    </tr>
 		                    
-		                    <tr class="test" align="center">
-		                      <th class="test">1교시<br>(09:00~09:50)</th>
-		                      <td class="test" id="1th_Mon">
+		                    <tr align="center">
+		                      <th>1교시<br>(09:00~09:50)</th>
+		                      <td id="1th_Mon">
  		                    	<c:forEach var="s" items="${ schedule }" varStatus="status">
 		                      		<c:if test="${ s.time.day eq '월' && s.time.hour eq 1 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 			                    </c:forEach>
@@ -131,7 +131,7 @@
 		                      		<c:if test="${ s.time.day eq '목' && s.time.hour eq 1 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>
 		                      </td>
-		                      <td class="test" id="1th_Fri">
+		                      <td id="1th_Fri">
 		                      	<c:forEach var="s" items="${ schedule }">
 		                      		<c:if test="${ s.time.day eq '금' && s.time.hour eq 1 }">${ s.className }<br>${ s.professor.profName }<br>${ s.room } 호</c:if>
 		                      	</c:forEach>

@@ -158,7 +158,8 @@
                 // 'bDestroy': true,
                 'destroy': true,
                 'scrollX': false,
-                'language': lang_kor
+                'language': lang_kor,
+                "lengthMenu": [ 5, 10, 25, 50, 75 ]
             });
 
 

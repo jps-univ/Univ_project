@@ -18,6 +18,12 @@ public class Lecture
     private int classLevel;			// 수강 학년
     private String classType;		// 이수 구분
 
+	private String classOutline;
+	private String classTarget;
+	private String classBook;
+
+
+
     private String lectureTime;
     private String profName;		// 교수 이름
     
@@ -30,11 +36,8 @@ public class Lecture
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Lecture(int classSeq, String classCode, String deptCode, int profId, String className, String room,
-			int gradeSize, int classSemester, int classYear, String classApprove, int classLevel, String classType,
-			String lectureTime, String profName, LectureTime time, LectureApplication lectureApplication,
-			Professor professor, Student student, LectureEvaluation evaluation) {
-		super();
+
+	public Lecture(int classSeq, String classCode, String deptCode, int profId, String className, String room, int gradeSize, int classSemester, int classYear, String classApprove, int classLevel, String classType, String classOutline, String classTarget, String classBook, String lectureTime, String profName, LectureTime time, LectureApplication lectureApplication, Professor professor, Student student, LectureEvaluation evaluation) {
 		this.classSeq = classSeq;
 		this.classCode = classCode;
 		this.deptCode = deptCode;
@@ -47,6 +50,9 @@ public class Lecture
 		this.classApprove = classApprove;
 		this.classLevel = classLevel;
 		this.classType = classType;
+		this.classOutline = classOutline;
+		this.classTarget = classTarget;
+		this.classBook = classBook;
 		this.lectureTime = lectureTime;
 		this.profName = profName;
 		this.time = time;
@@ -55,6 +61,7 @@ public class Lecture
 		this.student = student;
 		this.evaluation = evaluation;
 	}
+
 	public int getClassSeq() {
 		return classSeq;
 	}
@@ -169,13 +176,56 @@ public class Lecture
 	public void setEvaluation(LectureEvaluation evaluation) {
 		this.evaluation = evaluation;
 	}
+
+	public String getClassOutline() {
+		return classOutline;
+	}
+
+	public void setClassOutline(String classOutline) {
+		this.classOutline = classOutline;
+	}
+
+	public String getClassTarget() {
+		return classTarget;
+	}
+
+	public void setClassTarget(String classTarget) {
+		this.classTarget = classTarget;
+	}
+
+	public String getClassBook() {
+		return classBook;
+	}
+
+	public void setClassBook(String classBook) {
+		this.classBook = classBook;
+	}
+
 	@Override
 	public String toString() {
-		return "Lecture [classSeq=" + classSeq + ", classCode=" + classCode + ", deptCode=" + deptCode + ", profId="
-				+ profId + ", className=" + className + ", room=" + room + ", gradeSize=" + gradeSize
-				+ ", classSemester=" + classSemester + ", classYear=" + classYear + ", classApprove=" + classApprove
-				+ ", classLevel=" + classLevel + ", classType=" + classType + ", lectureTime=" + lectureTime
-				+ ", profName=" + profName + ", time=" + time + ", lectureApplication=" + lectureApplication
-				+ ", professor=" + professor + ", student=" + student + ", evaluation=" + evaluation + "]";
+		return "Lecture{" +
+				"classSeq=" + classSeq +
+				", classCode='" + classCode + '\'' +
+				", deptCode='" + deptCode + '\'' +
+				", profId=" + profId +
+				", className='" + className + '\'' +
+				", room='" + room + '\'' +
+				", gradeSize=" + gradeSize +
+				", classSemester=" + classSemester +
+				", classYear=" + classYear +
+				", classApprove='" + classApprove + '\'' +
+				", classLevel=" + classLevel +
+				", classType='" + classType + '\'' +
+				", classOutline='" + classOutline + '\'' +
+				", classTarget='" + classTarget + '\'' +
+				", classBook='" + classBook + '\'' +
+				", lectureTime='" + lectureTime + '\'' +
+				", profName='" + profName + '\'' +
+				", time=" + time +
+				", lectureApplication=" + lectureApplication +
+				", professor=" + professor +
+				", student=" + student +
+				", evaluation=" + evaluation +
+				'}';
 	}
 }

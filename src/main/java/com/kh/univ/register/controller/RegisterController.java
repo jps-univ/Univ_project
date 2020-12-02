@@ -1,28 +1,37 @@
 package com.kh.univ.register.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.socket.WebSocketSession;
+import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.kh.univ.member.model.vo.Student;
 import com.kh.univ.register.model.service.RegisterService;
 import com.kh.univ.register.model.vo.InsertRegister;
 import com.kh.univ.register.model.vo.Register;
 
+
 @Controller
-public class RegisterController {
+public class RegisterController{
 
 	@Autowired
 	private RegisterService rService;
+	
+
 
 	//	   @RequestMapping("leave.do")
 	//	   public ModelAndView Leave(ModelAndView mv, @RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) 
@@ -33,7 +42,8 @@ public class RegisterController {
 	//
 	//	      return mv;
 	//	   }
-
+	
+	 
 
 	/**
 	 * 1. 휴학 페이지 
