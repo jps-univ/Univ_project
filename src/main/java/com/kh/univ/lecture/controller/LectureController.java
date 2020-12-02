@@ -2,6 +2,7 @@ package com.kh.univ.lecture.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kh.univ.admin.model.vo.AdClassPlan;
 import com.kh.univ.lecture.model.service.LectureService;
 import com.kh.univ.lecture.model.vo.Lecture;
 import com.kh.univ.lecture.model.vo.LectureTime;
@@ -11,16 +12,14 @@ import com.kh.univ.member.model.vo.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
+import java.util.*;
 
 @Controller
 public class LectureController {
@@ -101,12 +100,14 @@ public class LectureController {
         sc.setDepartmentName(departmentName);
         sc.setClassName(className);
         sc.setClassYear(callYear());
+//        sc.setClassYear(2021);
         sc.setClassSemester(callSemester());
+//        sc.setClassSemester(1);
         ArrayList<Lecture> list = lectureService.selectList(sc);
         ObjectMapper mapper = new ObjectMapper();
 
         String jsonStr = mapper.writeValueAsString(list);
-
+        System.out.println(jsonStr);
         return jsonStr;
     }
 
@@ -371,6 +372,75 @@ public class LectureController {
     }
 
     /**
+     * null로 저장된 세개의 컬럼을 파라미터로 받아온 값으로 업데이트
+     * @param classCode
+     * @param classBook
+     * @param classOutline
+     * @param classTarget
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "addThreeItem.do", produces = "application/json; charset=utf-8")
+    public String requestRegisterPlan(
+                                      String classCode,
+                                      String classBook,
+                                      String classOutline,
+                                      String classTarget){
+        int classSeq = lectureService.selectClassSeq(classCode);
+
+        HashMap map = new HashMap();
+        map.put("classSeq", classSeq);
+        map.put("classBook", classBook);
+        map.put("classOutline", classOutline);
+        map.put("classTarget", classTarget);
+        System.out.println(map);
+
+        //
+        int result = lectureService.updateAdditional(map);
+        if (result > 0){
+            return "업데이트 완료";
+        }else return "업데이트 중 에러 발생";
+    }
+
+    /**
+     * 15주간의 주제와 수업내용을 배열로서 저장한다.
+     * @param session
+     * @param classCode
+     * @param weekPlanArray
+     * @param topicArray
+     * @return
+     * @throws JsonProcessingException
+     */
+    @ResponseBody
+    @RequestMapping(value = "addWeekPlan.do", produces = "application/json; charset=utf-8")
+    public String addWeekPlan(String classCode,
+//                              이렇게 지정해줘야 js 배열객체를 리스트로 뽑아올 수 있다.
+                              @RequestParam(value = "weekPlanArray[]") List<String> weekPlanArray,
+                              @RequestParam(value = "topicArray[]") List<String> topicArray)
+            throws JsonProcessingException {
+
+
+        int classSeq = lectureService.selectClassSeq(classCode);
+        System.out.println("클래스코드는 :" + classCode);
+        AdClassPlan ap = new AdClassPlan();
+        for (int i = 0; i<weekPlanArray.size(); i++){
+            ap.setClassSeq(classSeq);
+            ap.setWeek(i+1);
+            ap.setWeekPlan(weekPlanArray.get(i));
+            ap.setTopic(topicArray.get(i));
+            int result = lectureService.insertPlan(ap);
+            if (result>0){
+                System.out.println(i+"번째 플랜 등록완료 ");
+            }else {
+                System.out.println(i+"번째에서 플랜등록 에러");
+            }
+        }
+        return null;
+
+    }
+
+
+    /**
      * 강의 삭제요청,수정요청을 하기 위해 리스트를 뽑아옴
      * @param session
      * @return
@@ -388,6 +458,7 @@ public class LectureController {
         return jsonStr;
 
     }
+
 
     /**
      * 삭제요청이지만 사실 데이터베이스에서는 삭제가 아니라 업데이트로 상태값을 바꿔준다.

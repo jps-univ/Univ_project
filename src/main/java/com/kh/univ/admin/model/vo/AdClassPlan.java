@@ -21,7 +21,7 @@ public class AdClassPlan {
 		this.topic = topic;
 		this.weekPlan = weekPlan;
 	}
-	
+
 	public String getPlanNO() {
 		return planNO;
 	}
@@ -59,5 +59,5 @@ public class AdClassPlan {
 				+ ", weekPlan=" + weekPlan + "]";
 	}
 
-	
+
 }
