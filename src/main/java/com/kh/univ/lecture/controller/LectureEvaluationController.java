@@ -93,8 +93,8 @@ public class LectureEvaluationController
     	Student student = (Student)session.getAttribute("loginUser");
     	
     	evaluation.setStdId(student.getStdId());
-    	evaluation.setClassYear(2021);
-    	evaluation.setClassSemester(1);
+    	evaluation.setClassYear(2020);
+    	evaluation.setClassSemester(2);
     	    	    	
     	ArrayList<EvaluationResult> schedule = leService.selectStdSchdule(evaluation);
     	ArrayList<EvaluationResult> list = leService.selectStdEvaluation(evaluation);

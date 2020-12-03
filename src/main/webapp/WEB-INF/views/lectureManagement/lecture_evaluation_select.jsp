@@ -67,8 +67,8 @@
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
 						<span class="m-0 font-weight-bold">
-							년도 : <label class=" text-primary">2021</label>
-							학기 : <label class=" text-primary">1</label>
+							년도 : <label class=" text-primary">2020</label>
+							학기 : <label class=" text-primary">2</label>
 						</span>
 					</div>
 					
