@@ -32,19 +32,6 @@ public class RegisterController{
 	private RegisterService rService;
 	
 
-
-	//	   @RequestMapping("leave.do")
-	//	   public ModelAndView Leave(ModelAndView mv, @RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) 
-	//	   {
-	//	      System.out.println(currentPage);
-	//
-	//	      mv.setViewName("register/register_leave");
-	//
-	//	      return mv;
-	//	   }
-	
-	 
-
 	/**
 	 * 1. 휴학 페이지 
 	 * @param session
@@ -96,7 +83,6 @@ public class RegisterController{
 		register.setLeaveDate(new SimpleDateFormat("yy-MM-dd").format(today));
 		register.setApplicationDate(new SimpleDateFormat("yy-MM-dd").format(today));
 		
-		
 		if(register.getLeavePeriod().equals("6개월")) {
 
 			int addDate = 6;
@@ -112,7 +98,6 @@ public class RegisterController{
 			int addDate = 24;
 			register.setReturningDate(DateCalculator(addDate));
 		}
-
 		if(studentLeave.getStatusNO() !=0) {
 
 			int delete =rService.deleteStatus(studentL);
@@ -125,32 +110,18 @@ public class RegisterController{
 				}else {
 					return "fail";
 				}
-
 			}else {
 				return "fail";
 			}
-
 		}else {
 			int result = rService.leaveApply(register);
-
+			
 			if(result > 0) {
 				return "ok";
 			}else {
 				return "fail";
 			}
 		}
-
-
-
-
-
-
-
-
-
-
-
-
 	}
 	/**
 	 * 1_2_2. 휴학 신청 페이지 날짜 계산메소드
@@ -182,12 +153,6 @@ public class RegisterController{
 		Student studentR = (Student)session.getAttribute("loginUser");
 		Register studentReturning = rService.selectReturning(studentR);
 		System.out.println("ㅇ"+studentReturning);
-		//		if(studentReturning.getStdStatus().equals("null")|| studentReturning.getStdStatus().equals("휴학"))		{
-		//			studentReturning.setApplicationStatus("신청가능");
-		//
-		//		}else {
-		//			studentReturning.setApplicationStatus("신청불가");
-		//		}
 
 		if(studentReturning.getStatusNO()==0 || !studentReturning.getStdStatus().equals("휴학")) {
 			studentReturning.setApplicationStatus("신청불가");
@@ -242,11 +207,6 @@ public class RegisterController{
 		Register studentGraduation = rService.selectGraduation(studentG);
 		System.out.println("asdasd"+studentGraduation);
 
-		//		if(studentGraduation.getStdSemester() == 8) {
-		//			studentGraduation.setApplicationStatus("신청가능");
-		//		}else {
-		//			studentGraduation.setApplicationStatus("신청불가");
-		//		}
 		if(studentGraduation.getStatusNO() !=0) {
 
 			if(studentGraduation.getStdSemester() < 8 || !studentGraduation.getStdStatus().equals("재학")) {
@@ -271,8 +231,6 @@ public class RegisterController{
 			}
 
 		}
-
-
 
 		mv.addObject("studentGraduation", studentGraduation);
 		mv.setViewName("register/register_graduation");
@@ -316,11 +274,7 @@ public class RegisterController{
 			}else {
 				return "common/errorPage";
 			}
-
 		}
-
-
-
 	}
 
 }
