@@ -124,6 +124,21 @@ public class ClassBoardServiceImpl implements ClassBoardService {
 		return cbDao.adClassPlanSelect(classSeq);
 	}
 
+	@Override
+	public ArrayList<Lecture> classProList(int userId, int userYear, int userGrade) {
+		return cbDao.classProList(userId, userYear, userGrade);
+	}
+
+	@Override
+	public int upgradeGradeOb(HashMap map) {
+		return cbDao.updateGrade(map);
+	}
+
+	@Override
+	public int upgradeAnswerOb(HashMap map) {
+		return cbDao.updateAnswer(map);
+	}
+
 
 	
 	

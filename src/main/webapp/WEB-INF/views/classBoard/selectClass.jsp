@@ -58,6 +58,7 @@
           <form id="semester">
             <fieldset id="select_semester" class="shadow">
               <select id="year">
+                <option value = "2020">2021</option>
                 <option value = "2020">2020</option>
                 <option value = "2019">2019</option>
                 <option value = "2018">2018</option>
