@@ -70,7 +70,7 @@
 		        <div class="container-fluid">
 		          <div>
 		            <select name="classYear" id="year">
-		              <option value="2021">2021년도</option>
+		              <option value="null">----------</option>
 		              <option value="2020">2020년도</option>
 		              <option value="2019">2019년도</option>
 		              <option value="2018">2018년도</option>
@@ -78,6 +78,7 @@
 		              <option value="2016">2016년도</option>
 		            </select>
 		            <select name="classSemester" id="semester">
+		              <option value="null">------</option>
 		              <option value="1">1학기</option>
 		              <option value="2">2학기</option>
 		            </select>
