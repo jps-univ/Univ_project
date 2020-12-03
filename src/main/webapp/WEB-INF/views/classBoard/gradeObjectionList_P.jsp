@@ -32,11 +32,14 @@
   #gradeTable{
   	align: center;
 	vertical-align: middle;
+	width:97&
   }
   #replyBoard tr th{
  	align: center;
   }
    th.dt-center, td.dt-center { text-align: center; }
+  #gradeTable_wrapper{
+  width:97%}
   </style>
 </head>
 
@@ -83,8 +86,8 @@
               <h6 class="m-0 font-weight-bold text-primary">성적 이의 조회</h6>
             </div>
             <div class="card-body">
-              <div class="table-responsive">
-                 <table id="gradeTable" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <div class="table-responsive" >
+                 <table id="gradeTable" class="table table-bordered" >
                   <thead>
                     <tr align="center">
                       <th>번호</th>
@@ -95,7 +98,7 @@
               </table>
            </div>   
              </div>
-            </div>
+<!--             </div> -->
           </div>
 
       <div class="card shadow mb-4">          

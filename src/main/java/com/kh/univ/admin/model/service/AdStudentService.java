@@ -1,6 +1,7 @@
 package com.kh.univ.admin.model.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.kh.univ.member.model.vo.College;
 import com.kh.univ.member.model.vo.Department;
@@ -20,7 +21,8 @@ public interface AdStudentService {
 
 	int insertStudent(Student std);
 
-	ArrayList<Student> collegeSearch(String collegeCode, String departmentCode, int searchSemester);
+
+	ArrayList<Student> searchStd(Map map);
 	
 
 	

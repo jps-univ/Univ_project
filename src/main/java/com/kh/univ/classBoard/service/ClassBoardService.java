@@ -3,6 +3,7 @@ package com.kh.univ.classBoard.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.kh.univ.admin.model.vo.AdClassPlan;
 import com.kh.univ.classBoard.vo.ClassAssignment;
 import com.kh.univ.classBoard.vo.ClassNotice;
 import com.kh.univ.classBoard.vo.PageInfo;
@@ -149,6 +150,8 @@ public interface ClassBoardService {
 	 * @return
 	 */
 	ReplyAssignment callObjectionDetail(HashMap map);
+
+	ArrayList<AdClassPlan> adClassPlanSelect(int classSeq);
 
 
 	

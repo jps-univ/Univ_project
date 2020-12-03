@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.univ.admin.model.vo.AdClassPlan;
 import com.kh.univ.classBoard.vo.ClassAssignment;
 import com.kh.univ.classBoard.vo.ClassNotice;
 import com.kh.univ.classBoard.vo.PageInfo;
@@ -147,6 +148,13 @@ public class ClassBoardDao {
 
 	public ReplyAssignment callObjectionDetail(HashMap map) {
 		return sqlSession.selectOne("classBoardMapper.callObjectionDetail",map);
+	}
+
+
+
+	public ArrayList<AdClassPlan> adClassPlanSelect(int classSeq) {
+		
+		return (ArrayList)sqlSession.selectList("adminLectureMapper.classPlanSelect",classSeq);
 	}
 
 

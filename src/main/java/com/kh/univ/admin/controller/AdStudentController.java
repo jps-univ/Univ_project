@@ -1,6 +1,8 @@
 package com.kh.univ.admin.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -151,26 +153,21 @@ public class AdStudentController {
 		ArrayList<Department> deptCheck = adStudentService.deptCheck(collegeCode);
 		
 		
-		
-		
 		return deptCheck;
 		
 	}
 	
-	/**
-	 * 2_5. 학생 수정 페이지 단과대학 검색
-	 * @param college
-	 * @return
-	 */
+	
 	@ResponseBody
-	@RequestMapping(value="student_Modify_Search.do")
-	public String StudentModifySearch(String collegeCode, String departmentCode, int searchSemester ) {
-		
-		System.out.println(collegeCode);
-		System.out.println(departmentCode);
+	@RequestMapping("ad_student_search.do")
+	public ArrayList<Student> studentSearch(String searchDepartment, String searchSemester){
+		System.out.println(searchDepartment);
 		System.out.println(searchSemester);
-		//ArrayList<Student> colegeSearch = adStudentService.collegeSearch(collegeCode,departmentCode,searchSemester);
+		Map map = new HashMap();
+		map.put("searchDepartment", searchDepartment);
+		map.put("searchSemester", searchSemester);
 		
+		ArrayList<Student> searchStd = adStudentService.searchStd(map);
 		return null;
 	}
 }
