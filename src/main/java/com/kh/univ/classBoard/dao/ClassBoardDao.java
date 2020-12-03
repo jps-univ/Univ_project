@@ -159,6 +159,28 @@ public class ClassBoardDao {
 
 
 
+	public ArrayList<Lecture> classProList(int userId, int userYear, int userGrade) {
+		Map map = new HashMap();
+		map.put("userId", userId);
+		map.put("userYear", userYear);
+		map.put("userGrade", userGrade);
+		return (ArrayList)sqlSession.selectList("classBoardMapper.selectProClassList", map);
+	}
+
+
+
+	public int updateGrade(HashMap map) {
+		return sqlSession.update("classBoardMapper.updateGradeQa", map);
+	}
+
+
+
+	public int updateAnswer(HashMap map) {
+		return sqlSession.update("classBoardMapper.updateAnswer", map);
+	}
+
+
+
 
 	
 	

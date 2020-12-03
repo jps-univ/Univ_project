@@ -153,6 +153,12 @@ public interface ClassBoardService {
 
 	ArrayList<AdClassPlan> adClassPlanSelect(int classSeq);
 
+	ArrayList<Lecture> classProList(int userId, int userYear, int userGrade);
+
+	int upgradeGradeOb(HashMap map);
+
+	int upgradeAnswerOb(HashMap map);
+
 
 	
 

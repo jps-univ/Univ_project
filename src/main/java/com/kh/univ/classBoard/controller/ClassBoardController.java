@@ -95,19 +95,22 @@ public class ClassBoardController {
 		System.out.println("select : " + userYear);
 		System.out.println("select : " + userGrade);
 
+		ArrayList<Lecture> lecList = new ArrayList<Lecture>(); 		
+		
 		if (user instanceof Student) {
 			user = (Student) session.getAttribute("loginUser");
 			userId = ((Student) user).getStdId();
 			session.setAttribute("userId", userId);
+			lecList = cbService.classList(userId, userYear, userGrade);
 		} else if (user instanceof Professor) {
 			user = (Professor) session.getAttribute("loginUser");
 			userId = ((Professor) user).getProfId();
 			session.setAttribute("userId", userId);
+			lecList = cbService.classProList(userId, userYear, userGrade);
 		}
 
 		System.out.println("select : " + userId);
 
-		ArrayList<Lecture> lecList = cbService.classList(userId, userYear, userGrade);
 		System.out.println("select : " + lecList);
 
 		JSONArray jArr = new JSONArray();
@@ -144,7 +147,6 @@ public class ClassBoardController {
 
 		System.out.println("메인넘어갈때 seq : " + classSeq);
 		System.out.println("메인넘어갈때 profName : " + profName);		
-		classSeq=110;
 		ArrayList<AdClassPlan> adClassPlanSelect = cbService.adClassPlanSelect(classSeq);
 		System.out.println(adClassPlanSelect);
 
@@ -574,5 +576,68 @@ public class ClassBoardController {
 		String jsonStr = mapper.writeValueAsString(ra);
 		return jsonStr;
 	}
+	
+	@RequestMapping(value="handOut.do")
+	public void gradeQuestion1(HttpSession session, HttpServletResponse response, HttpServletRequest request, String stuOpinion
+			, String aSeq) throws IOException {
+		
+		ReplyAssignment ra = new ReplyAssignment();
+		
+		int aSeq1 = Integer.parseInt(aSeq);
+		int stdId = (int)session.getAttribute("userId");
+		int classSeq = (int)session.getAttribute("classSeq");
+		System.out.println("ase : " + aSeq);
+		System.out.println("stu : " + stuOpinion);
+		HashMap map = new HashMap();
+		map.put("stdId", stdId);
+		map.put("classSeq", classSeq);
+		map.put("aSeq",aSeq1);
+		map.put("studQa",stuOpinion);
+		
+
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonStr = mapper.writeValueAsString(ra);
+		
+        int result = cbService.upgradeGradeOb(map);
+		if (result > 0) {
+			response.getWriter().print("성공!");
+		} else {
+			response.getWriter().print("실패!");
+		}
+		
+		
+	}
+	
+	@RequestMapping(value="modify.do")
+	public void gradeQuestion2(HttpSession session, HttpServletResponse response, HttpServletRequest request, String stuOpinion
+			, String sSeq) throws IOException {
+		
+		ReplyAssignment ra = new ReplyAssignment();
+		
+		int sSeq1 = Integer.parseInt(sSeq);
+		int stdId = (int)session.getAttribute("userId");
+		int classSeq = (int)session.getAttribute("classSeq");
+		System.out.println("ase : " + sSeq);
+		System.out.println("stu : " + stuOpinion);
+		HashMap map = new HashMap();
+		map.put("stdId", stdId);
+		map.put("classSeq", classSeq);
+		map.put("sSeq",sSeq1);
+		map.put("studQa",stuOpinion);
+		
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonStr = mapper.writeValueAsString(ra);
+		
+		int result = cbService.upgradeAnswerOb(map);
+		if (result > 0) {
+			response.getWriter().print("성공!");
+		} else {
+			response.getWriter().print("실패!");
+		}
+		
+		
+	}
+	
 
 }

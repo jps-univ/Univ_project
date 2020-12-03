@@ -104,6 +104,7 @@
       <div class="card shadow mb-4">          
          <div id="container">
                   <div id="rest_table_area">
+                    <form>
                       <table class="table table-bordered question-table">
                       <colgroup>
                          <col style="width:8%;">
@@ -136,7 +137,8 @@
                           </thead>
                       </table>
                       <input id="handOutQA" type="button" value="등록" class="btn btn-primary btn-sm">
-                      <input id="modifyQA" type="button" value="수정" class="btn btn-primary btn-sm">
+                      <input id="sSeq_result" type="hidden" class="btn btn-primary btn-sm">
+		                </form>
                   </div>
             </div>
                   
@@ -193,10 +195,30 @@
                      $('#proFeedback').text(data.profComment);
                      $('#studOpinion').text(data.studQa);
                      $('#profAnswer').children().val(data.profReply);
+				     $('#sSeq_result').val(data.sSeq);
                   }
                });
             });
+            
+            
+			$('#handOutQA').on('click',function(){
+				if(confirm("답변완료하시겠습니까?")){
+			 		console.log('제출');
+			 		$.ajax({
+			 			url:'modify.do',
+			 			data:{
+			 				stuOpinion:$('#answer').val(),
+			 				sSeq:$('#sSeq_result').val()
+			 				},success:function(data){
+			 				alert("성공적으로 등록되었습니다.");
+							location.reload();
+			 			}
+			 		});
+		 		};
+		 	});
          });      
+            
+            
       </script>
 		
 		
