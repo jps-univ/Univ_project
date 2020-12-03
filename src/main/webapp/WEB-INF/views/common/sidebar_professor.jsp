@@ -15,9 +15,10 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="goMainProfessor.do">
-            <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fas fa-laugh-wink"></i>
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="goMainProfessor.do" style="padding-left: 0">
+            <div class="sidebar-brand-icon">
+                <img src="${pageContext.request.contextPath}/resources/img/jpsLogo.png" alt="학교로고0" width="35"
+                     height="35">
             </div>
             <div class="sidebar-brand-text mx-3">진포상대학교</div>
         </a>

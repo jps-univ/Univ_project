@@ -15,9 +15,11 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="login.do">
-            <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fas fa-laugh-wink"></i>
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="login.do"
+           style="padding-left: 0">
+            <div class="sidebar-brand-icon">
+                <img src="${pageContext.request.contextPath}/resources/img/jpsLogo.png" alt="학교로고0" width="35"
+                     height="35">
             </div>
             <div class="sidebar-brand-text mx-3">진포상대학교</div>
         </a>
@@ -30,10 +32,11 @@
         <hr class="sidebar-divider">
 
         <li class="nav-item ">
-            <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse" data-target="#collapseMypage" aria-expanded="true" aria-controls="collapseMypage">
+            <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse" data-target="#collapseMypage"
+               aria-expanded="true" aria-controls="collapseMypage">
                 <span>MY PAGE</span>
             </a>
-            
+
             <div id="collapseMypage" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="student_info.do">개인 정보</a>
@@ -52,7 +55,8 @@
         <hr class="sidebar-divider">
 
         <li class="nav-item ">
-            <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse" data-target="#collapseGrade" aria-expanded="true" aria-controls="collapseGrade">
+            <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse" data-target="#collapseGrade"
+               aria-expanded="true" aria-controls="collapseGrade">
                 <span>성적</span>
             </a>
             <div id="collapseGrade" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -66,10 +70,12 @@
         <hr class="sidebar-divider">
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse" data-target="#collapseManagement" aria-expanded="true" aria-controls="collapseManagement">
+            <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse"
+               data-target="#collapseManagement" aria-expanded="true" aria-controls="collapseManagement">
                 <span>수강 관리</span>
             </a>
-            <div id="collapseManagement" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div id="collapseManagement" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="lecture_evaluation_select.do">강의 평가</a>
                     <a class="collapse-item" href="enrollClassPage.do">수강신청</a>
@@ -81,7 +87,8 @@
         <hr class="sidebar-divider">
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse" data-target="#collapseAcademic" aria-expanded="true" aria-controls="collapseAcademic">
+            <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse"
+               data-target="#collapseAcademic" aria-expanded="true" aria-controls="collapseAcademic">
                 <span>학적</span>
             </a>
             <div id="collapseAcademic" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -95,10 +102,12 @@
         <hr class="sidebar-divider">
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse" data-target="#collapseTuition" aria-expanded="true" aria-controls="collapseTuition">
+            <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse"
+               data-target="#collapseTuition" aria-expanded="true" aria-controls="collapseTuition">
                 <span>등록금</span>
             </a>
-            <div id="collapseTuition" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div id="collapseTuition" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="payment.do">납부 조회</a>
                 </div>
