@@ -52,7 +52,8 @@ $(function(){
 });
 
 function noticePop(pageNum){
-    window.open("/univ/noticeDetail.do?boardId=" + pageNum,"","width=900, height=880");
+    // window.open("/univ/noticeDetail.do?boardId=" + pageNum,"","width=900, height=880");
+    window.open("noticeDetail.do?boardId=" + pageNum,"","width=900, height=880");
 
 }
 
@@ -61,7 +62,7 @@ function getList(currentPage, searchKind) {
 	var params = {
 			mode : searchKind ,
 			currentPage : currentPage
-	}
+	};
 	
 	$.ajax({
 		url:"boardProfessorList.do",
