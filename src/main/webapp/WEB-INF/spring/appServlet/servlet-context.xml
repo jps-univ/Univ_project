@@ -29,13 +29,7 @@
 		<beans:property name="contentType" value="application/json;charset=UTF-8" /> 
 	</beans:bean>
 	
-	<!--  websocket 
-	 <websocket:handlers>
-		<websocket:mapping handler="echoHandler" path="/echo" />
-		<websocket:sockjs />
-	</websocket:handlers>
-    
-	<beans:bean id="echoHandler" class="com.kh.univ.register.controller.RegisterSocket"></beans:bean> -->
+
 
 	
 </beans:beans>

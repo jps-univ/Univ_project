@@ -87,6 +87,7 @@ public class LectureEvaluationController
     }
     */
     
+    // 학생 강의 평가 선택 페이지
     @RequestMapping("lecture_evaluation_select.do")
     public ModelAndView lectureEvaluationSelect(ModelAndView mv, EvaluationResult evaluation, HttpSession session) 
     {
@@ -102,10 +103,8 @@ public class LectureEvaluationController
     	
     	for(int i = 0; i < schedule.size(); i++)
     	{
-    		
     		for(int j = 0; j < list.size(); j++)
     		{
-    			
     			if(schedule.get(i).getClassSeq() == list.get(j).getClassSeq())
     			{
     				int evalNo = list.get(j).getEvalNo();
@@ -243,6 +242,7 @@ public class LectureEvaluationController
 	}
 	*/
     
+    // 교수 강의 평가 조회 페이지
     @ResponseBody
 	@RequestMapping("professorLecture.do")
 	public ModelAndView ProfessorSchedule(ModelAndView mv, Model model, EvaluationResult evaluation, HttpSession session)
