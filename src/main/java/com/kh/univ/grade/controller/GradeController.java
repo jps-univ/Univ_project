@@ -56,7 +56,9 @@ public class GradeController {
 		mv.addObject("list", list);
 		mv.addObject("id",id);
 		
-		mv.setViewName("grade/grade");
+		
+		
+		mv.setViewName("grade/gradeCertificate");
 		
 		
 		return mv;

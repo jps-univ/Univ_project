@@ -7,9 +7,10 @@ public class StudentGrade {
 	private String gradePoint;
 	private int gradeSize;
 	private String classType;
+	private int classSemester;
 	public StudentGrade() {	}
-	public StudentGrade(int stdId, int classYear, String className, String gradePoint, int gradeSize,
-			String classType) {
+	public StudentGrade(int stdId, int classYear, String className, String gradePoint, int gradeSize, String classType,
+			int classSemester) {
 		super();
 		this.stdId = stdId;
 		this.classYear = classYear;
@@ -17,6 +18,7 @@ public class StudentGrade {
 		this.gradePoint = gradePoint;
 		this.gradeSize = gradeSize;
 		this.classType = classType;
+		this.classSemester = classSemester;
 	}
 	public int getStdId() {
 		return stdId;
@@ -54,10 +56,17 @@ public class StudentGrade {
 	public void setClassType(String classType) {
 		this.classType = classType;
 	}
+	public int getClassSemester() {
+		return classSemester;
+	}
+	public void setClassSemester(int classSemester) {
+		this.classSemester = classSemester;
+	}
 	@Override
 	public String toString() {
 		return "StudentGrade [stdId=" + stdId + ", classYear=" + classYear + ", className=" + className
-				+ ", gradePoint=" + gradePoint + ", gradeSize=" + gradeSize + ", classType=" + classType + "]";
+				+ ", gradePoint=" + gradePoint + ", gradeSize=" + gradeSize + ", classType=" + classType
+				+ ", classSemester=" + classSemester + "]";
 	}
 	
 	

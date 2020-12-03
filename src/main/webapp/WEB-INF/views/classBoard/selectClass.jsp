@@ -110,6 +110,7 @@
        				type:'get',
        				dataType:'JSON',
        				data : {
+       					
        					userYear:$('#year').val(),
        					userGrade:$('#grade').val()
        				},

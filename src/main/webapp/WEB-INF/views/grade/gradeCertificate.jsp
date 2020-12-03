@@ -70,7 +70,8 @@
          	
             <c:set var="birth" value="${ loginUser.stdBirth }"/>
             <c:set var="department" value="${loginUser.stdDepartment }"/>
-            <c:forEach var="g" items="${list }">
+            
+            
           <tr>
               <td  rowspan="2" width="53" height="50" valign="middle"
                   style='border-left:solid #000000 1.1pt;border-right:solid #000000 0.4pt;border-top:solid #000000 1.1pt;border-bottom:solid #000000 0.4pt;padding:1.4pt 1.4pt 1.4pt 1.4pt'>
@@ -112,7 +113,8 @@
               </td>
               <td rowspan="2" width="128" height="50" valign="middle"
                   style='border-left:solid #000000 0.4pt;border-right:solid #000000 1.1pt;border-top:solid #000000 1.1pt;border-bottom:solid #000000 0.4pt;padding:1.4pt 1.4pt 1.4pt 1.4pt'>
-                  <p class="HStyle0" style='text-align:center;'>&nbsp;</p>
+                  <p class="HStyle0" style='text-align:center;'>2021.02.21</p>
+                  
               </td>
           </tr>
           <tr>
@@ -191,12 +193,26 @@
               </td>
           </tr>
           <tr>
+          
               <td rowspan="6" colspan="2" width="202" height="382" valign="middle"
                   style='border-left:solid #000000 1.1pt;border-right:solid #000000 0.4pt;border-top:solid #000000 0.4pt;border-bottom:solid #000000 1.1pt;padding:1.4pt 1.4pt 1.4pt 1.4pt'>
-                  <p class="HStyle0"><span style='letter-spacing:-4%;' value="${g.classType }">
+                  <p class="HStyle0"><span style='letter-spacing:-4%;'>
                   	
+                  		<c:forEach var="g" items="${ list }" begin="0" end="3">
+                  			${g.classType }
+                  			${g.className }
+                  			${g.gradeSize }
+                  			${g.gradePoint }
+                  			
+                  			
+                  			
+                  			
+                  			<br>
+                  		</c:forEach>
+                  
                   </span></p>
               </td>
+              	
               <td rowspan="6" colspan="2" width="202" height="382" valign="middle"
                   style='border-left:solid #000000 0.4pt;border-right:solid #000000 0.4pt;border-top:solid #000000 0.4pt;border-bottom:solid #000000 1.1pt;padding:1.4pt 1.4pt 1.4pt 1.4pt'>
                   <p class="HStyle0" style='text-align:center;line-height:130%;'>&nbsp;</p>
@@ -217,15 +233,19 @@
           <tr>
               <td colspan="2" width="178" height="25" valign="middle"
                   style='border-left:solid #000000 0.4pt;border-right:solid #000000 1.1pt;border-top:solid #000000 0.4pt;border-bottom:solid #000000 0.4pt;padding:1.4pt 1.4pt 1.4pt 1.4pt'>
-                  <p class="HStyle0" style='margin-left:5.0pt;'>총취득학점 : </p>
+                  <p class="HStyle0" style='margin-left:5.0pt;'>총취득학점 : 
+                  	
+                  	<c:forEach var="g" items="${ list }" begin="0" end="3">
+                  			<c:set var="totalgrade" value="${totalgrade +g.gradeSize }"/>
+                  			 
+                  			
+                  			
+                  		</c:forEach>
+                  		${totalgrade }
+                  </p>
               </td>
           </tr>
-          <tr>
-              <td colspan="2" width="178" height="24" valign="middle"
-                  style='border-left:solid #000000 0.4pt;border-right:solid #000000 1.1pt;border-top:solid #000000 0.4pt;border-bottom:solid #000000 0.4pt;padding:1.4pt 1.4pt 1.4pt 1.4pt'>
-                  <p class="HStyle0" style='margin-left:5.0pt;'><span style='letter-spacing:12%;'>평점 누계</span> : </p>
-              </td>
-          </tr>
+          
           <tr>
               <td colspan="2" width="178" height="21" valign="middle"
                   style='border-left:solid #000000 0.4pt;border-right:solid #000000 1.1pt;border-top:solid #000000 0.4pt;border-bottom:solid #000000 0.4pt;padding:1.4pt 1.4pt 1.4pt 1.4pt'>
@@ -242,14 +262,14 @@
               <td colspan="2" width="178" height="163" valign="middle"
                   style='border-left:solid #000000 0.4pt;border-right:solid #000000 1.1pt;border-top:solid #000000 0.4pt;border-bottom:solid #000000 1.1pt;padding:1.4pt 1.4pt 1.4pt 1.4pt'>
                   <p class="HStyle0" style='text-align:center;line-height:200%;'>위의 사실을 증명합니다.</p>
-                  <p class="HStyle0" style='text-align:center;line-height:200%;'>년&nbsp;&nbsp;&nbsp;
-                      월&nbsp;&nbsp;&nbsp; 일</p>
+                  <p class="HStyle0" style='text-align:center;line-height:200%;'>2021년&nbsp;&nbsp;&nbsp;
+                      02월&nbsp;&nbsp;&nbsp; 21일</p>
                   <p class="HStyle0" style='text-align:center;'>&nbsp;</p>
                   <p class="HStyle0" style='text-align:center;'><span style='font-weight:bold;'>진포상대학교총장</span></p>
                   <p class="HStyle0" style='text-align:center;'><span style='font-weight:bold;'>&nbsp;</span></p>
               </td>
           </tr>
-          </c:forEach>
+          
       </table>
       </p>
 
@@ -281,11 +301,7 @@
 	<!-- Logout Modal-->
 	<c:import url="../common/logoutModal.jsp" />
 	
-	<script>
-		$(document).ready(function(){
-				
-		});
-	</script>
+	
 	
 
 	<!-- Bootstrap core JavaScript-->
