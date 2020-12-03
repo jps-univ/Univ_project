@@ -49,8 +49,7 @@ public class AdStudentDao {
 
 
 	public ArrayList<Student> searchStd(Map map) {
-		// TODO Auto-generated method stub
-		return (ArrayList)sqlSession.selectList("adminStudentMapper",map);
+		return (ArrayList)sqlSession.selectList("adminStudentMapper.searchStudent",map);
 	}
 
 }

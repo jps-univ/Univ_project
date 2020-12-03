@@ -201,25 +201,29 @@
                 <script>
                 $(function(){
                 	$("#searchBtn").click(function(){
+                /* 		var searchDepartment = $("#searchDepartment").val();
+                		var searchSemester = $("#searchSemester").val(); */
+                		
                 		$.ajax({
 							url:"ad_student_search.do",
 							dataType:"json",
+							
 							data:{
 								searchDepartment:$("#searchDepartment").val(),
 								searchSemester:$("#searchSemester").val()
 							},success:function(data){
-								
+								console.log(data);
 							},error:function(){
 								
 							}
                 		});
                 	});
                 });
-                
+                 
                 $(function searchSemester(){
                 	$("#searchDepartment").change(function(){
                 		$('#searchSemester').empty();
-        				$('#searchSemester').append("<option><학년을 선택해주세요></option>");
+        				$('#searchSemester').append("<option=value"+"0"+"><학년을 선택해주세요></option>");
          				for(var index =1; index < 5;index++){
         					var searchSemester = $("<option value="+ index+ ">" + index+"</option>");
         					$('#searchSemester').append(searchSemester);

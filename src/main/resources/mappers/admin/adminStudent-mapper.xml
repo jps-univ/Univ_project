@@ -132,7 +132,21 @@
 		LEFT JOIN TB_COLLEGE USING(COLLEGE_CODE)
  	</select>
 	
-	<select id="searchStudent" >
+	<select id="searchStudent" parameterType="Student" resultMap="StudentResultSet">
+		Select STUDENT_ID,STUDENT_NAME, BIRTH_NO, DEPARTMENT_NAME, COLLEGE_NAME, COURSE,SEMESTER,STUDENT_STATUS
+		FROM TB_STUDENT 
+		LEFT JOIN TB_STUDENT_STATUS USING (STUDENT_ID)
+		LEFT JOIN TB_DEPARTMENT USING (DEPARTMENT_CODE)
+		LEFT JOIN TB_COLLEGE USING(COLLEGE_CODE)
+	<if test="searchSemester == 0">
+		WHERE DEPARTMENT_CODE =#{searchDepartment}
+	</if>
+<!-- 	<if test="searchSemester !=0 ">
+		WHERE DEPARTMENT_CODE =#{searchDepartment}
+		AND 
 	
+	</if> -->
+		
 	</select>
+	
 </mapper>
