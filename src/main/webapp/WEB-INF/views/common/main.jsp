@@ -78,8 +78,8 @@
                         <div class="timetable" id="timetable" style="width:60%; display:none;">
                             <!-- <p style="text-align: center; font-size: 30pt;">시간표 들어갈 영역</p> -->
                             <jsp:include page="/studentSchedule.do">
-                            	<jsp:param name="classSemester" value="1"></jsp:param>
-                            	<jsp:param name="classYear" value="2021"></jsp:param>
+                            	<jsp:param name="classSemester" value="2"></jsp:param>
+                            	<jsp:param name="classYear" value="2020"></jsp:param>
                             </jsp:include>
                         </div>
                         <!-- 시간표 영역 끝 -->
