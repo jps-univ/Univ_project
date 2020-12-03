@@ -42,6 +42,7 @@
       JOIN TB_STUDENT USING(STUDENT_ID)
       WHERE 
       STUDENT_ID = #{stdId}
+      ORDER BY DUE_DATE DESC
 
    </select>
   
