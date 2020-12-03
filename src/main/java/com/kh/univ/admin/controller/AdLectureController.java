@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.univ.admin.model.service.AdLectureService;
 import com.kh.univ.admin.model.vo.AdClassPlan;
 import com.kh.univ.admin.model.vo.AdClassTime;
@@ -136,11 +138,23 @@ public class AdLectureController {
 	@ResponseBody
 	@RequestMapping("lecture_Modify_selectOne.do")
 	public AdLecture lectureModifySelectOne(int classSeq) {
-		
 		AdLecture lectureSelectOne = adLectureService.lectureSelectOne(classSeq);
-		System.out.println(lectureSelectOne);
+		System.out.println("Cs:" + classSeq);
+		System.out.println("강의선택 : " + lectureSelectOne);
 		return lectureSelectOne;
 	}
+	@ResponseBody
+	@RequestMapping(value="lecture_Modify_selectOne1.do", produces="application/json; charset=utf-8")
+	public String lectureModifySelectOne1(int classSeq) throws JsonProcessingException {
+		classSeq=110;
+		AdLecture lectureSelectOne = adLectureService.lectureSelectOne(classSeq);
+		System.out.println("Cs:" + classSeq);
+		System.out.println("강의선택 : " + lectureSelectOne);
+		ObjectMapper mapper = new ObjectMapper();
+        String jsonStr = mapper.writeValueAsString(lectureSelectOne);
+		return jsonStr;
+	}
+
 	
 	/**
 	 * 2_3. 강의 수정 classSeq로 강의계획서 가져오기 
@@ -156,6 +170,20 @@ public class AdLectureController {
 		System.out.println(adClassPlanSelect);
 		
 		return adClassPlanSelect;
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="ad_classplan1.do", produces="application/json; charset=utf-8")
+	public String adClassPlan1(int classSeq) throws JsonProcessingException {
+		
+		classSeq=110;
+		ArrayList<AdClassPlan> adClassPlanSelect = adLectureService.adClassPlanSelect(classSeq);
+		System.out.println(adClassPlanSelect);
+		
+		ObjectMapper mapper = new ObjectMapper();
+        String jsonStr = mapper.writeValueAsString(adClassPlanSelect);
+		return jsonStr;
 		
 	}
 	

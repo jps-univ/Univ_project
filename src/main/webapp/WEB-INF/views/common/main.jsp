@@ -54,20 +54,20 @@
                             <div class="logo"><b>QUICK LINK</b></div>
                             <table class="table1">
                                 <tr>
-                                    <td><a link="#">진포상대학교</a></td>
-                                    <td><a link="#">인터넷증명발급</a></td>
+                                    <td><a link="goMainProfessor.do">진포상대학교</a></td>
+                                    <td><a a href="http://www.certpia.com/main.asp" target="_blank">인터넷증명발급</a></td>
                                 </tr>
                                 <tr>
                                     <td><a href="https://www.kosaf.go.kr/ko/main.do" target="_blank">한국장학재단</a></td>
-                                    <td><a link="#">시간표조회</a></td>
+                                    <td><a href="http://www.riss.kr/index.do" target="_blank">한국교육학술정보원</a></td>
                                 </tr>
                                 <tr>
-                                    <td><a link="#">중앙도서관</a></td>
-                                    <td><a link="#">통합게시판</a></td>
+                                    <td><a href="https://www.isic.co.kr/home/index.jsp" target="_blank">국제학생증</a></td>
+                                    <td><a href="http://www.hrd.go.kr/hrdp/ma/pmmao/indexNew.do" target="_blank">직업훈련포탈</a></td>
                                 </tr>
                                 <tr>
-                                    <td><a link="#">대학혁신</a></td>
-                                    <td><a link="#">Q & A</a></td>
+                                    <td><a href="http://www.moel.go.kr/index.do" target="_blank">고용노동부</a></td>
+                                    <td><a href="https://www.gov.kr/portal/main" target="_blank">정부24</a></td>
                                 </tr>
                             </table>
                         </div>
@@ -78,8 +78,8 @@
                         <div class="timetable" id="timetable" style="width:60%; display:none;">
                             <!-- <p style="text-align: center; font-size: 30pt;">시간표 들어갈 영역</p> -->
                             <jsp:include page="/studentSchedule.do">
-                            	<jsp:param name="classSemester" value="1"></jsp:param>
-                            	<jsp:param name="classYear" value="2021"></jsp:param>
+                            	<jsp:param name="classSemester" value="2"></jsp:param>
+                            	<jsp:param name="classYear" value="2020"></jsp:param>
                             </jsp:include>
                         </div>
                         <!-- 시간표 영역 끝 -->

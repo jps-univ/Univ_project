@@ -24,7 +24,7 @@ import java.util.*;
 @Controller
 public class LectureController {
 
-    @Autowired
+	@Autowired
     private LectureService lectureService;
 
     public int callYear(){

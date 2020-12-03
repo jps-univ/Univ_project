@@ -22,6 +22,13 @@
   <link rel="stylesheet" href="${contextPath}/resources/css/board_classBoardMain.css">
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <style>
+  #rest_lecture{
+	margin-top: 3%;
+    width: 97%;
+    margin-bottom: 2%;
+    }
+  </style>
 </head>
 
 <body id="page-top">
@@ -47,27 +54,31 @@
   	  	    <%@include file="../common/pageTopbar.jsp" %>
         
         <div id="main_con">  
-          <p id="select_title">주차별 활동 ${Seq }</p>
-          <div id="weekPlan">
-            <div id="rest_table_area">
-                    <table id="rest_lecture"  class="shadow table-hover">
-                        <thead>
-                            <tr>
-                                <th>
-                                    <div><p>1주차 활동계획</p></div>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div>수업 일정</div>
-                                    <div>수업 자료</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-            </div>
+          <p id="select_title">주차별 활동</p>
+            <div class="card shadow mb-4">	       
+              <div id="weekPlan">
+           		 <div id="rest_table_area">
+                   <c:forEach var="cp" items="${ cPlan }" varStatus="status">
+                    	<table id="rest_lecture"  class="shadow table-hover">
+                       	 <thead>
+                       	     <tr>
+                       	         <th>
+                       	             <div>${ status.count }주차 활동계획</div>
+                       	         </th>
+                       	     </tr>
+                       	 </thead>
+                       	 <tbody>
+                       	     <tr>
+                       	         <td>
+                    	           <div>${cp.topic }</div>
+                	               <div>${cp.weekPlan }</div>
+            	                 </td>
+        	                  </tr>
+    	                    </tbody>
+  	                  </table>
+                    </c:forEach>
+           		 </div>
+           	  </div>
           </div>
           
           

@@ -51,7 +51,8 @@ $(function(){
 });
 
 function noticePop(pageNum){
-    window.open("/univ/noticeDetail.do?boardId=" + pageNum,"","width=900, height=880");
+    // window.open("/univ/noticeDetail.do?boardId=" + pageNum,"","width=900, height=880");
+    window.open("noticeDetail.do?boardId=" + pageNum,"","width=900, height=880");
 
 }
 
