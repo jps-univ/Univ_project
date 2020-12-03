@@ -168,6 +168,7 @@ public class AdStudentController {
 		map.put("searchSemester", searchSemester);
 		
 		ArrayList<Student> searchStd = adStudentService.searchStd(map);
-		return null;
+		System.out.println(searchStd);
+		return searchStd;
 	}
 }
