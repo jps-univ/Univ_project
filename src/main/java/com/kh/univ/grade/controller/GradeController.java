@@ -36,8 +36,18 @@ public class GradeController {
 	 * @return
 	 */
 	@RequestMapping("graduationRequired.do")
-	public String graduationRequired() {
-		return "grade/graduationRequired";
+	public ModelAndView graduationRequired(HttpSession session, ModelAndView mv) {
+		Student std = (Student) session.getAttribute("loginUser");
+		int id = std.getStdId();
+		
+		
+		ArrayList<StudentGrade> list = gService.selectList(std.getStdId());
+		mv.addObject("list", list);
+		mv.addObject("id",id);
+		
+		mv.setViewName("grade/graduationRequired");
+		
+		return mv;
 	}
 	
 	 
@@ -56,7 +66,9 @@ public class GradeController {
 		mv.addObject("list", list);
 		mv.addObject("id",id);
 		
-		mv.setViewName("grade/grade");
+		
+		
+		mv.setViewName("grade/gradeCertificate");
 		
 		
 		return mv;
