@@ -198,7 +198,7 @@
                   style='border-left:solid #000000 1.1pt;border-right:solid #000000 0.4pt;border-top:solid #000000 0.4pt;border-bottom:solid #000000 1.1pt;padding:1.4pt 1.4pt 1.4pt 1.4pt'>
                   <p class="HStyle0"><span style='letter-spacing:-4%;'>
                   	
-                  		<c:forEach var="g" items="${ list }" begin="0" end="3">
+                  		<c:forEach var="g" items="${ list }" begin="0" end="${fn:length(list) }">
                   			${g.classType }
                   			${g.className }
                   			${g.gradeSize }
@@ -235,7 +235,7 @@
                   style='border-left:solid #000000 0.4pt;border-right:solid #000000 1.1pt;border-top:solid #000000 0.4pt;border-bottom:solid #000000 0.4pt;padding:1.4pt 1.4pt 1.4pt 1.4pt'>
                   <p class="HStyle0" style='margin-left:5.0pt;'>총취득학점 : 
                   	
-                  	<c:forEach var="g" items="${ list }" begin="0" end="3">
+                  	<c:forEach var="g" items="${ list }" begin="0" end="${fn:length(list) }">
                   			<c:set var="totalgrade" value="${totalgrade +g.gradeSize }"/>
                   			 
                   			
@@ -249,7 +249,35 @@
           <tr>
               <td colspan="2" width="178" height="21" valign="middle"
                   style='border-left:solid #000000 0.4pt;border-right:solid #000000 1.1pt;border-top:solid #000000 0.4pt;border-bottom:solid #000000 0.4pt;padding:1.4pt 1.4pt 1.4pt 1.4pt'>
-                  <p class="HStyle0" style='margin-left:5.0pt;'>총평점평균 : </p>
+                  <p class="HStyle0" style='margin-left:5.0pt;'>총평점평균 :
+                  <c:set var="average" value="0"/>
+                  <c:forEach var="g" items="${ list }" begin="0" end="${fn:length(list) }">
+                  	<c:set var="gp" value="0"/>
+                  	
+                  	<c:choose>
+                  		<c:when test="${g.gradePoint eq 'A+' }">
+                  			<c:set var="gp" value="4.5"/>
+                  		</c:when>
+                  		<c:when test="${g.gradePoint eq 'A' }">
+                  			<c:set var="gp" value="4.0"/>
+                  		</c:when>
+                  		<c:when test="${g.gradePoint eq 'B+' }">
+                  			<c:set var="gp" value="3.5"/>
+                  		</c:when>
+                  		<c:when test="${g.gradePoint eq 'B' }">
+                  			<c:set var="gp" value="3.0"/>
+                  		</c:when>
+                  		<c:when test="${g.gradePoint eq 'C+' }">
+                  			<c:set var="gp" value="2.5"/>
+                  		</c:when>
+                  		
+                  	</c:choose>
+                  	<c:set var="average" value="${average + gp  }"/>
+                  	
+                  	</c:forEach>
+                  	
+                  	${average/fn:length(list) }
+                   </p>
               </td>
           </tr>
           <tr>

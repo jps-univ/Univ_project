@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
 <html lang="ko">
 
@@ -41,7 +43,8 @@
 
 		<!-- Content Wrapper -->
 		<div id="content-wrapper" class="d-flex flex-column">
-
+			<c:if test="${!empty sessionScope.loginUser }">
+			</c:if>
 			<!-- Main Content -->
 			<div id="content">
 
@@ -79,42 +82,154 @@
                             </tr>
                         </thead>
                         <tbody>
+                        	<c:set var="log" value="0"/>
                             <tr>
+                            	
                                 <td>총합계</td>
                                 <td>180</td>
-                                <td>165</td>
-                                <td>N</td>
-                                <td></td>
+                                <td> 
+                            		 <c:forEach var="g" items="${ list }" begin="0" end="${fn:length(list) }">        			
+                  					<c:set var="totalgrade" value="${totalgrade +g.gradeSize }"/>
+                  					
+                  			
+                  			
+                  				</c:forEach>
+                  				${totalgrade }
+                                </td>
+                                <td>
+                                	<c:choose>
+                                		<c:when test="${totalgrade<180 }">
+                                			<c:set var="log" value="N"/>
+                                			${log }
+                                		</c:when>
+                                		<c:when test="${totalgrade>=180 }">
+                                		<c:set var="log" value="Y"/>
+                                			${log }
+                                		</c:when>
+                                	</c:choose>
+                                </td>
+                                <td>
+                                	<c:choose>
+                                		<c:when test="${log eq 'Y' }">기준 요건 달성</c:when>
+                                		<c:when test="${log eq 'N' }">학점 부족</c:when>
+                                	</c:choose>
+                                </td>
                              
                             </tr>
                             <tr>
                                 <td>전공</td>
                                 <td>130</td>
-                                <td>135</td>
-                                <td>Y</td>
-                                <td>기준 요건 달성</td>
+                                <td>
+                                	<c:set var="gp" value="0"/>
+                                	<c:forEach var="g" items="${ list }" begin="0" end="${fn:length(list) }">        			
+                  					<c:if test="${g.classType eq '전필' }">
+                  					 <c:set var="gp" value="${gp+g.gradeSize }"/>
+                  						
+                  					</c:if>
+                  					<c:if test="${g.classType eq '전선' }">
+                  					 <c:set var="gp" value="${gp+g.gradeSize }"/>
+                  						
+                  					</c:if>
+                  					
+                  			
+                  			
+                  				</c:forEach>
+                                	${gp }
+                                </td>
+                                <td>
+                                <c:choose>
+                                		<c:when test="${gp<130 }">
+                                			<c:set var="log" value="N"/>
+                                			${log }
+                                		</c:when>
+                                		<c:when test="${gp>=130 }">
+                                			<c:set var="log" value="Y"/>
+                                			${log }
+                                		</c:when>
+                                </c:choose>
+                                </td>
+                                <td>
+                                	<c:choose>
+                                		<c:when test="${log eq 'Y' }">기준 요건 달성</c:when>
+                                		<c:when test="${log eq 'N' }">학점 부족</c:when>
+                                	</c:choose>
+                                </td>
                               
                             </tr>
                             <tr>
                                 <td>교양 필수</td>
                                 <td>18</td>
-                                <td>21</td>
-                                <td>Y</td>
-                                <td>기준 요건 달성</td>                           
+                                <td>
+                                	<c:set var="gp" value="0"/>
+                                	<c:forEach var="g" items="${ list }" begin="0" end="${fn:length(list) }">        			
+                  					<c:if test="${g.classType eq '교필' }">
+                  					 <c:set var="gp" value="${gp+g.gradeSize }"/>
+                  						
+                  					
+                  						
+                  					</c:if>
+                  					</c:forEach>
+                  						${gp }
+                                </td>
+                                <td>
+                                	 <c:choose>
+                                		<c:when test="${gp<18 }">
+                                			<c:set var="log" value="N"/>
+                                			${log }
+                                		</c:when>
+                                		<c:when test="${gp>=18 }">
+                                			<c:set var="log" value="Y"/>
+                                			${log }
+                                		</c:when>
+                                	</c:choose>
+                                </td>
+                                <td>
+                               		<c:choose>
+                                		<c:when test="${log eq 'Y' }">기준 요건 달성</c:when>
+                                		<c:when test="${log eq 'N' }">학점 부족</c:when>
+                                	</c:choose> 
+                                
+                               </td>                           
                             </tr>
                             <tr>
                                 <td>균형 교양</td>
                                 <td>18</td>
-                                <td>15</td>
-                                <td>N</td>
-                                <td>3 학점 부족</td>                           
+                                <td><c:set var="gp" value="0"/>
+                                	<c:forEach var="g" items="${ list }" begin="0" end="${fn:length(list) }">        			
+                  					<c:if test="${g.classType eq '교선' }">
+                  					 <c:set var="gp" value="${gp+g.gradeSize }"/>
+                  						
+                  					
+                  						
+                  					</c:if>
+                  					</c:forEach>
+                  						${gp }
+                  						</td>
+                                <td>
+                                	 <c:choose>
+                                		<c:when test="${gp<18 }">
+                                			<c:set var="log" value="N"/>
+                                			${log }
+                                		</c:when>
+                                		<c:when test="${gp>=18 }">
+                                			<c:set var="log" value="Y"/>
+                                			${log }
+                                		</c:when>
+                                </c:choose>
+                                </td>
+                                <td>
+                                	<c:choose>
+                                		<c:when test="${log eq 'Y' }">기준 요건 달성</c:when>
+                                		<c:when test="${log eq 'N' }">학점 부족</c:when>
+                                	</c:choose>
+                                </td>                           
                             </tr>
                             <tr>
                                 <td>자유 선택</td>
                                 <td>15</td>
-                                <td>12</td>
+                                <td>0</td>
                                 <td>N</td>
-                                <td>9 학점 부족</td>                           
+                                <td>학점 부족</td>                           
                             </tr>
                              <tr>
                                 <td>영어 성적</td>
