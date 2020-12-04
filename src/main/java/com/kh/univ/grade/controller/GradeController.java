@@ -26,9 +26,19 @@ public class GradeController {
 	 * @return
 	 */
 	@RequestMapping("lookUpGrade.do")
-	public String lookUpGrade() {
+	public ModelAndView lookUpGrade(HttpSession session, ModelAndView mv){
 		
-		return "grade/lookUpGrade";
+		Student std = (Student) session.getAttribute("loginUser");
+		int id = std.getStdId();
+		
+		
+		ArrayList<StudentGrade> list = gService.selectList(std.getStdId());
+		mv.addObject("list", list);
+		mv.addObject("id",id);
+		
+		mv.setViewName("grade/lookUpGrade");
+		
+		return mv;
 	}
 	
 	/**

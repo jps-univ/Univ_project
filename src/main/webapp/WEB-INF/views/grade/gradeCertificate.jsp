@@ -202,9 +202,7 @@
                   			${g.classType }
                   			${g.className }
                   			${g.gradeSize }
-                  			${g.gradePoint }
-                  			
-                  			
+                  			${g.gradePoint }             			
                   			
                   			
                   			<br>

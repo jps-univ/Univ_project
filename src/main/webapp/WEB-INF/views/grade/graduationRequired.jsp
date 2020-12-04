@@ -52,14 +52,14 @@
 				<c:import url="../common/topbar.jsp" />
 				<!-- End of Topbar -->
 
-        <div class="graduaion-page">
+        
             <div  style="margin: auto;">
                 
-                <p class="top-Text" >졸업 사정 표</p>
+                <p class="top-Text" >졸업 사정표</p>
         
             </div>
             <div id="rest_table_area">
-                <form method="GET">
+                
                     <table id="graduation-t"  class=" table-hover">
                         <thead>
                             <tr>
@@ -257,8 +257,8 @@
             </div>
             <hr>
            
-            </form>
-        </div>
+          
+        
 
            <!-- Footer -->
 			<c:import url="../common/footer.jsp" />
