@@ -35,6 +35,7 @@ public class ProfessorMyPageController
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
+	// 교수 개인정보 페이지
 	@RequestMapping("professor_info.do")
     public ModelAndView ProfessorInfo(ModelAndView mv, Professor professor, HttpSession session)
 	{

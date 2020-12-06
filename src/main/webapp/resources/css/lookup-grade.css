@@ -168,4 +168,115 @@
         margin-bottom: 0;
         
         }
+        
+        
+ 
+.main_con{
+    width: 100%;
+    height: 100%;
+    background: #f1f1f1;
+    position: absolute;
+    top: 265px;
+}
+
+#main_con{
+    overflow-y: hidden;
+    width: 1000px;
+    height: 1000px;
+    margin: auto;
+}
+
+#semester{
+    width: 50%;
+    margin-top: 15px;
+    margin-left: 15%;
+}
+
+
+#select_semester{
+    position: relative;
+    height: 60px;
+    top: 50%;
+    left: 20%;
+    padding: 10px;
+    border: 0.3px solid #4e73df;
+    background: white;
+    border-radius: 10px;
+}
+
+
+#year{
+    height: 35px;
+    width: 120px;
+    margin-top: 2px;
+    margin-left: 15%;
+    margin-right:20px;
+}
+   
+#grade{
+    height: 35px;
+    width: 100px;
+    margin-left: 10%;
+
+}
+
+#submit{
+    float:right;
+    margin-right: 10px;
+    height: 38px;
+    width: 55px;
+    border-radius: 10px;
+}
+
+#rest_table_area{
+    padding: 10px;
+    height: 30%;
+    border-radius: 7px;
+    margin: auto;
+    text-align: center;
+    }
+    
+    #rest_lecture{
+    width: 85%;
+    border-top: 5px solid rgb(46, 109, 151);
+    color: #808080;
+    margin: auto;
+    /* margin-left: auto;
+    margin-right: auto; */
+    
+    }
+    
+    #rest_lecture tr{
+    height: 30px;
+    border-bottom: solid rgb(149, 149, 150) 1px;
+    text-align: center;
+    
+    }
+    #rest_lecture  tbody tr:nth-child(2n-1){
+    background: #f8f6ff;
+    }
+    
+    #rest_lecture thead tr th{
+        text-align: center;
+    }
+     #rest_lecture thead tr th:nth-child(1){
+        width: 10%;
+    }
+    #rest_lecture thead tr th:nth-child(2){
+        width: 10%;
+    }
+    #rest_lecture thead tr th:nth-child(3){
+        width: 50%;
+    }
+    #rest_lecture thead tr th:nth-child(4){
+        width: 20%;
+    }
+    #rest_lecture thead tr th:nth-child(5){
+        width: 10%;
+    }
+
+    #rest_lecture tr p{
+    margin-bottom: 0;
+    
+    }
  

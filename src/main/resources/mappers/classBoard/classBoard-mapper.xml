@@ -112,6 +112,15 @@
 		WHERE A.PROFESSOR_ID = B.PROFESSOR_ID
 	</select>
 	
+	<select id="selectProClassList" parameterType="hashMap" resultMap="classList">
+		SELECT *
+		FROM TB_CLASS
+		WHERE PROFESSOR_ID = #{userId}
+		AND CLASS_SEMESTER = #{userGrade}
+		AND CLASS_YEAR = #{userYear}
+	</select>
+	
+	
 	<select id="selectNoticeList" resultMap="noticeList">
 		SELECT A.NOTICE_ID, A.NTITLE, B.NAME, A.NCREATE_DATE, A.STATUS, A.RCOUNT, PROFESSOR_ID
 		FROM TB_NOTICE A JOIN TB_PROFESSOR B USING(PROFESSOR_ID)
@@ -144,8 +153,9 @@
 	</select>
 	
 	<select id="assignmentList" resultMap="assignmentList">
-		SELECT *
-		FROM TB_ASSIGNMENT
+		SELECT A.A_SEQ, A.A_TITLE, A.A_CONTENT, A.DUE_DATE, A.PROFESSOR_ID, A.CLASS_SEQ, B.NAME
+        ,A.ACOUNT, A.ACREATE_DATE, A.AMODIFY_DATE, A.ASTATUS, A.ORIGINFILE, A.RENAMEFILE
+		FROM TB_ASSIGNMENT A JOIN TB_PROFESSOR B ON(A.PROFESSOR_ID=B.PROFESSOR_ID)
 		WHERE CLASS_SEQ=#{classSeq}
 	</select>
 
@@ -178,7 +188,7 @@
 	<insert id="insertStdAssign" parameterType="ReplyAssignment">
 		INSERT INTO TB_SASSIGNMENT
 		VALUES(SEQ_SASSIGNMENT.NEXTVAL, 'Y', #{sContent}, #{score}, #{classSeq},
-		 #{stdId}, #{aSeq}, #{originalFileName}, #{renameFileName}, #{profComment},SYSDATE, SYSDATE)
+		 #{stdId}, #{aSeq}, #{originalFileName}, #{renameFileName}, #{profComment},SYSDATE, SYSDATE, null, null, null)
 	</insert>
 	
 	<select id="selectStdAssign" resultMap="sAssignmentList">
@@ -233,6 +243,21 @@
 		AND S_SEQ=#{sSeq}
 	</select>
 	
+	<update id="updateGradeQa" parameterType="ReplyAssignment">
+		UPDATE TB_SASSIGNMENT
+		SET STUDENT_QA=#{studQa}
+		WHERE CLASS_SEQ=#{classSeq}
+		AND STUDENT_ID=#{stdId}
+		AND A_SEQ=#{aSeq}
+	</update>
+	
+	<update id="updateAnswer" parameterType="ReplyAssignment">
+		UPDATE TB_SASSIGNMENT
+		SET PROFESSOR_REPLY=#{studQa}, REPLY_STATUS='Y'
+		WHERE S_SEQ=#{sSeq}
+	</update>
+	
+
 	
 	
 </mapper>
