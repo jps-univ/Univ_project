@@ -222,7 +222,7 @@
 				                    <td id="td_consult">${ c.consultingStatus } 중</td>
 				                    <td id="td_consult">${ c.applyDate }</td>
 				                    <td>
-				                      <input type="button" class="btn btn-secondary" value="신청취소" id="cancleConsulting" onclick="cancleConsulting(event)">
+				                      <input type="button" class="btn btn-success" value="신청취소" id="cancleConsulting" onclick="cancleConsulting(event)">
 				                      <input type="hidden" id="hidden_consultingNo" value="${ c.consultingNo }">
 				                    </td>
 				                  </tr>
@@ -256,7 +256,7 @@
 				                    <td id="td_consult">${ c.consultingStatus } 중</td>
 				                    <td id="td_consult">${ c.progressDate }</td>
 				                    <td>
-				                      <input type="button" class="btn btn-secondary" value="신청취소" id="cancleConsulting" onclick="cancleConsulting(event)">
+				                      <input type="button" class="btn btn-success" value="신청취소" id="cancleConsulting" onclick="cancleConsulting(event)">
 				                      <input type="hidden" id="hidden_consultingNo" value="${ c.consultingNo }">
 				                    </td>
 				                  </tr>

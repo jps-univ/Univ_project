@@ -193,8 +193,7 @@
 	       
 	       function button_leave() {
 	    	  
-	    	   
-	    	    	
+
 	    		if(confirm("휴학신청하시겠습니까?"))
 	    		{
 	    			var stdStatus =  $('#stdStatus').text();    //학적 상태

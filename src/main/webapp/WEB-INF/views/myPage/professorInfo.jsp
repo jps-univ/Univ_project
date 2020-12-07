@@ -46,6 +46,7 @@
 		}
 		#image{
 			width: 100%;
+			height: 720%;
 		}
 	</style>
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>

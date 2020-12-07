@@ -1,13 +1,13 @@
-.graduaion-page{
-    width: 100%;
-}
+
  .top-Text{
-    text-align: left; 
-    vertical-align: middle;
-    background: skyblue; 
-    height: 200px; 
-    margin-top: 0px;
-    font-size: 80px;
+   background-color: #edf1fc;
+    border-bottom: solid #4e73df;
+    height: 100px;
+    padding: 40px;
+    position: relative;
+    bottom: 25px;
+    white-space: nowrap;
+    color: #4e73df;
     
 } 
 

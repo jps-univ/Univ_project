@@ -84,9 +84,7 @@
             $('.addPlan').hide();
             $('#buttonArea2').hide();
             $('#explain2').hide();
-            // $('.addArea tr th:nth-child(2)').css({})
         });
-        // select[name*='daySelect']
         $(document).on("click, change", "input[name*='hourInput']", function () {
             dayHour = $(this).prev().val() + $(this).val();
             var classYear = $('#classYear').val();

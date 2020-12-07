@@ -170,109 +170,98 @@
 				</div>
 				<!-- 학년/ 학기별 성적 조회하기 위하여 년도 및 학기 선택하는곳-->
 
-				<table id="searchTable">
-					<tr>
-						<td><select name="" id="">
-								<option value="">2020년도</option>
-								<option value="">2019년도</option>
-								<option value="">2018년도</option>
-								<option value="">2017년도</option>
-						</select></td>
-						<td><select name="" id="">
-								<option value="">1학기</option>
-								<option value="">2학기</option>
-						</select></td>
-						<td>
-							<button onclick="search();">조회</button>
-						</td>
-					</tr>
-				</table>
-				<div id="rest_table_area">
-					<form method="GET">
-						<table id="graduation" class="hide">
-							<tbody>
-								<tr>
-									<th>
-										<p>2020년도 2학기</p>
-									</th>
-									<th>
-										<p>신청/취득 학점: 점수/점수</p>
-									</th>
-									<th>
-										<p>평점 평균:점수</p>
-									</th>
-									<th>
-										<p>석차</p>
-									</th>
-									<th>
-										<button onclick="openDetail();">▼</button>
-									</th>
-
-								</tr>
-							</tbody>
-
-							<table id="gradedetail" class="hide">
-
-								<thead>
-									<tr>
-										<th>
-											<p>교과목명</p>
-										</th>
-										<th>
-											<p>이수구분</p>
-										</th>
-										<th>
-											<p>교수</p>
-										</th>
-										<th>
-											<p>강의번호</p>
-										</th>
-										<th>
-											<p>학점</p>
-										</th>
-										<th>
-											<p>등급</p>
-										</th>
-										<th>
-											<p>평점</p>
-										</th>
-									</tr>
-
-								</thead>
-								<tbody>
-									<tr>
-										<th>
-											<p>전자회로</p>
-										</th>
-										<th>
-											<p>전공</p>
-										</th>
-										<th>
-											<p>모두한</p>
-										</th>
-										<th>
-											<p>EE1036</p>
-										</th>
-										<th>
-											<p>3.5</p>
-										</th>
-										<th>
-											<p>B+</p>
-										</th>
-										<th>
-											<p>3.5</p>
-										</th>
-									</tr>
-								</tbody>
+			<div id="main_con">  
+          <p id="select_title"></p>
+          <form id="semester">
+            <fieldset id="select_semester" class="shadow">
+              <select id="year">
+                <option value = "2020">2021</option>
+                <option value = "2020">2020</option>
+                <option value = "2019">2019</option>
+                <option value = "2018">2018</option>
+                <option value = "2017">2017</option>
+                <option value = "2016">2016</option>
+                <option value = "2015">2015</option>
+                <option value = "2014">2014</option>
+              </select>
+              <select id="grade">
+                <option value="1">1학기</option>
+                <option value="2">2학기</option>
+              </select>
+              <button class="btn btn-primary btn-sm" id="submit" type="button">조회</button>
+            </fieldset>
+          </form>
 
 
-							</table>
+          <!-- 강의 목록 조회 -->
+          <div id="rest_table_area">
+                <form method="GET">
+                    <table id="rest_lecture"  class="shadow table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <p>과목 코드</p>
+                                </th>
+                                <th>
+                                    <p>학기</p>
+                                </th>
+                                <th>
+                                    <p>과목명</p>
+                                </th>
+                                <th>
+                                    <p>교수</p>
+                                </th>
+                                <th>
+                                    <p>학점</p>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </form>
+            </div>
+       
+       	<script>
+       		$('#submit').click(function(){
+       			$.ajax({
+       				url:'classList.do',
+       				type:'get',
+       				dataType:'JSON',
+       				data : {
+       					
+       					userYear:$('#year').val(),
+       					userGrade:$('#grade').val()
+       				},
+       				success : function(data){
+       					
+        				$tableBody = $('#rest_lecture tbody');
+       					$tableBody.html(""); 
+       					for (var i in data) {
+       						var $tr = $("<tr>");
+    						var $classCode = $('<td>').text(data[i].classCode);
+    						var $classSemester = $('<td>').text(data[i].classSemester);
+    						var $className = $('<td>').html('<a href="classBoardMain.do?classSeq='+data[i].classSeq+'&profName='+data[i].proName+'">'+data[i].className+'</a>');
+    						var $proName = $('<td>').text(data[i].proName);
+    						var $classGradeSize = $('<td>').text(data[i].classGradeSize);
+    						
+    						$tr.append($classCode);
+    						$tr.append($classSemester);
+    						$tr.append($className);
+    						$tr.append($proName); 
+    						$tr.append($classGradeSize);
+    						
+    						$tableBody.append($tr);
+       					} 
+       				}, error:function(){
+       					console.log("시이바알");
+       				}
+       			});
+       		});
 
-						</table>
-				</div>
+       	</script>
 
 
-				</form>
+        </div>
 			</div>
 
 			<c:import url="../common/footer.jsp" />
@@ -292,19 +281,44 @@
 	<!-- Logout Modal-->
 	<c:import url="../common/logoutModal.jsp" />
 	
-	<!-- 페이지 시작하자마자 로그인된 내용을 바탕으로 성적을 불어와야함. -->
 	<script>
-	
-		$(document).ready(function(){
-			var table = $('#grade-top').DataTable({
-				'columns': [
-					
-				],
-			
-			});
-		});
-	</script>
+       		$('#search').click(function(){
+       			$.ajax({
+       				url:'classList.do',
+       				type:'get',
+       				dataType:'JSON',
+       				data : {
+       					
+       					userYear:$('#year').val(),
+       					userGrade:$('#grade').val()
+       				},
+       				success : function(data){
+       					
+        				$tableBody = $('#rest_lecture tbody');
+       					$tableBody.html(""); 
+       					for (var i in data) {
+       						var $tr = $("<tr>");
+    						var $classCode = $('<td>').text(data[i].classCode);
+    						var $classSemester = $('<td>').text(data[i].classSemester);
+    						var $className = $('<td>').html('<a href="classBoardMain.do?classSeq='+data[i].classSeq+'&profName='+data[i].proName+'">'+data[i].className+'</a>');
+    						var $proName = $('<td>').text(data[i].proName);
+    						var $classGradeSize = $('<td>').text(data[i].classGradeSize);
+    						
+    						$tr.append($classCode);
+    						$tr.append($classSemester);
+    						$tr.append($className);
+    						$tr.append($proName); 
+    						$tr.append($classGradeSize);
+    						
+    						$tableBody.append($tr);
+       					} 
+       				}, error:function(){
+       					console.log("시이바알");
+       				}
+       			});
+       		});
 
+       	</script>
 	<!-- Bootstrap core JavaScript-->
 	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
 	<script
