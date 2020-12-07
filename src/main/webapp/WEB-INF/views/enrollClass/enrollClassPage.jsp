@@ -243,11 +243,6 @@
                 var mySelectedIndex = myTable.row(this).data();
                 var seq = mySelectedIndex.classSeq;
                 var con = confirm("정말 해당과목을 취소하시겠습니까?");
-
-                // $('#myRegisterTable tbody tr ').css({
-                //     'color' : 'red'
-                // });
-                // var selectedIndex = table.row(this).data();
                 if (con == true) {
                     console.log(mySelectedIndex);
                     $.ajax({

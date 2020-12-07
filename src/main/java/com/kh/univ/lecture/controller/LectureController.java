@@ -61,6 +61,10 @@ public class LectureController {
     public String requestDeleteLecture() {
         return "lectureManagement/requestDeleteLecture";
     }
+    @RequestMapping("viewAllLecture.do")
+    public String viewAllLecture() {
+        return "lectureManagement/viewAllLecture";
+    }
 
     @RequestMapping("enrollClassPage.do")
     public String enrollClassPage() {
@@ -92,7 +96,6 @@ public class LectureController {
 
 
 
-        System.out.println("현재는 "+callYear()+"년도 "+callSemester()+"학기");
         sc.setClassType(classType);
         sc.setInputClassName(inputClassName);
         sc.setClassLevel(classLevel);
@@ -100,9 +103,7 @@ public class LectureController {
         sc.setDepartmentName(departmentName);
         sc.setClassName(className);
         sc.setClassYear(callYear());
-//        sc.setClassYear(2021);
         sc.setClassSemester(callSemester());
-//        sc.setClassSemester(1);
         ArrayList<Lecture> list = lectureService.selectList(sc);
         ObjectMapper mapper = new ObjectMapper();
 
@@ -378,30 +379,14 @@ public class LectureController {
     @RequestMapping(value = "requestRegisterTime.do", produces = "application/json; charset=utf-8")
     public String requestRegisterTime(String classCode,
                                       @RequestParam(value = "dayList[]") List<String> dayList,
-                                      @RequestParam(value = "hourList[]") List<String> hourList
-//                                      String dayList,
-//                                      String hourList
-    ){
+                                      @RequestParam(value = "hourList[]") List<String> hourList){
         int classSeq = lectureService.selectClassSeq(classCode);
         System.out.println(dayList);
         System.out.println(hourList);
 
         LectureTime lecTime = new LectureTime();
 
-//        String[] dayArray = dayList.split(",");
-//        String[] hourArray = hourList.split(",");
 
-//        for (int i = 0; i < dayArray.length; i++ ){
-//            lecTime.setClassSeq(classSeq);
-//            lecTime.setDay(dayArray[i]);
-//            lecTime.setHour(hourArray[i]);
-//            int result = lectureService.insertClassTime(lecTime);
-//            if(result>0) {
-//                System.out.println(i+"번째 수업시간 인서트");
-//            }else {
-//                System.out.println(i+"번째 수업시간 인서트 실패");
-//            }
-//        }
         for (int i = 0; i < dayList.size(); i++ ){
             lecTime.setClassSeq(classSeq);
             lecTime.setDay(dayList.get(i));
