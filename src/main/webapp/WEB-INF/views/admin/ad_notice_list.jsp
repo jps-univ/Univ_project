@@ -148,7 +148,7 @@ function getList(currentPage, searchKind) {
 		error:function() {
 			
 		}
-	});
+	}); 
 }
 
 

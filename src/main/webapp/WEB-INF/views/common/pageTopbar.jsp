@@ -184,7 +184,7 @@
         <input type="hidden" value="${Seq }" id="classSeq" name="classSeq">
         </div>
         
-                <div id="myModal" class="modal">
+        <div id="myModal" class="modal">
             <!-- Modal content -->
             <div class="modal-content">
                 <div class="modal-header">
@@ -277,7 +277,7 @@
                 </div>
             </div>
         </div>
-        
+      
     <script>
         // Get the modal
         var modal = document.getElementById("myModal");

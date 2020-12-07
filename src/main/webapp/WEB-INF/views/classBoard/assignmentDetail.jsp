@@ -215,6 +215,7 @@
 				                      </td>
 				                      <td>
 	      				                <input type="submit" class="btn btn-secondary" value="채점" id="score" onclick="scoring();">
+	      				                <input type="button" class="btn btn-secondary" value="수정" id="modify" onclick="modifing();">
 				                      </td>
 				                    </tr>
 		                    </c:forEach>
@@ -229,6 +230,23 @@
 		<script>
 				function scoring(){
 					if(confirm("채점완료하시겠습니까?")){
+						$.ajax({
+							url:"scoreAssign.do",
+							data:{
+								stdId:$('#stdId').val(),
+								sSeq:$('#sSeq').val(),
+								profComment:$('#profComment').val(),
+								score:$('#selectScore').val(),
+							},success:function(data){
+								alert("성공적으로 채점되었습니다.");
+								location.reload();
+							}
+						})
+					}
+				}
+				
+				function modifing(){
+					if(confirm("수정완료하시겠습니까?")){
 						$.ajax({
 							url:"scoreAssign.do",
 							data:{
@@ -262,7 +280,7 @@
 		                    <th style="width:20%">첨부 파일</th>
 		                    <th style="width:10%">점수</th>
 		                    <th style="width:40%">feedback</th>
-		                    <th style="width:15%">제출/수정</th>
+		                    <th style="width:15%">제출</th>
 		                  </tr>
 		                 </thead>
 		                 <tbody>
@@ -276,15 +294,19 @@
 								</c:if>
 							</td>
 				            <td>${ s.score }</td>
-				            <td>${ s.profComment }+${userId }+${a.aSeq }+${classSeq }
+				            <td id="procom">${ s.profComment }
 				              <input type="hidden" id="classSeq" name="classSeq" value="${ classSeq }">
 				              <input type="hidden" id="stdId" name="stdId" value="${ userId }">
  				              <input type="hidden" id="aSeq" name="aSeq1" value="${a.aSeq }">
 				              <input type="hidden" id="profId" name="profId" value="${a.profId }">
 				             </td>
 				            <td>
+				              <c:if test="${ s.profComment eq null }">
 				              <input type="submit" class="btn btn-secondary" value="제출" id="submitAssign">
-				              <input type="button" class="btn btn-secondary" value="수정" id="modifyAssign">
+				              </c:if>
+				              <c:if test="${ s.profComment ne null }">
+								제출 완료
+				              </c:if>
 				            </td>
 				          </tr>
 		                 </tbody>
