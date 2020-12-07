@@ -29,8 +29,32 @@
   <link rel="stylesheet" href="${contextPath}/resources/css/write_notice.css">
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>  
+  <style type="text/css">
+  	#rest_notice tr{
+    height: 30px;
+    border-bottom: solid rgb(149, 149, 150) 1px;
+    text-align: center;
+    font-size:14px;
+    
+    }
+    
+   .pagination {
+    justify-content: center;
+    margin-top: 18%;
+}
+
+#main_con {
+    overflow-y: hidden;
+    width: 85%;
+    height: 870px;
+    margin: auto;
+}
+
+.sidebar {
+    height: 1200px;
+}
+  	
+  </style>
 </head>
 
 <body id="page-top">
@@ -58,7 +82,6 @@
         <!-- main content -->
         <div id="main_con">
            <form action="enrollcNotice.do" method="post" enctype="multipart/form-data">
-       	    <div class="col-sm-9 page">
               <div id="container">
                   <div id="rest_table_area">
                       <table class="table table-bordered question-table">
@@ -118,6 +141,7 @@
  
        
 
+		</div>
 
 
     </div>
