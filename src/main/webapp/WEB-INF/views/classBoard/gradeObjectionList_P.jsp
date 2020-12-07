@@ -40,6 +40,18 @@
    th.dt-center, td.dt-center { text-align: center; }
   #gradeTable_wrapper{
   width:97%}
+  
+  
+    #main_con {
+    overflow-y: hidden;
+    width: 87%;
+    height: 1500px;
+    margin: auto;
+}
+
+#main_sidebar {
+    height: 1828px;
+}
   </style>
 </head>
 
@@ -73,15 +85,15 @@
         <!-- main content -->
         <div id="main_con">
                     <!-- Begin Page Content -->
-        <div class="container-fluid">
-
+        <div class="container-fluid" style="margin-top: 40px;">
+        
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">성적이의신청</h1>
 		
 		      <c:if test="${ userStatus eq 'P' }" >
       
           <!-- DataTales Example -->
-          <div class="card shadow mb-4">
+          <div class="card shadow mb-4"  style="margin-top: 40px;">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">성적 이의 조회</h6>
             </div>
@@ -101,7 +113,7 @@
 <!--             </div> -->
           </div>
 
-      <div class="card shadow mb-4">          
+        <div class="card shadow mb-4" style="width: 97%; margin: auto;">  
          <div id="container">
                   <div id="rest_table_area">
                     <form>

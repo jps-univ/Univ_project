@@ -73,7 +73,6 @@ public class ClassBoardController {
 			userStatus = ((Professor) user).getStatus();
 		}
 
-//		System.out.println(user);
 
 		session.setAttribute("user", user);
 		session.setAttribute("userName", userName);
@@ -181,9 +180,7 @@ public class ClassBoardController {
 
 		// list array로 가져오기
 		int classSeq = 0;
-//		if(session.getAttribute("classSeq") != null ) {
-//			classSeq = Integer.parseInt((String) session.getAttribute("classSeq"));
-//		}
+
 
 		classSeq = (int) session.getAttribute("classSeq");
 		System.out.println("notice seq : " + classSeq);
@@ -263,17 +260,13 @@ public class ClassBoardController {
 	public String insertBoard(ClassNotice cn, HttpServletRequest request,
 			@RequestParam(name = "uploadFile", required = false) MultipartFile file) {
 
-//		System.out.println("등록시 : " + cn.getClassSeq());
-//		System.out.println("등록시 : " + cn.getnContent());
-//		System.out.println("등록시 : " + cn.getnTitle());
 		System.out.println("등록시 : " + cn.getProfName());
-//		System.out.println(cn);
 
 		
 		if (!file.getOriginalFilename().equals("")) {
 			String renameFileName = saveFile(file, request);
 
-			if (renameFileName != null) { // 파일이 잘 저장된 경우
+			if (renameFileName != null) { 
 				cn.setOriginalFileName(file.getOriginalFilename());
 				cn.setRenameFileName(renameFileName);
 			} System.out.println("rename" + renameFileName); 
@@ -302,9 +295,6 @@ public class ClassBoardController {
 			HttpSession session) {
 
 		int classSeq = 0;
-//		if(session.getAttribute("classSeq") != null ) {
-//			classSeq = Integer.parseInt((String) session.getAttribute("classSeq"));
-//		}
 
 		classSeq = (int) session.getAttribute("classSeq");
 		System.out.println("assign seq : " + classSeq);
@@ -314,10 +304,6 @@ public class ClassBoardController {
 
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		ArrayList<ClassAssignment> aNotice = cbService.assignmentList(pi, classSeq);
-		System.out.println("currentPage : " + currentPage);
-		System.out.println("listCount : " + listCount);
-		System.out.println("endPage : " + pi.getEndPage());
-		System.out.println("maxPage : " + pi.getMaxPage());
 		
 		
 		mv.addObject("NoticeList", aNotice);
@@ -529,7 +515,8 @@ public class ClassBoardController {
 	
 	@ResponseBody
 	@RequestMapping(value="callGradeDetail.do", produces="application/json; charset=utf-8")
-	public String gradeQuestion(HttpSession session, HttpServletRequest request, int aSeq) throws JsonProcessingException {
+	public String gradeQuestion(HttpSession session, HttpServletRequest request, int aSeq) 
+			throws JsonProcessingException {
 		
 		ReplyAssignment ra = new ReplyAssignment();
 		
@@ -555,7 +542,8 @@ public class ClassBoardController {
 	
 	@ResponseBody
 	@RequestMapping(value="callObjectionDetail.do", produces="application/json; charset=utf-8")
-	public String gradeAnswer(HttpSession session, HttpServletRequest request, int sSeq) throws JsonProcessingException {
+	public String gradeAnswer(HttpSession session, HttpServletRequest request, int sSeq) 
+			throws JsonProcessingException {
 		
 		ReplyAssignment ra = new ReplyAssignment();
 		
@@ -578,7 +566,8 @@ public class ClassBoardController {
 	}
 	
 	@RequestMapping(value="handOut.do")
-	public void gradeQuestion1(HttpSession session, HttpServletResponse response, HttpServletRequest request, String stuOpinion
+	public void gradeQuestion1(HttpSession session, HttpServletResponse response, 
+			HttpServletRequest request, String stuOpinion
 			, String aSeq) throws IOException {
 		
 		ReplyAssignment ra = new ReplyAssignment();
@@ -609,7 +598,8 @@ public class ClassBoardController {
 	}
 	
 	@RequestMapping(value="modify.do")
-	public void gradeQuestion2(HttpSession session, HttpServletResponse response, HttpServletRequest request, String stuOpinion
+	public void gradeQuestion2(HttpSession session, HttpServletResponse response, 
+			HttpServletRequest request, String stuOpinion
 			, String sSeq) throws IOException {
 		
 		ReplyAssignment ra = new ReplyAssignment();

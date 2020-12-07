@@ -28,6 +28,13 @@
     width: 97%;
     margin-bottom: 2%;
     }
+    
+  #main_con{
+    overflow-y: hidden;
+    width: 100%;
+	height: 82%;
+    margin: auto;
+}
   </style>
 </head>
 

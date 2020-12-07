@@ -154,7 +154,7 @@ public class ClassBoardDao {
 
 	public ArrayList<AdClassPlan> adClassPlanSelect(int classSeq) {
 		
-		return (ArrayList)sqlSession.selectList("adminLectureMapper.classPlanSelect",classSeq);
+		return (ArrayList)sqlSession.selectList("adminLectureMapper.classPlanSelect1",classSeq);
 	}
 
 

@@ -22,6 +22,40 @@
   <link rel="stylesheet" href="${contextPath}/resources/css/board_selectClass.css?ver=1">
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <style>
+  #rest_table_area{    
+    position: relative;
+    top: 40px;
+    padding: 10px;
+    height: 30%;
+    border-radius: 7px;
+    margin: auto;
+    text-align: center;
+    }
+    
+    #main_con{
+    overflow-y: hidden;
+    width: 100%;
+	height: 82%;
+    margin: auto;
+}
+    
+	#semester{
+    width: 30%;
+    margin-top: 15px;
+    margin-left: 27.5%;
+}
+
+    #rest_lecture tr{
+    height: 30px;
+    border-bottom: solid rgb(149, 149, 150) 1px;
+    text-align: center;
+    font-size:14px;
+    
+    }
+
+
+  </style>
 </head>
 
 <body id="page-top">
@@ -120,7 +154,7 @@
        					$tableBody.html(""); 
        					for (var i in data) {
        						var $tr = $("<tr>");
-    						var $classCode = $('<td>').text(data[i].classCode);
+    						var $classCode = $('<td height="40px">').text(data[i].classCode);
     						var $classSemester = $('<td>').text(data[i].classSemester);
     						var $className = $('<td>').html('<a href="classBoardMain.do?classSeq='+data[i].classSeq+'&profName='+data[i].proName+'">'+data[i].className+'</a>');
     						var $proName = $('<td>').text(data[i].proName);
@@ -147,6 +181,11 @@
        
 
       </div>
+
+
+            <!-- Footer -->
+            <c:import url="../common/footer.jsp"/>
+            <!-- End of Footer -->
 
 
     </div>

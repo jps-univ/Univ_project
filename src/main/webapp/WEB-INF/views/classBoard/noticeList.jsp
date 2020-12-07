@@ -29,6 +29,34 @@
 	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
   
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    
+    <style>
+    
+#rest_notice tr{
+    height: 30px;
+    border-bottom: solid rgb(149, 149, 150) 1px;
+    text-align: center;
+    font-size:14px;
+    
+    }
+    
+   .pagination {
+    justify-content: center;
+    margin-top: 18%;
+}
+
+#main_con {
+    overflow-y: hidden;
+    width: 85%;
+    height: 870px;
+    margin: auto;
+}
+
+.sidebar {
+    height: 1200px;
+}
+    </style>
+    
 </head>
 
 <body id="page-top">
@@ -73,7 +101,7 @@
 					<!-- 공지사항 목록 조회  -->
 					<div id="rest_table_area">
 						<form method="GET">
-							<table id="rest_notice" class=" table-hover">
+							<table id="rest_notice" class="table-hover shadow">
 								<thead>
 									<tr>
 										<th>
@@ -96,7 +124,7 @@
 								<tbody>
 									<c:forEach var="c" items="${ NoticeList }"> 
 									<tr>
-										<td>${ c.nId }</td>
+										<td height="40px">${ c.nId }</td>
 										<td><a href="cNoticeDetail.do?nId=${c.nId }">${ c.nTitle}</a></td>
 										<td>${ c.profName}</td>
 										<td>${ c.nCreateDate}</td>
