@@ -299,6 +299,7 @@
 	    function approveConsulting(event)
 	    {
 	    	var consultingNo = event.target.nextElementSibling.value;
+	    	var applyDate = event.target.parentElement.parentElement.children[4].innerHTML;				// 상담 일자
 	    	var progressDate = event.target.parentElement.parentElement.children[5].children[0].value;
 	    	
 	    	var d = new Date();
@@ -311,6 +312,10 @@
 	    	else if(sysDate < progressDate)
 	    	{
 	    		alert("진행 일자가 현재 일자보다 빠릅니다.");	
+	    	}
+	    	else if(progressDate < applyDate)
+	    	{
+	    		alert("진행 일자가 상담 신청 일자보다 빠릅니다.");	
 	    	}
 	    	else
 	    	{
@@ -382,7 +387,7 @@
 	    	{
 	    		alert("완료 일자를 선택하세요.");
 	    	}
-	    	else if(progressDate < completeDate)
+	    	else if(progressDate > completeDate)
 	    	{
 	    		alert("완료 일자가 상담 일자보다 빠릅니다.");
 	    	}
