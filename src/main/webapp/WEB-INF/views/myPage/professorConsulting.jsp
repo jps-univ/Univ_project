@@ -308,7 +308,7 @@
 	    	{
 	    		alert("진행 일자를 선택하세요.");
 	    	}
-	    	else if(sysDate > progressDate)
+	    	else if(sysDate < progressDate)
 	    	{
 	    		alert("진행 일자가 현재 일자보다 빠릅니다.");	
 	    	}
@@ -382,11 +382,11 @@
 	    	{
 	    		alert("완료 일자를 선택하세요.");
 	    	}
-	    	else if(progressDate > completeDate)
+	    	else if(progressDate < completeDate)
 	    	{
 	    		alert("완료 일자가 상담 일자보다 빠릅니다.");
 	    	}
-	    	else if(sysDate > completeDate)
+	    	else if(sysDate < completeDate)
 	    	{
 	    		alert("완료 일자가 현재 일자보다 빠릅니다.");
 	    	}
@@ -435,7 +435,7 @@
 	    	{
 	    		alert("변경 일자가 현재 진행 일자보다 빠릅니다.");	
 	    	}
-	    	else if(sysDate > progressDate)
+	    	else if(sysDate < progressDate)
     		{
 	    		alert("변경 일자가 현재 일자보다 빠릅니다.");	
     		}
