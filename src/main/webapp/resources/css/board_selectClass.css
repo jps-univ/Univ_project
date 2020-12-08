@@ -148,8 +148,8 @@ ul li{
 
 #main_con{
     overflow-y: hidden;
-    width: 1000px;
-    height: 1000px;
+    width: 100%;
+	height: 82%;
     margin: auto;
 }
 
@@ -200,9 +200,9 @@ ul li{
 } */
 
 #semester{
-    width: 50%;
+    width: 30%;
     margin-top: 15px;
-    margin-left: 15%;
+    margin-left: 27.5%;
 }
 
 /* 학기 title */
@@ -256,12 +256,15 @@ ul li{
 }
 
 #rest_table_area{
+    margin-top: 40px;
     padding: 10px;
     height: 30%;
     border-radius: 7px;
     margin: auto;
     text-align: center;
     }
+    
+    
     
     #rest_lecture{
     width: 85%;

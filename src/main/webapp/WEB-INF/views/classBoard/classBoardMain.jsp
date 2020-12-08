@@ -28,6 +28,32 @@
     width: 97%;
     margin-bottom: 2%;
     }
+    
+#main_con {
+    overflow-y: hidden;
+    width: 100%;
+    height: 87%;
+    margin: auto;
+}
+
+   #rest_table_area {
+    width: 80%;
+    margin: auto;}
+    
+   #rest_lecture tbody tr td div {
+    font-size: 10px;
+    text-align: initial;
+    margin-left: 5%;
+} 
+
+#main_sidebar {
+    height: 2600px;
+}
+
+#content-wrapper{
+    overflow-y: hidden;
+}
+
   </style>
 </head>
 
@@ -55,9 +81,9 @@
         
         <div id="main_con">  
           <p id="select_title">주차별 활동</p>
-            <div class="card shadow mb-4">	       
+            <div class="mb-4">	       
               <div id="weekPlan">
-           		 <div id="rest_table_area">
+           		 <div id="rest_table_area" >
                    <c:forEach var="cp" items="${ cPlan }" varStatus="status">
                     	<table id="rest_lecture"  class="shadow table-hover">
                        	 <thead>
@@ -69,9 +95,9 @@
                        	 </thead>
                        	 <tbody>
                        	     <tr>
-                       	         <td>
-                    	           <div>${cp.topic }</div>
-                	               <div>${cp.weekPlan }</div>
+                       	         <td style="height: 55px;">
+                    	           <div style="height: 15px; font-size: 12px; font-weight: bold; margin-top: 1px;">${cp.topic }</div>
+                	               <div style="height: 40px; margin-top: 4px; "><p>${cp.weekPlan }</p></div>
             	                 </td>
         	                  </tr>
     	                    </tbody>
@@ -84,6 +110,9 @@
           
         </div>
        
+            <!-- Footer -->
+             <c:import url="../common/footer.jsp"/> 
+            <!-- End of Footer -->
 
       </div>
 

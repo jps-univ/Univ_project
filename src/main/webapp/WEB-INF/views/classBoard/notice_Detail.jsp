@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="contextPath" value="<%= request.getContextPath()%>" />
 <c:set var="n" value="${ noticeDetail }"/>
@@ -25,21 +25,59 @@
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <style>
   
-.professor_info tbody tr td:nth-child(1){
-    width: 15%;
+
+
+.table-bordered {
+    border: 5px solid #ddd;
 }
 
-.professor_info tbody tr td:nth-child(2){
-    width: 55%;
-    font-size: 35px;
-    font-family: 'Nanum Gothic Coding', monospace;
-    font-weight: 700;
-    color: rgb(45, 45, 45);
+    footer {
+        background-color: #555;
+        color: black;
+        padding: 15px;
+    }
+    
+    .question-table th {
+    	text-align:center;
+    }
+    
+    #main_con{
+    width:95%}
+    
+   #write_title {
+   	margin:auto;
+   } 
+   
+   
+  	#div1{
+    margin: auto;
+    width: 83%;
+  	}
+
+  	#table1{
+  		font-size:14px;
+  		background:white;
+  	}
+  	
+  	#table1 p{
+  		margin:auto;
+  	}
+  	
+    #main_con {
+    overflow-y: hidden;
+    width: 85%;
+    height: 770px;
+    margin: auto;
 }
 
-.professor_info tbody tr td:nth-child(3){
-    width: 30%;
-}</style>
+#main_sidebar {
+    height: 1100px;
+}
+
+#rest_table_area{	
+	margin-top:40px;
+}
+</style>
 </head>
 
 <body id="page-top">
@@ -49,7 +87,7 @@
 
     <!-- Sidebar -->
     <div id="main_sidebar">
-   		<c:import url="../common/sidebar.jsp" />
+         <c:import url="../common/sidebar.jsp" />
     </div>
     
     <!-- End of Sidebar -->
@@ -67,47 +105,60 @@
                 <!-- End of pageTopbar -->
         
 
-		<div id="main_con">
-              <div id="write_title"><p> 공 지 사 항 </p></div>
-              <form id="write_assignment">
-                  <div id="write_content"  class="shadow">
-                      <table id="title_secret">
-                          <tbody>
-                              <tr>
-                                  <td><label class="write_subject">제목</label></td>
-                                  <td>${noticeDetail.nTitle }</td>
-                              </tr>
-                              <tr>
-                                  <td><label class="write_subject">비밀글</label></td>
-                                  <td><input type="checkbox" name="secret_mode" id="secret_mode" checked="checked" disabled="disabled"></td>
-                              </tr>
-                              <tr>
-                                  <td colspan=2><div id="textContent">${n.nContent }</div></td>
-                              </tr>
-                              <tr>
-                                  <td><label class="write_subject">첨부파일</label></td>
-                                  <td>
-									<c:if test="${ !empty n.originalFileName }">
-										<a href="${contextPath }/resources/uploadFiles/${n.renameFileName}" 
-										download="${n.originalFileName }"> ${ n.originalFileName }</a>
-									</c:if>
-                                  </td>
-                              </tr>
-                          </tbody>
-                      </table>
-                  </div>        
+      <div id="main_con">
+        <div id="write_title"><p> 공 지 사 항 </p></div>
+
+          <form id="write_assignment1">
+		    <div id="div1" class="page mb-4">
+		        <div id="container">
+		              <div id="rest_table_area">
+		                <table id="table1" class="table table-bordered">
+		                <colgroup>
+		                   <col style="width:8%;">
+		                   <col style="width:*">
+		                </colgroup>
+		                    <tbody>
+		                        <tr >
+		                            <th style="text-align:center">
+		                                <p>제목</p>
+		                            </th>
+		                            <td style="font-weight:bold;">
+		                               <p>${noticeDetail.nTitle }</p>
+		                            </td>
+		                        </tr>
+		                        <tr>
+		                            <td style="text-align:center; font-weight:bold; height:300px;">
+		                                <p>내용</p>
+		                            </td>
+		                            <td>
+		                               <div><p>${n.nContent }</p></div>
+		                            </td>
+		                        </tr>
+		                        <tr>
+		                            <td style="text-align:center; font-weight:bold;">
+		                                <p>첨부파일</p>
+		                            </td>
+		                            <td >
+		                           <c:if test="${ !empty n.originalFileName }">
+		                              <a href="${contextPath }/resources/uploadFiles/${n.renameFileName}" 
+		                              download="${n.originalFileName }"> ${ n.originalFileName }</a>
+		                           </c:if>
+		                            </td>
+		                        </tr>
+		                    </tbody>
+		                </table>
+		              </div>               
+		            </div>
+		          </div>
               </form>
 
-
-
-            
-             
-             
-              
 
           </div>
           <!-- end of main content -->
 
+             <!-- Footer -->
+             <c:import url="../common/footer.jsp"/> 
+            <!-- End of Footer -->
        
 
       </div>
@@ -117,39 +168,39 @@
     <!-- End of Content Wrapper -->
 
   </div>
-  <!-- End of Page Wrapper -->	
+  <!-- End of Page Wrapper -->   
 
 
 
 
-	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top"> <i
-		class="fas fa-angle-up"></i>
-	</a>
+   <!-- Scroll to Top Button-->
+   <a class="scroll-to-top rounded" href="#page-top"> <i
+      class="fas fa-angle-up"></i>
+   </a>
 
-	<!-- Logout Modal-->
-	<c:import url="../common/logoutModal.jsp" />
+   <!-- Logout Modal-->
+   <c:import url="../common/logoutModal.jsp" />
 
-	<!-- Bootstrap core JavaScript-->
-	<script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-	<script
-		src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <!-- Bootstrap core JavaScript-->
+   <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+   <script
+      src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<!-- Core plugin JavaScript-->
-	<script
-		src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+   <!-- Core plugin JavaScript-->
+   <script
+      src="${contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-	<!-- Custom scripts for all pages-->
-	<script src="${contextPath}/resources/js/sb-admin-2.min.js"></script>
+   <!-- Custom scripts for all pages-->
+   <script src="${contextPath}/resources/js/sb-admin-2.min.js"></script>
 
-	<!-- Page level plugins -->
-	<script
-		src="${contextPath}/resources/vendor/datatables/jquery.dataTables.min.js"></script>
-	<script
-		src="${contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+   <!-- Page level plugins -->
+   <script
+      src="${contextPath}/resources/vendor/datatables/jquery.dataTables.min.js"></script>
+   <script
+      src="${contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-	<!-- Page level custom scripts -->
-	<script src="${contextPath}/resources/js/demo/datatables-demo.js"></script>
+   <!-- Page level custom scripts -->
+   <script src="${contextPath}/resources/js/demo/datatables-demo.js"></script>
 
 </body>
 

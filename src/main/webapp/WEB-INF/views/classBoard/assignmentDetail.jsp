@@ -45,6 +45,8 @@
         margin-top: 30px;
         margin-bottom: 30px;
         color: #252525;
+        width: 97%;
+    	margin: auto;
     }
 
     .question-table p {
@@ -69,7 +71,7 @@
     /* footer */
     footer {
         background-color: #555;
-        color: white;
+        color: black;
         padding: 15px;
     }
     
@@ -78,7 +80,17 @@
     }
     
     #main_con{
-    width:95%}
+    width:95%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height:1500px;
+    }
+    
+    #main_sidebar {
+    height: 1828px;
+	}
+  
+
   
   </style>
 </head>
@@ -110,7 +122,7 @@
               <div id="write_title"><p>과제</p></div>
               <div class="col-sm-9 page">
 		        <div id="container">
-                  <div class="card shadow mb-4">  
+                  <div class="shadow mb-4">  
 		            <div id="rest_table_area">
 		                <table class="table table-bordered question-table">
 		                <colgroup>
@@ -119,11 +131,19 @@
 		                </colgroup>
 		                    <thead>
 		                        <tr>
-		                            <th>
+		                            <th style="text-align:center">
 		                                <p>제목</p>
 		                            </th>
-		                            <td>
+		                            <td style="font-weight:bold;">
 		                            	<p>${a.aTitle}</p>
+		                            </td>
+		                        </tr>
+		                        <tr>
+		                            <td style="text-align:center; font-weight:bold; height:300px;">
+		                                <p>내용</p>
+		                            </td>
+		                            <td>
+		                            	<div><p>${a.aContent}</p></div>
 		                            </td>
 		                        </tr>
 		                        <tr>
@@ -135,14 +155,6 @@
 											<a href="${contextPath }/resources/uploadFiles/${a.renameFileName}" 
 											download="${a.originalFileName }"> ${ a.originalFileName }</a>
 										</c:if>
-		                            </td>
-		                        </tr>
-		                        <tr>
-		                            <td style="text-align:center; font-weight:bold;">
-		                                <p>내용</p>
-		                            </td>
-		                            <td>
-		                            	<div><p>${a.aContent}</p></div>
 		                            </td>
 		                        </tr>
 		                    </thead>
@@ -161,7 +173,7 @@
 		          <!-- DataTales Example -->
 		          <div class="card shadow mb-4">
 		            <div class="card-header py-3">
-		              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+		              <h6 class="m-0 font-weight-bold text-primary">제출 목록</h6>
 		            </div>
 		            <div class="card-body">
 		              <div class="table-responsive">
@@ -194,7 +206,6 @@
 										</c:if>
 				                      </td>
 				                      <td>
-	<%-- 			                      	<c:if test="${ empty r.score }"> --%>
 						                  <select id="selectScore" name="selectScore">
 					                        <option value="A+">A+</option>
 					                        <option value="A0">A0</option>
@@ -336,6 +347,10 @@
 
         </div>
        <!-- end of main con -->
+
+             <!-- Footer -->
+             <c:import url="../common/footer.jsp"/> 
+            <!-- End of Footer -->
 
       </div>
 

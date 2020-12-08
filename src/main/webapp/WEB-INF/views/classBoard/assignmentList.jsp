@@ -22,6 +22,33 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+      <style>
+    
+#rest_notice tr{
+    height: 30px;
+    border-bottom: solid rgb(149, 149, 150) 1px;
+    text-align: center;
+    font-size:14px;
+    
+    }
+    
+   .pagination {
+    justify-content: center;
+    margin-top: 18%;
+}
+
+#main_con {
+    overflow-y: hidden;
+    width: 85%;
+    height: 870px;
+    margin: auto;
+}
+
+.sidebar {
+    height: 1200px;
+}
+
+    </style>
 </head>
 
 <body id="page-top">
@@ -87,7 +114,7 @@
                             <tbody>
                                 <c:forEach var="a" items="${ NoticeList }">
 								<tr>
-									<td>${ a.aSeq }</td>
+									<td height="40px">${ a.aSeq }</td>
 									<td><a href="assignmentDetail.do?aSeq=${ a.aSeq }">${a.aTitle }</a></td>
 									<td>${ a.dueDate }</td>
 									<td>${ profName }</td>

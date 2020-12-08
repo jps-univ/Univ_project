@@ -40,7 +40,7 @@
 
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${userName }님 환영합니다. ${profN } + ${Seq }+${classSeq }</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${userName }님 환영합니다.</span>
               </a>
             </li>
 

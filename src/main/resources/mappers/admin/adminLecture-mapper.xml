@@ -202,6 +202,14 @@
 		ORDER BY WEEK
 			
 	</select>
+
+	<select id="classPlanSelect1" parameterType="AdClassPlan" resultMap="adClassPlanResultSet">
+		SELECT PLAN_NO,CLASS_SEQ,WEEK,TOPIC,WEEK_PLAN
+		FROM CLASS_PLAN
+		WHERE CLASS_SEQ=110
+		ORDER BY WEEK
+			
+	</select>
 	
 	<update id="lectureUpdate" parameterType="AdLecture">
 		UPDATE TB_CLASS
